@@ -1,0 +1,26 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1600" height="1200" viewBox="0 0 1600 1200" role="img" aria-label="Abstract warm studio atmosphere placeholder">
+  <defs>
+    <linearGradient id="g1" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#f3e6d8"/>
+      <stop offset="45%" stop-color="#e8c9a8"/>
+      <stop offset="100%" stop-color="#c97b4a"/>
+    </linearGradient>
+    <linearGradient id="g2" x1="100%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#d9ecec" stop-opacity="0.85"/>
+      <stop offset="100%" stop-color="#f7efe6" stop-opacity="0"/>
+    </linearGradient>
+    <radialGradient id="g3" cx="30%" cy="70%" r="55%">
+      <stop offset="0%" stop-color="#2b211c" stop-opacity="0.35"/>
+      <stop offset="100%" stop-color="#2b211c" stop-opacity="0"/>
+    </radialGradient>
+  </defs>
+  <rect width="1600" height="1200" fill="url(#g1)"/>
+  <rect width="1600" height="1200" fill="url(#g2)"/>
+  <rect width="1600" height="1200" fill="url(#g3)"/>
+  <g fill="none" stroke="#2b211c" stroke-opacity="0.12" stroke-width="2">
+    <path d="M120 980 C420 720 640 760 820 540 C980 360 1180 300 1480 220"/>
+    <path d="M80 860 C360 640 560 680 760 480 C980 240 1220 260 1520 180"/>
+  </g>
+  <text x="80" y="140" fill="#2b211c" fill-opacity="0.45" font-family="Georgia, serif" font-size="42">Mock atmosphere</text>
+  <text x="80" y="190" fill="#2b211c" fill-opacity="0.35" font-family="system-ui, sans-serif" font-size="24">Not studio photography</text>
+</svg>

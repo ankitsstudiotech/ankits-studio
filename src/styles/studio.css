@@ -1,0 +1,32 @@
+/**
+ * Base surface styles for the design system.
+ * Imported by the design-lab layout (root globals.css stays untouched —
+ * wiring these into the root layout is a shared hotspot for a later pass).
+ */
+
+@import "./tokens.css";
+@import "./motion.css";
+
+.studio-shell {
+  background: var(--atmosphere-gradient);
+  background-color: var(--color-surface);
+  color: var(--color-ink);
+  font-family: var(--font-sans);
+  min-height: 100%;
+}
+
+.studio-shell ::selection {
+  background: var(--color-accent-soft);
+  color: var(--color-ink);
+}
+
+/* Sticky mobile CTA clearance */
+.studio-shell.has-sticky-cta {
+  padding-bottom: calc(var(--sticky-cta-height) + env(safe-area-inset-bottom, 0px));
+}
+
+@media (min-width: 1024px) {
+  .studio-shell.has-sticky-cta {
+    padding-bottom: 0;
+  }
+}

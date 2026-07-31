@@ -1,0 +1,12 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="900" viewBox="0 0 1200 900" role="img" aria-label="Abstract programme media placeholder">
+  <defs>
+    <linearGradient id="p" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#efe4d6"/>
+      <stop offset="100%" stop-color="#b85c38"/>
+    </linearGradient>
+  </defs>
+  <rect width="1200" height="900" fill="url(#p)"/>
+  <circle cx="860" cy="240" r="180" fill="#f7efe6" fill-opacity="0.35"/>
+  <circle cx="280" cy="680" r="220" fill="#2b211c" fill-opacity="0.12"/>
+  <text x="64" y="120" fill="#2b211c" fill-opacity="0.5" font-family="system-ui,sans-serif" font-size="36" font-weight="600">Programme placeholder</text>
+</svg>
