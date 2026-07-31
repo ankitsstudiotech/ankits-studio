@@ -14,8 +14,8 @@
 
   /* Ink */
   --color-ink: oklch(22% 0.016 55);
-  --color-ink-muted: oklch(42% 0.014 55);
-  --color-ink-subtle: oklch(55% 0.012 55);
+  --color-ink-muted: oklch(40% 0.014 55);
+  --color-ink-subtle: oklch(38% 0.012 55);
   --color-ink-inverse: oklch(97% 0.01 82);
 
   /* Brand accent — deep amber, contrast-safe on white (~4.6:1+) */
