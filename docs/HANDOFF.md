@@ -1,6 +1,6 @@
 # Handoff
 
-_Last updated: 2026-07-31 — Phase 0 (governance foundation) complete._
+_Last updated: 2026-07-31 — Phase 0 complete; independent architecture review done._
 
 ## Current state
 
@@ -13,6 +13,20 @@ and is currently empty (pre-existing, unrelated to this pass).
 All 13 planning docs plus the two root instruction files were reviewed together
 for contradictions before this handoff was written — see
 [Consistency check](#consistency-check) below.
+
+**Independent architecture review (complete):** a staff-level review of the
+proposed architecture is in
+[CURSOR-ARCHITECTURE-REVIEW.md](./CURSOR-ARCHITECTURE-REVIEW.md). It classifies
+findings (Critical / Important / Optional / Rejected) across complexity, local
+SEO, conversion, motion/performance, accessibility, App Router, content
+separation, mock-data publish risk, parallelism, merge conflicts, testing,
+mobile, media optimisation, thin location pages, and overengineering. Existing
+planning docs were **not** rewritten by that pass — Critical/Important items
+recommend which doc should change in a follow-up planning edit **before** Phase
+1 application work. Do not start Phase 1 implementation until Critical findings
+(especially programme×location SEO IA, Motion vs landing JS budget, Phase 1
+task dependencies, and launch-gate test requirements) are addressed or
+explicitly deferred in `DECISIONS.md`.
 
 ## What's decided (see DECISIONS.md for full rationale)
 
