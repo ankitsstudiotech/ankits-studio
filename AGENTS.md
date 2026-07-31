@@ -42,10 +42,12 @@ and next steps: `docs/HANDOFF.md`. Full doc set: `docs/` (index below).
 5. **Stack**: Next.js App Router, TypeScript strict mode, Tailwind. See
    `docs/DECISIONS.md` ADR-001. Read the App Router guide under
    `node_modules/next/dist/docs/` before writing route code — see banner above.
-6. **Animation**: Motion is the default. GSAP only for the specific complex-
-   timeline cases in `docs/MOTION-SYSTEM.md`, each usage logged as a
-   `docs/DECISIONS.md` entry. No WebGL unless a demonstrated business benefit is
-   logged the same way. See ADR-005.
+6. **Animation**: Motion is the default library, but it's an opt-in client
+   island, not a root-layout default — never wrap a whole Tier 1 SEO landing
+   page in it, never gate the LCP element behind client JS. GSAP only for the
+   specific complex-timeline cases in `docs/MOTION-SYSTEM.md`, each usage
+   logged as a `docs/DECISIONS.md` entry. No WebGL unless a demonstrated
+   business benefit is logged the same way. See ADR-005 and ADR-009.
 7. **Design system is one shared system**, not per-programme sub-brands — see
    `docs/DESIGN-DIRECTION.md` and ADR-004. Don't build a separate visual language
    for yoga/dance vs. strength.
@@ -66,7 +68,7 @@ protocol in `docs/TASKS.md` for anything crossing a zone boundary.
 | `docs/**` | Claude Code | All governance/planning docs |
 | Content/data layer (`src/content/**`, `src/lib/content/**`, types in `docs/CONTENT-MODEL.md`) | Claude Code | Mock data, content types, the accessor layer |
 | Route scaffolding (`src/app/**` file/folder structure, server components, metadata, structured data) | Claude Code | New routes, SEO wiring, App Router structure |
-| Component visual/motion implementation (styling, Tailwind classes, Motion/GSAP animation code inside already-scaffolded components) | Cursor | UI polish, interaction detail, responsive behavior |
+| Component visual/motion implementation (styling, Tailwind classes, Motion/GSAP animation code inside already-scaffolded components), and the global design-tokens file | Cursor | UI polish, interaction detail, responsive behavior, palette/type/spacing/accent tokens |
 
 Rules:
 
@@ -107,5 +109,6 @@ Full detail, tiering, and rationale: `docs/INFORMATION-ARCHITECTURE.md`. Summary
 | `docs/DECISIONS.md` | ADR log — authoritative "why" |
 | `docs/TASKS.md` | Live task board + claiming protocol |
 | `docs/HANDOFF.md` | Current state, next steps, open questions |
+| `docs/CURSOR-ARCHITECTURE-REVIEW.md` | Independent architecture review; reconciled in `docs/DECISIONS.md` ADR-007–012 |
 
 Read `docs/PROJECT-BRIEF.md` and `docs/HANDOFF.md` first in any new session.

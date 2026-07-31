@@ -42,6 +42,24 @@ that record. `"reference-only"` exists to distinguish *why* it isn't verified
 pure fabrication, which matters for `docs/BUSINESS-DATA-STATUS.md` bookkeeping
 but not for gating.
 
+## Hard rules for using this model (ADR-011)
+
+These close the mock-data leak paths identified in the architecture review —
+see [DECISIONS.md ADR-011](./DECISIONS.md#adr-011):
+
+- **No hardcoded business facts.** A price, phone number, address, or trainer
+  name never appears as a literal in a component. It always comes from
+  `src/lib/content/**`.
+- **`tel:` / `wa.me` hrefs, and `Branch.mapEmbedUrl`, are never rendered
+  unless the record's `dataStatus === "verified"`.** Pre-verification, phone
+  and WhatsApp values render as plain non-linked text using an
+  obviously-non-dialable example pattern (never a plausible live-looking
+  number), and `mapEmbedUrl` is not read by the UI layer at all.
+- **No dedicated type for member counts / social-proof numbers.** Hardcoding
+  such a number anywhere is banned. Adding this domain requires a new
+  `Provenanced` type plus its own `docs/DECISIONS.md` entry first — not
+  created speculatively here.
+
 ## Content types
 
 ### Programme
@@ -56,6 +74,14 @@ type ProgrammeSlug =
   | "kids-dance"
   | "weight-loss-fitness";
 
+/** Semantic family, not a raw design token — see DECISIONS.md ADR-012.
+ *  The design layer (Phase 1 design-tokens track) maps each family to
+ *  actual CSS tokens; content never names a token value directly. */
+type ProgrammeAccentFamily = "strength" | "calm" | "high-energy";
+// strength-training / personal-training / weight-loss-fitness -> "strength"
+// yoga -> "calm"
+// zumba / adult-dance / kids-dance -> "high-energy"
+
 interface Programme extends DataProvenance {
   slug: ProgrammeSlug;
   name: string;
@@ -63,7 +89,7 @@ interface Programme extends DataProvenance {
   longDescription: string;
   audienceTags: string[]; // e.g. ["beginner-friendly", "kids", "high-intensity"]
   branchSlugs: BranchSlug[]; // which branches offer it
-  heroAccent: ProgrammeAccentToken; // see DESIGN-DIRECTION.md
+  heroAccent: ProgrammeAccentFamily; // see DESIGN-DIRECTION.md
 }
 ```
 
@@ -80,11 +106,34 @@ interface Branch extends DataProvenance {
   slug: BranchSlug;
   name: string;
   address: string;
-  mapEmbedUrl?: string; // owner-supplied Maps link, reference-only until address verified
+  // Owner-supplied Maps link. Present on the record for internal reference,
+  // but the UI layer must not read/embed it until dataStatus === "verified"
+  // (an embedded pin leaks a real address exactly like printed text would).
+  mapEmbedUrl?: string;
   phone: string;
   whatsapp: string;
   openingHours: OpeningHoursEntry[];
   programmeSlugs: ProgrammeSlug[];
+  // Whether this branch appears in public nav/footer/sitemap. False for any
+  // branch still "reference-only" (e.g. Thane) — see BUSINESS-DATA-STATUS.md
+  // and DECISIONS.md ADR-007 (I2). The route can still exist for prototyping.
+  publiclyListed: boolean;
+}
+```
+
+### MediaAsset
+
+Shared shape for every image reference in the content model — kept minimal
+deliberately (see [DECISIONS.md ADR-012](./DECISIONS.md#adr-012)): no
+`licenceNote` or `lqip` yet, since no real photography exists to attach them
+to. Extend when Phase 2/3 sources real images, not speculatively now.
+
+```ts
+interface MediaAsset {
+  src: string;
+  alt: string;
+  width: number;
+  height: number;
 }
 ```
 
@@ -94,7 +143,7 @@ interface Branch extends DataProvenance {
 interface Trainer extends DataProvenance {
   slug: string;
   name: string;
-  photoUrl: string; // must be a licensed/placeholder asset, never a scraped photo
+  photo: MediaAsset; // must be a licensed/placeholder asset, never a scraped photo
   qualifications: string[];
   specialties: ProgrammeSlug[];
   branchSlugs: BranchSlug[];
@@ -142,8 +191,8 @@ interface Transformation extends DataProvenance {
   programmeSlug: ProgrammeSlug;
   summary: string; // qualitative description, not a specific unverifiable number
   durationWeeks?: number;
-  beforeImageUrl?: string;
-  afterImageUrl?: string;
+  beforeImage?: MediaAsset;
+  afterImage?: MediaAsset;
 }
 ```
 
@@ -166,7 +215,9 @@ interface BlogPost extends DataProvenance {
   slug: string;
   title: string;
   excerpt: string;
-  bodyMdx: string;
+  // Opaque body format for now (MDX vs. plain vs. block-based is a Phase 3
+  // decision, not committed here) — see DECISIONS.md ADR-012.
+  body: string;
   publishedAt: string; // ISO date
   programmeSlugs?: ProgrammeSlug[];
 }

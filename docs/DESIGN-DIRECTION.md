@@ -30,15 +30,26 @@ identical to a strength page, without fragmenting the brand.
   token-based CSS custom properties (design tokens as `--color-*`/`--space-*`
   variables, not hardcoded values) per the web coding-style convention this
   project follows.
-- Programme accent layer: each programme gets a secondary accent hue used
-  sparingly (hero gradients, active-state chips, icon tinting) — strength/personal
-  training lean toward the base warm accent at higher saturation; yoga leans
-  toward a calmer muted tone; Zumba/dance lean toward a brighter, higher-energy
-  variant of the same hue family so it still reads as one brand, not four.
+- Programme accent layer: each programme maps to one of three semantic
+  families defined in [CONTENT-MODEL.md](./CONTENT-MODEL.md) as
+  `ProgrammeAccentFamily` (`"strength" | "calm" | "high-energy"` — see
+  [DECISIONS.md ADR-012](./DECISIONS.md#adr-012)), used sparingly (hero
+  gradients, active-state chips, icon tinting): strength/personal
+  training/weight-loss lean toward the base warm accent at higher saturation
+  (`"strength"`); yoga leans toward a calmer muted tone (`"calm"`);
+  Zumba/adult-dance/kids-dance lean toward a brighter, higher-energy variant
+  of the same hue family (`"high-energy"`) — three states, not seven, so it
+  still reads as one brand. Content only ever names the semantic family; this
+  doc (and the Phase 1 design-tokens track) owns the actual CSS token each
+  family resolves to.
 - Exact token values (oklch definitions, type pairing, spacing scale) are a
   Phase 1 design-system deliverable, not decided in this governance pass — see
   [IMPLEMENTATION-PLAN.md](./IMPLEMENTATION-PLAN.md). This doc fixes the
   *approach*, not the final hex/oklch values.
+- **Theme: light only for v1.** No dark mode is built or gated on for the
+  initial launch — see [DECISIONS.md ADR-007](./DECISIONS.md#adr-007)
+  (finding I4). This removes a whole axis of contrast/token work that nothing
+  in the brief asks for; revisit only if the owner requests it.
 
 ## Typography
 
@@ -68,6 +79,15 @@ https://schoolofmotion.com/blog/10-websites-with-great-animation-in-2026 is the
 owner-supplied benchmark for animation *craft quality* — see
 [MOTION-SYSTEM.md](./MOTION-SYSTEM.md) for how that translates into concrete
 motion rules. It is a craft/quality bar, not a literal template to copy.
+
+## Mobile (DECISIONS.md ADR-007, finding I10)
+
+Breakpoint tokens and the mobile navigation pattern (e.g. priority nav +
+drawer) are a named deliverable of the Phase 1 design-tokens track — not
+specified here, to avoid fixing pixel values before any component exists.
+See [INFORMATION-ARCHITECTURE.md](./INFORMATION-ARCHITECTURE.md) for the
+corresponding `/timetable` mobile-layout deliverable (route-scaffolding
+track) and [TASKS.md](./TASKS.md) for where these are tracked.
 
 ## Anti-template checklist
 

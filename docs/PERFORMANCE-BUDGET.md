@@ -17,30 +17,50 @@ These are hard acceptance gates, not aspirational targets — see
 
 | Page type | Routes | JS budget (gzipped) | CSS budget |
 |---|---|---|---|
-| Landing / marketing | `/`, `/programmes`, `/programmes/[slug]`, `/locations`, `/locations/[slug]`, `/transformations` | < 150kb | < 30kb |
+| Landing / marketing | `/`, `/programmes`, `/programmes/[slug]`, `/locations`, `/locations/[slug]`, `/transformations`, `/trainers`, `/trainers/[slug]`, `/locations/[branch]/[programme]` | < 150kb | < 30kb |
 | App-like / interactive | `/timetable`, `/trial`, `/pricing`, `/contact` | < 300kb | < 50kb |
 | Microsite-style | `/blog`, `/blog/[slug]` | < 80kb | < 15kb |
 
 Rationale for the split: this groups routes by **runtime behavior**, not by the
 IA tiering in [INFORMATION-ARCHITECTURE.md](./INFORMATION-ARCHITECTURE.md) (tiers
-govern build order and mock-data risk; this table governs bundle weight). Pages
-that are primarily server-rendered content with scroll/reveal motion — including
-`/contact`, which is mostly static branch info despite being Tier 1, and
-`/transformations`, despite being Tier 2 — get the tightest budget because they
-are also the primary SEO landing targets and shouldn't carry interactive-form
-weight they don't need. `/timetable`, `/trial`, and `/pricing` involve real
-client-side interactivity (filters, form validation, plan selection) and get more
-headroom for that reason, regardless of tier. Blog is lightweight by nature.
+govern build order and mock-data risk; this table governs bundle weight).
+Pages that are primarily server-rendered content with scroll/reveal motion and
+no real form/filter logic — `/`, `/programmes*`, `/locations*` (the branch
+index and single-branch detail pages), `/transformations`, `/trainers*`, and
+`/locations/[branch]/[programme]` (ADR-008's local-SEO landing pages) —
+despite several of these being Tier 2, get the tightest budget because they
+are also the primary SEO landing targets and don't need interactive-form
+weight. `/timetable`,
+`/trial`, `/pricing`, and `/contact` all involve real client-side
+interactivity (timetable filters, form validation and submission, plan
+selection, a multi-branch contact form) and get more headroom for that
+reason, regardless of tier — `/contact`'s static NAP content doesn't change
+its budget class; its form island does. Blog is lightweight by nature.
 
 ## Loading strategy
 
 - Inline critical above-the-fold CSS where justified; defer the rest.
 - Preload the hero image/font only, per page — not a blanket preload policy.
-- Motion is imported normally (small, needed everywhere); GSAP is always
+- **Motion bundle accounting** (DECISIONS.md ADR-009): Motion is an opt-in
+  client island, not a root-layout default — see
+  [MOTION-SYSTEM.md](./MOTION-SYSTEM.md). Shared motion code counts against
+  the JS budget of every route that imports it; a landing route that would
+  exceed budget with motion included gets that motion route-split
+  (dynamically imported per-route) rather than exempted. GSAP is always
   dynamically imported into only the component that needs it, per
   [MOTION-SYSTEM.md](./MOTION-SYSTEM.md).
-- Images: explicit `width`/`height`, AVIF/WebP with fallback, `loading="lazy"`
-  below the fold, `fetchpriority="high"` only on the hero image.
+- **Images** (DECISIONS.md ADR-007, finding I9): `next/image` (or a
+  documented exception logged in [DECISIONS.md](./DECISIONS.md)) is required
+  for all raster images. Explicit `width`/`height`, a `sizes` attribute on
+  responsive images, AVIF/WebP with fallback, `loading="lazy"` below the
+  fold, `fetchpriority="high"` only on the hero image. Max compressed weight:
+  hero ≤ 200KB, inline/card images ≤ 100KB, before/after pairs on
+  `/transformations` ≤ 100KB each.
+- **Video**: no autoplay hero video by default (nothing in the brief
+  demonstrates the need). If ever introduced, it must be muted, deferred
+  until after LCP, have a poster frame, ship with captions (see
+  [ACCESSIBILITY-STANDARDS.md](./ACCESSIBILITY-STANDARDS.md)), and be logged
+  as a budget exception in [DECISIONS.md](./DECISIONS.md) before use.
 - Fonts: max two families (per [DESIGN-DIRECTION.md](./DESIGN-DIRECTION.md)),
   `font-display: swap`, subset, preload only the critical weight/style.
 

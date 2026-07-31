@@ -70,6 +70,7 @@ system without feeling visually confused — see
 | [DECISIONS.md](./DECISIONS.md) | ADR log — the single source of truth for "why" |
 | [TASKS.md](./TASKS.md) | Task board with agent ownership |
 | [HANDOFF.md](./HANDOFF.md) | Current state, next steps, open questions |
+| [CURSOR-ARCHITECTURE-REVIEW.md](./CURSOR-ARCHITECTURE-REVIEW.md) | Independent architecture review; reconciled in DECISIONS.md ADR-007–012 |
 
 CLAUDE.md and AGENTS.md at the repo root both point here and must never diverge
 from this doc set.

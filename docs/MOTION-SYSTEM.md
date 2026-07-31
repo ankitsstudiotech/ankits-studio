@@ -1,11 +1,32 @@
 # Motion System
 
-## Default: Motion
+## Default: Motion, as an opt-in client island (DECISIONS.md ADR-009)
 
 [Motion](https://motion.dev) (formerly Framer Motion) is the default animation
-library for all standard interaction and reveal animation: page transitions,
-scroll reveals, hover/focus/active states, list/stagger animations, layout
-animations. Reach for Motion first, always.
+*library* for standard interaction and reveal animation: scroll reveals,
+hover/focus/active states, list/stagger animations. Reach for Motion first,
+always — but it is never imported at the root layout or treated as
+"needed everywhere." Concretely:
+
+1. Server-rendered content renders first. Motion hydrates only inside
+   specific client-boundary components (`src/components/client/**`, see
+   [DECISIONS.md ADR-010](./DECISIONS.md#adr-010)) that need it — never
+   wraps a whole page.
+2. Page transitions and shared layout animations are **not** applied to Tier 1
+   SEO landing routes by default. Adding one requires a logged budget
+   exception in [DECISIONS.md](./DECISIONS.md).
+3. The LCP element (hero image or headline) never depends on client JS to
+   become visible — it's in the server HTML unconditionally; motion may
+   enhance it after hydration, never gate its initial visibility.
+4. **Motion bundle accounting**: shared motion code counts against the JS
+   budget of every route that imports it (see
+   [PERFORMANCE-BUDGET.md](./PERFORMANCE-BUDGET.md)). If a landing route would
+   exceed budget with motion included, the motion is route-split (dynamically
+   imported per-route), never exempted from the budget.
+
+This corrects an earlier contradiction between "Motion is small, needed
+everywhere" and the 150kb landing budget — see
+[DECISIONS.md ADR-009](./DECISIONS.md#adr-009).
 
 ## GSAP: allowed only for specific complex timelines
 
@@ -59,6 +80,15 @@ demonstrates this benefit, so WebGL is out of scope for the initial build.
 6. **Budget-aware** — motion libraries are dynamically imported where reasonable
    and must stay inside the bundle budgets in
    [PERFORMANCE-BUDGET.md](./PERFORMANCE-BUDGET.md).
+
+## Video is not a motion-library substitute (DECISIONS.md ADR-007, finding I9)
+
+Autoplay hero video is not covered by this doc's animation rules — it's
+governed by the video policy in
+[PERFORMANCE-BUDGET.md](./PERFORMANCE-BUDGET.md) (banned unless muted,
+deferred past LCP, and logged as a budget exception in
+[DECISIONS.md](./DECISIONS.md)). Nothing in the current brief demonstrates a
+need for it.
 
 ## Ownership note
 

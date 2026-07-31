@@ -13,15 +13,15 @@ Status values: `MOCK` (placeholder, invented for structure/design only),
 
 | Domain | Status | Notes |
 |---|---|---|
-| Branch addresses (Airoli, Ghansoli) | MOCK | Owner supplied Google Maps pins as location references, not transcribed addresses. Do not copy text scraped from Maps into copy — treat as unverified until owner confirms the printable address string. |
-| Thane branch (existence, address, everything) | MOCK / REFERENCE-ONLY | Owner flagged Thane as "known or expected" — not confirmed as operating. Build Thane as a full mock branch so IA/design work isn't blocked, but it must not go live without explicit owner confirmation the branch exists. |
-| Phone / WhatsApp numbers | MOCK | Use obviously fake but correctly-formatted Indian mobile numbers (e.g. `+91 90000 00000` pattern), never a real-looking number that could be mistaken for in-service. |
+| Branch addresses (Airoli, Ghansoli) | MOCK | Owner supplied Google Maps pins as location references, not transcribed addresses. Do not copy text scraped from Maps into copy — treat as unverified until owner confirms the printable address string. `mapEmbedUrl` must not be rendered/embedded pre-verification — see [CONTENT-MODEL.md](./CONTENT-MODEL.md) hard rules and [DECISIONS.md ADR-011](./DECISIONS.md#adr-011). |
+| Thane branch (existence, address, everything) | MOCK / REFERENCE-ONLY | Owner flagged Thane as "known or expected" — not confirmed as operating. Build Thane as a full mock branch (`Branch.publiclyListed = false`) so IA/design work isn't blocked, but it must not appear in public nav/footer/sitemap and must not go live without explicit owner confirmation the branch exists — see [DECISIONS.md ADR-007](./DECISIONS.md#adr-007) (finding I2) and [INFORMATION-ARCHITECTURE.md](./INFORMATION-ARCHITECTURE.md). |
+| Phone / WhatsApp numbers | MOCK | Use an obviously non-dialable example pattern (e.g. reserved/placeholder digit sequences), never a plausible real-looking number. `tel:`/`wa.me` hrefs are never rendered for a mock/reference-only record — values display as plain text only. See [DECISIONS.md ADR-011](./DECISIONS.md#adr-011). |
 | Fees / membership pricing | MOCK | Placeholder tiers only. Never publish a specific rupee figure without owner sign-off — pricing is the highest-risk domain for real-world harm if leaked as real. |
 | Batch/class timetables | MOCK | Plausible slot grid per programme/branch, clearly a placeholder schedule. |
 | Trainer names, qualifications, bios | MOCK | Do not use real trainer names or real certifications unless supplied and confirmed by the owner. |
 | Testimonials | MOCK | Fabricated quotes must be labelled as illustrative examples, never attributed to a real, identifiable person. |
 | Transformation results (before/after, numbers) | MOCK | No fabricated body-transformation photography claims. Use placeholder copy describing the *kind* of result, not a specific verifiable number, and label clearly. |
-| Member counts / social proof numbers | MOCK | Do not invent specific counts ("2,400+ members") without a source. |
+| Member counts / social proof numbers | MOCK | Do not invent specific counts ("2,400+ members") without a source. No content type exists for this domain and none is added speculatively — see [DECISIONS.md ADR-011](./DECISIONS.md#adr-011). Hardcoding a number anywhere is banned; if this domain is ever needed, it requires a new typed record and its own DECISIONS.md entry first. |
 | Opening hours | MOCK | Placeholder hours per branch. |
 | Programme list (strength, personal training, yoga, Zumba, adult dance, kids dance, weight-loss/fitness) | VERIFIED | Confirmed directly by the owner in the brief. Names/descriptions of *what programmes exist* are real; fees/timings/trainers attached to them are still MOCK. |
 | Location list (Airoli, Ghansoli confirmed; Thane expected) | VERIFIED (Airoli, Ghansoli) / REFERENCE-ONLY (Thane) | See Thane row above. |

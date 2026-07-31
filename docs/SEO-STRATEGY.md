@@ -15,19 +15,65 @@ This is a hard constraint from the owner brief and applies regardless of how muc
 motion/interactivity is layered on top (see [MOTION-SYSTEM.md](./MOTION-SYSTEM.md)
 for how animation coexists with this).
 
+## Programme × location landing pages (DECISIONS.md ADR-008)
+
+`/locations/[branch]/[programme]` is a dedicated landing surface for
+"[programme] classes in [branch]"-shaped intent — the specific query shape
+this doc names as the primary growth channel, which separate programme and
+branch pages don't win on their own. Rules:
+
+- Generated only for pairs present in both `Branch.programmeSlugs` and
+  `Programme.branchSlugs` — never the full cross product.
+- Each page requires unique server-rendered copy: a local intro, that
+  branch's timetable excerpt for that programme, facilities/directions, and a
+  trial CTA for that pair. Reusing the branch or programme page's copy with
+  only the name swapped fails the uniqueness bar and the page should not be
+  generated (same rule applies if this pattern is ever extended further —
+  see [DECISIONS.md ADR-007](./DECISIONS.md#adr-007) finding I2).
+- Location-first URL shape only (`/locations/[branch]/[programme]`, not also
+  `/programmes/[programme]/[branch]`) — one canonical URL per intent, no
+  duplicate content between two shapes.
+- Ships in Phase 2, alongside the rest of Tier 2 (see
+  [INFORMATION-ARCHITECTURE.md](./INFORMATION-ARCHITECTURE.md)).
+
 ## Structured data
 
 - `LocalBusiness` (or a more specific `HealthClub`/`ExerciseGym`/`DanceSchool`
   sub-type where accurate) JSON-LD per branch, on each `/locations/[slug]` page.
-- `Course`/`Service`-style structured data per programme on `/programmes/[slug]`.
+- `Course`/`Service`-style structured data per programme on `/programmes/[slug]`
+  and on each `/locations/[branch]/[programme]` page.
 - `BreadcrumbList` on all detail pages.
 - **Structured data must never be emitted from mock fields until they're
   `VERIFIED`** per [BUSINESS-DATA-STATUS.md](./BUSINESS-DATA-STATUS.md) — a search
   engine indexing a fake phone number or fake address as a real `LocalBusiness` is
   a real-world harm, not just a copy problem. Until verified, branch pages render
-  content visually but omit `LocalBusiness` JSON-LD (or emit it with
-  `"@id"`-only placeholder scoping) — implementation detail to be finalized in
-  Phase 2 of [IMPLEMENTATION-PLAN.md](./IMPLEMENTATION-PLAN.md).
+  content visually but **omit `LocalBusiness` JSON-LD entirely** — the
+  previously-considered `"@id"`-only placeholder option is rejected as
+  unnecessary risk (easy to implement wrong, emitting partial NAP); omission
+  is the only rule. See [DECISIONS.md ADR-011](./DECISIONS.md#adr-011).
+- No fabricated review/rating structured data, ever — not even a placeholder
+  `AggregateRating`.
+
+## Metadata mechanics (DECISIONS.md ADR-007, finding I3)
+
+- **Title template**: `"{Page Title} | Ankit's Studio"`, extended with branch
+  and/or programme context where applicable (e.g. `"Yoga in Airoli | Ankit's
+  Studio"`); exact copy per route type is a Phase 1/2 authoring task, not
+  fixed here.
+- **Canonical**: every route sets its own canonical to itself; query-string
+  filter variants (e.g. `/timetable?branch=airoli`) canonicalize to the base
+  route.
+- **Open Graph / Twitter card**: required on all Tier 1 and Tier 2 routes.
+  Uses a placeholder OG image while imagery is mock; swapped once real
+  photography exists.
+- **Image SEO**: descriptive `alt` text and explicit dimensions, sourced from
+  the `MediaAsset` type (see [CONTENT-MODEL.md](./CONTENT-MODEL.md)).
+- **Maps embeds**: never rendered for a branch until its address is
+  `VERIFIED` — see the `mapEmbedUrl` rule in
+  [CONTENT-MODEL.md](./CONTENT-MODEL.md) and
+  [DECISIONS.md ADR-011](./DECISIONS.md#adr-011). Embedding an owner-supplied
+  Maps pin while the printed address text is still labelled mock is the same
+  leak as publishing the address itself.
 
 ## Indexing policy tied to the mock-data gate
 
@@ -48,9 +94,11 @@ verified-looking signals to search engines:
   `/contact`): primary keyword targets, one clear H1 per page tied to
   programme+branch combinations, internal links between programme and branch
   pages both directions.
-- **Tier 2** (`/trainers*`, `/pricing`, `/transformations`): supporting
-  authority/trust pages, linked from Tier 1 but not the primary landing targets
-  until real trainer/pricing data exists.
+- **Tier 2** (`/trainers*`, `/pricing`, `/transformations`,
+  `/locations/[branch]/[programme]`): the programme×branch pages are the
+  primary landing targets for local intent (see the section above); the rest
+  are supporting authority/trust pages, linked from Tier 1 but not primary
+  landing targets until real trainer/pricing data exists.
 - **Tier 3** (`/blog*`): long-tail and topical authority once populated; not
   required for initial indexing.
 
