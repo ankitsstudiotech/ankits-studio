@@ -40,6 +40,18 @@ export interface LocalBusinessJsonLd {
   address?: PostalAddressJsonLd;
 }
 
+export interface CourseJsonLd {
+  "@context": "https://schema.org";
+  "@type": "Course";
+  name: string;
+  description: string;
+  url: string;
+  provider: {
+    "@type": "Organization";
+    name: string;
+  };
+}
+
 export interface ArticleJsonLd {
   "@context": "https://schema.org";
   "@type": "Article";

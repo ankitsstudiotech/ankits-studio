@@ -1,9 +1,10 @@
-import type { Branch, BlogPost, BusinessIdentity, Faq } from "@/content";
+import type { Branch, BlogPost, BusinessIdentity, Faq, Programme } from "@/content";
 import { siteConfig } from "@/lib/metadata";
 import { buildCanonicalUrl } from "./canonical";
 import type {
   ArticleJsonLd,
   BreadcrumbListJsonLd,
+  CourseJsonLd,
   FaqPageJsonLd,
   LocalBusinessJsonLd,
   OrganizationJsonLd,
@@ -63,6 +64,29 @@ export function buildLocalBusinessJsonLd(branch: Branch): LocalBusinessJsonLd | 
       "@type": "PostalAddress",
       streetAddress: branch.address,
     },
+  };
+}
+
+/**
+ * Programme records are `dataStatus: "verified"` (see
+ * docs/BUSINESS-DATA-STATUS.md — the programme list itself is owner-
+ * confirmed), so this actually emits, unlike the branch/article/FAQ
+ * builders while the site has no verified data of those kinds yet.
+ * `provider.name` uses `siteConfig.name` — already treated as a safe
+ * constant sitewide (title template, OG siteName, manifest name), not
+ * gated on `BusinessIdentity`'s record-level mock status, which reflects
+ * *other* invented fields (tagline/description), not the business name
+ * itself. See docs/HANDOFF-ROUTES.md.
+ */
+export function buildCourseJsonLd(programme: Programme): CourseJsonLd | null {
+  if (programme.dataStatus !== "verified") return null;
+  return {
+    "@context": "https://schema.org",
+    "@type": "Course",
+    name: programme.name,
+    description: programme.shortDescription,
+    url: buildCanonicalUrl(`/programs/${programme.slug}`),
+    provider: { "@type": "Organization", name: siteConfig.name },
   };
 }
 

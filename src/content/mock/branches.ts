@@ -40,6 +40,9 @@ export const mockBranches: Branch[] = [
       "weight-loss-fitness",
     ],
     publiclyListed: true,
+    directions: "Illustrative placeholder — exact directions pending owner confirmation.",
+    parking: "Placeholder — parking availability not yet confirmed.",
+    nearbyTransport: ["Nearest station: to be confirmed"],
   },
   {
     dataStatus: "mock",
@@ -69,6 +72,9 @@ export const mockBranches: Branch[] = [
       "weight-loss-fitness",
     ],
     publiclyListed: true,
+    directions: "Illustrative placeholder — exact directions pending owner confirmation.",
+    parking: "Placeholder — parking availability not yet confirmed.",
+    nearbyTransport: ["Nearest station: to be confirmed"],
   },
   {
     dataStatus: "reference-only",

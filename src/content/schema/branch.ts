@@ -1,4 +1,5 @@
 import { z } from "zod";
+import { mediaAssetSchema } from "./media-asset";
 import { provenanced } from "./provenance";
 import { branchSlugSchema, programmeSlugSchema } from "./slugs";
 
@@ -27,5 +28,13 @@ export const branchSchema = provenanced({
   // branch still "reference-only" (e.g. Thane) — see
   // docs/BUSINESS-DATA-STATUS.md and DECISIONS.md ADR-007 (finding I2).
   publiclyListed: z.boolean(),
+  // All optional/omittable — this whole record is already "mock" or
+  // "reference-only", so these are covered by the same mockDisclaimer as
+  // every other field. `photos` stays empty rather than pointing at a
+  // fabricated image file — see docs/HANDOFF-ROUTES.md.
+  directions: z.string().optional(),
+  parking: z.string().optional(),
+  nearbyTransport: z.array(z.string()).optional(),
+  photos: z.array(mediaAssetSchema).optional(),
 });
 export type Branch = z.infer<typeof branchSchema>;

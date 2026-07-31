@@ -8,6 +8,15 @@ import type { NavigationItem } from "../schema";
  * intentionally not duplicated here: branches come from
  * `getPubliclyListedBranches()` directly, and no real social URLs exist yet
  * (not fabricated).
+ *
+ * Path note: the actual route is `/programs` (American spelling), not
+ * `/programmes` as every other doc in this project uses — see
+ * docs/HANDOFF-ROUTES.md for why (a later task's explicit file-ownership
+ * grant named `src/app/programs/**`). Label text stays "Programmes" —
+ * only the URL segment differs. `src/app/page.tsx` (the homepage, outside
+ * this task's ownership) still hardcodes `/programmes` in three places and
+ * will 404 until whoever owns it updates those links — see
+ * docs/HANDOFF-ROUTES.md.
  */
 export const mockNavigationItems: NavigationItem[] = [
   { dataStatus: "verified", id: "nav-home", label: "Home", path: "/", placement: "primary", order: 1 },
@@ -15,7 +24,7 @@ export const mockNavigationItems: NavigationItem[] = [
     dataStatus: "verified",
     id: "nav-programmes",
     label: "Programmes",
-    path: "/programmes",
+    path: "/programs",
     placement: "primary",
     order: 2,
   },
@@ -49,7 +58,7 @@ export const mockNavigationItems: NavigationItem[] = [
     dataStatus: "verified",
     id: "nav-footer-programmes",
     label: "Programmes",
-    path: "/programmes",
+    path: "/programs",
     placement: "footer",
     order: 1,
   },

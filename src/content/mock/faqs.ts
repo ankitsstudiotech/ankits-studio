@@ -37,4 +37,20 @@ export const mockFaqs: Faq[] = [
     question: "What is the cancellation policy for a booked class?",
     answer: "Illustrative answer: the cancellation policy is not yet finalised — check with the studio directly.",
   },
+  {
+    dataStatus: "mock",
+    mockDisclaimer: "Illustrative FAQ copy — not yet reviewed or confirmed by the owner.",
+    id: "faq-yoga-mat",
+    question: "Do I need my own yoga mat?",
+    answer: "Illustrative answer: bringing your own mat is recommended. Whether rentals are available is not yet confirmed.",
+    programmeSlug: "yoga",
+  },
+  {
+    dataStatus: "mock",
+    mockDisclaimer: "Illustrative FAQ copy — not yet reviewed or confirmed by the owner.",
+    id: "faq-airoli-parking",
+    question: "Is parking available at the Airoli branch?",
+    answer: "Illustrative answer: parking availability at this branch is not yet confirmed — check with the studio directly.",
+    branchSlug: "airoli",
+  },
 ];

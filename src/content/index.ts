@@ -142,9 +142,13 @@ export function getContactDetails(): ContactDetails {
   return contactDetails;
 }
 
-export function getFaqs(filter?: { programmeSlug?: ProgrammeSlug }): Faq[] {
-  if (!filter?.programmeSlug) return faqs;
-  return faqs.filter((faq) => faq.programmeSlug === filter.programmeSlug);
+export function getFaqs(filter?: { programmeSlug?: ProgrammeSlug; branchSlug?: BranchSlug }): Faq[] {
+  if (!filter?.programmeSlug && !filter?.branchSlug) return faqs;
+  return faqs.filter(
+    (faq) =>
+      (filter.programmeSlug === undefined || faq.programmeSlug === filter.programmeSlug) &&
+      (filter.branchSlug === undefined || faq.branchSlug === filter.branchSlug)
+  );
 }
 
 export function getNavigationItems(placement?: NavigationPlacement): NavigationItem[] {
