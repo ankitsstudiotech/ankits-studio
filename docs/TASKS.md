@@ -36,9 +36,9 @@ explicitly, do the minimum edit needed, and release the claim quickly:
 | `docs/HANDOFF.md` | One agent updates it per session-end; don't edit mid-session unless coordinating a handoff. |
 | `docs/DECISIONS.md` | New ADRs appended only, never renumbered/reordered by a different agent than the one who added them, without discussion. |
 | `src/app/layout.tsx` | Owned by whichever track is actively wiring something in (tokens import, mock banner, nav structure) — claim for that single commit, release immediately after. |
-| Global CSS / tokens file | Owned by Track A (design tokens) until `Done`; no other track edits it. |
+| `src/styles/tokens.css` | Owned by Track A (design tokens) until `Done`; no other track edits it. A starting token set was laid down in the Phase 1 foundation pass — see below — refinement is still Track A's. |
 | `Header` / `Footer` / `MockDataBanner` components | Claimed explicitly per edit — these are shared across every route. |
-| `src/lib/content/**` types ↔ `docs/CONTENT-MODEL.md` | Only updated together, only by the agent holding the content-model task, per Hard Rule 9. |
+| `src/content/**` types ↔ `docs/CONTENT-MODEL.md` | Only updated together, only by the agent holding the content-model task, per Hard Rule 9. **Path correction**: the accessor lives at `src/content/index.ts`, not `src/lib/content/**` as originally sketched in `docs/IMPLEMENTATION-PLAN.md` Track B — see the Phase 1 foundation pass note below. `docs/IMPLEMENTATION-PLAN.md` itself still says `src/lib/content/**` in a few places and hasn't been corrected there (out of scope for the pass that made this note); this table is the accurate pointer. |
 
 ## Phase 0 (complete)
 
@@ -59,12 +59,31 @@ dependency — do not start it early "because it's unclaimed."
 
 | Track | Task | Depends on | Owner | Status | Branch |
 |---|---|---|---|---|---|
-| A | Design tokens (palette, type, spacing, accent-family mapping, mobile breakpoints/nav pattern) | — (start immediately) | Cursor | Unclaimed | `phase-1/design-tokens` |
-| B | Content-model types + accessor layer + Vitest setup | — (start immediately) | Claude | Unclaimed | `phase-1/content-model` |
-| C | Mock data authoring per BUSINESS-DATA-STATUS.md domains | B | Claude | Unclaimed | `phase-1/mock-data` |
-| D | Tier 1 route scaffolding (8 routes) + noindex + timetable SSR default + mobile timetable layout | B (hard), C (soft — can start against fixtures) | Claude | Unclaimed | `phase-1/routes` |
-| E | Base Motion system (opt-in islands only, per ADR-009) | A (hard), D (soft — primitives can be built early, integration needs D's markup) | Cursor | Unclaimed | `phase-1/motion-base` |
-| F | Mock-data UI banner | B | Claude (logic) + Cursor (styling), sequenced on one branch | Unclaimed | `phase-1/mock-banner` |
+| A | Design tokens (palette, type, spacing, accent-family mapping, mobile breakpoints/nav pattern) | — (start immediately) | Cursor | **In progress** — starting oklch token set landed in the foundation pass (committed directly to `master`, see below); final palette/type/spacing decisions, contrast sign-off across all three accent families, and the mobile breakpoint/nav-pattern decision are still open | `phase-1/design-tokens` |
+| B | Content-model types + accessor layer + Vitest setup | — (start immediately) | Claude | **Done** — landed in the Phase 1 foundation pass, committed directly to `master` (see below, not on a separate branch) | — |
+| C | Mock data authoring per BUSINESS-DATA-STATUS.md domains | B | Claude | **Done** — every domain has at least one mock record; landed in the same foundation pass | — |
+| D | Tier 1 route scaffolding (8 routes) + noindex + timetable SSR default + mobile timetable layout | B (hard), C (soft — can start against fixtures) | Claude | Not started — explicitly out of scope for the foundation pass ("do not build the final homepage / final programme or location pages") | `phase-1/routes` |
+| E | Base Motion system (opt-in islands only, per ADR-009) | A (hard), D (soft — primitives can be built early, integration needs D's markup) | Cursor | Not started — explicitly out of scope for the foundation pass ("do not build complex animation") | `phase-1/motion-base` |
+| F | Mock-data UI banner | B | Claude (logic) + Cursor (styling), sequenced on one branch | **Partial** — a narrower **development-only** indicator (`src/components/MockModeIndicator.tsx`) landed in the foundation pass. The full ADR-002 layer-2 banner (non-dismissable, must also render on any `ALLOW_MOCK_PUBLISH=true` preview build, not just `next dev`) is still open | `phase-1/mock-banner` |
+
+### Phase 1 foundation pass (complete, this pass)
+
+A cross-track **shared foundation** landed in one pass, committed directly to
+`master` (not split across the per-track branches above, since it was single-agent,
+explicitly scoped as shared groundwork, and the individual tracks above still
+have real work remaining on top of it): TypeScript strict-mode hardening,
+package scripts (`type-check`/`test`/`test:watch`/`test:e2e`), the full
+content-domain types + Zod schemas + mock/verified data + accessor
+(`src/content/**` — see the hotspot table above for the path correction vs.
+the originally-sketched `src/lib/content/**`), the mock-vs-verified content
+mode module, **the production mock-content safety check** (ADR-002 layer 3 —
+originally scoped to Phase 2 Track I, built now instead, verified to actually
+fail `next build` without `ALLOW_MOCK_PUBLISH=true` and to actually succeed
+with it while still shipping `noindex`), env validation, central metadata
+config, root layout + skip link + error boundary + not-found page, a starting
+design-token set, and the Vitest/Playwright/axe-core testing foundation
+(16 unit tests, 5 e2e tests, all passing). Full detail:
+[HANDOFF.md](./HANDOFF.md).
 
 ## Phase 2+ 
 
@@ -72,7 +91,15 @@ Not yet broken into per-file rows — see
 [IMPLEMENTATION-PLAN.md](./IMPLEMENTATION-PLAN.md) Phase 2 for the three
 tracks (Tier 2 routes, programme×location pages, SEO + launch-gate tests) and
 their dependencies. Break down into rows here when Phase 1 exit criteria are
-met.
+met. Note: most of Track I's ADR-011 test-obligation list landed early, in the
+Phase 1 foundation pass — see [HANDOFF.md](./HANDOFF.md) for detail. The
+launch-readiness check itself was built as an assertion inside
+`next.config.ts` rather than a standalone script (simpler — guaranteed to run
+on every `next build` regardless of npm lifecycle hooks); items (a), (b), and
+(d) are done, (c)'s golden-path behavior is covered by
+`src/content/content-mode.test.ts` against that assertion function directly.
+Only item (e) (mock-branch JSON-LD-omission test) remains — it can't exist
+until Track H's branch/structured-data code exists.
 
 ## Standing rules (apply to every task, every phase)
 

@@ -1,0 +1,49 @@
+/**
+ * Design-token foundation — see docs/DESIGN-DIRECTION.md for the approach
+ * this implements and docs/DECISIONS.md ADR-004/ADR-012 for why. These are
+ * STARTING values, not final: the Phase 1 design-tokens track (Cursor —
+ * see docs/IMPLEMENTATION-PLAN.md Track A) owns refining palette, type, and
+ * spacing, and verifying contrast per docs/ACCESSIBILITY-STANDARDS.md.
+ *
+ * Light theme only for v1 — no dark-mode variants. See
+ * docs/DECISIONS.md ADR-007 (finding I4).
+ */
+
+@theme {
+  /* Base palette — warm, confident neutrals per docs/DESIGN-DIRECTION.md,
+     not cold gray-on-white or harsh black-on-black. */
+  --color-surface: oklch(97% 0.012 80);
+  --color-surface-raised: oklch(100% 0 0);
+  --color-ink: oklch(22% 0.01 80);
+  --color-ink-muted: oklch(45% 0.01 80);
+  --color-accent: oklch(46% 0.14 55);
+
+  /* Programme accent families — see docs/CONTENT-MODEL.md
+     ProgrammeAccentFamily ("strength" | "calm" | "high-energy") and
+     docs/DECISIONS.md ADR-012. Content only ever names the family; this is
+     the one place a family resolves to an actual color. */
+  --color-accent-strength: oklch(56% 0.17 40);
+  --color-accent-calm: oklch(66% 0.06 210);
+  --color-accent-high-energy: oklch(68% 0.19 20);
+
+  /* Spacing scale */
+  --spacing-section: clamp(3rem, 2.4rem + 4vw, 6rem);
+  --spacing-gutter: clamp(1rem, 0.85rem + 1vw, 2rem);
+
+  /* Type scale */
+  --text-hero: clamp(2.25rem, 1.4rem + 3.2vw, 4rem);
+  --text-hero--line-height: 1.05;
+}
+
+:root {
+  /* Motion timing reference. Not yet wired into a motion library — base
+     Motion integration (Track E) is out of scope for this foundation pass. */
+  --duration-fast: 150ms;
+  --duration-normal: 300ms;
+  --ease-out-expo: cubic-bezier(0.16, 1, 0.3, 1);
+
+  /* Mobile breakpoints: Tailwind's default scale (sm 640px / md 768px /
+     lg 1024px / xl 1280px) until Track A records a bespoke one — see
+     docs/DESIGN-DIRECTION.md Mobile section and docs/DECISIONS.md ADR-007
+     (finding I10). */
+}
