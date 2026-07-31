@@ -1,0 +1,17 @@
+import { z } from "zod";
+import { mediaAssetSchema } from "./media-asset";
+import { provenanced } from "./provenance";
+
+/**
+ * Site-wide business identity — distinct from Branch (per-location facts).
+ * Singular record, not a list — see src/content/index.ts getBusinessIdentity().
+ */
+export const businessIdentitySchema = provenanced({
+  legalName: z.string().min(1),
+  displayName: z.string().min(1),
+  tagline: z.string().min(1),
+  description: z.string().min(1),
+  foundingYear: z.number().int().min(1900).max(2100).optional(),
+  logo: mediaAssetSchema.optional(),
+});
+export type BusinessIdentity = z.infer<typeof businessIdentitySchema>;

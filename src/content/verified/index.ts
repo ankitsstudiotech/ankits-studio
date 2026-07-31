@@ -1,6 +1,10 @@
 import type {
   Branch,
   BlogPost,
+  BusinessIdentity,
+  ContactDetails,
+  Faq,
+  NavigationItem,
   PricingPlan,
   Programme,
   Testimonial,
@@ -24,3 +28,9 @@ export const verifiedPricingPlans: PricingPlan[] = [];
 export const verifiedTransformations: Transformation[] = [];
 export const verifiedTestimonials: Testimonial[] = [];
 export const verifiedBlogPosts: BlogPost[] = [];
+
+/** Singular records: `null` means "no verified override yet, fall back to mock." */
+export const verifiedBusinessIdentity: BusinessIdentity | null = null;
+export const verifiedContactDetails: ContactDetails | null = null;
+export const verifiedFaqs: Faq[] = [];
+export const verifiedNavigationItems: NavigationItem[] = [];

@@ -76,7 +76,7 @@ export const mockBranches: Branch[] = [
       "Owner flagged Thane as a known/expected branch but has not confirmed it operates. All fields are placeholder, and this branch is excluded from public navigation until confirmed.",
     slug: "thane",
     name: "Ankit's Studio — Thane",
-    address: "Address not yet available (branch not confirmed)",
+    address: "To be confirmed",
     phone: "+91 00000 00000",
     whatsapp: "+91 00000 00000",
     openingHours: [],

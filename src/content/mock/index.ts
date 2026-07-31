@@ -6,3 +6,7 @@ export * from "./pricing";
 export * from "./transformations";
 export * from "./testimonials";
 export * from "./blog";
+export * from "./business-identity";
+export * from "./faqs";
+export * from "./contact-details";
+export * from "./navigation";

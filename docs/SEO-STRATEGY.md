@@ -113,4 +113,35 @@ Business Profile, etc.) the owner maintains. This is out of scope to configure n
 ## Sitemap
 
 Generated `sitemap.xml` includes only routes with server-rendered, crawlable
-content; excludes any route still gated `noindex`.
+content; excludes any route still gated `noindex`. Implemented as
+`buildSitemapEntries()` returning `[]` outright while any unverified content
+exists anywhere on the site — a listed entry is itself an "indexable,
+confirmed" signal, so the simplest correct rule is to list nothing at all
+rather than try to selectively include "safe" entries.
+
+## Implementation status (content + SEO foundation pass)
+
+The SEO utility layer described above now exists in code, not just this
+doc, at `src/lib/seo/**`: `buildPageMetadata` (title/description/canonical/
+OG/Twitter, unique per call site), `buildCanonicalUrl`, structured-data
+builders for `BreadcrumbList`, `Organization`, `ExerciseGym`
+(LocalBusiness), `Article`, and `FAQPage`, `serializeJsonLd` (safe
+`<script type="application/ld+json">` embedding — escapes
+`<`/`>`/`&`/U+2028/U+2029), `buildSitemapEntries`, and `buildRobotsRules`.
+`src/app/sitemap.ts`, `src/app/robots.ts`, `src/app/manifest.ts`, and
+`src/app/opengraph-image.tsx` wire these in as the actual Next.js special
+files. See `docs/HANDOFF-SEO.md` for full detail, test coverage, and
+follow-ups.
+
+The "omit, never placeholder" rule from `DECISIONS.md` ADR-011 is now
+implemented uniformly across every structured-data builder, not just
+`LocalBusiness`: `Organization`, `Article`, and `FAQPage` all return `null`
+(or, for `FAQPage`, drop non-verified entries and return `null` if none
+remain) unless the source record's `dataStatus === "verified"`. No new ADR
+was needed for this — it's the *same* rule ADR-011 already established,
+just applied consistently to the additional structured-data types this
+pass added, not a new decision.
+
+Course/Service structured data per programme (mentioned above) is not yet
+built — out of this pass's explicit scope; still tracked for Phase 2 Track
+G/H once programme/location pages exist.

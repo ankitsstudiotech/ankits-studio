@@ -3,6 +3,11 @@ import type {
   Branch,
   BranchSlug,
   BlogPost,
+  BusinessIdentity,
+  ContactDetails,
+  Faq,
+  NavigationItem,
+  NavigationPlacement,
   PricingPlan,
   Programme,
   ProgrammeSlug,
@@ -31,6 +36,11 @@ function mergeByKey<Item, Key>(
   return [...verifiedRecords, ...mockRecords.filter((item) => !verifiedKeys.has(keyOf(item)))];
 }
 
+/** For singular (non-list) domains: a verified override replaces mock entirely. */
+function mergeSingular<Item>(mockRecord: Item, verifiedRecord: Item | null): Item {
+  return verifiedRecord ?? mockRecord;
+}
+
 const bySlug = <Item extends { slug: string }>(item: Item) => item.slug;
 const byId = <Item extends { id: string }>(item: Item) => item.id;
 
@@ -42,6 +52,10 @@ const pricingPlans = mergeByKey(mock.mockPricingPlans, verified.verifiedPricingP
 const transformations = mergeByKey(mock.mockTransformations, verified.verifiedTransformations, bySlug);
 const testimonials = mergeByKey(mock.mockTestimonials, verified.verifiedTestimonials, byId);
 const blogPosts = mergeByKey(mock.mockBlogPosts, verified.verifiedBlogPosts, bySlug);
+const businessIdentity = mergeSingular(mock.mockBusinessIdentity, verified.verifiedBusinessIdentity);
+const contactDetails = mergeSingular(mock.mockContactDetails, verified.verifiedContactDetails);
+const faqs = mergeByKey(mock.mockFaqs, verified.verifiedFaqs, byId);
+const navigationItems = mergeByKey(mock.mockNavigationItems, verified.verifiedNavigationItems, byId);
 
 export function getProgrammes(): Programme[] {
   return programmes;
@@ -118,6 +132,24 @@ export function getBranchContactLinks(branch: Branch): {
     whatsappHref: `https://wa.me/${branch.whatsapp.replace(/\D/g, "")}`,
     mapEmbedUrl: branch.mapEmbedUrl ?? null,
   };
+}
+
+export function getBusinessIdentity(): BusinessIdentity {
+  return businessIdentity;
+}
+
+export function getContactDetails(): ContactDetails {
+  return contactDetails;
+}
+
+export function getFaqs(filter?: { programmeSlug?: ProgrammeSlug }): Faq[] {
+  if (!filter?.programmeSlug) return faqs;
+  return faqs.filter((faq) => faq.programmeSlug === filter.programmeSlug);
+}
+
+export function getNavigationItems(placement?: NavigationPlacement): NavigationItem[] {
+  const items = placement ? navigationItems.filter((item) => item.placement === placement) : navigationItems;
+  return [...items].sort((a, b) => a.order - b.order);
 }
 
 export { siteHasUnverifiedContent, shouldNoIndex } from "./content-mode";

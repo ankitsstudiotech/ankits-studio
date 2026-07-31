@@ -1,6 +1,10 @@
 import {
   mockBlogPosts,
   mockBranches,
+  mockBusinessIdentity,
+  mockContactDetails,
+  mockFaqs,
+  mockNavigationItems,
   mockPricingPlans,
   mockProgrammes,
   mockTestimonials,
@@ -33,6 +37,10 @@ const allContentDomainRecords: readonly ProvenanceLike[] = [
   ...mockTransformations,
   ...mockTestimonials,
   ...mockBlogPosts,
+  mockBusinessIdentity,
+  mockContactDetails,
+  ...mockFaqs,
+  ...mockNavigationItems,
 ];
 
 /** True whenever any record across the content domain isn't `"verified"`. */

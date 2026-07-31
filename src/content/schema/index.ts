@@ -9,3 +9,7 @@ export * from "./pricing-plan";
 export * from "./transformation";
 export * from "./testimonial";
 export * from "./blog-post";
+export * from "./business-identity";
+export * from "./faq";
+export * from "./contact-details";
+export * from "./navigation";
