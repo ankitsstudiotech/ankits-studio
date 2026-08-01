@@ -404,6 +404,16 @@ judgment against the approved architecture and existing ADRs, not a default.
 
 **Status**: Active.
 
+## ADR-014: Owner selects Studio Pulse for production (overrides agent Kinetic Editorial pick)
+
+**Decision**: Production visual redesign implements **Studio Pulse** (`/design-lab/revamp-b`), as personally selected by the owner. This **overrides** the agent-recommended Kinetic Editorial winner documented in `docs/revamp/04-prototype-evaluation.md`. Historical evaluation scores and critiques must **not** be rewritten to pretend Studio Pulse originally won.
+
+**Why**: Owner prefers rhythm-led energy, layered media for Zumba/dance/active training, stronger emotional engagement, and wants to present this complete direction to Ankit first. Production work must still mitigate the documented boutique-HIIT / nightlife skew via tempo zones (high-energy / strength / calm / community / utility) so yoga, kids dance, families, and booking utility remain coherent — see `docs/revamp/06-owner-direction-decision.md`.
+
+**Preservation**: Directions A and C remain frozen design-lab artefacts; do not delete or silently restyle them. Kinetic Editorial system snapshot lives at `docs/revamp/KINETIC-EDITORIAL-DESIGN-SYSTEM.md`. Root `DESIGN.md` becomes the Studio Pulse production proposal.
+
+**Status**: Active.
+
 ## Log format for future entries
 
 ```
