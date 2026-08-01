@@ -4,8 +4,8 @@
 @import "../styles/studio.css";
 
 @theme inline {
-  --font-sans: var(--font-figtree), "Figtree", ui-sans-serif, system-ui, sans-serif;
-  --font-display: var(--font-syne), "Syne", ui-sans-serif, system-ui, sans-serif;
+  --font-sans: var(--font-space-grotesk), "Space Grotesk", system-ui, sans-serif;
+  --font-display: var(--font-bebas), "Bebas Neue", Impact, sans-serif;
 }
 
 body {

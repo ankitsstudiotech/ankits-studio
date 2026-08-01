@@ -25,7 +25,7 @@ export function Display({
   return (
     <Comp
       className={[
-        "font-[family-name:var(--font-display)] font-semibold",
+        "font-[family-name:var(--font-display)] font-normal",
         "text-[length:var(--text-display)] leading-[var(--text-display--line-height)] tracking-[var(--text-display--letter-spacing)]",
         "text-balance",
         toneClass[tone],
@@ -48,7 +48,7 @@ export function HeroHeading({
   return (
     <Comp
       className={[
-        "font-[family-name:var(--font-display)] font-semibold",
+        "font-[family-name:var(--font-display)] font-normal",
         "text-[length:var(--text-hero)] leading-[var(--text-hero--line-height)] tracking-[var(--text-hero--letter-spacing)]",
         "text-balance",
         toneClass[tone],
@@ -71,7 +71,7 @@ export function Title({
   return (
     <Comp
       className={[
-        "font-[family-name:var(--font-display)] font-semibold",
+        "font-[family-name:var(--font-display)] font-normal",
         "text-[length:var(--text-title)] leading-[var(--text-title--line-height)] tracking-[var(--text-title--letter-spacing)]",
         "text-balance",
         toneClass[tone],
@@ -94,7 +94,7 @@ export function Heading({
   return (
     <Comp
       className={[
-        "font-[family-name:var(--font-display)] font-semibold",
+        "font-[family-name:var(--font-display)] font-normal",
         "text-[length:var(--text-heading)] leading-[var(--text-heading--line-height)]",
         toneClass[tone],
         className,

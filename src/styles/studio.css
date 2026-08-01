@@ -1,14 +1,12 @@
 /**
- * Base surface styles for the design system.
- * Imported by the design-lab layout (root globals.css stays untouched —
- * wiring these into the root layout is a shared hotspot for a later pass).
+ * Base surface styles — Studio Pulse production shell.
+ * No atmosphere gradient. Sticky CTA clearance retained.
  */
 
 @import "./tokens.css";
 @import "./motion.css";
 
 .studio-shell {
-  background: var(--atmosphere-gradient);
   background-color: var(--color-surface);
   color: var(--color-ink);
   font-family: var(--font-sans);
@@ -16,11 +14,10 @@
 }
 
 .studio-shell ::selection {
-  background: var(--color-accent-soft);
-  color: var(--color-ink);
+  background: color-mix(in srgb, var(--color-accent) 35%, transparent);
+  color: var(--color-ink-inverse);
 }
 
-/* Sticky mobile CTA clearance */
 .studio-shell.has-sticky-cta {
   padding-bottom: calc(var(--sticky-cta-height) + env(safe-area-inset-bottom, 0px));
 }
@@ -29,4 +26,15 @@
   .studio-shell.has-sticky-cta {
     padding-bottom: 0;
   }
+}
+
+/* Pulse field band — homepage / dark chrome regions */
+.pulse-field {
+  background-color: var(--color-field);
+  color: var(--color-ink-inverse);
+}
+
+.pulse-field ::selection {
+  background: color-mix(in srgb, var(--color-volt) 40%, transparent);
+  color: var(--color-field);
 }

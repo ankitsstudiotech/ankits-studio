@@ -24,7 +24,7 @@ export function MockModeIndicator() {
   return (
     <div
       role="status"
-      className="w-full bg-accent-strength px-4 py-2.5 text-center text-sm font-medium text-white"
+      className="w-full bg-[#c2410c] px-4 py-2.5 text-center text-sm font-medium text-white"
     >
       <p className="font-semibold tracking-wide">
         {contextLabel} — mock / unverified content · noindex
