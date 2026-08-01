@@ -414,6 +414,23 @@ judgment against the approved architecture and existing ADRs, not a default.
 
 **Status**: Active.
 
+## ADR-015: Owner interview 2026-08-01 — business data + WhatsApp-primary conversion
+
+**Decision**: Promote owner-interview facts dated 2026-08-01 into the content model with explicit provenance (`owner_interview` / `owner_confirmed`). Key outcomes:
+
+- Four open branches (Airoli Sector 19 via slug `airoli`, new `airoli-sector-8`, Ghansoli, Thane publicly listed).
+- Central phone/WhatsApp `+91 93724 02074` verified on `ContactDetails`; branches inherit the same number and stay non-dialable via `getBranchContactLinks` until each branch record is fully verified (addresses pending).
+- Operating window 06:00–22:00 on all branches — never used as batch timetable rows.
+- Free trial + INR 300 registration fee on `StudioCommercial`; programme plan prices pending (illustrative plans removed).
+- New programmes added for Functional Training, Wedding Choreography, Home Personal Training, Online Training; legacy Strength / PT / Kids Dance / Weight-loss routes kept with `taxonomyStatus: "migration-pending"` — no silent deletes or redirects.
+- Primary conversion is WhatsApp (`src/lib/conversion/whatsapp.ts`); `/trial` remains secondary. Opening WhatsApp must never be described as message delivery.
+- Maps short URLs associated after browser resolution as `mapsShortUrl` only; `mapEmbedUrl` remains unset until branch verification (ADR-011 intact).
+- Mock-publication protections (`ALLOW_MOCK_PUBLISH`, `noindex`, launch gate) remain in force while addresses, timetable, trainers, media, and taxonomy remain incomplete.
+
+**Why**: Owner supplied operable business facts; the site must stop advertising invented phones/hours/branch posture without weakening honesty gates for still-pending fields.
+
+**Status**: Active.
+
 ## Log format for future entries
 
 ```

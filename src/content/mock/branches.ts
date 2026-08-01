@@ -1,92 +1,105 @@
 import type { Branch } from "../schema";
 
+const CENTRAL_ENQUIRY = "+91 93724 02074";
+
+/** Owner-confirmed operating window — not a batch timetable. */
+const OPERATING_WINDOW = [
+  { dayOfWeek: 0, opensAt: "06:00", closesAt: "22:00" },
+  { dayOfWeek: 1, opensAt: "06:00", closesAt: "22:00" },
+  { dayOfWeek: 2, opensAt: "06:00", closesAt: "22:00" },
+  { dayOfWeek: 3, opensAt: "06:00", closesAt: "22:00" },
+  { dayOfWeek: 4, opensAt: "06:00", closesAt: "22:00" },
+  { dayOfWeek: 5, opensAt: "06:00", closesAt: "22:00" },
+  { dayOfWeek: 6, opensAt: "06:00", closesAt: "22:00" },
+] as const;
+
 /**
- * Airoli and Ghansoli are confirmed to operate (VERIFIED as a *location*
- * per docs/BUSINESS-DATA-STATUS.md), but every field on these records —
- * address, phone, WhatsApp, hours — is still MOCK, so the record as a
- * whole stays `dataStatus: "mock"` (record-level provenance requires every
- * field to be reviewed before a record can be "verified" — see
- * docs/CONTENT-MODEL.md). Thane is REFERENCE-ONLY end to end and excluded
- * from public nav via `publiclyListed: false` — see DECISIONS.md ADR-007
- * (finding I2). No `mapEmbedUrl` is populated on any record here — see
- * DECISIONS.md ADR-011.
+ * Branch-floor programmes (excludes home/online delivery modes).
+ * Legacy migration-pending slugs remain until Ankit confirms taxonomy.
+ */
+const BRANCH_FLOOR_PROGRAMMES = [
+  "functional-training",
+  "strength-training",
+  "personal-training",
+  "yoga",
+  "zumba",
+  "adult-dance",
+  "kids-dance",
+  "weight-loss-fitness",
+  "wedding-choreography",
+] as const;
+
+/**
+ * Owner interview 2026-08-01: four branches open. Record-level status stays
+ * mock while printable addresses remain unconfirmed (ADR-002).
+ * Phone/WhatsApp inherit the central enquiry number — not unique per branch.
+ * `mapsShortUrl` associated only after browser resolution; `mapEmbedUrl` omitted.
  */
 export const mockBranches: Branch[] = [
   {
     dataStatus: "mock",
     mockDisclaimer:
-      "Placeholder branch details — address, phone, WhatsApp, and hours are illustrative only and not confirmed by the owner.",
+      "Airoli Sector 19 is owner-confirmed as open. Printable address is pending confirmation. Phone/WhatsApp show the central studio enquiry number, not a unique branch line. Operating hours are the owner-confirmed window (not a class timetable). Maps short URL is reference-associated only.",
     slug: "airoli",
-    name: "Ankit's Studio — Airoli",
-    address: "123 Placeholder Road, Sector 15, Airoli, Navi Mumbai (exact address not yet confirmed)",
-    phone: "+91 00000 00000",
-    whatsapp: "+91 00000 00000",
-    openingHours: [
-      { dayOfWeek: 0, opensAt: "06:00", closesAt: "21:00" },
-      { dayOfWeek: 1, opensAt: "06:00", closesAt: "21:00" },
-      { dayOfWeek: 2, opensAt: "06:00", closesAt: "21:00" },
-      { dayOfWeek: 3, opensAt: "06:00", closesAt: "21:00" },
-      { dayOfWeek: 4, opensAt: "06:00", closesAt: "21:00" },
-      { dayOfWeek: 5, opensAt: "07:00", closesAt: "19:00" },
-      { dayOfWeek: 6, opensAt: "07:00", closesAt: "13:00" },
-    ],
-    programmeSlugs: [
-      "strength-training",
-      "personal-training",
-      "yoga",
-      "zumba",
-      "adult-dance",
-      "kids-dance",
-      "weight-loss-fitness",
-    ],
+    name: "Ankit's Studio — Airoli Sector 19",
+    address:
+      "Airoli Sector 19 — exact printable address pending owner confirmation (Maps pin associated for reference).",
+    mapsShortUrl: "https://maps.app.goo.gl/NWrGtXKKYwr5xXwbA?g_st=ac",
+    phone: CENTRAL_ENQUIRY,
+    whatsapp: CENTRAL_ENQUIRY,
+    inheritsCentralEnquiry: true,
+    openingHours: [...OPERATING_WINDOW],
+    openingHoursKind: "operating-window",
+    programmeSlugs: [...BRANCH_FLOOR_PROGRAMMES],
     publiclyListed: true,
-    directions: "Illustrative placeholder — exact directions pending owner confirmation.",
-    parking: "Placeholder — parking availability not yet confirmed.",
-    nearbyTransport: ["Nearest station: to be confirmed"],
   },
   {
     dataStatus: "mock",
     mockDisclaimer:
-      "Placeholder branch details — address, phone, WhatsApp, and hours are illustrative only and not confirmed by the owner.",
-    slug: "ghansoli",
-    name: "Ankit's Studio — Ghansoli",
-    address: "45 Placeholder Lane, Sector 9, Ghansoli, Navi Mumbai (exact address not yet confirmed)",
-    phone: "+91 00000 00000",
-    whatsapp: "+91 00000 00000",
-    openingHours: [
-      { dayOfWeek: 0, opensAt: "06:00", closesAt: "21:00" },
-      { dayOfWeek: 1, opensAt: "06:00", closesAt: "21:00" },
-      { dayOfWeek: 2, opensAt: "06:00", closesAt: "21:00" },
-      { dayOfWeek: 3, opensAt: "06:00", closesAt: "21:00" },
-      { dayOfWeek: 4, opensAt: "06:00", closesAt: "21:00" },
-      { dayOfWeek: 5, opensAt: "07:00", closesAt: "19:00" },
-      { dayOfWeek: 6, opensAt: "07:00", closesAt: "13:00" },
-    ],
-    programmeSlugs: [
-      "strength-training",
-      "personal-training",
-      "yoga",
-      "zumba",
-      "adult-dance",
-      "kids-dance",
-      "weight-loss-fitness",
-    ],
+      "Airoli Sector 8 is owner-confirmed as open. Exact address and Maps link are missing. Phone/WhatsApp show the central studio enquiry number. Operating hours are the owner-confirmed window (not a class timetable).",
+    slug: "airoli-sector-8",
+    name: "Ankit's Studio — Airoli Sector 8",
+    address: "Airoli Sector 8 — address and Maps link not yet supplied.",
+    phone: CENTRAL_ENQUIRY,
+    whatsapp: CENTRAL_ENQUIRY,
+    inheritsCentralEnquiry: true,
+    openingHours: [...OPERATING_WINDOW],
+    openingHoursKind: "operating-window",
+    programmeSlugs: [...BRANCH_FLOOR_PROGRAMMES],
     publiclyListed: true,
-    directions: "Illustrative placeholder — exact directions pending owner confirmation.",
-    parking: "Placeholder — parking availability not yet confirmed.",
-    nearbyTransport: ["Nearest station: to be confirmed"],
   },
   {
-    dataStatus: "reference-only",
+    dataStatus: "mock",
     mockDisclaimer:
-      "Owner flagged Thane as a known/expected branch but has not confirmed it operates. All fields are placeholder, and this branch is excluded from public navigation until confirmed.",
+      "Ghansoli is owner-confirmed as open. Printable address is pending confirmation. Phone/WhatsApp show the central studio enquiry number. Operating hours are the owner-confirmed window (not a class timetable). Maps short URL is reference-associated only.",
+    slug: "ghansoli",
+    name: "Ankit's Studio — Ghansoli",
+    address:
+      "Ghansoli — exact printable address pending owner confirmation (Maps pin associated for reference).",
+    mapsShortUrl: "https://maps.app.goo.gl/WzhJUEhAvC67eMgR8?g_st=ac",
+    phone: CENTRAL_ENQUIRY,
+    whatsapp: CENTRAL_ENQUIRY,
+    inheritsCentralEnquiry: true,
+    openingHours: [...OPERATING_WINDOW],
+    openingHoursKind: "operating-window",
+    programmeSlugs: [...BRANCH_FLOOR_PROGRAMMES],
+    publiclyListed: true,
+  },
+  {
+    dataStatus: "mock",
+    mockDisclaimer:
+      "Thane is owner-confirmed as open (2026-08-01). Printable address is pending confirmation. Phone/WhatsApp show the central studio enquiry number. Operating hours are the owner-confirmed window (not a class timetable). Maps short URL is reference-associated only.",
     slug: "thane",
     name: "Ankit's Studio — Thane",
-    address: "To be confirmed",
-    phone: "+91 00000 00000",
-    whatsapp: "+91 00000 00000",
-    openingHours: [],
-    programmeSlugs: ["strength-training", "personal-training", "adult-dance", "weight-loss-fitness"],
-    publiclyListed: false,
+    address:
+      "Thane — exact printable address pending owner confirmation (Maps pin associated for reference).",
+    mapsShortUrl: "https://maps.app.goo.gl/bvzahC17HkciT6QQ6?g_st=ic",
+    phone: CENTRAL_ENQUIRY,
+    whatsapp: CENTRAL_ENQUIRY,
+    inheritsCentralEnquiry: true,
+    openingHours: [...OPERATING_WINDOW],
+    openingHoursKind: "operating-window",
+    programmeSlugs: [...BRANCH_FLOOR_PROGRAMMES],
+    publiclyListed: true,
   },
 ];

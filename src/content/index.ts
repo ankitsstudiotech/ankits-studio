@@ -11,6 +11,7 @@ import type {
   PricingPlan,
   Programme,
   ProgrammeSlug,
+  StudioCommercial,
   Testimonial,
   TimetableSlot,
   Trainer,
@@ -22,9 +23,7 @@ import * as verified from "./verified";
  * Content source abstraction. This is the ONLY module that should read
  * `./mock/**` or `./verified/**` directly — everything under `src/app`,
  * `src/components`, and `src/lib` must import from here instead (enforced
- * by the `no-restricted-imports` rule in eslint.config.mjs). This lets a
- * future swap from mock/verified arrays to a real CMS touch this one file,
- * not every component — see docs/CONTENT-MODEL.md.
+ * by the `no-restricted-imports` rule in eslint.config.mjs).
  */
 
 function mergeByKey<Item, Key>(
@@ -36,7 +35,6 @@ function mergeByKey<Item, Key>(
   return [...verifiedRecords, ...mockRecords.filter((item) => !verifiedKeys.has(keyOf(item)))];
 }
 
-/** For singular (non-list) domains: a verified override replaces mock entirely. */
 function mergeSingular<Item>(mockRecord: Item, verifiedRecord: Item | null): Item {
   return verifiedRecord ?? mockRecord;
 }
@@ -54,6 +52,7 @@ const testimonials = mergeByKey(mock.mockTestimonials, verified.verifiedTestimon
 const blogPosts = mergeByKey(mock.mockBlogPosts, verified.verifiedBlogPosts, bySlug);
 const businessIdentity = mergeSingular(mock.mockBusinessIdentity, verified.verifiedBusinessIdentity);
 const contactDetails = mergeSingular(mock.mockContactDetails, verified.verifiedContactDetails);
+const studioCommercial = mergeSingular(mock.mockStudioCommercial, verified.verifiedStudioCommercial);
 const faqs = mergeByKey(mock.mockFaqs, verified.verifiedFaqs, byId);
 const navigationItems = mergeByKey(mock.mockNavigationItems, verified.verifiedNavigationItems, byId);
 
@@ -65,12 +64,10 @@ export function getProgrammeBySlug(slug: ProgrammeSlug): Programme | undefined {
   return programmes.find((programme) => programme.slug === slug);
 }
 
-/** All branches, including ones not publicly listed (e.g. Thane). */
 export function getBranches(): Branch[] {
   return branches;
 }
 
-/** Only branches safe to show in public nav/footer/sitemap — see ADR-007 (I2). */
 export function getPubliclyListedBranches(): Branch[] {
   return branches.filter((branch) => branch.publiclyListed);
 }
@@ -117,11 +114,7 @@ export function getBlogPostBySlug(slug: string): BlogPost | undefined {
 }
 
 /**
- * The only sanctioned way to get a clickable phone/WhatsApp link or a Maps
- * embed URL for a branch. Structurally returns null for every field unless
- * the branch is `dataStatus === "verified"` — components must use this
- * rather than reading `branch.phone` / `branch.mapEmbedUrl` directly to
- * build an href. See docs/DECISIONS.md ADR-011.
+ * Clickable phone/WhatsApp/Maps for a branch — null unless branch is verified (ADR-011).
  */
 export function getBranchContactLinks(branch: Branch): {
   phoneHref: string | null;
@@ -138,12 +131,35 @@ export function getBranchContactLinks(branch: Branch): {
   };
 }
 
+/**
+ * Dialable central studio enquiry links when ContactDetails is verified.
+ * Opening WhatsApp does not mean a message was delivered.
+ */
+export function getStudioContactLinks(): {
+  phoneHref: string | null;
+  whatsappHref: string | null;
+} {
+  if (contactDetails.dataStatus !== "verified") {
+    return { phoneHref: null, whatsappHref: null };
+  }
+  const phone = contactDetails.generalPhone;
+  const whatsapp = contactDetails.generalWhatsapp ?? contactDetails.generalPhone;
+  return {
+    phoneHref: `tel:${phone.replace(/\s+/g, "")}`,
+    whatsappHref: `https://wa.me/${whatsapp.replace(/\D/g, "")}`,
+  };
+}
+
 export function getBusinessIdentity(): BusinessIdentity {
   return businessIdentity;
 }
 
 export function getContactDetails(): ContactDetails {
   return contactDetails;
+}
+
+export function getStudioCommercial(): StudioCommercial {
+  return studioCommercial;
 }
 
 export function getFaqs(filter?: { programmeSlug?: ProgrammeSlug; branchSlug?: BranchSlug }): Faq[] {

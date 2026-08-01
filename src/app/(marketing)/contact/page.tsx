@@ -5,7 +5,8 @@ import { Badge } from "@/components/ui/Badge";
 import { Card } from "@/components/ui/Card";
 import { Section } from "@/components/ui/Section";
 import { Body, Caption, Heading } from "@/components/ui/Typography";
-import { getContactDetails, getPubliclyListedBranches } from "@/content";
+import { getContactDetails, getPubliclyListedBranches, getStudioContactLinks } from "@/content";
+import { getPrimaryConversionHref, SECONDARY_TRIAL_FORM_HREF } from "@/lib/conversion";
 import { buildPageMetadata } from "@/lib/seo/metadata";
 import { serializeJsonLd } from "@/lib/seo/serialize";
 import { buildBreadcrumbJsonLd } from "@/lib/seo/structured-data";
@@ -16,7 +17,7 @@ const PATH = "/contact";
 export const metadata: Metadata = buildPageMetadata({
   title: "Contact",
   description:
-    "Contact Ankit's Studio — branch directory and a fallback inquiry form. Phone numbers stay non-clickable until verified.",
+    "Contact Ankit's Studio — WhatsApp for a free trial, central phone, branch directory, and a trial form.",
   path: PATH,
 });
 
@@ -32,6 +33,8 @@ type ContactPageProps = {
 export default async function ContactPage({ searchParams }: ContactPageProps) {
   const params = await searchParams;
   const contact = getContactDetails();
+  const studioLinks = getStudioContactLinks();
+  const whatsappTrialHref = getPrimaryConversionHref();
   const branches = getPubliclyListedBranches();
   const breadcrumbJsonLd = buildBreadcrumbJsonLd(breadcrumbTrail);
   const disclaimer =
@@ -65,25 +68,57 @@ export default async function ContactPage({ searchParams }: ContactPageProps) {
         description={contact.introText}
       >
         <Badge accent="neutral" className="mb-4">
-          Safe mock contact states
+          {contact.dataStatus === "verified" ? "Central enquiry verified" : "Safe mock contact states"}
         </Badge>
         <Body className="mb-4 max-w-3xl">
-          Prefer a trial class?{" "}
-          <Link href="/trial" className="text-accent underline-offset-4 hover:underline">
-            Book a free trial
-          </Link>{" "}
-          first — that is the primary conversion path.
+          Primary path:{" "}
+          <Link
+            href={whatsappTrialHref}
+            className="text-accent underline-offset-4 hover:underline"
+            {...(whatsappTrialHref.startsWith("http")
+              ? { target: "_blank", rel: "noopener noreferrer" }
+              : {})}
+          >
+            book a free trial on WhatsApp
+          </Link>
+          . Opening WhatsApp does not mean a message was delivered. Secondary:{" "}
+          <Link href={SECONDARY_TRIAL_FORM_HREF} className="text-accent underline-offset-4 hover:underline">
+            trial request form
+          </Link>
+          .
         </Body>
         {disclaimer ? <Caption className="mb-6 text-ink-subtle">{disclaimer}</Caption> : null}
 
         <dl className="mb-10 grid gap-4 sm:grid-cols-2">
           <div className="rounded-[var(--radius-lg)] border border-border bg-surface-raised p-5">
-            <dt className="text-sm font-semibold text-ink">General phone</dt>
+            <dt className="text-sm font-semibold text-ink">Central phone & WhatsApp</dt>
             <dd className="mt-2">
-              {/* Plain text only — never tel: for unverified mock numbers (ADR-011). */}
-              <Body as="span">{contact.generalPhone}</Body>
+              {studioLinks.phoneHref ? (
+                <Body as="span">
+                  <a href={studioLinks.phoneHref} className="text-accent underline-offset-4 hover:underline">
+                    {contact.generalPhone}
+                  </a>
+                </Body>
+              ) : (
+                <Body as="span">{contact.generalPhone}</Body>
+              )}
               <Caption className="mt-2 block">
-                Shown as text only until the number is verified for dialling.
+                Central studio enquiry number — inherited by branches; not a unique branch line.
+                {studioLinks.whatsappHref ? (
+                  <>
+                    {" "}
+                    <a
+                      href={whatsappTrialHref.startsWith("http") ? whatsappTrialHref : studioLinks.whatsappHref}
+                      className="text-accent underline-offset-4 hover:underline"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                    >
+                      Open WhatsApp
+                    </a>
+                    {" "}
+                    (does not confirm delivery).
+                  </>
+                ) : null}
               </Caption>
             </dd>
           </div>

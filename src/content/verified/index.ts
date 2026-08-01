@@ -32,5 +32,6 @@ export const verifiedBlogPosts: BlogPost[] = [];
 /** Singular records: `null` means "no verified override yet, fall back to mock." */
 export const verifiedBusinessIdentity: BusinessIdentity | null = null;
 export const verifiedContactDetails: ContactDetails | null = null;
+export const verifiedStudioCommercial: import("../schema").StudioCommercial | null = null;
 export const verifiedFaqs: Faq[] = [];
 export const verifiedNavigationItems: NavigationItem[] = [];

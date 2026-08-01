@@ -47,5 +47,15 @@ export const programmeSchema = provenanced({
   benefits: z.array(z.string()).min(1),
   difficulty: programmeDifficultySchema,
   requiredEquipment: z.array(z.string()),
+  /**
+   * Delivery modes (home / online) are not physical branch floor classes.
+   * Default omitted = in-studio / branch-floor service.
+   */
+  deliveryMode: z.enum(["in-studio", "home", "online"]).optional(),
+  /**
+   * Legacy brief programmes that conflict with the 2026-08-01 owner catalogue
+   * stay published until Ankit confirms keep / rename / redirect.
+   */
+  taxonomyStatus: z.enum(["confirmed", "migration-pending"]).optional(),
 });
 export type Programme = z.infer<typeof programmeSchema>;

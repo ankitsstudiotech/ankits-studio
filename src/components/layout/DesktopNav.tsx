@@ -41,6 +41,9 @@ export function DesktopNav({ items, pathname = "" }: DesktopNavProps) {
           <li className="ml-3">
             <Link
               href={cta.href}
+              {...(cta.href.startsWith("http")
+                ? { target: "_blank", rel: "noopener noreferrer" }
+                : {})}
               className={[
                 "inline-flex min-h-11 items-center justify-center px-4",
                 "bg-accent text-xs font-bold uppercase tracking-[0.1em] text-accent-foreground touch-target",

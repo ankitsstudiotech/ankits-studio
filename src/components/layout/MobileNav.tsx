@@ -170,6 +170,9 @@ export function MobileNav({ items, pathname = "" }: MobileNavProps) {
                             href={item.href}
                             aria-current={active ? "page" : undefined}
                             onClick={close}
+                            {...(item.href.startsWith("http")
+                              ? { target: "_blank", rel: "noopener noreferrer" }
+                              : {})}
                             className={[
                               "flex min-h-11 items-center px-3 text-sm font-medium uppercase tracking-[0.08em] touch-target",
                               "focus-visible:outline-2 focus-visible:outline-offset-3 focus-visible:outline-[var(--color-volt)]",

@@ -42,6 +42,9 @@ export function StickyCtaBar({
         </p>
         <Link
           href={href}
+          {...(href.startsWith("http")
+            ? { target: "_blank", rel: "noopener noreferrer" }
+            : {})}
           className={[
             "inline-flex min-h-11 shrink-0 items-center justify-center px-4",
             "bg-accent text-xs font-bold uppercase tracking-[0.08em] text-accent-foreground touch-target",

@@ -47,9 +47,9 @@ const verifiedPost: BlogPost = {
 };
 
 describe("mock status propagation — structured data omits unverified records", () => {
-  it("buildOrganizationJsonLd returns null for the current (mock) business identity", () => {
-    expect(getBusinessIdentity().dataStatus).not.toBe("verified");
-    expect(buildOrganizationJsonLd(getBusinessIdentity())).toBeNull();
+  it("buildOrganizationJsonLd emits for the owner-verified business identity", () => {
+    expect(getBusinessIdentity().dataStatus).toBe("verified");
+    expect(buildOrganizationJsonLd(getBusinessIdentity())).not.toBeNull();
   });
 
   it("buildOrganizationJsonLd returns a real object once the record is verified", () => {

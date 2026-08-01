@@ -1,4 +1,5 @@
 export * from "./provenance";
+export * from "./owner-source";
 export * from "./slugs";
 export * from "./media-asset";
 export * from "./programme";
@@ -12,4 +13,5 @@ export * from "./blog-post";
 export * from "./business-identity";
 export * from "./faq";
 export * from "./contact-details";
+export * from "./studio-commercial";
 export * from "./navigation";

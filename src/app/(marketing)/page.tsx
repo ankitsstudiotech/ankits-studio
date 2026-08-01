@@ -34,13 +34,17 @@ export const metadata = buildPageMetadata({
 const DAY_LABELS = ["Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Sun"] as const;
 
 const PROGRAMME_LABELS: Record<ProgrammeSlug, string> = {
+  "functional-training": "Functional Training",
   "strength-training": "Strength Training",
   "personal-training": "Personal Training",
   yoga: "Yoga",
   zumba: "Zumba",
-  "adult-dance": "Adult Dance",
+  "adult-dance": "Dance",
   "kids-dance": "Kids Dance",
   "weight-loss-fitness": "Weight-Loss & General Fitness",
+  "wedding-choreography": "Wedding Choreography",
+  "home-personal-training": "Home Personal Training",
+  "online-training": "Online Training",
 };
 
 export default function HomePage() {

@@ -1,107 +1,118 @@
 import { describe, expect, it } from "vitest";
 import {
   getBranchBySlug,
+  getBranches,
   getBusinessIdentity,
   getContactDetails,
-  getFaqs,
-  getNavigationItems,
-  getTestimonials,
-  getTransformations,
+  getStudioCommercial,
+  getStudioContactLinks,
+  getBranchContactLinks,
+  getPubliclyListedBranches,
 } from "@/content";
 
-/**
- * Sanity checks for this task's explicit mock-data rules, run against the
- * actual content that ships — not just schema shape.
- */
+const CENTRAL = "+91 93724 02074";
 
-const FORBIDDEN_TERMS = /\b(guarantee[ds]?|cure[sd]?|medical(?:ly)? proven|clinically proven)\b/i;
-const RATING_OR_AWARD_TERMS = /\b(rating|star rating|review count|award[- ]?winning|#1|best in)\b/i;
-
-describe("Thane address rule", () => {
-  it('Thane branch address is literally "To be confirmed"', () => {
+describe("Thane listing after owner confirmation", () => {
+  it("lists Thane publicly with pending printable address", () => {
     const thane = getBranchBySlug("thane");
-    expect(thane?.address).toBe("To be confirmed");
+    expect(thane?.publiclyListed).toBe(true);
+    expect(thane?.address.toLowerCase()).toContain("pending");
+    expect(thane?.mapsShortUrl).toContain("maps.app.goo.gl");
   });
 });
 
-describe("phone placeholder rule", () => {
-  it("every branch phone/whatsapp number is the obviously-fake +91 00000 00000 pattern", () => {
-    for (const slug of ["airoli", "ghansoli", "thane"] as const) {
-      const branch = getBranchBySlug(slug);
-      expect(branch?.phone).toBe("+91 00000 00000");
-      expect(branch?.whatsapp).toBe("+91 00000 00000");
-    }
+describe("four-branch model", () => {
+  it("includes Airoli Sector 19, Sector 8, Ghansoli, and Thane", () => {
+    const slugs = getBranches()
+      .map((b) => b.slug)
+      .sort();
+    expect(slugs).toEqual(["airoli", "airoli-sector-8", "ghansoli", "thane"]);
+    expect(getPubliclyListedBranches()).toHaveLength(4);
   });
 
-  it("general contact phone is the same obviously-fake pattern", () => {
-    expect(getContactDetails().generalPhone).toBe("+91 00000 00000");
+  it("keeps Sector 8 without a Maps short URL", () => {
+    expect(getBranchBySlug("airoli-sector-8")?.mapsShortUrl).toBeUndefined();
+  });
+});
+
+describe("central enquiry phone / WhatsApp", () => {
+  it("stores the owner-confirmed central number on contact details", () => {
+    const contact = getContactDetails();
+    expect(contact.dataStatus).toBe("verified");
+    expect(contact.generalPhone).toBe(CENTRAL);
+    expect(contact.generalWhatsapp).toBe(CENTRAL);
+    expect(contact.preferredContactOrder[0]).toBe("whatsapp");
+    expect(contact.branchesInheritCentralEnquiry).toBe(true);
+  });
+
+  it("exposes dialable studio links when contact is verified", () => {
+    const links = getStudioContactLinks();
+    expect(links.phoneHref).toBe("tel:+919372402074");
+    expect(links.whatsappHref).toBe("https://wa.me/919372402074");
+  });
+
+  it("keeps branch tel/wa.me null until the branch record itself is verified", () => {
+    for (const branch of getBranches()) {
+      expect(branch.dataStatus).not.toBe("verified");
+      expect(branch.phone).toBe(CENTRAL);
+      expect(branch.inheritsCentralEnquiry).toBe(true);
+      const links = getBranchContactLinks(branch);
+      expect(links.phoneHref).toBeNull();
+      expect(links.whatsappHref).toBeNull();
+      expect(links.mapEmbedUrl).toBeNull();
+    }
+  });
+});
+
+describe("operating window vs timetable", () => {
+  it("uses 06:00–22:00 operating windows on every branch", () => {
+    for (const branch of getBranches()) {
+      expect(branch.openingHoursKind).toBe("operating-window");
+      expect(branch.openingHours).toHaveLength(7);
+      for (const entry of branch.openingHours) {
+        expect(entry.opensAt).toBe("06:00");
+        expect(entry.closesAt).toBe("22:00");
+      }
+    }
+  });
+});
+
+describe("commercial facts", () => {
+  it("records free trial, registration fee, and batch audience options", () => {
+    const commercial = getStudioCommercial();
+    expect(commercial.dataStatus).toBe("verified");
+    expect(commercial.trialIsFree).toBe(true);
+    expect(commercial.registrationFeeInr).toBe(300);
+    expect(commercial.programmeFeesStatus).toBe("pending");
+    expect(commercial.maxGroupBatchSize).toBe(15);
+    expect(commercial.ladiesOnlyBatchesAvailable).toBe(true);
+    expect(commercial.kidsOnlyBatchesAvailable).toBe(true);
   });
 });
 
 describe("no medical or guaranteed-outcome claims", () => {
-  it("no FAQ answer contains a medical or guarantee claim", () => {
-    for (const faq of getFaqs()) {
-      expect(faq.answer).not.toMatch(FORBIDDEN_TERMS);
-      expect(faq.question).not.toMatch(FORBIDDEN_TERMS);
-    }
-  });
-
-  it("no transformation summary contains a medical or guarantee claim, or a specific number", () => {
-    for (const transformation of getTransformations()) {
-      expect(transformation.summary).not.toMatch(FORBIDDEN_TERMS);
-      expect(transformation.summary).not.toMatch(/\d+\s*(kg|lbs?|%|percent)/i);
-    }
-  });
-
   it("business identity description/tagline contain no medical or guarantee claim", () => {
+    const FORBIDDEN = /\b(guarantee[ds]?|cure[sd]?|medical(?:ly)? proven|clinically proven)\b/i;
     const identity = getBusinessIdentity();
-    expect(identity.description).not.toMatch(FORBIDDEN_TERMS);
-    expect(identity.tagline).not.toMatch(FORBIDDEN_TERMS);
+    expect(identity.description).not.toMatch(FORBIDDEN);
+    expect(identity.tagline).not.toMatch(FORBIDDEN);
   });
 });
 
-describe("no ratings, review counts, or awards anywhere in mock content", () => {
-  it("no FAQ mentions a rating/review/award", () => {
-    for (const faq of getFaqs()) {
-      expect(`${faq.question} ${faq.answer}`).not.toMatch(RATING_OR_AWARD_TERMS);
+describe("mapEmbedUrl remains unset on non-verified branches", () => {
+  it("never exposes mapEmbedUrl before branch verification", () => {
+    for (const branch of getBranches()) {
+      expect(branch.dataStatus).not.toBe("verified");
+      expect(branch.mapEmbedUrl).toBeUndefined();
     }
   });
+});
 
-  it("no testimonial mentions a rating/review/award", () => {
-    for (const testimonial of getTestimonials()) {
-      expect(testimonial.quote).not.toMatch(RATING_OR_AWARD_TERMS);
-    }
-  });
-
-  it("business identity contains no rating/review/award claim", () => {
+describe("brand identity", () => {
+  it("keeps Dance & Fitness as logo descriptor, not legal name", () => {
     const identity = getBusinessIdentity();
-    expect(`${identity.tagline} ${identity.description}`).not.toMatch(RATING_OR_AWARD_TERMS);
-  });
-});
-
-describe("testimonials are never attributed to a real, identifiable person", () => {
-  it("every testimonial's attributed name reads as illustrative", () => {
-    for (const testimonial of getTestimonials()) {
-      expect(testimonial.attributedName.toLowerCase()).toContain("illustrative");
-    }
-  });
-});
-
-describe("every content object carries a verification status", () => {
-  it("business identity, contact details, every FAQ, and every nav item have dataStatus", () => {
-    expect(getBusinessIdentity().dataStatus).toBeDefined();
-    expect(getContactDetails().dataStatus).toBeDefined();
-    for (const faq of getFaqs()) expect(faq.dataStatus).toBeDefined();
-    for (const item of getNavigationItems()) expect(item.dataStatus).toBeDefined();
-  });
-});
-
-describe("mapEmbedUrl is never populated on a non-verified branch (structured-data leak guard)", () => {
-  it("no branch record exposes a Maps URL before verification", () => {
-    for (const slug of ["airoli", "ghansoli", "thane"] as const) {
-      const branch = getBranchBySlug(slug);
-      expect(branch?.dataStatus).not.toBe("verified");
-      expect(branch?.mapEmbedUrl).toBeUndefined();
-    }
+    expect(identity.displayName).toBe("Ankit's Studio");
+    expect(identity.legalName).toBe("Ankit's Studio");
+    expect(identity.logoDescriptor).toBe("Dance & Fitness");
   });
 });

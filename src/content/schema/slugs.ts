@@ -5,6 +5,8 @@ import { z } from "zod";
 // import between the two.
 
 export const programmeSlugSchema = z.enum([
+  // Legacy brief catalogue — retained pending taxonomy confirmation
+  // (see docs/business/OWNER-DATA-MIGRATION-2026-08-01.md).
   "strength-training",
   "personal-training",
   "yoga",
@@ -12,8 +14,19 @@ export const programmeSlugSchema = z.enum([
   "adult-dance",
   "kids-dance",
   "weight-loss-fitness",
+  // Owner-interview 2026-08-01 additions (no silent deletes of legacy routes).
+  "functional-training",
+  "wedding-choreography",
+  "home-personal-training",
+  "online-training",
 ]);
 export type ProgrammeSlug = z.infer<typeof programmeSlugSchema>;
 
-export const branchSlugSchema = z.enum(["airoli", "ghansoli", "thane"]);
+export const branchSlugSchema = z.enum([
+  /** Display: Airoli Sector 19 — slug retained to avoid silent redirect. */
+  "airoli",
+  "airoli-sector-8",
+  "ghansoli",
+  "thane",
+]);
 export type BranchSlug = z.infer<typeof branchSlugSchema>;

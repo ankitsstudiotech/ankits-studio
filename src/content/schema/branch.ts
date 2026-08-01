@@ -20,18 +20,27 @@ export const branchSchema = provenanced({
   // but never read by the UI layer until dataStatus === "verified" — see
   // src/content/index.ts and DECISIONS.md ADR-011.
   mapEmbedUrl: z.string().url().optional(),
+  /**
+   * Owner-labelled Google Maps short URL, associated only after browser
+   * resolution. Stored for provenance; not used for embeds until the branch
+   * record is fully verified (ADR-011).
+   */
+  mapsShortUrl: z.string().url().optional(),
   phone: z.string().min(1),
   whatsapp: z.string().min(1),
+  /**
+   * When true, phone/whatsapp are the central studio enquiry number, not a
+   * unique branch line (owner intake 2026-08-01).
+   */
+  inheritsCentralEnquiry: z.boolean().optional(),
   openingHours: z.array(openingHoursEntrySchema),
+  /**
+   * Clarifies that openingHours is an operating window, not a class timetable.
+   */
+  openingHoursKind: z.enum(["operating-window", "detailed-timetable"]).optional(),
   programmeSlugs: z.array(programmeSlugSchema),
-  // Whether this branch appears in public nav/footer/sitemap. False for any
-  // branch still "reference-only" (e.g. Thane) — see
-  // docs/BUSINESS-DATA-STATUS.md and DECISIONS.md ADR-007 (finding I2).
+  // Whether this branch appears in public nav/footer/sitemap.
   publiclyListed: z.boolean(),
-  // All optional/omittable — this whole record is already "mock" or
-  // "reference-only", so these are covered by the same mockDisclaimer as
-  // every other field. `photos` stays empty rather than pointing at a
-  // fabricated image file — see docs/HANDOFF-ROUTES.md.
   directions: z.string().optional(),
   parking: z.string().optional(),
   nearbyTransport: z.array(z.string()).optional(),

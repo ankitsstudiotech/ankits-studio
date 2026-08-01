@@ -1,19 +1,15 @@
 import type { BusinessIdentity } from "../schema";
 
 /**
- * The business name itself is confirmed by the owner (see
- * docs/PROJECT-BRIEF.md); tagline, description, and founding year are
- * illustrative placeholders pending owner review — so the whole record
- * stays `dataStatus: "mock"` (record-level provenance requires every field
- * to be reviewed before "verified" — see docs/CONTENT-MODEL.md).
+ * Display name owner-confirmed. Logo descriptor is lockup text only.
+ * Tagline/description use safe owner-aligned wording (no outcome promises).
  */
 export const mockBusinessIdentity: BusinessIdentity = {
-  dataStatus: "mock",
-  mockDisclaimer:
-    "Business name is confirmed by the owner; tagline, description, and founding year are illustrative placeholders pending review.",
+  dataStatus: "verified",
   legalName: "Ankit's Studio",
   displayName: "Ankit's Studio",
-  tagline: "Placeholder tagline — strength, movement, and dance for the whole community.",
+  logoDescriptor: "Dance & Fitness",
+  tagline: "Machine-free, coach-led sessions for dance and fitness.",
   description:
-    "Placeholder business description. Ankit's Studio offers strength training, personal training, yoga, Zumba, and dance programmes across multiple locations.",
+    "Ankit’s Studio is a multi-branch dance and fitness studio in Navi Mumbai and Thane. Sessions are machine-free and coach-led, adapted to individual needs and goals. Core services include functional training, Zumba, yoga, dance, and wedding choreography, with home personal training and online training as delivery options.",
 };

@@ -21,14 +21,15 @@ describe("programme/location-specific FAQ support", () => {
 });
 
 describe("internal links between programmes and available locations", () => {
-  it("Thane is never among the publicly-listed branches used for programme→branch links", () => {
+  it("includes all four owner-confirmed open branches in public listings", () => {
     const publicBranches = getPubliclyListedBranches();
-    expect(publicBranches.some((branch) => branch.slug === "thane")).toBe(false);
+    const slugs = publicBranches.map((branch) => branch.slug).sort();
+    expect(slugs).toEqual(["airoli", "airoli-sector-8", "ghansoli", "thane"]);
   });
 
   it("every publicly-listed branch is reachable and distinct", () => {
     const slugs = getPubliclyListedBranches().map((branch) => branch.slug);
     expect(new Set(slugs).size).toBe(slugs.length);
-    expect(slugs.length).toBeGreaterThan(0);
+    expect(slugs.length).toBe(4);
   });
 });

@@ -7,7 +7,7 @@ describe("locations static generation", () => {
   it("generates a static param for every branch, including Thane", () => {
     const params = generateStaticParams();
     const slugs = params.map((p) => p.slug).sort();
-    expect(slugs).toEqual(["airoli", "ghansoli", "thane"]);
+    expect(slugs).toEqual(["airoli", "airoli-sector-8", "ghansoli", "thane"]);
   });
 });
 
@@ -17,10 +17,10 @@ describe("locations 404 handling", () => {
     expect(branch.slug).toBe("ghansoli");
   });
 
-  it("still resolves Thane directly (route exists for prototyping, just unlinked)", () => {
+  it("resolves Thane as a publicly listed open branch", () => {
     const branch = getBranchOrNotFound("thane");
     expect(branch.slug).toBe("thane");
-    expect(branch.publiclyListed).toBe(false);
+    expect(branch.publiclyListed).toBe(true);
   });
 
   it("throws (404s) for an unknown slug", () => {

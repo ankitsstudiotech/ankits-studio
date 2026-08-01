@@ -5,7 +5,8 @@ import { Badge } from "@/components/ui/Badge";
 import { Card } from "@/components/ui/Card";
 import { Section } from "@/components/ui/Section";
 import { Body, Caption, Heading } from "@/components/ui/Typography";
-import { getPricingPlans, getProgrammeBySlug, getPubliclyListedBranches } from "@/content";
+import { getPricingPlans, getProgrammeBySlug, getPubliclyListedBranches, getStudioCommercial } from "@/content";
+import { getPrimaryConversionHref, SECONDARY_TRIAL_FORM_HREF } from "@/lib/conversion";
 import { buildPageMetadata } from "@/lib/seo/metadata";
 import { serializeJsonLd } from "@/lib/seo/serialize";
 import { buildBreadcrumbJsonLd } from "@/lib/seo/structured-data";
@@ -15,7 +16,7 @@ const PATH = "/pricing";
 export const metadata: Metadata = buildPageMetadata({
   title: "Pricing",
   description:
-    "Illustrative membership pricing for Ankit's Studio — clearly labelled mock fees, not real offers or discounts.",
+    "Registration fee and pending programme pricing for Ankit's Studio. Monthly plans are not published until confirmed.",
   path: PATH,
 });
 
@@ -41,8 +42,10 @@ function formatInr(amount: number) {
 
 export default function PricingPage() {
   const plans = getPricingPlans();
+  const commercial = getStudioCommercial();
   const branches = getPubliclyListedBranches();
   const breadcrumbJsonLd = buildBreadcrumbJsonLd(breadcrumbTrail);
+  const trialHref = getPrimaryConversionHref();
 
   return (
     <main className="flex flex-1 flex-col">
@@ -55,78 +58,109 @@ export default function PricingPage() {
 
       <Section
         eyebrow="Pricing"
-        title="Membership plans"
+        title="Fees"
         titleAs="h1"
-        description="Every fee on this page is mock placeholder pricing. There are no real offers, discount countdowns, or limited-time claims."
+        description="Trial class is free. One-time registration fee is confirmed. Programme monthly, quarterly, and annual fees are not yet published."
       >
-        <Badge accent="neutral" className="mb-6">
-          Mock pricing — not for sale
-        </Badge>
-
-        <ul className="grid gap-5 lg:grid-cols-2">
-          {plans.map((plan) => {
-            const disclaimer =
-              plan.dataStatus === "verified" ? undefined : plan.mockDisclaimer;
-            const programmeNames = plan.programmeSlugs
-              .map((slug) => getProgrammeBySlug(slug)?.name)
-              .filter((name): name is string => Boolean(name));
-            const branchNames = branches
-              .filter((branch) => plan.branchSlugs.includes(branch.slug))
-              .map((branch) => branch.name);
-
-            return (
-              <li key={plan.slug}>
-                <Card className="flex h-full flex-col gap-4 border-accent/20">
-                  <div className="flex flex-wrap items-center gap-2">
-                    <Badge accent="accent">Illustrative</Badge>
-                    <Caption className="text-ink-subtle">Not a live offer</Caption>
-                  </div>
-                  <Heading as="h2" className="break-words">
-                    {plan.name}
-                  </Heading>
-                  <p className="font-[family-name:var(--font-display)] text-3xl font-semibold text-ink">
-                    {formatInr(plan.priceInr)}
-                    <span className="ml-2 text-base font-medium text-ink-muted">
-                      {BILLING_LABEL[plan.billingPeriod]}
-                    </span>
-                  </p>
-                  {disclaimer ? (
-                    <Caption className="rounded-[var(--radius-sm)] bg-accent-soft/70 px-3 py-2 text-ink">
-                      {disclaimer}
-                    </Caption>
-                  ) : null}
-                  <div>
-                    <Caption className="mb-2 font-semibold uppercase tracking-wide text-ink-muted">
-                      Includes (placeholder)
-                    </Caption>
-                    <ul className="flex flex-col gap-2">
-                      {plan.inclusions.map((item) => (
-                        <li key={item} className="text-ink">
-                          {item}
-                        </li>
-                      ))}
-                    </ul>
-                  </div>
-                  {programmeNames.length > 0 ? (
-                    <Caption className="text-ink-muted">
-                      Programmes (illustrative): {programmeNames.join(", ")}
-                    </Caption>
-                  ) : null}
-                  {branchNames.length > 0 ? (
-                    <Caption className="text-ink-muted">
-                      Branches (illustrative): {branchNames.join(", ")}
-                    </Caption>
-                  ) : null}
-                </Card>
-              </li>
-            );
-          })}
+        <ul className="mb-8 grid gap-5 lg:grid-cols-2">
+          <li>
+            <Card className="flex h-full flex-col gap-4">
+              <Badge accent="accent">Owner-confirmed</Badge>
+              <Heading as="h2">Free trial class</Heading>
+              <Body>
+                {commercial.trialIsFree
+                  ? "Book a free trial via WhatsApp (opening the chat does not confirm delivery) or the trial form."
+                  : "Trial availability to be confirmed."}
+              </Body>
+            </Card>
+          </li>
+          {typeof commercial.registrationFeeInr === "number" ? (
+            <li>
+              <Card className="flex h-full flex-col gap-4">
+                <Badge accent="accent">Owner-confirmed</Badge>
+                <Heading as="h2">Registration fee</Heading>
+                <p className="font-[family-name:var(--font-display)] text-3xl font-semibold text-ink">
+                  {formatInr(commercial.registrationFeeInr)}
+                  <span className="ml-2 text-base font-medium text-ink-muted">one-time</span>
+                </p>
+                <Caption className="text-ink-muted">
+                  Programme fees vary by service and are still pending.
+                </Caption>
+              </Card>
+            </li>
+          ) : null}
         </ul>
 
+        {plans.length === 0 ? (
+          <Body className="mb-6 max-w-3xl text-ink-muted">
+            Detailed membership plan prices are not published yet. Ask via WhatsApp for the current fee for your preferred service and branch.
+          </Body>
+        ) : (
+          <>
+            <Badge accent="neutral" className="mb-6">
+              Additional plan rows
+            </Badge>
+            <ul className="grid gap-5 lg:grid-cols-2">
+              {plans.map((plan) => {
+                const disclaimer =
+                  plan.dataStatus === "verified" ? undefined : plan.mockDisclaimer;
+                const programmeNames = plan.programmeSlugs
+                  .map((slug) => getProgrammeBySlug(slug)?.name)
+                  .filter((name): name is string => Boolean(name));
+                const branchNames = branches
+                  .filter((branch) => plan.branchSlugs.includes(branch.slug))
+                  .map((branch) => branch.name);
+
+                return (
+                  <li key={plan.slug}>
+                    <Card className="flex h-full flex-col gap-4 border-accent/20">
+                      <Heading as="h2" className="break-words">
+                        {plan.name}
+                      </Heading>
+                      <p className="font-[family-name:var(--font-display)] text-3xl font-semibold text-ink">
+                        {formatInr(plan.priceInr)}
+                        <span className="ml-2 text-base font-medium text-ink-muted">
+                          {BILLING_LABEL[plan.billingPeriod]}
+                        </span>
+                      </p>
+                      {disclaimer ? (
+                        <Caption className="rounded-[var(--radius-sm)] bg-accent-soft/70 px-3 py-2 text-ink">
+                          {disclaimer}
+                        </Caption>
+                      ) : null}
+                      {programmeNames.length > 0 ? (
+                        <Caption className="text-ink-muted">
+                          Programmes: {programmeNames.join(", ")}
+                        </Caption>
+                      ) : null}
+                      {branchNames.length > 0 ? (
+                        <Caption className="text-ink-muted">
+                          Branches: {branchNames.join(", ")}
+                        </Caption>
+                      ) : null}
+                    </Card>
+                  </li>
+                );
+              })}
+            </ul>
+          </>
+        )}
+
         <Body className="mt-8 max-w-3xl">
-          Ready to visit instead of comparing placeholder fees?{" "}
-          <Link href="/trial" className="text-accent underline-offset-4 hover:underline">
-            Book a free trial
+          Ready to visit?{" "}
+          <Link
+            href={trialHref}
+            className="text-accent underline-offset-4 hover:underline"
+            {...(trialHref.startsWith("http")
+              ? { target: "_blank", rel: "noopener noreferrer" }
+              : {})}
+          >
+            Book a free trial on WhatsApp
+          </Link>
+          {" "}
+          or use the{" "}
+          <Link href={SECONDARY_TRIAL_FORM_HREF} className="text-accent underline-offset-4 hover:underline">
+            trial form
           </Link>
           .
         </Body>

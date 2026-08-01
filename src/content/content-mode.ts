@@ -7,6 +7,7 @@ import {
   mockNavigationItems,
   mockPricingPlans,
   mockProgrammes,
+  mockStudioCommercial,
   mockTestimonials,
   mockTimetableSlots,
   mockTrainers,
@@ -39,6 +40,7 @@ const allContentDomainRecords: readonly ProvenanceLike[] = [
   ...mockBlogPosts,
   mockBusinessIdentity,
   mockContactDetails,
+  mockStudioCommercial,
   ...mockFaqs,
   ...mockNavigationItems,
 ];
