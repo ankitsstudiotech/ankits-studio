@@ -1,9 +1,7 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import { PageBreadcrumb } from "@/components/layout/PageBreadcrumb";
-import { Field, TextInput, TextTextarea } from "@/components/forms/Field";
 import { Badge } from "@/components/ui/Badge";
-import { Button } from "@/components/ui/Button";
 import { Card } from "@/components/ui/Card";
 import { Section } from "@/components/ui/Section";
 import { Body, Caption, Heading } from "@/components/ui/Typography";
@@ -11,7 +9,7 @@ import { getContactDetails, getPubliclyListedBranches } from "@/content";
 import { buildPageMetadata } from "@/lib/seo/metadata";
 import { serializeJsonLd } from "@/lib/seo/serialize";
 import { buildBreadcrumbJsonLd } from "@/lib/seo/structured-data";
-import { submitContactInquiry } from "./actions";
+import { ContactForm } from "./ContactForm";
 
 const PATH = "/contact";
 
@@ -49,9 +47,7 @@ export default async function ContactPage({ searchParams }: ContactPageProps) {
         ? "Your message was not delivered. No live lead provider is configured."
         : status === "provider-error"
           ? "Your message was not delivered. The lead provider is not ready."
-          : status === "validation-error"
-            ? "Please check the form fields and try again."
-            : null;
+          : null;
 
   return (
     <main className="flex flex-1 flex-col">
@@ -65,6 +61,7 @@ export default async function ContactPage({ searchParams }: ContactPageProps) {
       <Section
         eyebrow="Contact"
         title="Get in touch"
+        titleAs="h1"
         description={contact.introText}
       >
         <Badge accent="neutral" className="mb-4">
@@ -144,36 +141,7 @@ export default async function ContactPage({ searchParams }: ContactPageProps) {
           </p>
         ) : null}
 
-        <form action={submitContactInquiry} className="flex flex-col gap-5">
-          <Field id="name" label="Name">
-            <TextInput id="name" name="name" autoComplete="name" required />
-          </Field>
-          <Field id="phone" label="Phone">
-            <TextInput id="phone" name="phone" type="tel" autoComplete="tel" required />
-          </Field>
-          <Field id="email" label="Email (optional)">
-            <TextInput id="email" name="email" type="email" autoComplete="email" />
-          </Field>
-          <Field id="message" label="Message">
-            <TextTextarea id="message" name="message" rows={5} required />
-          </Field>
-          <div className="flex items-start gap-3">
-            <input
-              id="consent"
-              name="consent"
-              type="checkbox"
-              required
-              className="mt-1 size-5 rounded border-border text-accent focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-focus-ring"
-            />
-            <label htmlFor="consent" className="text-sm text-ink">
-              I agree to be contacted about this inquiry. I understand messages are not delivered
-              live unless a provider is configured.
-            </label>
-          </div>
-          <Button type="submit" size="lg" className="self-start">
-            Send inquiry
-          </Button>
-        </form>
+        <ContactForm />
       </Section>
     </main>
   );

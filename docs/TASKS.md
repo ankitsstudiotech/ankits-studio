@@ -62,9 +62,9 @@ dependency — do not start it early "because it's unclaimed."
 | A | Design tokens (palette, type, spacing, accent-family mapping, mobile breakpoints/nav pattern) | — (start immediately) | Cursor | **Done** — tokens + Syne/Figtree wired site-wide via root layout/`studio.css`; design-lab + homepage consume the system (`feat: create design and motion system`, `feat: integrate motion-rich homepage`) | `phase-1/design-tokens` |
 | B | Content-model types + accessor layer + Vitest setup | — (start immediately) | Claude | **Done** — landed in the Phase 1 foundation pass, committed directly to `master` (see below, not on a separate branch) | — |
 | C | Mock data authoring per BUSINESS-DATA-STATUS.md domains | B | Claude | **Done** — every domain has at least one mock record; landed in the same foundation pass | — |
-| D | Tier 1 route scaffolding (8 routes) + noindex + timetable SSR default + mobile timetable layout | B (hard), C (soft — can start against fixtures) | Claude / Cursor | **Partial** — homepage (`/`) integrated (`feat: integrate motion-rich homepage`); remaining Tier 1 routes (`/programmes*`, `/locations*`, `/timetable`, `/trial`, `/contact`) not started | `phase-1/routes` |
+| D | Tier 1 route scaffolding (8 routes) + noindex + timetable SSR default + mobile timetable layout | B (hard), C (soft — can start against fixtures) | Claude / Cursor | **Done** — all Tier 1 routes shipped in later passes (see `docs/HANDOFF-ROUTES.md`, `docs/HANDOFF.md`'s "Routes shipped (2026-08-01 pass)") | `phase-1/routes` |
 | E | Base Motion system (opt-in islands only, per ADR-009) | A (hard), D (soft — primitives can be built early, integration needs D's markup) | Cursor | **Done** — motion islands in `src/components/motion/**`; homepage uses ScrollReveal/FadeIn only as client enhancement (`feat: create design and motion system`, `feat: integrate motion-rich homepage`) | `phase-1/motion-base` |
-| F | Mock-data UI banner | B | Claude (logic) + Cursor (styling), sequenced on one branch | **Partial** — a narrower **development-only** indicator (`src/components/MockModeIndicator.tsx`) landed in the foundation pass; homepage also shows inline `MockDisclaimer`s. The full ADR-002 layer-2 banner (non-dismissable, must also render on any `ALLOW_MOCK_PUBLISH=true` preview build, not just `next dev`) is still open | `phase-1/mock-banner` |
+| F | Mock-data UI banner | B | Claude (logic) + Cursor (styling), sequenced on one branch | **Done** — `src/components/MockModeIndicator.tsx` now shows whenever unverified content exists and (`development` or `ALLOW_MOCK_PUBLISH === "true"`), closing the preview-build gap (MOCK-001, production-readiness audit-fix pass) | `phase-1/mock-banner` |
 
 ### Phase 1 foundation pass (complete, this pass)
 
@@ -84,6 +84,12 @@ config, root layout + skip link + error boundary + not-found page, a starting
 design-token set, and the Vitest/Playwright/axe-core testing foundation
 (16 unit tests, 5 e2e tests, all passing). Full detail:
 [HANDOFF.md](./HANDOFF.md).
+
+## Production-readiness audit-fix pass (complete, 2026-08-02)
+
+| Task | Owner | Status | Notes |
+|---|---|---|---|
+| Resolve `docs/audits/CLAUDE-TECHNICAL-SEO-AUDIT.md` + `docs/audits/CURSOR-VISUAL-BROWSER-AUDIT.md` findings, priority-ordered (critical correctness → mock-data risk → SEO → a11y → responsive → forms → performance → visual polish → optional) | Claude | Done | `fix: resolve production readiness audit findings` — full triage and per-finding resolution in `docs/DECISIONS.md` ADR-013 and both audit docs' new "Resolution status" sections; summary in `docs/HANDOFF.md`. |
 
 ## Phase 2+ 
 

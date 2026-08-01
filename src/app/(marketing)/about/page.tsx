@@ -41,6 +41,7 @@ export default function AboutPage() {
       <Section
         eyebrow="About"
         title={identity.displayName}
+        titleAs="h1"
         description={identity.tagline}
       >
         <Badge accent="neutral" className="mb-4">

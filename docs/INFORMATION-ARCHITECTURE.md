@@ -5,8 +5,8 @@
 | Route | Purpose | Tier |
 |---|---|---|
 | `/` | Home — brand overview, programme + branch entry points | 1 |
-| `/programmes` | Programme index (all 7 confirmed programmes) | 1 |
-| `/programmes/[slug]` | Programme detail | 1 |
+| `/programs` | Programme index (all 7 confirmed programmes) | 1 |
+| `/programs/[slug]` | Programme detail | 1 |
 | `/locations` | Branch index (Airoli, Ghansoli, Thane) | 1 |
 | `/locations/[slug]` | Branch detail (address, hours, programmes offered, map) | 1 |
 | `/timetable` | Class timetable, filterable by branch and programme | 1 |
@@ -20,7 +20,7 @@
 | `/blog` | Blog index | 3 |
 | `/blog/[slug]` | Blog post detail | 3 |
 
-Slugs: `[slug]` under `/programmes/` uses `ProgrammeSlug`; under `/locations/` uses
+Slugs: `[slug]` under `/programs/` uses `ProgrammeSlug`; under `/locations/` uses
 `BranchSlug` — both defined in [CONTENT-MODEL.md](./CONTENT-MODEL.md).
 `/locations/[branch]/[programme]` is generated only for pairs present in both
 `Branch.programmeSlugs` and `Programme.branchSlugs` — see
@@ -36,7 +36,7 @@ we responsibly build now, with mock data, vs. what should wait."
 primarily about structure, navigation, and motion/design craft; their content
 reads naturally as illustrative. Build with full mock data behind the launch gate
 (see [DECISIONS.md ADR-002](./DECISIONS.md#adr-002)):
-`/`, `/programmes`, `/programmes/[slug]`, `/locations`, `/locations/[slug]`,
+`/`, `/programs`, `/programs/[slug]`, `/locations`, `/locations/[slug]`,
 `/timetable`, `/trial`, `/contact`.
 
 **Tier 2 — build once Tier 1 is stable, extra disclaimer treatment.** These

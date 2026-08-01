@@ -1,5 +1,11 @@
 # Handoff — Programme & Location Route Architecture
 
+> **Update (2026-08-01, production-readiness audit pass — SEO-003):** the
+> "not fixed, flagged" homepage gap noted below is resolved — `src/app/(marketing)/page.tsx`
+> now links to `/programs` throughout. This section is left otherwise
+> unedited as the historical record of why `/programs` (not `/programmes`)
+> was chosen. See `docs/DECISIONS.md` ADR-013.
+
 _Scope: this pass was file-ownership-restricted to `src/app/programs/**`,
 `src/app/locations/**`, `src/lib/seo/**`, `src/content/**`,
 `tests/routes/**`, `tests/seo/**`, and this doc. It did **not** touch

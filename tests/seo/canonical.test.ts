@@ -3,9 +3,9 @@ import { buildCanonicalUrl, isValidCanonicalUrl } from "@/lib/seo/canonical";
 
 describe("buildCanonicalUrl", () => {
   it("builds a valid absolute canonical URL for a normal path", () => {
-    const url = buildCanonicalUrl("/programmes");
+    const url = buildCanonicalUrl("/programs");
     expect(isValidCanonicalUrl(url)).toBe(true);
-    expect(url.endsWith("/programmes")).toBe(true);
+    expect(url.endsWith("/programs")).toBe(true);
   });
 
   it("builds a valid canonical URL for the root path", () => {
@@ -14,7 +14,7 @@ describe("buildCanonicalUrl", () => {
   });
 
   it("throws when the path is missing a leading slash (missing required field shape)", () => {
-    expect(() => buildCanonicalUrl("programmes")).toThrow();
+    expect(() => buildCanonicalUrl("programs")).toThrow();
   });
 
   it("throws when the path includes a query string", () => {
@@ -22,11 +22,11 @@ describe("buildCanonicalUrl", () => {
   });
 
   it("throws when the path includes a fragment", () => {
-    expect(() => buildCanonicalUrl("/programmes#yoga")).toThrow();
+    expect(() => buildCanonicalUrl("/programs#yoga")).toThrow();
   });
 
   it("throws on a trailing slash for a non-root path", () => {
-    expect(() => buildCanonicalUrl("/programmes/")).toThrow();
+    expect(() => buildCanonicalUrl("/programs/")).toThrow();
   });
 });
 

@@ -8,7 +8,21 @@ function readString(formData: FormData, key: string) {
   return typeof value === "string" ? value : "";
 }
 
-export async function submitContactInquiry(formData: FormData) {
+export type ContactFormFieldErrors = Partial<
+  Record<"name" | "phone" | "email" | "message" | "consent", string>
+>;
+
+export type ContactFormState = { fieldErrors: ContactFormFieldErrors } | null;
+
+/**
+ * `useActionState`-compatible server action — same pattern as
+ * `trial/actions.ts`'s `submitTrialLead`. See docs/DECISIONS.md ADR-013
+ * (VIS-002).
+ */
+export async function submitContactInquiry(
+  _prevState: ContactFormState,
+  formData: FormData
+): Promise<ContactFormState> {
   const parsed = contactInquirySchema.safeParse({
     name: readString(formData, "name"),
     phone: readString(formData, "phone"),
@@ -18,7 +32,14 @@ export async function submitContactInquiry(formData: FormData) {
   });
 
   if (!parsed.success) {
-    redirect("/contact?status=validation-error");
+    const fieldErrors: ContactFormFieldErrors = {};
+    for (const issue of parsed.error.issues) {
+      const key = issue.path[0];
+      if (typeof key === "string" && !(key in fieldErrors)) {
+        fieldErrors[key as keyof ContactFormFieldErrors] = issue.message;
+      }
+    }
+    return { fieldErrors };
   }
 
   const result = await getLeadAdapter().submitContactInquiry({

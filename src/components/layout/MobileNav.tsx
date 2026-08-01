@@ -9,6 +9,7 @@ import {
   useState,
   type KeyboardEvent as ReactKeyboardEvent,
 } from "react";
+import { createPortal } from "react-dom";
 import type { NavItem } from "./types";
 
 export type MobileNavProps = {
@@ -128,73 +129,72 @@ export function MobileNav({ items, pathname = "" }: MobileNavProps) {
         </span>
       </button>
 
-      {open ? (
-        <>
-          <div
-            className="fixed inset-0 z-40 bg-ink/35"
-            aria-hidden
-            onClick={close}
-          />
-          <div
-            ref={panelRef}
-            id={panelId}
-            role="dialog"
-            aria-modal="true"
-            aria-label="Mobile navigation"
-            className={[
-              "fixed inset-y-0 right-0 z-50 flex w-[min(100%,22rem)] flex-col",
-              "border-l border-border bg-surface-raised shadow-[var(--shadow-lift)]",
-              "translate-x-0",
-            ].join(" ")}
-          >
-            <div className="flex items-center justify-between border-b border-border px-4 py-3">
-              <p className="font-[family-name:var(--font-display)] text-lg font-semibold text-ink">
-                Menu
-              </p>
-              <button
-                type="button"
-                className="inline-flex min-h-11 min-w-11 items-center justify-center rounded-[var(--radius-md)] text-ink touch-target focus-visible:outline-2 focus-visible:outline-offset-3 focus-visible:outline-focus-ring"
-                aria-label="Close menu"
-                onClick={close}
+      {open
+        ? createPortal(
+            <>
+              <div className="fixed inset-0 z-40 bg-ink/35" aria-hidden onClick={close} />
+              <div
+                ref={panelRef}
+                id={panelId}
+                role="dialog"
+                aria-modal="true"
+                aria-label="Mobile navigation"
+                className={[
+                  "fixed inset-y-0 right-0 z-50 flex w-[min(100%,22rem)] flex-col",
+                  "border-l border-border bg-surface-raised shadow-[var(--shadow-lift)]",
+                  "translate-x-0",
+                ].join(" ")}
               >
-                <span aria-hidden className="text-2xl leading-none">
-                  ×
-                </span>
-              </button>
-            </div>
+                <div className="flex items-center justify-between border-b border-border px-4 py-3">
+                  <p className="font-[family-name:var(--font-display)] text-lg font-semibold text-ink">
+                    Menu
+                  </p>
+                  <button
+                    type="button"
+                    className="inline-flex min-h-11 min-w-11 items-center justify-center rounded-[var(--radius-md)] text-ink touch-target focus-visible:outline-2 focus-visible:outline-offset-3 focus-visible:outline-focus-ring"
+                    aria-label="Close menu"
+                    onClick={close}
+                  >
+                    <span aria-hidden className="text-2xl leading-none">
+                      ×
+                    </span>
+                  </button>
+                </div>
 
-            <nav aria-label="Mobile primary" className="flex-1 overflow-y-auto px-3 py-4">
-              <ul className="flex flex-col gap-1">
-                {items.map((item) => {
-                  const active = pathname === item.href;
-                  return (
-                    <li key={item.id}>
-                      <Link
-                        href={item.href}
-                        aria-current={active ? "page" : undefined}
-                        onClick={close}
-                        className={[
-                          "flex min-h-11 items-center rounded-[var(--radius-md)] px-3 text-base font-medium touch-target",
-                          "focus-visible:outline-2 focus-visible:outline-offset-3 focus-visible:outline-focus-ring",
-                          item.isPrimaryCta
-                            ? "bg-accent text-accent-foreground justify-center"
-                            : active
-                              ? "bg-accent-soft text-ink"
-                              : "text-ink hover:bg-surface-sunken",
-                        ].join(" ")}
-                      >
-                        {item.label}
-                      </Link>
-                    </li>
-                  );
-                })}
-              </ul>
-            </nav>
-          </div>
-        </>
-      ) : (
-        <div id={panelId} hidden />
-      )}
+                <nav aria-label="Mobile primary" className="flex-1 overflow-y-auto px-3 py-4">
+                  <ul className="flex flex-col gap-1">
+                    {items.map((item) => {
+                      const active = pathname === item.href;
+                      return (
+                        <li key={item.id}>
+                          <Link
+                            href={item.href}
+                            aria-current={active ? "page" : undefined}
+                            onClick={close}
+                            className={[
+                              "flex min-h-11 items-center rounded-[var(--radius-md)] px-3 text-base font-medium touch-target",
+                              "focus-visible:outline-2 focus-visible:outline-offset-3 focus-visible:outline-focus-ring",
+                              item.isPrimaryCta
+                                ? "bg-accent text-accent-foreground justify-center"
+                                : active
+                                  ? "bg-accent-soft text-ink"
+                                  : "text-ink hover:bg-surface-sunken",
+                            ].join(" ")}
+                          >
+                            {item.label}
+                          </Link>
+                        </li>
+                      );
+                    })}
+                  </ul>
+                </nav>
+              </div>
+            </>,
+            document.body
+          )
+        : (
+            <div id={panelId} hidden />
+          )}
     </div>
   );
 }

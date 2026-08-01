@@ -326,3 +326,24 @@ If product wants “programme filters”, add GET filters (audience, accent, bra
 3. **VIS-002** — Field-level form errors.
 4. **VIS-003** / **VIS-004** — Touch targets + heading outline.
 5. **VIS-006** / **VIS-007** — 404 chrome + mock-banner density when exiting preview.
+
+---
+
+## Resolution status (2026-08-01/02 — production-readiness audit-fix pass)
+
+Full reasoning and rejection rationale for every row below:
+[DECISIONS.md ADR-013](../DECISIONS.md#adr-013). Commit:
+`fix: resolve production readiness audit findings`.
+
+| ID | Status | Resolution |
+|---|---|---|
+| VIS-001 | **Fixed** | Root cause confirmed exactly as diagnosed here (`backdrop-filter` containing block traps `position: fixed`). Fixed by portalling the drawer/overlay to `document.body` via `createPortal` in `MobileNav.tsx`, rather than rendering inline inside the blurred `<header>`. Re-verified via the same visual probe: drawer now covers the full 844px mobile viewport (previously collapsed to header height); see the regenerated `screenshots/mobile_nav_open_390.png`. |
+| VIS-002 | **Fixed** | Converted both `trial/actions.ts` and `contact/actions.ts` to the `useActionState` pattern: validation failures now return field-level errors (wired through `Field`'s existing `error`/`aria-describedby` props and `TextInput`'s `invalid`/`aria-invalid` props) instead of a redirect-only banner. `noValidate` removed from the trial form so native HTML5 validation runs first. Success/not-configured/provider-error still redirect. Verified in a real browser: an empty submit is blocked natively; a server-side-only validation failure (e.g. a too-short phone number) shows an inline field error and stays on the page; a fully valid submission still redirects with the success banner. |
+| VIS-003 | **Fixed** | Added horizontal padding (`px-2` offset by `-mx-2` to preserve visual alignment) plus `min-w-11` to `SiteFooter` links, alongside the pre-existing `min-h-11`. Re-verified via the visual probe: no footer link appears in the small-touch-target report at 390px across any route (previously several short labels like "Blog"/"FAQ" were under 44px wide). |
+| VIS-004 | **Fixed** | Added an optional `titleAs` prop to `Section` (defaults to `"h2"`, every existing call site unaffected) and applied `titleAs="h1"` to the primary section on `/about`, `/contact`, `/trial`, `/timetable`, and `/pricing`. Confirmed no page ends up with two `<h1>`s (other routes already had one via `HeroHeading as="h1"`, untouched). |
+| VIS-005 | **Fixed** | Root cause found: `ScrollReveal.tsx` conditionally rendered a plain `<div>` vs. `<motion.div>` based on `useReducedMotion()` — the exact anti-pattern `TextReveal.tsx`'s own comment warns against, and which `TextReveal`/`FadeIn` already avoided correctly. Fixed by always rendering the same `<motion.div>` and varying only prop values. Verified via the visual probe: 0 hydration-related console errors on `/`. |
+| VIS-006 | **Fixed** | Root `not-found.tsx` now renders inside `SiteChrome` (matching every real route's `<main>`-inside-chrome structure), instead of a bare centered div. Verified via a live request: `<header>` and `<footer>` now present in the 404 response body, HTTP status still correctly 404. |
+| VIS-007 | **Rejected** | Cosmetic, and the audit's own text frames it as "intentional mock posture" — the preview banner disappears the moment mock mode ends, by design (ADR-002). Restructuring hero/sticky-CTA interaction to "fix" a temporary, self-resolving state would be an unsolicited visual redesign. |
+| VIS-008 | **Rejected** | Intentional per `docs/INFORMATION-ARCHITECTURE.md` — filtering lives on `/timetable` only; the audit's own text agrees ("current ship is browse-all"). Not a defect. |
+
+**Re-verification note:** the visual probe (`docs/audits/_visual-probe.mjs`) was re-run against the fixed build after every relevant category — 0 overflow findings across 24 routes × 4 viewports (unchanged from the original audit), mobile nav drawer confirmed full-height and functional, sticky CTA behaviour unchanged, no remaining small footer touch targets. `docs/audits/visual-probe-report.json` and `docs/audits/screenshots/**` reflect the current (fixed) state.

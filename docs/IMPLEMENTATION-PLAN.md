@@ -165,7 +165,7 @@ Track A (tokens)   Track B (content model)
 - **Branch**: `phase-1/routes`
 - **Owner**: Claude
 - **File ownership**: `src/app/**` for the eight Tier 1 routes only (`/`,
-  `/programmes`, `/programmes/[slug]`, `/locations`, `/locations/[slug]`,
+  `/programs`, `/programs/[slug]`, `/locations`, `/locations/[slug]`,
   `/timetable`, `/trial`, `/contact`) — **not** `/locations/[branch]/[programme]`,
   which is Tier 2 and ships in Phase 2 per
   [DECISIONS.md ADR-008](./DECISIONS.md#adr-008).
@@ -190,7 +190,7 @@ Track A (tokens)   Track B (content model)
   npx tsc --noEmit --strict
   # axe-core scan per route (manual/local until CI wiring lands in Phase 2,
   # per ADR-011's test-obligations list):
-  npx @axe-core/cli http://localhost:3000/ http://localhost:3000/programmes ...
+  npx @axe-core/cli http://localhost:3000/ http://localhost:3000/programs ...
   ```
 - **Commit boundary**: one commit per route family is acceptable (e.g. core
   marketing routes vs. `/timetable`/`/trial`/`/contact` as a second commit),

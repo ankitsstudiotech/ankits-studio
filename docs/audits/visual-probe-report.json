@@ -1,6 +1,6 @@
 {
   "base": "http://localhost:3001",
-  "generatedAt": "2026-08-01T05:00:15.114Z",
+  "generatedAt": "2026-08-01T06:28:46.414Z",
   "viewports": {
     "390x844": {
       "/": {
@@ -15,31 +15,6 @@
             "w": 1,
             "h": 1,
             "text": "Skip to main content"
-          },
-          {
-            "w": 39,
-            "h": 44,
-            "text": "About"
-          },
-          {
-            "w": 43,
-            "h": 44,
-            "text": "Pricing"
-          },
-          {
-            "w": 28,
-            "h": 44,
-            "text": "Blog"
-          },
-          {
-            "w": 38,
-            "h": 44,
-            "text": "Terms"
-          },
-          {
-            "w": 32,
-            "h": 44,
-            "text": "Airoli"
           }
         ],
         "h1": "Move with strength, rhythm, and community.",
@@ -64,34 +39,9 @@
             "w": 38,
             "h": 20,
             "text": "Home"
-          },
-          {
-            "w": 39,
-            "h": 44,
-            "text": "About"
-          },
-          {
-            "w": 43,
-            "h": 44,
-            "text": "Pricing"
-          },
-          {
-            "w": 28,
-            "h": 44,
-            "text": "Blog"
-          },
-          {
-            "w": 38,
-            "h": 44,
-            "text": "Terms"
-          },
-          {
-            "w": 32,
-            "h": 44,
-            "text": "Airoli"
           }
         ],
-        "h1": null,
+        "h1": "Ankit's Studio",
         "hasMain": true,
         "title": "About | Ankit's Studio"
       },
@@ -117,31 +67,6 @@
             "w": 122,
             "h": 19,
             "text": "Browse locations"
-          },
-          {
-            "w": 39,
-            "h": 44,
-            "text": "About"
-          },
-          {
-            "w": 43,
-            "h": 44,
-            "text": "Pricing"
-          },
-          {
-            "w": 28,
-            "h": 44,
-            "text": "Blog"
-          },
-          {
-            "w": 38,
-            "h": 44,
-            "text": "Terms"
-          },
-          {
-            "w": 32,
-            "h": 44,
-            "text": "Airoli"
           }
         ],
         "h1": null,
@@ -170,31 +95,6 @@
             "w": 79,
             "h": 17,
             "text": "Programmes"
-          },
-          {
-            "w": 39,
-            "h": 44,
-            "text": "About"
-          },
-          {
-            "w": 43,
-            "h": 44,
-            "text": "Pricing"
-          },
-          {
-            "w": 28,
-            "h": 44,
-            "text": "Blog"
-          },
-          {
-            "w": 38,
-            "h": 44,
-            "text": "Terms"
-          },
-          {
-            "w": 32,
-            "h": 44,
-            "text": "Airoli"
           }
         ],
         "h1": "Strength Training",
@@ -223,31 +123,6 @@
             "w": 79,
             "h": 17,
             "text": "Programmes"
-          },
-          {
-            "w": 39,
-            "h": 44,
-            "text": "About"
-          },
-          {
-            "w": 43,
-            "h": 44,
-            "text": "Pricing"
-          },
-          {
-            "w": 28,
-            "h": 44,
-            "text": "Blog"
-          },
-          {
-            "w": 38,
-            "h": 44,
-            "text": "Terms"
-          },
-          {
-            "w": 32,
-            "h": 44,
-            "text": "Airoli"
           }
         ],
         "h1": "Weight-Loss & General Fitness",
@@ -277,31 +152,6 @@
             "w": 167,
             "h": 19,
             "text": "Browse all programmes"
-          },
-          {
-            "w": 39,
-            "h": 44,
-            "text": "About"
-          },
-          {
-            "w": 43,
-            "h": 44,
-            "text": "Pricing"
-          },
-          {
-            "w": 28,
-            "h": 44,
-            "text": "Blog"
-          },
-          {
-            "w": 38,
-            "h": 44,
-            "text": "Terms"
-          },
-          {
-            "w": 32,
-            "h": 44,
-            "text": "Airoli"
           }
         ],
         "h1": null,
@@ -330,31 +180,6 @@
             "w": 61,
             "h": 17,
             "text": "Locations"
-          },
-          {
-            "w": 39,
-            "h": 44,
-            "text": "About"
-          },
-          {
-            "w": 43,
-            "h": 44,
-            "text": "Pricing"
-          },
-          {
-            "w": 28,
-            "h": 44,
-            "text": "Blog"
-          },
-          {
-            "w": 38,
-            "h": 44,
-            "text": "Terms"
-          },
-          {
-            "w": 32,
-            "h": 44,
-            "text": "Airoli"
           }
         ],
         "h1": "Ankit's Studio — Airoli",
@@ -383,31 +208,6 @@
             "w": 61,
             "h": 17,
             "text": "Locations"
-          },
-          {
-            "w": 39,
-            "h": 44,
-            "text": "About"
-          },
-          {
-            "w": 43,
-            "h": 44,
-            "text": "Pricing"
-          },
-          {
-            "w": 28,
-            "h": 44,
-            "text": "Blog"
-          },
-          {
-            "w": 38,
-            "h": 44,
-            "text": "Terms"
-          },
-          {
-            "w": 32,
-            "h": 44,
-            "text": "Airoli"
           }
         ],
         "h1": "Ankit's Studio — Thane",
@@ -437,31 +237,6 @@
             "w": 147,
             "h": 19,
             "text": "Browse programmes"
-          },
-          {
-            "w": 39,
-            "h": 44,
-            "text": "About"
-          },
-          {
-            "w": 43,
-            "h": 44,
-            "text": "Pricing"
-          },
-          {
-            "w": 28,
-            "h": 44,
-            "text": "Blog"
-          },
-          {
-            "w": 38,
-            "h": 44,
-            "text": "Terms"
-          },
-          {
-            "w": 32,
-            "h": 44,
-            "text": "Airoli"
           }
         ],
         "h1": null,
@@ -490,31 +265,6 @@
             "w": 49,
             "h": 20,
             "text": "Trainers"
-          },
-          {
-            "w": 39,
-            "h": 44,
-            "text": "About"
-          },
-          {
-            "w": 43,
-            "h": 44,
-            "text": "Pricing"
-          },
-          {
-            "w": 28,
-            "h": 44,
-            "text": "Blog"
-          },
-          {
-            "w": 38,
-            "h": 44,
-            "text": "Terms"
-          },
-          {
-            "w": 32,
-            "h": 44,
-            "text": "Airoli"
           }
         ],
         "h1": "Illustrative Trainer — A.",
@@ -543,31 +293,6 @@
             "w": 112,
             "h": 19,
             "text": "Book a free trial"
-          },
-          {
-            "w": 39,
-            "h": 44,
-            "text": "About"
-          },
-          {
-            "w": 43,
-            "h": 44,
-            "text": "Pricing"
-          },
-          {
-            "w": 28,
-            "h": 44,
-            "text": "Blog"
-          },
-          {
-            "w": 38,
-            "h": 44,
-            "text": "Terms"
-          },
-          {
-            "w": 32,
-            "h": 44,
-            "text": "Airoli"
           }
         ],
         "h1": null,
@@ -591,34 +316,9 @@
             "w": 38,
             "h": 20,
             "text": "Home"
-          },
-          {
-            "w": 39,
-            "h": 44,
-            "text": "About"
-          },
-          {
-            "w": 43,
-            "h": 44,
-            "text": "Pricing"
-          },
-          {
-            "w": 28,
-            "h": 44,
-            "text": "Blog"
-          },
-          {
-            "w": 38,
-            "h": 44,
-            "text": "Terms"
-          },
-          {
-            "w": 32,
-            "h": 44,
-            "text": "Airoli"
           }
         ],
-        "h1": null,
+        "h1": "Weekly class schedule",
         "hasMain": true,
         "title": "Timetable | Ankit's Studio",
         "screenshot": "screenshots/view_390_timetable.png"
@@ -640,34 +340,9 @@
             "w": 38,
             "h": 20,
             "text": "Home"
-          },
-          {
-            "w": 39,
-            "h": 44,
-            "text": "About"
-          },
-          {
-            "w": 43,
-            "h": 44,
-            "text": "Pricing"
-          },
-          {
-            "w": 28,
-            "h": 44,
-            "text": "Blog"
-          },
-          {
-            "w": 38,
-            "h": 44,
-            "text": "Terms"
-          },
-          {
-            "w": 32,
-            "h": 44,
-            "text": "Airoli"
           }
         ],
-        "h1": null,
+        "h1": "Weekly class schedule",
         "hasMain": true,
         "title": "Timetable | Ankit's Studio",
         "screenshot": "screenshots/view_390_timetable_branch_airoli_programme_yoga.png"
@@ -694,34 +369,9 @@
             "w": 112,
             "h": 19,
             "text": "Book a free trial"
-          },
-          {
-            "w": 39,
-            "h": 44,
-            "text": "About"
-          },
-          {
-            "w": 43,
-            "h": 44,
-            "text": "Pricing"
-          },
-          {
-            "w": 28,
-            "h": 44,
-            "text": "Blog"
-          },
-          {
-            "w": 38,
-            "h": 44,
-            "text": "Terms"
-          },
-          {
-            "w": 32,
-            "h": 44,
-            "text": "Airoli"
           }
         ],
-        "h1": null,
+        "h1": "Membership plans",
         "hasMain": true,
         "title": "Pricing | Ankit's Studio",
         "screenshot": "screenshots/view_390_pricing.png"
@@ -748,34 +398,9 @@
             "w": 13,
             "h": 20,
             "text": ""
-          },
-          {
-            "w": 39,
-            "h": 44,
-            "text": "About"
-          },
-          {
-            "w": 43,
-            "h": 44,
-            "text": "Pricing"
-          },
-          {
-            "w": 28,
-            "h": 44,
-            "text": "Blog"
-          },
-          {
-            "w": 38,
-            "h": 44,
-            "text": "Terms"
-          },
-          {
-            "w": 32,
-            "h": 44,
-            "text": "Airoli"
           }
         ],
-        "h1": null,
+        "h1": "Book a free trial",
         "hasMain": true,
         "title": "Book a free trial | Ankit's Studio",
         "screenshot": "screenshots/view_390_trial.png"
@@ -802,34 +427,9 @@
             "w": 13,
             "h": 20,
             "text": ""
-          },
-          {
-            "w": 39,
-            "h": 44,
-            "text": "About"
-          },
-          {
-            "w": 43,
-            "h": 44,
-            "text": "Pricing"
-          },
-          {
-            "w": 28,
-            "h": 44,
-            "text": "Blog"
-          },
-          {
-            "w": 38,
-            "h": 44,
-            "text": "Terms"
-          },
-          {
-            "w": 32,
-            "h": 44,
-            "text": "Airoli"
           }
         ],
-        "h1": null,
+        "h1": "Book a free trial",
         "hasMain": true,
         "title": "Book a free trial | Ankit's Studio",
         "screenshot": "screenshots/view_390_trial_status_validation-error.png"
@@ -856,34 +456,9 @@
             "w": 13,
             "h": 20,
             "text": ""
-          },
-          {
-            "w": 39,
-            "h": 44,
-            "text": "About"
-          },
-          {
-            "w": 43,
-            "h": 44,
-            "text": "Pricing"
-          },
-          {
-            "w": 28,
-            "h": 44,
-            "text": "Blog"
-          },
-          {
-            "w": 38,
-            "h": 44,
-            "text": "Terms"
-          },
-          {
-            "w": 32,
-            "h": 44,
-            "text": "Airoli"
           }
         ],
-        "h1": null,
+        "h1": "Book a free trial",
         "hasMain": true,
         "title": "Book a free trial | Ankit's Studio",
         "screenshot": "screenshots/view_390_trial_status_not-configured.png"
@@ -915,34 +490,9 @@
             "w": 13,
             "h": 20,
             "text": ""
-          },
-          {
-            "w": 39,
-            "h": 44,
-            "text": "About"
-          },
-          {
-            "w": 43,
-            "h": 44,
-            "text": "Pricing"
-          },
-          {
-            "w": 28,
-            "h": 44,
-            "text": "Blog"
-          },
-          {
-            "w": 38,
-            "h": 44,
-            "text": "Terms"
-          },
-          {
-            "w": 32,
-            "h": 44,
-            "text": "Airoli"
           }
         ],
-        "h1": null,
+        "h1": "Get in touch",
         "hasMain": true,
         "title": "Contact | Ankit's Studio"
       },
@@ -973,34 +523,9 @@
             "w": 13,
             "h": 20,
             "text": ""
-          },
-          {
-            "w": 39,
-            "h": 44,
-            "text": "About"
-          },
-          {
-            "w": 43,
-            "h": 44,
-            "text": "Pricing"
-          },
-          {
-            "w": 28,
-            "h": 44,
-            "text": "Blog"
-          },
-          {
-            "w": 38,
-            "h": 44,
-            "text": "Terms"
-          },
-          {
-            "w": 32,
-            "h": 44,
-            "text": "Airoli"
           }
         ],
-        "h1": null,
+        "h1": "Get in touch",
         "hasMain": true,
         "title": "Contact | Ankit's Studio"
       },
@@ -1026,31 +551,6 @@
             "w": 147,
             "h": 19,
             "text": "Browse programmes"
-          },
-          {
-            "w": 39,
-            "h": 44,
-            "text": "About"
-          },
-          {
-            "w": 43,
-            "h": 44,
-            "text": "Pricing"
-          },
-          {
-            "w": 28,
-            "h": 44,
-            "text": "Blog"
-          },
-          {
-            "w": 38,
-            "h": 44,
-            "text": "Terms"
-          },
-          {
-            "w": 32,
-            "h": 44,
-            "text": "Airoli"
           }
         ],
         "h1": null,
@@ -1079,31 +579,6 @@
             "w": 28,
             "h": 20,
             "text": "Blog"
-          },
-          {
-            "w": 39,
-            "h": 44,
-            "text": "About"
-          },
-          {
-            "w": 43,
-            "h": 44,
-            "text": "Pricing"
-          },
-          {
-            "w": 28,
-            "h": 44,
-            "text": "Blog"
-          },
-          {
-            "w": 38,
-            "h": 44,
-            "text": "Terms"
-          },
-          {
-            "w": 32,
-            "h": 44,
-            "text": "Airoli"
           }
         ],
         "h1": "Sample: Starting with strength training",
@@ -1127,31 +602,6 @@
             "w": 38,
             "h": 20,
             "text": "Home"
-          },
-          {
-            "w": 39,
-            "h": 44,
-            "text": "About"
-          },
-          {
-            "w": 43,
-            "h": 44,
-            "text": "Pricing"
-          },
-          {
-            "w": 28,
-            "h": 44,
-            "text": "Blog"
-          },
-          {
-            "w": 38,
-            "h": 44,
-            "text": "Terms"
-          },
-          {
-            "w": 32,
-            "h": 44,
-            "text": "Airoli"
           }
         ],
         "h1": null,
@@ -1175,31 +625,6 @@
             "w": 38,
             "h": 20,
             "text": "Home"
-          },
-          {
-            "w": 39,
-            "h": 44,
-            "text": "About"
-          },
-          {
-            "w": 43,
-            "h": 44,
-            "text": "Pricing"
-          },
-          {
-            "w": 28,
-            "h": 44,
-            "text": "Blog"
-          },
-          {
-            "w": 38,
-            "h": 44,
-            "text": "Terms"
-          },
-          {
-            "w": 32,
-            "h": 44,
-            "text": "Airoli"
           }
         ],
         "h1": null,
@@ -1244,31 +669,6 @@
             "w": 1,
             "h": 1,
             "text": "Skip to main content"
-          },
-          {
-            "w": 39,
-            "h": 44,
-            "text": "About"
-          },
-          {
-            "w": 43,
-            "h": 44,
-            "text": "Pricing"
-          },
-          {
-            "w": 28,
-            "h": 44,
-            "text": "Blog"
-          },
-          {
-            "w": 38,
-            "h": 44,
-            "text": "Terms"
-          },
-          {
-            "w": 32,
-            "h": 44,
-            "text": "Airoli"
           }
         ],
         "h1": "Move with strength, rhythm, and community.",
@@ -1292,34 +692,9 @@
             "w": 38,
             "h": 20,
             "text": "Home"
-          },
-          {
-            "w": 39,
-            "h": 44,
-            "text": "About"
-          },
-          {
-            "w": 43,
-            "h": 44,
-            "text": "Pricing"
-          },
-          {
-            "w": 28,
-            "h": 44,
-            "text": "Blog"
-          },
-          {
-            "w": 38,
-            "h": 44,
-            "text": "Terms"
-          },
-          {
-            "w": 32,
-            "h": 44,
-            "text": "Airoli"
           }
         ],
-        "h1": null,
+        "h1": "Ankit's Studio",
         "hasMain": true,
         "title": "About | Ankit's Studio"
       },
@@ -1345,31 +720,6 @@
             "w": 122,
             "h": 19,
             "text": "Browse locations"
-          },
-          {
-            "w": 39,
-            "h": 44,
-            "text": "About"
-          },
-          {
-            "w": 43,
-            "h": 44,
-            "text": "Pricing"
-          },
-          {
-            "w": 28,
-            "h": 44,
-            "text": "Blog"
-          },
-          {
-            "w": 38,
-            "h": 44,
-            "text": "Terms"
-          },
-          {
-            "w": 32,
-            "h": 44,
-            "text": "Airoli"
           }
         ],
         "h1": null,
@@ -1398,31 +748,6 @@
             "w": 79,
             "h": 17,
             "text": "Programmes"
-          },
-          {
-            "w": 39,
-            "h": 44,
-            "text": "About"
-          },
-          {
-            "w": 43,
-            "h": 44,
-            "text": "Pricing"
-          },
-          {
-            "w": 28,
-            "h": 44,
-            "text": "Blog"
-          },
-          {
-            "w": 38,
-            "h": 44,
-            "text": "Terms"
-          },
-          {
-            "w": 32,
-            "h": 44,
-            "text": "Airoli"
           }
         ],
         "h1": "Strength Training",
@@ -1451,31 +776,6 @@
             "w": 79,
             "h": 17,
             "text": "Programmes"
-          },
-          {
-            "w": 39,
-            "h": 44,
-            "text": "About"
-          },
-          {
-            "w": 43,
-            "h": 44,
-            "text": "Pricing"
-          },
-          {
-            "w": 28,
-            "h": 44,
-            "text": "Blog"
-          },
-          {
-            "w": 38,
-            "h": 44,
-            "text": "Terms"
-          },
-          {
-            "w": 32,
-            "h": 44,
-            "text": "Airoli"
           }
         ],
         "h1": "Weight-Loss & General Fitness",
@@ -1504,31 +804,6 @@
             "w": 167,
             "h": 19,
             "text": "Browse all programmes"
-          },
-          {
-            "w": 39,
-            "h": 44,
-            "text": "About"
-          },
-          {
-            "w": 43,
-            "h": 44,
-            "text": "Pricing"
-          },
-          {
-            "w": 28,
-            "h": 44,
-            "text": "Blog"
-          },
-          {
-            "w": 38,
-            "h": 44,
-            "text": "Terms"
-          },
-          {
-            "w": 32,
-            "h": 44,
-            "text": "Airoli"
           }
         ],
         "h1": null,
@@ -1557,31 +832,6 @@
             "w": 61,
             "h": 17,
             "text": "Locations"
-          },
-          {
-            "w": 39,
-            "h": 44,
-            "text": "About"
-          },
-          {
-            "w": 43,
-            "h": 44,
-            "text": "Pricing"
-          },
-          {
-            "w": 28,
-            "h": 44,
-            "text": "Blog"
-          },
-          {
-            "w": 38,
-            "h": 44,
-            "text": "Terms"
-          },
-          {
-            "w": 32,
-            "h": 44,
-            "text": "Airoli"
           }
         ],
         "h1": "Ankit's Studio — Airoli",
@@ -1610,31 +860,6 @@
             "w": 61,
             "h": 17,
             "text": "Locations"
-          },
-          {
-            "w": 39,
-            "h": 44,
-            "text": "About"
-          },
-          {
-            "w": 43,
-            "h": 44,
-            "text": "Pricing"
-          },
-          {
-            "w": 28,
-            "h": 44,
-            "text": "Blog"
-          },
-          {
-            "w": 38,
-            "h": 44,
-            "text": "Terms"
-          },
-          {
-            "w": 32,
-            "h": 44,
-            "text": "Airoli"
           }
         ],
         "h1": "Ankit's Studio — Thane",
@@ -1663,31 +888,6 @@
             "w": 147,
             "h": 19,
             "text": "Browse programmes"
-          },
-          {
-            "w": 39,
-            "h": 44,
-            "text": "About"
-          },
-          {
-            "w": 43,
-            "h": 44,
-            "text": "Pricing"
-          },
-          {
-            "w": 28,
-            "h": 44,
-            "text": "Blog"
-          },
-          {
-            "w": 38,
-            "h": 44,
-            "text": "Terms"
-          },
-          {
-            "w": 32,
-            "h": 44,
-            "text": "Airoli"
           }
         ],
         "h1": null,
@@ -1716,31 +916,6 @@
             "w": 49,
             "h": 20,
             "text": "Trainers"
-          },
-          {
-            "w": 39,
-            "h": 44,
-            "text": "About"
-          },
-          {
-            "w": 43,
-            "h": 44,
-            "text": "Pricing"
-          },
-          {
-            "w": 28,
-            "h": 44,
-            "text": "Blog"
-          },
-          {
-            "w": 38,
-            "h": 44,
-            "text": "Terms"
-          },
-          {
-            "w": 32,
-            "h": 44,
-            "text": "Airoli"
           }
         ],
         "h1": "Illustrative Trainer — A.",
@@ -1769,31 +944,6 @@
             "w": 112,
             "h": 19,
             "text": "Book a free trial"
-          },
-          {
-            "w": 39,
-            "h": 44,
-            "text": "About"
-          },
-          {
-            "w": 43,
-            "h": 44,
-            "text": "Pricing"
-          },
-          {
-            "w": 28,
-            "h": 44,
-            "text": "Blog"
-          },
-          {
-            "w": 38,
-            "h": 44,
-            "text": "Terms"
-          },
-          {
-            "w": 32,
-            "h": 44,
-            "text": "Airoli"
           }
         ],
         "h1": null,
@@ -1817,34 +967,9 @@
             "w": 38,
             "h": 20,
             "text": "Home"
-          },
-          {
-            "w": 39,
-            "h": 44,
-            "text": "About"
-          },
-          {
-            "w": 43,
-            "h": 44,
-            "text": "Pricing"
-          },
-          {
-            "w": 28,
-            "h": 44,
-            "text": "Blog"
-          },
-          {
-            "w": 38,
-            "h": 44,
-            "text": "Terms"
-          },
-          {
-            "w": 32,
-            "h": 44,
-            "text": "Airoli"
           }
         ],
-        "h1": null,
+        "h1": "Weekly class schedule",
         "hasMain": true,
         "title": "Timetable | Ankit's Studio"
       },
@@ -1865,34 +990,9 @@
             "w": 38,
             "h": 20,
             "text": "Home"
-          },
-          {
-            "w": 39,
-            "h": 44,
-            "text": "About"
-          },
-          {
-            "w": 43,
-            "h": 44,
-            "text": "Pricing"
-          },
-          {
-            "w": 28,
-            "h": 44,
-            "text": "Blog"
-          },
-          {
-            "w": 38,
-            "h": 44,
-            "text": "Terms"
-          },
-          {
-            "w": 32,
-            "h": 44,
-            "text": "Airoli"
           }
         ],
-        "h1": null,
+        "h1": "Weekly class schedule",
         "hasMain": true,
         "title": "Timetable | Ankit's Studio"
       },
@@ -1918,34 +1018,9 @@
             "w": 112,
             "h": 19,
             "text": "Book a free trial"
-          },
-          {
-            "w": 39,
-            "h": 44,
-            "text": "About"
-          },
-          {
-            "w": 43,
-            "h": 44,
-            "text": "Pricing"
-          },
-          {
-            "w": 28,
-            "h": 44,
-            "text": "Blog"
-          },
-          {
-            "w": 38,
-            "h": 44,
-            "text": "Terms"
-          },
-          {
-            "w": 32,
-            "h": 44,
-            "text": "Airoli"
           }
         ],
-        "h1": null,
+        "h1": "Membership plans",
         "hasMain": true,
         "title": "Pricing | Ankit's Studio"
       },
@@ -1971,34 +1046,9 @@
             "w": 13,
             "h": 20,
             "text": ""
-          },
-          {
-            "w": 39,
-            "h": 44,
-            "text": "About"
-          },
-          {
-            "w": 43,
-            "h": 44,
-            "text": "Pricing"
-          },
-          {
-            "w": 28,
-            "h": 44,
-            "text": "Blog"
-          },
-          {
-            "w": 38,
-            "h": 44,
-            "text": "Terms"
-          },
-          {
-            "w": 32,
-            "h": 44,
-            "text": "Airoli"
           }
         ],
-        "h1": null,
+        "h1": "Book a free trial",
         "hasMain": true,
         "title": "Book a free trial | Ankit's Studio"
       },
@@ -2024,34 +1074,9 @@
             "w": 13,
             "h": 20,
             "text": ""
-          },
-          {
-            "w": 39,
-            "h": 44,
-            "text": "About"
-          },
-          {
-            "w": 43,
-            "h": 44,
-            "text": "Pricing"
-          },
-          {
-            "w": 28,
-            "h": 44,
-            "text": "Blog"
-          },
-          {
-            "w": 38,
-            "h": 44,
-            "text": "Terms"
-          },
-          {
-            "w": 32,
-            "h": 44,
-            "text": "Airoli"
           }
         ],
-        "h1": null,
+        "h1": "Book a free trial",
         "hasMain": true,
         "title": "Book a free trial | Ankit's Studio"
       },
@@ -2077,34 +1102,9 @@
             "w": 13,
             "h": 20,
             "text": ""
-          },
-          {
-            "w": 39,
-            "h": 44,
-            "text": "About"
-          },
-          {
-            "w": 43,
-            "h": 44,
-            "text": "Pricing"
-          },
-          {
-            "w": 28,
-            "h": 44,
-            "text": "Blog"
-          },
-          {
-            "w": 38,
-            "h": 44,
-            "text": "Terms"
-          },
-          {
-            "w": 32,
-            "h": 44,
-            "text": "Airoli"
           }
         ],
-        "h1": null,
+        "h1": "Book a free trial",
         "hasMain": true,
         "title": "Book a free trial | Ankit's Studio"
       },
@@ -2135,34 +1135,9 @@
             "w": 16,
             "h": 20,
             "text": ""
-          },
-          {
-            "w": 39,
-            "h": 44,
-            "text": "About"
-          },
-          {
-            "w": 43,
-            "h": 44,
-            "text": "Pricing"
-          },
-          {
-            "w": 28,
-            "h": 44,
-            "text": "Blog"
-          },
-          {
-            "w": 38,
-            "h": 44,
-            "text": "Terms"
-          },
-          {
-            "w": 32,
-            "h": 44,
-            "text": "Airoli"
           }
         ],
-        "h1": null,
+        "h1": "Get in touch",
         "hasMain": true,
         "title": "Contact | Ankit's Studio"
       },
@@ -2193,34 +1168,9 @@
             "w": 16,
             "h": 20,
             "text": ""
-          },
-          {
-            "w": 39,
-            "h": 44,
-            "text": "About"
-          },
-          {
-            "w": 43,
-            "h": 44,
-            "text": "Pricing"
-          },
-          {
-            "w": 28,
-            "h": 44,
-            "text": "Blog"
-          },
-          {
-            "w": 38,
-            "h": 44,
-            "text": "Terms"
-          },
-          {
-            "w": 32,
-            "h": 44,
-            "text": "Airoli"
           }
         ],
-        "h1": null,
+        "h1": "Get in touch",
         "hasMain": true,
         "title": "Contact | Ankit's Studio"
       },
@@ -2246,31 +1196,6 @@
             "w": 147,
             "h": 19,
             "text": "Browse programmes"
-          },
-          {
-            "w": 39,
-            "h": 44,
-            "text": "About"
-          },
-          {
-            "w": 43,
-            "h": 44,
-            "text": "Pricing"
-          },
-          {
-            "w": 28,
-            "h": 44,
-            "text": "Blog"
-          },
-          {
-            "w": 38,
-            "h": 44,
-            "text": "Terms"
-          },
-          {
-            "w": 32,
-            "h": 44,
-            "text": "Airoli"
           }
         ],
         "h1": null,
@@ -2299,31 +1224,6 @@
             "w": 28,
             "h": 20,
             "text": "Blog"
-          },
-          {
-            "w": 39,
-            "h": 44,
-            "text": "About"
-          },
-          {
-            "w": 43,
-            "h": 44,
-            "text": "Pricing"
-          },
-          {
-            "w": 28,
-            "h": 44,
-            "text": "Blog"
-          },
-          {
-            "w": 38,
-            "h": 44,
-            "text": "Terms"
-          },
-          {
-            "w": 32,
-            "h": 44,
-            "text": "Airoli"
           }
         ],
         "h1": "Sample: Starting with strength training",
@@ -2347,31 +1247,6 @@
             "w": 38,
             "h": 20,
             "text": "Home"
-          },
-          {
-            "w": 39,
-            "h": 44,
-            "text": "About"
-          },
-          {
-            "w": 43,
-            "h": 44,
-            "text": "Pricing"
-          },
-          {
-            "w": 28,
-            "h": 44,
-            "text": "Blog"
-          },
-          {
-            "w": 38,
-            "h": 44,
-            "text": "Terms"
-          },
-          {
-            "w": 32,
-            "h": 44,
-            "text": "Airoli"
           }
         ],
         "h1": null,
@@ -2395,31 +1270,6 @@
             "w": 38,
             "h": 20,
             "text": "Home"
-          },
-          {
-            "w": 39,
-            "h": 44,
-            "text": "About"
-          },
-          {
-            "w": 43,
-            "h": 44,
-            "text": "Pricing"
-          },
-          {
-            "w": 28,
-            "h": 44,
-            "text": "Blog"
-          },
-          {
-            "w": 38,
-            "h": 44,
-            "text": "Terms"
-          },
-          {
-            "w": 32,
-            "h": 44,
-            "text": "Airoli"
           }
         ],
         "h1": null,
@@ -2463,31 +1313,6 @@
             "w": 1,
             "h": 1,
             "text": "Skip to main content"
-          },
-          {
-            "w": 39,
-            "h": 44,
-            "text": "About"
-          },
-          {
-            "w": 43,
-            "h": 44,
-            "text": "Pricing"
-          },
-          {
-            "w": 28,
-            "h": 44,
-            "text": "Blog"
-          },
-          {
-            "w": 38,
-            "h": 44,
-            "text": "Terms"
-          },
-          {
-            "w": 32,
-            "h": 44,
-            "text": "Airoli"
           }
         ],
         "h1": "Move with strength, rhythm, and community.",
@@ -2511,34 +1336,9 @@
             "w": 38,
             "h": 20,
             "text": "Home"
-          },
-          {
-            "w": 39,
-            "h": 44,
-            "text": "About"
-          },
-          {
-            "w": 43,
-            "h": 44,
-            "text": "Pricing"
-          },
-          {
-            "w": 28,
-            "h": 44,
-            "text": "Blog"
-          },
-          {
-            "w": 38,
-            "h": 44,
-            "text": "Terms"
-          },
-          {
-            "w": 32,
-            "h": 44,
-            "text": "Airoli"
           }
         ],
-        "h1": null,
+        "h1": "Ankit's Studio",
         "hasMain": true,
         "title": "About | Ankit's Studio"
       },
@@ -2564,31 +1364,6 @@
             "w": 122,
             "h": 19,
             "text": "Browse locations"
-          },
-          {
-            "w": 39,
-            "h": 44,
-            "text": "About"
-          },
-          {
-            "w": 43,
-            "h": 44,
-            "text": "Pricing"
-          },
-          {
-            "w": 28,
-            "h": 44,
-            "text": "Blog"
-          },
-          {
-            "w": 38,
-            "h": 44,
-            "text": "Terms"
-          },
-          {
-            "w": 32,
-            "h": 44,
-            "text": "Airoli"
           }
         ],
         "h1": null,
@@ -2617,31 +1392,6 @@
             "w": 79,
             "h": 17,
             "text": "Programmes"
-          },
-          {
-            "w": 39,
-            "h": 44,
-            "text": "About"
-          },
-          {
-            "w": 43,
-            "h": 44,
-            "text": "Pricing"
-          },
-          {
-            "w": 28,
-            "h": 44,
-            "text": "Blog"
-          },
-          {
-            "w": 38,
-            "h": 44,
-            "text": "Terms"
-          },
-          {
-            "w": 32,
-            "h": 44,
-            "text": "Airoli"
           }
         ],
         "h1": "Strength Training",
@@ -2670,31 +1420,6 @@
             "w": 79,
             "h": 17,
             "text": "Programmes"
-          },
-          {
-            "w": 39,
-            "h": 44,
-            "text": "About"
-          },
-          {
-            "w": 43,
-            "h": 44,
-            "text": "Pricing"
-          },
-          {
-            "w": 28,
-            "h": 44,
-            "text": "Blog"
-          },
-          {
-            "w": 38,
-            "h": 44,
-            "text": "Terms"
-          },
-          {
-            "w": 32,
-            "h": 44,
-            "text": "Airoli"
           }
         ],
         "h1": "Weight-Loss & General Fitness",
@@ -2723,31 +1448,6 @@
             "w": 167,
             "h": 19,
             "text": "Browse all programmes"
-          },
-          {
-            "w": 39,
-            "h": 44,
-            "text": "About"
-          },
-          {
-            "w": 43,
-            "h": 44,
-            "text": "Pricing"
-          },
-          {
-            "w": 28,
-            "h": 44,
-            "text": "Blog"
-          },
-          {
-            "w": 38,
-            "h": 44,
-            "text": "Terms"
-          },
-          {
-            "w": 32,
-            "h": 44,
-            "text": "Airoli"
           }
         ],
         "h1": null,
@@ -2776,31 +1476,6 @@
             "w": 61,
             "h": 17,
             "text": "Locations"
-          },
-          {
-            "w": 39,
-            "h": 44,
-            "text": "About"
-          },
-          {
-            "w": 43,
-            "h": 44,
-            "text": "Pricing"
-          },
-          {
-            "w": 28,
-            "h": 44,
-            "text": "Blog"
-          },
-          {
-            "w": 38,
-            "h": 44,
-            "text": "Terms"
-          },
-          {
-            "w": 32,
-            "h": 44,
-            "text": "Airoli"
           }
         ],
         "h1": "Ankit's Studio — Airoli",
@@ -2829,31 +1504,6 @@
             "w": 61,
             "h": 17,
             "text": "Locations"
-          },
-          {
-            "w": 39,
-            "h": 44,
-            "text": "About"
-          },
-          {
-            "w": 43,
-            "h": 44,
-            "text": "Pricing"
-          },
-          {
-            "w": 28,
-            "h": 44,
-            "text": "Blog"
-          },
-          {
-            "w": 38,
-            "h": 44,
-            "text": "Terms"
-          },
-          {
-            "w": 32,
-            "h": 44,
-            "text": "Airoli"
           }
         ],
         "h1": "Ankit's Studio — Thane",
@@ -2882,31 +1532,6 @@
             "w": 147,
             "h": 19,
             "text": "Browse programmes"
-          },
-          {
-            "w": 39,
-            "h": 44,
-            "text": "About"
-          },
-          {
-            "w": 43,
-            "h": 44,
-            "text": "Pricing"
-          },
-          {
-            "w": 28,
-            "h": 44,
-            "text": "Blog"
-          },
-          {
-            "w": 38,
-            "h": 44,
-            "text": "Terms"
-          },
-          {
-            "w": 32,
-            "h": 44,
-            "text": "Airoli"
           }
         ],
         "h1": null,
@@ -2935,31 +1560,6 @@
             "w": 49,
             "h": 20,
             "text": "Trainers"
-          },
-          {
-            "w": 39,
-            "h": 44,
-            "text": "About"
-          },
-          {
-            "w": 43,
-            "h": 44,
-            "text": "Pricing"
-          },
-          {
-            "w": 28,
-            "h": 44,
-            "text": "Blog"
-          },
-          {
-            "w": 38,
-            "h": 44,
-            "text": "Terms"
-          },
-          {
-            "w": 32,
-            "h": 44,
-            "text": "Airoli"
           }
         ],
         "h1": "Illustrative Trainer — A.",
@@ -2988,31 +1588,6 @@
             "w": 112,
             "h": 19,
             "text": "Book a free trial"
-          },
-          {
-            "w": 39,
-            "h": 44,
-            "text": "About"
-          },
-          {
-            "w": 43,
-            "h": 44,
-            "text": "Pricing"
-          },
-          {
-            "w": 28,
-            "h": 44,
-            "text": "Blog"
-          },
-          {
-            "w": 38,
-            "h": 44,
-            "text": "Terms"
-          },
-          {
-            "w": 32,
-            "h": 44,
-            "text": "Airoli"
           }
         ],
         "h1": null,
@@ -3036,34 +1611,9 @@
             "w": 38,
             "h": 20,
             "text": "Home"
-          },
-          {
-            "w": 39,
-            "h": 44,
-            "text": "About"
-          },
-          {
-            "w": 43,
-            "h": 44,
-            "text": "Pricing"
-          },
-          {
-            "w": 28,
-            "h": 44,
-            "text": "Blog"
-          },
-          {
-            "w": 38,
-            "h": 44,
-            "text": "Terms"
-          },
-          {
-            "w": 32,
-            "h": 44,
-            "text": "Airoli"
           }
         ],
-        "h1": null,
+        "h1": "Weekly class schedule",
         "hasMain": true,
         "title": "Timetable | Ankit's Studio"
       },
@@ -3084,34 +1634,9 @@
             "w": 38,
             "h": 20,
             "text": "Home"
-          },
-          {
-            "w": 39,
-            "h": 44,
-            "text": "About"
-          },
-          {
-            "w": 43,
-            "h": 44,
-            "text": "Pricing"
-          },
-          {
-            "w": 28,
-            "h": 44,
-            "text": "Blog"
-          },
-          {
-            "w": 38,
-            "h": 44,
-            "text": "Terms"
-          },
-          {
-            "w": 32,
-            "h": 44,
-            "text": "Airoli"
           }
         ],
-        "h1": null,
+        "h1": "Weekly class schedule",
         "hasMain": true,
         "title": "Timetable | Ankit's Studio"
       },
@@ -3137,34 +1662,9 @@
             "w": 112,
             "h": 19,
             "text": "Book a free trial"
-          },
-          {
-            "w": 39,
-            "h": 44,
-            "text": "About"
-          },
-          {
-            "w": 43,
-            "h": 44,
-            "text": "Pricing"
-          },
-          {
-            "w": 28,
-            "h": 44,
-            "text": "Blog"
-          },
-          {
-            "w": 38,
-            "h": 44,
-            "text": "Terms"
-          },
-          {
-            "w": 32,
-            "h": 44,
-            "text": "Airoli"
           }
         ],
-        "h1": null,
+        "h1": "Membership plans",
         "hasMain": true,
         "title": "Pricing | Ankit's Studio"
       },
@@ -3190,34 +1690,9 @@
             "w": 13,
             "h": 20,
             "text": ""
-          },
-          {
-            "w": 39,
-            "h": 44,
-            "text": "About"
-          },
-          {
-            "w": 43,
-            "h": 44,
-            "text": "Pricing"
-          },
-          {
-            "w": 28,
-            "h": 44,
-            "text": "Blog"
-          },
-          {
-            "w": 38,
-            "h": 44,
-            "text": "Terms"
-          },
-          {
-            "w": 32,
-            "h": 44,
-            "text": "Airoli"
           }
         ],
-        "h1": null,
+        "h1": "Book a free trial",
         "hasMain": true,
         "title": "Book a free trial | Ankit's Studio"
       },
@@ -3243,34 +1718,9 @@
             "w": 13,
             "h": 20,
             "text": ""
-          },
-          {
-            "w": 39,
-            "h": 44,
-            "text": "About"
-          },
-          {
-            "w": 43,
-            "h": 44,
-            "text": "Pricing"
-          },
-          {
-            "w": 28,
-            "h": 44,
-            "text": "Blog"
-          },
-          {
-            "w": 38,
-            "h": 44,
-            "text": "Terms"
-          },
-          {
-            "w": 32,
-            "h": 44,
-            "text": "Airoli"
           }
         ],
-        "h1": null,
+        "h1": "Book a free trial",
         "hasMain": true,
         "title": "Book a free trial | Ankit's Studio"
       },
@@ -3296,34 +1746,9 @@
             "w": 13,
             "h": 20,
             "text": ""
-          },
-          {
-            "w": 39,
-            "h": 44,
-            "text": "About"
-          },
-          {
-            "w": 43,
-            "h": 44,
-            "text": "Pricing"
-          },
-          {
-            "w": 28,
-            "h": 44,
-            "text": "Blog"
-          },
-          {
-            "w": 38,
-            "h": 44,
-            "text": "Terms"
-          },
-          {
-            "w": 32,
-            "h": 44,
-            "text": "Airoli"
           }
         ],
-        "h1": null,
+        "h1": "Book a free trial",
         "hasMain": true,
         "title": "Book a free trial | Ankit's Studio"
       },
@@ -3354,34 +1779,9 @@
             "w": 16,
             "h": 20,
             "text": ""
-          },
-          {
-            "w": 39,
-            "h": 44,
-            "text": "About"
-          },
-          {
-            "w": 43,
-            "h": 44,
-            "text": "Pricing"
-          },
-          {
-            "w": 28,
-            "h": 44,
-            "text": "Blog"
-          },
-          {
-            "w": 38,
-            "h": 44,
-            "text": "Terms"
-          },
-          {
-            "w": 32,
-            "h": 44,
-            "text": "Airoli"
           }
         ],
-        "h1": null,
+        "h1": "Get in touch",
         "hasMain": true,
         "title": "Contact | Ankit's Studio"
       },
@@ -3412,34 +1812,9 @@
             "w": 16,
             "h": 20,
             "text": ""
-          },
-          {
-            "w": 39,
-            "h": 44,
-            "text": "About"
-          },
-          {
-            "w": 43,
-            "h": 44,
-            "text": "Pricing"
-          },
-          {
-            "w": 28,
-            "h": 44,
-            "text": "Blog"
-          },
-          {
-            "w": 38,
-            "h": 44,
-            "text": "Terms"
-          },
-          {
-            "w": 32,
-            "h": 44,
-            "text": "Airoli"
           }
         ],
-        "h1": null,
+        "h1": "Get in touch",
         "hasMain": true,
         "title": "Contact | Ankit's Studio"
       },
@@ -3465,31 +1840,6 @@
             "w": 147,
             "h": 19,
             "text": "Browse programmes"
-          },
-          {
-            "w": 39,
-            "h": 44,
-            "text": "About"
-          },
-          {
-            "w": 43,
-            "h": 44,
-            "text": "Pricing"
-          },
-          {
-            "w": 28,
-            "h": 44,
-            "text": "Blog"
-          },
-          {
-            "w": 38,
-            "h": 44,
-            "text": "Terms"
-          },
-          {
-            "w": 32,
-            "h": 44,
-            "text": "Airoli"
           }
         ],
         "h1": null,
@@ -3518,31 +1868,6 @@
             "w": 28,
             "h": 20,
             "text": "Blog"
-          },
-          {
-            "w": 39,
-            "h": 44,
-            "text": "About"
-          },
-          {
-            "w": 43,
-            "h": 44,
-            "text": "Pricing"
-          },
-          {
-            "w": 28,
-            "h": 44,
-            "text": "Blog"
-          },
-          {
-            "w": 38,
-            "h": 44,
-            "text": "Terms"
-          },
-          {
-            "w": 32,
-            "h": 44,
-            "text": "Airoli"
           }
         ],
         "h1": "Sample: Starting with strength training",
@@ -3566,31 +1891,6 @@
             "w": 38,
             "h": 20,
             "text": "Home"
-          },
-          {
-            "w": 39,
-            "h": 44,
-            "text": "About"
-          },
-          {
-            "w": 43,
-            "h": 44,
-            "text": "Pricing"
-          },
-          {
-            "w": 28,
-            "h": 44,
-            "text": "Blog"
-          },
-          {
-            "w": 38,
-            "h": 44,
-            "text": "Terms"
-          },
-          {
-            "w": 32,
-            "h": 44,
-            "text": "Airoli"
           }
         ],
         "h1": null,
@@ -3614,31 +1914,6 @@
             "w": 38,
             "h": 20,
             "text": "Home"
-          },
-          {
-            "w": 39,
-            "h": 44,
-            "text": "About"
-          },
-          {
-            "w": 43,
-            "h": 44,
-            "text": "Pricing"
-          },
-          {
-            "w": 28,
-            "h": 44,
-            "text": "Blog"
-          },
-          {
-            "w": 38,
-            "h": 44,
-            "text": "Terms"
-          },
-          {
-            "w": 32,
-            "h": 44,
-            "text": "Airoli"
           }
         ],
         "h1": null,
@@ -3682,31 +1957,6 @@
             "w": 1,
             "h": 1,
             "text": "Skip to main content"
-          },
-          {
-            "w": 39,
-            "h": 44,
-            "text": "About"
-          },
-          {
-            "w": 43,
-            "h": 44,
-            "text": "Pricing"
-          },
-          {
-            "w": 28,
-            "h": 44,
-            "text": "Blog"
-          },
-          {
-            "w": 38,
-            "h": 44,
-            "text": "Terms"
-          },
-          {
-            "w": 32,
-            "h": 44,
-            "text": "Airoli"
           }
         ],
         "h1": "Move with strength, rhythm, and community.",
@@ -3730,34 +1980,9 @@
             "w": 38,
             "h": 20,
             "text": "Home"
-          },
-          {
-            "w": 39,
-            "h": 44,
-            "text": "About"
-          },
-          {
-            "w": 43,
-            "h": 44,
-            "text": "Pricing"
-          },
-          {
-            "w": 28,
-            "h": 44,
-            "text": "Blog"
-          },
-          {
-            "w": 38,
-            "h": 44,
-            "text": "Terms"
-          },
-          {
-            "w": 32,
-            "h": 44,
-            "text": "Airoli"
           }
         ],
-        "h1": null,
+        "h1": "Ankit's Studio",
         "hasMain": true,
         "title": "About | Ankit's Studio"
       },
@@ -3783,31 +2008,6 @@
             "w": 122,
             "h": 19,
             "text": "Browse locations"
-          },
-          {
-            "w": 39,
-            "h": 44,
-            "text": "About"
-          },
-          {
-            "w": 43,
-            "h": 44,
-            "text": "Pricing"
-          },
-          {
-            "w": 28,
-            "h": 44,
-            "text": "Blog"
-          },
-          {
-            "w": 38,
-            "h": 44,
-            "text": "Terms"
-          },
-          {
-            "w": 32,
-            "h": 44,
-            "text": "Airoli"
           }
         ],
         "h1": null,
@@ -3836,31 +2036,6 @@
             "w": 79,
             "h": 17,
             "text": "Programmes"
-          },
-          {
-            "w": 39,
-            "h": 44,
-            "text": "About"
-          },
-          {
-            "w": 43,
-            "h": 44,
-            "text": "Pricing"
-          },
-          {
-            "w": 28,
-            "h": 44,
-            "text": "Blog"
-          },
-          {
-            "w": 38,
-            "h": 44,
-            "text": "Terms"
-          },
-          {
-            "w": 32,
-            "h": 44,
-            "text": "Airoli"
           }
         ],
         "h1": "Strength Training",
@@ -3889,31 +2064,6 @@
             "w": 79,
             "h": 17,
             "text": "Programmes"
-          },
-          {
-            "w": 39,
-            "h": 44,
-            "text": "About"
-          },
-          {
-            "w": 43,
-            "h": 44,
-            "text": "Pricing"
-          },
-          {
-            "w": 28,
-            "h": 44,
-            "text": "Blog"
-          },
-          {
-            "w": 38,
-            "h": 44,
-            "text": "Terms"
-          },
-          {
-            "w": 32,
-            "h": 44,
-            "text": "Airoli"
           }
         ],
         "h1": "Weight-Loss & General Fitness",
@@ -3942,31 +2092,6 @@
             "w": 167,
             "h": 19,
             "text": "Browse all programmes"
-          },
-          {
-            "w": 39,
-            "h": 44,
-            "text": "About"
-          },
-          {
-            "w": 43,
-            "h": 44,
-            "text": "Pricing"
-          },
-          {
-            "w": 28,
-            "h": 44,
-            "text": "Blog"
-          },
-          {
-            "w": 38,
-            "h": 44,
-            "text": "Terms"
-          },
-          {
-            "w": 32,
-            "h": 44,
-            "text": "Airoli"
           }
         ],
         "h1": null,
@@ -3995,31 +2120,6 @@
             "w": 61,
             "h": 17,
             "text": "Locations"
-          },
-          {
-            "w": 39,
-            "h": 44,
-            "text": "About"
-          },
-          {
-            "w": 43,
-            "h": 44,
-            "text": "Pricing"
-          },
-          {
-            "w": 28,
-            "h": 44,
-            "text": "Blog"
-          },
-          {
-            "w": 38,
-            "h": 44,
-            "text": "Terms"
-          },
-          {
-            "w": 32,
-            "h": 44,
-            "text": "Airoli"
           }
         ],
         "h1": "Ankit's Studio — Airoli",
@@ -4048,31 +2148,6 @@
             "w": 61,
             "h": 17,
             "text": "Locations"
-          },
-          {
-            "w": 39,
-            "h": 44,
-            "text": "About"
-          },
-          {
-            "w": 43,
-            "h": 44,
-            "text": "Pricing"
-          },
-          {
-            "w": 28,
-            "h": 44,
-            "text": "Blog"
-          },
-          {
-            "w": 38,
-            "h": 44,
-            "text": "Terms"
-          },
-          {
-            "w": 32,
-            "h": 44,
-            "text": "Airoli"
           }
         ],
         "h1": "Ankit's Studio — Thane",
@@ -4101,31 +2176,6 @@
             "w": 147,
             "h": 19,
             "text": "Browse programmes"
-          },
-          {
-            "w": 39,
-            "h": 44,
-            "text": "About"
-          },
-          {
-            "w": 43,
-            "h": 44,
-            "text": "Pricing"
-          },
-          {
-            "w": 28,
-            "h": 44,
-            "text": "Blog"
-          },
-          {
-            "w": 38,
-            "h": 44,
-            "text": "Terms"
-          },
-          {
-            "w": 32,
-            "h": 44,
-            "text": "Airoli"
           }
         ],
         "h1": null,
@@ -4154,31 +2204,6 @@
             "w": 49,
             "h": 20,
             "text": "Trainers"
-          },
-          {
-            "w": 39,
-            "h": 44,
-            "text": "About"
-          },
-          {
-            "w": 43,
-            "h": 44,
-            "text": "Pricing"
-          },
-          {
-            "w": 28,
-            "h": 44,
-            "text": "Blog"
-          },
-          {
-            "w": 38,
-            "h": 44,
-            "text": "Terms"
-          },
-          {
-            "w": 32,
-            "h": 44,
-            "text": "Airoli"
           }
         ],
         "h1": "Illustrative Trainer — A.",
@@ -4207,31 +2232,6 @@
             "w": 112,
             "h": 19,
             "text": "Book a free trial"
-          },
-          {
-            "w": 39,
-            "h": 44,
-            "text": "About"
-          },
-          {
-            "w": 43,
-            "h": 44,
-            "text": "Pricing"
-          },
-          {
-            "w": 28,
-            "h": 44,
-            "text": "Blog"
-          },
-          {
-            "w": 38,
-            "h": 44,
-            "text": "Terms"
-          },
-          {
-            "w": 32,
-            "h": 44,
-            "text": "Airoli"
           }
         ],
         "h1": null,
@@ -4255,34 +2255,9 @@
             "w": 38,
             "h": 20,
             "text": "Home"
-          },
-          {
-            "w": 39,
-            "h": 44,
-            "text": "About"
-          },
-          {
-            "w": 43,
-            "h": 44,
-            "text": "Pricing"
-          },
-          {
-            "w": 28,
-            "h": 44,
-            "text": "Blog"
-          },
-          {
-            "w": 38,
-            "h": 44,
-            "text": "Terms"
-          },
-          {
-            "w": 32,
-            "h": 44,
-            "text": "Airoli"
           }
         ],
-        "h1": null,
+        "h1": "Weekly class schedule",
         "hasMain": true,
         "title": "Timetable | Ankit's Studio"
       },
@@ -4303,34 +2278,9 @@
             "w": 38,
             "h": 20,
             "text": "Home"
-          },
-          {
-            "w": 39,
-            "h": 44,
-            "text": "About"
-          },
-          {
-            "w": 43,
-            "h": 44,
-            "text": "Pricing"
-          },
-          {
-            "w": 28,
-            "h": 44,
-            "text": "Blog"
-          },
-          {
-            "w": 38,
-            "h": 44,
-            "text": "Terms"
-          },
-          {
-            "w": 32,
-            "h": 44,
-            "text": "Airoli"
           }
         ],
-        "h1": null,
+        "h1": "Weekly class schedule",
         "hasMain": true,
         "title": "Timetable | Ankit's Studio"
       },
@@ -4356,34 +2306,9 @@
             "w": 112,
             "h": 19,
             "text": "Book a free trial"
-          },
-          {
-            "w": 39,
-            "h": 44,
-            "text": "About"
-          },
-          {
-            "w": 43,
-            "h": 44,
-            "text": "Pricing"
-          },
-          {
-            "w": 28,
-            "h": 44,
-            "text": "Blog"
-          },
-          {
-            "w": 38,
-            "h": 44,
-            "text": "Terms"
-          },
-          {
-            "w": 32,
-            "h": 44,
-            "text": "Airoli"
           }
         ],
-        "h1": null,
+        "h1": "Membership plans",
         "hasMain": true,
         "title": "Pricing | Ankit's Studio"
       },
@@ -4409,34 +2334,9 @@
             "w": 13,
             "h": 20,
             "text": ""
-          },
-          {
-            "w": 39,
-            "h": 44,
-            "text": "About"
-          },
-          {
-            "w": 43,
-            "h": 44,
-            "text": "Pricing"
-          },
-          {
-            "w": 28,
-            "h": 44,
-            "text": "Blog"
-          },
-          {
-            "w": 38,
-            "h": 44,
-            "text": "Terms"
-          },
-          {
-            "w": 32,
-            "h": 44,
-            "text": "Airoli"
           }
         ],
-        "h1": null,
+        "h1": "Book a free trial",
         "hasMain": true,
         "title": "Book a free trial | Ankit's Studio"
       },
@@ -4462,34 +2362,9 @@
             "w": 13,
             "h": 20,
             "text": ""
-          },
-          {
-            "w": 39,
-            "h": 44,
-            "text": "About"
-          },
-          {
-            "w": 43,
-            "h": 44,
-            "text": "Pricing"
-          },
-          {
-            "w": 28,
-            "h": 44,
-            "text": "Blog"
-          },
-          {
-            "w": 38,
-            "h": 44,
-            "text": "Terms"
-          },
-          {
-            "w": 32,
-            "h": 44,
-            "text": "Airoli"
           }
         ],
-        "h1": null,
+        "h1": "Book a free trial",
         "hasMain": true,
         "title": "Book a free trial | Ankit's Studio"
       },
@@ -4515,34 +2390,9 @@
             "w": 13,
             "h": 20,
             "text": ""
-          },
-          {
-            "w": 39,
-            "h": 44,
-            "text": "About"
-          },
-          {
-            "w": 43,
-            "h": 44,
-            "text": "Pricing"
-          },
-          {
-            "w": 28,
-            "h": 44,
-            "text": "Blog"
-          },
-          {
-            "w": 38,
-            "h": 44,
-            "text": "Terms"
-          },
-          {
-            "w": 32,
-            "h": 44,
-            "text": "Airoli"
           }
         ],
-        "h1": null,
+        "h1": "Book a free trial",
         "hasMain": true,
         "title": "Book a free trial | Ankit's Studio"
       },
@@ -4573,34 +2423,9 @@
             "w": 16,
             "h": 20,
             "text": ""
-          },
-          {
-            "w": 39,
-            "h": 44,
-            "text": "About"
-          },
-          {
-            "w": 43,
-            "h": 44,
-            "text": "Pricing"
-          },
-          {
-            "w": 28,
-            "h": 44,
-            "text": "Blog"
-          },
-          {
-            "w": 38,
-            "h": 44,
-            "text": "Terms"
-          },
-          {
-            "w": 32,
-            "h": 44,
-            "text": "Airoli"
           }
         ],
-        "h1": null,
+        "h1": "Get in touch",
         "hasMain": true,
         "title": "Contact | Ankit's Studio"
       },
@@ -4631,34 +2456,9 @@
             "w": 16,
             "h": 20,
             "text": ""
-          },
-          {
-            "w": 39,
-            "h": 44,
-            "text": "About"
-          },
-          {
-            "w": 43,
-            "h": 44,
-            "text": "Pricing"
-          },
-          {
-            "w": 28,
-            "h": 44,
-            "text": "Blog"
-          },
-          {
-            "w": 38,
-            "h": 44,
-            "text": "Terms"
-          },
-          {
-            "w": 32,
-            "h": 44,
-            "text": "Airoli"
           }
         ],
-        "h1": null,
+        "h1": "Get in touch",
         "hasMain": true,
         "title": "Contact | Ankit's Studio"
       },
@@ -4684,31 +2484,6 @@
             "w": 147,
             "h": 19,
             "text": "Browse programmes"
-          },
-          {
-            "w": 39,
-            "h": 44,
-            "text": "About"
-          },
-          {
-            "w": 43,
-            "h": 44,
-            "text": "Pricing"
-          },
-          {
-            "w": 28,
-            "h": 44,
-            "text": "Blog"
-          },
-          {
-            "w": 38,
-            "h": 44,
-            "text": "Terms"
-          },
-          {
-            "w": 32,
-            "h": 44,
-            "text": "Airoli"
           }
         ],
         "h1": null,
@@ -4737,31 +2512,6 @@
             "w": 28,
             "h": 20,
             "text": "Blog"
-          },
-          {
-            "w": 39,
-            "h": 44,
-            "text": "About"
-          },
-          {
-            "w": 43,
-            "h": 44,
-            "text": "Pricing"
-          },
-          {
-            "w": 28,
-            "h": 44,
-            "text": "Blog"
-          },
-          {
-            "w": 38,
-            "h": 44,
-            "text": "Terms"
-          },
-          {
-            "w": 32,
-            "h": 44,
-            "text": "Airoli"
           }
         ],
         "h1": "Sample: Starting with strength training",
@@ -4785,31 +2535,6 @@
             "w": 38,
             "h": 20,
             "text": "Home"
-          },
-          {
-            "w": 39,
-            "h": 44,
-            "text": "About"
-          },
-          {
-            "w": 43,
-            "h": 44,
-            "text": "Pricing"
-          },
-          {
-            "w": 28,
-            "h": 44,
-            "text": "Blog"
-          },
-          {
-            "w": 38,
-            "h": 44,
-            "text": "Terms"
-          },
-          {
-            "w": 32,
-            "h": 44,
-            "text": "Airoli"
           }
         ],
         "h1": null,
@@ -4833,31 +2558,6 @@
             "w": 38,
             "h": 20,
             "text": "Home"
-          },
-          {
-            "w": 39,
-            "h": 44,
-            "text": "About"
-          },
-          {
-            "w": 43,
-            "h": 44,
-            "text": "Pricing"
-          },
-          {
-            "w": 28,
-            "h": 44,
-            "text": "Blog"
-          },
-          {
-            "w": 38,
-            "h": 44,
-            "text": "Terms"
-          },
-          {
-            "w": 32,
-            "h": 44,
-            "text": "Airoli"
           }
         ],
         "h1": null,

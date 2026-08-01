@@ -14,8 +14,6 @@ export { StickyCtaBar } from "./StickyCtaBar";
 export type { StickyCtaBarProps } from "./StickyCtaBar";
 
 export { SiteChrome } from "./SiteChrome";
-export { PathAwareShell } from "./PathAwareShell";
-export type { PathAwareShellProps } from "./PathAwareShell";
 
 export { PageBreadcrumb } from "./PageBreadcrumb";
 export type { BreadcrumbItem } from "./PageBreadcrumb";

@@ -31,7 +31,7 @@ branch pages don't win on their own. Rules:
   generated (same rule applies if this pattern is ever extended further —
   see [DECISIONS.md ADR-007](./DECISIONS.md#adr-007) finding I2).
 - Location-first URL shape only (`/locations/[branch]/[programme]`, not also
-  `/programmes/[programme]/[branch]`) — one canonical URL per intent, no
+  `/programs/[programme]/[branch]`) — one canonical URL per intent, no
   duplicate content between two shapes.
 - Ships in Phase 2, alongside the rest of Tier 2 (see
   [INFORMATION-ARCHITECTURE.md](./INFORMATION-ARCHITECTURE.md)).
@@ -40,7 +40,7 @@ branch pages don't win on their own. Rules:
 
 - `LocalBusiness` (or a more specific `HealthClub`/`ExerciseGym`/`DanceSchool`
   sub-type where accurate) JSON-LD per branch, on each `/locations/[slug]` page.
-- `Course`/`Service`-style structured data per programme on `/programmes/[slug]`
+- `Course`/`Service`-style structured data per programme on `/programs/[slug]`
   and on each `/locations/[branch]/[programme]` page.
 - `BreadcrumbList` on all detail pages.
 - **Structured data must never be emitted from mock fields until they're
@@ -90,7 +90,7 @@ verified-looking signals to search engines:
 
 ## On-page strategy per route tier
 
-- **Tier 1** (`/`, `/programmes*`, `/locations*`, `/timetable`, `/trial`,
+- **Tier 1** (`/`, `/programs*`, `/locations*`, `/timetable`, `/trial`,
   `/contact`): primary keyword targets, one clear H1 per page tied to
   programme+branch combinations, internal links between programme and branch
   pages both directions.

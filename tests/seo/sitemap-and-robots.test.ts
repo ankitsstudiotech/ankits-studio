@@ -51,3 +51,46 @@ describe("sitemap/robots mock-mode behavior", () => {
     expect(rules.sitemap).toContain("/sitemap.xml");
   });
 });
+
+/**
+ * Covers the populated branch of `buildSitemapEntries()`, added for SEO-001
+ * (docs/DECISIONS.md ADR-013) — the tests above only ever exercise the `[]`
+ * short-circuit. Mocks `@/content/content-mode` and `@/content` directly
+ * rather than relying on real mock data reaching a verified state, since
+ * `shouldNoIndex()`/`siteHasUnverifiedContent` are computed once at
+ * module-load time from the actual content domain.
+ */
+describe("buildSitemapEntries once the site is indexable", () => {
+  beforeEach(() => {
+    vi.resetModules();
+    vi.unstubAllEnvs();
+  });
+
+  it("includes every static route plus only the verified dynamic records", async () => {
+    vi.doMock("@/content/content-mode", () => ({ shouldNoIndex: () => false }));
+    vi.doMock("@/content", () => ({
+      getProgrammes: () => [
+        { slug: "yoga", dataStatus: "verified" },
+        { slug: "unverified-programme", dataStatus: "mock", mockDisclaimer: "x" },
+      ],
+      getPubliclyListedBranches: () => [{ slug: "airoli", dataStatus: "verified" }],
+      getTrainers: () => [{ slug: "unverified-trainer", dataStatus: "mock", mockDisclaimer: "x" }],
+      getBlogPosts: () => [{ slug: "real-post", dataStatus: "verified" }],
+    }));
+
+    const { buildSitemapEntries } = await import("@/lib/seo/sitemap");
+    const { buildCanonicalUrl } = await import("@/lib/seo/canonical");
+    const entries = buildSitemapEntries();
+    const urls = entries.map((entry) => entry.url);
+
+    expect(urls).toContain(buildCanonicalUrl("/"));
+    expect(urls).toContain(buildCanonicalUrl("/programs/yoga"));
+    expect(urls).toContain(buildCanonicalUrl("/locations/airoli"));
+    expect(urls).toContain(buildCanonicalUrl("/blog/real-post"));
+    expect(urls).not.toContain(buildCanonicalUrl("/programs/unverified-programme"));
+    expect(urls).not.toContain(buildCanonicalUrl("/trainers/unverified-trainer"));
+
+    vi.doUnmock("@/content/content-mode");
+    vi.doUnmock("@/content");
+  });
+});

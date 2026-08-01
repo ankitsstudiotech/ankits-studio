@@ -1,6 +1,7 @@
 "use client";
 
 import Link from "next/link";
+import { usePathname } from "next/navigation";
 
 export type StickyCtaBarProps = {
   label?: string;
@@ -8,6 +9,7 @@ export type StickyCtaBarProps = {
   supportingText?: string;
   /** Hide on these path prefixes (e.g. already on /trial). */
   hideOnPaths?: string[];
+  /** Overrides the detected pathname (e.g. design-lab's static showcase). Most callers should omit this and let the bar detect it itself. */
   pathname?: string;
 };
 
@@ -20,8 +22,11 @@ export function StickyCtaBar({
   href = "/trial",
   supportingText = "Try a class — illustrative CTA",
   hideOnPaths = ["/trial"],
-  pathname = "",
+  pathname: pathnameProp,
 }: StickyCtaBarProps) {
+  const detectedPathname = usePathname() ?? "";
+  const pathname = pathnameProp ?? detectedPathname;
+
   if (hideOnPaths.some((path) => pathname === path || pathname.startsWith(`${path}/`))) {
     return null;
   }

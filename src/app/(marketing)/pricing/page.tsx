@@ -56,6 +56,7 @@ export default function PricingPage() {
       <Section
         eyebrow="Pricing"
         title="Membership plans"
+        titleAs="h1"
         description="Every fee on this page is mock placeholder pricing. There are no real offers, discount countdowns, or limited-time claims."
       >
         <Badge accent="neutral" className="mb-6">

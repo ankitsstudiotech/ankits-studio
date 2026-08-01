@@ -106,10 +106,10 @@ describe("structured-data safety", () => {
   it("breadcrumb structured data builds valid canonical item URLs", () => {
     const result = buildBreadcrumbJsonLd([
       { name: "Home", path: "/" },
-      { name: "Programmes", path: "/programmes" },
+      { name: "Programs", path: "/programs" },
     ]);
     expect(result.itemListElement).toHaveLength(2);
-    expect(result.itemListElement[1]?.item).toContain("/programmes");
+    expect(result.itemListElement[1]?.item).toContain("/programs");
     expect(result.itemListElement[1]?.position).toBe(2);
   });
 

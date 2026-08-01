@@ -337,3 +337,38 @@ Observed route mix from successful mock-publish build: static (○), SSG with pa
 - No application source modifications in this audit pass  
 - No owner data verification  
 - No live CrUX/field Web Vitals capture (lab measurement recommended next)
+
+---
+
+## Resolution status (2026-08-01/02 — production-readiness audit-fix pass)
+
+Full reasoning, duplicate-finding analysis, and rejection rationale for every
+row below: [DECISIONS.md ADR-013](../DECISIONS.md#adr-013). Commit:
+`fix: resolve production readiness audit findings`.
+
+| ID | Status | Resolution |
+|---|---|---|
+| SEO-001 | **Fixed** | `buildSitemapEntries()` now builds real entries (static routes + verified programmes/branches/trainers/blog posts) once `shouldNoIndex()` is false; `[]` short-circuit unchanged while true. New test: `tests/seo/sitemap-and-robots.test.ts`. |
+| SEO-002 | **Rejected (backlog)** | Net-new route family (unique per-pair copy, new content-model fields, new route tree) — out of scope for an audit-fix pass; already tracked as Phase 2 Track H. |
+| SEO-003 | **Fixed** | `/programmes` → `/programs` normalized across `tests/seo/**`, `docs/INFORMATION-ARCHITECTURE.md`, `docs/PERFORMANCE-BUDGET.md`, `docs/IMPLEMENTATION-PLAN.md`, `docs/TASKS.md`, `docs/SEO-STRATEGY.md`, `AGENTS.md`, `docs/HANDOFF-ROUTE-UI.md`. `docs/HANDOFF-ROUTES.md`'s historical narrative left intact with a short correction note (its stale homepage-404 warning is resolved). `docs/DECISIONS.md` ADR-008 and `docs/CURSOR-ARCHITECTURE-REVIEW.md` intentionally untouched (frozen historical record). |
+| SEO-004 | **Fixed** | `buildOrganizationJsonLd` wired into the root layout, gated on `dataStatus === "verified"` — inert today (mock identity), correct once verified. |
+| SEO-005 | **No action** | Confirmed still true; positive finding. |
+| SEO-006 | **Partial** | `.env.example` now documents `NEXT_PUBLIC_SITE_URL` as a pre-launch requirement. Not hard-enforced at build time — `shouldNoIndex()` already independently gates indexing, so a wrong-host canonical on a noindex preview isn't a live leak, and hard-failing would break legitimate `ALLOW_MOCK_PUBLISH=true` preview deploys without a final domain. |
+| ARCH-001 | **Fixed** | `PathAwareShell` removed. `SiteChrome` (server) now composes `SiteHeader`/`StickyCtaBar` (each independently client, self-contained `usePathname()`) and `SiteFooter` (server, no longer in the client graph) directly. |
+| ARCH-002 | **Partial** | Added `loading.tsx` for `trainers/[slug]` and `blog/[slug]`. Timetable's Suspense-split was **not** done — it would risk the GET-form no-JS filtering behaviour (A11Y-002, explicitly worth preserving), and the `ƒ` dynamic marking for reading `searchParams` is correct Next.js behaviour, not a defect. |
+| ARCH-003 | **Partial** | Added `src/app/(marketing)/error.tsx` (inherits `SiteChrome` from the layout above it). Not added under `programs/`/`locations/` — no specific failure mode there was identified beyond the general case the root `error.tsx` already covers. |
+| MOCK-001 | **Fixed** | `MockModeIndicator` now shows whenever unverified content exists **and** (`development` **or** `ALLOW_MOCK_PUBLISH === "true"`). Extended test coverage in `MockModeIndicator.test.tsx` (4 cases). |
+| MOCK-002 | **Documented** | Process note recorded in `docs/HANDOFF.md`: CI must unset `ALLOW_MOCK_PUBLISH` before asserting the negative-build-gate test. |
+| MOCK-003 | **No action** | Confirmed still true; positive finding. |
+| FORM-001 | **No action** | Confirmed still true; positive finding. |
+| FORM-002 | **Fixed** | Added `src/lib/leads/trial-schema.test.ts` (18 cases), `src/lib/leads/adapters.test.ts` (11 cases, including `getLeadAdapter()` resolution), and `trial/actions.test.ts` / `contact/actions.test.ts` (validation-failure paths). |
+| A11Y-001 | **Fixed** | `e2e/accessibility.spec.ts` expanded from `/` + 404 to also cover `/trial`, `/contact`, `/timetable`, `/programs/yoga`, `/locations/airoli`. |
+| A11Y-002 | **No action** | Confirmed still true; positive finding — explicitly preserved (see ARCH-002). |
+| PERF-001 | **Measured; regression found and fixed** | See [DECISIONS.md ADR-013](../DECISIONS.md#adr-013) for the full breakdown: a genuine ~71kb gzip zod-in-client-bundle regression (introduced by this pass's own VIS-002 refactor) was found and fixed on `/trial`. The pre-existing ~197–202kb shared React+Next+Motion baseline exceeding the 150kb landing budget on several routes predates this session and was not touched — see `docs/HANDOFF.md` for the flagged follow-up. |
+| PERF-002 | **No action** | Confirmed still true; positive finding, out of scope (no remote media host chosen yet). |
+| CWV-001 | **Addressed via ARCH-001** | Same root cause, no separate fix. `ƒ` dynamic marking on `/timetable`/`/trial`/`/contact` is correct, unchanged. |
+| SEC-001 | **No action** | Confirmed still true; positive finding. |
+| TYPE-001 | **No action** | Confirmed still true; positive finding (further reinforced by FORM-002's new lead-schema tests). |
+| TEST-001 | **Addressed via SEO-001/FORM-002/A11Y-001/MOCK-001** | Summary item, not separately actionable — each underlying gap fixed individually above. |
+| CONTENT-001 | **No action** | Confirmed still true; positive finding. |
+| LOCAL-001 | **No action** | Confirmed still true; positive finding. |

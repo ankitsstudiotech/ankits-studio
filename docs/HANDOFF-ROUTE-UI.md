@@ -5,7 +5,7 @@ _Last updated: 2026-07-31_
 ## Scope
 
 Reusable **presentation** components for programme and location detail pages.
-No App Router marketing routes under `src/app/programmes` or
+No App Router marketing routes under `src/app/programs` or
 `src/app/locations` were added (ownership boundary). No `src/content` or SEO
 modules were touched.
 
@@ -37,7 +37,7 @@ modules were touched.
 
 ## Integration (Claude / route scaffolding)
 
-1. Build `/programmes/[slug]` and `/locations/[slug]` server pages.
+1. Build `/programs/[slug]` and `/locations/[slug]` server pages.
 2. Load records via `@/content` accessors.
 3. Pass `getBranchContactLinks(branch)` results into `ContactActionGroup`
    (`href` null until verified).

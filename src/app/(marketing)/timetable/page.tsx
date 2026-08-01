@@ -87,6 +87,7 @@ export default async function TimetablePage({ searchParams }: TimetableSearchPar
       <Section
         eyebrow="Timetable"
         title="Weekly class schedule"
+        titleAs="h1"
         description="Provisional illustrative timings only. Filters work with a normal form submit — no JavaScript required."
       >
         <Badge accent="neutral" className="mb-6">

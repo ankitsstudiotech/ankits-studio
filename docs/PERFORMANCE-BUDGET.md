@@ -17,7 +17,7 @@ These are hard acceptance gates, not aspirational targets — see
 
 | Page type | Routes | JS budget (gzipped) | CSS budget |
 |---|---|---|---|
-| Landing / marketing | `/`, `/programmes`, `/programmes/[slug]`, `/locations`, `/locations/[slug]`, `/transformations`, `/trainers`, `/trainers/[slug]`, `/locations/[branch]/[programme]` | < 150kb | < 30kb |
+| Landing / marketing | `/`, `/programs`, `/programs/[slug]`, `/locations`, `/locations/[slug]`, `/transformations`, `/trainers`, `/trainers/[slug]`, `/locations/[branch]/[programme]` | < 150kb | < 30kb |
 | App-like / interactive | `/timetable`, `/trial`, `/pricing`, `/contact` | < 300kb | < 50kb |
 | Microsite-style | `/blog`, `/blog/[slug]` | < 80kb | < 15kb |
 
@@ -25,7 +25,7 @@ Rationale for the split: this groups routes by **runtime behavior**, not by the
 IA tiering in [INFORMATION-ARCHITECTURE.md](./INFORMATION-ARCHITECTURE.md) (tiers
 govern build order and mock-data risk; this table governs bundle weight).
 Pages that are primarily server-rendered content with scroll/reveal motion and
-no real form/filter logic — `/`, `/programmes*`, `/locations*` (the branch
+no real form/filter logic — `/`, `/programs*`, `/locations*` (the branch
 index and single-branch detail pages), `/transformations`, `/trainers*`, and
 `/locations/[branch]/[programme]` (ADR-008's local-SEO landing pages) —
 despite several of these being Tier 2, get the tightest budget because they

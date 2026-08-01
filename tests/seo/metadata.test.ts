@@ -15,7 +15,7 @@ function buildProgrammeMetadataEntries() {
     buildPageMetadata({
       title: programme.name,
       description: programme.shortDescription,
-      path: `/programmes/${programme.slug}`,
+      path: `/programs/${programme.slug}`,
     })
   );
 }
@@ -24,7 +24,7 @@ function buildBranchMetadataEntries() {
   return getBranches().map((branch) =>
     buildPageMetadata({
       title: branch.name,
-      description: `${branch.name} — programmes, timings, and contact details.`,
+      description: `${branch.name} — programs, timings, and contact details.`,
       path: `/locations/${branch.slug}`,
     })
   );
@@ -54,27 +54,27 @@ describe("buildPageMetadata", () => {
   });
 
   it("sets a valid canonical URL via alternates.canonical", () => {
-    const metadata = buildPageMetadata({ title: "Programmes", description: "All programmes.", path: "/programmes" });
-    expect(metadata.alternates?.canonical).toContain("/programmes");
+    const metadata = buildPageMetadata({ title: "Programs", description: "All programs.", path: "/programs" });
+    expect(metadata.alternates?.canonical).toContain("/programs");
   });
 
   it("throws when title is missing (missing required field)", () => {
     expect(() =>
       // @ts-expect-error -- intentionally omitting a required field
-      buildPageMetadata({ description: "x", path: "/programmes" })
+      buildPageMetadata({ description: "x", path: "/programs" })
     ).toThrow();
   });
 
   it("throws when description is empty (missing required field)", () => {
-    expect(() => buildPageMetadata({ title: "x", description: "", path: "/programmes" })).toThrow();
+    expect(() => buildPageMetadata({ title: "x", description: "", path: "/programs" })).toThrow();
   });
 
   it("throws when path is malformed (missing required field shape)", () => {
-    expect(() => buildPageMetadata({ title: "x", description: "x", path: "programmes" })).toThrow();
+    expect(() => buildPageMetadata({ title: "x", description: "x", path: "programs" })).toThrow();
   });
 
   it("always includes a robots field (mock-mode noindex/nofollow)", () => {
-    const metadata = buildPageMetadata({ title: "x", description: "x", path: "/programmes" });
+    const metadata = buildPageMetadata({ title: "x", description: "x", path: "/programs" });
     expect(metadata.robots).toBeDefined();
   });
 });

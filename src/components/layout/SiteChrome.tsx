@@ -3,7 +3,9 @@ import {
   getNavigationItems,
   getPubliclyListedBranches,
 } from "@/content";
-import { PathAwareShell } from "./PathAwareShell";
+import { SiteFooter } from "./SiteFooter";
+import { SiteHeader } from "./SiteHeader";
+import { StickyCtaBar } from "./StickyCtaBar";
 import type { FooterLinkGroup, NavItem } from "./types";
 
 function toNavItems(): NavItem[] {
@@ -33,23 +35,34 @@ function toFooterGroups(): FooterLinkGroup[] {
   ];
 }
 
+/**
+ * Server component. `SiteHeader` and `StickyCtaBar` are each independently
+ * "use client" (they read `usePathname()` themselves) — there is no shared
+ * client wrapper around them, so `SiteFooter` (no interactivity) stays a
+ * pure server-rendered leaf, never entering the client bundle graph. See
+ * docs/DECISIONS.md ADR-013 (ARCH-001) — this replaces the previous
+ * `PathAwareShell` client wrapper, which pulled the footer into the client
+ * graph for no reason.
+ */
 export function SiteChrome({ children }: { children: React.ReactNode }) {
   const identity = getBusinessIdentity();
   const identityDisclaimer =
     identity.dataStatus === "verified" ? undefined : identity.mockDisclaimer;
 
   return (
-    <PathAwareShell
-      brandName={identity.displayName}
-      tagline={identity.tagline}
-      navItems={toNavItems()}
-      footerGroups={toFooterGroups()}
-      footerDisclaimer={
-        identityDisclaimer ??
-        "Branch contact actions remain disabled until records are verified."
-      }
-    >
-      {children}
-    </PathAwareShell>
+    <>
+      <SiteHeader brandName={identity.displayName} items={toNavItems()} />
+      <div className="flex flex-1 flex-col">{children}</div>
+      <SiteFooter
+        brandName={identity.displayName}
+        tagline={identity.tagline}
+        groups={toFooterGroups()}
+        disclaimer={
+          identityDisclaimer ??
+          "Branch contact actions remain disabled until records are verified."
+        }
+      />
+      <StickyCtaBar href="/trial" hideOnPaths={["/trial", "/book-a-free-trial"]} />
+    </>
   );
 }

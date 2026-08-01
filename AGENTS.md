@@ -87,7 +87,7 @@ Rules:
 
 Full detail, tiering, and rationale: `docs/INFORMATION-ARCHITECTURE.md`. Summary:
 
-- Tier 1 (build first): `/`, `/programmes`, `/programmes/[slug]`, `/locations`,
+- Tier 1 (build first): `/`, `/programs`, `/programs/[slug]`, `/locations`,
   `/locations/[slug]`, `/timetable`, `/trial`, `/contact`.
 - Tier 2: `/trainers`, `/trainers/[slug]`, `/pricing`, `/transformations`.
 - Tier 3 (deferrable, stub acceptable): `/blog`, `/blog/[slug]`.

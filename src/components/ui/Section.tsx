@@ -6,6 +6,10 @@ export type SectionProps = {
   id?: string;
   eyebrow?: string;
   title?: string;
+  /** Heading element for `title`. Defaults to "h2" — set to "h1" on a page's
+   *  primary section so the page has exactly one document `<h1>` (see
+   *  docs/DECISIONS.md ADR-013, VIS-004). */
+  titleAs?: ElementType;
   description?: string;
   className?: string;
   containerClassName?: string;
@@ -18,6 +22,7 @@ export function Section({
   id,
   eyebrow,
   title,
+  titleAs: TitleComp = "h2",
   description,
   className = "",
   containerClassName = "",
@@ -38,9 +43,9 @@ export function Section({
               </p>
             ) : null}
             {title ? (
-              <h2 className="font-[family-name:var(--font-display)] text-[length:var(--text-title)] leading-[var(--text-title--line-height)] tracking-[var(--text-title--letter-spacing)] text-ink">
+              <TitleComp className="font-[family-name:var(--font-display)] text-[length:var(--text-title)] leading-[var(--text-title--line-height)] tracking-[var(--text-title--letter-spacing)] text-ink">
                 {title}
-              </h2>
+              </TitleComp>
             ) : null}
             {description ? (
               <p className="mt-3 text-[length:var(--text-body-lg)] leading-[var(--text-body-lg--line-height)] text-ink-muted">

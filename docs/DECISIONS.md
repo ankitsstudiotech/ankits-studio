@@ -334,6 +334,78 @@ than picking a format and possibly redoing it in Phase 3.
 
 **Status**: Active.
 
+<a id="adr-013"></a>
+## ADR-013: Reconciliation of the technical/SEO and visual/browser production-readiness audits
+
+**Decision**: `docs/audits/CLAUDE-TECHNICAL-SEO-AUDIT.md` and
+`docs/audits/CURSOR-VISUAL-BROWSER-AUDIT.md` (both dated 2026-08-01) are
+reconciled together. Every finding gets an explicit accept / partial-accept /
+reject verdict, applying the same reconciliation principle as ADR-007: accept
+when it closes a real correctness, safety, or accessibility gap; reject when
+the finding is already-intentional design, would regress an audit-confirmed-
+working property, or is net-new feature scope rather than a fix. No finding
+is accepted just because an audit raised it.
+
+**Duplicate/overlapping findings** (fixed once, not once per report):
+
+- ARCH-001 (client chrome wraps footer) and CWV-001 (dynamic routes/client
+  chrome as CWV risk) are the same root cause in one audit — fixed together.
+- ARCH-001/CWV-001 (Claude, bundle/architecture) and VIS-001 (Cursor, mobile
+  drawer rendering) both implicate the header/nav component family but are
+  **different bugs** (one is client-bundle composition, the other is a CSS
+  containing-block defect) — fixed as two distinct changes in the same files.
+- A11Y-001 (narrow automated axe coverage) is the meta-finding that VIS-003
+  (touch targets) and VIS-004 (missing `<h1>`) are concrete instances of —
+  fixed the concrete bugs and expanded coverage so the class of regression is
+  caught automatically going forward.
+- FORM-002 (no adapter/schema tests) and VIS-002 (validation UX bug) are
+  complementary, not duplicates — VIS-002's actual UX bug is fixed; FORM-002's
+  test gap is closed on top of the fix.
+- TEST-001 is a summary of the SEO-001 / FORM-002 / A11Y-001 gaps, not a
+  separately actionable item.
+- PERF-001 and CWV-001 both flag client-JS budget risk from the same chrome
+  component — addressed together via the ARCH-001 fix, then measured once.
+
+**Verdict table**:
+
+| # | Finding | Verdict | Why |
+|---|---|---|---|
+| VIS-001 | Mobile nav drawer collapses (backdrop-filter containing block traps `position: fixed`) | **Accept** | Genuine High/Critical bug — primary mobile navigation is visually unusable for sighted users. Root cause confirmed: `SiteHeader` has `backdrop-blur-md` (`backdrop-filter`), which per spec creates a containing block for `position: fixed` descendants; `MobileNav`'s drawer is nested inside `<header>`. Fixed by portalling the drawer/overlay to `document.body`. |
+| VIS-005 | Hydration mismatch overlay in dev, cites `SiteChrome`/`Overline` | **Accept** | Root cause found: `ScrollReveal.tsx` conditionally returns a plain `<div>` vs. `<motion.div>` based on `useReducedMotion()` — exactly the pattern `TextReveal.tsx`'s own code comment warns against ("Same DOM on server and client (avoids hydration mismatch)"), and which `TextReveal`/`FadeIn` already avoid correctly. `ScrollReveal` was never updated to match. Fixed by applying the same always-same-element-type pattern. |
+| ARCH-001 | `PathAwareShell` (client) wraps `SiteFooter` unnecessarily | **Accept** | Directly contradicts the approved ADR-009/ADR-010 opt-in-island rule — footer has no interactivity and shouldn't be forced into the client bundle graph. Fixed by removing `PathAwareShell`; `SiteChrome` (server) now composes `SiteHeader` (client, self-contained `usePathname()`), `{children}`, `SiteFooter` (server), `StickyCtaBar` (client, self-contained `usePathname()`) directly. |
+| CWV-001 | Dynamic routes + client chrome are CWV risk | **Accept, via ARCH-001** | Same root cause as ARCH-001; no separate fix needed. The `ƒ` (dynamic) marking on `/timetable`/`/trial`/`/contact` for reading `searchParams` is correct, intended Next.js behavior, not a defect — not touched. |
+| PERF-001 | Homepage `ScrollReveal` count — budget risk | **Accept, measure + fix the regression found** | Measured actual gzipped JS-per-route via a real `next start` server (Playwright network capture, no new bundle-analyzer dependency) against `docs/PERFORMANCE-BUDGET.md`. Found a genuine regression introduced by this pass's own VIS-002 refactor: `TrialForm.tsx` imported from the `@/lib/leads` barrel, which re-exports the zod-based lead schemas, pulling ~71kb gzip of zod into the `/trial` client bundle for no reason — fixed by importing `ageGroupValues`/`preferredTimingValues` from `@/lib/leads/types` directly (`/trial` dropped 268kb → 199kb). Separately found a ~197–202kb shared JS baseline (React 19 + Next 16 client runtime + the Motion library) present on every route, including ones untouched by this pass (`/pricing`, `/blog`) — this exceeds the 150kb "landing" budget but predates this session and is not a regression; reducing it would mean either dropping React/Next (rejected: "don't replace working libraries") or restricting Motion's already-approved broad usage across the design system (a scope decision, not a bug fix — flagged in `docs/HANDOFF.md` for a product/architecture call, not silently redesigned here). |
+| MOCK-001 | ADR-002 layer-2 banner absent on `ALLOW_MOCK_PUBLISH` preview builds | **Accept** | Directly closes a real mock-data publication risk — a stakeholder reviewing a preview build could mistake mock content for real despite `noindex`. `MockModeIndicator` now shows whenever unverified content exists **and** (`development` **or** `ALLOW_MOCK_PUBLISH === "true"`). |
+| MOCK-002 | CI must unset `ALLOW_MOCK_PUBLISH` before asserting the negative-build-gate test | **Accept, documented only** | Process note, not a code defect — recorded in `docs/HANDOFF.md` verification steps. |
+| SEO-001 | Sitemap always returns `[]`, even once indexable | **Accept** | `buildSitemapEntries()` now builds real entries (Tier 1/2 verified/public routes) once `shouldNoIndex()` is false, keeping the `[]` short-circuit unchanged while it's true. |
+| SEO-002 | Programme×location pair routes (`/locations/[branch]/[programme]`) missing | **Reject** | This is net-new feature scope (unique per-pair copy, a new route tree, new content-model fields), not a "fix" to something broken — it's already correctly tracked as Phase 2 Track H via ADR-008 and `docs/IMPLEMENTATION-PLAN.md`. Implementing a whole route family under a production-readiness audit-fix pass would be exactly the "unsolicited redesign"/scope-creep this task was told to avoid. Stays on the backlog. |
+| SEO-003 | Docs/tests still encode `/programmes`; live routes are `/programs` | **Accept** | Direct follow-up to `docs/HANDOFF-ROUTES.md`'s own flagged gap. Normalized `tests/seo/**`, `docs/INFORMATION-ARCHITECTURE.md`, `docs/PERFORMANCE-BUDGET.md`, `docs/IMPLEMENTATION-PLAN.md`, `docs/TASKS.md`, `docs/HANDOFF-ROUTES.md`, `docs/HANDOFF-ROUTE-UI.md` to `/programs` where they describe the *live* route. Left `docs/DECISIONS.md` ADR-008's and `docs/CURSOR-ARCHITECTURE-REVIEW.md`'s historical text alone — both describe a not-yet-built route pattern / a frozen past review, not the current live IA. |
+| SEO-004 | `Organization` JSON-LD built but never emitted | **Accept** | Wired into the root layout, gated the same as every other builder (`dataStatus === "verified"`) — inert today (identity is mock), correct once verified. Cheap, low-risk, closes a real gap. |
+| SEO-005 | FAQ/LocalBusiness correctly omitted; Course emits for verified programmes | **No action** | Positive finding. |
+| SEO-006 | Canonical/OG host depends on `NEXT_PUBLIC_SITE_URL`; recommend failing production builds when unset | **Partial accept** | Accepted: documented clearly in `.env.example`/`docs/HANDOFF.md` as a pre-launch requirement. Rejected: a hard build-time failure when unset, because "production" in this codebase already means "`NODE_ENV=production`", which includes legitimate `ALLOW_MOCK_PUBLISH=true` preview deploys that may not yet have a final domain — hard-failing those would break the preview pipeline ADR-002 depends on. Indexability is already independently gated by `shouldNoIndex()`; a wrong-host canonical on a `noindex` preview is not a live-leak. |
+| A11Y-001 | Narrow automated axe coverage (`/` and 404 only) | **Accept** | Expanded `e2e/accessibility.spec.ts` to `/trial`, `/contact`, `/timetable`, `/programs/yoga`, `/locations/airoli`. |
+| A11Y-002 | Timetable filters work without JS | **No action** | Positive finding — explicitly preserved (see ARCH-002 rejection below). |
+| VIS-002 | Trial/contact validation is banner-only; no field-level errors or `aria-invalid` | **Accept** | `Field`/`TextInput` already supported `error`/`invalid` props unused by the pages. Converted both forms' Server Actions to the `useActionState` pattern (Next's own documented pattern for this exact case — see `node_modules/next/dist/docs/01-app/01-getting-started/10-error-handling.md`): validation failures now return field-level errors instead of a redirect-only banner; native HTML validation (`noValidate` removed) runs first. Success/`not-configured`/`provider-error` paths still redirect — those aren't per-field concerns. |
+| FORM-001 | Lead adapters fail closed; honest messaging | **No action** | Positive finding. |
+| FORM-002 | No tests for lead schemas/adapters/actions | **Accept** | Added `src/lib/leads/trial-schema.test.ts` and `src/lib/leads/adapters.test.ts`. |
+| VIS-003 | Footer/dense text links narrower than 44px touch target | **Accept** | Added horizontal padding + `min-h-11`/`min-w-11` to `SiteFooter` links. |
+| VIS-004 | Several pages have no document `<h1>` (about, contact, trial, ...) | **Accept** | Added an optional `titleAs` prop to `Section` (defaults to `"h2"`, unchanged for every existing call site) so each page's primary section can render its title as the page's one `<h1>`. Applied to about/contact/trial/timetable/pricing. |
+| VIS-006 | 404 page has no site chrome | **Accept** | Root `not-found.tsx` now renders inside `SiteChrome`, matching every real route. |
+| VIS-007 | Mobile first-viewport density (banner + header + hero + dual CTA + sticky bar) | **Reject** | Cosmetic, and the audit itself frames it as "intentional mock posture" — the preview banner disappears the moment mock mode ends by design (ADR-002). Restructuring hero/sticky-CTA interaction to "fix" a temporary, self-resolving state would be exactly the unsolicited visual redesign this task was told to avoid. |
+| VIS-008 | Programme index has no filter controls | **Reject** | Intentional per `docs/INFORMATION-ARCHITECTURE.md` — filtering lives on `/timetable` only; the audit's own text agrees ("current ship is browse-all"). Not a defect. |
+| ARCH-002 | Missing `loading.tsx` for trainers/blog; timetable "not Suspense-split" | **Partial accept** | Accepted: added `loading.tsx` under `trainers/[slug]` and `blog/[slug]` — cheap, zero-risk. Rejected: restructuring `/timetable` into a static shell + `Suspense`-wrapped `searchParams` island. The current plain `<form method="get">` is exactly what ADR-010 asks for (a working no-JS baseline) and is a **positive, audit-confirmed** finding (A11Y-002) — Next's `ƒ` (dynamic) marking for a `searchParams`-reading page is correct, standard behavior, not a defect. Restructuring it for a marginal loading-state improvement risks regressing an approved, working, explicitly-praised property for no clear benefit — rejected as disproportionate to the actual problem. |
+| ARCH-003 | No segment-level `error.tsx` | **Partial accept** | Added `src/app/(marketing)/error.tsx`. Did not add one under `programs/`/`locations/` in this pass — the marketing group covers most conversion-path routes; the rest can follow the same pattern later without urgency. |
+| SEC-001, MOCK-003, TYPE-001, LOCAL-001, CONTENT-001 | Various | **No action** | Positive findings, spot-checked during this pass, still correct. |
+
+**Why**: Same reconciliation discipline as ADR-007 — an independent audit
+finding a problem doesn't obligate implementing its exact prescribed fix if
+that fix conflicts with already-approved architecture (ADR-009/010), would
+regress an audit-confirmed-working property (A11Y-002), or is out of scope
+for a "fix" pass (SEO-002, VIS-008). Every rejection above is a considered
+judgment against the approved architecture and existing ADRs, not a default.
+
+**Status**: Active.
+
 ## Log format for future entries
 
 ```
