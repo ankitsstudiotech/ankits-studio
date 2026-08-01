@@ -23,10 +23,13 @@ export function DesktopNav({ items, pathname = "" }: DesktopNavProps) {
                 href={item.href}
                 aria-current={active ? "page" : undefined}
                 className={[
-                  "inline-flex min-h-11 items-center rounded-[var(--radius-md)] px-3 text-sm font-medium",
-                  "transition-colors duration-[var(--duration-fast)]",
-                  "focus-visible:outline-2 focus-visible:outline-offset-3 focus-visible:outline-focus-ring",
-                  active ? "text-ink" : "text-ink-muted hover:text-ink",
+                  "inline-flex min-h-11 items-center px-3 text-xs font-medium uppercase tracking-[0.1em]",
+                  "transition-[color,background-size] duration-[var(--duration-fast)] ease-[var(--ease-standard)]",
+                  "bg-[linear-gradient(currentColor,currentColor)] bg-no-repeat bg-[length:0_1px] bg-[position:0_100%]",
+                  "hover:bg-[length:100%_1px] focus-visible:bg-[length:100%_1px]",
+                  "focus-visible:outline-2 focus-visible:outline-offset-3 focus-visible:outline-[var(--color-volt)]",
+                  "motion-reduce:transition-none motion-reduce:bg-none",
+                  active ? "text-ink-inverse" : "text-[var(--color-muted-on-field)] hover:text-ink-inverse",
                 ].join(" ")}
               >
                 {item.label}
@@ -35,16 +38,15 @@ export function DesktopNav({ items, pathname = "" }: DesktopNavProps) {
           );
         })}
         {cta ? (
-          <li className="ml-2">
+          <li className="ml-3">
             <Link
               href={cta.href}
               className={[
-                "inline-flex min-h-11 items-center justify-center rounded-[var(--radius-md)] px-4",
-                "bg-accent text-sm font-semibold text-accent-foreground",
+                "inline-flex min-h-11 items-center justify-center px-4",
+                "bg-accent text-xs font-bold uppercase tracking-[0.1em] text-accent-foreground touch-target",
                 "transition-[background-color,transform] duration-[var(--duration-fast)]",
                 "hover:bg-accent-hover active:scale-[0.98] motion-reduce:active:scale-100",
-                "focus-visible:outline-2 focus-visible:outline-offset-3 focus-visible:outline-focus-ring",
-                "touch-target",
+                "focus-visible:outline-2 focus-visible:outline-offset-3 focus-visible:outline-[var(--color-volt)]",
               ].join(" ")}
             >
               {cta.label}

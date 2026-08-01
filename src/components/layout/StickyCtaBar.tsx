@@ -7,9 +7,7 @@ export type StickyCtaBarProps = {
   label?: string;
   href?: string;
   supportingText?: string;
-  /** Hide on these path prefixes (e.g. already on /trial). */
   hideOnPaths?: string[];
-  /** Overrides the detected pathname (e.g. design-lab's static showcase). Most callers should omit this and let the bar detect it itself. */
   pathname?: string;
 };
 
@@ -20,7 +18,7 @@ export type StickyCtaBarProps = {
 export function StickyCtaBar({
   label = "Book a trial",
   href = "/trial",
-  supportingText = "Try a class — illustrative CTA",
+  supportingText = "Feel the room — book a free trial",
   hideOnPaths = ["/trial"],
   pathname: pathnameProp,
 }: StickyCtaBarProps) {
@@ -34,22 +32,22 @@ export function StickyCtaBar({
   return (
     <div
       className={[
-        "fixed inset-x-0 bottom-0 z-30 border-t border-border bg-surface-raised/95 backdrop-blur-md",
+        "fixed inset-x-0 bottom-0 z-30 border-t border-white/10 bg-field",
         "pb-[env(safe-area-inset-bottom,0px)] lg:hidden",
       ].join(" ")}
     >
       <div className="mx-auto flex max-w-[var(--width-container)] items-center gap-3 px-[var(--spacing-gutter)] py-2.5">
-        <p className="min-w-0 flex-1 truncate text-[length:var(--text-caption)] text-ink-muted">
+        <p className="min-w-0 flex-1 truncate text-[length:var(--text-caption)] text-[var(--color-muted-on-field)]">
           {supportingText}
         </p>
         <Link
           href={href}
           className={[
-            "inline-flex min-h-11 shrink-0 items-center justify-center rounded-[var(--radius-md)] px-4",
-            "bg-accent text-sm font-semibold text-accent-foreground touch-target",
+            "inline-flex min-h-11 shrink-0 items-center justify-center px-4",
+            "bg-accent text-xs font-bold uppercase tracking-[0.08em] text-accent-foreground touch-target",
             "transition-[background-color,transform] duration-[var(--duration-fast)]",
             "hover:bg-accent-hover active:scale-[0.98] motion-reduce:active:scale-100",
-            "focus-visible:outline-2 focus-visible:outline-offset-3 focus-visible:outline-focus-ring",
+            "focus-visible:outline-2 focus-visible:outline-offset-3 focus-visible:outline-[var(--color-volt)]",
           ].join(" ")}
         >
           {label}
