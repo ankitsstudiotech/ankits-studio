@@ -1,0 +1,141 @@
+{
+  "schemaVersion": 2,
+  "generatedAt": "2026-08-01T13:35:00.000Z",
+  "title": "Design System: Ankit's Studio (incumbent baseline)",
+  "extensions": {
+    "status": "Incumbent design-system documentation. Not approved as the future creative direction.",
+    "northStar": "Incumbent Baseline — One Studio, Many Motions",
+    "colorMeta": {
+      "accent": {
+        "role": "primary",
+        "displayName": "Deep amber accent",
+        "canonical": "oklch(46% 0.13 48)",
+        "token": "--color-accent"
+      },
+      "surface": {
+        "role": "neutral",
+        "displayName": "Warm ivory surface",
+        "canonical": "oklch(97.2% 0.012 82)",
+        "token": "--color-surface"
+      },
+      "ink": {
+        "role": "neutral",
+        "displayName": "Warm charcoal ink",
+        "canonical": "oklch(22% 0.016 55)",
+        "token": "--color-ink"
+      },
+      "accent-strength": {
+        "role": "programme",
+        "displayName": "Strength amber-red",
+        "canonical": "oklch(48% 0.14 42)",
+        "token": "--color-accent-strength"
+      },
+      "accent-calm": {
+        "role": "programme",
+        "displayName": "Calm muted teal",
+        "canonical": "oklch(48% 0.06 210)",
+        "token": "--color-accent-calm"
+      },
+      "accent-high-energy": {
+        "role": "programme",
+        "displayName": "High-energy coral",
+        "canonical": "oklch(50% 0.16 25)",
+        "token": "--color-accent-high-energy"
+      }
+    },
+    "typographyMeta": {
+      "display": {
+        "displayName": "Display / Syne",
+        "purpose": "Largest marketing headlines (observed weight 600)."
+      },
+      "body": {
+        "displayName": "Body / Figtree",
+        "purpose": "Default UI and paragraph copy."
+      }
+    },
+    "shadows": [
+      {
+        "name": "soft",
+        "value": "0 1px 0 oklch(22% 0.016 55 / 0.04), 0 12px 32px oklch(22% 0.016 55 / 0.06)",
+        "purpose": "Default card rest, primary button, inputs (--shadow-soft)."
+      },
+      {
+        "name": "lift",
+        "value": "0 1px 0 oklch(22% 0.016 55 / 0.05), 0 18px 40px oklch(22% 0.016 55 / 0.1)",
+        "purpose": "Interactive card hover (--shadow-lift)."
+      }
+    ],
+    "motion": [
+      {
+        "name": "duration-fast",
+        "value": "150ms",
+        "purpose": "Button/state transitions."
+      },
+      {
+        "name": "duration-normal",
+        "value": "280ms",
+        "purpose": "Default UI motion."
+      },
+      {
+        "name": "duration-slow",
+        "value": "480ms",
+        "purpose": "Scroll reveal transforms."
+      },
+      {
+        "name": "ease-out-expo",
+        "value": "cubic-bezier(0.16, 1, 0.3, 1)",
+        "purpose": "Reveal transform easing."
+      },
+      {
+        "name": "ease-out-quart",
+        "value": "cubic-bezier(0.25, 1, 0.5, 1)",
+        "purpose": "Reveal opacity / card transitions."
+      },
+      {
+        "name": "ease-standard",
+        "value": "cubic-bezier(0.2, 0.8, 0.2, 1)",
+        "purpose": "Button state transitions."
+      }
+    ],
+    "breakpoints": [
+      { "name": "sm", "value": "640px" },
+      { "name": "md", "value": "768px" },
+      { "name": "lg", "value": "1024px" },
+      { "name": "xl", "value": "1280px" }
+    ],
+    "layout": {
+      "container": "72rem",
+      "containerNarrow": "42rem",
+      "headerHeight": "4.25rem",
+      "stickyCtaHeight": "4.5rem"
+    },
+    "tokenSource": "src/styles/tokens.css",
+    "liveScan": "http://localhost:3000/"
+  },
+  "components": [
+    {
+      "name": "Primary Button",
+      "kind": "button",
+      "refersTo": "button-primary",
+      "description": "Incumbent primary CTA — amber fill, soft shadow, md radius.",
+      "html": "<button type=\"button\" class=\"ds-btn-primary\">Book a trial</button>",
+      "css": ".ds-btn-primary { display:inline-flex; align-items:center; justify-content:center; min-height:2.75rem; padding:0 1.25rem; border-radius:0.5rem; background:oklch(46% 0.13 48); color:oklch(99% 0.005 82); font-weight:500; box-shadow:0 1px 0 oklch(22% 0.016 55 / 0.04), 0 12px 32px oklch(22% 0.016 55 / 0.06); border:0; } .ds-btn-primary:hover { background:oklch(40% 0.12 48); }"
+    },
+    {
+      "name": "Card",
+      "kind": "card",
+      "refersTo": "card",
+      "description": "Raised bordered card; interactive variant adds lift shadow + slight translate.",
+      "html": "<div class=\"ds-card\">Card content</div>",
+      "css": ".ds-card { border-radius:0.875rem; border:1px solid oklch(88% 0.012 82); background:oklch(99.4% 0.004 82); padding:1.25rem; box-shadow:0 1px 0 oklch(22% 0.016 55 / 0.04), 0 12px 32px oklch(22% 0.016 55 / 0.06); color:oklch(22% 0.016 55); }"
+    },
+    {
+      "name": "Text Input",
+      "kind": "input",
+      "refersTo": "input",
+      "description": "Raised bordered field with soft shadow; invalid uses strength accent border.",
+      "html": "<input class=\"ds-input\" placeholder=\"Name\" />",
+      "css": ".ds-input { width:100%; min-height:2.75rem; border-radius:0.5rem; border:1px solid oklch(88% 0.012 82); background:oklch(99.4% 0.004 82); padding:0.5rem 0.75rem; color:oklch(22% 0.016 55); box-shadow:0 1px 0 oklch(22% 0.016 55 / 0.04), 0 12px 32px oklch(22% 0.016 55 / 0.06); } .ds-input:focus-visible { outline:2px solid oklch(46% 0.13 48); outline-offset:2px; }"
+    }
+  ]
+}
