@@ -19,6 +19,12 @@ const prototypes = [
     title: "Revamp C — Movement System",
     note: "Preserved alternative concept. Do not delete or silently restyle.",
   },
+  {
+    code: "Logo",
+    href: "/design-lab/logo-integration",
+    title: "Logo × Pulse accent comparison",
+    note: "Coral vs logo-derived purple actions. Production tokens unchanged.",
+  },
 ] as const;
 
 export default function DesignLabIndexPage() {
