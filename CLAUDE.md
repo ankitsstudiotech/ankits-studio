@@ -50,5 +50,6 @@ Claude-Code-specific. If anything here ever conflicts with `AGENTS.md` or
 - Accessibility (`docs/ACCESSIBILITY-STANDARDS.md`) and performance
   (`docs/PERFORMANCE-BUDGET.md`) gates are checked per-route as it's built, not
   deferred to a final pass.
-- This repo has no test suite yet (stock `create-next-app` scaffold). Don't
-  assume one exists — check `package.json` before referencing test commands.
+- Tests exist: `npm run test` (Vitest unit/integration), `npm run test:e2e`
+  (Playwright). Check `package.json` for the current script names before
+  assuming commands.

@@ -29,23 +29,21 @@ App Router code.
 [CONTENT-MODEL.md](./CONTENT-MODEL.md)), backed by
 [BUSINESS-DATA-STATUS.md](./BUSINESS-DATA-STATUS.md) as the ground-truth table.
 Preventing an accidental production launch with mock data is enforced at four
-layers, planned for Phase 1–4 implementation
-([IMPLEMENTATION-PLAN.md](./IMPLEMENTATION-PLAN.md)):
+layers ([IMPLEMENTATION-PLAN.md](./IMPLEMENTATION-PLAN.md), refined by
+[ADR-011](#adr-011) / [ADR-013](#adr-013)):
 
 1. **Type-level**: a mock record cannot exist without a `mockDisclaimer` string
-   (discriminated union, not just an optional field).
-2. **UI-level**: a non-dismissable banner renders whenever any content on the
-   current page has `dataStatus` of `"mock"` or `"reference-only"`; high-risk fields (price, phone,
-   address, trainer identity) render an inline disclaimer in addition to the
-   page banner.
-3. **Build/CI-level**: a launch-readiness check (planned script, not yet
-   implemented) reads the content layer, and fails the production build/deploy
-   if any record required by a live route is still `"mock"` while the deploy
-   target is production.
-4. **Indexing-level**: non-production environments are unconditionally
-   `noindex`; production doesn't go live/get indexed until the Phase 4 gate in
-   [IMPLEMENTATION-PLAN.md](./IMPLEMENTATION-PLAN.md) passes (see
-   [SEO-STRATEGY.md](./SEO-STRATEGY.md)).
+   (discriminated union via `provenanced()` in `src/content/schema/provenance.ts`).
+2. **UI-level**: a non-dismissable banner (`MockModeIndicator`) renders in
+   development and on `ALLOW_MOCK_PUBLISH=true` preview builds whenever any
+   content is still `"mock"` or `"reference-only"`; high-risk fields (price,
+   phone, address, trainer identity) also render inline disclaimers.
+3. **Build/CI-level**: `assertMockContentSafeForBuild()` (called from
+   `next.config.ts`) fails the production build if unverified content remains
+   unless `ALLOW_MOCK_PUBLISH=true` (explicit preview escape hatch only).
+4. **Indexing-level**: `shouldNoIndex()` keeps robots/metadata/`sitemap` blocked
+   while any unverified content exists; production indexing only after owner
+   verification clears the content layer (see [SEO-STRATEGY.md](./SEO-STRATEGY.md)).
 
 Only the business owner may flip a [BUSINESS-DATA-STATUS.md](./BUSINESS-DATA-STATUS.md)
 row to `VERIFIED`; neither agent may infer verification.
@@ -54,8 +52,8 @@ row to `VERIFIED`; neither agent may infer verification.
 and must never be presented as real — this needs to be true structurally, not
 just as a convention someone might forget mid-project.
 
-**Status**: Active — design decided now, implementation is future work (not
-built in this governance-only pass).
+**Status**: Active — all four layers implemented in code as of the Phase 1–3
+content/SEO foundation and the 2026-08-01/02 audit-fix pass (ADR-013).
 
 <a id="adr-003"></a>
 ## ADR-003: Route/IA structure and tiering

@@ -109,6 +109,7 @@ Full detail, tiering, and rationale: `docs/INFORMATION-ARCHITECTURE.md`. Summary
 | `docs/DECISIONS.md` | ADR log — authoritative "why" |
 | `docs/TASKS.md` | Live task board + claiming protocol |
 | `docs/HANDOFF.md` | Current state, next steps, open questions |
+| `docs/LAUNCH-READINESS.md` | Final verification: mock-preview vs production readiness |
 | `docs/CURSOR-ARCHITECTURE-REVIEW.md` | Independent architecture review; reconciled in `docs/DECISIONS.md` ADR-007–012 |
 
 Read `docs/PROJECT-BRIEF.md` and `docs/HANDOFF.md` first in any new session.
