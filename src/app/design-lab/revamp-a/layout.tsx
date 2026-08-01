@@ -1,5 +1,6 @@
 import { DM_Sans, Instrument_Serif } from "next/font/google";
 import type { Metadata } from "next";
+import { designLabRevampRobots } from "../design-lab-robots";
 
 const display = Instrument_Serif({
   subsets: ["latin"],
@@ -17,13 +18,18 @@ const sans = DM_Sans({
 
 export const metadata: Metadata = {
   title: "Revamp A · Kinetic Editorial · Design lab",
-  robots: { index: false, follow: false },
+  robots: designLabRevampRobots,
 };
 
 export default function RevampALayout({
   children,
 }: Readonly<{ children: React.ReactNode }>) {
   return (
-    <div className={`${display.variable} ${sans.variable}`}>{children}</div>
+    <div
+      className={`${display.variable} ${sans.variable}`}
+      data-prototype-fonts="kinetic-editorial"
+    >
+      {children}
+    </div>
   );
 }

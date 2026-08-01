@@ -14,9 +14,9 @@ type MockMediaPlateProps = {
 };
 
 /**
- * Art-directed replaceable mock media. Not stock photography — geometric
- * compositions tagged for later swap with real studio assets.
- * Isolate under `data-mock-media` for production media replacement.
+ * Art-directed replaceable mock media for frozen design-lab prototypes only.
+ * Uses inline colours — never production `--color-*` tokens.
+ * Isolate under `data-mock-media` for later real-media swap documentation.
  */
 export function MockMediaPlate({
   family,

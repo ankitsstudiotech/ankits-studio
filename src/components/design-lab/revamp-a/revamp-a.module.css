@@ -1,9 +1,13 @@
+/* Frozen artefact: local colour/type only — never var(--color-*) production tokens. */
 .root {
   --ra-ink: #12110f;
   --ra-paper: #f3efe6;
   --ra-rule: #c8c0b0;
   --ra-trial: #b42318;
   --ra-muted: #5c574c;
+  isolation: isolate;
+  box-sizing: border-box;
+  width: 100%;
   background: var(--ra-paper);
   color: var(--ra-ink);
   font-family: var(--ra-sans), system-ui, sans-serif;

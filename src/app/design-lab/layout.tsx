@@ -1,18 +1,17 @@
 import type { Metadata } from "next";
+import "@/components/design-lab/isolation.css";
+import { designLabRobots } from "./design-lab-robots";
 
 /**
- * Design-lab shell is intentionally thin so revamp prototypes can own their
- * fonts, colour, and layout without inheriting the incumbent studio-shell.
- * The component review page (`/design-lab`) wraps itself in LabShell.
+ * Design-lab shell: route-level SEO protection for every /design-lab/** URL.
+ * Prototypes own fonts/colour via nested layouts + frozen CSS modules.
+ * Incumbent component review lives at /design-lab/components.
  */
 export const metadata: Metadata = {
   title: "Design lab · Ankit's Studio",
   description:
-    "Internal design and motion system review surface. Not a public marketing page.",
-  robots: {
-    index: false,
-    follow: false,
-  },
+    "Internal visual concept prototypes and design review. Not a public marketing page.",
+  robots: designLabRobots,
 };
 
 export default function DesignLabLayout({
@@ -20,5 +19,9 @@ export default function DesignLabLayout({
 }: Readonly<{
   children: React.ReactNode;
 }>) {
-  return children;
+  return (
+    <div data-design-lab-shell="true" data-noindex="true">
+      {children}
+    </div>
+  );
 }

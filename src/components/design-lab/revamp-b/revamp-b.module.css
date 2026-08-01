@@ -1,3 +1,4 @@
+/* Frozen artefact: local colour/type only — never var(--color-*) production tokens. */
 .root {
   --rb-bg: #0b0b0c;
   --rb-fg: #f4f1ea;
@@ -5,6 +6,9 @@
   --rb-coral: #ff4d2e;
   --rb-volt: #c8ff3d;
   --rb-teal: #5eead4;
+  isolation: isolate;
+  box-sizing: border-box;
+  width: 100%;
   background: var(--rb-bg);
   color: var(--rb-fg);
   font-family: var(--rb-sans), system-ui, sans-serif;

@@ -1,5 +1,6 @@
 import { IBM_Plex_Mono, IBM_Plex_Sans } from "next/font/google";
 import type { Metadata } from "next";
+import { designLabRevampRobots } from "../design-lab-robots";
 
 const sans = IBM_Plex_Sans({
   subsets: ["latin"],
@@ -17,11 +18,18 @@ const mono = IBM_Plex_Mono({
 
 export const metadata: Metadata = {
   title: "Revamp C · Movement System · Design lab",
-  robots: { index: false, follow: false },
+  robots: designLabRevampRobots,
 };
 
 export default function RevampCLayout({
   children,
 }: Readonly<{ children: React.ReactNode }>) {
-  return <div className={`${sans.variable} ${mono.variable}`}>{children}</div>;
+  return (
+    <div
+      className={`${sans.variable} ${mono.variable}`}
+      data-prototype-fonts="movement-system"
+    >
+      {children}
+    </div>
+  );
 }

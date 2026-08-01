@@ -1,3 +1,4 @@
+/* Frozen artefact: local colour/type only — never var(--color-*) production tokens. */
 .root {
   --rc-bg: #e8eaec;
   --rc-surface: #f4f5f6;
@@ -6,6 +7,9 @@
   --rc-line: #c5c9ce;
   --rc-signal: #0b5fff;
   --rc-flag: #8a5a00;
+  isolation: isolate;
+  box-sizing: border-box;
+  width: 100%;
   background: var(--rc-bg);
   color: var(--rc-ink);
   font-family: var(--rc-sans), system-ui, sans-serif;

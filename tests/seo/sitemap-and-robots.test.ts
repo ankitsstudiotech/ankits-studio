@@ -58,6 +58,15 @@ describe("sitemap/robots mock-mode behavior", () => {
     expect(rules.sitemap).toContain("/sitemap.xml");
     vi.doUnmock("@/content/content-mode");
   });
+
+  it("robots permanently disallows /design-lab when the site is otherwise indexable", async () => {
+    vi.doMock("@/content/content-mode", () => ({ shouldNoIndex: () => false }));
+    const { buildRobotsRules, DESIGN_LAB_DISALLOW_PATHS } = await import("@/lib/seo/robots");
+    const rules = buildRobotsRules();
+    const ruleSet = Array.isArray(rules.rules) ? rules.rules[0] : rules.rules;
+    expect(ruleSet?.disallow).toEqual(expect.arrayContaining([...DESIGN_LAB_DISALLOW_PATHS]));
+    vi.doUnmock("@/content/content-mode");
+  });
 });
 /**
  * Covers the populated branch of `buildSitemapEntries()`, added for SEO-001
@@ -96,6 +105,7 @@ describe("buildSitemapEntries once the site is indexable", () => {
     expect(urls).toContain(buildCanonicalUrl("/blog/real-post"));
     expect(urls).not.toContain(buildCanonicalUrl("/programs/unverified-programme"));
     expect(urls).not.toContain(buildCanonicalUrl("/trainers/unverified-trainer"));
+    expect(urls.every((url) => !url.includes("/design-lab"))).toBe(true);
 
     vi.doUnmock("@/content/content-mode");
     vi.doUnmock("@/content");

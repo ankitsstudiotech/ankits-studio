@@ -1,5 +1,6 @@
 import { Bebas_Neue, Space_Grotesk } from "next/font/google";
 import type { Metadata } from "next";
+import { designLabRevampRobots } from "../design-lab-robots";
 
 const display = Bebas_Neue({
   subsets: ["latin"],
@@ -17,13 +18,18 @@ const sans = Space_Grotesk({
 
 export const metadata: Metadata = {
   title: "Revamp B · Studio Pulse · Design lab",
-  robots: { index: false, follow: false },
+  robots: designLabRevampRobots,
 };
 
 export default function RevampBLayout({
   children,
 }: Readonly<{ children: React.ReactNode }>) {
   return (
-    <div className={`${display.variable} ${sans.variable}`}>{children}</div>
+    <div
+      className={`${display.variable} ${sans.variable}`}
+      data-prototype-fonts="studio-pulse"
+    >
+      {children}
+    </div>
   );
 }
