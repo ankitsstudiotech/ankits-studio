@@ -30,12 +30,32 @@ const AGE_LABELS: Record<(typeof ageGroupValues)[number], string> = {
 
 const initialState: TrialFormState = null;
 
-export function TrialForm({ branches, programmes }: { branches: Branch[]; programmes: Programme[] }) {
+export function TrialForm({
+  branches,
+  programmes,
+  demonstrationMode = false,
+}: {
+  branches: Branch[];
+  programmes: Programme[];
+  /** When true, submissions are local-only — not sent to a live studio inbox. */
+  demonstrationMode?: boolean;
+}) {
   const [state, formAction, isPending] = useActionState(submitTrialLead, initialState);
   const fieldErrors = state?.fieldErrors ?? {};
 
   return (
     <form action={formAction} className="flex flex-col gap-5">
+      {demonstrationMode ? (
+        <p
+          role="status"
+          className="rounded-[var(--radius-md)] border border-accent-strength/40 bg-accent-soft/80 px-4 py-3 text-sm text-ink"
+        >
+          <span className="font-semibold text-accent-strength">Demonstration mode.</span> This
+          preview accepts trial requests locally for walkthroughs only. Nothing is emailed,
+          messaged, or delivered to a live studio inbox or CRM.
+        </p>
+      ) : null}
+
       <Field id="name" label="Name" hint="How should we address you?" error={fieldErrors.name}>
         <TextInput
           id="name"
@@ -154,8 +174,9 @@ export function TrialForm({ branches, programmes }: { branches: Branch[]; progra
           className="mt-1 size-5 rounded border-border text-accent focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-focus-ring"
         />
         <label htmlFor="consent" className="text-sm text-ink">
-          I agree to be contacted about this trial request. I understand mock/development
-          submissions are not sent to a live studio inbox unless a provider is configured.
+          {demonstrationMode
+            ? "I understand this is a demonstration form and my details will not be sent to a live studio inbox."
+            : "I agree to be contacted about this trial request. I understand submissions are not sent to a live studio inbox unless a lead provider is configured."}
         </label>
       </div>
       {fieldErrors.consent ? (

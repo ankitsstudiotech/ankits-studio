@@ -76,5 +76,16 @@ describe("buildPageMetadata", () => {
   it("always includes a robots field (mock-mode noindex/nofollow)", () => {
     const metadata = buildPageMetadata({ title: "x", description: "x", path: "/programs" });
     expect(metadata.robots).toBeDefined();
+    expect(metadata.robots).toMatchObject({ index: false, follow: false });
+  });
+
+  it("forceNoIndex keeps sample blog routes noindex even when building page metadata", () => {
+    const metadata = buildPageMetadata({
+      title: "Sample",
+      description: "Sample article.",
+      path: "/blog/sample",
+      forceNoIndex: true,
+    });
+    expect(metadata.robots).toMatchObject({ index: false, follow: false });
   });
 });

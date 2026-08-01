@@ -115,3 +115,32 @@ describe("getLeadAdapter", () => {
     expect(getLeadAdapter()).toBe(productionLeadAdapter);
   });
 });
+
+describe("isLeadDemonstrationMode", () => {
+  beforeEach(() => {
+    vi.resetModules();
+    vi.unstubAllEnvs();
+  });
+
+  it("is true in development", async () => {
+    vi.stubEnv("NODE_ENV", "development");
+    const { isLeadDemonstrationMode } = await import("./index");
+    expect(isLeadDemonstrationMode()).toBe(true);
+  });
+
+  it("is true on ALLOW_MOCK_PUBLISH preview without LEAD_PROVIDER_URL", async () => {
+    vi.stubEnv("NODE_ENV", "production");
+    vi.stubEnv("ALLOW_MOCK_PUBLISH", "true");
+    vi.stubEnv("LEAD_PROVIDER_URL", "");
+    const { isLeadDemonstrationMode } = await import("./index");
+    expect(isLeadDemonstrationMode()).toBe(true);
+  });
+
+  it("is false once a lead provider URL is configured on preview", async () => {
+    vi.stubEnv("NODE_ENV", "production");
+    vi.stubEnv("ALLOW_MOCK_PUBLISH", "true");
+    vi.stubEnv("LEAD_PROVIDER_URL", "https://example.test/leads");
+    const { isLeadDemonstrationMode } = await import("./index");
+    expect(isLeadDemonstrationMode()).toBe(false);
+  });
+});

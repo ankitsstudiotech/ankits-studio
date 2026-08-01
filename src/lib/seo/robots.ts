@@ -3,18 +3,26 @@ import { shouldNoIndex } from "@/content/content-mode";
 import { siteConfig } from "@/lib/metadata";
 
 /**
- * Mirrors `shouldNoIndex()` exactly — disallows everything while any
- * unverified content exists anywhere in the site (dev, preview, or an
- * `ALLOW_MOCK_PUBLISH=true` build), matching this task's "noindex and
- * nofollow" mock-mode rule and docs/DECISIONS.md ADR-011.
+ * Mirrors `shouldNoIndex()` — while mock/unverified content exists (dev,
+ * Vercel preview, or `ALLOW_MOCK_PUBLISH=true`), disallow all paths and
+ * omit the sitemap URL so crawlers are not invited to discover routes.
+ * See docs/MOCK-PREVIEW-DEPLOYMENT.md and ADR-011.
  */
 export function buildRobotsRules(): MetadataRoute.Robots {
   const blocked = shouldNoIndex();
   const normalizedBase = siteConfig.url.replace(/\/$/, "");
+  if (blocked) {
+    return {
+      rules: {
+        userAgent: "*",
+        disallow: "/",
+      },
+    };
+  }
   return {
     rules: {
       userAgent: "*",
-      ...(blocked ? { disallow: "/" } : { allow: "/" }),
+      allow: "/",
     },
     sitemap: `${normalizedBase}/sitemap.xml`,
   };

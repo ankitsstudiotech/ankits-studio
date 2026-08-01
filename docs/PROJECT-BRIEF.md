@@ -71,6 +71,7 @@ system without feeling visually confused — see
 | [TASKS.md](./TASKS.md) | Task board with agent ownership |
 | [HANDOFF.md](./HANDOFF.md) | Current state, next steps, open questions |
 | [LAUNCH-READINESS.md](./LAUNCH-READINESS.md) | Final verification: mock-preview vs production readiness |
+| [MOCK-PREVIEW-DEPLOYMENT.md](./MOCK-PREVIEW-DEPLOYMENT.md) | Stakeholder mock preview: env, Vercel, checklist |
 | [CURSOR-ARCHITECTURE-REVIEW.md](./CURSOR-ARCHITECTURE-REVIEW.md) | Independent architecture review; reconciled in DECISIONS.md ADR-007–012 |
 
 CLAUDE.md and AGENTS.md at the repo root both point here and must never diverge

@@ -31,9 +31,21 @@ export const siteConfig = {
  */
 export function buildRobotsMeta(): NonNullable<Metadata["robots"]> {
   const noIndex = shouldNoIndex();
+  if (noIndex) {
+    return {
+      index: false,
+      follow: false,
+      nocache: true,
+      googleBot: {
+        index: false,
+        follow: false,
+        noimageindex: true,
+      },
+    };
+  }
   return {
-    index: !noIndex,
-    follow: !noIndex,
+    index: true,
+    follow: true,
   };
 }
 

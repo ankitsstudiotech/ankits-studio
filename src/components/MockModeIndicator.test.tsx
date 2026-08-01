@@ -19,6 +19,7 @@ describe("MockModeIndicator", () => {
 
   it("renders nothing in production without ALLOW_MOCK_PUBLISH (ADR-002 layer 3 already blocks this build anyway)", () => {
     vi.stubEnv("NODE_ENV", "production");
+    vi.stubEnv("ALLOW_MOCK_PUBLISH", "");
     const { container } = render(<MockModeIndicator />);
     expect(container).toBeEmptyDOMElement();
   });
@@ -28,12 +29,14 @@ describe("MockModeIndicator", () => {
     vi.stubEnv("ALLOW_MOCK_PUBLISH", "true");
     render(<MockModeIndicator />);
     expect(screen.getByRole("status")).toBeInTheDocument();
-    expect(screen.getByRole("status").textContent).toContain("Preview build");
+    expect(screen.getByRole("status").textContent).toContain("Mock preview");
+    expect(screen.getByRole("status").textContent).toMatch(/cannot be dismissed/i);
   });
 
   it("labels the banner as a development preview, not a generic preview build, when NODE_ENV is development", () => {
     vi.stubEnv("NODE_ENV", "development");
     render(<MockModeIndicator />);
     expect(screen.getByRole("status").textContent).toContain("Development preview");
+    expect(screen.getByRole("status").textContent).toMatch(/noindex/i);
   });
 });

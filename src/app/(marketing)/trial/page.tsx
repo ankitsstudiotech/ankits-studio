@@ -3,6 +3,7 @@ import { PageBreadcrumb } from "@/components/layout/PageBreadcrumb";
 import { Badge } from "@/components/ui/Badge";
 import { Section } from "@/components/ui/Section";
 import { getProgrammes, getPubliclyListedBranches } from "@/content";
+import { isLeadDemonstrationMode } from "@/lib/leads";
 import { buildPageMetadata } from "@/lib/seo/metadata";
 import { serializeJsonLd } from "@/lib/seo/serialize";
 import { buildBreadcrumbJsonLd } from "@/lib/seo/structured-data";
@@ -32,11 +33,12 @@ export default async function TrialPage({ searchParams }: TrialPageProps) {
   const programmes = getProgrammes();
   const breadcrumbJsonLd = buildBreadcrumbJsonLd(breadcrumbTrail);
 
+  const demonstrationMode = isLeadDemonstrationMode();
   const status = params.status;
   const statusMessage =
     status === "received"
       ? params.mode === "mock"
-        ? `Request accepted locally for development (reference ${params.ref ?? "n/a"}). This was not sent to a live lead provider.`
+        ? `Demonstration mode: request accepted locally (reference ${params.ref ?? "n/a"}). Nothing was sent to a live lead provider.`
         : `Request accepted (reference ${params.ref ?? "n/a"}).`
       : status === "not-configured"
         ? "Your details were not delivered. No live lead provider is configured in this environment."
@@ -60,11 +62,17 @@ export default async function TrialPage({ searchParams }: TrialPageProps) {
         eyebrow="Trial"
         title="Book a free trial"
         titleAs="h1"
-        description="Tell us how to reach you and which class you’d like to try. Production builds will not claim success unless a real lead provider is connected."
+        description={
+          demonstrationMode
+            ? "Walk through the booking form in this mock preview. Submissions stay local — they are not delivered to the studio."
+            : "Tell us how to reach you and which class you’d like to try. Live delivery requires a configured lead provider."
+        }
         narrow
       >
-        <Badge accent="neutral" className="mb-6">
-          Lead routing adapter required for live delivery
+        <Badge accent={demonstrationMode ? "strength" : "neutral"} className="mb-6">
+          {demonstrationMode
+            ? "Demonstration mode — not live delivery"
+            : "Lead routing adapter required for live delivery"}
         </Badge>
 
         {statusMessage ? (
@@ -77,7 +85,11 @@ export default async function TrialPage({ searchParams }: TrialPageProps) {
           </p>
         ) : null}
 
-        <TrialForm branches={branches} programmes={programmes} />
+        <TrialForm
+          branches={branches}
+          programmes={programmes}
+          demonstrationMode={demonstrationMode}
+        />
       </Section>
     </main>
   );

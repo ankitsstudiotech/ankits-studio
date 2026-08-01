@@ -44,14 +44,21 @@ describe("sitemap/robots mock-mode behavior", () => {
     expect(ruleSet?.disallow).toBe("/");
   });
 
-  it("robots always includes a sitemap reference", async () => {
+  it("robots omits the sitemap URL while unverified content exists", async () => {
     vi.stubEnv("NODE_ENV", "development");
     const { buildRobotsRules } = await import("@/lib/seo/robots");
     const rules = buildRobotsRules();
+    expect(rules.sitemap).toBeUndefined();
+  });
+
+  it("robots includes a sitemap reference only once the site is indexable", async () => {
+    vi.doMock("@/content/content-mode", () => ({ shouldNoIndex: () => false }));
+    const { buildRobotsRules } = await import("@/lib/seo/robots");
+    const rules = buildRobotsRules();
     expect(rules.sitemap).toContain("/sitemap.xml");
+    vi.doUnmock("@/content/content-mode");
   });
 });
-
 /**
  * Covers the populated branch of `buildSitemapEntries()`, added for SEO-001
  * (docs/DECISIONS.md ADR-013) — the tests above only ever exercise the `[]`

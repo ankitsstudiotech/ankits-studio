@@ -2,16 +2,14 @@ import { siteHasUnverifiedContent } from "@/content/content-mode";
 
 /**
  * Non-dismissable visual indicator that mock/reference-only content is in
- * use — see docs/BUSINESS-DATA-STATUS.md ("mock content must be visually
- * labelled in development") and the full ADR-002 layer-2 banner requirement.
+ * use — see docs/BUSINESS-DATA-STATUS.md and ADR-002 layer-2.
  *
  * Shows whenever unverified content exists AND either `NODE_ENV ===
- * "development"` OR `ALLOW_MOCK_PUBLISH === "true"` (a preview build that
- * explicitly opted into shipping mock content — see docs/DECISIONS.md
- * ADR-002/ADR-011/ADR-013 MOCK-001). A verified production build (neither
- * condition true) never shows this banner. Stays absent from a genuinely
- * verified production build even if `ALLOW_MOCK_PUBLISH` were left set,
- * since `siteHasUnverifiedContent` would then be false.
+ * "development"` OR `ALLOW_MOCK_PUBLISH === "true"` (stakeholder mock
+ * preview). There is no dismiss control: the banner disappears only when
+ * `siteHasUnverifiedContent` becomes false (verified content mode).
+ *
+ * See docs/MOCK-PREVIEW-DEPLOYMENT.md.
  */
 export function MockModeIndicator() {
   const isDevelopment = process.env.NODE_ENV === "development";
@@ -21,10 +19,20 @@ export function MockModeIndicator() {
     return null;
   }
 
+  const contextLabel = isDevelopment ? "Development preview" : "Mock preview";
+
   return (
-    <div role="status" className="w-full bg-accent-strength px-4 py-2 text-center text-sm font-medium text-white">
-      {isDevelopment ? "Development preview" : "Preview build"} — this site is showing mock/unverified
-      content and stays noindex. See docs/BUSINESS-DATA-STATUS.md.
+    <div
+      role="status"
+      className="w-full bg-accent-strength px-4 py-2.5 text-center text-sm font-medium text-white"
+    >
+      <p className="font-semibold tracking-wide">
+        {contextLabel} — mock / unverified content · noindex
+      </p>
+      <p className="mt-0.5 text-xs font-normal text-white/90">
+        Not live studio data. This banner cannot be dismissed; it is removed only when content
+        is verified. See docs/BUSINESS-DATA-STATUS.md.
+      </p>
     </div>
   );
 }
