@@ -1,0 +1,4951 @@
+{
+  "base": "http://localhost:3001",
+  "generatedAt": "2026-08-01T05:00:15.114Z",
+  "viewports": {
+    "390x844": {
+      "/": {
+        "route": "/",
+        "status": 200,
+        "overflowX": false,
+        "scrollW": 390,
+        "innerW": 390,
+        "fixedBottom": 1,
+        "smallTargets": [
+          {
+            "w": 1,
+            "h": 1,
+            "text": "Skip to main content"
+          },
+          {
+            "w": 39,
+            "h": 44,
+            "text": "About"
+          },
+          {
+            "w": 43,
+            "h": 44,
+            "text": "Pricing"
+          },
+          {
+            "w": 28,
+            "h": 44,
+            "text": "Blog"
+          },
+          {
+            "w": 38,
+            "h": 44,
+            "text": "Terms"
+          },
+          {
+            "w": 32,
+            "h": 44,
+            "text": "Airoli"
+          }
+        ],
+        "h1": "Move with strength, rhythm, and community.",
+        "hasMain": true,
+        "title": "Fitness & dance studio in Navi Mumbai | Ankit's Studio",
+        "screenshot": "screenshots/view_390_home.png"
+      },
+      "/about": {
+        "route": "/about",
+        "status": 200,
+        "overflowX": false,
+        "scrollW": 390,
+        "innerW": 390,
+        "fixedBottom": 1,
+        "smallTargets": [
+          {
+            "w": 1,
+            "h": 1,
+            "text": "Skip to main content"
+          },
+          {
+            "w": 38,
+            "h": 20,
+            "text": "Home"
+          },
+          {
+            "w": 39,
+            "h": 44,
+            "text": "About"
+          },
+          {
+            "w": 43,
+            "h": 44,
+            "text": "Pricing"
+          },
+          {
+            "w": 28,
+            "h": 44,
+            "text": "Blog"
+          },
+          {
+            "w": 38,
+            "h": 44,
+            "text": "Terms"
+          },
+          {
+            "w": 32,
+            "h": 44,
+            "text": "Airoli"
+          }
+        ],
+        "h1": null,
+        "hasMain": true,
+        "title": "About | Ankit's Studio"
+      },
+      "/programs": {
+        "route": "/programs",
+        "status": 200,
+        "overflowX": false,
+        "scrollW": 390,
+        "innerW": 390,
+        "fixedBottom": 1,
+        "smallTargets": [
+          {
+            "w": 1,
+            "h": 1,
+            "text": "Skip to main content"
+          },
+          {
+            "w": 38,
+            "h": 17,
+            "text": "Home"
+          },
+          {
+            "w": 122,
+            "h": 19,
+            "text": "Browse locations"
+          },
+          {
+            "w": 39,
+            "h": 44,
+            "text": "About"
+          },
+          {
+            "w": 43,
+            "h": 44,
+            "text": "Pricing"
+          },
+          {
+            "w": 28,
+            "h": 44,
+            "text": "Blog"
+          },
+          {
+            "w": 38,
+            "h": 44,
+            "text": "Terms"
+          },
+          {
+            "w": 32,
+            "h": 44,
+            "text": "Airoli"
+          }
+        ],
+        "h1": null,
+        "hasMain": true,
+        "title": "Programmes | Ankit's Studio"
+      },
+      "/programs/strength-training": {
+        "route": "/programs/strength-training",
+        "status": 200,
+        "overflowX": false,
+        "scrollW": 390,
+        "innerW": 390,
+        "fixedBottom": 1,
+        "smallTargets": [
+          {
+            "w": 1,
+            "h": 1,
+            "text": "Skip to main content"
+          },
+          {
+            "w": 38,
+            "h": 17,
+            "text": "Home"
+          },
+          {
+            "w": 79,
+            "h": 17,
+            "text": "Programmes"
+          },
+          {
+            "w": 39,
+            "h": 44,
+            "text": "About"
+          },
+          {
+            "w": 43,
+            "h": 44,
+            "text": "Pricing"
+          },
+          {
+            "w": 28,
+            "h": 44,
+            "text": "Blog"
+          },
+          {
+            "w": 38,
+            "h": 44,
+            "text": "Terms"
+          },
+          {
+            "w": 32,
+            "h": 44,
+            "text": "Airoli"
+          }
+        ],
+        "h1": "Strength Training",
+        "hasMain": true,
+        "title": "Strength Training | Ankit's Studio"
+      },
+      "/programs/weight-loss-fitness": {
+        "route": "/programs/weight-loss-fitness",
+        "status": 200,
+        "overflowX": false,
+        "scrollW": 390,
+        "innerW": 390,
+        "fixedBottom": 1,
+        "smallTargets": [
+          {
+            "w": 1,
+            "h": 1,
+            "text": "Skip to main content"
+          },
+          {
+            "w": 38,
+            "h": 17,
+            "text": "Home"
+          },
+          {
+            "w": 79,
+            "h": 17,
+            "text": "Programmes"
+          },
+          {
+            "w": 39,
+            "h": 44,
+            "text": "About"
+          },
+          {
+            "w": 43,
+            "h": 44,
+            "text": "Pricing"
+          },
+          {
+            "w": 28,
+            "h": 44,
+            "text": "Blog"
+          },
+          {
+            "w": 38,
+            "h": 44,
+            "text": "Terms"
+          },
+          {
+            "w": 32,
+            "h": 44,
+            "text": "Airoli"
+          }
+        ],
+        "h1": "Weight-Loss & General Fitness",
+        "hasMain": true,
+        "title": "Weight-Loss & General Fitness | Ankit's Studio",
+        "screenshot": "screenshots/view_390_programs_weight-loss-fitness.png"
+      },
+      "/locations": {
+        "route": "/locations",
+        "status": 200,
+        "overflowX": false,
+        "scrollW": 390,
+        "innerW": 390,
+        "fixedBottom": 1,
+        "smallTargets": [
+          {
+            "w": 1,
+            "h": 1,
+            "text": "Skip to main content"
+          },
+          {
+            "w": 38,
+            "h": 17,
+            "text": "Home"
+          },
+          {
+            "w": 167,
+            "h": 19,
+            "text": "Browse all programmes"
+          },
+          {
+            "w": 39,
+            "h": 44,
+            "text": "About"
+          },
+          {
+            "w": 43,
+            "h": 44,
+            "text": "Pricing"
+          },
+          {
+            "w": 28,
+            "h": 44,
+            "text": "Blog"
+          },
+          {
+            "w": 38,
+            "h": 44,
+            "text": "Terms"
+          },
+          {
+            "w": 32,
+            "h": 44,
+            "text": "Airoli"
+          }
+        ],
+        "h1": null,
+        "hasMain": true,
+        "title": "Locations | Ankit's Studio"
+      },
+      "/locations/airoli": {
+        "route": "/locations/airoli",
+        "status": 200,
+        "overflowX": false,
+        "scrollW": 390,
+        "innerW": 390,
+        "fixedBottom": 1,
+        "smallTargets": [
+          {
+            "w": 1,
+            "h": 1,
+            "text": "Skip to main content"
+          },
+          {
+            "w": 38,
+            "h": 17,
+            "text": "Home"
+          },
+          {
+            "w": 61,
+            "h": 17,
+            "text": "Locations"
+          },
+          {
+            "w": 39,
+            "h": 44,
+            "text": "About"
+          },
+          {
+            "w": 43,
+            "h": 44,
+            "text": "Pricing"
+          },
+          {
+            "w": 28,
+            "h": 44,
+            "text": "Blog"
+          },
+          {
+            "w": 38,
+            "h": 44,
+            "text": "Terms"
+          },
+          {
+            "w": 32,
+            "h": 44,
+            "text": "Airoli"
+          }
+        ],
+        "h1": "Ankit's Studio — Airoli",
+        "hasMain": true,
+        "title": "Ankit's Studio — Airoli | Ankit's Studio"
+      },
+      "/locations/thane": {
+        "route": "/locations/thane",
+        "status": 200,
+        "overflowX": false,
+        "scrollW": 390,
+        "innerW": 390,
+        "fixedBottom": 1,
+        "smallTargets": [
+          {
+            "w": 1,
+            "h": 1,
+            "text": "Skip to main content"
+          },
+          {
+            "w": 38,
+            "h": 17,
+            "text": "Home"
+          },
+          {
+            "w": 61,
+            "h": 17,
+            "text": "Locations"
+          },
+          {
+            "w": 39,
+            "h": 44,
+            "text": "About"
+          },
+          {
+            "w": 43,
+            "h": 44,
+            "text": "Pricing"
+          },
+          {
+            "w": 28,
+            "h": 44,
+            "text": "Blog"
+          },
+          {
+            "w": 38,
+            "h": 44,
+            "text": "Terms"
+          },
+          {
+            "w": 32,
+            "h": 44,
+            "text": "Airoli"
+          }
+        ],
+        "h1": "Ankit's Studio — Thane",
+        "hasMain": true,
+        "title": "Ankit's Studio — Thane | Ankit's Studio",
+        "screenshot": "screenshots/view_390_locations_thane.png"
+      },
+      "/trainers": {
+        "route": "/trainers",
+        "status": 200,
+        "overflowX": false,
+        "scrollW": 390,
+        "innerW": 390,
+        "fixedBottom": 1,
+        "smallTargets": [
+          {
+            "w": 1,
+            "h": 1,
+            "text": "Skip to main content"
+          },
+          {
+            "w": 38,
+            "h": 20,
+            "text": "Home"
+          },
+          {
+            "w": 147,
+            "h": 19,
+            "text": "Browse programmes"
+          },
+          {
+            "w": 39,
+            "h": 44,
+            "text": "About"
+          },
+          {
+            "w": 43,
+            "h": 44,
+            "text": "Pricing"
+          },
+          {
+            "w": 28,
+            "h": 44,
+            "text": "Blog"
+          },
+          {
+            "w": 38,
+            "h": 44,
+            "text": "Terms"
+          },
+          {
+            "w": 32,
+            "h": 44,
+            "text": "Airoli"
+          }
+        ],
+        "h1": null,
+        "hasMain": true,
+        "title": "Trainers | Ankit's Studio"
+      },
+      "/trainers/illustrative-trainer-1": {
+        "route": "/trainers/illustrative-trainer-1",
+        "status": 200,
+        "overflowX": false,
+        "scrollW": 390,
+        "innerW": 390,
+        "fixedBottom": 1,
+        "smallTargets": [
+          {
+            "w": 1,
+            "h": 1,
+            "text": "Skip to main content"
+          },
+          {
+            "w": 38,
+            "h": 20,
+            "text": "Home"
+          },
+          {
+            "w": 49,
+            "h": 20,
+            "text": "Trainers"
+          },
+          {
+            "w": 39,
+            "h": 44,
+            "text": "About"
+          },
+          {
+            "w": 43,
+            "h": 44,
+            "text": "Pricing"
+          },
+          {
+            "w": 28,
+            "h": 44,
+            "text": "Blog"
+          },
+          {
+            "w": 38,
+            "h": 44,
+            "text": "Terms"
+          },
+          {
+            "w": 32,
+            "h": 44,
+            "text": "Airoli"
+          }
+        ],
+        "h1": "Illustrative Trainer — A.",
+        "hasMain": true,
+        "title": "Illustrative Trainer — A. | Ankit's Studio"
+      },
+      "/transformations": {
+        "route": "/transformations",
+        "status": 200,
+        "overflowX": false,
+        "scrollW": 390,
+        "innerW": 390,
+        "fixedBottom": 1,
+        "smallTargets": [
+          {
+            "w": 1,
+            "h": 1,
+            "text": "Skip to main content"
+          },
+          {
+            "w": 38,
+            "h": 20,
+            "text": "Home"
+          },
+          {
+            "w": 112,
+            "h": 19,
+            "text": "Book a free trial"
+          },
+          {
+            "w": 39,
+            "h": 44,
+            "text": "About"
+          },
+          {
+            "w": 43,
+            "h": 44,
+            "text": "Pricing"
+          },
+          {
+            "w": 28,
+            "h": 44,
+            "text": "Blog"
+          },
+          {
+            "w": 38,
+            "h": 44,
+            "text": "Terms"
+          },
+          {
+            "w": 32,
+            "h": 44,
+            "text": "Airoli"
+          }
+        ],
+        "h1": null,
+        "hasMain": true,
+        "title": "Transformations | Ankit's Studio"
+      },
+      "/timetable": {
+        "route": "/timetable",
+        "status": 200,
+        "overflowX": false,
+        "scrollW": 390,
+        "innerW": 390,
+        "fixedBottom": 1,
+        "smallTargets": [
+          {
+            "w": 1,
+            "h": 1,
+            "text": "Skip to main content"
+          },
+          {
+            "w": 38,
+            "h": 20,
+            "text": "Home"
+          },
+          {
+            "w": 39,
+            "h": 44,
+            "text": "About"
+          },
+          {
+            "w": 43,
+            "h": 44,
+            "text": "Pricing"
+          },
+          {
+            "w": 28,
+            "h": 44,
+            "text": "Blog"
+          },
+          {
+            "w": 38,
+            "h": 44,
+            "text": "Terms"
+          },
+          {
+            "w": 32,
+            "h": 44,
+            "text": "Airoli"
+          }
+        ],
+        "h1": null,
+        "hasMain": true,
+        "title": "Timetable | Ankit's Studio",
+        "screenshot": "screenshots/view_390_timetable.png"
+      },
+      "/timetable?branch=airoli&programme=yoga": {
+        "route": "/timetable?branch=airoli&programme=yoga",
+        "status": 200,
+        "overflowX": false,
+        "scrollW": 390,
+        "innerW": 390,
+        "fixedBottom": 1,
+        "smallTargets": [
+          {
+            "w": 1,
+            "h": 1,
+            "text": "Skip to main content"
+          },
+          {
+            "w": 38,
+            "h": 20,
+            "text": "Home"
+          },
+          {
+            "w": 39,
+            "h": 44,
+            "text": "About"
+          },
+          {
+            "w": 43,
+            "h": 44,
+            "text": "Pricing"
+          },
+          {
+            "w": 28,
+            "h": 44,
+            "text": "Blog"
+          },
+          {
+            "w": 38,
+            "h": 44,
+            "text": "Terms"
+          },
+          {
+            "w": 32,
+            "h": 44,
+            "text": "Airoli"
+          }
+        ],
+        "h1": null,
+        "hasMain": true,
+        "title": "Timetable | Ankit's Studio",
+        "screenshot": "screenshots/view_390_timetable_branch_airoli_programme_yoga.png"
+      },
+      "/pricing": {
+        "route": "/pricing",
+        "status": 200,
+        "overflowX": false,
+        "scrollW": 390,
+        "innerW": 390,
+        "fixedBottom": 1,
+        "smallTargets": [
+          {
+            "w": 1,
+            "h": 1,
+            "text": "Skip to main content"
+          },
+          {
+            "w": 38,
+            "h": 20,
+            "text": "Home"
+          },
+          {
+            "w": 112,
+            "h": 19,
+            "text": "Book a free trial"
+          },
+          {
+            "w": 39,
+            "h": 44,
+            "text": "About"
+          },
+          {
+            "w": 43,
+            "h": 44,
+            "text": "Pricing"
+          },
+          {
+            "w": 28,
+            "h": 44,
+            "text": "Blog"
+          },
+          {
+            "w": 38,
+            "h": 44,
+            "text": "Terms"
+          },
+          {
+            "w": 32,
+            "h": 44,
+            "text": "Airoli"
+          }
+        ],
+        "h1": null,
+        "hasMain": true,
+        "title": "Pricing | Ankit's Studio",
+        "screenshot": "screenshots/view_390_pricing.png"
+      },
+      "/trial": {
+        "route": "/trial",
+        "status": 200,
+        "overflowX": false,
+        "scrollW": 390,
+        "innerW": 390,
+        "fixedBottom": 0,
+        "smallTargets": [
+          {
+            "w": 1,
+            "h": 1,
+            "text": "Skip to main content"
+          },
+          {
+            "w": 38,
+            "h": 20,
+            "text": "Home"
+          },
+          {
+            "w": 13,
+            "h": 20,
+            "text": ""
+          },
+          {
+            "w": 39,
+            "h": 44,
+            "text": "About"
+          },
+          {
+            "w": 43,
+            "h": 44,
+            "text": "Pricing"
+          },
+          {
+            "w": 28,
+            "h": 44,
+            "text": "Blog"
+          },
+          {
+            "w": 38,
+            "h": 44,
+            "text": "Terms"
+          },
+          {
+            "w": 32,
+            "h": 44,
+            "text": "Airoli"
+          }
+        ],
+        "h1": null,
+        "hasMain": true,
+        "title": "Book a free trial | Ankit's Studio",
+        "screenshot": "screenshots/view_390_trial.png"
+      },
+      "/trial?status=validation-error": {
+        "route": "/trial?status=validation-error",
+        "status": 200,
+        "overflowX": false,
+        "scrollW": 390,
+        "innerW": 390,
+        "fixedBottom": 0,
+        "smallTargets": [
+          {
+            "w": 1,
+            "h": 1,
+            "text": "Skip to main content"
+          },
+          {
+            "w": 38,
+            "h": 20,
+            "text": "Home"
+          },
+          {
+            "w": 13,
+            "h": 20,
+            "text": ""
+          },
+          {
+            "w": 39,
+            "h": 44,
+            "text": "About"
+          },
+          {
+            "w": 43,
+            "h": 44,
+            "text": "Pricing"
+          },
+          {
+            "w": 28,
+            "h": 44,
+            "text": "Blog"
+          },
+          {
+            "w": 38,
+            "h": 44,
+            "text": "Terms"
+          },
+          {
+            "w": 32,
+            "h": 44,
+            "text": "Airoli"
+          }
+        ],
+        "h1": null,
+        "hasMain": true,
+        "title": "Book a free trial | Ankit's Studio",
+        "screenshot": "screenshots/view_390_trial_status_validation-error.png"
+      },
+      "/trial?status=not-configured": {
+        "route": "/trial?status=not-configured",
+        "status": 200,
+        "overflowX": false,
+        "scrollW": 390,
+        "innerW": 390,
+        "fixedBottom": 0,
+        "smallTargets": [
+          {
+            "w": 1,
+            "h": 1,
+            "text": "Skip to main content"
+          },
+          {
+            "w": 38,
+            "h": 20,
+            "text": "Home"
+          },
+          {
+            "w": 13,
+            "h": 20,
+            "text": ""
+          },
+          {
+            "w": 39,
+            "h": 44,
+            "text": "About"
+          },
+          {
+            "w": 43,
+            "h": 44,
+            "text": "Pricing"
+          },
+          {
+            "w": 28,
+            "h": 44,
+            "text": "Blog"
+          },
+          {
+            "w": 38,
+            "h": 44,
+            "text": "Terms"
+          },
+          {
+            "w": 32,
+            "h": 44,
+            "text": "Airoli"
+          }
+        ],
+        "h1": null,
+        "hasMain": true,
+        "title": "Book a free trial | Ankit's Studio",
+        "screenshot": "screenshots/view_390_trial_status_not-configured.png"
+      },
+      "/contact": {
+        "route": "/contact",
+        "status": 200,
+        "overflowX": false,
+        "scrollW": 390,
+        "innerW": 390,
+        "fixedBottom": 1,
+        "smallTargets": [
+          {
+            "w": 1,
+            "h": 1,
+            "text": "Skip to main content"
+          },
+          {
+            "w": 38,
+            "h": 20,
+            "text": "Home"
+          },
+          {
+            "w": 112,
+            "h": 19,
+            "text": "Book a free trial"
+          },
+          {
+            "w": 13,
+            "h": 20,
+            "text": ""
+          },
+          {
+            "w": 39,
+            "h": 44,
+            "text": "About"
+          },
+          {
+            "w": 43,
+            "h": 44,
+            "text": "Pricing"
+          },
+          {
+            "w": 28,
+            "h": 44,
+            "text": "Blog"
+          },
+          {
+            "w": 38,
+            "h": 44,
+            "text": "Terms"
+          },
+          {
+            "w": 32,
+            "h": 44,
+            "text": "Airoli"
+          }
+        ],
+        "h1": null,
+        "hasMain": true,
+        "title": "Contact | Ankit's Studio"
+      },
+      "/contact?status=not-configured": {
+        "route": "/contact?status=not-configured",
+        "status": 200,
+        "overflowX": false,
+        "scrollW": 390,
+        "innerW": 390,
+        "fixedBottom": 1,
+        "smallTargets": [
+          {
+            "w": 1,
+            "h": 1,
+            "text": "Skip to main content"
+          },
+          {
+            "w": 38,
+            "h": 20,
+            "text": "Home"
+          },
+          {
+            "w": 112,
+            "h": 19,
+            "text": "Book a free trial"
+          },
+          {
+            "w": 13,
+            "h": 20,
+            "text": ""
+          },
+          {
+            "w": 39,
+            "h": 44,
+            "text": "About"
+          },
+          {
+            "w": 43,
+            "h": 44,
+            "text": "Pricing"
+          },
+          {
+            "w": 28,
+            "h": 44,
+            "text": "Blog"
+          },
+          {
+            "w": 38,
+            "h": 44,
+            "text": "Terms"
+          },
+          {
+            "w": 32,
+            "h": 44,
+            "text": "Airoli"
+          }
+        ],
+        "h1": null,
+        "hasMain": true,
+        "title": "Contact | Ankit's Studio"
+      },
+      "/blog": {
+        "route": "/blog",
+        "status": 200,
+        "overflowX": false,
+        "scrollW": 390,
+        "innerW": 390,
+        "fixedBottom": 1,
+        "smallTargets": [
+          {
+            "w": 1,
+            "h": 1,
+            "text": "Skip to main content"
+          },
+          {
+            "w": 38,
+            "h": 20,
+            "text": "Home"
+          },
+          {
+            "w": 147,
+            "h": 19,
+            "text": "Browse programmes"
+          },
+          {
+            "w": 39,
+            "h": 44,
+            "text": "About"
+          },
+          {
+            "w": 43,
+            "h": 44,
+            "text": "Pricing"
+          },
+          {
+            "w": 28,
+            "h": 44,
+            "text": "Blog"
+          },
+          {
+            "w": 38,
+            "h": 44,
+            "text": "Terms"
+          },
+          {
+            "w": 32,
+            "h": 44,
+            "text": "Airoli"
+          }
+        ],
+        "h1": null,
+        "hasMain": true,
+        "title": "Blog | Ankit's Studio"
+      },
+      "/blog/sample-starting-with-strength": {
+        "route": "/blog/sample-starting-with-strength",
+        "status": 200,
+        "overflowX": false,
+        "scrollW": 390,
+        "innerW": 390,
+        "fixedBottom": 1,
+        "smallTargets": [
+          {
+            "w": 1,
+            "h": 1,
+            "text": "Skip to main content"
+          },
+          {
+            "w": 38,
+            "h": 20,
+            "text": "Home"
+          },
+          {
+            "w": 28,
+            "h": 20,
+            "text": "Blog"
+          },
+          {
+            "w": 39,
+            "h": 44,
+            "text": "About"
+          },
+          {
+            "w": 43,
+            "h": 44,
+            "text": "Pricing"
+          },
+          {
+            "w": 28,
+            "h": 44,
+            "text": "Blog"
+          },
+          {
+            "w": 38,
+            "h": 44,
+            "text": "Terms"
+          },
+          {
+            "w": 32,
+            "h": 44,
+            "text": "Airoli"
+          }
+        ],
+        "h1": "Sample: Starting with strength training",
+        "hasMain": true,
+        "title": "Sample: Starting with strength training | Ankit's Studio"
+      },
+      "/privacy-policy": {
+        "route": "/privacy-policy",
+        "status": 200,
+        "overflowX": false,
+        "scrollW": 390,
+        "innerW": 390,
+        "fixedBottom": 1,
+        "smallTargets": [
+          {
+            "w": 1,
+            "h": 1,
+            "text": "Skip to main content"
+          },
+          {
+            "w": 38,
+            "h": 20,
+            "text": "Home"
+          },
+          {
+            "w": 39,
+            "h": 44,
+            "text": "About"
+          },
+          {
+            "w": 43,
+            "h": 44,
+            "text": "Pricing"
+          },
+          {
+            "w": 28,
+            "h": 44,
+            "text": "Blog"
+          },
+          {
+            "w": 38,
+            "h": 44,
+            "text": "Terms"
+          },
+          {
+            "w": 32,
+            "h": 44,
+            "text": "Airoli"
+          }
+        ],
+        "h1": null,
+        "hasMain": true,
+        "title": "Privacy policy | Ankit's Studio"
+      },
+      "/terms": {
+        "route": "/terms",
+        "status": 200,
+        "overflowX": false,
+        "scrollW": 390,
+        "innerW": 390,
+        "fixedBottom": 1,
+        "smallTargets": [
+          {
+            "w": 1,
+            "h": 1,
+            "text": "Skip to main content"
+          },
+          {
+            "w": 38,
+            "h": 20,
+            "text": "Home"
+          },
+          {
+            "w": 39,
+            "h": 44,
+            "text": "About"
+          },
+          {
+            "w": 43,
+            "h": 44,
+            "text": "Pricing"
+          },
+          {
+            "w": 28,
+            "h": 44,
+            "text": "Blog"
+          },
+          {
+            "w": 38,
+            "h": 44,
+            "text": "Terms"
+          },
+          {
+            "w": 32,
+            "h": 44,
+            "text": "Airoli"
+          }
+        ],
+        "h1": null,
+        "hasMain": true,
+        "title": "Terms | Ankit's Studio"
+      },
+      "/this-route-does-not-exist": {
+        "route": "/this-route-does-not-exist",
+        "status": 404,
+        "overflowX": false,
+        "scrollW": 390,
+        "innerW": 390,
+        "fixedBottom": 0,
+        "smallTargets": [
+          {
+            "w": 1,
+            "h": 1,
+            "text": "Skip to main content"
+          },
+          {
+            "w": 125,
+            "h": 40,
+            "text": "Return home"
+          }
+        ],
+        "h1": "Page not found",
+        "hasMain": true,
+        "title": "Ankit's Studio",
+        "screenshot": "screenshots/view_390_this-route-does-not-exist.png"
+      }
+    },
+    "768x1024": {
+      "/": {
+        "route": "/",
+        "status": 200,
+        "overflowX": false,
+        "scrollW": 768,
+        "innerW": 768,
+        "fixedBottom": 1,
+        "smallTargets": [
+          {
+            "w": 1,
+            "h": 1,
+            "text": "Skip to main content"
+          },
+          {
+            "w": 39,
+            "h": 44,
+            "text": "About"
+          },
+          {
+            "w": 43,
+            "h": 44,
+            "text": "Pricing"
+          },
+          {
+            "w": 28,
+            "h": 44,
+            "text": "Blog"
+          },
+          {
+            "w": 38,
+            "h": 44,
+            "text": "Terms"
+          },
+          {
+            "w": 32,
+            "h": 44,
+            "text": "Airoli"
+          }
+        ],
+        "h1": "Move with strength, rhythm, and community.",
+        "hasMain": true,
+        "title": "Fitness & dance studio in Navi Mumbai | Ankit's Studio"
+      },
+      "/about": {
+        "route": "/about",
+        "status": 200,
+        "overflowX": false,
+        "scrollW": 768,
+        "innerW": 768,
+        "fixedBottom": 1,
+        "smallTargets": [
+          {
+            "w": 1,
+            "h": 1,
+            "text": "Skip to main content"
+          },
+          {
+            "w": 38,
+            "h": 20,
+            "text": "Home"
+          },
+          {
+            "w": 39,
+            "h": 44,
+            "text": "About"
+          },
+          {
+            "w": 43,
+            "h": 44,
+            "text": "Pricing"
+          },
+          {
+            "w": 28,
+            "h": 44,
+            "text": "Blog"
+          },
+          {
+            "w": 38,
+            "h": 44,
+            "text": "Terms"
+          },
+          {
+            "w": 32,
+            "h": 44,
+            "text": "Airoli"
+          }
+        ],
+        "h1": null,
+        "hasMain": true,
+        "title": "About | Ankit's Studio"
+      },
+      "/programs": {
+        "route": "/programs",
+        "status": 200,
+        "overflowX": false,
+        "scrollW": 768,
+        "innerW": 768,
+        "fixedBottom": 1,
+        "smallTargets": [
+          {
+            "w": 1,
+            "h": 1,
+            "text": "Skip to main content"
+          },
+          {
+            "w": 38,
+            "h": 17,
+            "text": "Home"
+          },
+          {
+            "w": 122,
+            "h": 19,
+            "text": "Browse locations"
+          },
+          {
+            "w": 39,
+            "h": 44,
+            "text": "About"
+          },
+          {
+            "w": 43,
+            "h": 44,
+            "text": "Pricing"
+          },
+          {
+            "w": 28,
+            "h": 44,
+            "text": "Blog"
+          },
+          {
+            "w": 38,
+            "h": 44,
+            "text": "Terms"
+          },
+          {
+            "w": 32,
+            "h": 44,
+            "text": "Airoli"
+          }
+        ],
+        "h1": null,
+        "hasMain": true,
+        "title": "Programmes | Ankit's Studio"
+      },
+      "/programs/strength-training": {
+        "route": "/programs/strength-training",
+        "status": 200,
+        "overflowX": false,
+        "scrollW": 768,
+        "innerW": 768,
+        "fixedBottom": 1,
+        "smallTargets": [
+          {
+            "w": 1,
+            "h": 1,
+            "text": "Skip to main content"
+          },
+          {
+            "w": 38,
+            "h": 17,
+            "text": "Home"
+          },
+          {
+            "w": 79,
+            "h": 17,
+            "text": "Programmes"
+          },
+          {
+            "w": 39,
+            "h": 44,
+            "text": "About"
+          },
+          {
+            "w": 43,
+            "h": 44,
+            "text": "Pricing"
+          },
+          {
+            "w": 28,
+            "h": 44,
+            "text": "Blog"
+          },
+          {
+            "w": 38,
+            "h": 44,
+            "text": "Terms"
+          },
+          {
+            "w": 32,
+            "h": 44,
+            "text": "Airoli"
+          }
+        ],
+        "h1": "Strength Training",
+        "hasMain": true,
+        "title": "Strength Training | Ankit's Studio"
+      },
+      "/programs/weight-loss-fitness": {
+        "route": "/programs/weight-loss-fitness",
+        "status": 200,
+        "overflowX": false,
+        "scrollW": 768,
+        "innerW": 768,
+        "fixedBottom": 1,
+        "smallTargets": [
+          {
+            "w": 1,
+            "h": 1,
+            "text": "Skip to main content"
+          },
+          {
+            "w": 38,
+            "h": 17,
+            "text": "Home"
+          },
+          {
+            "w": 79,
+            "h": 17,
+            "text": "Programmes"
+          },
+          {
+            "w": 39,
+            "h": 44,
+            "text": "About"
+          },
+          {
+            "w": 43,
+            "h": 44,
+            "text": "Pricing"
+          },
+          {
+            "w": 28,
+            "h": 44,
+            "text": "Blog"
+          },
+          {
+            "w": 38,
+            "h": 44,
+            "text": "Terms"
+          },
+          {
+            "w": 32,
+            "h": 44,
+            "text": "Airoli"
+          }
+        ],
+        "h1": "Weight-Loss & General Fitness",
+        "hasMain": true,
+        "title": "Weight-Loss & General Fitness | Ankit's Studio"
+      },
+      "/locations": {
+        "route": "/locations",
+        "status": 200,
+        "overflowX": false,
+        "scrollW": 768,
+        "innerW": 768,
+        "fixedBottom": 1,
+        "smallTargets": [
+          {
+            "w": 1,
+            "h": 1,
+            "text": "Skip to main content"
+          },
+          {
+            "w": 38,
+            "h": 17,
+            "text": "Home"
+          },
+          {
+            "w": 167,
+            "h": 19,
+            "text": "Browse all programmes"
+          },
+          {
+            "w": 39,
+            "h": 44,
+            "text": "About"
+          },
+          {
+            "w": 43,
+            "h": 44,
+            "text": "Pricing"
+          },
+          {
+            "w": 28,
+            "h": 44,
+            "text": "Blog"
+          },
+          {
+            "w": 38,
+            "h": 44,
+            "text": "Terms"
+          },
+          {
+            "w": 32,
+            "h": 44,
+            "text": "Airoli"
+          }
+        ],
+        "h1": null,
+        "hasMain": true,
+        "title": "Locations | Ankit's Studio"
+      },
+      "/locations/airoli": {
+        "route": "/locations/airoli",
+        "status": 200,
+        "overflowX": false,
+        "scrollW": 768,
+        "innerW": 768,
+        "fixedBottom": 1,
+        "smallTargets": [
+          {
+            "w": 1,
+            "h": 1,
+            "text": "Skip to main content"
+          },
+          {
+            "w": 38,
+            "h": 17,
+            "text": "Home"
+          },
+          {
+            "w": 61,
+            "h": 17,
+            "text": "Locations"
+          },
+          {
+            "w": 39,
+            "h": 44,
+            "text": "About"
+          },
+          {
+            "w": 43,
+            "h": 44,
+            "text": "Pricing"
+          },
+          {
+            "w": 28,
+            "h": 44,
+            "text": "Blog"
+          },
+          {
+            "w": 38,
+            "h": 44,
+            "text": "Terms"
+          },
+          {
+            "w": 32,
+            "h": 44,
+            "text": "Airoli"
+          }
+        ],
+        "h1": "Ankit's Studio — Airoli",
+        "hasMain": true,
+        "title": "Ankit's Studio — Airoli | Ankit's Studio"
+      },
+      "/locations/thane": {
+        "route": "/locations/thane",
+        "status": 200,
+        "overflowX": false,
+        "scrollW": 768,
+        "innerW": 768,
+        "fixedBottom": 1,
+        "smallTargets": [
+          {
+            "w": 1,
+            "h": 1,
+            "text": "Skip to main content"
+          },
+          {
+            "w": 38,
+            "h": 17,
+            "text": "Home"
+          },
+          {
+            "w": 61,
+            "h": 17,
+            "text": "Locations"
+          },
+          {
+            "w": 39,
+            "h": 44,
+            "text": "About"
+          },
+          {
+            "w": 43,
+            "h": 44,
+            "text": "Pricing"
+          },
+          {
+            "w": 28,
+            "h": 44,
+            "text": "Blog"
+          },
+          {
+            "w": 38,
+            "h": 44,
+            "text": "Terms"
+          },
+          {
+            "w": 32,
+            "h": 44,
+            "text": "Airoli"
+          }
+        ],
+        "h1": "Ankit's Studio — Thane",
+        "hasMain": true,
+        "title": "Ankit's Studio — Thane | Ankit's Studio"
+      },
+      "/trainers": {
+        "route": "/trainers",
+        "status": 200,
+        "overflowX": false,
+        "scrollW": 768,
+        "innerW": 768,
+        "fixedBottom": 1,
+        "smallTargets": [
+          {
+            "w": 1,
+            "h": 1,
+            "text": "Skip to main content"
+          },
+          {
+            "w": 38,
+            "h": 20,
+            "text": "Home"
+          },
+          {
+            "w": 147,
+            "h": 19,
+            "text": "Browse programmes"
+          },
+          {
+            "w": 39,
+            "h": 44,
+            "text": "About"
+          },
+          {
+            "w": 43,
+            "h": 44,
+            "text": "Pricing"
+          },
+          {
+            "w": 28,
+            "h": 44,
+            "text": "Blog"
+          },
+          {
+            "w": 38,
+            "h": 44,
+            "text": "Terms"
+          },
+          {
+            "w": 32,
+            "h": 44,
+            "text": "Airoli"
+          }
+        ],
+        "h1": null,
+        "hasMain": true,
+        "title": "Trainers | Ankit's Studio"
+      },
+      "/trainers/illustrative-trainer-1": {
+        "route": "/trainers/illustrative-trainer-1",
+        "status": 200,
+        "overflowX": false,
+        "scrollW": 768,
+        "innerW": 768,
+        "fixedBottom": 1,
+        "smallTargets": [
+          {
+            "w": 1,
+            "h": 1,
+            "text": "Skip to main content"
+          },
+          {
+            "w": 38,
+            "h": 20,
+            "text": "Home"
+          },
+          {
+            "w": 49,
+            "h": 20,
+            "text": "Trainers"
+          },
+          {
+            "w": 39,
+            "h": 44,
+            "text": "About"
+          },
+          {
+            "w": 43,
+            "h": 44,
+            "text": "Pricing"
+          },
+          {
+            "w": 28,
+            "h": 44,
+            "text": "Blog"
+          },
+          {
+            "w": 38,
+            "h": 44,
+            "text": "Terms"
+          },
+          {
+            "w": 32,
+            "h": 44,
+            "text": "Airoli"
+          }
+        ],
+        "h1": "Illustrative Trainer — A.",
+        "hasMain": true,
+        "title": "Illustrative Trainer — A. | Ankit's Studio"
+      },
+      "/transformations": {
+        "route": "/transformations",
+        "status": 200,
+        "overflowX": false,
+        "scrollW": 768,
+        "innerW": 768,
+        "fixedBottom": 1,
+        "smallTargets": [
+          {
+            "w": 1,
+            "h": 1,
+            "text": "Skip to main content"
+          },
+          {
+            "w": 38,
+            "h": 20,
+            "text": "Home"
+          },
+          {
+            "w": 112,
+            "h": 19,
+            "text": "Book a free trial"
+          },
+          {
+            "w": 39,
+            "h": 44,
+            "text": "About"
+          },
+          {
+            "w": 43,
+            "h": 44,
+            "text": "Pricing"
+          },
+          {
+            "w": 28,
+            "h": 44,
+            "text": "Blog"
+          },
+          {
+            "w": 38,
+            "h": 44,
+            "text": "Terms"
+          },
+          {
+            "w": 32,
+            "h": 44,
+            "text": "Airoli"
+          }
+        ],
+        "h1": null,
+        "hasMain": true,
+        "title": "Transformations | Ankit's Studio"
+      },
+      "/timetable": {
+        "route": "/timetable",
+        "status": 200,
+        "overflowX": false,
+        "scrollW": 768,
+        "innerW": 768,
+        "fixedBottom": 1,
+        "smallTargets": [
+          {
+            "w": 1,
+            "h": 1,
+            "text": "Skip to main content"
+          },
+          {
+            "w": 38,
+            "h": 20,
+            "text": "Home"
+          },
+          {
+            "w": 39,
+            "h": 44,
+            "text": "About"
+          },
+          {
+            "w": 43,
+            "h": 44,
+            "text": "Pricing"
+          },
+          {
+            "w": 28,
+            "h": 44,
+            "text": "Blog"
+          },
+          {
+            "w": 38,
+            "h": 44,
+            "text": "Terms"
+          },
+          {
+            "w": 32,
+            "h": 44,
+            "text": "Airoli"
+          }
+        ],
+        "h1": null,
+        "hasMain": true,
+        "title": "Timetable | Ankit's Studio"
+      },
+      "/timetable?branch=airoli&programme=yoga": {
+        "route": "/timetable?branch=airoli&programme=yoga",
+        "status": 200,
+        "overflowX": false,
+        "scrollW": 768,
+        "innerW": 768,
+        "fixedBottom": 1,
+        "smallTargets": [
+          {
+            "w": 1,
+            "h": 1,
+            "text": "Skip to main content"
+          },
+          {
+            "w": 38,
+            "h": 20,
+            "text": "Home"
+          },
+          {
+            "w": 39,
+            "h": 44,
+            "text": "About"
+          },
+          {
+            "w": 43,
+            "h": 44,
+            "text": "Pricing"
+          },
+          {
+            "w": 28,
+            "h": 44,
+            "text": "Blog"
+          },
+          {
+            "w": 38,
+            "h": 44,
+            "text": "Terms"
+          },
+          {
+            "w": 32,
+            "h": 44,
+            "text": "Airoli"
+          }
+        ],
+        "h1": null,
+        "hasMain": true,
+        "title": "Timetable | Ankit's Studio"
+      },
+      "/pricing": {
+        "route": "/pricing",
+        "status": 200,
+        "overflowX": false,
+        "scrollW": 768,
+        "innerW": 768,
+        "fixedBottom": 1,
+        "smallTargets": [
+          {
+            "w": 1,
+            "h": 1,
+            "text": "Skip to main content"
+          },
+          {
+            "w": 38,
+            "h": 20,
+            "text": "Home"
+          },
+          {
+            "w": 112,
+            "h": 19,
+            "text": "Book a free trial"
+          },
+          {
+            "w": 39,
+            "h": 44,
+            "text": "About"
+          },
+          {
+            "w": 43,
+            "h": 44,
+            "text": "Pricing"
+          },
+          {
+            "w": 28,
+            "h": 44,
+            "text": "Blog"
+          },
+          {
+            "w": 38,
+            "h": 44,
+            "text": "Terms"
+          },
+          {
+            "w": 32,
+            "h": 44,
+            "text": "Airoli"
+          }
+        ],
+        "h1": null,
+        "hasMain": true,
+        "title": "Pricing | Ankit's Studio"
+      },
+      "/trial": {
+        "route": "/trial",
+        "status": 200,
+        "overflowX": false,
+        "scrollW": 768,
+        "innerW": 768,
+        "fixedBottom": 0,
+        "smallTargets": [
+          {
+            "w": 1,
+            "h": 1,
+            "text": "Skip to main content"
+          },
+          {
+            "w": 38,
+            "h": 20,
+            "text": "Home"
+          },
+          {
+            "w": 13,
+            "h": 20,
+            "text": ""
+          },
+          {
+            "w": 39,
+            "h": 44,
+            "text": "About"
+          },
+          {
+            "w": 43,
+            "h": 44,
+            "text": "Pricing"
+          },
+          {
+            "w": 28,
+            "h": 44,
+            "text": "Blog"
+          },
+          {
+            "w": 38,
+            "h": 44,
+            "text": "Terms"
+          },
+          {
+            "w": 32,
+            "h": 44,
+            "text": "Airoli"
+          }
+        ],
+        "h1": null,
+        "hasMain": true,
+        "title": "Book a free trial | Ankit's Studio"
+      },
+      "/trial?status=validation-error": {
+        "route": "/trial?status=validation-error",
+        "status": 200,
+        "overflowX": false,
+        "scrollW": 768,
+        "innerW": 768,
+        "fixedBottom": 0,
+        "smallTargets": [
+          {
+            "w": 1,
+            "h": 1,
+            "text": "Skip to main content"
+          },
+          {
+            "w": 38,
+            "h": 20,
+            "text": "Home"
+          },
+          {
+            "w": 13,
+            "h": 20,
+            "text": ""
+          },
+          {
+            "w": 39,
+            "h": 44,
+            "text": "About"
+          },
+          {
+            "w": 43,
+            "h": 44,
+            "text": "Pricing"
+          },
+          {
+            "w": 28,
+            "h": 44,
+            "text": "Blog"
+          },
+          {
+            "w": 38,
+            "h": 44,
+            "text": "Terms"
+          },
+          {
+            "w": 32,
+            "h": 44,
+            "text": "Airoli"
+          }
+        ],
+        "h1": null,
+        "hasMain": true,
+        "title": "Book a free trial | Ankit's Studio"
+      },
+      "/trial?status=not-configured": {
+        "route": "/trial?status=not-configured",
+        "status": 200,
+        "overflowX": false,
+        "scrollW": 768,
+        "innerW": 768,
+        "fixedBottom": 0,
+        "smallTargets": [
+          {
+            "w": 1,
+            "h": 1,
+            "text": "Skip to main content"
+          },
+          {
+            "w": 38,
+            "h": 20,
+            "text": "Home"
+          },
+          {
+            "w": 13,
+            "h": 20,
+            "text": ""
+          },
+          {
+            "w": 39,
+            "h": 44,
+            "text": "About"
+          },
+          {
+            "w": 43,
+            "h": 44,
+            "text": "Pricing"
+          },
+          {
+            "w": 28,
+            "h": 44,
+            "text": "Blog"
+          },
+          {
+            "w": 38,
+            "h": 44,
+            "text": "Terms"
+          },
+          {
+            "w": 32,
+            "h": 44,
+            "text": "Airoli"
+          }
+        ],
+        "h1": null,
+        "hasMain": true,
+        "title": "Book a free trial | Ankit's Studio"
+      },
+      "/contact": {
+        "route": "/contact",
+        "status": 200,
+        "overflowX": false,
+        "scrollW": 768,
+        "innerW": 768,
+        "fixedBottom": 1,
+        "smallTargets": [
+          {
+            "w": 1,
+            "h": 1,
+            "text": "Skip to main content"
+          },
+          {
+            "w": 38,
+            "h": 20,
+            "text": "Home"
+          },
+          {
+            "w": 112,
+            "h": 19,
+            "text": "Book a free trial"
+          },
+          {
+            "w": 16,
+            "h": 20,
+            "text": ""
+          },
+          {
+            "w": 39,
+            "h": 44,
+            "text": "About"
+          },
+          {
+            "w": 43,
+            "h": 44,
+            "text": "Pricing"
+          },
+          {
+            "w": 28,
+            "h": 44,
+            "text": "Blog"
+          },
+          {
+            "w": 38,
+            "h": 44,
+            "text": "Terms"
+          },
+          {
+            "w": 32,
+            "h": 44,
+            "text": "Airoli"
+          }
+        ],
+        "h1": null,
+        "hasMain": true,
+        "title": "Contact | Ankit's Studio"
+      },
+      "/contact?status=not-configured": {
+        "route": "/contact?status=not-configured",
+        "status": 200,
+        "overflowX": false,
+        "scrollW": 768,
+        "innerW": 768,
+        "fixedBottom": 1,
+        "smallTargets": [
+          {
+            "w": 1,
+            "h": 1,
+            "text": "Skip to main content"
+          },
+          {
+            "w": 38,
+            "h": 20,
+            "text": "Home"
+          },
+          {
+            "w": 112,
+            "h": 19,
+            "text": "Book a free trial"
+          },
+          {
+            "w": 16,
+            "h": 20,
+            "text": ""
+          },
+          {
+            "w": 39,
+            "h": 44,
+            "text": "About"
+          },
+          {
+            "w": 43,
+            "h": 44,
+            "text": "Pricing"
+          },
+          {
+            "w": 28,
+            "h": 44,
+            "text": "Blog"
+          },
+          {
+            "w": 38,
+            "h": 44,
+            "text": "Terms"
+          },
+          {
+            "w": 32,
+            "h": 44,
+            "text": "Airoli"
+          }
+        ],
+        "h1": null,
+        "hasMain": true,
+        "title": "Contact | Ankit's Studio"
+      },
+      "/blog": {
+        "route": "/blog",
+        "status": 200,
+        "overflowX": false,
+        "scrollW": 768,
+        "innerW": 768,
+        "fixedBottom": 1,
+        "smallTargets": [
+          {
+            "w": 1,
+            "h": 1,
+            "text": "Skip to main content"
+          },
+          {
+            "w": 38,
+            "h": 20,
+            "text": "Home"
+          },
+          {
+            "w": 147,
+            "h": 19,
+            "text": "Browse programmes"
+          },
+          {
+            "w": 39,
+            "h": 44,
+            "text": "About"
+          },
+          {
+            "w": 43,
+            "h": 44,
+            "text": "Pricing"
+          },
+          {
+            "w": 28,
+            "h": 44,
+            "text": "Blog"
+          },
+          {
+            "w": 38,
+            "h": 44,
+            "text": "Terms"
+          },
+          {
+            "w": 32,
+            "h": 44,
+            "text": "Airoli"
+          }
+        ],
+        "h1": null,
+        "hasMain": true,
+        "title": "Blog | Ankit's Studio"
+      },
+      "/blog/sample-starting-with-strength": {
+        "route": "/blog/sample-starting-with-strength",
+        "status": 200,
+        "overflowX": false,
+        "scrollW": 768,
+        "innerW": 768,
+        "fixedBottom": 1,
+        "smallTargets": [
+          {
+            "w": 1,
+            "h": 1,
+            "text": "Skip to main content"
+          },
+          {
+            "w": 38,
+            "h": 20,
+            "text": "Home"
+          },
+          {
+            "w": 28,
+            "h": 20,
+            "text": "Blog"
+          },
+          {
+            "w": 39,
+            "h": 44,
+            "text": "About"
+          },
+          {
+            "w": 43,
+            "h": 44,
+            "text": "Pricing"
+          },
+          {
+            "w": 28,
+            "h": 44,
+            "text": "Blog"
+          },
+          {
+            "w": 38,
+            "h": 44,
+            "text": "Terms"
+          },
+          {
+            "w": 32,
+            "h": 44,
+            "text": "Airoli"
+          }
+        ],
+        "h1": "Sample: Starting with strength training",
+        "hasMain": true,
+        "title": "Sample: Starting with strength training | Ankit's Studio"
+      },
+      "/privacy-policy": {
+        "route": "/privacy-policy",
+        "status": 200,
+        "overflowX": false,
+        "scrollW": 768,
+        "innerW": 768,
+        "fixedBottom": 1,
+        "smallTargets": [
+          {
+            "w": 1,
+            "h": 1,
+            "text": "Skip to main content"
+          },
+          {
+            "w": 38,
+            "h": 20,
+            "text": "Home"
+          },
+          {
+            "w": 39,
+            "h": 44,
+            "text": "About"
+          },
+          {
+            "w": 43,
+            "h": 44,
+            "text": "Pricing"
+          },
+          {
+            "w": 28,
+            "h": 44,
+            "text": "Blog"
+          },
+          {
+            "w": 38,
+            "h": 44,
+            "text": "Terms"
+          },
+          {
+            "w": 32,
+            "h": 44,
+            "text": "Airoli"
+          }
+        ],
+        "h1": null,
+        "hasMain": true,
+        "title": "Privacy policy | Ankit's Studio"
+      },
+      "/terms": {
+        "route": "/terms",
+        "status": 200,
+        "overflowX": false,
+        "scrollW": 768,
+        "innerW": 768,
+        "fixedBottom": 1,
+        "smallTargets": [
+          {
+            "w": 1,
+            "h": 1,
+            "text": "Skip to main content"
+          },
+          {
+            "w": 38,
+            "h": 20,
+            "text": "Home"
+          },
+          {
+            "w": 39,
+            "h": 44,
+            "text": "About"
+          },
+          {
+            "w": 43,
+            "h": 44,
+            "text": "Pricing"
+          },
+          {
+            "w": 28,
+            "h": 44,
+            "text": "Blog"
+          },
+          {
+            "w": 38,
+            "h": 44,
+            "text": "Terms"
+          },
+          {
+            "w": 32,
+            "h": 44,
+            "text": "Airoli"
+          }
+        ],
+        "h1": null,
+        "hasMain": true,
+        "title": "Terms | Ankit's Studio"
+      },
+      "/this-route-does-not-exist": {
+        "route": "/this-route-does-not-exist",
+        "status": 404,
+        "overflowX": false,
+        "scrollW": 768,
+        "innerW": 768,
+        "fixedBottom": 0,
+        "smallTargets": [
+          {
+            "w": 1,
+            "h": 1,
+            "text": "Skip to main content"
+          },
+          {
+            "w": 125,
+            "h": 40,
+            "text": "Return home"
+          }
+        ],
+        "h1": "Page not found",
+        "hasMain": true,
+        "title": "Ankit's Studio"
+      }
+    },
+    "1440x900": {
+      "/": {
+        "route": "/",
+        "status": 200,
+        "overflowX": false,
+        "scrollW": 1440,
+        "innerW": 1440,
+        "fixedBottom": 1,
+        "smallTargets": [
+          {
+            "w": 1,
+            "h": 1,
+            "text": "Skip to main content"
+          },
+          {
+            "w": 39,
+            "h": 44,
+            "text": "About"
+          },
+          {
+            "w": 43,
+            "h": 44,
+            "text": "Pricing"
+          },
+          {
+            "w": 28,
+            "h": 44,
+            "text": "Blog"
+          },
+          {
+            "w": 38,
+            "h": 44,
+            "text": "Terms"
+          },
+          {
+            "w": 32,
+            "h": 44,
+            "text": "Airoli"
+          }
+        ],
+        "h1": "Move with strength, rhythm, and community.",
+        "hasMain": true,
+        "title": "Fitness & dance studio in Navi Mumbai | Ankit's Studio"
+      },
+      "/about": {
+        "route": "/about",
+        "status": 200,
+        "overflowX": false,
+        "scrollW": 1440,
+        "innerW": 1440,
+        "fixedBottom": 1,
+        "smallTargets": [
+          {
+            "w": 1,
+            "h": 1,
+            "text": "Skip to main content"
+          },
+          {
+            "w": 38,
+            "h": 20,
+            "text": "Home"
+          },
+          {
+            "w": 39,
+            "h": 44,
+            "text": "About"
+          },
+          {
+            "w": 43,
+            "h": 44,
+            "text": "Pricing"
+          },
+          {
+            "w": 28,
+            "h": 44,
+            "text": "Blog"
+          },
+          {
+            "w": 38,
+            "h": 44,
+            "text": "Terms"
+          },
+          {
+            "w": 32,
+            "h": 44,
+            "text": "Airoli"
+          }
+        ],
+        "h1": null,
+        "hasMain": true,
+        "title": "About | Ankit's Studio"
+      },
+      "/programs": {
+        "route": "/programs",
+        "status": 200,
+        "overflowX": false,
+        "scrollW": 1440,
+        "innerW": 1440,
+        "fixedBottom": 1,
+        "smallTargets": [
+          {
+            "w": 1,
+            "h": 1,
+            "text": "Skip to main content"
+          },
+          {
+            "w": 38,
+            "h": 17,
+            "text": "Home"
+          },
+          {
+            "w": 122,
+            "h": 19,
+            "text": "Browse locations"
+          },
+          {
+            "w": 39,
+            "h": 44,
+            "text": "About"
+          },
+          {
+            "w": 43,
+            "h": 44,
+            "text": "Pricing"
+          },
+          {
+            "w": 28,
+            "h": 44,
+            "text": "Blog"
+          },
+          {
+            "w": 38,
+            "h": 44,
+            "text": "Terms"
+          },
+          {
+            "w": 32,
+            "h": 44,
+            "text": "Airoli"
+          }
+        ],
+        "h1": null,
+        "hasMain": true,
+        "title": "Programmes | Ankit's Studio"
+      },
+      "/programs/strength-training": {
+        "route": "/programs/strength-training",
+        "status": 200,
+        "overflowX": false,
+        "scrollW": 1440,
+        "innerW": 1440,
+        "fixedBottom": 1,
+        "smallTargets": [
+          {
+            "w": 1,
+            "h": 1,
+            "text": "Skip to main content"
+          },
+          {
+            "w": 38,
+            "h": 17,
+            "text": "Home"
+          },
+          {
+            "w": 79,
+            "h": 17,
+            "text": "Programmes"
+          },
+          {
+            "w": 39,
+            "h": 44,
+            "text": "About"
+          },
+          {
+            "w": 43,
+            "h": 44,
+            "text": "Pricing"
+          },
+          {
+            "w": 28,
+            "h": 44,
+            "text": "Blog"
+          },
+          {
+            "w": 38,
+            "h": 44,
+            "text": "Terms"
+          },
+          {
+            "w": 32,
+            "h": 44,
+            "text": "Airoli"
+          }
+        ],
+        "h1": "Strength Training",
+        "hasMain": true,
+        "title": "Strength Training | Ankit's Studio"
+      },
+      "/programs/weight-loss-fitness": {
+        "route": "/programs/weight-loss-fitness",
+        "status": 200,
+        "overflowX": false,
+        "scrollW": 1440,
+        "innerW": 1440,
+        "fixedBottom": 1,
+        "smallTargets": [
+          {
+            "w": 1,
+            "h": 1,
+            "text": "Skip to main content"
+          },
+          {
+            "w": 38,
+            "h": 17,
+            "text": "Home"
+          },
+          {
+            "w": 79,
+            "h": 17,
+            "text": "Programmes"
+          },
+          {
+            "w": 39,
+            "h": 44,
+            "text": "About"
+          },
+          {
+            "w": 43,
+            "h": 44,
+            "text": "Pricing"
+          },
+          {
+            "w": 28,
+            "h": 44,
+            "text": "Blog"
+          },
+          {
+            "w": 38,
+            "h": 44,
+            "text": "Terms"
+          },
+          {
+            "w": 32,
+            "h": 44,
+            "text": "Airoli"
+          }
+        ],
+        "h1": "Weight-Loss & General Fitness",
+        "hasMain": true,
+        "title": "Weight-Loss & General Fitness | Ankit's Studio"
+      },
+      "/locations": {
+        "route": "/locations",
+        "status": 200,
+        "overflowX": false,
+        "scrollW": 1440,
+        "innerW": 1440,
+        "fixedBottom": 1,
+        "smallTargets": [
+          {
+            "w": 1,
+            "h": 1,
+            "text": "Skip to main content"
+          },
+          {
+            "w": 38,
+            "h": 17,
+            "text": "Home"
+          },
+          {
+            "w": 167,
+            "h": 19,
+            "text": "Browse all programmes"
+          },
+          {
+            "w": 39,
+            "h": 44,
+            "text": "About"
+          },
+          {
+            "w": 43,
+            "h": 44,
+            "text": "Pricing"
+          },
+          {
+            "w": 28,
+            "h": 44,
+            "text": "Blog"
+          },
+          {
+            "w": 38,
+            "h": 44,
+            "text": "Terms"
+          },
+          {
+            "w": 32,
+            "h": 44,
+            "text": "Airoli"
+          }
+        ],
+        "h1": null,
+        "hasMain": true,
+        "title": "Locations | Ankit's Studio"
+      },
+      "/locations/airoli": {
+        "route": "/locations/airoli",
+        "status": 200,
+        "overflowX": false,
+        "scrollW": 1440,
+        "innerW": 1440,
+        "fixedBottom": 1,
+        "smallTargets": [
+          {
+            "w": 1,
+            "h": 1,
+            "text": "Skip to main content"
+          },
+          {
+            "w": 38,
+            "h": 17,
+            "text": "Home"
+          },
+          {
+            "w": 61,
+            "h": 17,
+            "text": "Locations"
+          },
+          {
+            "w": 39,
+            "h": 44,
+            "text": "About"
+          },
+          {
+            "w": 43,
+            "h": 44,
+            "text": "Pricing"
+          },
+          {
+            "w": 28,
+            "h": 44,
+            "text": "Blog"
+          },
+          {
+            "w": 38,
+            "h": 44,
+            "text": "Terms"
+          },
+          {
+            "w": 32,
+            "h": 44,
+            "text": "Airoli"
+          }
+        ],
+        "h1": "Ankit's Studio — Airoli",
+        "hasMain": true,
+        "title": "Ankit's Studio — Airoli | Ankit's Studio"
+      },
+      "/locations/thane": {
+        "route": "/locations/thane",
+        "status": 200,
+        "overflowX": false,
+        "scrollW": 1440,
+        "innerW": 1440,
+        "fixedBottom": 1,
+        "smallTargets": [
+          {
+            "w": 1,
+            "h": 1,
+            "text": "Skip to main content"
+          },
+          {
+            "w": 38,
+            "h": 17,
+            "text": "Home"
+          },
+          {
+            "w": 61,
+            "h": 17,
+            "text": "Locations"
+          },
+          {
+            "w": 39,
+            "h": 44,
+            "text": "About"
+          },
+          {
+            "w": 43,
+            "h": 44,
+            "text": "Pricing"
+          },
+          {
+            "w": 28,
+            "h": 44,
+            "text": "Blog"
+          },
+          {
+            "w": 38,
+            "h": 44,
+            "text": "Terms"
+          },
+          {
+            "w": 32,
+            "h": 44,
+            "text": "Airoli"
+          }
+        ],
+        "h1": "Ankit's Studio — Thane",
+        "hasMain": true,
+        "title": "Ankit's Studio — Thane | Ankit's Studio"
+      },
+      "/trainers": {
+        "route": "/trainers",
+        "status": 200,
+        "overflowX": false,
+        "scrollW": 1440,
+        "innerW": 1440,
+        "fixedBottom": 1,
+        "smallTargets": [
+          {
+            "w": 1,
+            "h": 1,
+            "text": "Skip to main content"
+          },
+          {
+            "w": 38,
+            "h": 20,
+            "text": "Home"
+          },
+          {
+            "w": 147,
+            "h": 19,
+            "text": "Browse programmes"
+          },
+          {
+            "w": 39,
+            "h": 44,
+            "text": "About"
+          },
+          {
+            "w": 43,
+            "h": 44,
+            "text": "Pricing"
+          },
+          {
+            "w": 28,
+            "h": 44,
+            "text": "Blog"
+          },
+          {
+            "w": 38,
+            "h": 44,
+            "text": "Terms"
+          },
+          {
+            "w": 32,
+            "h": 44,
+            "text": "Airoli"
+          }
+        ],
+        "h1": null,
+        "hasMain": true,
+        "title": "Trainers | Ankit's Studio"
+      },
+      "/trainers/illustrative-trainer-1": {
+        "route": "/trainers/illustrative-trainer-1",
+        "status": 200,
+        "overflowX": false,
+        "scrollW": 1440,
+        "innerW": 1440,
+        "fixedBottom": 1,
+        "smallTargets": [
+          {
+            "w": 1,
+            "h": 1,
+            "text": "Skip to main content"
+          },
+          {
+            "w": 38,
+            "h": 20,
+            "text": "Home"
+          },
+          {
+            "w": 49,
+            "h": 20,
+            "text": "Trainers"
+          },
+          {
+            "w": 39,
+            "h": 44,
+            "text": "About"
+          },
+          {
+            "w": 43,
+            "h": 44,
+            "text": "Pricing"
+          },
+          {
+            "w": 28,
+            "h": 44,
+            "text": "Blog"
+          },
+          {
+            "w": 38,
+            "h": 44,
+            "text": "Terms"
+          },
+          {
+            "w": 32,
+            "h": 44,
+            "text": "Airoli"
+          }
+        ],
+        "h1": "Illustrative Trainer — A.",
+        "hasMain": true,
+        "title": "Illustrative Trainer — A. | Ankit's Studio"
+      },
+      "/transformations": {
+        "route": "/transformations",
+        "status": 200,
+        "overflowX": false,
+        "scrollW": 1440,
+        "innerW": 1440,
+        "fixedBottom": 1,
+        "smallTargets": [
+          {
+            "w": 1,
+            "h": 1,
+            "text": "Skip to main content"
+          },
+          {
+            "w": 38,
+            "h": 20,
+            "text": "Home"
+          },
+          {
+            "w": 112,
+            "h": 19,
+            "text": "Book a free trial"
+          },
+          {
+            "w": 39,
+            "h": 44,
+            "text": "About"
+          },
+          {
+            "w": 43,
+            "h": 44,
+            "text": "Pricing"
+          },
+          {
+            "w": 28,
+            "h": 44,
+            "text": "Blog"
+          },
+          {
+            "w": 38,
+            "h": 44,
+            "text": "Terms"
+          },
+          {
+            "w": 32,
+            "h": 44,
+            "text": "Airoli"
+          }
+        ],
+        "h1": null,
+        "hasMain": true,
+        "title": "Transformations | Ankit's Studio"
+      },
+      "/timetable": {
+        "route": "/timetable",
+        "status": 200,
+        "overflowX": false,
+        "scrollW": 1440,
+        "innerW": 1440,
+        "fixedBottom": 1,
+        "smallTargets": [
+          {
+            "w": 1,
+            "h": 1,
+            "text": "Skip to main content"
+          },
+          {
+            "w": 38,
+            "h": 20,
+            "text": "Home"
+          },
+          {
+            "w": 39,
+            "h": 44,
+            "text": "About"
+          },
+          {
+            "w": 43,
+            "h": 44,
+            "text": "Pricing"
+          },
+          {
+            "w": 28,
+            "h": 44,
+            "text": "Blog"
+          },
+          {
+            "w": 38,
+            "h": 44,
+            "text": "Terms"
+          },
+          {
+            "w": 32,
+            "h": 44,
+            "text": "Airoli"
+          }
+        ],
+        "h1": null,
+        "hasMain": true,
+        "title": "Timetable | Ankit's Studio"
+      },
+      "/timetable?branch=airoli&programme=yoga": {
+        "route": "/timetable?branch=airoli&programme=yoga",
+        "status": 200,
+        "overflowX": false,
+        "scrollW": 1440,
+        "innerW": 1440,
+        "fixedBottom": 1,
+        "smallTargets": [
+          {
+            "w": 1,
+            "h": 1,
+            "text": "Skip to main content"
+          },
+          {
+            "w": 38,
+            "h": 20,
+            "text": "Home"
+          },
+          {
+            "w": 39,
+            "h": 44,
+            "text": "About"
+          },
+          {
+            "w": 43,
+            "h": 44,
+            "text": "Pricing"
+          },
+          {
+            "w": 28,
+            "h": 44,
+            "text": "Blog"
+          },
+          {
+            "w": 38,
+            "h": 44,
+            "text": "Terms"
+          },
+          {
+            "w": 32,
+            "h": 44,
+            "text": "Airoli"
+          }
+        ],
+        "h1": null,
+        "hasMain": true,
+        "title": "Timetable | Ankit's Studio"
+      },
+      "/pricing": {
+        "route": "/pricing",
+        "status": 200,
+        "overflowX": false,
+        "scrollW": 1440,
+        "innerW": 1440,
+        "fixedBottom": 1,
+        "smallTargets": [
+          {
+            "w": 1,
+            "h": 1,
+            "text": "Skip to main content"
+          },
+          {
+            "w": 38,
+            "h": 20,
+            "text": "Home"
+          },
+          {
+            "w": 112,
+            "h": 19,
+            "text": "Book a free trial"
+          },
+          {
+            "w": 39,
+            "h": 44,
+            "text": "About"
+          },
+          {
+            "w": 43,
+            "h": 44,
+            "text": "Pricing"
+          },
+          {
+            "w": 28,
+            "h": 44,
+            "text": "Blog"
+          },
+          {
+            "w": 38,
+            "h": 44,
+            "text": "Terms"
+          },
+          {
+            "w": 32,
+            "h": 44,
+            "text": "Airoli"
+          }
+        ],
+        "h1": null,
+        "hasMain": true,
+        "title": "Pricing | Ankit's Studio"
+      },
+      "/trial": {
+        "route": "/trial",
+        "status": 200,
+        "overflowX": false,
+        "scrollW": 1440,
+        "innerW": 1440,
+        "fixedBottom": 0,
+        "smallTargets": [
+          {
+            "w": 1,
+            "h": 1,
+            "text": "Skip to main content"
+          },
+          {
+            "w": 38,
+            "h": 20,
+            "text": "Home"
+          },
+          {
+            "w": 13,
+            "h": 20,
+            "text": ""
+          },
+          {
+            "w": 39,
+            "h": 44,
+            "text": "About"
+          },
+          {
+            "w": 43,
+            "h": 44,
+            "text": "Pricing"
+          },
+          {
+            "w": 28,
+            "h": 44,
+            "text": "Blog"
+          },
+          {
+            "w": 38,
+            "h": 44,
+            "text": "Terms"
+          },
+          {
+            "w": 32,
+            "h": 44,
+            "text": "Airoli"
+          }
+        ],
+        "h1": null,
+        "hasMain": true,
+        "title": "Book a free trial | Ankit's Studio"
+      },
+      "/trial?status=validation-error": {
+        "route": "/trial?status=validation-error",
+        "status": 200,
+        "overflowX": false,
+        "scrollW": 1440,
+        "innerW": 1440,
+        "fixedBottom": 0,
+        "smallTargets": [
+          {
+            "w": 1,
+            "h": 1,
+            "text": "Skip to main content"
+          },
+          {
+            "w": 38,
+            "h": 20,
+            "text": "Home"
+          },
+          {
+            "w": 13,
+            "h": 20,
+            "text": ""
+          },
+          {
+            "w": 39,
+            "h": 44,
+            "text": "About"
+          },
+          {
+            "w": 43,
+            "h": 44,
+            "text": "Pricing"
+          },
+          {
+            "w": 28,
+            "h": 44,
+            "text": "Blog"
+          },
+          {
+            "w": 38,
+            "h": 44,
+            "text": "Terms"
+          },
+          {
+            "w": 32,
+            "h": 44,
+            "text": "Airoli"
+          }
+        ],
+        "h1": null,
+        "hasMain": true,
+        "title": "Book a free trial | Ankit's Studio"
+      },
+      "/trial?status=not-configured": {
+        "route": "/trial?status=not-configured",
+        "status": 200,
+        "overflowX": false,
+        "scrollW": 1440,
+        "innerW": 1440,
+        "fixedBottom": 0,
+        "smallTargets": [
+          {
+            "w": 1,
+            "h": 1,
+            "text": "Skip to main content"
+          },
+          {
+            "w": 38,
+            "h": 20,
+            "text": "Home"
+          },
+          {
+            "w": 13,
+            "h": 20,
+            "text": ""
+          },
+          {
+            "w": 39,
+            "h": 44,
+            "text": "About"
+          },
+          {
+            "w": 43,
+            "h": 44,
+            "text": "Pricing"
+          },
+          {
+            "w": 28,
+            "h": 44,
+            "text": "Blog"
+          },
+          {
+            "w": 38,
+            "h": 44,
+            "text": "Terms"
+          },
+          {
+            "w": 32,
+            "h": 44,
+            "text": "Airoli"
+          }
+        ],
+        "h1": null,
+        "hasMain": true,
+        "title": "Book a free trial | Ankit's Studio"
+      },
+      "/contact": {
+        "route": "/contact",
+        "status": 200,
+        "overflowX": false,
+        "scrollW": 1440,
+        "innerW": 1440,
+        "fixedBottom": 1,
+        "smallTargets": [
+          {
+            "w": 1,
+            "h": 1,
+            "text": "Skip to main content"
+          },
+          {
+            "w": 38,
+            "h": 20,
+            "text": "Home"
+          },
+          {
+            "w": 112,
+            "h": 19,
+            "text": "Book a free trial"
+          },
+          {
+            "w": 16,
+            "h": 20,
+            "text": ""
+          },
+          {
+            "w": 39,
+            "h": 44,
+            "text": "About"
+          },
+          {
+            "w": 43,
+            "h": 44,
+            "text": "Pricing"
+          },
+          {
+            "w": 28,
+            "h": 44,
+            "text": "Blog"
+          },
+          {
+            "w": 38,
+            "h": 44,
+            "text": "Terms"
+          },
+          {
+            "w": 32,
+            "h": 44,
+            "text": "Airoli"
+          }
+        ],
+        "h1": null,
+        "hasMain": true,
+        "title": "Contact | Ankit's Studio"
+      },
+      "/contact?status=not-configured": {
+        "route": "/contact?status=not-configured",
+        "status": 200,
+        "overflowX": false,
+        "scrollW": 1440,
+        "innerW": 1440,
+        "fixedBottom": 1,
+        "smallTargets": [
+          {
+            "w": 1,
+            "h": 1,
+            "text": "Skip to main content"
+          },
+          {
+            "w": 38,
+            "h": 20,
+            "text": "Home"
+          },
+          {
+            "w": 112,
+            "h": 19,
+            "text": "Book a free trial"
+          },
+          {
+            "w": 16,
+            "h": 20,
+            "text": ""
+          },
+          {
+            "w": 39,
+            "h": 44,
+            "text": "About"
+          },
+          {
+            "w": 43,
+            "h": 44,
+            "text": "Pricing"
+          },
+          {
+            "w": 28,
+            "h": 44,
+            "text": "Blog"
+          },
+          {
+            "w": 38,
+            "h": 44,
+            "text": "Terms"
+          },
+          {
+            "w": 32,
+            "h": 44,
+            "text": "Airoli"
+          }
+        ],
+        "h1": null,
+        "hasMain": true,
+        "title": "Contact | Ankit's Studio"
+      },
+      "/blog": {
+        "route": "/blog",
+        "status": 200,
+        "overflowX": false,
+        "scrollW": 1440,
+        "innerW": 1440,
+        "fixedBottom": 1,
+        "smallTargets": [
+          {
+            "w": 1,
+            "h": 1,
+            "text": "Skip to main content"
+          },
+          {
+            "w": 38,
+            "h": 20,
+            "text": "Home"
+          },
+          {
+            "w": 147,
+            "h": 19,
+            "text": "Browse programmes"
+          },
+          {
+            "w": 39,
+            "h": 44,
+            "text": "About"
+          },
+          {
+            "w": 43,
+            "h": 44,
+            "text": "Pricing"
+          },
+          {
+            "w": 28,
+            "h": 44,
+            "text": "Blog"
+          },
+          {
+            "w": 38,
+            "h": 44,
+            "text": "Terms"
+          },
+          {
+            "w": 32,
+            "h": 44,
+            "text": "Airoli"
+          }
+        ],
+        "h1": null,
+        "hasMain": true,
+        "title": "Blog | Ankit's Studio"
+      },
+      "/blog/sample-starting-with-strength": {
+        "route": "/blog/sample-starting-with-strength",
+        "status": 200,
+        "overflowX": false,
+        "scrollW": 1440,
+        "innerW": 1440,
+        "fixedBottom": 1,
+        "smallTargets": [
+          {
+            "w": 1,
+            "h": 1,
+            "text": "Skip to main content"
+          },
+          {
+            "w": 38,
+            "h": 20,
+            "text": "Home"
+          },
+          {
+            "w": 28,
+            "h": 20,
+            "text": "Blog"
+          },
+          {
+            "w": 39,
+            "h": 44,
+            "text": "About"
+          },
+          {
+            "w": 43,
+            "h": 44,
+            "text": "Pricing"
+          },
+          {
+            "w": 28,
+            "h": 44,
+            "text": "Blog"
+          },
+          {
+            "w": 38,
+            "h": 44,
+            "text": "Terms"
+          },
+          {
+            "w": 32,
+            "h": 44,
+            "text": "Airoli"
+          }
+        ],
+        "h1": "Sample: Starting with strength training",
+        "hasMain": true,
+        "title": "Sample: Starting with strength training | Ankit's Studio"
+      },
+      "/privacy-policy": {
+        "route": "/privacy-policy",
+        "status": 200,
+        "overflowX": false,
+        "scrollW": 1440,
+        "innerW": 1440,
+        "fixedBottom": 1,
+        "smallTargets": [
+          {
+            "w": 1,
+            "h": 1,
+            "text": "Skip to main content"
+          },
+          {
+            "w": 38,
+            "h": 20,
+            "text": "Home"
+          },
+          {
+            "w": 39,
+            "h": 44,
+            "text": "About"
+          },
+          {
+            "w": 43,
+            "h": 44,
+            "text": "Pricing"
+          },
+          {
+            "w": 28,
+            "h": 44,
+            "text": "Blog"
+          },
+          {
+            "w": 38,
+            "h": 44,
+            "text": "Terms"
+          },
+          {
+            "w": 32,
+            "h": 44,
+            "text": "Airoli"
+          }
+        ],
+        "h1": null,
+        "hasMain": true,
+        "title": "Privacy policy | Ankit's Studio"
+      },
+      "/terms": {
+        "route": "/terms",
+        "status": 200,
+        "overflowX": false,
+        "scrollW": 1440,
+        "innerW": 1440,
+        "fixedBottom": 1,
+        "smallTargets": [
+          {
+            "w": 1,
+            "h": 1,
+            "text": "Skip to main content"
+          },
+          {
+            "w": 38,
+            "h": 20,
+            "text": "Home"
+          },
+          {
+            "w": 39,
+            "h": 44,
+            "text": "About"
+          },
+          {
+            "w": 43,
+            "h": 44,
+            "text": "Pricing"
+          },
+          {
+            "w": 28,
+            "h": 44,
+            "text": "Blog"
+          },
+          {
+            "w": 38,
+            "h": 44,
+            "text": "Terms"
+          },
+          {
+            "w": 32,
+            "h": 44,
+            "text": "Airoli"
+          }
+        ],
+        "h1": null,
+        "hasMain": true,
+        "title": "Terms | Ankit's Studio"
+      },
+      "/this-route-does-not-exist": {
+        "route": "/this-route-does-not-exist",
+        "status": 404,
+        "overflowX": false,
+        "scrollW": 1440,
+        "innerW": 1440,
+        "fixedBottom": 0,
+        "smallTargets": [
+          {
+            "w": 1,
+            "h": 1,
+            "text": "Skip to main content"
+          },
+          {
+            "w": 125,
+            "h": 40,
+            "text": "Return home"
+          }
+        ],
+        "h1": "Page not found",
+        "hasMain": true,
+        "title": "Ankit's Studio"
+      }
+    },
+    "1920x1080": {
+      "/": {
+        "route": "/",
+        "status": 200,
+        "overflowX": false,
+        "scrollW": 1920,
+        "innerW": 1920,
+        "fixedBottom": 1,
+        "smallTargets": [
+          {
+            "w": 1,
+            "h": 1,
+            "text": "Skip to main content"
+          },
+          {
+            "w": 39,
+            "h": 44,
+            "text": "About"
+          },
+          {
+            "w": 43,
+            "h": 44,
+            "text": "Pricing"
+          },
+          {
+            "w": 28,
+            "h": 44,
+            "text": "Blog"
+          },
+          {
+            "w": 38,
+            "h": 44,
+            "text": "Terms"
+          },
+          {
+            "w": 32,
+            "h": 44,
+            "text": "Airoli"
+          }
+        ],
+        "h1": "Move with strength, rhythm, and community.",
+        "hasMain": true,
+        "title": "Fitness & dance studio in Navi Mumbai | Ankit's Studio"
+      },
+      "/about": {
+        "route": "/about",
+        "status": 200,
+        "overflowX": false,
+        "scrollW": 1920,
+        "innerW": 1920,
+        "fixedBottom": 1,
+        "smallTargets": [
+          {
+            "w": 1,
+            "h": 1,
+            "text": "Skip to main content"
+          },
+          {
+            "w": 38,
+            "h": 20,
+            "text": "Home"
+          },
+          {
+            "w": 39,
+            "h": 44,
+            "text": "About"
+          },
+          {
+            "w": 43,
+            "h": 44,
+            "text": "Pricing"
+          },
+          {
+            "w": 28,
+            "h": 44,
+            "text": "Blog"
+          },
+          {
+            "w": 38,
+            "h": 44,
+            "text": "Terms"
+          },
+          {
+            "w": 32,
+            "h": 44,
+            "text": "Airoli"
+          }
+        ],
+        "h1": null,
+        "hasMain": true,
+        "title": "About | Ankit's Studio"
+      },
+      "/programs": {
+        "route": "/programs",
+        "status": 200,
+        "overflowX": false,
+        "scrollW": 1920,
+        "innerW": 1920,
+        "fixedBottom": 1,
+        "smallTargets": [
+          {
+            "w": 1,
+            "h": 1,
+            "text": "Skip to main content"
+          },
+          {
+            "w": 38,
+            "h": 17,
+            "text": "Home"
+          },
+          {
+            "w": 122,
+            "h": 19,
+            "text": "Browse locations"
+          },
+          {
+            "w": 39,
+            "h": 44,
+            "text": "About"
+          },
+          {
+            "w": 43,
+            "h": 44,
+            "text": "Pricing"
+          },
+          {
+            "w": 28,
+            "h": 44,
+            "text": "Blog"
+          },
+          {
+            "w": 38,
+            "h": 44,
+            "text": "Terms"
+          },
+          {
+            "w": 32,
+            "h": 44,
+            "text": "Airoli"
+          }
+        ],
+        "h1": null,
+        "hasMain": true,
+        "title": "Programmes | Ankit's Studio"
+      },
+      "/programs/strength-training": {
+        "route": "/programs/strength-training",
+        "status": 200,
+        "overflowX": false,
+        "scrollW": 1920,
+        "innerW": 1920,
+        "fixedBottom": 1,
+        "smallTargets": [
+          {
+            "w": 1,
+            "h": 1,
+            "text": "Skip to main content"
+          },
+          {
+            "w": 38,
+            "h": 17,
+            "text": "Home"
+          },
+          {
+            "w": 79,
+            "h": 17,
+            "text": "Programmes"
+          },
+          {
+            "w": 39,
+            "h": 44,
+            "text": "About"
+          },
+          {
+            "w": 43,
+            "h": 44,
+            "text": "Pricing"
+          },
+          {
+            "w": 28,
+            "h": 44,
+            "text": "Blog"
+          },
+          {
+            "w": 38,
+            "h": 44,
+            "text": "Terms"
+          },
+          {
+            "w": 32,
+            "h": 44,
+            "text": "Airoli"
+          }
+        ],
+        "h1": "Strength Training",
+        "hasMain": true,
+        "title": "Strength Training | Ankit's Studio"
+      },
+      "/programs/weight-loss-fitness": {
+        "route": "/programs/weight-loss-fitness",
+        "status": 200,
+        "overflowX": false,
+        "scrollW": 1920,
+        "innerW": 1920,
+        "fixedBottom": 1,
+        "smallTargets": [
+          {
+            "w": 1,
+            "h": 1,
+            "text": "Skip to main content"
+          },
+          {
+            "w": 38,
+            "h": 17,
+            "text": "Home"
+          },
+          {
+            "w": 79,
+            "h": 17,
+            "text": "Programmes"
+          },
+          {
+            "w": 39,
+            "h": 44,
+            "text": "About"
+          },
+          {
+            "w": 43,
+            "h": 44,
+            "text": "Pricing"
+          },
+          {
+            "w": 28,
+            "h": 44,
+            "text": "Blog"
+          },
+          {
+            "w": 38,
+            "h": 44,
+            "text": "Terms"
+          },
+          {
+            "w": 32,
+            "h": 44,
+            "text": "Airoli"
+          }
+        ],
+        "h1": "Weight-Loss & General Fitness",
+        "hasMain": true,
+        "title": "Weight-Loss & General Fitness | Ankit's Studio"
+      },
+      "/locations": {
+        "route": "/locations",
+        "status": 200,
+        "overflowX": false,
+        "scrollW": 1920,
+        "innerW": 1920,
+        "fixedBottom": 1,
+        "smallTargets": [
+          {
+            "w": 1,
+            "h": 1,
+            "text": "Skip to main content"
+          },
+          {
+            "w": 38,
+            "h": 17,
+            "text": "Home"
+          },
+          {
+            "w": 167,
+            "h": 19,
+            "text": "Browse all programmes"
+          },
+          {
+            "w": 39,
+            "h": 44,
+            "text": "About"
+          },
+          {
+            "w": 43,
+            "h": 44,
+            "text": "Pricing"
+          },
+          {
+            "w": 28,
+            "h": 44,
+            "text": "Blog"
+          },
+          {
+            "w": 38,
+            "h": 44,
+            "text": "Terms"
+          },
+          {
+            "w": 32,
+            "h": 44,
+            "text": "Airoli"
+          }
+        ],
+        "h1": null,
+        "hasMain": true,
+        "title": "Locations | Ankit's Studio"
+      },
+      "/locations/airoli": {
+        "route": "/locations/airoli",
+        "status": 200,
+        "overflowX": false,
+        "scrollW": 1920,
+        "innerW": 1920,
+        "fixedBottom": 1,
+        "smallTargets": [
+          {
+            "w": 1,
+            "h": 1,
+            "text": "Skip to main content"
+          },
+          {
+            "w": 38,
+            "h": 17,
+            "text": "Home"
+          },
+          {
+            "w": 61,
+            "h": 17,
+            "text": "Locations"
+          },
+          {
+            "w": 39,
+            "h": 44,
+            "text": "About"
+          },
+          {
+            "w": 43,
+            "h": 44,
+            "text": "Pricing"
+          },
+          {
+            "w": 28,
+            "h": 44,
+            "text": "Blog"
+          },
+          {
+            "w": 38,
+            "h": 44,
+            "text": "Terms"
+          },
+          {
+            "w": 32,
+            "h": 44,
+            "text": "Airoli"
+          }
+        ],
+        "h1": "Ankit's Studio — Airoli",
+        "hasMain": true,
+        "title": "Ankit's Studio — Airoli | Ankit's Studio"
+      },
+      "/locations/thane": {
+        "route": "/locations/thane",
+        "status": 200,
+        "overflowX": false,
+        "scrollW": 1920,
+        "innerW": 1920,
+        "fixedBottom": 1,
+        "smallTargets": [
+          {
+            "w": 1,
+            "h": 1,
+            "text": "Skip to main content"
+          },
+          {
+            "w": 38,
+            "h": 17,
+            "text": "Home"
+          },
+          {
+            "w": 61,
+            "h": 17,
+            "text": "Locations"
+          },
+          {
+            "w": 39,
+            "h": 44,
+            "text": "About"
+          },
+          {
+            "w": 43,
+            "h": 44,
+            "text": "Pricing"
+          },
+          {
+            "w": 28,
+            "h": 44,
+            "text": "Blog"
+          },
+          {
+            "w": 38,
+            "h": 44,
+            "text": "Terms"
+          },
+          {
+            "w": 32,
+            "h": 44,
+            "text": "Airoli"
+          }
+        ],
+        "h1": "Ankit's Studio — Thane",
+        "hasMain": true,
+        "title": "Ankit's Studio — Thane | Ankit's Studio"
+      },
+      "/trainers": {
+        "route": "/trainers",
+        "status": 200,
+        "overflowX": false,
+        "scrollW": 1920,
+        "innerW": 1920,
+        "fixedBottom": 1,
+        "smallTargets": [
+          {
+            "w": 1,
+            "h": 1,
+            "text": "Skip to main content"
+          },
+          {
+            "w": 38,
+            "h": 20,
+            "text": "Home"
+          },
+          {
+            "w": 147,
+            "h": 19,
+            "text": "Browse programmes"
+          },
+          {
+            "w": 39,
+            "h": 44,
+            "text": "About"
+          },
+          {
+            "w": 43,
+            "h": 44,
+            "text": "Pricing"
+          },
+          {
+            "w": 28,
+            "h": 44,
+            "text": "Blog"
+          },
+          {
+            "w": 38,
+            "h": 44,
+            "text": "Terms"
+          },
+          {
+            "w": 32,
+            "h": 44,
+            "text": "Airoli"
+          }
+        ],
+        "h1": null,
+        "hasMain": true,
+        "title": "Trainers | Ankit's Studio"
+      },
+      "/trainers/illustrative-trainer-1": {
+        "route": "/trainers/illustrative-trainer-1",
+        "status": 200,
+        "overflowX": false,
+        "scrollW": 1920,
+        "innerW": 1920,
+        "fixedBottom": 1,
+        "smallTargets": [
+          {
+            "w": 1,
+            "h": 1,
+            "text": "Skip to main content"
+          },
+          {
+            "w": 38,
+            "h": 20,
+            "text": "Home"
+          },
+          {
+            "w": 49,
+            "h": 20,
+            "text": "Trainers"
+          },
+          {
+            "w": 39,
+            "h": 44,
+            "text": "About"
+          },
+          {
+            "w": 43,
+            "h": 44,
+            "text": "Pricing"
+          },
+          {
+            "w": 28,
+            "h": 44,
+            "text": "Blog"
+          },
+          {
+            "w": 38,
+            "h": 44,
+            "text": "Terms"
+          },
+          {
+            "w": 32,
+            "h": 44,
+            "text": "Airoli"
+          }
+        ],
+        "h1": "Illustrative Trainer — A.",
+        "hasMain": true,
+        "title": "Illustrative Trainer — A. | Ankit's Studio"
+      },
+      "/transformations": {
+        "route": "/transformations",
+        "status": 200,
+        "overflowX": false,
+        "scrollW": 1920,
+        "innerW": 1920,
+        "fixedBottom": 1,
+        "smallTargets": [
+          {
+            "w": 1,
+            "h": 1,
+            "text": "Skip to main content"
+          },
+          {
+            "w": 38,
+            "h": 20,
+            "text": "Home"
+          },
+          {
+            "w": 112,
+            "h": 19,
+            "text": "Book a free trial"
+          },
+          {
+            "w": 39,
+            "h": 44,
+            "text": "About"
+          },
+          {
+            "w": 43,
+            "h": 44,
+            "text": "Pricing"
+          },
+          {
+            "w": 28,
+            "h": 44,
+            "text": "Blog"
+          },
+          {
+            "w": 38,
+            "h": 44,
+            "text": "Terms"
+          },
+          {
+            "w": 32,
+            "h": 44,
+            "text": "Airoli"
+          }
+        ],
+        "h1": null,
+        "hasMain": true,
+        "title": "Transformations | Ankit's Studio"
+      },
+      "/timetable": {
+        "route": "/timetable",
+        "status": 200,
+        "overflowX": false,
+        "scrollW": 1920,
+        "innerW": 1920,
+        "fixedBottom": 1,
+        "smallTargets": [
+          {
+            "w": 1,
+            "h": 1,
+            "text": "Skip to main content"
+          },
+          {
+            "w": 38,
+            "h": 20,
+            "text": "Home"
+          },
+          {
+            "w": 39,
+            "h": 44,
+            "text": "About"
+          },
+          {
+            "w": 43,
+            "h": 44,
+            "text": "Pricing"
+          },
+          {
+            "w": 28,
+            "h": 44,
+            "text": "Blog"
+          },
+          {
+            "w": 38,
+            "h": 44,
+            "text": "Terms"
+          },
+          {
+            "w": 32,
+            "h": 44,
+            "text": "Airoli"
+          }
+        ],
+        "h1": null,
+        "hasMain": true,
+        "title": "Timetable | Ankit's Studio"
+      },
+      "/timetable?branch=airoli&programme=yoga": {
+        "route": "/timetable?branch=airoli&programme=yoga",
+        "status": 200,
+        "overflowX": false,
+        "scrollW": 1920,
+        "innerW": 1920,
+        "fixedBottom": 1,
+        "smallTargets": [
+          {
+            "w": 1,
+            "h": 1,
+            "text": "Skip to main content"
+          },
+          {
+            "w": 38,
+            "h": 20,
+            "text": "Home"
+          },
+          {
+            "w": 39,
+            "h": 44,
+            "text": "About"
+          },
+          {
+            "w": 43,
+            "h": 44,
+            "text": "Pricing"
+          },
+          {
+            "w": 28,
+            "h": 44,
+            "text": "Blog"
+          },
+          {
+            "w": 38,
+            "h": 44,
+            "text": "Terms"
+          },
+          {
+            "w": 32,
+            "h": 44,
+            "text": "Airoli"
+          }
+        ],
+        "h1": null,
+        "hasMain": true,
+        "title": "Timetable | Ankit's Studio"
+      },
+      "/pricing": {
+        "route": "/pricing",
+        "status": 200,
+        "overflowX": false,
+        "scrollW": 1920,
+        "innerW": 1920,
+        "fixedBottom": 1,
+        "smallTargets": [
+          {
+            "w": 1,
+            "h": 1,
+            "text": "Skip to main content"
+          },
+          {
+            "w": 38,
+            "h": 20,
+            "text": "Home"
+          },
+          {
+            "w": 112,
+            "h": 19,
+            "text": "Book a free trial"
+          },
+          {
+            "w": 39,
+            "h": 44,
+            "text": "About"
+          },
+          {
+            "w": 43,
+            "h": 44,
+            "text": "Pricing"
+          },
+          {
+            "w": 28,
+            "h": 44,
+            "text": "Blog"
+          },
+          {
+            "w": 38,
+            "h": 44,
+            "text": "Terms"
+          },
+          {
+            "w": 32,
+            "h": 44,
+            "text": "Airoli"
+          }
+        ],
+        "h1": null,
+        "hasMain": true,
+        "title": "Pricing | Ankit's Studio"
+      },
+      "/trial": {
+        "route": "/trial",
+        "status": 200,
+        "overflowX": false,
+        "scrollW": 1920,
+        "innerW": 1920,
+        "fixedBottom": 0,
+        "smallTargets": [
+          {
+            "w": 1,
+            "h": 1,
+            "text": "Skip to main content"
+          },
+          {
+            "w": 38,
+            "h": 20,
+            "text": "Home"
+          },
+          {
+            "w": 13,
+            "h": 20,
+            "text": ""
+          },
+          {
+            "w": 39,
+            "h": 44,
+            "text": "About"
+          },
+          {
+            "w": 43,
+            "h": 44,
+            "text": "Pricing"
+          },
+          {
+            "w": 28,
+            "h": 44,
+            "text": "Blog"
+          },
+          {
+            "w": 38,
+            "h": 44,
+            "text": "Terms"
+          },
+          {
+            "w": 32,
+            "h": 44,
+            "text": "Airoli"
+          }
+        ],
+        "h1": null,
+        "hasMain": true,
+        "title": "Book a free trial | Ankit's Studio"
+      },
+      "/trial?status=validation-error": {
+        "route": "/trial?status=validation-error",
+        "status": 200,
+        "overflowX": false,
+        "scrollW": 1920,
+        "innerW": 1920,
+        "fixedBottom": 0,
+        "smallTargets": [
+          {
+            "w": 1,
+            "h": 1,
+            "text": "Skip to main content"
+          },
+          {
+            "w": 38,
+            "h": 20,
+            "text": "Home"
+          },
+          {
+            "w": 13,
+            "h": 20,
+            "text": ""
+          },
+          {
+            "w": 39,
+            "h": 44,
+            "text": "About"
+          },
+          {
+            "w": 43,
+            "h": 44,
+            "text": "Pricing"
+          },
+          {
+            "w": 28,
+            "h": 44,
+            "text": "Blog"
+          },
+          {
+            "w": 38,
+            "h": 44,
+            "text": "Terms"
+          },
+          {
+            "w": 32,
+            "h": 44,
+            "text": "Airoli"
+          }
+        ],
+        "h1": null,
+        "hasMain": true,
+        "title": "Book a free trial | Ankit's Studio"
+      },
+      "/trial?status=not-configured": {
+        "route": "/trial?status=not-configured",
+        "status": 200,
+        "overflowX": false,
+        "scrollW": 1920,
+        "innerW": 1920,
+        "fixedBottom": 0,
+        "smallTargets": [
+          {
+            "w": 1,
+            "h": 1,
+            "text": "Skip to main content"
+          },
+          {
+            "w": 38,
+            "h": 20,
+            "text": "Home"
+          },
+          {
+            "w": 13,
+            "h": 20,
+            "text": ""
+          },
+          {
+            "w": 39,
+            "h": 44,
+            "text": "About"
+          },
+          {
+            "w": 43,
+            "h": 44,
+            "text": "Pricing"
+          },
+          {
+            "w": 28,
+            "h": 44,
+            "text": "Blog"
+          },
+          {
+            "w": 38,
+            "h": 44,
+            "text": "Terms"
+          },
+          {
+            "w": 32,
+            "h": 44,
+            "text": "Airoli"
+          }
+        ],
+        "h1": null,
+        "hasMain": true,
+        "title": "Book a free trial | Ankit's Studio"
+      },
+      "/contact": {
+        "route": "/contact",
+        "status": 200,
+        "overflowX": false,
+        "scrollW": 1920,
+        "innerW": 1920,
+        "fixedBottom": 1,
+        "smallTargets": [
+          {
+            "w": 1,
+            "h": 1,
+            "text": "Skip to main content"
+          },
+          {
+            "w": 38,
+            "h": 20,
+            "text": "Home"
+          },
+          {
+            "w": 112,
+            "h": 19,
+            "text": "Book a free trial"
+          },
+          {
+            "w": 16,
+            "h": 20,
+            "text": ""
+          },
+          {
+            "w": 39,
+            "h": 44,
+            "text": "About"
+          },
+          {
+            "w": 43,
+            "h": 44,
+            "text": "Pricing"
+          },
+          {
+            "w": 28,
+            "h": 44,
+            "text": "Blog"
+          },
+          {
+            "w": 38,
+            "h": 44,
+            "text": "Terms"
+          },
+          {
+            "w": 32,
+            "h": 44,
+            "text": "Airoli"
+          }
+        ],
+        "h1": null,
+        "hasMain": true,
+        "title": "Contact | Ankit's Studio"
+      },
+      "/contact?status=not-configured": {
+        "route": "/contact?status=not-configured",
+        "status": 200,
+        "overflowX": false,
+        "scrollW": 1920,
+        "innerW": 1920,
+        "fixedBottom": 1,
+        "smallTargets": [
+          {
+            "w": 1,
+            "h": 1,
+            "text": "Skip to main content"
+          },
+          {
+            "w": 38,
+            "h": 20,
+            "text": "Home"
+          },
+          {
+            "w": 112,
+            "h": 19,
+            "text": "Book a free trial"
+          },
+          {
+            "w": 16,
+            "h": 20,
+            "text": ""
+          },
+          {
+            "w": 39,
+            "h": 44,
+            "text": "About"
+          },
+          {
+            "w": 43,
+            "h": 44,
+            "text": "Pricing"
+          },
+          {
+            "w": 28,
+            "h": 44,
+            "text": "Blog"
+          },
+          {
+            "w": 38,
+            "h": 44,
+            "text": "Terms"
+          },
+          {
+            "w": 32,
+            "h": 44,
+            "text": "Airoli"
+          }
+        ],
+        "h1": null,
+        "hasMain": true,
+        "title": "Contact | Ankit's Studio"
+      },
+      "/blog": {
+        "route": "/blog",
+        "status": 200,
+        "overflowX": false,
+        "scrollW": 1920,
+        "innerW": 1920,
+        "fixedBottom": 1,
+        "smallTargets": [
+          {
+            "w": 1,
+            "h": 1,
+            "text": "Skip to main content"
+          },
+          {
+            "w": 38,
+            "h": 20,
+            "text": "Home"
+          },
+          {
+            "w": 147,
+            "h": 19,
+            "text": "Browse programmes"
+          },
+          {
+            "w": 39,
+            "h": 44,
+            "text": "About"
+          },
+          {
+            "w": 43,
+            "h": 44,
+            "text": "Pricing"
+          },
+          {
+            "w": 28,
+            "h": 44,
+            "text": "Blog"
+          },
+          {
+            "w": 38,
+            "h": 44,
+            "text": "Terms"
+          },
+          {
+            "w": 32,
+            "h": 44,
+            "text": "Airoli"
+          }
+        ],
+        "h1": null,
+        "hasMain": true,
+        "title": "Blog | Ankit's Studio"
+      },
+      "/blog/sample-starting-with-strength": {
+        "route": "/blog/sample-starting-with-strength",
+        "status": 200,
+        "overflowX": false,
+        "scrollW": 1920,
+        "innerW": 1920,
+        "fixedBottom": 1,
+        "smallTargets": [
+          {
+            "w": 1,
+            "h": 1,
+            "text": "Skip to main content"
+          },
+          {
+            "w": 38,
+            "h": 20,
+            "text": "Home"
+          },
+          {
+            "w": 28,
+            "h": 20,
+            "text": "Blog"
+          },
+          {
+            "w": 39,
+            "h": 44,
+            "text": "About"
+          },
+          {
+            "w": 43,
+            "h": 44,
+            "text": "Pricing"
+          },
+          {
+            "w": 28,
+            "h": 44,
+            "text": "Blog"
+          },
+          {
+            "w": 38,
+            "h": 44,
+            "text": "Terms"
+          },
+          {
+            "w": 32,
+            "h": 44,
+            "text": "Airoli"
+          }
+        ],
+        "h1": "Sample: Starting with strength training",
+        "hasMain": true,
+        "title": "Sample: Starting with strength training | Ankit's Studio"
+      },
+      "/privacy-policy": {
+        "route": "/privacy-policy",
+        "status": 200,
+        "overflowX": false,
+        "scrollW": 1920,
+        "innerW": 1920,
+        "fixedBottom": 1,
+        "smallTargets": [
+          {
+            "w": 1,
+            "h": 1,
+            "text": "Skip to main content"
+          },
+          {
+            "w": 38,
+            "h": 20,
+            "text": "Home"
+          },
+          {
+            "w": 39,
+            "h": 44,
+            "text": "About"
+          },
+          {
+            "w": 43,
+            "h": 44,
+            "text": "Pricing"
+          },
+          {
+            "w": 28,
+            "h": 44,
+            "text": "Blog"
+          },
+          {
+            "w": 38,
+            "h": 44,
+            "text": "Terms"
+          },
+          {
+            "w": 32,
+            "h": 44,
+            "text": "Airoli"
+          }
+        ],
+        "h1": null,
+        "hasMain": true,
+        "title": "Privacy policy | Ankit's Studio"
+      },
+      "/terms": {
+        "route": "/terms",
+        "status": 200,
+        "overflowX": false,
+        "scrollW": 1920,
+        "innerW": 1920,
+        "fixedBottom": 1,
+        "smallTargets": [
+          {
+            "w": 1,
+            "h": 1,
+            "text": "Skip to main content"
+          },
+          {
+            "w": 38,
+            "h": 20,
+            "text": "Home"
+          },
+          {
+            "w": 39,
+            "h": 44,
+            "text": "About"
+          },
+          {
+            "w": 43,
+            "h": 44,
+            "text": "Pricing"
+          },
+          {
+            "w": 28,
+            "h": 44,
+            "text": "Blog"
+          },
+          {
+            "w": 38,
+            "h": 44,
+            "text": "Terms"
+          },
+          {
+            "w": 32,
+            "h": 44,
+            "text": "Airoli"
+          }
+        ],
+        "h1": null,
+        "hasMain": true,
+        "title": "Terms | Ankit's Studio"
+      },
+      "/this-route-does-not-exist": {
+        "route": "/this-route-does-not-exist",
+        "status": 404,
+        "overflowX": false,
+        "scrollW": 1920,
+        "innerW": 1920,
+        "fixedBottom": 0,
+        "smallTargets": [
+          {
+            "w": 1,
+            "h": 1,
+            "text": "Skip to main content"
+          },
+          {
+            "w": 125,
+            "h": 40,
+            "text": "Return home"
+          }
+        ],
+        "h1": "Page not found",
+        "hasMain": true,
+        "title": "Ankit's Studio"
+      }
+    }
+  },
+  "interactions": {
+    "mobileNav": {
+      "openVisible": true,
+      "afterOpen": {
+        "dialogOrNav": true,
+        "focusTag": "BUTTON",
+        "overflowX": false
+      },
+      "screenshot": "screenshots/mobile_nav_open_390.png"
+    },
+    "trialNativeValidation": {
+      "url": "http://localhost:3001/trial?status=validation-error",
+      "invalidCount": 8,
+      "invalid": [
+        "",
+        "name",
+        "phone",
+        "branchSlug",
+        "programmeSlug",
+        "preferredTiming",
+        "ageGroup",
+        "consent"
+      ],
+      "screenshot": "screenshots/trial_native_validation_390.png"
+    },
+    "timetableFilter": {
+      "url": "http://localhost:3001/timetable?branch=ghansoli&programme=zumba",
+      "bodyTextSnippet": "1 provisional class listed for the selected filters.",
+      "screenshot": "screenshots/timetable_filter_390.png"
+    },
+    "keyboardFocus": {
+      "tag": "BUTTON",
+      "text": "",
+      "outline": "solid",
+      "outlineWidth": "2px",
+      "boxShadow": "none",
+      "screenshot": "screenshots/keyboard_focus_390.png"
+    },
+    "reducedMotion": {
+      "matches": true,
+      "motionNodes": 19,
+      "h1": "Move with strength, rhythm, and community.",
+      "screenshot": "screenshots/home_reduced_motion_1440.png"
+    },
+    "stickyCtaDesktop": {
+      "trialLinks": 4,
+      "fixedTrialContainers": 0
+    },
+    "stickyCtaMobile": {
+      "visible": true,
+      "height": 65,
+      "bottom": 844
+    },
+    "stickyCtaHiddenOnTrial": {
+      "stickyPresent": false
+    },
+    "contrastSamples": []
+  },
+  "findings": []
+}
