@@ -1,11 +1,21 @@
 import Link from "next/link";
-import Image from "next/image";
 import type { Metadata } from "next";
-import { ProgrammeCard, TimetablePreview, type ProgrammeAccent } from "@/components/home";
-import { Card } from "@/components/ui/Card";
+import {
+  AddressDirections,
+  AvailableProgrammesGrid,
+  BranchGallery,
+  ContactActionGroup,
+  LocationFaq,
+  LocationHero,
+  LocationTrialCta,
+  OpeningHours,
+  ParkingTransportSection,
+  TrainerSection,
+  type ContactAction,
+} from "@/components/locations";
+import { MapPlaceholder } from "@/components/maps";
+import { BranchTimetable } from "@/components/timetable";
 import { Container } from "@/components/ui/Container";
-import { Section } from "@/components/ui/Section";
-import { Body, Caption, Heading, HeroHeading } from "@/components/ui/Typography";
 import {
   getBranchContactLinks,
   getBranches,
@@ -14,7 +24,7 @@ import {
   getTimetableSlots,
   getTrainers,
 } from "@/content";
-import type { Programme } from "@/content";
+import type { Programme, Trainer } from "@/content";
 import { buildPageMetadata } from "@/lib/seo/metadata";
 import { serializeJsonLd } from "@/lib/seo/serialize";
 import { buildBreadcrumbJsonLd, buildFaqPageJsonLd, buildLocalBusinessJsonLd } from "@/lib/seo/structured-data";
@@ -22,7 +32,8 @@ import { getBranchOrNotFound } from "../_lib/lookup";
 
 type LocationPageParams = { params: Promise<{ slug: string }> };
 
-const DAY_LABELS = ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"];
+const DAY_LABELS = ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"] as const;
+const DAY_SHORT = ["Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Sun"] as const;
 
 /** All branches, including Thane — the route still exists for
  *  prototyping (docs/DECISIONS.md ADR-007 finding I2); only the index
@@ -43,6 +54,12 @@ export async function generateMetadata({ params }: LocationPageParams): Promise<
 
 function disclaimerFor(record: { dataStatus: string; mockDisclaimer?: string }): string | undefined {
   return record.dataStatus === "verified" ? undefined : record.mockDisclaimer;
+}
+
+function specialtyLabels(trainer: Trainer): string[] {
+  return trainer.specialties
+    .map((slug) => getProgrammeBySlug(slug)?.name)
+    .filter((name): name is string => Boolean(name));
 }
 
 export default async function LocationDetailPage({ params }: LocationPageParams) {
@@ -68,6 +85,30 @@ export default async function LocationDetailPage({ params }: LocationPageParams)
   const faqJsonLd = buildFaqPageJsonLd(faqs);
 
   const branchDisclaimer = disclaimerFor(branch);
+  const trialLabel = `Book a trial at ${branch.name}`;
+
+  const contactActions: ContactAction[] = [
+    {
+      id: "phone",
+      label: `Call ${branch.name}`,
+      href: contactLinks.phoneHref,
+      kind: "phone",
+    },
+    {
+      id: "whatsapp",
+      label: `WhatsApp ${branch.name}`,
+      href: contactLinks.whatsappHref,
+      kind: "whatsapp",
+    },
+    {
+      id: "directions",
+      label: `Get directions to ${branch.name}`,
+      // No separate directions URL in contact links — never invent Maps
+      // hrefs from unverified data (ADR-011). Embed stays on MapPlaceholder.
+      href: null,
+      kind: "directions",
+    },
+  ];
 
   return (
     <main className="flex flex-1 flex-col">
@@ -103,233 +144,124 @@ export default async function LocationDetailPage({ params }: LocationPageParams)
               </Link>
             </li>
             <li aria-hidden>/</li>
-            <li aria-current="page" className="text-ink">
+            <li aria-current="page" className="text-ink break-words">
               {branch.name}
             </li>
           </ol>
         </nav>
       </Container>
 
-      {/* Hero / Address */}
-      <Container className="pt-6">
-        <HeroHeading as="h1" className="mb-4">
-          {branch.name}
-        </HeroHeading>
-        <Body size="lg" className="max-w-2xl">
-          {branch.address}
-        </Body>
-        {branchDisclaimer ? <Caption className="mt-2 text-ink-subtle">{branchDisclaimer}</Caption> : null}
-      </Container>
+      <LocationHero
+        name={branch.name}
+        areaLabel={branch.slug}
+        address={branch.address}
+        primaryCta={{ label: trialLabel, href: "/trial" }}
+        disclaimer={branchDisclaimer}
+      />
 
-      {/* Map */}
-      <Section eyebrow="Find us" title="Map">
-        {contactLinks.mapEmbedUrl ? (
-          <div className="overflow-hidden rounded-[var(--radius-lg)] border border-border">
-            <iframe
-              title={`Map for ${branch.name}`}
-              src={contactLinks.mapEmbedUrl}
-              className="h-80 w-full"
-              loading="lazy"
-            />
-          </div>
-        ) : (
-          <Card>
-            <Body>Map not yet available — the branch address is pending confirmation.</Body>
-          </Card>
-        )}
-      </Section>
+      <ContactActionGroup
+        actions={contactActions}
+        disclaimer={
+          contactLinks.phoneHref || contactLinks.whatsappHref || contactLinks.mapEmbedUrl
+            ? undefined
+            : "Contact and map actions stay disabled until this branch is verified (ADR-011)."
+        }
+      />
 
-      {/* Directions + Parking + Nearby transport */}
-      <Section eyebrow="Getting here" title="Directions, parking, and transport" narrow className="pt-0">
-        <dl className="flex flex-col gap-4">
-          <div>
-            <dt className="font-semibold text-ink">Directions</dt>
-            <dd>
-              <Body>{branch.directions ?? "Directions not yet available."}</Body>
-            </dd>
-          </div>
-          <div>
-            <dt className="font-semibold text-ink">Parking</dt>
-            <dd>
-              <Body>{branch.parking ?? "Parking details not yet available."}</Body>
-            </dd>
-          </div>
-          <div>
-            <dt className="font-semibold text-ink">Nearby transport</dt>
-            <dd>
-              {branch.nearbyTransport && branch.nearbyTransport.length > 0 ? (
-                <ul className="flex flex-col gap-1">
-                  {branch.nearbyTransport.map((item) => (
-                    <li key={item}>
-                      <Body>{item}</Body>
-                    </li>
-                  ))}
-                </ul>
-              ) : (
-                <Body>Nearby transport details not yet available.</Body>
-              )}
-            </dd>
-          </div>
-        </dl>
-      </Section>
+      <AddressDirections
+        address={branch.address}
+        directions={branch.directions}
+        disclaimer={branchDisclaimer}
+      />
 
-      {/* Opening hours */}
-      <Section eyebrow="Hours" title="Opening hours" narrow className="pt-0">
-        {branch.openingHours.length > 0 ? (
-          <table className="w-full border-collapse text-left">
-            <caption className="sr-only">Opening hours for {branch.name}</caption>
-            <tbody>
-              {branch.openingHours.map((entry) => (
-                <tr key={entry.dayOfWeek} className="border-b border-border last:border-b-0">
-                  <th scope="row" className="py-2 pr-4 font-medium text-ink">
-                    {DAY_LABELS[entry.dayOfWeek] ?? "—"}
-                  </th>
-                  <td className="py-2 text-ink-muted">
-                    {entry.opensAt}–{entry.closesAt}
-                  </td>
-                </tr>
-              ))}
-            </tbody>
-          </table>
-        ) : (
-          <Body>Opening hours to be confirmed.</Body>
-        )}
-      </Section>
+      <MapPlaceholder
+        branchName={branch.name}
+        addressConfirmed={Boolean(contactLinks.mapEmbedUrl)}
+        note={
+          contactLinks.mapEmbedUrl
+            ? undefined
+            : "Map unavailable until this branch address is verified."
+        }
+        disclaimer={
+          contactLinks.mapEmbedUrl
+            ? undefined
+            : "No map embed until the branch address is verified (ADR-011)."
+        }
+      />
 
-      {/* Branch photos */}
-      <Section eyebrow="Gallery" title="Branch photos">
-        {branch.photos && branch.photos.length > 0 ? (
-          <ul className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
-            {branch.photos.map((photo) => (
-              <li key={photo.src} className="overflow-hidden rounded-[var(--radius-lg)] bg-surface-sunken">
-                <Image src={photo.src} alt={photo.alt} width={photo.width} height={photo.height} className="h-auto w-full object-cover" />
-              </li>
-            ))}
-          </ul>
-        ) : (
-          <Body>Branch photos are not available yet.</Body>
-        )}
-      </Section>
+      <OpeningHours
+        rows={branch.openingHours.map((entry) => ({
+          dayLabel: DAY_LABELS[entry.dayOfWeek] ?? "—",
+          opensAt: entry.opensAt,
+          closesAt: entry.closesAt,
+        }))}
+        disclaimer={branchDisclaimer}
+      />
 
-      {/* Programmes */}
-      <Section eyebrow="Train here" title="Programmes at this branch">
-        {programmes.length > 0 ? (
-          <ul className="grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
-            {programmes.map((programme) => (
-              <li key={programme.slug}>
-                <ProgrammeCard
-                  name={programme.name}
-                  href={`/programs/${programme.slug}`}
-                  shortDescription={programme.shortDescription}
-                  accent={programme.heroAccent as ProgrammeAccent}
-                  tags={programme.audienceTags}
-                />
-              </li>
-            ))}
-          </ul>
-        ) : (
-          <Body>No programmes currently listed for this branch.</Body>
-        )}
-      </Section>
+      <AvailableProgrammesGrid
+        programmes={programmes.map((programme) => ({
+          slug: programme.slug,
+          name: programme.name,
+          href: `/programs/${programme.slug}`,
+          shortDescription: programme.shortDescription,
+          accent: programme.heroAccent,
+        }))}
+      />
 
-      {/* Trainers */}
-      <Section eyebrow="Coaches" title="Trainers at this branch">
-        {trainers.length > 0 ? (
-          <ul className="grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
-            {trainers.map((trainer) => (
-              <li key={trainer.slug}>
-                <Card className="flex h-full flex-col gap-4">
-                  <div className="relative aspect-square w-20 overflow-hidden rounded-full bg-surface-sunken">
-                    <Image
-                      src={trainer.photo.src}
-                      alt={trainer.photo.alt}
-                      width={trainer.photo.width}
-                      height={trainer.photo.height}
-                      className="h-full w-full object-cover"
-                    />
-                  </div>
-                  <div>
-                    <Heading as="h3" className="mb-1">
-                      {trainer.name}
-                    </Heading>
-                    <Body className="mb-2">{trainer.bio}</Body>
-                    {disclaimerFor(trainer) ? <Caption className="text-ink-subtle">{disclaimerFor(trainer)}</Caption> : null}
-                  </div>
-                </Card>
-              </li>
-            ))}
-          </ul>
-        ) : (
-          <Body>Trainer roster for this branch is coming soon.</Body>
-        )}
-      </Section>
+      <TrainerSection
+        trainers={trainers.map((trainer) => ({
+          slug: trainer.slug,
+          name: trainer.name,
+          bio: trainer.bio,
+          specialtyLabels: specialtyLabels(trainer),
+          photo: trainer.photo,
+          disclaimer: disclaimerFor(trainer),
+        }))}
+      />
 
-      {/* Timetable */}
-      <Section eyebrow="Schedule" title="Timetable" description="Illustrative schedule — not a confirmed timetable.">
-        {timetableSlots.length > 0 ? (
-          <TimetablePreview
-            title={`${branch.name} timetable`}
-            description="Illustrative schedule preview — not a confirmed timetable."
-            slots={timetableSlots.map((slot) => ({
-              id: slot.id,
-              dayLabel: DAY_LABELS[slot.dayOfWeek]?.slice(0, 3) ?? "—",
-              timeLabel: `${slot.startTime}–${slot.endTime}`,
-              programmeLabel: getProgrammeBySlug(slot.programmeSlug)?.name ?? slot.programmeSlug,
-              branchLabel: branch.name,
-              mockDisclaimer: disclaimerFor(slot) ?? "",
-            }))}
-          />
-        ) : (
-          <Body>No scheduled sessions listed yet for this branch.</Body>
-        )}
-      </Section>
+      <BranchTimetable
+        branchName={branch.name}
+        slots={timetableSlots.map((slot) => ({
+          id: slot.id,
+          dayLabel: DAY_SHORT[slot.dayOfWeek] ?? "—",
+          timeLabel: `${slot.startTime}–${slot.endTime}`,
+          programmeLabel: getProgrammeBySlug(slot.programmeSlug)?.name ?? slot.programmeSlug,
+          disclaimer: disclaimerFor(slot),
+        }))}
+      />
 
-      {/* Contact actions */}
-      <Section eyebrow="Get in touch" title="Contact this branch" narrow>
-        <div className="flex flex-col gap-3 sm:flex-row sm:flex-wrap">
-          {contactLinks.phoneHref ? (
-            <Link
-              href={contactLinks.phoneHref}
-              className="inline-flex min-h-11 items-center justify-center rounded-[var(--radius-md)] bg-accent px-5 text-sm font-medium text-accent-foreground hover:bg-accent-hover"
-            >
-              Call {branch.name}
-            </Link>
-          ) : (
-            <Body>Phone contact will be available once this branch&apos;s details are confirmed.</Body>
-          )}
-          {contactLinks.whatsappHref ? (
-            <Link
-              href={contactLinks.whatsappHref}
-              className="inline-flex min-h-11 items-center justify-center rounded-[var(--radius-md)] border border-border px-5 text-sm font-medium text-ink hover:border-border-strong"
-            >
-              WhatsApp {branch.name}
-            </Link>
-          ) : null}
-          <Link
-            href="/trial"
-            className="inline-flex min-h-11 items-center justify-center rounded-[var(--radius-md)] border border-border px-5 text-sm font-medium text-ink hover:border-border-strong"
-          >
-            Book a trial
-          </Link>
-        </div>
-      </Section>
+      <ParkingTransportSection
+        parking={branch.parking}
+        nearbyTransport={branch.nearbyTransport}
+        disclaimer={branchDisclaimer}
+      />
 
-      {/* FAQs */}
-      <Section eyebrow="FAQ" title={`${branch.name} FAQs`} narrow className="bg-surface-sunken/50">
-        <div className="flex flex-col gap-3">
-          {faqs.map((faq) => (
-            <details key={faq.id} className="group rounded-[var(--radius-lg)] border border-border bg-surface-raised px-5 py-2">
-              <summary className="cursor-pointer list-none py-3 font-[family-name:var(--font-display)] text-[length:var(--text-heading)] font-semibold text-ink marker:content-none [&::-webkit-details-marker]:hidden">
-                {faq.question}
-              </summary>
-              <div className="border-t border-border pb-4 pt-3">
-                <Body>{faq.answer}</Body>
-                {disclaimerFor(faq) ? <Caption className="mt-2 text-ink-subtle">{disclaimerFor(faq)}</Caption> : null}
-              </div>
-            </details>
-          ))}
-        </div>
-      </Section>
+      <BranchGallery
+        photos={(branch.photos ?? []).map((photo) => ({
+          src: photo.src,
+          alt: photo.alt,
+          width: photo.width,
+          height: photo.height,
+        }))}
+        disclaimer={branchDisclaimer}
+      />
+
+      <LocationFaq
+        title={`${branch.name} FAQs`}
+        items={faqs.map((faq) => ({
+          id: faq.id,
+          question: faq.question,
+          answer: faq.answer,
+          disclaimer: disclaimerFor(faq),
+        }))}
+      />
+
+      <LocationTrialCta
+        branchName={branch.name}
+        title={`Visit ${branch.name}`}
+        body={`Try a class at ${branch.name}. Contact actions stay disabled until this branch is verified.`}
+        ctaLabel={trialLabel}
+      />
     </main>
   );
 }

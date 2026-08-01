@@ -108,7 +108,7 @@ export default function HomePage() {
           description={identity.description}
           mockDisclaimer={identityDisclaimer}
           primaryCta={{ label: "Book a trial", href: "/trial" }}
-          secondaryCta={{ label: "Browse programmes", href: "/programmes" }}
+          secondaryCta={{ label: "Browse programmes", href: "/programs" }}
           media={{
             src: "/mock-media/hero-atmosphere.svg",
             alt: "Replaceable abstract studio atmosphere placeholder — not real photography",
@@ -134,7 +134,7 @@ export default function HomePage() {
         <ProgrammeShowcase
           programmes={programmes.map((programme) => ({
             name: programme.name,
-            href: `/programmes/${programme.slug}`,
+            href: `/programs/${programme.slug}`,
             shortDescription: programme.shortDescription,
             accent: programme.heroAccent as ProgrammeAccent,
             tags: programme.audienceTags.slice(0, 2),

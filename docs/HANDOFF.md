@@ -1,72 +1,70 @@
 # Handoff
 
-_Last updated: 2026-07-31 — Homepage integrated from content + SEO + UI systems._
+_Last updated: 2026-08-01 — Programme & location experiences integrated._
 
 ## Current state
 
-The marketing homepage at `/` is implemented as a **server-rendered composition**
-of existing systems — not a parallel stack.
+Programme and location **detail routes** now compose the reusable presentation
+system from [HANDOFF-ROUTE-UI.md](./HANDOFF-ROUTE-UI.md) on top of the route
+architecture in [HANDOFF-ROUTES.md](./HANDOFF-ROUTES.md). Pages stay
+**server-rendered**; metadata, JSON-LD, mock noindex, and missing-data
+handling are unchanged in behaviour.
 
 ### What this pass built
 
-- **`src/app/page.tsx`** — full homepage sections wired to `@/content` accessors
-  and `@/lib/seo` `buildPageMetadata`.
-- **Root shell** — `layout.tsx` + `globals.css` now load Syne/Figtree and
-  `studio.css` / motion utilities site-wide (follow-up from
-  [HANDOFF-UI.md](./HANDOFF-UI.md)).
-- **Home sections** under `src/components/home/**` (reuse existing Hero,
-  ProgrammeCard, LocationTeaserCard, TimetablePreview, TestimonialCard,
-  layout chrome, motion islands — no duplicate tokens/buttons/SEO/content).
+- **`src/app/programs/[slug]/page.tsx`** — wires `@/content` accessors into
+  programme presentation components (hero → trial CTA). Publicly listed
+  branches link to `/locations/[slug]`.
+- **`src/app/locations/[slug]/page.tsx`** — wires location presentation,
+  `MapPlaceholder`, and `BranchTimetable`. Offered programmes link to
+  `/programs/[slug]`. Contact actions use `getBranchContactLinks` (disabled
+  until verified — ADR-011).
+- **Homepage internal links** — `/programmes` → `/programs` so showcase CTAs
+  hit the real routes (gap flagged in HANDOFF-ROUTES).
 
-Homepage section map:
-
-1. Cinematic hero (SSR copy; replaceable mock atmosphere media)
-2. Trust strip (programme + listed locations only — no fake stats)
-3. Programme showcase
-4. Why Ankit's Studio
-5. Founder-story placeholder
-6. Transformation-story placeholders (qualitative, labelled)
-7. Branch explorer (publicly listed only; Thane excluded)
-8. Timetable preview
-9. Community / testimonials (illustrative)
-10. Free-trial CTA
-11. FAQ (`<details>` SSR disclosures)
-12. Footer + mobile sticky CTA
+Index pages (`/programs`, `/locations`), lookup helpers, `not-found` /
+`loading`, content schemas, and SEO builders were already in place and were
+**not** reworked beyond the detail-page composition above.
 
 ### Systems reused (not duplicated)
 
 | System | Source |
 |---|---|
-| Content | `getProgrammes`, `getPubliclyListedBranches`, `getTimetableSlots`, `getTestimonials`, `getTransformations`, `getFaqs`, `getBusinessIdentity`, `getNavigationItems` |
-| SEO metadata | `buildPageMetadata` from `src/lib/seo` |
-| UI / motion / layout | `src/components/ui`, `motion`, `layout`, existing home primitives |
-| Tokens | `src/styles/tokens.css` |
-| Mock labelling | `MockModeIndicator` (dev) + inline `MockDisclaimer` / record `mockDisclaimer` |
+| Content | `getProgrammes`, `getProgrammeBySlug`, `getPubliclyListedBranches`, `getBranches`, `getBranchContactLinks`, `getTimetableSlots`, `getTrainers`, `getFaqs` |
+| SEO | `buildPageMetadata`, `buildBreadcrumbJsonLd`, `buildCourseJsonLd`, `buildLocalBusinessJsonLd`, `buildFaqPageJsonLd`, `serializeJsonLd` |
+| Presentation | `src/components/programs/**`, `locations/**`, `maps/**`, `timetable/**` |
+| Mock labelling | Record `mockDisclaimer` via presentation `FieldDisclaimer` / `PendingValue` |
 
 ### Verification (this pass)
 
 ```
-npm run lint         # clean
-npm run type-check   # clean
-npm run test         # 27/27
-ALLOW_MOCK_PUBLISH=true npm run build  # succeeds
+npm run lint
+npm run type-check
+npm run test                                          # unit
+npx vitest run --config tests/seo/vitest.config.ts
+npx vitest run --config tests/routes/vitest.config.ts
+ALLOW_MOCK_PUBLISH=true npm run build
 ```
 
-Browser QA viewports: 390×844, 768×1024, 1440×900, 1920×1080 — no horizontal
-overflow; mobile menu + sticky CTA on small screens; desktop nav on lg+;
-hero H1 visible with `prefers-reduced-motion`.
+Browser QA (every generated programme + location page, plus unknown-slug
+not-found UI): mobile 390×844 through 1920×1080 — no horizontal overflow;
+Thane TBC / empty hours / disabled contact; long programme names; crawlable
+breadcrumb `<a>` links; specific trial CTA labels; `prefers-reduced-motion`
+emulated; Course JSON-LD on programmes; LocalBusiness absent (branches still
+unverified); noindex preserved.
 
 ### Still open
 
-- Track D: remaining Tier 1 routes (`/programmes`, `/locations`, `/timetable`,
-  `/trial`, `/contact`, …) — homepage links to them; pages may still 404.
-- Track F: full ADR-002 layer-2 banner on preview builds (dev indicator exists).
-- CONTENT-MODEL.md / DECISIONS.md sync for SEO-pass content types — see
-  [HANDOFF-SEO.md](./HANDOFF-SEO.md).
+- Track D: remaining Tier 1 routes (`/timetable`, `/trial`, `/contact`, …).
+- Track F: full ADR-002 layer-2 banner on preview builds.
+- CONTENT-MODEL.md / DECISIONS.md sync for route-pass schema fields — see
+  [HANDOFF-ROUTES.md](./HANDOFF-ROUTES.md) and [HANDOFF-SEO.md](./HANDOFF-SEO.md).
 - Owner data verification (Phase 4).
 
 ## How to resume
 
-Read this file, then [TASKS.md](./TASKS.md). For homepage structure, start at
-`src/app/page.tsx`. For content, use `@/content` only — never import
-`src/content/mock/**` from components.
+Read this file, then [TASKS.md](./TASKS.md). For programme/location UI,
+start at `src/app/programs/[slug]/page.tsx` and
+`src/app/locations/[slug]/page.tsx`. For presentation props, see
+[HANDOFF-ROUTE-UI.md](./HANDOFF-ROUTE-UI.md). Always load data via `@/content`
+— never import `src/content/mock/**` from components.

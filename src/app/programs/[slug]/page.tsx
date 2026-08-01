@@ -1,14 +1,28 @@
 import Link from "next/link";
-import Image from "next/image";
 import type { Metadata } from "next";
-import { FreeTrialCta, LocationTeaserCard, TimetablePreview } from "@/components/home";
-import { Badge } from "@/components/ui/Badge";
-import { Card } from "@/components/ui/Card";
+import {
+  AvailableLocationsSection,
+  BatchPreview,
+  BenefitsSection,
+  ClassExpectationSection,
+  EquipmentSection,
+  ExperienceLevelSection,
+  ProgrammeFaq,
+  ProgrammeHero,
+  ProgrammeTrialCta,
+  TrainerCards,
+} from "@/components/programs";
 import { Container } from "@/components/ui/Container";
-import { Section } from "@/components/ui/Section";
-import { Body, Caption, Heading, HeroHeading } from "@/components/ui/Typography";
-import { getFaqs, getProgrammes, getPubliclyListedBranches, getTimetableSlots, getTrainers } from "@/content";
-import type { Branch, Programme } from "@/content";
+import {
+  getBranchBySlug,
+  getFaqs,
+  getProgrammeBySlug,
+  getProgrammes,
+  getPubliclyListedBranches,
+  getTimetableSlots,
+  getTrainers,
+} from "@/content";
+import type { Trainer } from "@/content";
 import { buildPageMetadata } from "@/lib/seo/metadata";
 import { serializeJsonLd } from "@/lib/seo/serialize";
 import { buildBreadcrumbJsonLd, buildCourseJsonLd, buildFaqPageJsonLd } from "@/lib/seo/structured-data";
@@ -16,14 +30,7 @@ import { getProgrammeOrNotFound } from "../_lib/lookup";
 
 type ProgrammePageParams = { params: Promise<{ slug: string }> };
 
-const DAY_LABELS = ["Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Sun"];
-
-const DIFFICULTY_LABEL: Record<Programme["difficulty"], string> = {
-  beginner: "Beginner",
-  intermediate: "Intermediate",
-  advanced: "Advanced",
-  "all-levels": "All levels",
-};
+const DAY_LABELS = ["Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Sun"] as const;
 
 export function generateStaticParams() {
   return getProgrammes().map((programme) => ({ slug: programme.slug }));
@@ -39,18 +46,21 @@ export async function generateMetadata({ params }: ProgrammePageParams): Promise
   });
 }
 
-/** Branch/Trainer records don't carry `mockDisclaimer` once verified — this
- *  narrows the discriminated union safely rather than reading the field
- *  unconditionally. */
 function disclaimerFor(record: { dataStatus: string; mockDisclaimer?: string }): string | undefined {
   return record.dataStatus === "verified" ? undefined : record.mockDisclaimer;
+}
+
+function specialtyLabels(trainer: Trainer): string[] {
+  return trainer.specialties
+    .map((slug) => getProgrammeBySlug(slug)?.name)
+    .filter((name): name is string => Boolean(name));
 }
 
 export default async function ProgrammeDetailPage({ params }: ProgrammePageParams) {
   const { slug } = await params;
   const programme = getProgrammeOrNotFound(slug);
 
-  const availableBranches: Branch[] = getPubliclyListedBranches().filter((branch) =>
+  const availableBranches = getPubliclyListedBranches().filter((branch) =>
     programme.branchSlugs.includes(branch.slug)
   );
   const timetableSlots = getTimetableSlots({ programmeSlug: programme.slug });
@@ -66,6 +76,8 @@ export default async function ProgrammeDetailPage({ params }: ProgrammePageParam
   const breadcrumbJsonLd = buildBreadcrumbJsonLd(breadcrumbTrail);
   const courseJsonLd = buildCourseJsonLd(programme);
   const faqJsonLd = buildFaqPageJsonLd(faqs);
+
+  const trialLabel = `Book a trial for ${programme.name}`;
 
   return (
     <main className="flex flex-1 flex-col">
@@ -101,158 +113,82 @@ export default async function ProgrammeDetailPage({ params }: ProgrammePageParam
               </Link>
             </li>
             <li aria-hidden>/</li>
-            <li aria-current="page" className="text-ink">
+            <li aria-current="page" className="text-ink break-words">
               {programme.name}
             </li>
           </ol>
         </nav>
       </Container>
 
-      {/* Hero / Overview */}
-      <Container className="pt-6">
-        <Badge accent={programme.heroAccent} className="mb-4 w-fit">
-          {DIFFICULTY_LABEL[programme.difficulty]}
-        </Badge>
-        <HeroHeading as="h1" className="mb-4">
-          {programme.name}
-        </HeroHeading>
-        <Body size="lg" className="max-w-2xl">
-          {programme.longDescription}
-        </Body>
-      </Container>
+      <ProgrammeHero
+        name={programme.name}
+        shortDescription={programme.shortDescription}
+        longDescription={programme.longDescription}
+        accent={programme.heroAccent}
+        audienceTags={programme.audienceTags}
+        primaryCta={{ label: trialLabel, href: "/trial" }}
+        secondaryCta={{ label: "See locations for this programme", href: "#available-locations" }}
+        disclaimer={disclaimerFor(programme)}
+      />
 
-      {/* Who it's for + Class structure */}
-      <Section eyebrow="Overview" title="Who it's for" narrow>
-        <Body size="lg">{programme.whoItsFor}</Body>
-      </Section>
+      <BenefitsSection benefits={programme.benefits} />
 
-      <Section eyebrow="What to expect" title="Class structure" narrow className="pt-0">
-        <Body size="lg">{programme.classStructure}</Body>
-      </Section>
+      <ClassExpectationSection
+        classStructure={programme.classStructure}
+        whoItsFor={programme.whoItsFor}
+      />
 
-      {/* Benefits + Required equipment */}
-      <Section eyebrow="Details" title="Benefits" narrow className="pt-0">
-        <ul className="flex flex-col gap-2">
-          {programme.benefits.map((benefit) => (
-            <li key={benefit} className="flex items-start gap-2">
-              <span aria-hidden className="mt-1 text-accent">
-                •
-              </span>
-              <Body as="span">{benefit}</Body>
-            </li>
-          ))}
-        </ul>
+      <ExperienceLevelSection level={programme.difficulty} detail={programme.whoItsFor} />
 
-        <Heading as="h3" className="mb-2 mt-8">
-          Required equipment
-        </Heading>
-        {programme.requiredEquipment.length > 0 ? (
-          <ul className="flex flex-wrap gap-2">
-            {programme.requiredEquipment.map((item) => (
-              <li key={item} className="rounded-[var(--radius-sm)] bg-surface-sunken px-2.5 py-1 text-sm text-ink-muted">
-                {item}
-              </li>
-            ))}
-          </ul>
-        ) : (
-          <Body>No equipment required.</Body>
-        )}
-      </Section>
+      <EquipmentSection items={programme.requiredEquipment} />
 
-      {/* Available branches */}
-      <Section eyebrow="Where" title="Available branches" description="Branches currently offering this programme.">
-        {availableBranches.length > 0 ? (
-          <ul className="grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
-            {availableBranches.map((branch) => (
-              <li key={branch.slug}>
-                <LocationTeaserCard
-                  name={branch.name}
-                  href={`/locations/${branch.slug}`}
-                  areaLabel={branch.slug}
-                  programmeCountLabel={`${branch.programmeSlugs.length} programmes offered`}
-                  mockDisclaimer={disclaimerFor(branch) ?? ""}
-                />
-              </li>
-            ))}
-          </ul>
-        ) : (
-          <Body>No branches currently offer this programme.</Body>
-        )}
-      </Section>
+      <AvailableLocationsSection
+        locations={availableBranches.map((branch) => ({
+          slug: branch.slug,
+          name: branch.name,
+          href: `/locations/${branch.slug}`,
+          address: branch.address,
+          disclaimer: disclaimerFor(branch),
+        }))}
+      />
 
-      {/* Timings */}
-      <Section eyebrow="Schedule" title="Timings" description="Illustrative schedule — not a confirmed timetable.">
-        {timetableSlots.length > 0 ? (
-          <TimetablePreview
-            title={`${programme.name} timings`}
-            description="Illustrative schedule preview — not a confirmed timetable."
-            slots={timetableSlots.map((slot) => ({
-              id: slot.id,
-              dayLabel: DAY_LABELS[slot.dayOfWeek] ?? "—",
-              timeLabel: `${slot.startTime}–${slot.endTime}`,
-              programmeLabel: programme.name,
-              branchLabel: slot.branchSlug,
-              mockDisclaimer: disclaimerFor(slot) ?? "",
-            }))}
-          />
-        ) : (
-          <Body>No scheduled sessions listed yet for this programme.</Body>
-        )}
-      </Section>
+      <TrainerCards
+        trainers={trainers.map((trainer) => ({
+          slug: trainer.slug,
+          name: trainer.name,
+          bio: trainer.bio,
+          qualifications: trainer.qualifications,
+          specialtyLabels: specialtyLabels(trainer),
+          photo: trainer.photo,
+          disclaimer: disclaimerFor(trainer),
+        }))}
+      />
 
-      {/* Trainers */}
-      <Section eyebrow="Coaches" title="Trainers" description="Trainers specialising in this programme.">
-        {trainers.length > 0 ? (
-          <ul className="grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
-            {trainers.map((trainer) => (
-              <li key={trainer.slug}>
-                <Card className="flex h-full flex-col gap-4">
-                  <div className="relative aspect-square w-20 overflow-hidden rounded-full bg-surface-sunken">
-                    <Image
-                      src={trainer.photo.src}
-                      alt={trainer.photo.alt}
-                      width={trainer.photo.width}
-                      height={trainer.photo.height}
-                      className="h-full w-full object-cover"
-                    />
-                  </div>
-                  <div>
-                    <Heading as="h3" className="mb-1">
-                      {trainer.name}
-                    </Heading>
-                    <Body className="mb-2">{trainer.bio}</Body>
-                    {disclaimerFor(trainer) ? <Caption className="text-ink-subtle">{disclaimerFor(trainer)}</Caption> : null}
-                  </div>
-                </Card>
-              </li>
-            ))}
-          </ul>
-        ) : (
-          <Body>Trainer roster for this programme is coming soon.</Body>
-        )}
-      </Section>
+      <BatchPreview
+        slots={timetableSlots.map((slot) => ({
+          id: slot.id,
+          dayLabel: DAY_LABELS[slot.dayOfWeek] ?? "—",
+          timeLabel: `${slot.startTime}–${slot.endTime}`,
+          locationLabel: getBranchBySlug(slot.branchSlug)?.name ?? slot.branchSlug,
+          disclaimer: disclaimerFor(slot),
+        }))}
+      />
 
-      {/* FAQs */}
-      <Section eyebrow="FAQ" title={`${programme.name} FAQs`} narrow className="bg-surface-sunken/50">
-        <div className="flex flex-col gap-3">
-          {faqs.map((faq) => (
-            <details key={faq.id} className="group rounded-[var(--radius-lg)] border border-border bg-surface-raised px-5 py-2">
-              <summary className="cursor-pointer list-none py-3 font-[family-name:var(--font-display)] text-[length:var(--text-heading)] font-semibold text-ink marker:content-none [&::-webkit-details-marker]:hidden">
-                {faq.question}
-              </summary>
-              <div className="border-t border-border pb-4 pt-3">
-                <Body>{faq.answer}</Body>
-                {disclaimerFor(faq) ? <Caption className="mt-2 text-ink-subtle">{disclaimerFor(faq)}</Caption> : null}
-              </div>
-            </details>
-          ))}
-        </div>
-      </Section>
+      <ProgrammeFaq
+        title={`${programme.name} FAQs`}
+        items={faqs.map((faq) => ({
+          id: faq.id,
+          question: faq.question,
+          answer: faq.answer,
+          disclaimer: disclaimerFor(faq),
+        }))}
+      />
 
-      {/* Trial CTA */}
-      <FreeTrialCta
-        title={`Try a ${programme.name} class`}
-        body={`Book a trial class to experience ${programme.name.toLowerCase()} at Ankit's Studio.`}
+      <ProgrammeTrialCta
+        programmeName={programme.name}
+        title={`Try ${programme.name}`}
+        body={`Book a trial class to experience ${programme.name} at Ankit's Studio.`}
+        ctaLabel={trialLabel}
       />
     </main>
   );
