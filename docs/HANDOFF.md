@@ -1,70 +1,54 @@
 # Handoff
 
-_Last updated: 2026-08-01 — Programme & location experiences integrated._
+_Last updated: 2026-08-01 — Initial marketing website routes completed._
 
 ## Current state
 
-Programme and location **detail routes** now compose the reusable presentation
-system from [HANDOFF-ROUTE-UI.md](./HANDOFF-ROUTE-UI.md) on top of the route
-architecture in [HANDOFF-ROUTES.md](./HANDOFF-ROUTES.md). Pages stay
-**server-rendered**; metadata, JSON-LD, mock noindex, and missing-data
-handling are unchanged in behaviour.
+The marketing site now covers the remaining Tier 1–3 destinations plus about
+and legal draft pages. Shared chrome (`SiteChrome`) wraps the homepage,
+programme/location trees, and new marketing routes.
 
-### What this pass built
+### Routes shipped this pass
 
-- **`src/app/programs/[slug]/page.tsx`** — wires `@/content` accessors into
-  programme presentation components (hero → trial CTA). Publicly listed
-  branches link to `/locations/[slug]`.
-- **`src/app/locations/[slug]/page.tsx`** — wires location presentation,
-  `MapPlaceholder`, and `BranchTimetable`. Offered programmes link to
-  `/programs/[slug]`. Contact actions use `getBranchContactLinks` (disabled
-  until verified — ADR-011).
-- **Homepage internal links** — `/programmes` → `/programs` so showcase CTAs
-  hit the real routes (gap flagged in HANDOFF-ROUTES).
-
-Index pages (`/programs`, `/locations`), lookup helpers, `not-found` /
-`loading`, content schemas, and SEO builders were already in place and were
-**not** reworked beyond the detail-page composition above.
-
-### Systems reused (not duplicated)
-
-| System | Source |
+| Path | Notes |
 |---|---|
-| Content | `getProgrammes`, `getProgrammeBySlug`, `getPubliclyListedBranches`, `getBranches`, `getBranchContactLinks`, `getTimetableSlots`, `getTrainers`, `getFaqs` |
-| SEO | `buildPageMetadata`, `buildBreadcrumbJsonLd`, `buildCourseJsonLd`, `buildLocalBusinessJsonLd`, `buildFaqPageJsonLd`, `serializeJsonLd` |
-| Presentation | `src/components/programs/**`, `locations/**`, `maps/**`, `timetable/**` |
-| Mock labelling | Record `mockDisclaimer` via presentation `FieldDisclaimer` / `PendingValue` |
+| `/about` | Founder-story placeholder; no invented years/certs |
+| `/trainers`, `/trainers/[slug]` | Illustrative roster; missing quals handled |
+| `/transformations` | Editorial placeholder; no fabricated before/after |
+| `/timetable` | GET filters by branch/programme; works without JS |
+| `/pricing` | Mock fees labelled; no discount countdowns |
+| `/trial` | Typed trial form + lead adapters |
+| `/book-a-free-trial` | Redirects to canonical `/trial` |
+| `/contact` | Safe mock contact (no fake `tel:`); inquiry form |
+| `/blog`, `/blog/[slug]` | Sample articles, **forceNoIndex** |
+| `/privacy-policy`, `/terms` | Explicit draft placeholders pending legal review |
+
+### Lead adapters
+
+- `src/lib/leads` — `LeadAdapter` interface
+- Mock adapter for development / mock-publish
+- Production placeholder fails closed unless/until a real provider is wired
+  (`LEAD_PROVIDER_URL`); never reports successful delivery when unconfigured
 
 ### Verification (this pass)
 
 ```
 npm run lint
 npm run type-check
-npm run test                                          # unit
+npm run test
 npx vitest run --config tests/seo/vitest.config.ts
 npx vitest run --config tests/routes/vitest.config.ts
 ALLOW_MOCK_PUBLISH=true npm run build
 ```
 
-Browser QA (every generated programme + location page, plus unknown-slug
-not-found UI): mobile 390×844 through 1920×1080 — no horizontal overflow;
-Thane TBC / empty hours / disabled contact; long programme names; crawlable
-breadcrumb `<a>` links; specific trial CTA labels; `prefers-reduced-motion`
-emulated; Course JSON-LD on programmes; LocalBusiness absent (branches still
-unverified); noindex preserved.
-
 ### Still open
 
-- Track D: remaining Tier 1 routes (`/timetable`, `/trial`, `/contact`, …).
-- Track F: full ADR-002 layer-2 banner on preview builds.
-- CONTENT-MODEL.md / DECISIONS.md sync for route-pass schema fields — see
-  [HANDOFF-ROUTES.md](./HANDOFF-ROUTES.md) and [HANDOFF-SEO.md](./HANDOFF-SEO.md).
-- Owner data verification (Phase 4).
+- Track F: full ADR-002 layer-2 banner on preview builds
+- CONTENT-MODEL.md / DECISIONS.md sync for earlier schema extensions
+- Owner data verification (Phase 4)
+- Wire a real lead provider before production form delivery
 
 ## How to resume
 
-Read this file, then [TASKS.md](./TASKS.md). For programme/location UI,
-start at `src/app/programs/[slug]/page.tsx` and
-`src/app/locations/[slug]/page.tsx`. For presentation props, see
-[HANDOFF-ROUTE-UI.md](./HANDOFF-ROUTE-UI.md). Always load data via `@/content`
-— never import `src/content/mock/**` from components.
+Read this file, then [TASKS.md](./TASKS.md). Canonical trial path is `/trial`.
+Load all business data via `@/content` only.

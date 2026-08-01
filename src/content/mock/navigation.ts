@@ -1,22 +1,10 @@
 import type { NavigationItem } from "../schema";
 
 /**
- * Matches docs/INFORMATION-ARCHITECTURE.md's phased primary nav exactly —
- * Tier 1 destinations + the trial CTA only. Tier 2 items (Pricing,
- * Trainers, Transformations) are intentionally absent — see
- * docs/DECISIONS.md ADR-007 finding I12. Branch links and social links are
- * intentionally not duplicated here: branches come from
- * `getPubliclyListedBranches()` directly, and no real social URLs exist yet
- * (not fabricated).
+ * Primary nav stays Tier 1 (+ trial CTA). Footer carries Tier 2/3 and legal
+ * destinations once those routes ship with inline disclaimers (ADR-007 I12).
  *
- * Path note: the actual route is `/programs` (American spelling), not
- * `/programmes` as every other doc in this project uses — see
- * docs/HANDOFF-ROUTES.md for why (a later task's explicit file-ownership
- * grant named `src/app/programs/**`). Label text stays "Programmes" —
- * only the URL segment differs. `src/app/page.tsx` (the homepage, outside
- * this task's ownership) still hardcodes `/programmes` in three places and
- * will 404 until whoever owns it updates those links — see
- * docs/HANDOFF-ROUTES.md.
+ * Booking path is `/trial` (IA). `/book-a-free-trial` redirects there.
  */
 export const mockNavigationItems: NavigationItem[] = [
   { dataStatus: "verified", id: "nav-home", label: "Home", path: "/", placement: "primary", order: 1 },
@@ -56,19 +44,67 @@ export const mockNavigationItems: NavigationItem[] = [
   },
   {
     dataStatus: "verified",
+    id: "nav-footer-about",
+    label: "About",
+    path: "/about",
+    placement: "footer",
+    order: 1,
+  },
+  {
+    dataStatus: "verified",
     id: "nav-footer-programmes",
     label: "Programmes",
     path: "/programs",
     placement: "footer",
-    order: 1,
+    order: 2,
   },
-  { dataStatus: "verified", id: "nav-footer-blog", label: "Blog", path: "/blog", placement: "footer", order: 2 },
+  {
+    dataStatus: "verified",
+    id: "nav-footer-trainers",
+    label: "Trainers",
+    path: "/trainers",
+    placement: "footer",
+    order: 3,
+  },
+  {
+    dataStatus: "verified",
+    id: "nav-footer-pricing",
+    label: "Pricing",
+    path: "/pricing",
+    placement: "footer",
+    order: 4,
+  },
+  {
+    dataStatus: "verified",
+    id: "nav-footer-transformations",
+    label: "Transformations",
+    path: "/transformations",
+    placement: "footer",
+    order: 5,
+  },
+  { dataStatus: "verified", id: "nav-footer-blog", label: "Blog", path: "/blog", placement: "footer", order: 6 },
   {
     dataStatus: "verified",
     id: "nav-footer-contact",
     label: "Contact",
     path: "/contact",
     placement: "footer",
-    order: 3,
+    order: 7,
+  },
+  {
+    dataStatus: "verified",
+    id: "nav-footer-privacy",
+    label: "Privacy policy",
+    path: "/privacy-policy",
+    placement: "footer",
+    order: 8,
+  },
+  {
+    dataStatus: "verified",
+    id: "nav-footer-terms",
+    label: "Terms",
+    path: "/terms",
+    placement: "footer",
+    order: 9,
   },
 ];

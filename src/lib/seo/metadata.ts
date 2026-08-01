@@ -16,14 +16,17 @@ const pageMetadataInputSchema = z.object({
   description: z.string().min(1),
   path: z.string().min(1).startsWith("/"),
   ogImagePath: z.string().optional(),
+  /** Force noindex even if the site-wide mock gate is later lifted (e.g. sample blog). */
+  forceNoIndex: z.boolean().optional(),
 });
 
 export type PageMetadataInput = z.infer<typeof pageMetadataInputSchema>;
 
 /** Throws (via Zod) if a required field is missing or malformed. */
 export function buildPageMetadata(input: PageMetadataInput): Metadata {
-  const { title, description, path, ogImagePath } = pageMetadataInputSchema.parse(input);
+  const { title, description, path, ogImagePath, forceNoIndex } = pageMetadataInputSchema.parse(input);
   const canonical = buildCanonicalUrl(path);
+  const robots = forceNoIndex ? { index: false, follow: false } : buildRobotsMeta();
 
   return {
     title,
@@ -43,6 +46,6 @@ export function buildPageMetadata(input: PageMetadataInput): Metadata {
       description,
       images: ogImagePath ? [ogImagePath] : undefined,
     },
-    robots: buildRobotsMeta(),
+    robots,
   };
 }

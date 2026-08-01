@@ -112,6 +112,10 @@ export function getBlogPosts(): BlogPost[] {
   return blogPosts;
 }
 
+export function getBlogPostBySlug(slug: string): BlogPost | undefined {
+  return blogPosts.find((post) => post.slug === slug);
+}
+
 /**
  * The only sanctioned way to get a clickable phone/WhatsApp link or a Maps
  * embed URL for a branch. Structurally returns null for every field unless
