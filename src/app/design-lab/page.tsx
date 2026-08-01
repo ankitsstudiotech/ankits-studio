@@ -22,6 +22,7 @@ import {
   Title,
   VideoFrame,
 } from "@/components/ui";
+import { LabShell } from "./LabShell";
 import {
   labFooterGroups,
   labHero,
@@ -34,7 +35,7 @@ import {
 
 export default function DesignLabPage() {
   return (
-    <>
+    <LabShell>
       <SiteHeader items={labNavItems} pathname="/design-lab" brandHref="/design-lab" />
 
       <main>
@@ -219,6 +220,6 @@ export default function DesignLabPage() {
 
       <SiteFooter groups={labFooterGroups} />
       <StickyCtaBar pathname="/design-lab" href="/design-lab#trial" />
-    </>
+    </LabShell>
   );
 }

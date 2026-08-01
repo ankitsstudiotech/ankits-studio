@@ -1,21 +1,10 @@
 import type { Metadata } from "next";
-import { Figtree, Syne } from "next/font/google";
-import "@/styles/studio.css";
 
-const syne = Syne({
-  subsets: ["latin"],
-  variable: "--font-syne",
-  display: "swap",
-  weight: ["500", "600", "700"],
-});
-
-const figtree = Figtree({
-  subsets: ["latin"],
-  variable: "--font-figtree",
-  display: "swap",
-  weight: ["400", "500", "600", "700"],
-});
-
+/**
+ * Design-lab shell is intentionally thin so revamp prototypes can own their
+ * fonts, colour, and layout without inheriting the incumbent studio-shell.
+ * The component review page (`/design-lab`) wraps itself in LabShell.
+ */
 export const metadata: Metadata = {
   title: "Design lab · Ankit's Studio",
   description:
@@ -31,16 +20,5 @@ export default function DesignLabLayout({
 }: Readonly<{
   children: React.ReactNode;
 }>) {
-  return (
-    <div
-      className={[
-        syne.variable,
-        figtree.variable,
-        "studio-shell has-sticky-cta",
-        "flex min-h-full flex-col",
-      ].join(" ")}
-    >
-      {children}
-    </div>
-  );
+  return children;
 }

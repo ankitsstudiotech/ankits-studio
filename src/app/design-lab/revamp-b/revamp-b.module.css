@@ -1,0 +1,369 @@
+.root {
+  --rb-bg: #0b0b0c;
+  --rb-fg: #f4f1ea;
+  --rb-muted: #9a958c;
+  --rb-coral: #ff4d2e;
+  --rb-volt: #c8ff3d;
+  --rb-teal: #5eead4;
+  background: var(--rb-bg);
+  color: var(--rb-fg);
+  font-family: var(--rb-sans), system-ui, sans-serif;
+  min-height: 100vh;
+  line-height: 1.4;
+}
+
+.root :global(a:focus-visible),
+.root :global(button:focus-visible) {
+  outline: 2px solid var(--rb-volt);
+  outline-offset: 3px;
+}
+
+.skip {
+  position: absolute;
+  left: -9999px;
+}
+
+.skip:focus {
+  left: 1rem;
+  top: 1rem;
+  z-index: 30;
+  background: var(--rb-volt);
+  color: #000;
+  padding: 0.5rem 0.75rem;
+}
+
+.pulseNav {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.75rem 1.5rem;
+  padding: 1rem 1.25rem;
+  border-bottom: 1px solid #2a2a2c;
+}
+
+.brand {
+  font-family: var(--rb-display), Impact, sans-serif;
+  font-size: clamp(1.8rem, 4vw, 2.6rem);
+  letter-spacing: 0.04em;
+  text-decoration: none;
+  color: inherit;
+  line-height: 1;
+}
+
+.pulseNav a:not(.brand) {
+  color: var(--rb-muted);
+  text-decoration: none;
+  font-size: 0.8rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.pulseNav a:not(.brand):hover {
+  color: var(--rb-fg);
+}
+
+.hero {
+  position: relative;
+  display: grid;
+  grid-template-columns: 1.2fr 0.8fr;
+  gap: 0;
+  min-height: min(85vh, 760px);
+  overflow: hidden;
+}
+
+.heroCopy {
+  padding: clamp(1.5rem, 5vw, 3.5rem);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 1rem;
+  z-index: 2;
+}
+
+.heroCopy h1 {
+  font-family: var(--rb-display), Impact, sans-serif;
+  font-size: clamp(3.2rem, 10vw, 7rem);
+  line-height: 0.88;
+  letter-spacing: 0.02em;
+  margin: 0;
+  max-width: 9ch;
+}
+
+.heroCopy p {
+  max-width: 34ch;
+  color: var(--rb-muted);
+  margin: 0;
+  font-size: 1.05rem;
+}
+
+.heroStack {
+  position: relative;
+  min-height: 320px;
+}
+
+.layerA,
+.layerB {
+  position: absolute;
+  inset: 8% 8% 18% 4%;
+}
+
+.layerB {
+  inset: 22% 4% 6% 18%;
+  transform: rotate(-4deg);
+  opacity: 0.92;
+}
+
+.layerA {
+  transform: rotate(3deg);
+}
+
+.root :global(.rb-beat-strip) {
+  display: flex;
+  align-items: flex-end;
+  gap: 4px;
+  height: 48px;
+  margin-top: 1.25rem;
+}
+
+.root :global(.rb-beat-strip i) {
+  flex: 1;
+  display: block;
+  height: 100%;
+  background: var(--rb-coral);
+  opacity: 0.85;
+}
+
+.root :global(.rb-beat-strip i:nth-child(3n)) {
+  background: var(--rb-volt);
+}
+
+.root :global(.rb-beat-strip i:nth-child(5n)) {
+  background: var(--rb-teal);
+}
+
+.band {
+  padding: clamp(2rem, 5vw, 3.5rem) 1.25rem;
+  border-top: 1px solid #2a2a2c;
+}
+
+.band h2 {
+  font-family: var(--rb-display), Impact, sans-serif;
+  font-size: clamp(2rem, 5vw, 3.4rem);
+  letter-spacing: 0.03em;
+  margin: 0 0 1.25rem;
+  line-height: 1;
+}
+
+.lanes {
+  display: flex;
+  flex-direction: column;
+  gap: 0.65rem;
+}
+
+.root :global(.rb-lane) {
+  display: grid;
+  grid-template-columns: 1.2fr 0.8fr;
+  gap: 1rem;
+  align-items: center;
+  text-decoration: none;
+  color: inherit;
+  padding: 1rem 1.1rem;
+  border: 1px solid #333;
+  background: linear-gradient(105deg, #121214 0%, #18181b 100%);
+  clip-path: polygon(0 0, 100% 0, 98% 100%, 0 100%);
+}
+
+.root :global(.rb-lane[data-family="strength"]) {
+  border-color: color-mix(in srgb, #ff4d2e 55%, #333);
+}
+
+.root :global(.rb-lane[data-family="calm"]) {
+  border-color: color-mix(in srgb, #5eead4 55%, #333);
+}
+
+.root :global(.rb-lane[data-family="high-energy"]) {
+  border-color: color-mix(in srgb, #c8ff3d 55%, #333);
+}
+
+.root :global(.rb-lane-meta h3) {
+  font-family: var(--rb-display), Impact, sans-serif;
+  font-size: 1.85rem;
+  letter-spacing: 0.03em;
+  margin: 0.15rem 0 0.35rem;
+  line-height: 1;
+}
+
+.root :global(.rb-lane-meta p) {
+  margin: 0;
+  color: var(--rb-muted);
+  font-size: 0.9rem;
+}
+
+.root :global(.rb-tempo) {
+  font-size: 0.65rem;
+  letter-spacing: 0.16em;
+  color: var(--rb-lane-accent, var(--rb-coral));
+}
+
+.root :global(.rb-beats) {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.root :global(.rb-beat) {
+  display: block;
+  height: 6px;
+  background: var(--rb-lane-accent, var(--rb-coral));
+  width: 100%;
+}
+
+.story {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1.5rem;
+  align-items: stretch;
+}
+
+.storyCopy {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 1rem;
+  padding: 0.5rem 0;
+}
+
+.storyCopy p {
+  margin: 0;
+  color: var(--rb-muted);
+  max-width: 42ch;
+}
+
+.nodes {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+  justify-content: center;
+  padding: 1.5rem 0;
+  position: relative;
+}
+
+.nodes::before {
+  content: "";
+  position: absolute;
+  top: 50%;
+  left: 10%;
+  right: 10%;
+  height: 1px;
+  background: #333;
+}
+
+.node {
+  position: relative;
+  z-index: 1;
+  width: min(100%, 220px);
+  padding: 1.1rem;
+  background: #141416;
+  border: 1px solid #3a3a3c;
+  text-decoration: none;
+  color: inherit;
+}
+
+.node h3 {
+  font-family: var(--rb-display), Impact, sans-serif;
+  font-size: 1.7rem;
+  margin: 0 0 0.35rem;
+  letter-spacing: 0.03em;
+}
+
+.node p {
+  margin: 0;
+  font-size: 0.8rem;
+  color: var(--rb-muted);
+}
+
+.disclaimer {
+  margin-top: 0.65rem;
+  font-size: 0.7rem;
+  color: #7a756c;
+}
+
+.ctaBand {
+  padding: 2rem 1.25rem 3rem;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 1rem;
+  background: radial-gradient(ellipse at 20% 50%, #2a120e 0%, var(--rb-bg) 55%);
+}
+
+.ctaBand h2 {
+  font-family: var(--rb-display), Impact, sans-serif;
+  font-size: clamp(2.2rem, 6vw, 4rem);
+  margin: 0;
+  letter-spacing: 0.02em;
+  line-height: 0.95;
+  max-width: 12ch;
+}
+
+.root :global(.rb-cta) {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 48px;
+  padding: 0.85rem 1.6rem;
+  background: var(--rb-coral);
+  color: #fff;
+  text-decoration: none;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  font-size: 0.85rem;
+}
+
+.root :global(.rb-cta:hover) {
+  background: #ff6348;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .root :global(.rb-lane),
+  .root :global(.rb-cta),
+  .root :global(.rb-beat),
+  .root :global(.rb-beat-strip i) {
+    transition: none !important;
+  }
+}
+
+@media (max-width: 768px) {
+  .hero {
+    grid-template-columns: 1fr;
+    min-height: auto;
+  }
+
+  .heroStack {
+    min-height: 260px;
+    order: -1;
+  }
+
+  .layerA,
+  .layerB {
+    inset: 6% 8%;
+  }
+
+  .layerB {
+    inset: 28% 4% 4% 20%;
+  }
+
+  .root :global(.rb-lane) {
+    grid-template-columns: 1fr;
+    clip-path: none;
+  }
+
+  .story {
+    grid-template-columns: 1fr;
+  }
+
+  .nodes::before {
+    display: none;
+  }
+}
