@@ -25,13 +25,13 @@ export function FaqSection({ items }: FaqSectionProps) {
       title="Common questions"
       description="Answers below are illustrative placeholders until the owner confirms studio policy copy."
       narrow
-      className="bg-surface-sunken/50"
+      className="bg-surface"
     >
       <div className="flex flex-col gap-3">
         {items.map((item) => (
           <details
             key={item.id}
-            className="group rounded-[var(--radius-lg)] border border-border bg-surface-raised px-5 py-2 open:shadow-[var(--shadow-soft)]"
+            className="group border border-border bg-surface-raised px-5 py-2"
           >
             <summary className="cursor-pointer list-none py-3 font-[family-name:var(--font-display)] text-[length:var(--text-heading)] font-semibold text-ink marker:content-none [&::-webkit-details-marker]:hidden focus-visible:outline-2 focus-visible:outline-offset-3 focus-visible:outline-focus-ring">
               <span className="flex min-h-11 items-center justify-between gap-4">

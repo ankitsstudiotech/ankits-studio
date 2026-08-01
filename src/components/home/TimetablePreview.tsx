@@ -26,7 +26,7 @@ export function TimetablePreview({
   description = "Illustrative schedule preview — not a real timetable.",
 }: TimetablePreviewProps) {
   return (
-    <div className="overflow-hidden rounded-[var(--radius-lg)] border border-border bg-surface-raised shadow-[var(--shadow-soft)]">
+    <div className="overflow-hidden border border-border bg-surface-raised">
       <div className="border-b border-border px-5 py-4 sm:px-6">
         <Heading as="h3">{title}</Heading>
         <Caption className="mt-1">{description}</Caption>

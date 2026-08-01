@@ -1,9 +1,7 @@
-import { ScrollReveal } from "@/components/motion/ScrollReveal";
 import { Badge } from "@/components/ui/Badge";
-import { Card } from "@/components/ui/Card";
-import { Section } from "@/components/ui/Section";
-import { Body, Caption, Heading } from "@/components/ui/Typography";
+import { Caption, Heading } from "@/components/ui/Typography";
 import { MockDisclaimer } from "./MockDisclaimer";
+import styles from "./pulse/pulse-home.module.css";
 
 export type TransformationStoryItem = {
   slug: string;
@@ -16,32 +14,36 @@ export type TransformationStoriesProps = {
   items: TransformationStoryItem[];
 };
 
+/** Honest evidence placeholders — community tempo, not fake stats. */
 export function TransformationStories({ items }: TransformationStoriesProps) {
   return (
-    <Section
+    <section
       id="transformations"
-      eyebrow="Transformations"
-      title="The kind of progress we coach toward"
-      description="Illustrative programme outcomes only — no fabricated before/after photography, percentages, or member identities."
-      className="bg-surface-sunken/60"
+      className={styles.communityBand}
+      aria-labelledby="home-evidence-title"
     >
-      <div className="grid gap-4 md:grid-cols-2">
-        {items.map((item, index) => (
-          <ScrollReveal key={item.slug} delay={index * 0.05}>
-            <Card className="h-full">
-              <Badge accent="neutral" className="mb-4">
-                Illustrative
-              </Badge>
-              <Caption className="mb-2">{item.programmeLabel}</Caption>
-              <Heading as="h3" className="mb-3">
-                Example journey
-              </Heading>
-              <Body className="mb-4">{item.summary}</Body>
-              <MockDisclaimer>{item.mockDisclaimer}</MockDisclaimer>
-            </Card>
-          </ScrollReveal>
+      <h2 id="home-evidence-title" className={styles.bandTitle}>
+        HONEST EVIDENCE
+      </h2>
+      <p className={styles.disclaimer} style={{ marginBottom: "1.25rem", maxWidth: "48ch" }}>
+        Illustrative programme journeys only — no fabricated before/after photography,
+        percentages, or member identities.
+      </p>
+      <div className={styles.evidenceList}>
+        {items.slice(0, 3).map((item) => (
+          <article key={item.slug} className={styles.evidenceItem}>
+            <Badge accent="neutral">Illustrative</Badge>
+            <Caption className="mt-2 text-[var(--color-muted-on-field)]">
+              {item.programmeLabel}
+            </Caption>
+            <Heading as="h3" className="mt-2 text-ink-inverse">
+              Example journey
+            </Heading>
+            <p>{item.summary}</p>
+            <MockDisclaimer className="mt-3">{item.mockDisclaimer}</MockDisclaimer>
+          </article>
         ))}
       </div>
-    </Section>
+    </section>
   );
 }

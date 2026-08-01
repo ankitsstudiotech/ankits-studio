@@ -1,26 +1,41 @@
-import { ScrollReveal } from "@/components/motion/ScrollReveal";
-import { Section } from "@/components/ui/Section";
-import { ProgrammeCard, type ProgrammeCardProps } from "./ProgrammeCard";
+import type { ProgrammeAccentFamily } from "@/content/schema";
+import { TempoLane } from "./pulse/PulseMotion";
+import styles from "./pulse/pulse-home.module.css";
+
+export type ProgrammeAccent = ProgrammeAccentFamily;
 
 export type ProgrammeShowcaseProps = {
-  programmes: ProgrammeCardProps[];
+  programmes: Array<{
+    name: string;
+    href: string;
+    shortDescription: string;
+    accent: ProgrammeAccent;
+    tags?: string[];
+  }>;
 };
 
 export function ProgrammeShowcase({ programmes }: ProgrammeShowcaseProps) {
   return (
-    <Section
+    <section
       id="programmes"
-      eyebrow="Programmes"
-      title="Train strength. Move with rhythm."
-      description="One studio system for strength, personal training, yoga, Zumba, and dance — differentiated by accent, not by competing sub-brands."
+      className={`${styles.field} ${styles.band}`}
+      aria-labelledby="home-programmes-title"
     >
-      <div className="grid gap-4 sm:grid-cols-2 xl:grid-cols-3">
-        {programmes.map((programme, index) => (
-          <ScrollReveal key={programme.name} delay={Math.min(index * 0.04, 0.16)}>
-            <ProgrammeCard {...programme} />
-          </ScrollReveal>
+      <h2 id="home-programmes-title" className={styles.bandTitle}>
+        TEMPO LANES
+      </h2>
+      <div className={styles.lanes}>
+        {programmes.map((programme) => (
+          <TempoLane
+            key={programme.href}
+            family={programme.accent}
+            name={programme.name}
+            description={programme.shortDescription}
+            href={programme.href}
+            tags={programme.tags}
+          />
         ))}
       </div>
-    </Section>
+    </section>
   );
 }

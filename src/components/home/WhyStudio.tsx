@@ -1,8 +1,5 @@
-import { ScrollReveal } from "@/components/motion/ScrollReveal";
-import { Card } from "@/components/ui/Card";
-import { Section } from "@/components/ui/Section";
-import { Body, Heading } from "@/components/ui/Typography";
-import { MockDisclaimer } from "./MockDisclaimer";
+import { PulseMediaPlate } from "./pulse/PulseMotion";
+import styles from "./pulse/pulse-home.module.css";
 
 export type WhyPoint = {
   id: string;
@@ -12,31 +9,40 @@ export type WhyPoint = {
 
 export type WhyStudioProps = {
   points: WhyPoint[];
-  disclaimer: string;
+  disclaimer?: string;
 };
 
 export function WhyStudio({ points, disclaimer }: WhyStudioProps) {
   return (
-    <Section
-      id="why"
-      eyebrow="Why Ankit's Studio"
-      title="Built for the whole community"
-      description="A premium space that holds strength credibility and dance energy without looking like a generic gym template."
-      className="bg-surface-raised/50"
+    <section
+      id="studio"
+      className={`${styles.field} ${styles.band}`}
+      aria-labelledby="home-community-title"
     >
-      <div className="grid gap-4 md:grid-cols-3">
-        {points.map((point, index) => (
-          <ScrollReveal key={point.id} delay={index * 0.05}>
-            <Card className="h-full">
-              <Heading as="h3" className="mb-3">
+      <h2 id="home-community-title" className={styles.bandTitle}>
+        COMMUNITY PULSE
+      </h2>
+      <div className={styles.story}>
+        <PulseMediaPlate family="high-energy" label="Shared floor · class energy" aspect="16/9" />
+        <div className={styles.storyCopy}>
+          {points.map((point) => (
+            <div key={point.id}>
+              <p
+                style={{
+                  fontFamily: "var(--font-display)",
+                  fontSize: "1.6rem",
+                  letterSpacing: "0.03em",
+                  margin: "0 0 0.35rem",
+                }}
+              >
                 {point.title}
-              </Heading>
-              <Body>{point.body}</Body>
-            </Card>
-          </ScrollReveal>
-        ))}
+              </p>
+              <p>{point.body}</p>
+            </div>
+          ))}
+          {disclaimer ? <p className={styles.disclaimer}>{disclaimer}</p> : null}
+        </div>
       </div>
-      <MockDisclaimer className="mt-6">{disclaimer}</MockDisclaimer>
-    </Section>
+    </section>
   );
 }

@@ -2,18 +2,15 @@ import {
   BranchExplorer,
   CommunityTestimonials,
   FaqSection,
-  FounderStoryPlaceholder,
   FreeTrialCta,
   Hero,
   ProgrammeShowcase,
   TransformationStories,
-  TrustStrip,
   TimetablePreview,
   WhyStudio,
   type ProgrammeAccent,
 } from "@/components/home";
-import { ScrollReveal } from "@/components/motion/ScrollReveal";
-import { Section } from "@/components/ui/Section";
+import { TextLink } from "@/components/ui/TextLink";
 import {
   getBusinessIdentity,
   getFaqs,
@@ -25,6 +22,7 @@ import {
   type ProgrammeSlug,
 } from "@/content";
 import { buildPageMetadata } from "@/lib/seo";
+import styles from "@/components/home/pulse/pulse-home.module.css";
 
 export const metadata = buildPageMetadata({
   title: "Fitness & dance studio in Navi Mumbai",
@@ -49,10 +47,10 @@ export default function HomePage() {
   const identity = getBusinessIdentity();
   const programmes = getProgrammes();
   const branches = getPubliclyListedBranches();
-  const slots = getTimetableSlots();
+  const slots = getTimetableSlots().slice(0, 6);
   const testimonials = getTestimonials();
   const transformations = getTransformations();
-  const faqs = getFaqs();
+  const faqs = getFaqs().slice(0, 6);
 
   const identityDisclaimer =
     identity.dataStatus === "verified" ? undefined : identity.mockDisclaimer;
@@ -60,33 +58,11 @@ export default function HomePage() {
   return (
     <main>
       <Hero
-        cinematic
-        eyebrow={identity.displayName}
-        title="Move with strength, rhythm, and community."
-        description={identity.description}
+        title="FEEL THE ROOM'S TEMPO"
+        description="Strength hits. Yoga holds. Dance grooves. Pick the energy that fits your week — then book a trial at a listed Navi Mumbai branch."
         mockDisclaimer={identityDisclaimer}
-        primaryCta={{ label: "Book a trial", href: "/trial" }}
+        primaryCta={{ label: "Book a free trial", href: "/trial" }}
         secondaryCta={{ label: "Browse programmes", href: "/programs" }}
-        media={{
-          src: "/mock-media/hero-atmosphere.svg",
-          alt: "Replaceable abstract studio atmosphere placeholder — not real photography",
-          width: 1600,
-          height: 1200,
-          placeholderLabel: "Mock media",
-        }}
-      />
-
-      <TrustStrip
-        items={[
-          { id: "strength", label: "Strength & personal training" },
-          { id: "yoga", label: "Yoga" },
-          { id: "dance", label: "Zumba & dance" },
-          {
-            id: "locations",
-            label: branches.map((b) => b.slug.charAt(0).toUpperCase() + b.slug.slice(1)).join(" · "),
-          },
-        ]}
-        disclaimer="Programme names and listed locations are confirmed; no member counts, ratings, or outcome statistics are shown."
       />
 
       <ProgrammeShowcase
@@ -103,29 +79,60 @@ export default function HomePage() {
         points={[
           {
             id: "range",
-            title: "One studio, full range",
-            body: "Strength, yoga, Zumba, and dance share one premium system — so the brand stays coherent while each programme still feels distinct.",
+            title: "ONE FLOOR, MANY TEMPOS",
+            body: "Strength, yoga, Zumba, and dance share equipment, coaches, and calendar space — one neighbourhood studio, not unrelated brands taped together.",
           },
           {
             id: "local",
-            title: "Neighbourhood-first",
-            body: "Built for local discovery across listed branches, with clear paths from programme interest to a trial visit.",
+            title: "BUILT FOR THE WEEK",
+            body: "Working adults and parents can find a programme, confirm a listed branch, check illustrative timings, and book a trial without hype metrics.",
           },
           {
             id: "human",
-            title: "Human, not hype",
-            body: "No fabricated member counts or miracle claims — coaching culture and community come first.",
+            title: "ENERGY WITHOUT THEATRE",
+            body: "No fabricated member counts or miracle claims. Community energy is structural — lanes, places, and an honest trial path.",
           },
         ]}
-        disclaimer="Positioning copy above is illustrative studio narrative pending owner review — not verified biography or performance claims."
+        disclaimer="Positioning copy is studio narrative pending owner review — not verified biography or performance claims."
       />
 
-      <FounderStoryPlaceholder
-        title="Founder story coming soon"
-        body="This section is reserved for an owner-approved founder narrative and photography. Until then it stays clearly labelled as a placeholder so nothing is mistaken for a verified biography."
-        disclaimer="No founder biography, portrait, or timeline has been verified for publication."
-        mediaSrc="/mock-media/programme-placeholder.svg"
+      <BranchExplorer
+        locations={branches.map((branch) => ({
+          name: branch.name,
+          href: `/locations/${branch.slug}`,
+          areaLabel: branch.slug.charAt(0).toUpperCase() + branch.slug.slice(1),
+          programmeCountLabel: `${branch.programmeSlugs.length} programmes linked`,
+          dataStatus: branch.dataStatus,
+          mockDisclaimer:
+            branch.dataStatus === "verified" ? undefined : branch.mockDisclaimer,
+        }))}
       />
+
+      <section
+        id="timetable"
+        className={styles.utilityBand}
+        aria-labelledby="home-timetable-title"
+      >
+        <h2 id="home-timetable-title">Timetable entry</h2>
+        <p>
+          Illustrative class slots only — filter the full week on the timetable
+          page. Utility zone: calm, direct, no theatrical motion.
+        </p>
+        <TimetablePreview
+          slots={slots.map((slot) => ({
+            id: slot.id,
+            dayLabel: DAY_LABELS[slot.dayOfWeek] ?? "—",
+            timeLabel: `${slot.startTime}–${slot.endTime}`,
+            programmeLabel: PROGRAMME_LABELS[slot.programmeSlug],
+            branchLabel: slot.branchSlug.charAt(0).toUpperCase() + slot.branchSlug.slice(1),
+            mockDisclaimer:
+              slot.dataStatus === "verified" ? "Verified class time." : slot.mockDisclaimer,
+          }))}
+        />
+        <p className="mt-4">
+          <TextLink href="/timetable">Open full timetable →</TextLink>
+        </p>
+      </section>
 
       <TransformationStories
         items={transformations.map((item) => ({
@@ -136,42 +143,6 @@ export default function HomePage() {
             item.dataStatus === "verified" ? "Verified transformation story." : item.mockDisclaimer,
         }))}
       />
-
-      <BranchExplorer
-        locations={branches.map((branch) => ({
-          name: branch.name,
-          href: `/locations/${branch.slug}`,
-          areaLabel: branch.slug.charAt(0).toUpperCase() + branch.slug.slice(1),
-          programmeCountLabel: `${branch.programmeSlugs.length} programmes listed (illustrative availability)`,
-          addressPreview:
-            branch.dataStatus === "verified"
-              ? branch.address
-              : "Address shown as placeholder until the owner confirms the printable string.",
-          mockDisclaimer:
-            branch.dataStatus === "verified" ? "Verified branch details." : branch.mockDisclaimer,
-        }))}
-      />
-
-      <Section
-        id="timetable"
-        eyebrow="Timetable"
-        title="A peek at the week"
-        description="Illustrative class slots only — the full filterable timetable lives on /timetable."
-      >
-        <ScrollReveal>
-          <TimetablePreview
-            slots={slots.map((slot) => ({
-              id: slot.id,
-              dayLabel: DAY_LABELS[slot.dayOfWeek] ?? "—",
-              timeLabel: `${slot.startTime}–${slot.endTime}`,
-              programmeLabel: PROGRAMME_LABELS[slot.programmeSlug],
-              branchLabel: slot.branchSlug.charAt(0).toUpperCase() + slot.branchSlug.slice(1),
-              mockDisclaimer:
-                slot.dataStatus === "verified" ? "Verified class time." : slot.mockDisclaimer,
-            }))}
-          />
-        </ScrollReveal>
-      </Section>
 
       <CommunityTestimonials
         testimonials={testimonials.map((item) => ({
