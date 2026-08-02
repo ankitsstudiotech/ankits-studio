@@ -14,6 +14,7 @@ export type HeroProps = {
 /**
  * Studio Pulse hero — brand, offering, places, WhatsApp trial.
  * Copy is server-rendered at full opacity. Media deferred below copy on mobile.
+ * Full brand lockup is header-primary on small screens (hero brand softens).
  */
 export function Hero({
   brandName,
@@ -41,7 +42,9 @@ export function Hero({
         <h1 id="home-hero-title">{title}</h1>
         <p>{description}</p>
         <div className={styles.heroActions}>
-          <PulseCta href={primaryCta.href}>{primaryCta.label}</PulseCta>
+          <PulseCta id="home-hero-primary-cta" href={primaryCta.href}>
+            {primaryCta.label}
+          </PulseCta>
           {secondaryCta ? (
             <Link href={secondaryCta.href} className={styles.heroSecondary}>
               {secondaryCta.label}
@@ -51,7 +54,12 @@ export function Hero({
       </div>
       <div className={styles.heroStack} aria-hidden>
         <div className={styles.layerA}>
-          <PulseMediaPlate family="strength" label="Studio atmosphere placeholder" aspect="16/9" />
+          <PulseMediaPlate
+            slotKey="home.hero"
+            family="strength"
+            label="Studio atmosphere placeholder — real photography pending"
+            aspect="16/9"
+          />
         </div>
       </div>
     </section>
