@@ -22,7 +22,12 @@ export function WhyStudio({ title, body, points = [] }: WhyStudioProps) {
       aria-labelledby="home-diff-title"
     >
       <div className={styles.diffGrid}>
-        <PulseMediaPlate family="calm" label="Coach-led session atmosphere placeholder" aspect="16/9" />
+        <PulseMediaPlate
+          slotKey="home.differentiator"
+          family="calm"
+          label="Coach-led session atmosphere placeholder — real photography pending"
+          aspect="16/9"
+        />
         <div className={styles.diffCopy}>
           <h2 id="home-diff-title">{title}</h2>
           <p>{body}</p>
