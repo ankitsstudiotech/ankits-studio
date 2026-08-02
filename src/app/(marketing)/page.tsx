@@ -1,176 +1,246 @@
 import {
   BranchExplorer,
-  CommunityTestimonials,
   FaqSection,
   FreeTrialCta,
   Hero,
   ProgrammeShowcase,
-  TransformationStories,
-  TimetablePreview,
   WhyStudio,
-  type ProgrammeAccent,
 } from "@/components/home";
 import { TextLink } from "@/components/ui/TextLink";
 import {
   getBusinessIdentity,
-  getFaqs,
-  getProgrammes,
-  getPubliclyListedBranches,
-  getTestimonials,
-  getTimetableSlots,
-  getTransformations,
+  getContactDetails,
+  getStudioCommercial,
+  getStudioContactLinks,
   type ProgrammeSlug,
 } from "@/content";
+import {
+  getPrimaryConversionHref,
+  getPrimaryConversionLabel,
+  SECONDARY_TRIAL_FORM_HREF,
+} from "@/lib/conversion";
 import { buildPageMetadata } from "@/lib/seo";
+import type { ServiceTempo } from "@/components/home/pulse/PulseMotion";
 import styles from "@/components/home/pulse/pulse-home.module.css";
 
 export const metadata = buildPageMetadata({
-  title: "Fitness & dance studio in Navi Mumbai",
+  title: "Machine-free fitness, yoga, Zumba & dance in Navi Mumbai",
   description:
-    "Ankit's Studio offers strength training, personal training, yoga, Zumba, and dance programmes across publicly listed neighbourhoods in Navi Mumbai.",
+    "Ankit’s Studio offers machine-free, coach-led fitness, yoga, Zumba and dance across four neighbourhood studios in Airoli, Ghansoli and Thane. Book a free trial on WhatsApp.",
   path: "/",
 });
 
-const DAY_LABELS = ["Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Sun"] as const;
+const HOMEPAGE_SERVICES: Array<{
+  slug: ProgrammeSlug;
+  tempo: ServiceTempo;
+  name: string;
+  shortDescription: string;
+  meta?: string;
+}> = [
+  {
+    slug: "functional-training",
+    tempo: "functional",
+    name: "Functional Training",
+    shortDescription: "Machine-free, coach-led sessions built around how you move day to day.",
+    meta: "Studio classes · all branches",
+  },
+  {
+    slug: "yoga",
+    tempo: "yoga",
+    name: "Yoga",
+    shortDescription: "Breath-led movement with space to settle — ask which batch suits you.",
+    meta: "Studio classes · ladies-only batches available on request",
+  },
+  {
+    slug: "zumba",
+    tempo: "zumba",
+    name: "Zumba",
+    shortDescription: "Music-led group energy. No dance background required to enquire.",
+    meta: "Studio classes · high-energy group sessions",
+  },
+  {
+    slug: "adult-dance",
+    tempo: "dance",
+    name: "Dance",
+    shortDescription: "Studio dance for adults — technique and choreography in a welcoming room.",
+    meta: "Studio classes · kids-only batches available on request",
+  },
+  {
+    slug: "wedding-choreography",
+    tempo: "wedding",
+    name: "Wedding Choreography",
+    shortDescription: "Personal choreography support for wedding routines and performances.",
+    meta: "Arranged with the studio after you enquire",
+  },
+  {
+    slug: "home-personal-training",
+    tempo: "home",
+    name: "Home Personal Training",
+    shortDescription: "Coach-led sessions at home — a delivery mode, not a branch-floor class.",
+    meta: "Home delivery · coverage confirmed when you message us",
+  },
+  {
+    slug: "online-training",
+    tempo: "online",
+    name: "Online Training",
+    shortDescription: "Remote coach-led sessions. Platform and timing confirmed on enquiry.",
+    meta: "Online delivery · not a physical branch class",
+  },
+];
 
-const PROGRAMME_LABELS: Record<ProgrammeSlug, string> = {
-  "functional-training": "Functional Training",
-  "strength-training": "Strength Training",
-  "personal-training": "Personal Training",
-  yoga: "Yoga",
-  zumba: "Zumba",
-  "adult-dance": "Dance",
-  "kids-dance": "Kids Dance",
-  "weight-loss-fitness": "Weight-Loss & General Fitness",
-  "wedding-choreography": "Wedding Choreography",
-  "home-personal-training": "Home Personal Training",
-  "online-training": "Online Training",
-};
+const BRANCHES = [
+  {
+    name: "Airoli Sector 19",
+    href: "/locations/airoli",
+    detail: "Neighbourhood studio in Airoli Sector 19.",
+    mapsUrl: "https://maps.app.goo.gl/NWrGtXKKYwr5xXwbA?g_st=ac",
+  },
+  {
+    name: "Airoli Sector 8",
+    href: "/locations/airoli-sector-8",
+    detail: "Open neighbourhood studio. Detailed map and address are being updated.",
+    addressPending: true,
+  },
+  {
+    name: "Ghansoli",
+    href: "/locations/ghansoli",
+    detail: "Neighbourhood studio in Ghansoli.",
+    mapsUrl: "https://maps.app.goo.gl/WzhJUEhAvC67eMgR8?g_st=ac",
+  },
+  {
+    name: "Thane",
+    href: "/locations/thane",
+    detail: "Neighbourhood studio in Thane.",
+    mapsUrl: "https://maps.app.goo.gl/bvzahC17HkciT6QQ6?g_st=ic",
+  },
+] as const;
 
 export default function HomePage() {
   const identity = getBusinessIdentity();
-  const programmes = getProgrammes();
-  const branches = getPubliclyListedBranches();
-  const slots = getTimetableSlots().slice(0, 6);
-  const testimonials = getTestimonials();
-  const transformations = getTransformations();
-  const faqs = getFaqs().slice(0, 6);
+  const commercial = getStudioCommercial();
+  const contact = getContactDetails();
+  const studioLinks = getStudioContactLinks();
+  const trialHref = getPrimaryConversionHref();
+  const trialLabel = getPrimaryConversionLabel();
 
-  const identityDisclaimer =
-    identity.dataStatus === "verified" ? undefined : identity.mockDisclaimer;
+  const factualFaqs = [
+    {
+      id: "faq-trial",
+      question: "Is the trial class free?",
+      answer:
+        "Yes. You can book a free trial on WhatsApp. Opening WhatsApp starts a chat — it does not mean a message was already delivered.",
+    },
+    {
+      id: "faq-hours",
+      question: "What are the studio hours?",
+      answer:
+        "Studios operate from 6:00 AM to 10:00 PM. That is the operating window, not a class-by-class timetable. Message us for current batch availability.",
+    },
+    {
+      id: "faq-fees",
+      question: "What does it cost to join?",
+      answer: `There is a one-time registration fee of ₹${commercial.registrationFeeInr ?? 300}. Programme fees vary by service and are confirmed when you enquire.`,
+    },
+    {
+      id: "faq-batches",
+      question: "Do you offer ladies-only or kids-only batches?",
+      answer:
+        "Yes — ladies-only and kids-only batches are available. Ask which options fit when you book a trial. Not every programme suits every age.",
+    },
+  ];
 
   return (
     <main>
       <Hero
-        title="FEEL THE ROOM'S TEMPO"
-        description="Strength hits. Yoga holds. Dance grooves. Pick the energy that fits your week — then book a trial at a listed Navi Mumbai branch."
-        mockDisclaimer={identityDisclaimer}
-        primaryCta={{ label: "Book a free trial", href: "/trial" }}
-        secondaryCta={{ label: "Browse programmes", href: "/programs" }}
+        brandName={identity.displayName}
+        title="Machine-free fitness. Yoga, Zumba and dance."
+        description="Four neighbourhood studios across Airoli, Ghansoli and Thane. Coach-led sessions adapted to your needs — book a free trial on WhatsApp."
+        primaryCta={{ label: trialLabel, href: trialHref }}
+        secondaryCta={{ label: "Find Your Nearest Studio", href: "/#locations" }}
       />
 
       <ProgrammeShowcase
-        programmes={programmes.map((programme) => ({
-          name: programme.name,
-          href: `/programs/${programme.slug}`,
-          shortDescription: programme.shortDescription,
-          accent: programme.heroAccent as ProgrammeAccent,
-          tags: programme.audienceTags.slice(0, 2),
+        programmes={HOMEPAGE_SERVICES.map((service) => ({
+          name: service.name,
+          href: `/programs/${service.slug}`,
+          shortDescription: service.shortDescription,
+          tempo: service.tempo,
+          meta: service.meta,
         }))}
+        audienceNote="Enquiries are welcome across age groups. Maximum group batch size is 15. We will help you match the right service and batch — not every programme is for every person."
       />
 
       <WhyStudio
+        title="Machine-free. Coach-led. Adapted to you."
+        body="Sessions are built without conventional gym-machine circuits. Coaches adapt the work to your requirements and goals — without promising specific outcomes."
         points={[
           {
-            id: "range",
-            title: "ONE FLOOR, MANY TEMPOS",
-            body: "Strength, yoga, Zumba, and dance share equipment, coaches, and calendar space — one neighbourhood studio, not unrelated brands taped together.",
+            id: "machine-free",
+            title: "Machine-free training",
+            body: "Coach-led movement rather than rows of gym machines.",
           },
           {
-            id: "local",
-            title: "BUILT FOR THE WEEK",
-            body: "Working adults and parents can find a programme, confirm a listed branch, check illustrative timings, and book a trial without hype metrics.",
+            id: "adapted",
+            title: "Adapted to you",
+            body: "Sessions respond to individual needs and goals.",
           },
           {
-            id: "human",
-            title: "ENERGY WITHOUT THEATRE",
-            body: "No fabricated member counts or miracle claims. Community energy is structural — lanes, places, and an honest trial path.",
+            id: "community",
+            title: "Welcoming batches",
+            body: "Ladies-only and kids-only options are available to ask about.",
           },
         ]}
-        disclaimer="Positioning copy is studio narrative pending owner review — not verified biography or performance claims."
       />
 
-      <BranchExplorer
-        locations={branches.map((branch) => ({
-          name: branch.name,
-          href: `/locations/${branch.slug}`,
-          areaLabel: branch.slug.charAt(0).toUpperCase() + branch.slug.slice(1),
-          programmeCountLabel: `${branch.programmeSlugs.length} programmes linked`,
-          dataStatus: branch.dataStatus,
-          mockDisclaimer:
-            branch.dataStatus === "verified" ? undefined : branch.mockDisclaimer,
-        }))}
-      />
+      <BranchExplorer locations={[...BRANCHES]} />
 
       <section
-        id="timetable"
+        id="practical"
         className={styles.utilityBand}
-        aria-labelledby="home-timetable-title"
+        aria-labelledby="home-practical-title"
       >
-        <h2 id="home-timetable-title">Timetable entry</h2>
+        <h2 id="home-practical-title">Practical information</h2>
         <p>
-          Illustrative class slots only — filter the full week on the timetable
-          page. Utility zone: calm, direct, no theatrical motion.
+          Batches run throughout the day. Message us on WhatsApp for current programme and branch
+          availability — we do not publish a full timetable until real batch schedules are confirmed.
         </p>
-        <TimetablePreview
-          slots={slots.map((slot) => ({
-            id: slot.id,
-            dayLabel: DAY_LABELS[slot.dayOfWeek] ?? "—",
-            timeLabel: `${slot.startTime}–${slot.endTime}`,
-            programmeLabel: PROGRAMME_LABELS[slot.programmeSlug],
-            branchLabel: slot.branchSlug.charAt(0).toUpperCase() + slot.branchSlug.slice(1),
-            mockDisclaimer:
-              slot.dataStatus === "verified" ? "Verified class time." : slot.mockDisclaimer,
-          }))}
-        />
+        <ul className={styles.utilityFacts}>
+          <li>
+            <strong>Operating window</strong>
+            6:00 AM – 10:00 PM across studios (not individual class times)
+          </li>
+          <li>
+            <strong>Central enquiry</strong>
+            {contact.generalPhone}
+            {studioLinks.phoneHref ? (
+              <>
+                {" · "}
+                <a
+                  href={studioLinks.phoneHref}
+                  className="font-semibold text-ink underline underline-offset-2 hover:text-accent"
+                >
+                  Call
+                </a>
+              </>
+            ) : null}
+          </li>
+          <li>
+            <strong>Group size</strong>
+            Maximum 15 people per group batch
+          </li>
+          <li>
+            <strong>Join fees</strong>
+            Free trial · ₹{commercial.registrationFeeInr ?? 300} one-time registration
+          </li>
+        </ul>
         <p className="mt-4">
-          <TextLink href="/timetable">Open full timetable →</TextLink>
+          <TextLink href={SECONDARY_TRIAL_FORM_HREF}>Open the trial request form →</TextLink>
         </p>
       </section>
 
-      <TransformationStories
-        items={transformations.map((item) => ({
-          slug: item.slug,
-          summary: item.summary,
-          programmeLabel: PROGRAMME_LABELS[item.programmeSlug],
-          mockDisclaimer:
-            item.dataStatus === "verified" ? "Verified transformation story." : item.mockDisclaimer,
-        }))}
-      />
+      <FreeTrialCta href={trialHref} label={trialLabel} />
 
-      <CommunityTestimonials
-        testimonials={testimonials.map((item) => ({
-          quote: item.quote,
-          attributedName: item.attributedName,
-          programmeLabel: item.programmeSlug ? PROGRAMME_LABELS[item.programmeSlug] : undefined,
-          branchLabel: item.branchSlug
-            ? `${item.branchSlug.charAt(0).toUpperCase()}${item.branchSlug.slice(1)} (placeholder)`
-            : undefined,
-          mockDisclaimer:
-            item.dataStatus === "verified" ? "Verified member testimonial." : item.mockDisclaimer,
-        }))}
-      />
-
-      <FreeTrialCta />
-
-      <FaqSection
-        items={faqs.map((faq) => ({
-          id: faq.id,
-          question: faq.question,
-          answer: faq.answer,
-          mockDisclaimer: faq.dataStatus === "verified" ? undefined : faq.mockDisclaimer,
-        }))}
-      />
+      <FaqSection items={factualFaqs} />
     </main>
   );
 }

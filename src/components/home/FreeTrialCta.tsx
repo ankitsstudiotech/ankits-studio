@@ -1,21 +1,37 @@
+import Link from "next/link";
 import { PulseCta } from "./pulse/PulseMotion";
 import styles from "./pulse/pulse-home.module.css";
 
 export type FreeTrialCtaProps = {
   title?: string;
-  href?: string;
-  label?: string;
+  body?: string;
+  href: string;
+  label: string;
+  secondaryHref?: string;
+  secondaryLabel?: string;
 };
 
 export function FreeTrialCta({
-  title = "BOOK THE TRIAL. KEEP THE PULSE.",
-  href = "/trial",
-  label = "Book free trial",
+  title = "Book a free trial",
+  body = "Message Ankit’s Studio on WhatsApp. Opening the chat does not mean a message was delivered — send when you are ready.",
+  href,
+  label,
+  secondaryHref = "/trial",
+  secondaryLabel = "Prefer a form? Use the trial request page",
 }: FreeTrialCtaProps) {
   return (
     <section id="trial" className={styles.ctaBand} aria-labelledby="home-trial-title">
       <h2 id="home-trial-title">{title}</h2>
+      <p>{body}</p>
       <PulseCta href={href}>{label}</PulseCta>
+      <p className={styles.ctaNote}>Free trial class. One-time registration fee is ₹300 after you join.</p>
+      {secondaryHref && secondaryLabel ? (
+        <div className={styles.ctaSecondaryRow}>
+          <Link href={secondaryHref} className={styles.ctaGhost}>
+            {secondaryLabel}
+          </Link>
+        </div>
+      ) : null}
     </section>
   );
 }
