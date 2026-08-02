@@ -90,7 +90,7 @@ describe("buildSitemapEntries once the site is indexable", () => {
         { slug: "strength-training", dataStatus: "verified", taxonomyStatus: "migration-pending" },
         { slug: "unverified-programme", dataStatus: "mock", mockDisclaimer: "x" },
       ],
-      getPubliclyListedBranches: () => [{ slug: "airoli", dataStatus: "verified" }],
+      getPubliclyListedBranches: () => [{ slug: "airoli-sector-19", dataStatus: "verified" }],
       getTrainers: () => [{ slug: "unverified-trainer", dataStatus: "mock", mockDisclaimer: "x" }],
       getBlogPosts: () => [{ slug: "real-post", dataStatus: "verified" }],
     }));
@@ -103,7 +103,7 @@ describe("buildSitemapEntries once the site is indexable", () => {
     expect(urls).toContain(buildCanonicalUrl("/"));
     expect(urls).toContain(buildCanonicalUrl("/programs/yoga"));
     expect(urls).not.toContain(buildCanonicalUrl("/programs/strength-training"));
-    expect(urls).toContain(buildCanonicalUrl("/locations/airoli"));
+    expect(urls).toContain(buildCanonicalUrl("/locations/airoli-sector-19"));
     expect(urls).toContain(buildCanonicalUrl("/blog/real-post"));
     expect(urls).not.toContain(buildCanonicalUrl("/programs/unverified-programme"));
     expect(urls).not.toContain(buildCanonicalUrl("/trainers/unverified-trainer"));

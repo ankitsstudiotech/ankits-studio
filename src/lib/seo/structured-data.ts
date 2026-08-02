@@ -56,17 +56,27 @@ export function buildOrganizationJsonLd(identity: BusinessIdentity): Organizatio
  */
 export function buildLocalBusinessJsonLd(branch: Branch): LocalBusinessJsonLd | null {
   if (branch.dataStatus !== "verified") return null;
-  return {
+  // Require a verified printable address before claiming PostalAddress (ADR location schema).
+  if (!branch.address || branch.fieldProvenance.address !== "owner_confirmed") return null;
+
+  const jsonLd: LocalBusinessJsonLd = {
     "@context": "https://schema.org",
     "@type": "ExerciseGym",
     name: branch.name,
     url: buildCanonicalUrl(`/locations/${branch.slug}`),
-    telephone: branch.phone,
     address: {
       "@type": "PostalAddress",
       streetAddress: branch.address,
     },
   };
+
+  if (branch.phone) {
+    jsonLd.telephone = branch.phone;
+  } else if (branch.inheritsCentralEnquiry) {
+    // Central enquiry only — omit telephone rather than invent a branch line.
+  }
+
+  return jsonLd;
 }
 
 /**

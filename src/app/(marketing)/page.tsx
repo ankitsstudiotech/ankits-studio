@@ -135,7 +135,7 @@ const HOMEPAGE_CLUSTERS = [
 const BRANCHES = [
   {
     name: "Airoli Sector 19",
-    href: "/locations/airoli",
+    href: "/locations/airoli-sector-19",
     detail: "Neighbourhood studio in Airoli Sector 19.",
     mapsUrl: "https://maps.app.goo.gl/NWrGtXKKYwr5xXwbA?g_st=ac",
   },

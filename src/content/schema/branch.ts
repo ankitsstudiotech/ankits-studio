@@ -12,38 +12,105 @@ export const openingHoursEntrySchema = z.object({
 });
 export type OpeningHoursEntry = z.infer<typeof openingHoursEntrySchema>;
 
+/**
+ * Field-level provenance for location facts (owner intake + Maps corroboration).
+ * Distinct from record-level `dataStatus` on the Branch union.
+ */
+export const locationFieldProvenanceSchema = z.enum([
+  "owner_confirmed",
+  "externally_corroborated",
+  "partially_verified",
+  "pending",
+  "mock",
+]);
+export type LocationFieldProvenance = z.infer<typeof locationFieldProvenanceSchema>;
+
+export const branchFieldProvenanceSchema = z.object({
+  existence: locationFieldProvenanceSchema,
+  publicName: locationFieldProvenanceSchema,
+  locality: locationFieldProvenanceSchema,
+  address: locationFieldProvenanceSchema,
+  pinCode: locationFieldProvenanceSchema,
+  mapsUrl: locationFieldProvenanceSchema,
+  googleBusinessProfileUrl: locationFieldProvenanceSchema,
+  phone: locationFieldProvenanceSchema,
+  whatsapp: locationFieldProvenanceSchema,
+  operatingHours: locationFieldProvenanceSchema,
+  batchSchedule: locationFieldProvenanceSchema,
+  physicalServices: locationFieldProvenanceSchema,
+  audienceAvailability: locationFieldProvenanceSchema,
+  landmarks: locationFieldProvenanceSchema,
+  nearestStation: locationFieldProvenanceSchema,
+  parking: locationFieldProvenanceSchema,
+  facilities: locationFieldProvenanceSchema,
+  media: locationFieldProvenanceSchema,
+});
+export type BranchFieldProvenance = z.infer<typeof branchFieldProvenanceSchema>;
+
+export const branchFaqEntrySchema = z.object({
+  id: z.string().min(1),
+  question: z.string().min(1),
+  answer: z.string().min(1),
+});
+export type BranchFaqEntry = z.infer<typeof branchFaqEntrySchema>;
+
 export const branchSchema = provenanced({
+  id: z.string().min(1),
   slug: branchSlugSchema,
+  /** Full public title, e.g. "Ankit's Studio — Airoli Sector 19". */
   name: z.string().min(1),
-  address: z.string().min(1),
-  // Owner-supplied Maps link. Present on the record for internal reference,
-  // but never read by the UI layer until dataStatus === "verified" — see
-  // src/content/index.ts and DECISIONS.md ADR-011.
-  mapEmbedUrl: z.string().url().optional(),
+  /** Place-first locality label for discovery UI, e.g. "Airoli Sector 19". */
+  locality: z.string().min(1),
   /**
-   * Owner-labelled Google Maps short URL, associated only after browser
-   * resolution. Stored for provenance; not used for embeds until the branch
-   * record is fully verified (ADR-011).
+   * Complete printable street address. Null while pending — never invent.
+   * Legacy `address` string placeholders are retired in favour of this + status.
    */
-  mapsShortUrl: z.string().url().optional(),
-  phone: z.string().min(1),
+  address: z.string().min(1).nullable(),
+  pinCode: z.string().min(1).nullable(),
+  /** Owner-supplied Maps short URL. Null while pending (Sector 8). */
+  mapsUrl: z.string().url().nullable(),
+  googleBusinessProfileUrl: z.string().url().nullable(),
+  /**
+   * Branch-specific phone. Null when only the central enquiry number applies.
+   * Prefer central WhatsApp/phone via ContactDetails for dial actions.
+   */
+  phone: z.string().min(1).nullable(),
+  /** WhatsApp digits/number for this branch context — usually central. */
   whatsapp: z.string().min(1),
-  /**
-   * When true, phone/whatsapp are the central studio enquiry number, not a
-   * unique branch line (owner intake 2026-08-01).
-   */
-  inheritsCentralEnquiry: z.boolean().optional(),
+  inheritsCentralEnquiry: z.boolean(),
   openingHours: z.array(openingHoursEntrySchema),
+  openingHoursKind: z.enum(["operating-window", "detailed-timetable"]),
+  batchScheduleStatus: z.enum(["pending", "published"]),
+  /** Confirmed physical floor programmes only (never home/online). */
+  physicalProgrammeSlugs: z.array(programmeSlugSchema),
   /**
-   * Clarifies that openingHours is an operating window, not a class timetable.
+   * @deprecated Prefer `physicalProgrammeSlugs`. Kept synced for selectors that
+   * still read programmeSlugs during the location rebuild.
    */
-  openingHoursKind: z.enum(["operating-window", "detailed-timetable"]).optional(),
   programmeSlugs: z.array(programmeSlugSchema),
-  // Whether this branch appears in public nav/footer/sitemap.
+  ladiesOnlyBatchesAvailable: z.boolean(),
+  kidsOnlyBatchesAvailable: z.boolean(),
+  maxGroupBatchSize: z.number().int().positive().nullable(),
+  openingStatus: z.enum(["open", "temporarily-closed", "coming-soon"]),
+  landmarks: z.string().nullable(),
+  nearestStation: z.string().nullable(),
+  parking: z.string().nullable(),
+  facilities: z.array(z.string()).nullable(),
+  mediaSlotKey: z.string().min(1),
+  fieldProvenance: branchFieldProvenanceSchema,
+  seoTitle: z.string().min(1),
+  seoDescription: z.string().min(1),
+  faqEntries: z.array(branchFaqEntrySchema),
+  relatedProgrammeSlugs: z.array(programmeSlugSchema),
   publiclyListed: z.boolean(),
+  /** Optional legacy directions copy — omit when pending. */
   directions: z.string().optional(),
-  parking: z.string().optional(),
   nearbyTransport: z.array(z.string()).optional(),
   photos: z.array(mediaAssetSchema).optional(),
+  /**
+   * @deprecated Use `mapsUrl`. Retained optional alias for gradual consumer migration.
+   */
+  mapsShortUrl: z.string().url().optional(),
+  mapEmbedUrl: z.string().url().optional(),
 });
 export type Branch = z.infer<typeof branchSchema>;

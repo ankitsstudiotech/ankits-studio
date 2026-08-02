@@ -12,7 +12,7 @@ export const mockTestimonials: Testimonial[] = [
     quote: "Illustrative example: a placeholder quote describing a positive class experience.",
     attributedName: "Illustrative member",
     programmeSlug: "yoga",
-    branchSlug: "airoli",
+    branchSlug: "airoli-sector-19",
   },
   {
     dataStatus: "mock",

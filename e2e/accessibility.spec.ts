@@ -5,10 +5,10 @@ import { expect, test } from "@playwright/test";
  * Routes covered here, beyond `/` and 404 — see docs/DECISIONS.md ADR-013
  * (A11Y-001). Picks one route per interaction pattern rather than every
  * route: `/trial` and `/contact` are the two form pages, `/timetable` is the
- * no-JS GET-filter page, `/programs/yoga` and `/locations/airoli` are the two
+ * no-JS GET-filter page, `/programs/yoga` and `/locations/airoli-sector-19` are the two
  * dynamic detail-page templates.
  */
-const ROUTES = ["/", "/trial", "/contact", "/timetable", "/programs/yoga", "/locations/airoli"];
+const ROUTES = ["/", "/trial", "/contact", "/timetable", "/programs/yoga", "/locations/airoli-sector-19"];
 
 for (const route of ROUTES) {
   test(`${route} has no critical or serious accessibility violations`, async ({ page }) => {

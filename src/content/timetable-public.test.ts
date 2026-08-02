@@ -14,7 +14,7 @@ describe("getTimetableSlots public accessor", () => {
   });
 
   it("filters verified-only when branch or programme filters are applied", () => {
-    expect(getTimetableSlots({ branchSlug: "airoli" })).toEqual([]);
+    expect(getTimetableSlots({ branchSlug: "airoli-sector-19" })).toEqual([]);
     expect(getTimetableSlots({ programmeSlug: "yoga" })).toEqual([]);
   });
 });

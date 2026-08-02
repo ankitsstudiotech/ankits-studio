@@ -62,8 +62,8 @@ export default function LocationsIndexPage() {
               <LocationTeaserCard
                 name={branch.name}
                 href={`/locations/${branch.slug}`}
-                areaLabel={branch.slug}
-                programmeCountLabel={`${branch.programmeSlugs.length} programmes offered`}
+                areaLabel={branch.locality}
+                programmeCountLabel={`${branch.physicalProgrammeSlugs.length} programmes at this branch`}
                 mockDisclaimer={branch.dataStatus === "verified" ? "" : branch.mockDisclaimer}
               />
             </li>

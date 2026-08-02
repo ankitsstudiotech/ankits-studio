@@ -16,8 +16,9 @@ describe("Thane listing after owner confirmation", () => {
   it("lists Thane publicly with pending printable address", () => {
     const thane = getBranchBySlug("thane");
     expect(thane?.publiclyListed).toBe(true);
-    expect(thane?.address.toLowerCase()).toContain("pending");
-    expect(thane?.mapsShortUrl).toContain("maps.app.goo.gl");
+    expect(thane?.address).toBeNull();
+    expect(thane?.fieldProvenance.address).toBe("pending");
+    expect(thane?.mapsUrl).toContain("maps.app.goo.gl");
   });
 });
 
@@ -26,12 +27,13 @@ describe("four-branch model", () => {
     const slugs = getBranches()
       .map((b) => b.slug)
       .sort();
-    expect(slugs).toEqual(["airoli", "airoli-sector-8", "ghansoli", "thane"]);
+    expect(slugs).toEqual(["airoli-sector-19", "airoli-sector-8", "ghansoli", "thane"]);
     expect(getPubliclyListedBranches()).toHaveLength(4);
   });
 
-  it("keeps Sector 8 without a Maps short URL", () => {
-    expect(getBranchBySlug("airoli-sector-8")?.mapsShortUrl).toBeUndefined();
+  it("keeps Sector 8 without a Maps URL", () => {
+    expect(getBranchBySlug("airoli-sector-8")?.mapsUrl).toBeNull();
+    expect(getBranchBySlug("airoli-sector-8")?.fieldProvenance.mapsUrl).toBe("pending");
   });
 });
 
@@ -54,7 +56,8 @@ describe("central enquiry phone / WhatsApp", () => {
   it("keeps branch tel/wa.me null until the branch record itself is verified", () => {
     for (const branch of getBranches()) {
       expect(branch.dataStatus).not.toBe("verified");
-      expect(branch.phone).toBe(CENTRAL);
+      expect(branch.phone).toBeNull();
+      expect(branch.whatsapp).toBe(CENTRAL);
       expect(branch.inheritsCentralEnquiry).toBe(true);
       const links = getBranchContactLinks(branch);
       expect(links.phoneHref).toBeNull();

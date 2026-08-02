@@ -154,7 +154,9 @@ export default async function ContactPage({ searchParams }: ContactPageProps) {
                 <Heading as="h3" className="mb-2 break-words">
                   {branch.name}
                 </Heading>
-                <Body className="mb-3 break-words">{branch.address}</Body>
+                <Body className="mb-3 break-words">
+                  {branch.address ?? "Detailed address is being updated."}
+                </Body>
                 <Caption>
                   {branch.dataStatus === "verified"
                     ? "Verified branch details."

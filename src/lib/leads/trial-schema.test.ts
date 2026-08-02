@@ -4,7 +4,7 @@ import { contactInquirySchema, trialLeadSchema } from "./trial-schema";
 const validTrialLead = {
   name: "Aditi Rao",
   phone: "+91 90000 00001",
-  branchSlug: "airoli",
+  branchSlug: "airoli-sector-19",
   programmeSlug: "yoga",
   preferredTiming: "morning",
   ageGroup: "adults",

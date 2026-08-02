@@ -1,9 +1,14 @@
-/** True when a string is missing, blank, or the project’s TBC sentinel. */
+/** True when a string is missing, blank, or an honest pending-address sentinel. */
 export function isToBeConfirmed(value: string | null | undefined): boolean {
   if (value == null) return true;
   const trimmed = value.trim();
   if (!trimmed) return true;
-  return trimmed.toLowerCase() === "to be confirmed";
+  const lower = trimmed.toLowerCase();
+  return (
+    lower === "to be confirmed" ||
+    lower === "detailed address is being updated." ||
+    lower === "detailed address is being updated"
+  );
 }
 
 export type MediaProps = {

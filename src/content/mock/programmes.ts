@@ -1,6 +1,6 @@
 import type { Programme } from "../schema";
 
-const ALL_BRANCHES = ["airoli", "airoli-sector-8", "ghansoli", "thane"] as const;
+const ALL_BRANCHES = ["airoli-sector-19", "airoli-sector-8", "ghansoli", "thane"] as const;
 
 const PENDING_PRICING = "pending" as const;
 const PENDING_BATCHES = "pending" as const;

@@ -8,10 +8,10 @@ describe("programme/location-specific FAQ support", () => {
     expect(faqs.every((faq) => faq.programmeSlug === "yoga")).toBe(true);
   });
 
-  it("returns the Airoli-specific FAQ when filtering by branchSlug", () => {
-    const faqs = getFaqs({ branchSlug: "airoli" });
+  it("returns the Airoli Sector 19 FAQ when filtering by branchSlug", () => {
+    const faqs = getFaqs({ branchSlug: "airoli-sector-19" });
     expect(faqs.length).toBeGreaterThan(0);
-    expect(faqs.every((faq) => faq.branchSlug === "airoli")).toBe(true);
+    expect(faqs.every((faq) => faq.branchSlug === "airoli-sector-19")).toBe(true);
   });
 
   it("returns no programme-specific FAQ for a programme with none associated", () => {
@@ -24,7 +24,7 @@ describe("internal links between programmes and available locations", () => {
   it("includes all four owner-confirmed open branches in public listings", () => {
     const publicBranches = getPubliclyListedBranches();
     const slugs = publicBranches.map((branch) => branch.slug).sort();
-    expect(slugs).toEqual(["airoli", "airoli-sector-8", "ghansoli", "thane"]);
+    expect(slugs).toEqual(["airoli-sector-19", "airoli-sector-8", "ghansoli", "thane"]);
   });
 
   it("every publicly-listed branch is reachable and distinct", () => {

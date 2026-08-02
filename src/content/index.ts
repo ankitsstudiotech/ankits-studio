@@ -139,7 +139,9 @@ export function getBlogPostBySlug(slug: string): BlogPost | undefined {
 }
 
 /**
- * Clickable phone/WhatsApp/Maps for a branch — null unless branch is verified (ADR-011).
+ * Clickable phone/WhatsApp/Maps embed for a branch — null unless the branch
+ * record is verified (ADR-011). Owner-confirmed Maps short URLs may still be
+ * exposed via `getBranchMapsUrl` while printable address remains pending.
  */
 export function getBranchContactLinks(branch: Branch): {
   phoneHref: string | null;
@@ -149,11 +151,29 @@ export function getBranchContactLinks(branch: Branch): {
   if (branch.dataStatus !== "verified") {
     return { phoneHref: null, whatsappHref: null, mapEmbedUrl: null };
   }
+  const phone = branch.phone;
   return {
-    phoneHref: `tel:${branch.phone.replace(/\s+/g, "")}`,
+    phoneHref: phone ? `tel:${phone.replace(/\s+/g, "")}` : null,
     whatsappHref: `https://wa.me/${branch.whatsapp.replace(/\D/g, "")}`,
     mapEmbedUrl: branch.mapEmbedUrl ?? null,
   };
+}
+
+/**
+ * Owner-confirmed Maps short URL for a branch, or null when pending.
+ * Does not invent addresses or coordinates. Safe to show as an external
+ * "Open in Google Maps" action when provenance is owner_confirmed.
+ */
+export function getBranchMapsUrl(branch: Branch): string | null {
+  if (branch.fieldProvenance.mapsUrl !== "owner_confirmed") return null;
+  return branch.mapsUrl ?? branch.mapsShortUrl ?? null;
+}
+
+/** Physical floor programmes only — never home/online delivery modes. */
+export function getBranchPhysicalProgrammes(branch: Branch): Programme[] {
+  return branch.physicalProgrammeSlugs
+    .map((slug) => getProgrammeBySlug(slug))
+    .filter((programme): programme is Programme => programme !== undefined);
 }
 
 /**

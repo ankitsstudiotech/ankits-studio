@@ -23,10 +23,13 @@ export const programmeSlugSchema = z.enum([
 export type ProgrammeSlug = z.infer<typeof programmeSlugSchema>;
 
 export const branchSlugSchema = z.enum([
-  /** Display: Airoli Sector 19 — slug retained to avoid silent redirect. */
-  "airoli",
+  /** Canonical Sector 19 route — legacy `/locations/airoli` permanently redirects here. */
+  "airoli-sector-19",
   "airoli-sector-8",
   "ghansoli",
   "thane",
 ]);
 export type BranchSlug = z.infer<typeof branchSlugSchema>;
+
+/** Retired public slug for Sector 19 — redirect target is `airoli-sector-19`. */
+export const LEGACY_AIROLI_SECTOR_19_SLUG = "airoli" as const;

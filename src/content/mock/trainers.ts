@@ -21,7 +21,7 @@ export const mockTrainers: Trainer[] = [
     },
     qualifications: ["Placeholder certification — not verified"],
     specialties: ["strength-training", "personal-training"],
-    branchSlugs: ["airoli", "ghansoli"],
+    branchSlugs: ["airoli-sector-19", "ghansoli"],
     bio: "Illustrative bio text describing a strength and personal-training coach. Not a real person.",
   },
   {
@@ -37,7 +37,7 @@ export const mockTrainers: Trainer[] = [
     },
     qualifications: ["Placeholder certification — not verified"],
     specialties: ["yoga", "zumba"],
-    branchSlugs: ["airoli", "ghansoli"],
+    branchSlugs: ["airoli-sector-19", "ghansoli"],
     bio: "Illustrative bio text describing a yoga and Zumba instructor. Not a real person.",
   },
 ];

@@ -8,7 +8,15 @@ import { assertMockContentSafeForBuild } from "./src/content/content-mode";
 assertMockContentSafeForBuild();
 
 const nextConfig: NextConfig = {
-  /* config options here */
+  async redirects() {
+    return [
+      {
+        source: "/locations/airoli",
+        destination: "/locations/airoli-sector-19",
+        permanent: true,
+      },
+    ];
+  },
 };
 
 export default nextConfig;

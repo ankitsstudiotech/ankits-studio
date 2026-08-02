@@ -50,8 +50,8 @@ export async function generateMetadata({ params }: LocationPageParams): Promise<
   const { slug } = await params;
   const branch = getBranchOrNotFound(slug);
   return buildPageMetadata({
-    title: branch.name,
-    description: `${branch.name} — programmes, operating hours, and how to ask for current batch availability.`,
+    title: branch.seoTitle ?? branch.name,
+    description: branch.seoDescription,
     path: `/locations/${branch.slug}`,
   });
 }
@@ -160,9 +160,9 @@ export default async function LocationDetailPage({ params }: LocationPageParams)
 
       <LocationHero
         name={branch.name}
-        areaLabel={branch.slug}
-        address={branch.address}
-        primaryCta={{ label: trialLabel, href: "/trial" }}
+        areaLabel={branch.locality}
+        address={branch.address ?? "Detailed address is being updated."}
+        primaryCta={{ label: trialLabel, href: whatsappHref }}
         disclaimer={branchDisclaimer}
       />
 
@@ -176,7 +176,7 @@ export default async function LocationDetailPage({ params }: LocationPageParams)
       />
 
       <AddressDirections
-        address={branch.address}
+        address={branch.address ?? "Detailed address is being updated."}
         directions={branch.directions}
         disclaimer={branchDisclaimer}
       />
