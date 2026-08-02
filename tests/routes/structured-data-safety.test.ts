@@ -3,11 +3,9 @@ import { getBranches, getProgrammes } from "@/content";
 import { buildCourseJsonLd, buildLocalBusinessJsonLd } from "@/lib/seo/structured-data";
 
 describe("route-level structured-data safety", () => {
-  it("Course JSON-LD renders for every current programme (all are verified)", () => {
+  it("Course JSON-LD is omitted for every programme (ADR-017 — not educational Courses)", () => {
     for (const programme of getProgrammes()) {
-      const course = buildCourseJsonLd(programme);
-      expect(course).not.toBeNull();
-      expect(course?.name).toBe(programme.name);
+      expect(buildCourseJsonLd(programme)).toBeNull();
     }
   });
 

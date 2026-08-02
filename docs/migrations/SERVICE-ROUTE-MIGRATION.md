@@ -52,7 +52,7 @@
 | Sitemap | Include when site not noindex | **Exclude** (`taxonomyStatus !== "confirmed"`) |
 | robots / page robots | Site-level mock noindex while unverified content exists | Additional `noindex` on legacy detail pages |
 | Canonical | Self `/programs/{slug}` | Self `/programs/{slug}` (no canonical to a different service) |
-| Structured data Course | Emit only for confirmed public programmes | **Do not** emit Course JSON-LD for legacy temporary pages |
+| Structured data | `WebPage` + `BreadcrumbList` (ADR-017). **No** Course / Offer / Event | `BreadcrumbList` only — **no** Course or Service |
 
 ---
 
