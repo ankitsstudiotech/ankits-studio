@@ -1,10 +1,12 @@
 import Link from "next/link";
 import type { Metadata } from "next";
-import { ProgrammeCard, type ProgrammeAccent } from "@/components/home";
+import { ProgrammeDiscovery } from "@/components/programs/pulse/ProgrammeDiscovery";
 import { Container } from "@/components/ui/Container";
-import { Section } from "@/components/ui/Section";
-import { Body, TextLink } from "@/components/ui";
-import { getProgrammes } from "@/content";
+import { getConfirmedProgrammes } from "@/content";
+import {
+  getPrimaryConversionHref,
+  getPrimaryConversionLabel,
+} from "@/lib/conversion";
 import { buildPageMetadata } from "@/lib/seo/metadata";
 import { serializeJsonLd } from "@/lib/seo/serialize";
 import { buildBreadcrumbJsonLd } from "@/lib/seo/structured-data";
@@ -14,7 +16,7 @@ const PATH = "/programs";
 export const metadata: Metadata = buildPageMetadata({
   title: "Programmes",
   description:
-    "Strength training, personal training, yoga, Zumba, and dance programmes at Ankit's Studio — browse every programme and its available branches.",
+    "Functional Training, Yoga, Zumba, Dance, Wedding Choreography, Home Personal Training and Online Training at Ankit’s Studio — enquire for a free trial on WhatsApp.",
   path: PATH,
 });
 
@@ -24,8 +26,10 @@ const breadcrumbTrail = [
 ];
 
 export default function ProgrammesIndexPage() {
-  const programmes = getProgrammes();
+  const programmes = getConfirmedProgrammes();
   const breadcrumbJsonLd = buildBreadcrumbJsonLd(breadcrumbTrail);
+  const trialHref = getPrimaryConversionHref();
+  const trialLabel = getPrimaryConversionLabel();
 
   return (
     <main id="programmes-index" className="flex flex-1 flex-col">
@@ -34,7 +38,7 @@ export default function ProgrammesIndexPage() {
         dangerouslySetInnerHTML={{ __html: serializeJsonLd(breadcrumbJsonLd) }}
       />
 
-      <Container className="pt-8">
+      <Container className="pt-8 pb-2">
         <nav aria-label="Breadcrumb">
           <ol className="flex flex-wrap items-center gap-2 text-sm text-ink-muted">
             <li>
@@ -50,35 +54,11 @@ export default function ProgrammesIndexPage() {
         </nav>
       </Container>
 
-      <Section
-        eyebrow="Programmes"
-        title="Every programme at Ankit's Studio"
-        description="Strength, personal training, yoga, Zumba, and dance — each programme page covers who it's for, class structure, available branches, timings, and trainers."
-      >
-        <ul className="grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
-          {programmes.map((programme) => (
-            <li key={programme.slug}>
-              <ProgrammeCard
-                name={programme.name}
-                href={`/programs/${programme.slug}`}
-                shortDescription={programme.shortDescription}
-                accent={programme.heroAccent as ProgrammeAccent}
-                tags={programme.audienceTags}
-              />
-            </li>
-          ))}
-        </ul>
-      </Section>
-
-      <Section
-        eyebrow="Locations"
-        title="Available across our branches"
-        description="Every programme page lists exactly which branches currently offer it, with a direct link through."
-      >
-        <Body>
-          Looking for a specific branch instead? <TextLink href="/locations">Browse locations</TextLink>.
-        </Body>
-      </Section>
+      <ProgrammeDiscovery
+        programmes={programmes}
+        trialHref={trialHref}
+        trialLabel={trialLabel}
+      />
     </main>
   );
 }

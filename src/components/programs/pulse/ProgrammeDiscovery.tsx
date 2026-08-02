@@ -1,0 +1,128 @@
+import Link from "next/link";
+import type { Programme } from "@/content";
+import { ProgrammeLaneLink, ProgrammePulseCta, type ProgrammeTempo } from "./ProgrammePulseMotion";
+import styles from "./programme-pulse.module.css";
+
+const SLUG_TEMPO: Record<string, ProgrammeTempo> = {
+  "functional-training": "functional",
+  yoga: "yoga",
+  zumba: "zumba",
+  "adult-dance": "dance",
+  "wedding-choreography": "wedding",
+  "home-personal-training": "home",
+  "online-training": "online",
+};
+
+const CLUSTER_COPY = {
+  train: {
+    title: "Train",
+    lede: "Coach-led fitness — in studio, at home, or online.",
+  },
+  move: {
+    title: "Move",
+    lede: "Group energy, breath work, and studio dance.",
+  },
+  celebrate: {
+    title: "Celebrate",
+    lede: "Personal choreography for wedding moments.",
+  },
+} as const;
+
+function deliveryMeta(programme: Programme): string | undefined {
+  if (programme.deliveryMode === "home") return "Home delivery · not a branch-floor class";
+  if (programme.deliveryMode === "online") return "Online delivery · not a branch-floor class";
+  if (programme.slug === "functional-training") return "Studio classes · primary fitness focus";
+  return "Studio classes · enquire for batch fit";
+}
+
+export type ProgrammeDiscoveryProps = {
+  programmes: Programme[];
+  trialHref: string;
+  trialLabel: string;
+};
+
+/**
+ * Editorial programme index — Train / Move / Celebrate.
+ * Confirmed services only; SSR names + crawlable anchors.
+ */
+export function ProgrammeDiscovery({ programmes, trialHref, trialLabel }: ProgrammeDiscoveryProps) {
+  const byCluster = {
+    train: programmes.filter((p) => p.serviceCluster === "train"),
+    move: programmes.filter((p) => p.serviceCluster === "move"),
+    celebrate: programmes.filter((p) => p.serviceCluster === "celebrate"),
+  };
+
+  // Stable commercial order within Train
+  byCluster.train.sort((a, b) => {
+    const order = ["functional-training", "home-personal-training", "online-training"];
+    return order.indexOf(a.slug) - order.indexOf(b.slug);
+  });
+  byCluster.move.sort((a, b) => {
+    const order = ["zumba", "yoga", "adult-dance"];
+    return order.indexOf(a.slug) - order.indexOf(b.slug);
+  });
+
+  return (
+    <section className={`${styles.field} ${styles.band}`} aria-labelledby="programmes-index-title">
+      <h1 id="programmes-index-title" className={styles.bandTitle}>
+        Choose how you want to move
+      </h1>
+      <p className={styles.bandLede}>
+        Confirmed services at Ankit’s Studio. Machine-free, coach-led sessions adapted to your needs —
+        without promised outcomes. Ask which batch fits when you book a free trial.
+      </p>
+
+      <div className={styles.clusters}>
+        {(["train", "move", "celebrate"] as const).map((clusterId) => {
+          const items = byCluster[clusterId];
+          if (items.length === 0) return null;
+          const copy = CLUSTER_COPY[clusterId];
+          return (
+            <section
+              key={clusterId}
+              className={styles.cluster}
+              data-cluster={clusterId}
+              aria-labelledby={`programmes-cluster-${clusterId}`}
+            >
+              <header className={styles.clusterHeader}>
+                <h2 id={`programmes-cluster-${clusterId}`} className={styles.clusterTitle}>
+                  {copy.title}
+                </h2>
+                <p className={styles.clusterLede}>{copy.lede}</p>
+              </header>
+              <div className={styles.lanes}>
+                {items.map((programme) => (
+                  <ProgrammeLaneLink
+                    key={programme.slug}
+                    href={`/programs/${programme.slug}`}
+                    name={programme.name}
+                    description={programme.shortDescription}
+                    meta={deliveryMeta(programme)}
+                    tempo={SLUG_TEMPO[programme.slug] ?? "functional"}
+                    emphasis={programme.slug === "functional-training" ? "primary" : undefined}
+                  />
+                ))}
+              </div>
+            </section>
+          );
+        })}
+      </div>
+
+      <div className={styles.ctaRow}>
+        <ProgrammePulseCta href={trialHref}>{trialLabel}</ProgrammePulseCta>
+        <p className={styles.ctaNote}>
+          Free trial · ₹300 registration after you join. Opening WhatsApp starts a chat — it does not
+          mean a message was delivered.
+        </p>
+      </div>
+
+      <p className={styles.ctaNote} style={{ marginTop: "1.5rem" }}>
+        Looking for a branch instead?{" "}
+        <Link href="/locations" className={styles.ctaNote} style={{ textDecoration: "underline" }}>
+          Browse locations
+        </Link>
+        .
+      </p>
+    </section>
+  );
+}
