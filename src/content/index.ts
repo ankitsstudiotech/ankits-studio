@@ -118,8 +118,12 @@ export function getTimetableSlots(filter?: {
   );
 }
 
+/**
+ * Public pricing plans — **verified rows only**.
+ * Illustrative membership fees must never appear on /pricing under mock-preview.
+ */
 export function getPricingPlans(): PricingPlan[] {
-  return pricingPlans;
+  return pricingPlans.filter((plan) => plan.dataStatus === "verified");
 }
 
 export function getTransformations(): Transformation[] {
