@@ -1,0 +1,296 @@
+/* Studio Pulse — Pricing utility (low tempo, honest commercial). */
+
+.page {
+  background: var(--color-utility-surface, #f4f5f6);
+  color: var(--color-utility-ink, #14181c);
+  flex: 1;
+}
+
+.band {
+  padding: var(--spacing-section) var(--spacing-gutter);
+  border-top: 1px solid rgb(20 24 28 / 0.08);
+  max-width: 52rem;
+}
+
+.bandWide {
+  max-width: 64rem;
+}
+
+.kicker {
+  margin: 0 0 0.35rem;
+  font-size: 0.75rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: color-mix(in srgb, var(--color-utility-ink, #14181c) 72%, transparent);
+}
+
+.title {
+  font-family: var(--font-display);
+  font-size: clamp(2rem, 5vw, 3.25rem);
+  letter-spacing: 0.03em;
+  line-height: 0.95;
+  margin: 0 0 0.65rem;
+}
+
+.lede {
+  margin: 0 0 0;
+  max-width: 46ch;
+  font-size: 1.05rem;
+  line-height: 1.45;
+  color: color-mix(in srgb, var(--color-utility-ink, #14181c) 82%, transparent);
+}
+
+.sectionTitle {
+  font-family: var(--font-display);
+  font-size: clamp(1.25rem, 3vw, 1.65rem);
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  margin: 0 0 0.65rem;
+}
+
+.hoursBox {
+  padding: 1.15rem 0;
+  border-top: 1px solid rgb(20 24 28 / 0.12);
+  border-bottom: 1px solid rgb(20 24 28 / 0.12);
+}
+
+.hoursValue {
+  font-family: var(--font-display);
+  font-size: clamp(1.5rem, 3vw, 2rem);
+  letter-spacing: 0.04em;
+  margin: 0.35rem 0 0.5rem;
+}
+
+.confirmedList {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  gap: 1rem;
+}
+
+.confirmedItem {
+  padding: 1rem 0;
+  border-bottom: 1px solid rgb(20 24 28 / 0.12);
+}
+
+.confirmedItem:first-child {
+  border-top: 1px solid rgb(20 24 28 / 0.12);
+}
+
+.feeAmount {
+  font-family: var(--font-display);
+  font-size: clamp(1.75rem, 4vw, 2.35rem);
+  letter-spacing: 0.04em;
+  margin: 0.25rem 0;
+}
+
+.feeMeta {
+  margin: 0;
+  font-size: 0.92rem;
+  color: color-mix(in srgb, var(--color-utility-ink, #14181c) 78%, transparent);
+  max-width: 42ch;
+}
+
+.pendingList {
+  list-style: none;
+  margin: 0.5rem 0 0;
+  padding: 0;
+  display: grid;
+  gap: 0.35rem;
+  font-size: 0.92rem;
+  color: color-mix(in srgb, var(--color-utility-ink, #14181c) 78%, transparent);
+  max-width: 40ch;
+}
+
+.pendingNote {
+  margin: 0.85rem 0 0;
+  font-size: 0.95rem;
+  max-width: 48ch;
+}
+
+.form {
+  display: grid;
+  gap: 1rem;
+  margin-top: 0.5rem;
+}
+
+.field {
+  display: grid;
+  gap: 0.35rem;
+}
+
+.field label {
+  font-size: 0.9rem;
+  font-weight: 500;
+}
+
+.hint {
+  margin: 0;
+  font-size: 0.82rem;
+  color: color-mix(in srgb, var(--color-utility-ink, #14181c) 78%, transparent);
+}
+
+.control {
+  min-height: 44px;
+  width: 100%;
+  max-width: 28rem;
+  padding: 0.55rem 0.75rem;
+  border: 1px solid rgb(20 24 28 / 0.22);
+  background: #fff;
+  color: inherit;
+  font: inherit;
+  border-radius: 0;
+}
+
+.control:focus-visible {
+  outline: 2px solid var(--color-coral, #ff4d2e);
+  outline-offset: 2px;
+}
+
+.textarea {
+  min-height: 88px;
+  resize: vertical;
+}
+
+.radioGroup {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem 1rem;
+}
+
+.radioOption {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  min-height: 44px;
+  font-size: 0.92rem;
+}
+
+.radioOption input {
+  width: 1.1rem;
+  height: 1.1rem;
+}
+
+.warn {
+  margin: 0;
+  padding: 0.65rem 0.75rem;
+  border-left: 3px solid var(--color-coral, #ff4d2e);
+  background: #fff;
+  font-size: 0.9rem;
+  max-width: 40ch;
+}
+
+.ctaRow {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.85rem;
+  align-items: center;
+  margin-top: 0.35rem;
+}
+
+.cta {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 48px;
+  padding: 0.7rem 1.25rem;
+  background: var(--color-coral, #ff4d2e);
+  color: #0b0b0c;
+  font-weight: 600;
+  text-decoration: none;
+  border: none;
+  cursor: pointer;
+  font: inherit;
+}
+
+.cta:focus-visible {
+  outline: 2px solid #0b0b0c;
+  outline-offset: 3px;
+}
+
+.ctaNote {
+  margin: 0;
+  max-width: 34ch;
+  font-size: 0.85rem;
+  color: color-mix(in srgb, var(--color-utility-ink, #14181c) 78%, transparent);
+}
+
+.facts {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  gap: 0.75rem;
+}
+
+.fact strong {
+  display: block;
+  font-size: 0.78rem;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  font-weight: 500;
+  margin-bottom: 0.2rem;
+  color: color-mix(in srgb, var(--color-utility-ink, #14181c) 72%, transparent);
+}
+
+.faqList {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  gap: 1rem;
+}
+
+.faqList h3 {
+  margin: 0 0 0.3rem;
+  font-size: 1.02rem;
+}
+
+.faqList p {
+  margin: 0;
+  max-width: 52ch;
+  color: color-mix(in srgb, var(--color-utility-ink, #14181c) 82%, transparent);
+}
+
+.linkColumns {
+  display: grid;
+  gap: 1.5rem;
+}
+
+@media (min-width: 720px) {
+  .linkColumns {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+
+.linkList {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.linkList a {
+  display: flex;
+  align-items: center;
+  min-height: 44px;
+  color: inherit;
+  text-underline-offset: 0.18em;
+}
+
+.linkList a:focus-visible {
+  outline: 2px solid var(--color-coral, #ff4d2e);
+  outline-offset: 2px;
+}
+
+.deliveryNote {
+  margin: 0.35rem 0 0;
+  font-size: 0.85rem;
+  max-width: 40ch;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .cta {
+    transition: none !important;
+  }
+}
