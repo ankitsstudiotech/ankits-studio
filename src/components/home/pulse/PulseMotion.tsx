@@ -30,6 +30,7 @@ const TEMPO_MOTION: Record<
 /**
  * Programme discovery link with tempo-specific motion.
  * Keyboard / no-hover: full link always works. Reduced-motion: static.
+ * Desktop may show selective beat bars; mobile relies on typography/spacing/cues.
  */
 export function ServiceLane({
   tempo,
@@ -37,32 +38,37 @@ export function ServiceLane({
   description,
   href,
   meta,
+  emphasis,
 }: {
   tempo: ServiceTempo;
   name: string;
   description: string;
   href: string;
   meta?: string;
+  emphasis?: "primary";
 }) {
   const reduce = useReducedMotion();
   const config = TEMPO_MOTION[tempo];
+  const sentenceTitle =
+    tempo === "yoga" || tempo === "home" || tempo === "online" || tempo === "wedding";
 
   return (
     <motion.a
       href={href}
       className={styles.lane}
       data-tempo={tempo}
+      data-emphasis={emphasis ?? undefined}
       whileHover={reduce || config.hoverX === 0 ? undefined : { x: config.hoverX }}
       whileTap={reduce ? undefined : { scale: 0.99 }}
       transition={{ type: "spring", stiffness: 420, damping: 30 }}
     >
       <div className={styles.laneMeta}>
-        <h3 className={tempo === "yoga" || tempo === "home" || tempo === "online" ? styles.laneTitleSentence : undefined}>
-          {name}
-        </h3>
+        <h4 className={sentenceTitle ? styles.laneTitleSentence : undefined}>{name}</h4>
         <p>{description}</p>
         {meta ? <p className={styles.laneTags}>{meta}</p> : null}
       </div>
+      {/* Mobile tempo cue — always present; not equalizer gadgetry */}
+      <div className={styles.laneCue} aria-hidden data-tempo={tempo} />
       {config.showBeats && !reduce ? (
         <div className={styles.beats} aria-hidden>
           {[0.55, 0.85, 0.4, 1, 0.7].map((amp, i) => (
@@ -83,7 +89,11 @@ export function ServiceLane({
       ) : config.showBeats ? (
         <div className={styles.beats} aria-hidden>
           {[0.55, 0.85, 0.4, 1, 0.7].map((amp, i) => (
-            <span key={i} className={styles.beat} style={{ transform: `scaleX(${amp})`, transformOrigin: "left center" }} />
+            <span
+              key={i}
+              className={styles.beat}
+              style={{ transform: `scaleX(${amp})`, transformOrigin: "left center" }}
+            />
           ))}
         </div>
       ) : (
@@ -98,15 +108,18 @@ export function PulseCta({
   href,
   children,
   external,
+  id,
 }: {
   href: string;
   children: ReactNode;
   external?: boolean;
+  id?: string;
 }) {
   const reduce = useReducedMotion();
   const isExternal = external ?? href.startsWith("http");
   return (
     <motion.a
+      id={id}
       href={href}
       className={styles.cta}
       whileTap={reduce ? undefined : { scale: 0.96 }}
@@ -118,22 +131,32 @@ export function PulseCta({
   );
 }
 
+/**
+ * Replaceable media fallback plate.
+ * Real assets swap in via docs/media/STUDIO-MEDIA-REQUIREMENTS.md — do not treat
+ * gradients as permanent proof of place.
+ */
 export function PulseMediaPlate({
   family,
   label,
   aspect = "4/5",
   className = "",
+  slotKey,
 }: {
   family: "strength" | "calm" | "high-energy" | "warm";
   label: string;
   aspect?: "3/4" | "4/5" | "16/9" | "1/1";
   className?: string;
+  /** Stable content key from STUDIO-MEDIA-REQUIREMENTS.md */
+  slotKey?: string;
 }) {
   return (
     <div
+      data-media-slot={slotKey}
+      data-media-status="fallback"
       data-mock-media="true"
       data-mock-media-family={family}
-      className={[styles.mediaPlate, className].filter(Boolean).join(" ")}
+      className={[styles.mediaPlate, styles.mediaFallback, className].filter(Boolean).join(" ")}
       style={{ aspectRatio: aspect.replace("/", " / ") }}
       role="img"
       aria-label={label}
