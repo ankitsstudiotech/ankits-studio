@@ -10,4 +10,5 @@ export * from "./business-identity";
 export * from "./faqs";
 export * from "./contact-details";
 export * from "./studio-commercial";
+export * from "./studio-about";
 export * from "./navigation";

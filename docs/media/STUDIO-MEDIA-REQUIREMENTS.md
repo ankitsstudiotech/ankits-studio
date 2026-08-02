@@ -26,6 +26,12 @@ Temporary homepage plates remain **replaceable fallbacks** (`data-media-status="
 | `branch.ghansoli` | Photograph | 16/9 | 3/2 | Exterior or entrance | Ankit’s Studio Ghansoli | n/a | `lazy` | cover | Field plate | Pending — address + photo |
 | `branch.thane` | Photograph | 16/9 | 3/2 | Exterior or entrance | Ankit’s Studio Thane | n/a | `lazy` | cover | Field plate | Pending — address + photo |
 | `community.group` | Photograph | 16/9 | 3/2 | Consented group on floor | Group session at Ankit’s Studio | n/a | `lazy` | cover | Field plate | Pending — consent |
+| `about.hero` | Photograph or muted video | 16/9 | 16/9 | Studio atmosphere mid-frame | Ankit’s Studio session atmosphere | Required if video | `priority` on About only | cover | `strength` plate | Pending — owner |
+| `about.machine-free` | Photograph | 16/9 | 3/2 | Coach + floor, no gym machines | Machine-free Functional Training floor | n/a | `lazy` | cover | `calm` plate | Pending — owner |
+| `about.community` | Photograph | 16/9 | 3/2 | Consented group energy | Group session community at Ankit’s Studio | n/a | `lazy` | cover | `warm` plate | Pending — consent |
+| `about.team` | Photograph | 16/9 | 3/2 | Consented team group (no invented names in alt) | Ankit’s Studio coaching team | n/a | `lazy` | cover | `warm` plate | Pending — owner + consent |
+| `about.disciplines` | Photograph sequence or single | 16/9 | 3/2 | Distinct movement modes readable | Multi-discipline activity at Ankit’s Studio | n/a | `lazy` | cover | `high-energy` plate | Pending — owner |
+| `about.branches` | Photograph / collage later | 16/9 | 3/2 | Exterior or entrance; no invented street text | Neighbourhood branch exterior or interior | n/a | `lazy` | cover | Neutral field plate | Pending — address + photo |
 
 ---
 
@@ -51,8 +57,9 @@ For every slot:
 ## Implementation hooks
 
 - Homepage plates: `PulseMediaPlate` with `slotKey`, `data-media-status="fallback"`, `data-mock-media="true"`.
+- About plates: same pattern with `about.*` keys — do not describe fallbacks as real people or verified interiors.
 - Typed catalogue: `src/content/media-slots.ts` (keys + metadata only — no binary assets).
-- Existing `MediaAsset` schema (`src` / `alt` / `width` / `height`) remains the runtime shape when assets arrive (ADR-012). Focal-point / poster may be extended later without changing homepage section order.
+- Existing `MediaAsset` schema (`src` / `alt` / `width` / `height`) remains the runtime shape when assets arrive (ADR-012). Focal-point / poster may be extended later without changing homepage or About section order.
 
 ---
 

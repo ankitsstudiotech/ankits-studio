@@ -11,6 +11,7 @@ import type {
   PricingPlan,
   Programme,
   ProgrammeSlug,
+  StudioAbout,
   StudioCommercial,
   Testimonial,
   TimetableSlot,
@@ -53,6 +54,7 @@ const blogPosts = mergeByKey(mock.mockBlogPosts, verified.verifiedBlogPosts, byS
 const businessIdentity = mergeSingular(mock.mockBusinessIdentity, verified.verifiedBusinessIdentity);
 const contactDetails = mergeSingular(mock.mockContactDetails, verified.verifiedContactDetails);
 const studioCommercial = mergeSingular(mock.mockStudioCommercial, verified.verifiedStudioCommercial);
+const studioAbout = mergeSingular(mock.mockStudioAbout, verified.verifiedStudioAbout);
 const faqs = mergeByKey(mock.mockFaqs, verified.verifiedFaqs, byId);
 const navigationItems = mergeByKey(mock.mockNavigationItems, verified.verifiedNavigationItems, byId);
 
@@ -209,6 +211,10 @@ export function getContactDetails(): ContactDetails {
 
 export function getStudioCommercial(): StudioCommercial {
   return studioCommercial;
+}
+
+export function getStudioAbout(): StudioAbout {
+  return studioAbout;
 }
 
 export function getFaqs(filter?: { programmeSlug?: ProgrammeSlug; branchSlug?: BranchSlug }): Faq[] {

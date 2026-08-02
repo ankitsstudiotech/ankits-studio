@@ -33,5 +33,6 @@ export const verifiedBlogPosts: BlogPost[] = [];
 export const verifiedBusinessIdentity: BusinessIdentity | null = null;
 export const verifiedContactDetails: ContactDetails | null = null;
 export const verifiedStudioCommercial: import("../schema").StudioCommercial | null = null;
+export const verifiedStudioAbout: import("../schema").StudioAbout | null = null;
 export const verifiedFaqs: Faq[] = [];
 export const verifiedNavigationItems: NavigationItem[] = [];
