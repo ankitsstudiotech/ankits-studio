@@ -10,3 +10,11 @@ export {
   SECONDARY_TRIAL_FORM_HREF,
   type WhatsAppTrialFields,
 } from "./whatsapp";
+
+export {
+  availabilityBranchPromptNeeded,
+  buildWhatsAppAvailabilityMessage,
+  buildWhatsAppAvailabilityUrl,
+  type AvailabilityDeliveryMode,
+  type AvailabilityEnquiryFields,
+} from "./availability-whatsapp";

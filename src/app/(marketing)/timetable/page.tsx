@@ -1,28 +1,30 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import { PageBreadcrumb } from "@/components/layout/PageBreadcrumb";
-import { Badge } from "@/components/ui/Badge";
-import { Section } from "@/components/ui/Section";
-import { Body, Caption, Heading } from "@/components/ui/Typography";
+import { AvailabilityEnquiryBuilder } from "@/components/timetable/pulse/AvailabilityEnquiryBuilder";
+import styles from "@/components/timetable/pulse/batch-availability.module.css";
 import {
-  getProgrammes,
+  getConfirmedProgrammes,
   getPubliclyListedBranches,
   getStudioCommercial,
 } from "@/content";
-import {
-  getPrimaryConversionHref,
-  getPrimaryConversionLabel,
-} from "@/lib/conversion";
+import { getPrimaryConversionHref } from "@/lib/conversion";
+import type { AvailabilityDeliveryMode } from "@/lib/conversion";
 import { buildPageMetadata } from "@/lib/seo/metadata";
 import { serializeJsonLd } from "@/lib/seo/serialize";
-import { buildBreadcrumbJsonLd } from "@/lib/seo/structured-data";
+import {
+  buildBreadcrumbJsonLd,
+  buildWebPageJsonLd,
+} from "@/lib/seo/structured-data";
 
 const PATH = "/timetable";
 
+const PAGE_DESCRIPTION =
+  "Check current class availability across Ankit’s Studio branches and enquire about a free trial through WhatsApp. Studios operate 6:00 AM–10:00 PM — that window is not a class timetable.";
+
 export const metadata: Metadata = buildPageMetadata({
   title: "Batch Availability",
-  description:
-    "Ask Ankit’s Studio on WhatsApp for current batch availability by branch and programme. Studios operate 6:00 AM–10:00 PM — that window is not a class timetable.",
+  description: PAGE_DESCRIPTION,
   path: PATH,
 });
 
@@ -31,109 +33,203 @@ const breadcrumbTrail = [
   { name: "Batch Availability", path: PATH },
 ];
 
+const FAQ = [
+  {
+    id: "faq-why-no-grid",
+    question: "Why aren’t exact batch times listed here?",
+    answer:
+      "Detailed branch-wise schedules are being updated. Message us on WhatsApp for current availability by programme and branch.",
+  },
+  {
+    id: "faq-operating-window",
+    question: "Does 6:00 AM–10:00 PM mean classes run all day?",
+    answer:
+      "No. That is the studio operating window. Individual batch times vary by branch and programme and are confirmed when you enquire.",
+  },
+  {
+    id: "faq-trial",
+    question: "Can I book a free trial while asking about batches?",
+    answer:
+      "Yes. The WhatsApp enquiry can cover both current availability and a free trial. Opening chat does not mean your enquiry was submitted.",
+  },
+] as const;
+
 /**
- * Honest batch-availability surface.
- * Exact class rows are not published — owner has not supplied verified schedules.
- * Operating window is shown separately and must never be rendered as continuous class time.
+ * Batch Availability — calm utility page.
+ * Exact class rows are not published. Operating window is shown separately.
  */
 export default function TimetablePage() {
   const branches = getPubliclyListedBranches();
-  const programmes = getProgrammes().filter(
-    (programme) => programme.taxonomyStatus !== "migration-pending",
-  );
+  const programmes = getConfirmedProgrammes();
   const commercial = getStudioCommercial();
-  const trialHref = getPrimaryConversionHref();
-  const trialLabel = getPrimaryConversionLabel();
+  const fallbackHref = getPrimaryConversionHref();
+
+  const physical = programmes.filter(
+    (programme) => programme.deliveryMode === "in-studio" || programme.deliveryMode === undefined,
+  );
+  const delivery = programmes.filter(
+    (programme) => programme.deliveryMode === "home" || programme.deliveryMode === "online",
+  );
+
+  const services = programmes.map((programme) => ({
+    slug: programme.slug,
+    name: programme.name,
+    deliveryMode: (programme.deliveryMode === "home" || programme.deliveryMode === "online"
+      ? programme.deliveryMode
+      : "in-studio") as AvailabilityDeliveryMode,
+  }));
+
+  const branchOptions = branches.map((branch) => ({
+    slug: branch.slug,
+    locality: branch.locality,
+  }));
+
   const breadcrumbJsonLd = buildBreadcrumbJsonLd(breadcrumbTrail);
+  const pageJsonLd = buildWebPageJsonLd({
+    name: "Batch Availability",
+    description: PAGE_DESCRIPTION,
+    path: PATH,
+  });
 
   return (
-    <main className="flex flex-1 flex-col">
+    <main className={`${styles.page} flex flex-1 flex-col`}>
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: serializeJsonLd(breadcrumbJsonLd) }}
       />
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: serializeJsonLd(pageJsonLd) }}
+      />
 
       <PageBreadcrumb items={breadcrumbTrail} />
 
-      <Section
-        eyebrow="Batch availability"
-        title="Current slots vary by branch and programme"
-        titleAs="h1"
-        description="We do not publish a full class timetable yet. Message us on WhatsApp for the latest batches that fit your branch, programme, and preferred time."
-      >
-        <Badge accent="neutral" className="mb-6">
-          Schedules confirmed on enquiry
-        </Badge>
+      <section className={styles.band} aria-labelledby="batch-availability-title">
+        <p className={styles.kicker}>Batch availability</p>
+        <h1 id="batch-availability-title" className={styles.title}>
+          Check current batches
+        </h1>
+        <p className={styles.lede}>
+          Ask Ankit’s Studio on WhatsApp for current availability by branch and programme — then book
+          a free trial when you are ready.
+        </p>
+      </section>
 
-        <div className="mb-8 rounded-[var(--radius-lg)] border border-border bg-surface-raised p-5">
-          <Heading as="h2" className="mb-2 text-lg">
-            Studio operating window
-          </Heading>
-          <Body className="mb-2">
-            Branches operate from <strong>6:00 AM to 10:00 PM</strong>.
-          </Body>
-          <Caption>
-            This is the studio open window — not one continuous class, and not a list of batch start
-            times. Batches run during the day; exact timings differ by programme and branch.
-          </Caption>
+      <section className={styles.band} aria-labelledby="operating-hours-title">
+        <h2 id="operating-hours-title" className={styles.sectionTitle}>
+          Studio operating hours
+        </h2>
+        <div className={styles.hoursBox}>
+          <p className={styles.hoursValue}>6:00 AM to 10:00 PM</p>
+          <p className={styles.lede}>
+            Studios operate between 6:00 AM and 10:00 PM. Individual batch times vary by branch and
+            programme.
+          </p>
+          <p className={styles.pendingNote}>
+            Detailed branch-wise schedules are being updated. Message us for current availability.
+          </p>
         </div>
+      </section>
 
-        <div className="mb-10 flex flex-col gap-3 sm:flex-row sm:flex-wrap sm:items-center">
-          <a
-            href={trialHref}
-            className="inline-flex min-h-11 items-center justify-center bg-accent px-5 text-sm font-bold uppercase tracking-[0.06em] text-accent-foreground touch-target hover:bg-accent-hover focus-visible:outline-2 focus-visible:outline-offset-3 focus-visible:outline-focus-ring"
-            {...(trialHref.startsWith("http")
-              ? { target: "_blank", rel: "noopener noreferrer" }
-              : {})}
-          >
-            {trialLabel}
-          </a>
-          <Caption>
-            Opening WhatsApp starts a chat — it does not mean a message was already delivered.
-            {commercial.registrationFeeInr != null
-              ? ` Free trial · ₹${commercial.registrationFeeInr} registration after you join.`
-              : null}
-          </Caption>
-        </div>
+      <section className={styles.band} aria-labelledby="enquiry-builder-title">
+        <h2 id="enquiry-builder-title" className={styles.sectionTitle}>
+          Availability enquiry
+        </h2>
+        <p className={styles.lede}>
+          Prepare a WhatsApp message for the service you want. You do not need every field filled in
+          before you open the chat.
+        </p>
+        <AvailabilityEnquiryBuilder
+          services={services}
+          branches={branchOptions}
+          fallbackHref={fallbackHref}
+        />
+      </section>
 
-        <div className="grid gap-8 md:grid-cols-2">
-          <section aria-labelledby="availability-programmes">
-            <Heading as="h2" className="mb-3">
-              <span id="availability-programmes">Programmes you can ask about</span>
-            </Heading>
-            <ul className="divide-y divide-border rounded-[var(--radius-lg)] border border-border bg-surface-raised">
-              {programmes.map((programme) => (
+      <section className={styles.band} aria-labelledby="audience-notes-title">
+        <h2 id="audience-notes-title" className={styles.sectionTitle}>
+          Audience &amp; group size
+        </h2>
+        <ul className={styles.facts}>
+          <li className={styles.fact}>
+            <strong>Ladies-only and kids-only</strong>
+            {commercial.ladiesOnlyBatchesAvailable || commercial.kidsOnlyBatchesAvailable
+              ? "Ladies-only and kids-only batches are available as options. Exact branch and programme fit is confirmed when you enquire."
+              : "Ask on WhatsApp about audience options for your preferred programme."}
+          </li>
+          {commercial.maxGroupBatchSize != null ? (
+            <li className={styles.fact}>
+              <strong>Maximum group batch size</strong>
+              Up to {commercial.maxGroupBatchSize} people in a group batch — not a live seat count.
+            </li>
+          ) : null}
+        </ul>
+      </section>
+
+      <section className={styles.band} aria-labelledby="batch-faq-title">
+        <h2 id="batch-faq-title" className={styles.sectionTitle}>
+          FAQ
+        </h2>
+        <ul className={styles.faqList}>
+          {FAQ.map((item) => (
+            <li key={item.id}>
+              <h3>{item.question}</h3>
+              <p>{item.answer}</p>
+            </li>
+          ))}
+        </ul>
+      </section>
+
+      <section className={`${styles.band} ${styles.bandWide}`} aria-labelledby="related-links-title">
+        <h2 id="related-links-title" className={styles.sectionTitle}>
+          Programmes &amp; locations
+        </h2>
+        <div className={styles.linkColumns}>
+          <div>
+            <p className={styles.kicker}>Studio services</p>
+            <ul className={styles.linkList}>
+              {physical.map((programme) => (
                 <li key={programme.slug}>
-                  <Link
-                    href={`/programs/${programme.slug}`}
-                    className="flex min-h-11 items-center px-4 py-3 text-ink underline-offset-2 hover:underline focus-visible:outline-2 focus-visible:outline-offset-3 focus-visible:outline-focus-ring"
-                  >
-                    {programme.name}
-                  </Link>
+                  <Link href={`/programs/${programme.slug}`}>{programme.name}</Link>
                 </li>
               ))}
             </ul>
-          </section>
-
-          <section aria-labelledby="availability-branches">
-            <Heading as="h2" className="mb-3">
-              <span id="availability-branches">Branches</span>
-            </Heading>
-            <ul className="divide-y divide-border rounded-[var(--radius-lg)] border border-border bg-surface-raised">
+            {delivery.length > 0 ? (
+              <>
+                <p className={`${styles.kicker}`} style={{ marginTop: "1.25rem" }}>
+                  Other ways to train
+                </p>
+                <ul className={styles.linkList}>
+                  {delivery.map((programme) => (
+                    <li key={programme.slug}>
+                      <Link href={`/programs/${programme.slug}`}>{programme.name}</Link>
+                    </li>
+                  ))}
+                </ul>
+                <p className={styles.deliveryNote}>
+                  Home and Online Training are delivery modes — not branch-floor classes.
+                </p>
+              </>
+            ) : null}
+            <p className={styles.deliveryNote}>
+              <Link href="/programs">Browse all programmes</Link>
+            </p>
+          </div>
+          <div>
+            <p className={styles.kicker}>Branches</p>
+            <ul className={styles.linkList}>
               {branches.map((branch) => (
                 <li key={branch.slug}>
-                  <Link
-                    href={`/locations/${branch.slug}`}
-                    className="flex min-h-11 items-center px-4 py-3 text-ink underline-offset-2 hover:underline focus-visible:outline-2 focus-visible:outline-offset-3 focus-visible:outline-focus-ring"
-                  >
-                    {branch.name.replace(/^Ankit's Studio —\s*/i, "")}
-                  </Link>
+                  <Link href={`/locations/${branch.slug}`}>{branch.locality}</Link>
                 </li>
               ))}
             </ul>
-          </section>
+            <p className={styles.deliveryNote}>
+              <Link href="/locations">All locations</Link>
+            </p>
+          </div>
         </div>
-      </Section>
+      </section>
     </main>
   );
 }
