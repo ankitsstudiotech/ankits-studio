@@ -6,6 +6,12 @@
   flex: 1;
 }
 
+.crumbBar {
+  background: var(--color-utility-surface, #f4f5f6);
+  color: var(--color-utility-ink, #14181c);
+  border-bottom: 1px solid rgb(20 24 28 / 0.08);
+}
+
 .band {
   padding: var(--spacing-section) var(--spacing-gutter);
   border-top: 1px solid rgb(255 255 255 / 0.08);

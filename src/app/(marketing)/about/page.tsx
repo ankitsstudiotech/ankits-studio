@@ -82,7 +82,9 @@ export default function AboutPage() {
         dangerouslySetInnerHTML={{ __html: serializeJsonLd(pageJsonLd) }}
       />
 
-      <PageBreadcrumb items={breadcrumbTrail} />
+      <div className={styles.crumbBar}>
+        <PageBreadcrumb items={breadcrumbTrail} />
+      </div>
 
       <section className={`${styles.band} ${styles.bandNarrow}`} aria-labelledby="about-title">
         <p className={styles.kicker}>About Ankit’s Studio</p>
