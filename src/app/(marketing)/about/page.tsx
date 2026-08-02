@@ -8,7 +8,12 @@ import {
   getPubliclyListedBranches,
   getStudioAbout,
   getStudioCommercial,
+  siteHasUnverifiedContent,
 } from "@/content";
+import {
+  getPrimaryConversionHref,
+  getPrimaryConversionLabel,
+} from "@/lib/conversion";
 import { buildPageMetadata } from "@/lib/seo/metadata";
 import { serializeJsonLd } from "@/lib/seo/serialize";
 import {
@@ -47,6 +52,14 @@ export default function AboutPage() {
   const commercial = getStudioCommercial();
   const programmes = getConfirmedProgrammes();
   const branches = getPubliclyListedBranches();
+  const trialHref = getPrimaryConversionHref();
+  const trialLabel = getPrimaryConversionLabel();
+  const showDevPending = siteHasUnverifiedContent;
+
+  const physical = programmes.filter((p) => p.deliveryMode === "in-studio");
+  const delivery = programmes.filter(
+    (p) => p.deliveryMode === "home" || p.deliveryMode === "online",
+  );
 
   const breadcrumbJsonLd = buildBreadcrumbJsonLd(breadcrumbTrail);
   const pageJsonLd = buildWebPageJsonLd({
@@ -54,6 +67,9 @@ export default function AboutPage() {
     description: about.seoDescription,
     path: PATH,
   });
+
+  const showFounder =
+    about.founderStoryStatus === "verified" && Boolean(about.founderStory);
 
   return (
     <main className={`${styles.page} flex flex-1 flex-col`}>
@@ -161,6 +177,135 @@ export default function AboutPage() {
             </ul>
           </div>
         </div>
+      </section>
+
+      <section className={`${styles.band} ${styles.bandNarrow}`} aria-labelledby="about-team-title">
+        <h2 id="about-team-title" className={styles.sectionTitle}>
+          {about.teamTitle}
+        </h2>
+        <div className={styles.teamBlock}>
+          <p className={styles.kicker}>Team size</p>
+          <p className={styles.teamCount}>15+</p>
+          <p className={styles.body}>{about.teamBody}</p>
+          <p className={styles.provenance}>{about.teamCountProvenance}</p>
+        </div>
+        <div className={styles.mediaWrap} style={{ marginTop: "1.35rem" }}>
+          <PulseMediaPlate
+            slotKey="about.team"
+            family="warm"
+            label="Team photograph placeholder — real photography pending"
+            aspect="16/9"
+          />
+        </div>
+        {/* Verified trainer profiles render here later via trainerProfileSlugs — none published yet. */}
+        {showFounder && about.founderStory ? (
+          <div style={{ marginTop: "1.5rem" }}>
+            <h3 className={styles.sectionTitle}>Founder</h3>
+            <p className={styles.body}>{about.founderStory}</p>
+          </div>
+        ) : showDevPending ? (
+          <p className={styles.devPending} data-about-pending="founder">
+            Development note: founder story, founding date and credentials remain pending — omitted
+            from the public narrative.
+          </p>
+        ) : null}
+      </section>
+
+      {about.faqs.length > 0 ? (
+        <section className={`${styles.band} ${styles.bandNarrow}`} aria-labelledby="about-faq-title">
+          <h2 id="about-faq-title" className={styles.sectionTitle}>
+            FAQ
+          </h2>
+          <ul className={styles.faqList}>
+            {about.faqs.map((item) => (
+              <li key={item.id}>
+                <h3>{item.question}</h3>
+                <p>{item.answer}</p>
+              </li>
+            ))}
+          </ul>
+        </section>
+      ) : null}
+
+      <section className={styles.band} aria-labelledby="about-discover-title">
+        <h2 id="about-discover-title" className={styles.sectionTitle}>
+          Explore programmes and studios
+        </h2>
+        <div className={styles.linkColumns}>
+          <div>
+            <p className={styles.kicker}>Programmes</p>
+            <ul className={styles.linkList}>
+              {physical.map((programme) => (
+                <li key={programme.slug}>
+                  <Link href={`/programs/${programme.slug}`}>{programme.name}</Link>
+                </li>
+              ))}
+            </ul>
+            {delivery.length > 0 ? (
+              <>
+                <p className={styles.kicker} style={{ marginTop: "1.1rem" }}>
+                  Home &amp; online
+                </p>
+                <ul className={styles.linkList}>
+                  {delivery.map((programme) => (
+                    <li key={programme.slug}>
+                      <Link href={`/programs/${programme.slug}`}>{programme.name}</Link>
+                    </li>
+                  ))}
+                </ul>
+              </>
+            ) : null}
+            <p className={styles.moreLink}>
+              <Link href="/programs">Explore Programmes</Link>
+            </p>
+          </div>
+          <div>
+            <p className={styles.kicker}>Locations</p>
+            <ul className={styles.linkList}>
+              {branches.map((branch) => (
+                <li key={branch.slug}>
+                  <Link href={`/locations/${branch.slug}`}>{branch.locality}</Link>
+                </li>
+              ))}
+            </ul>
+            <p className={styles.moreLink}>
+              <Link href="/locations">Find a Studio</Link>
+            </p>
+          </div>
+        </div>
+      </section>
+
+      <section
+        className={`${styles.band} ${styles.bandNarrow} ${styles.ctaBand}`}
+        aria-labelledby="about-cta-title"
+      >
+        <h2 id="about-cta-title" className={styles.sectionTitle}>
+          Book a free trial
+        </h2>
+        <p className={styles.body}>
+          Try a session at a neighbourhood branch. Tell us your preferred branch, service and time on
+          WhatsApp.
+        </p>
+        <div className={styles.ctaRow}>
+          <a
+            className={styles.cta}
+            href={trialHref}
+            {...(trialHref.startsWith("http")
+              ? { target: "_blank", rel: "noopener noreferrer" }
+              : {})}
+          >
+            {trialLabel}
+          </a>
+          <Link className={styles.ctaSecondary} href="/programs">
+            Explore Programmes
+          </Link>
+          <Link className={styles.ctaSecondary} href="/locations">
+            Find a Studio
+          </Link>
+        </div>
+        <p className={styles.ctaNote}>
+          Opening WhatsApp starts a chat — it does not mean your enquiry was submitted.
+        </p>
       </section>
     </main>
   );
