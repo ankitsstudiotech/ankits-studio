@@ -27,7 +27,7 @@ export const mockNavigationItems: NavigationItem[] = [
   {
     dataStatus: "verified",
     id: "nav-timetable",
-    label: "Timetable",
+    label: "Batch Availability",
     path: "/timetable",
     placement: "primary",
     order: 4,

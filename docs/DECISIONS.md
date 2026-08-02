@@ -431,6 +431,14 @@ judgment against the approved architecture and existing ADRs, not a default.
 
 **Status**: Active.
 
+## ADR-016: Primary nav label — Batch Availability (route stays `/timetable`)
+
+**Decision**: Rename the primary-navigation item formerly labelled “Timetable” to **Batch Availability**. The public URL remains `/timetable` to avoid unnecessary SEO and sitemap churn. The page no longer renders illustrative or invented class time rows. It states that slots vary by branch and programme, shows the verified **6:00 AM–10:00 PM operating window separately** (never as a continuous class), and directs visitors to WhatsApp for current batch availability.
+
+**Why**: Exact schedules are still `MOCK / PENDING` (BUSINESS-DATA-STATUS). Labelling the nav “Timetable” while the homepage honestly says schedules are unpublished created trust friction (Impeccable critique P3). “Batch Availability” matches owner and FAQ language already on the site better than a generic “Class Availability” label next to Programmes / Locations.
+
+**Status**: Active.
+
 ## Log format for future entries
 
 ```
