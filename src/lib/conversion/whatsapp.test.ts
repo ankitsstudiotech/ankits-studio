@@ -27,4 +27,9 @@ describe("WhatsApp conversion", () => {
   it("uses WhatsApp as the primary conversion href", () => {
     expect(getPrimaryConversionHref()).toMatch(/^https:\/\/wa\.me\//);
   });
+
+  it("labels the primary conversion for WhatsApp trial booking", async () => {
+    const { getPrimaryConversionLabel } = await import("@/lib/conversion/whatsapp");
+    expect(getPrimaryConversionLabel()).toMatch(/WhatsApp/i);
+  });
 });

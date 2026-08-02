@@ -30,7 +30,7 @@ describe("MockModeIndicator", () => {
     render(<MockModeIndicator />);
     expect(screen.getByRole("status")).toBeInTheDocument();
     expect(screen.getByRole("status").textContent).toContain("Mock preview");
-    expect(screen.getByRole("status").textContent).toMatch(/cannot be dismissed/i);
+    expect(screen.getByRole("status").textContent).toMatch(/pending confirmation/i);
   });
 
   it("labels the banner as a development preview, not a generic preview build, when NODE_ENV is development", () => {

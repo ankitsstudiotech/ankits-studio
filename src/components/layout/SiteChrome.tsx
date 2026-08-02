@@ -71,8 +71,8 @@ export function SiteChrome({ children }: { children: React.ReactNode }) {
       />
       <StickyCtaBar
         href={primaryHref}
-        label={getPrimaryConversionLabel()}
-        supportingText="Free trial — message us on WhatsApp"
+        label="WhatsApp trial"
+        supportingText="Free trial"
         hideOnPaths={[SECONDARY_TRIAL_FORM_HREF, "/book-a-free-trial"]}
       />
     </>

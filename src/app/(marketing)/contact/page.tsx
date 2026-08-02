@@ -74,7 +74,7 @@ export default async function ContactPage({ searchParams }: ContactPageProps) {
           Primary path:{" "}
           <Link
             href={whatsappTrialHref}
-            className="text-accent underline-offset-4 hover:underline"
+            className="font-semibold text-ink underline underline-offset-4 hover:text-accent"
             {...(whatsappTrialHref.startsWith("http")
               ? { target: "_blank", rel: "noopener noreferrer" }
               : {})}
@@ -82,7 +82,10 @@ export default async function ContactPage({ searchParams }: ContactPageProps) {
             book a free trial on WhatsApp
           </Link>
           . Opening WhatsApp does not mean a message was delivered. Secondary:{" "}
-          <Link href={SECONDARY_TRIAL_FORM_HREF} className="text-accent underline-offset-4 hover:underline">
+          <Link
+            href={SECONDARY_TRIAL_FORM_HREF}
+            className="font-semibold text-ink underline underline-offset-4 hover:text-accent"
+          >
             trial request form
           </Link>
           .
@@ -95,7 +98,10 @@ export default async function ContactPage({ searchParams }: ContactPageProps) {
             <dd className="mt-2">
               {studioLinks.phoneHref ? (
                 <Body as="span">
-                  <a href={studioLinks.phoneHref} className="text-accent underline-offset-4 hover:underline">
+                  <a
+                    href={studioLinks.phoneHref}
+                    className="font-semibold text-ink underline underline-offset-4 hover:text-accent"
+                  >
                     {contact.generalPhone}
                   </a>
                 </Body>
@@ -109,7 +115,7 @@ export default async function ContactPage({ searchParams }: ContactPageProps) {
                     {" "}
                     <a
                       href={whatsappTrialHref.startsWith("http") ? whatsappTrialHref : studioLinks.whatsappHref}
-                      className="text-accent underline-offset-4 hover:underline"
+                      className="font-semibold text-ink underline underline-offset-4 hover:text-accent"
                       target="_blank"
                       rel="noopener noreferrer"
                     >

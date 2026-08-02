@@ -20,31 +20,37 @@
   /* Ink on utility */
   --color-ink: #14181c;
   --color-ink-muted: #5a636c;
-  --color-ink-subtle: #7a838c;
+  --color-ink-subtle: #5c656e;
   --color-ink-inverse: #f4f1ea;
 
-  /* Brand accent — coral trial / primary action */
-  --color-accent: #ff4d2e;
-  --color-accent-hover: #ff6348;
-  --color-accent-soft: color-mix(in srgb, #ff4d2e 16%, #f4f5f6);
+  /* Brand accent — logo-derived deep purple (docs/brand/STUDIO-PULSE-LOGO-INTEGRATION.md) */
+  --color-accent: #6b2f7a;
+  --color-accent-hover: #9e4b7b;
+  --color-accent-soft: color-mix(in srgb, #6b2f7a 14%, #f4f5f6);
   --color-accent-foreground: #ffffff;
 
-  /* Tempo / programme families */
-  --color-accent-strength: #ff4d2e;
-  --color-accent-strength-soft: color-mix(in srgb, #ff4d2e 14%, #f4f5f6);
-  --color-accent-calm: #5eead4;
-  --color-accent-calm-soft: color-mix(in srgb, #5eead4 18%, #f4f5f6);
-  --color-accent-high-energy: #c8ff3d;
-  --color-accent-high-energy-soft: color-mix(in srgb, #c8ff3d 16%, #f4f5f6);
+  /* Programme / tempo families — not CTA fills */
+  --color-accent-strength: #6b2f7a;
+  --color-accent-strength-soft: color-mix(in srgb, #6b2f7a 14%, #f4f5f6);
+  --color-accent-calm: #0f6b5c;
+  --color-accent-calm-soft: color-mix(in srgb, #0f6b5c 14%, #f4f5f6);
+  --color-accent-high-energy: #3f5c14;
+  --color-accent-high-energy-soft: color-mix(in srgb, #3f5c14 14%, #f4f5f6);
+  --color-accent-warm: #d4a574;
+  --color-accent-warm-soft: color-mix(in srgb, #d4a574 18%, #f4f5f6);
 
   --color-volt: #c8ff3d;
   --color-teal-hold: #5eead4;
   --color-muted-on-field: #9a958c;
 
-  /* Borders / focus — volt on dark contexts via focus-ring; coral on utility */
+  /* Warning / mock honesty — amber, distinct from purple action */
+  --color-warning: #e5a100;
+  --color-warning-foreground: #1a1200;
+
+  /* Borders / focus */
   --color-border: #c5c9ce;
   --color-border-strong: #8a9299;
-  --color-focus-ring: #ff4d2e;
+  --color-focus-ring: #9e4b7b;
 
   --color-danger: #e11d48;
   --color-success: #0a7a3e;
