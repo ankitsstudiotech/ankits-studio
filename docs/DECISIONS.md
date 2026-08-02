@@ -455,6 +455,24 @@ judgment against the approved architecture and existing ADRs, not a default.
 
 **Status**: Active. Supersedes the positive SEO-005 note in ADR-013 (“Course emits for verified programmes”) for programme routes.
 
+## ADR-018: Branch pages use WebPage/CollectionPage + BreadcrumbList until printable address is verified
+
+**Decision**: Location structured data follows the programme honesty pattern (ADR-017):
+
+| Route | Allowed JSON-LD |
+|---|---|
+| `/locations` | `CollectionPage` (name, description, url) + `BreadcrumbList` |
+| Confirmed `/locations/[slug]` | `WebPage` + `BreadcrumbList` |
+| `ExerciseGym` / `LocalBusiness` | Only when `dataStatus === "verified"` **and** `address` is non-null with `fieldProvenance.address === "owner_confirmed"` |
+
+Do not emit PostalAddress, geo, ratings, reviews, priceRange, Offer, Event, Course, or class schedules for branches. Do not emit branch-specific telephone while only the central enquiry number is known and the branch record remains unverified. Owner-confirmed Maps short URLs may appear as visible links via `getBranchMapsUrl` without requiring ExerciseGym markup. Operating hours remain visible as an operating window on the page; they are not added to JSON-LD until LocalBusiness itself is eligible.
+
+Legacy `/locations/airoli` permanently redirects to `/locations/airoli-sector-19` (see `docs/migrations/LOCATION-ROUTE-MIGRATION.md`).
+
+**Why**: Google Local Business / ExerciseGym markup that includes incomplete or invented addresses creates local-SEO risk. Printable addresses are still pending for all four branches; Maps-observed street text is external corroboration only. Plain WebPage + BreadcrumbList accurately describes the pages without speculative place claims. Full audit: `docs/audits/LOCATION-STRUCTURED-DATA-AUDIT.md`.
+
+**Status**: Active.
+
 ## Log format for future entries
 
 ```

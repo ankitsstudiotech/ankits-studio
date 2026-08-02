@@ -28,8 +28,9 @@ describe("WhatsApp conversion", () => {
     expect(getPrimaryConversionHref()).toMatch(/^https:\/\/wa\.me\//);
   });
 
-  it("labels the primary conversion for WhatsApp trial booking", async () => {
-    const { getPrimaryConversionLabel } = await import("@/lib/conversion/whatsapp");
-    expect(getPrimaryConversionLabel()).toMatch(/WhatsApp/i);
+  it("prefills preferred branch and URL-encodes it", () => {
+    const href = buildWhatsAppTrialUrl({ preferredBranch: "Airoli Sector 19" });
+    expect(href).toContain(encodeURIComponent("Preferred branch: Airoli Sector 19"));
+    expect(href).not.toContain("Preferred branch: Airoli Sector 19");
   });
 });
