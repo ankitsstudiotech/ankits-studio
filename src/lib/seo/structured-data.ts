@@ -4,10 +4,12 @@ import { buildCanonicalUrl } from "./canonical";
 import type {
   ArticleJsonLd,
   BreadcrumbListJsonLd,
+  CollectionPageJsonLd,
   CourseJsonLd,
   FaqPageJsonLd,
   LocalBusinessJsonLd,
   OrganizationJsonLd,
+  WebPageJsonLd,
 } from "./types";
 
 /**
@@ -68,25 +70,46 @@ export function buildLocalBusinessJsonLd(branch: Branch): LocalBusinessJsonLd | 
 }
 
 /**
- * Programme records are `dataStatus: "verified"` (see
- * docs/BUSINESS-DATA-STATUS.md — the programme list itself is owner-
- * confirmed), so this actually emits, unlike the branch/article/FAQ
- * builders while the site has no verified data of those kinds yet.
- * `provider.name` uses `siteConfig.name` — already treated as a safe
- * constant sitewide (title template, OG siteName, manifest name), not
- * gated on `BusinessIdentity`'s record-level mock status, which reflects
- * *other* invented fields (tagline/description), not the business name
- * itself. See docs/HANDOFF-ROUTES.md.
+ * Always returns `null`. Confirmed programmes are enquiry-based fitness /
+ * movement / choreography services, not educational Courses under Google
+ * Search Course guidelines. Do not re-enable without ADR approval and a
+ * verified curriculum content model — see docs/DECISIONS.md ADR-017 and
+ * docs/audits/PROGRAMME-STRUCTURED-DATA-AUDIT.md.
  */
-export function buildCourseJsonLd(programme: Programme): CourseJsonLd | null {
-  if (programme.dataStatus !== "verified") return null;
+export function buildCourseJsonLd(_programme: Programme): CourseJsonLd | null {
+  return null;
+}
+
+/**
+ * Visible page title + description + canonical URL only. No Offer, Event,
+ * instructor, schedule, rating, or location invention (ADR-017).
+ */
+export function buildWebPageJsonLd(input: {
+  name: string;
+  description: string;
+  path: string;
+}): WebPageJsonLd {
   return {
     "@context": "https://schema.org",
-    "@type": "Course",
-    name: programme.name,
-    description: programme.shortDescription,
-    url: buildCanonicalUrl(`/programs/${programme.slug}`),
-    provider: { "@type": "Organization", name: siteConfig.name },
+    "@type": "WebPage",
+    name: input.name,
+    description: input.description,
+    url: buildCanonicalUrl(input.path),
+  };
+}
+
+/** Programme index — CollectionPage without a Course ItemList (ADR-017). */
+export function buildCollectionPageJsonLd(input: {
+  name: string;
+  description: string;
+  path: string;
+}): CollectionPageJsonLd {
+  return {
+    "@context": "https://schema.org",
+    "@type": "CollectionPage",
+    name: input.name,
+    description: input.description,
+    url: buildCanonicalUrl(input.path),
   };
 }
 

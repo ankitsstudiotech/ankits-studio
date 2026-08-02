@@ -40,6 +40,10 @@ export interface LocalBusinessJsonLd {
   address?: PostalAddressJsonLd;
 }
 
+/**
+ * Retained for type history / future educational Course approval (ADR-017).
+ * Programme builders must not emit this shape until an explicit ADR allows it.
+ */
 export interface CourseJsonLd {
   "@context": "https://schema.org";
   "@type": "Course";
@@ -50,6 +54,24 @@ export interface CourseJsonLd {
     "@type": "Organization";
     name: string;
   };
+}
+
+/** Minimal page markup — visible title, description, and canonical URL only. */
+export interface WebPageJsonLd {
+  "@context": "https://schema.org";
+  "@type": "WebPage";
+  name: string;
+  description: string;
+  url: string;
+}
+
+/** Index of programmes — not a Course ItemList carousel (ADR-017). */
+export interface CollectionPageJsonLd {
+  "@context": "https://schema.org";
+  "@type": "CollectionPage";
+  name: string;
+  description: string;
+  url: string;
 }
 
 export interface ArticleJsonLd {

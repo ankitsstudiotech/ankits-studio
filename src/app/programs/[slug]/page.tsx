@@ -19,7 +19,7 @@ import {
 } from "@/lib/conversion";
 import { buildPageMetadata } from "@/lib/seo/metadata";
 import { serializeJsonLd } from "@/lib/seo/serialize";
-import { buildBreadcrumbJsonLd, buildCourseJsonLd } from "@/lib/seo/structured-data";
+import { buildBreadcrumbJsonLd, buildWebPageJsonLd } from "@/lib/seo/structured-data";
 import { getProgrammeOrNotFound } from "../_lib/lookup";
 
 type ProgrammePageParams = { params: Promise<{ slug: string }> };
@@ -95,7 +95,11 @@ export default async function ProgrammeDetailPage({ params }: ProgrammePageParam
     );
   }
 
-  const courseJsonLd = isConfirmedProgramme(programme) ? buildCourseJsonLd(programme) : null;
+  const pageJsonLd = buildWebPageJsonLd({
+    name: programme.name,
+    description: programme.shortDescription,
+    path: `/programs/${programme.slug}`,
+  });
   const locations = getPubliclyListedBranches()
     .filter((branch) => programme.branchSlugs.includes(branch.slug))
     .map((branch) => ({
@@ -115,12 +119,10 @@ export default async function ProgrammeDetailPage({ params }: ProgrammePageParam
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: serializeJsonLd(breadcrumbJsonLd) }}
       />
-      {courseJsonLd ? (
-        <script
-          type="application/ld+json"
-          dangerouslySetInnerHTML={{ __html: serializeJsonLd(courseJsonLd) }}
-        />
-      ) : null}
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: serializeJsonLd(pageJsonLd) }}
+      />
 
       <Container className="pt-8">
         <nav aria-label="Breadcrumb">

@@ -439,6 +439,22 @@ judgment against the approved architecture and existing ADRs, not a default.
 
 **Status**: Active.
 
+## ADR-017: Programme pages use WebPage/CollectionPage + BreadcrumbList — not Course
+
+**Decision**: Confirmed programme detail pages and `/programs` must **not** emit `schema.org/Course` JSON-LD (or Course ItemList carousels). The safe programme structured-data model is:
+
+| Route | Allowed JSON-LD |
+|---|---|
+| `/programs` | `CollectionPage` (name, description, url) + `BreadcrumbList` |
+| Confirmed `/programs/[slug]` | `WebPage` (name, description, url) + `BreadcrumbList` |
+| Legacy `migration-pending` programme routes | `BreadcrumbList` only; remain `noindex`; stay out of the sitemap |
+
+`buildCourseJsonLd` always returns `null` until an explicit future ADR approves a genuine educational Course content model (curriculum, outcomes, instructors, instances). Do **not** emit Service, Offer, Event, AggregateRating, Review, instructor, schedule, duration, CourseInstance, or price properties for programmes while those facts are pending, enquiry-only, or inventable from mock timetable/trainer data. Home Personal Training and Online Training must never be marked up as physical-branch class instances.
+
+**Why**: Official Google Search Course list guidelines require educational curriculum with modules/lectures, an educational outcome, and instructor-led students. Ankit’s Studio’s confirmed programmes are enquiry-based fitness, movement, and choreography **services** without verified curricula, modules, outcomes, published schedules, assigned instructors, durations, course instances, or complete pricing. Emitting `Course` misrepresents the page and does not qualify for Google’s Course list rich result (Course Info rich results were also retired). Accuracy and Hard Rule honesty outweigh schema volume. Full audit: `docs/audits/PROGRAMME-STRUCTURED-DATA-AUDIT.md`.
+
+**Status**: Active. Supersedes the positive SEO-005 note in ADR-013 (“Course emits for verified programmes”) for programme routes.
+
 ## Log format for future entries
 
 ```

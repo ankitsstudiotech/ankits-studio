@@ -9,14 +9,19 @@ import {
 } from "@/lib/conversion";
 import { buildPageMetadata } from "@/lib/seo/metadata";
 import { serializeJsonLd } from "@/lib/seo/serialize";
-import { buildBreadcrumbJsonLd } from "@/lib/seo/structured-data";
+import {
+  buildBreadcrumbJsonLd,
+  buildCollectionPageJsonLd,
+} from "@/lib/seo/structured-data";
 
 const PATH = "/programs";
 
+const PAGE_DESCRIPTION =
+  "Functional Training, Yoga, Zumba, Dance, Wedding Choreography, Home Personal Training and Online Training at Ankit’s Studio — enquire for a free trial on WhatsApp.";
+
 export const metadata: Metadata = buildPageMetadata({
   title: "Programmes",
-  description:
-    "Functional Training, Yoga, Zumba, Dance, Wedding Choreography, Home Personal Training and Online Training at Ankit’s Studio — enquire for a free trial on WhatsApp.",
+  description: PAGE_DESCRIPTION,
   path: PATH,
 });
 
@@ -28,6 +33,11 @@ const breadcrumbTrail = [
 export default function ProgrammesIndexPage() {
   const programmes = getConfirmedProgrammes();
   const breadcrumbJsonLd = buildBreadcrumbJsonLd(breadcrumbTrail);
+  const collectionJsonLd = buildCollectionPageJsonLd({
+    name: "Programmes",
+    description: PAGE_DESCRIPTION,
+    path: PATH,
+  });
   const trialHref = getPrimaryConversionHref();
   const trialLabel = getPrimaryConversionLabel();
 
@@ -36,6 +46,10 @@ export default function ProgrammesIndexPage() {
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: serializeJsonLd(breadcrumbJsonLd) }}
+      />
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: serializeJsonLd(collectionJsonLd) }}
       />
 
       <Container className="pt-8 pb-2">
