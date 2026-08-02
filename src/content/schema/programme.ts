@@ -3,9 +3,7 @@ import { provenanced } from "./provenance";
 import { branchSlugSchema, programmeSlugSchema } from "./slugs";
 
 /**
- * Semantic family, not a raw design token — see DECISIONS.md ADR-012. The
- * design-tokens track maps each family to actual CSS tokens; content never
- * names a token value directly.
+ * Semantic family, not a raw design token — see DECISIONS.md ADR-012.
  */
 export const programmeAccentFamilySchema = z.enum([
   "strength",
@@ -22,17 +20,12 @@ export const programmeDifficultySchema = z.enum([
 ]);
 export type ProgrammeDifficulty = z.infer<typeof programmeDifficultySchema>;
 
+export const programmeClusterSchema = z.enum(["train", "move", "celebrate"]);
+export type ProgrammeCluster = z.infer<typeof programmeClusterSchema>;
+
 /**
- * `whoItsFor`/`classStructure`/`benefits`/`difficulty`/`requiredEquipment`
- * are general, category-level descriptions of what the programme involves
- * — the same kind of content as the pre-existing `shortDescription`/
- * `longDescription` fields, not a specific, owner-verifiable business fact
- * (unlike price, a trainer's real name, or a branch address). Consistent
- * with the precedent already set by those two fields (see
- * docs/BUSINESS-DATA-STATUS.md: "Names/descriptions of *what programmes
- * exist* are real"), these stay on the `verified` Programme record rather
- * than forcing it to `mock` — see docs/HANDOFF-ROUTES.md for the full
- * reasoning. `requiredEquipment` may be an empty array, meaning "none".
+ * Confirmed service taxonomy fields live alongside legacy description fields.
+ * Prefer owner-confirmed facts; leave unanswered details pending rather than inventing.
  */
 export const programmeSchema = provenanced({
   slug: programmeSlugSchema,
@@ -47,15 +40,36 @@ export const programmeSchema = provenanced({
   benefits: z.array(z.string()).min(1),
   difficulty: programmeDifficultySchema,
   requiredEquipment: z.array(z.string()),
-  /**
-   * Delivery modes (home / online) are not physical branch floor classes.
-   * Default omitted = in-studio / branch-floor service.
-   */
   deliveryMode: z.enum(["in-studio", "home", "online"]).optional(),
   /**
    * Legacy brief programmes that conflict with the 2026-08-01 owner catalogue
-   * stay published until Ankit confirms keep / rename / redirect.
+   * stay reachable until Ankit confirms keep / rename / redirect.
    */
   taxonomyStatus: z.enum(["confirmed", "migration-pending"]).optional(),
+  /** Editorial cluster for discovery — does not replace the service name. */
+  serviceCluster: programmeClusterSchema.optional(),
+  /** Free trial is owner-confirmed for studio services. */
+  trialAvailable: z.boolean().optional(),
+  pricingStatus: z.enum(["pending", "published"]).optional(),
+  batchScheduleStatus: z.enum(["pending", "published"]).optional(),
+  mediaSlotKey: z.string().optional(),
+  seoTitle: z.string().optional(),
+  seoDescription: z.string().optional(),
+  relatedProgrammeSlugs: z.array(programmeSlugSchema).optional(),
+  /** Audience attributes — not separate services. */
+  ladiesOnlyBatchesAvailable: z.boolean().optional(),
+  kidsOnlyBatchesAvailable: z.boolean().optional(),
+  /** Honest FAQ entries owned by the programme record. */
+  faqEntries: z
+    .array(
+      z.object({
+        id: z.string().min(1),
+        question: z.string().min(1),
+        answer: z.string().min(1),
+      }),
+    )
+    .optional(),
+  /** Suggested enquiry relatives while taxonomy is pending (not redirects). */
+  taxonomyRelatedSlug: programmeSlugSchema.optional(),
 });
 export type Programme = z.infer<typeof programmeSchema>;

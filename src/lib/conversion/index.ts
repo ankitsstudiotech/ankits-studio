@@ -1,6 +1,8 @@
 export {
   WHATSAPP_TRIAL_TEMPLATE,
   buildWhatsAppMessage,
+  buildWhatsAppProgrammeEnquiryMessage,
+  buildWhatsAppProgrammeEnquiryUrl,
   buildWhatsAppTrialUrl,
   getCentralWhatsAppDigits,
   getPrimaryConversionHref,

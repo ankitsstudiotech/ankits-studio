@@ -86,7 +86,8 @@ describe("buildSitemapEntries once the site is indexable", () => {
     vi.doMock("@/content/content-mode", () => ({ shouldNoIndex: () => false }));
     vi.doMock("@/content", () => ({
       getProgrammes: () => [
-        { slug: "yoga", dataStatus: "verified" },
+        { slug: "yoga", dataStatus: "verified", taxonomyStatus: "confirmed" },
+        { slug: "strength-training", dataStatus: "verified", taxonomyStatus: "migration-pending" },
         { slug: "unverified-programme", dataStatus: "mock", mockDisclaimer: "x" },
       ],
       getPubliclyListedBranches: () => [{ slug: "airoli", dataStatus: "verified" }],
@@ -101,6 +102,7 @@ describe("buildSitemapEntries once the site is indexable", () => {
 
     expect(urls).toContain(buildCanonicalUrl("/"));
     expect(urls).toContain(buildCanonicalUrl("/programs/yoga"));
+    expect(urls).not.toContain(buildCanonicalUrl("/programs/strength-training"));
     expect(urls).toContain(buildCanonicalUrl("/locations/airoli"));
     expect(urls).toContain(buildCanonicalUrl("/blog/real-post"));
     expect(urls).not.toContain(buildCanonicalUrl("/programs/unverified-programme"));

@@ -14,18 +14,15 @@ const OPERATING_WINDOW = [
 ] as const;
 
 /**
- * Branch-floor programmes (excludes home/online delivery modes).
- * Legacy migration-pending slugs remain until Ankit confirms taxonomy.
+ * Confirmed in-studio programmes shown on branch pages.
+ * Excludes home/online delivery modes and migration-pending legacy slugs.
+ * See docs/migrations/SERVICE-ROUTE-MIGRATION.md.
  */
 const BRANCH_FLOOR_PROGRAMMES = [
   "functional-training",
-  "strength-training",
-  "personal-training",
   "yoga",
   "zumba",
   "adult-dance",
-  "kids-dance",
-  "weight-loss-fitness",
   "wedding-choreography",
 ] as const;
 

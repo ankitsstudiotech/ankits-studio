@@ -60,6 +60,20 @@ export function getProgrammes(): Programme[] {
   return programmes;
 }
 
+/** Owner-confirmed public catalogue only (`taxonomyStatus: "confirmed"`). */
+export function getConfirmedProgrammes(): Programme[] {
+  return programmes.filter((programme) => programme.taxonomyStatus === "confirmed");
+}
+
+export function isConfirmedProgramme(programme: Programme): boolean {
+  return programme.taxonomyStatus === "confirmed";
+}
+
+/** Legacy routes kept reachable but excluded from sitemap / primary discovery. */
+export function isMigrationPendingProgramme(programme: Programme): boolean {
+  return programme.taxonomyStatus === "migration-pending";
+}
+
 export function getProgrammeBySlug(slug: ProgrammeSlug): Programme | undefined {
   return programmes.find((programme) => programme.slug === slug);
 }

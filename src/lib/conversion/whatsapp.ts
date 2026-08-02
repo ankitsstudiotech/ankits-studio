@@ -56,6 +56,23 @@ export function buildWhatsAppMessage(fields: WhatsAppTrialFields = {}): string {
 }
 
 /**
+ * Programme detail / enquiry template — service named before branch.
+ * Still a free-trial enquiry; opening chat ≠ delivery.
+ */
+export function buildWhatsAppProgrammeEnquiryMessage(programmeName: string): string {
+  return [
+    "Hello Ankit’s Studio,",
+    "I would like to enquire about a free trial.",
+    "",
+    "Name:",
+    `Interested service: ${programmeName}`,
+    "Preferred branch:",
+    "Preferred time:",
+    "Question:",
+  ].join("\n");
+}
+
+/**
  * Returns a wa.me URL with optional prefilled text, or null when the
  * central WhatsApp number is not verified yet.
  */
@@ -63,6 +80,13 @@ export function buildWhatsAppTrialUrl(fields: WhatsAppTrialFields = {}): string 
   const digits = getCentralWhatsAppDigits();
   if (!digits) return null;
   const text = buildWhatsAppMessage(fields);
+  return `https://wa.me/${digits}?text=${encodeURIComponent(text)}`;
+}
+
+export function buildWhatsAppProgrammeEnquiryUrl(programmeName: string): string | null {
+  const digits = getCentralWhatsAppDigits();
+  if (!digits) return null;
+  const text = buildWhatsAppProgrammeEnquiryMessage(programmeName);
   return `https://wa.me/${digits}?text=${encodeURIComponent(text)}`;
 }
 

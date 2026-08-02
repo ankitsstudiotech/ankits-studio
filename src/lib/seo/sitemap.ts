@@ -52,7 +52,10 @@ export function buildSitemapEntries(): MetadataRoute.Sitemap {
   }));
 
   const programmeEntries: MetadataRoute.Sitemap = getProgrammes()
-    .filter((programme) => programme.dataStatus === "verified")
+    .filter(
+      (programme) =>
+        programme.dataStatus === "verified" && programme.taxonomyStatus === "confirmed",
+    )
     .map((programme) => ({ url: buildCanonicalUrl(`/programs/${programme.slug}`) }));
 
   const branchEntries: MetadataRoute.Sitemap = getPubliclyListedBranches()
