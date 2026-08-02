@@ -25,6 +25,10 @@ import {
   getTrainers,
 } from "@/content";
 import type { Programme, Trainer } from "@/content";
+import {
+  buildWhatsAppTrialUrl,
+  getPrimaryConversionHref,
+} from "@/lib/conversion";
 import { buildPageMetadata } from "@/lib/seo/metadata";
 import { serializeJsonLd } from "@/lib/seo/serialize";
 import { buildBreadcrumbJsonLd, buildFaqPageJsonLd, buildLocalBusinessJsonLd } from "@/lib/seo/structured-data";
@@ -47,7 +51,7 @@ export async function generateMetadata({ params }: LocationPageParams): Promise<
   const branch = getBranchOrNotFound(slug);
   return buildPageMetadata({
     title: branch.name,
-    description: `${branch.name} — programmes, timings, and contact details.`,
+    description: `${branch.name} — programmes, operating hours, and how to ask for current batch availability.`,
     path: `/locations/${branch.slug}`,
   });
 }
@@ -74,6 +78,9 @@ export default async function LocationDetailPage({ params }: LocationPageParams)
   const timetableSlots = getTimetableSlots({ branchSlug: branch.slug });
   const branchFaqs = getFaqs({ branchSlug: branch.slug });
   const faqs = branchFaqs.length > 0 ? branchFaqs : getFaqs().slice(0, 3);
+  const branchShortName = branch.name.replace(/^Ankit's Studio —\s*/i, "");
+  const whatsappHref =
+    buildWhatsAppTrialUrl({ preferredBranch: branchShortName }) ?? getPrimaryConversionHref();
 
   const breadcrumbTrail = [
     { name: "Home", path: "/" },
@@ -190,6 +197,7 @@ export default async function LocationDetailPage({ params }: LocationPageParams)
       />
 
       <OpeningHours
+        title="Studio operating window"
         rows={branch.openingHours.map((entry) => ({
           dayLabel: DAY_LABELS[entry.dayOfWeek] ?? "—",
           opensAt: entry.opensAt,
@@ -228,6 +236,7 @@ export default async function LocationDetailPage({ params }: LocationPageParams)
           programmeLabel: getProgrammeBySlug(slot.programmeSlug)?.name ?? slot.programmeSlug,
           disclaimer: disclaimerFor(slot),
         }))}
+        whatsappHref={whatsappHref}
       />
 
       <ParkingTransportSection

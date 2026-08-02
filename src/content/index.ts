@@ -84,12 +84,23 @@ export function getTrainerBySlug(slug: string): Trainer | undefined {
   return trainers.find((trainer) => trainer.slug === slug);
 }
 
-export function getTimetableSlots(filter?: { branchSlug?: BranchSlug; programmeSlug?: ProgrammeSlug }): TimetableSlot[] {
-  if (!filter) return timetableSlots;
-  return timetableSlots.filter(
+/**
+ * Public timetable accessor — **verified slots only**.
+ *
+ * Mock/illustrative rows remain in `content/mock/timetable.ts` for provenance
+ * and launch-gate detection (`content-mode`), but must never render on public
+ * marketing routes. Exact batch schedules are still PENDING (BUSINESS-DATA-STATUS).
+ */
+export function getTimetableSlots(filter?: {
+  branchSlug?: BranchSlug;
+  programmeSlug?: ProgrammeSlug;
+}): TimetableSlot[] {
+  const verifiedSlots = timetableSlots.filter((slot) => slot.dataStatus === "verified");
+  if (!filter) return verifiedSlots;
+  return verifiedSlots.filter(
     (slot) =>
       (filter.branchSlug === undefined || slot.branchSlug === filter.branchSlug) &&
-      (filter.programmeSlug === undefined || slot.programmeSlug === filter.programmeSlug)
+      (filter.programmeSlug === undefined || slot.programmeSlug === filter.programmeSlug),
   );
 }
 

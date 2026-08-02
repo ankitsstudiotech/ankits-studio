@@ -1,3 +1,4 @@
+import Link from "next/link";
 import { Badge } from "@/components/ui/Badge";
 import { Section } from "@/components/ui/Section";
 import { Body, Caption, Heading } from "@/components/ui/Typography";
@@ -11,43 +12,75 @@ export type BranchTimetableSlot = {
 };
 
 export type BranchTimetableProps = {
+  /** Verified slots only — never pass mock/illustrative times. */
   slots: BranchTimetableSlot[];
   branchName: string;
   title?: string;
   description?: string;
   emptyLabel?: string;
+  whatsappHref?: string;
+  whatsappLabel?: string;
 };
 
 /**
- * Branch-scoped timetable presentation. Stacked on small screens; table from md+.
- * Not the full site-wide filterable /timetable experience.
+ * Branch-scoped batch availability. Exact rows only when verified.
+ * Operating hours belong in OpeningHours — never reuse this for the open window.
  */
 export function BranchTimetable({
   slots,
   branchName,
-  title = "This week at the branch",
+  title = "Batch availability",
   description,
-  emptyLabel = "Timetable for this branch is to be confirmed.",
+  emptyLabel = "Exact batch times for this branch are not published yet. Message us on WhatsApp for current programme availability.",
+  whatsappHref,
+  whatsappLabel = "Ask about batches on WhatsApp",
 }: BranchTimetableProps) {
   return (
     <Section
       id="branch-timetable"
-      eyebrow="Timetable"
+      eyebrow="Batch availability"
       title={title}
       description={
         description ??
-        `Illustrative classes for ${branchName}. Full filters live on the main timetable page.`
+        `Slots vary by programme at ${branchName}. Studio operating hours are listed separately and are not individual class times.`
       }
     >
       {slots.length === 0 ? (
-        <Body>{emptyLabel}</Body>
+        <div className="flex flex-col gap-4">
+          <Body>{emptyLabel}</Body>
+          {whatsappHref ? (
+            <p>
+              <a
+                href={whatsappHref}
+                className="inline-flex min-h-11 items-center justify-center bg-accent px-5 text-sm font-bold uppercase tracking-[0.06em] text-accent-foreground touch-target hover:bg-accent-hover focus-visible:outline-2 focus-visible:outline-offset-3 focus-visible:outline-focus-ring"
+                {...(whatsappHref.startsWith("http")
+                  ? { target: "_blank", rel: "noopener noreferrer" }
+                  : {})}
+              >
+                {whatsappLabel}
+              </a>
+            </p>
+          ) : (
+            <p>
+              <Link
+                href="/timetable"
+                className="font-medium text-ink underline underline-offset-2 hover:text-accent focus-visible:outline-2 focus-visible:outline-offset-3 focus-visible:outline-focus-ring"
+              >
+                See batch availability →
+              </Link>
+            </p>
+          )}
+          <Caption>
+            Opening WhatsApp starts a chat — it does not mean a message was already delivered.
+          </Caption>
+        </div>
       ) : (
         <div className="overflow-hidden rounded-[var(--radius-lg)] border border-border bg-surface-raised shadow-[var(--shadow-soft)]">
           <div className="border-b border-border px-5 py-4 sm:px-6">
             <Heading as="h3" className="break-words">
               {branchName}
             </Heading>
-            <Caption className="mt-1">Branch schedule preview</Caption>
+            <Caption className="mt-1">Verified batch times</Caption>
           </div>
 
           <ul className="divide-y divide-border md:hidden">

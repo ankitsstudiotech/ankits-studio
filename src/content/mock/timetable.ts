@@ -1,5 +1,10 @@
 import type { TimetableSlot } from "../schema";
 
+/**
+ * Illustrative placeholder slots — kept for provenance / launch-gate detection.
+ * Public accessor `getTimetableSlots()` returns **verified slots only** and will
+ * not surface these rows on marketing routes.
+ */
 export const mockTimetableSlots: TimetableSlot[] = [
   {
     dataStatus: "mock",

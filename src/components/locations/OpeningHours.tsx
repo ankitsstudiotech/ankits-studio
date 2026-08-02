@@ -70,7 +70,8 @@ export function OpeningHours({
         </div>
       )}
       <Caption className="mt-3">
-        Times use a Monday–Sunday week. Always confirm on the day you visit until verified.
+        Studio operating window by day — not a class-by-class timetable. Exact batches vary; ask on
+        WhatsApp for current availability.
       </Caption>
       {disclaimer ? <FieldDisclaimer className="mt-2">{disclaimer}</FieldDisclaimer> : null}
     </Section>

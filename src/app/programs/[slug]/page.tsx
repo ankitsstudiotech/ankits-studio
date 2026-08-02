@@ -23,6 +23,10 @@ import {
   getTrainers,
 } from "@/content";
 import type { Trainer } from "@/content";
+import {
+  buildWhatsAppTrialUrl,
+  getPrimaryConversionHref,
+} from "@/lib/conversion";
 import { buildPageMetadata } from "@/lib/seo/metadata";
 import { serializeJsonLd } from "@/lib/seo/serialize";
 import { buildBreadcrumbJsonLd, buildCourseJsonLd, buildFaqPageJsonLd } from "@/lib/seo/structured-data";
@@ -67,6 +71,8 @@ export default async function ProgrammeDetailPage({ params }: ProgrammePageParam
   const trainers = getTrainers().filter((trainer) => trainer.specialties.includes(programme.slug));
   const programmeFaqs = getFaqs({ programmeSlug: programme.slug });
   const faqs = programmeFaqs.length > 0 ? programmeFaqs : getFaqs().slice(0, 3);
+  const whatsappHref =
+    buildWhatsAppTrialUrl({ interestedService: programme.name }) ?? getPrimaryConversionHref();
 
   const breadcrumbTrail = [
     { name: "Home", path: "/" },
@@ -172,6 +178,7 @@ export default async function ProgrammeDetailPage({ params }: ProgrammePageParam
           locationLabel: getBranchBySlug(slot.branchSlug)?.name ?? slot.branchSlug,
           disclaimer: disclaimerFor(slot),
         }))}
+        whatsappHref={whatsappHref}
       />
 
       <ProgrammeFaq
