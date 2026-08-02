@@ -1,31 +1,33 @@
 # Homepage motion storyboard — Studio Pulse production
 
-Source skills: **emil-design-eng**. Reference: frozen `/design-lab/revamp-b`.  
+Source skills: **emil-design-eng**. Reference: frozen `/design-lab/revamp-b` (visual energy only).  
+Critique resolution: `docs/revamp/10-homepage-critique-resolution.md`.  
 Rule: every animation must state purpose; otherwise delete.
 
-| Component | Purpose | Trigger | Properties | Duration | Easing | Mobile adaptation | Reduced-motion alternative |
+| Component | Purpose | Trigger | Properties | Duration | Easing | Mobile | Reduced motion |
 |---|---|---|---|---|---|---|---|
-| `BeatStrip` | Express room tempo in hero without hiding copy | Mount | `scaleY` on bars | 0.4–0.72s staggered | `easeOut` | Same; shorter viewport | Static bars at final heights |
-| `TempoLane` beat marks | Show programme family tempo (HIT/HOLD/GROOVE) | Mount | `scaleX`, origin left | Family: 0.35 / 1.1 / 0.55s | `easeOut` | Full-width lane; beats under copy | Static filled bars |
-| `TempoLane` hover/press | Affordance that lane is interactive | Pointer / tap | `x: 6`, `scale: 0.985` | Spring 420/28 | Spring | Hover optional; tap retained | No transform; focus ring only |
-| `PulseCta` press | Immediate conversion feedback | Tap / click | `scale: 0.94` | Spring 500/22 | Spring | Full-width friendly | No scale; colour change via CSS `:active` if needed |
-| Nav underline grow | Link affordance (shell) | Hover / focus | `background-size` | `--duration-fast` (~150ms) | standard | Hidden on mobile drawer | Instant / none |
-| Mobile menu icon | Open/close state | Toggle | `transform` / opacity on bars | `--duration-fast` | standard | Mobile only | Instant snap |
-| Sticky / header CTA | Press feedback | Active | `scale: 0.98` | fast | standard | Sticky mobile | `motion-reduce: scale-100` |
+| `PulseCta` | Conversion press feedback | Tap | `scale` → 0.96 | spring | stiffness 500 / damping 24 | same | no scale |
+| `ServiceLane` (zumba, dance) | Higher-tempo product story without jargon labels | Mount | `scaleX` on 5 bars | 0.45–0.5s + 40ms stagger | easeOut | bars hidden | static widths |
+| `ServiceLane` hover | Optional affordance | Hover | `x` 3–6px | spring 420/30 | spring | n/a | disabled |
+| `ServiceLane` (yoga, home, online, functional, wedding) | Calm / practical / structured read | — | static mark line only | — | — | same | n/a |
+| Nav underline | Link affordance (shell) | Hover / focus | `background-size` | `--duration-fast` | standard | drawer | none |
+| Mobile menu icon | Open/close | Toggle | transform / opacity | fast | standard | mobile | instant |
+| Sticky CTA | Press feedback | Active | `scale` 0.98 | fast | standard | sticky | `motion-reduce:scale-100` |
 
-## Explicitly not used on homepage
+## Explicitly removed (critique resolution)
 
-| Rejected pattern | Why removed |
+| Pattern | Why |
 |---|---|
-| `ScrollReveal` / `.motion-reveal` on every section | No narrative purpose; AI-slop parade |
-| `TextReveal` on headings | Hides/softens primary reading |
-| Card lift shadows | Soft-chrome language rejected |
-| Hero opacity entrance on H1 | Must remain immediately readable |
-| Scroll hijack / intro loader / parallax / custom cursor / WebGL | Out of budget and product constraints |
+| Hero `BeatStrip` / EQ | Decorative; nightclub gadgetry |
+| HIT / HOLD / GROOVE labels | Design jargon |
+| Equalizer on every lane | Equal treatment; calm/kids inappropriate |
+| `ScrollReveal` parade | AI-slop; delays reading |
+| Dual rotating hero media layers on mobile | Crush first viewport |
+| H1 opacity entrance | Must be immediately readable |
 
 ## Performance notes
 
-- Animate **transform** only on beat/lane/CTA islands
-- Cap concurrent lane mounts to programme count (≤7)
-- Client islands: `PulseMotion.tsx` only; page remains server-rendered
-- Art-directed CSS media plates — no heavy image decode on first paint
+- Transform-only on CTA / selective lane islands  
+- ≤7 service mounts; only 2 animate beats  
+- Client island: `PulseMotion.tsx`; page SSR  
+- Placeholder media plates — no heavy decode on first paint  
