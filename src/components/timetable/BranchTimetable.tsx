@@ -23,8 +23,11 @@ export type BranchTimetableProps = {
 };
 
 /**
- * Branch-scoped batch availability. Exact rows only when verified.
- * Operating hours belong in OpeningHours — never reuse this for the open window.
+ * Branch-scoped batch availability UI for verified slot rows only.
+ * Production location pages use BranchDetailView instead.
+ * Design-lab may pass fixture slots; marketing routes must pass [] or omit.
+ * Never pass mock timetable rows from getTimetableSlots() — the public accessor
+ * returns verified slots only (currently empty). Do not render operating hours here.
  */
 export function BranchTimetable({
   slots,

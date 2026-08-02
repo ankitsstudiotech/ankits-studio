@@ -64,9 +64,7 @@ export default function TimetablePage() {
   const commercial = getStudioCommercial();
   const fallbackHref = getPrimaryConversionHref();
 
-  const physical = programmes.filter(
-    (programme) => programme.deliveryMode === "in-studio" || programme.deliveryMode === undefined,
-  );
+  const physical = programmes.filter((programme) => programme.deliveryMode === "in-studio");
   const delivery = programmes.filter(
     (programme) => programme.deliveryMode === "home" || programme.deliveryMode === "online",
   );
