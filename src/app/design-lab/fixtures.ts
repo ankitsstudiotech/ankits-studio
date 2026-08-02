@@ -44,11 +44,12 @@ export const labFooterGroups: FooterLinkGroup[] = [
 ];
 
 export const labHero: HeroProps = {
-  title: "FEEL THE ROOM'S TEMPO",
+  brandName: "Ankit's Studio",
+  title: "Machine-free fitness. Yoga, Zumba and dance.",
   description:
-    "A premium fitness and dance studio system for strength, yoga, Zumba, and dance — built to feel human, not like a generic gym template.",
-  primaryCta: { label: "Book a trial", href: "/design-lab#trial" },
-  secondaryCta: { label: "Browse programmes", href: "/design-lab#programmes" },
+    "Four neighbourhood studios. Coach-led sessions adapted to your needs — book a free trial on WhatsApp.",
+  primaryCta: { label: "Book a Free Trial on WhatsApp", href: "/design-lab#trial" },
+  secondaryCta: { label: "Find Your Nearest Studio", href: "/design-lab#locations" },
 };
 
 export const labProgrammes: ProgrammeCardProps[] = [

@@ -1,5 +1,6 @@
 "use client";
 
+import Image from "next/image";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { Container } from "@/components/ui/Container";
@@ -29,12 +30,24 @@ export function SiteHeader({
         <Link
           href={brandHref}
           className={[
-            "inline-flex min-h-11 items-center font-[family-name:var(--font-display)] text-2xl tracking-[0.04em] text-ink-inverse sm:text-[1.75rem]",
+            "inline-flex min-h-11 items-center gap-2.5 text-ink-inverse",
             "focus-visible:outline-2 focus-visible:outline-offset-3 focus-visible:outline-[var(--color-volt)]",
             "touch-target",
           ].join(" ")}
         >
-          {brandName}
+          <span className="inline-flex shrink-0 bg-white p-0.5">
+            <Image
+              src="/brand/ankits-studio-symbol.png"
+              alt=""
+              width={32}
+              height={32}
+              className="block h-8 w-8 object-contain"
+              priority
+            />
+          </span>
+          <span className="font-[family-name:var(--font-display)] text-xl tracking-[0.04em] sm:text-2xl">
+            {brandName}
+          </span>
         </Link>
 
         <DesktopNav items={items} pathname={pathname} />

@@ -1,41 +1,46 @@
-import type { ProgrammeAccentFamily } from "@/content/schema";
-import { TempoLane } from "./pulse/PulseMotion";
+import { ServiceLane, type ServiceTempo } from "./pulse/PulseMotion";
 import styles from "./pulse/pulse-home.module.css";
 
-export type ProgrammeAccent = ProgrammeAccentFamily;
+export type ProgrammeAccent = ServiceTempo;
 
 export type ProgrammeShowcaseProps = {
   programmes: Array<{
     name: string;
     href: string;
     shortDescription: string;
-    accent: ProgrammeAccent;
-    tags?: string[];
+    tempo: ServiceTempo;
+    meta?: string;
   }>;
+  audienceNote?: string;
 };
 
-export function ProgrammeShowcase({ programmes }: ProgrammeShowcaseProps) {
+export function ProgrammeShowcase({ programmes, audienceNote }: ProgrammeShowcaseProps) {
   return (
     <section
-      id="programmes"
+      id="services"
       className={`${styles.field} ${styles.band}`}
-      aria-labelledby="home-programmes-title"
+      aria-labelledby="home-services-title"
     >
-      <h2 id="home-programmes-title" className={styles.bandTitle}>
-        TEMPO LANES
+      <h2 id="home-services-title" className={styles.bandTitle}>
+        Choose how you want to move
       </h2>
+      <p className={styles.bandLede}>
+        Confirmed studio services — each with its own pace. Ask which batch fits you when you book
+        a trial.
+      </p>
       <div className={styles.lanes}>
         {programmes.map((programme) => (
-          <TempoLane
+          <ServiceLane
             key={programme.href}
-            family={programme.accent}
+            tempo={programme.tempo}
             name={programme.name}
             description={programme.shortDescription}
             href={programme.href}
-            tags={programme.tags}
+            meta={programme.meta}
           />
         ))}
       </div>
+      {audienceNote ? <p className={styles.audienceNote}>{audienceNote}</p> : null}
     </section>
   );
 }

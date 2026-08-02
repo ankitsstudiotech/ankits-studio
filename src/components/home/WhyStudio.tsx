@@ -8,39 +8,33 @@ export type WhyPoint = {
 };
 
 export type WhyStudioProps = {
-  points: WhyPoint[];
-  disclaimer?: string;
+  title: string;
+  body: string;
+  points?: WhyPoint[];
 };
 
-export function WhyStudio({ points, disclaimer }: WhyStudioProps) {
+/** Machine-free / needs-adapted differentiator — no slogan triad. */
+export function WhyStudio({ title, body, points = [] }: WhyStudioProps) {
   return (
     <section
       id="studio"
-      className={`${styles.field} ${styles.band}`}
-      aria-labelledby="home-community-title"
+      className={`${styles.field} ${styles.band} ${styles.diffBand}`}
+      aria-labelledby="home-diff-title"
     >
-      <h2 id="home-community-title" className={styles.bandTitle}>
-        COMMUNITY PULSE
-      </h2>
-      <div className={styles.story}>
-        <PulseMediaPlate family="high-energy" label="Shared floor · class energy" aspect="16/9" />
-        <div className={styles.storyCopy}>
-          {points.map((point) => (
-            <div key={point.id}>
-              <p
-                style={{
-                  fontFamily: "var(--font-display)",
-                  fontSize: "1.6rem",
-                  letterSpacing: "0.03em",
-                  margin: "0 0 0.35rem",
-                }}
-              >
-                {point.title}
-              </p>
-              <p>{point.body}</p>
-            </div>
-          ))}
-          {disclaimer ? <p className={styles.disclaimer}>{disclaimer}</p> : null}
+      <div className={styles.diffGrid}>
+        <PulseMediaPlate family="calm" label="Coach-led session atmosphere placeholder" aspect="16/9" />
+        <div className={styles.diffCopy}>
+          <h2 id="home-diff-title">{title}</h2>
+          <p>{body}</p>
+          {points.length > 0 ? (
+            <ul className={styles.diffList}>
+              {points.map((point) => (
+                <li key={point.id}>
+                  <strong>{point.title}</strong> — {point.body}
+                </li>
+              ))}
+            </ul>
+          ) : null}
         </div>
       </div>
     </section>

@@ -5,10 +5,9 @@ export type BranchExplorerProps = {
   locations: Array<{
     name: string;
     href: string;
-    areaLabel: string;
-    programmeCountLabel: string;
-    mockDisclaimer?: string;
-    dataStatus?: string;
+    detail: string;
+    mapsUrl?: string;
+    addressPending?: boolean;
   }>;
 };
 
@@ -20,29 +19,37 @@ export function BranchExplorer({ locations }: BranchExplorerProps) {
       aria-labelledby="home-branches-title"
     >
       <h2 id="home-branches-title" className={styles.bandTitle}>
-        BRANCH NODES
+        Find your nearest studio
       </h2>
-      <div className={styles.nodes}>
-        {locations.length === 0 ? (
-          <div className={styles.node}>
-            <h3>NONE</h3>
-            <p>No publicly listed branches in this content mode.</p>
-          </div>
-        ) : (
-          locations.map((location) => (
-            <Link key={location.href} href={location.href} className={styles.node}>
-              {location.dataStatus && location.dataStatus !== "verified" ? (
-                <span className={styles.flag}>{location.dataStatus}</span>
+      <p className={styles.bandLede}>
+        Four neighbourhood studios across Airoli, Ghansoli, and Thane. Trial enquiries use our
+        central WhatsApp number.
+      </p>
+      <div className={styles.branchList}>
+        {locations.map((location) => (
+          <article key={location.href} className={styles.branchCard}>
+            {location.addressPending ? (
+              <span className={styles.pendingFlag}>Map &amp; address updating</span>
+            ) : null}
+            <h3>{location.name}</h3>
+            <p>{location.detail}</p>
+            <div className={styles.branchActions}>
+              <Link href={location.href} className={styles.branchLink}>
+                Studio page
+              </Link>
+              {location.mapsUrl ? (
+                <a
+                  href={location.mapsUrl}
+                  className={styles.branchLink}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  Open in Maps
+                </a>
               ) : null}
-              <h3>{location.name.toUpperCase()}</h3>
-              <p>{location.areaLabel}</p>
-              <p>{location.programmeCountLabel}</p>
-              {location.mockDisclaimer ? (
-                <p className={styles.disclaimer}>{location.mockDisclaimer}</p>
-              ) : null}
-            </Link>
-          ))
-        )}
+            </div>
+          </article>
+        ))}
       </div>
     </section>
   );
