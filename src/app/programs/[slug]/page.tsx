@@ -1,40 +1,28 @@
 import Link from "next/link";
 import type { Metadata } from "next";
 import {
-  AvailableLocationsSection,
-  BatchPreview,
-  BenefitsSection,
-  ClassExpectationSection,
-  EquipmentSection,
-  ExperienceLevelSection,
-  ProgrammeFaq,
-  ProgrammeHero,
-  ProgrammeTrialCta,
-  TrainerCards,
-} from "@/components/programs";
+  ProgrammeDetailView,
+} from "@/components/programs/pulse/ProgrammeDetailView";
+import { LegacyProgrammeNotice } from "@/components/programs/pulse/LegacyProgrammeNotice";
 import { Container } from "@/components/ui/Container";
 import {
-  getBranchBySlug,
-  getFaqs,
   getProgrammeBySlug,
   getProgrammes,
   getPubliclyListedBranches,
-  getTimetableSlots,
-  getTrainers,
+  isConfirmedProgramme,
+  isMigrationPendingProgramme,
 } from "@/content";
-import type { Trainer } from "@/content";
 import {
-  buildWhatsAppTrialUrl,
+  buildWhatsAppProgrammeEnquiryUrl,
   getPrimaryConversionHref,
+  getPrimaryConversionLabel,
 } from "@/lib/conversion";
 import { buildPageMetadata } from "@/lib/seo/metadata";
 import { serializeJsonLd } from "@/lib/seo/serialize";
-import { buildBreadcrumbJsonLd, buildCourseJsonLd, buildFaqPageJsonLd } from "@/lib/seo/structured-data";
+import { buildBreadcrumbJsonLd, buildCourseJsonLd } from "@/lib/seo/structured-data";
 import { getProgrammeOrNotFound } from "../_lib/lookup";
 
 type ProgrammePageParams = { params: Promise<{ slug: string }> };
-
-const DAY_LABELS = ["Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Sun"] as const;
 
 export function generateStaticParams() {
   return getProgrammes().map((programme) => ({ slug: programme.slug }));
@@ -44,35 +32,19 @@ export async function generateMetadata({ params }: ProgrammePageParams): Promise
   const { slug } = await params;
   const programme = getProgrammeOrNotFound(slug);
   return buildPageMetadata({
-    title: programme.name,
-    description: programme.shortDescription,
+    title: programme.seoTitle ?? programme.name,
+    description: programme.seoDescription ?? programme.shortDescription,
     path: `/programs/${programme.slug}`,
+    forceNoIndex: isMigrationPendingProgramme(programme),
   });
-}
-
-function disclaimerFor(record: { dataStatus: string; mockDisclaimer?: string }): string | undefined {
-  return record.dataStatus === "verified" ? undefined : record.mockDisclaimer;
-}
-
-function specialtyLabels(trainer: Trainer): string[] {
-  return trainer.specialties
-    .map((slug) => getProgrammeBySlug(slug)?.name)
-    .filter((name): name is string => Boolean(name));
 }
 
 export default async function ProgrammeDetailPage({ params }: ProgrammePageParams) {
   const { slug } = await params;
   const programme = getProgrammeOrNotFound(slug);
-
-  const availableBranches = getPubliclyListedBranches().filter((branch) =>
-    programme.branchSlugs.includes(branch.slug)
-  );
-  const timetableSlots = getTimetableSlots({ programmeSlug: programme.slug });
-  const trainers = getTrainers().filter((trainer) => trainer.specialties.includes(programme.slug));
-  const programmeFaqs = getFaqs({ programmeSlug: programme.slug });
-  const faqs = programmeFaqs.length > 0 ? programmeFaqs : getFaqs().slice(0, 3);
   const whatsappHref =
-    buildWhatsAppTrialUrl({ interestedService: programme.name }) ?? getPrimaryConversionHref();
+    buildWhatsAppProgrammeEnquiryUrl(programme.name) ?? getPrimaryConversionHref();
+  const whatsappLabel = getPrimaryConversionLabel();
 
   const breadcrumbTrail = [
     { name: "Home", path: "/" },
@@ -80,10 +52,62 @@ export default async function ProgrammeDetailPage({ params }: ProgrammePageParam
     { name: programme.name, path: `/programs/${programme.slug}` },
   ];
   const breadcrumbJsonLd = buildBreadcrumbJsonLd(breadcrumbTrail);
-  const courseJsonLd = buildCourseJsonLd(programme);
-  const faqJsonLd = buildFaqPageJsonLd(faqs);
 
-  const trialLabel = `Book a trial for ${programme.name}`;
+  if (isMigrationPendingProgramme(programme)) {
+    const related = programme.taxonomyRelatedSlug
+      ? getProgrammeBySlug(programme.taxonomyRelatedSlug)
+      : undefined;
+
+    return (
+      <main className="flex flex-1 flex-col">
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: serializeJsonLd(breadcrumbJsonLd) }}
+        />
+        <Container className="pt-8">
+          <nav aria-label="Breadcrumb">
+            <ol className="flex flex-wrap items-center gap-2 text-sm text-ink-muted">
+              <li>
+                <Link href="/" className="hover:text-ink">
+                  Home
+                </Link>
+              </li>
+              <li aria-hidden>/</li>
+              <li>
+                <Link href="/programs" className="hover:text-ink">
+                  Programmes
+                </Link>
+              </li>
+              <li aria-hidden>/</li>
+              <li aria-current="page" className="text-ink break-words">
+                {programme.name}
+              </li>
+            </ol>
+          </nav>
+        </Container>
+        <LegacyProgrammeNotice
+          programme={programme}
+          relatedName={related?.name}
+          relatedHref={related ? `/programs/${related.slug}` : undefined}
+          whatsappHref={whatsappHref}
+        />
+      </main>
+    );
+  }
+
+  const courseJsonLd = isConfirmedProgramme(programme) ? buildCourseJsonLd(programme) : null;
+  const locations = getPubliclyListedBranches()
+    .filter((branch) => programme.branchSlugs.includes(branch.slug))
+    .map((branch) => ({
+      slug: branch.slug,
+      name: branch.name.replace(/^Ankit's Studio —\s*/i, ""),
+      href: `/locations/${branch.slug}`,
+    }));
+
+  const related = (programme.relatedProgrammeSlugs ?? [])
+    .map((relatedSlug) => getProgrammeBySlug(relatedSlug))
+    .filter((item): item is NonNullable<typeof item> => Boolean(item && isConfirmedProgramme(item)))
+    .map((item) => ({ slug: item.slug, name: item.name }));
 
   return (
     <main className="flex flex-1 flex-col">
@@ -95,12 +119,6 @@ export default async function ProgrammeDetailPage({ params }: ProgrammePageParam
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: serializeJsonLd(courseJsonLd) }}
-        />
-      ) : null}
-      {faqJsonLd ? (
-        <script
-          type="application/ld+json"
-          dangerouslySetInnerHTML={{ __html: serializeJsonLd(faqJsonLd) }}
         />
       ) : null}
 
@@ -126,76 +144,12 @@ export default async function ProgrammeDetailPage({ params }: ProgrammePageParam
         </nav>
       </Container>
 
-      <ProgrammeHero
-        name={programme.name}
-        shortDescription={programme.shortDescription}
-        longDescription={programme.longDescription}
-        accent={programme.heroAccent}
-        audienceTags={programme.audienceTags}
-        primaryCta={{ label: trialLabel, href: "/trial" }}
-        secondaryCta={{ label: "See locations for this programme", href: "#available-locations" }}
-        disclaimer={disclaimerFor(programme)}
-      />
-
-      <BenefitsSection benefits={programme.benefits} />
-
-      <ClassExpectationSection
-        classStructure={programme.classStructure}
-        whoItsFor={programme.whoItsFor}
-      />
-
-      <ExperienceLevelSection level={programme.difficulty} detail={programme.whoItsFor} />
-
-      <EquipmentSection items={programme.requiredEquipment} />
-
-      <AvailableLocationsSection
-        locations={availableBranches.map((branch) => ({
-          slug: branch.slug,
-          name: branch.name,
-          href: `/locations/${branch.slug}`,
-          address: branch.address,
-          disclaimer: disclaimerFor(branch),
-        }))}
-      />
-
-      <TrainerCards
-        trainers={trainers.map((trainer) => ({
-          slug: trainer.slug,
-          name: trainer.name,
-          bio: trainer.bio,
-          qualifications: trainer.qualifications,
-          specialtyLabels: specialtyLabels(trainer),
-          photo: trainer.photo,
-          disclaimer: disclaimerFor(trainer),
-        }))}
-      />
-
-      <BatchPreview
-        slots={timetableSlots.map((slot) => ({
-          id: slot.id,
-          dayLabel: DAY_LABELS[slot.dayOfWeek] ?? "—",
-          timeLabel: `${slot.startTime}–${slot.endTime}`,
-          locationLabel: getBranchBySlug(slot.branchSlug)?.name ?? slot.branchSlug,
-          disclaimer: disclaimerFor(slot),
-        }))}
+      <ProgrammeDetailView
+        programme={programme}
+        locations={locations}
+        related={related}
         whatsappHref={whatsappHref}
-      />
-
-      <ProgrammeFaq
-        title={`${programme.name} FAQs`}
-        items={faqs.map((faq) => ({
-          id: faq.id,
-          question: faq.question,
-          answer: faq.answer,
-          disclaimer: disclaimerFor(faq),
-        }))}
-      />
-
-      <ProgrammeTrialCta
-        programmeName={programme.name}
-        title={`Try ${programme.name}`}
-        body={`Book a trial class to experience ${programme.name} at Ankit's Studio.`}
-        ctaLabel={trialLabel}
+        whatsappLabel={whatsappLabel}
       />
     </main>
   );
