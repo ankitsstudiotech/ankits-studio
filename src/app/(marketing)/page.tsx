@@ -30,61 +30,105 @@ export const metadata = buildPageMetadata({
   path: "/",
 });
 
-const HOMEPAGE_SERVICES: Array<{
+type HomepageService = {
   slug: ProgrammeSlug;
   tempo: ServiceTempo;
   name: string;
   shortDescription: string;
   meta?: string;
-}> = [
-  {
-    slug: "functional-training",
-    tempo: "functional",
+  emphasis?: "primary";
+};
+
+const SERVICE_BY_SLUG = {
+  "functional-training": {
+    slug: "functional-training" as const,
+    tempo: "functional" as const,
     name: "Functional Training",
     shortDescription: "Machine-free, coach-led sessions built around how you move day to day.",
     meta: "Studio classes · all branches",
+    emphasis: "primary" as const,
   },
-  {
-    slug: "yoga",
-    tempo: "yoga",
-    name: "Yoga",
-    shortDescription: "Breath-led movement with space to settle — ask which batch suits you.",
-    meta: "Studio classes · ladies-only batches available on request",
-  },
-  {
-    slug: "zumba",
-    tempo: "zumba",
-    name: "Zumba",
-    shortDescription: "Music-led group energy. No dance background required to enquire.",
-    meta: "Studio classes · high-energy group sessions",
-  },
-  {
-    slug: "adult-dance",
-    tempo: "dance",
-    name: "Dance",
-    shortDescription: "Studio dance for adults — technique and choreography in a welcoming room.",
-    meta: "Studio classes · kids-only batches available on request",
-  },
-  {
-    slug: "wedding-choreography",
-    tempo: "wedding",
-    name: "Wedding Choreography",
-    shortDescription: "Personal choreography support for wedding routines and performances.",
-    meta: "Arranged with the studio after you enquire",
-  },
-  {
-    slug: "home-personal-training",
-    tempo: "home",
+  "home-personal-training": {
+    slug: "home-personal-training" as const,
+    tempo: "home" as const,
     name: "Home Personal Training",
     shortDescription: "Coach-led sessions at home — a delivery mode, not a branch-floor class.",
     meta: "Home delivery · coverage confirmed when you message us",
   },
-  {
-    slug: "online-training",
-    tempo: "online",
+  "online-training": {
+    slug: "online-training" as const,
+    tempo: "online" as const,
     name: "Online Training",
     shortDescription: "Remote coach-led sessions. Platform and timing confirmed on enquiry.",
     meta: "Online delivery · not a physical branch class",
+  },
+  zumba: {
+    slug: "zumba" as const,
+    tempo: "zumba" as const,
+    name: "Zumba",
+    shortDescription: "Music-led group energy. No dance background required to enquire.",
+    meta: "Studio classes · high-energy group sessions",
+  },
+  yoga: {
+    slug: "yoga" as const,
+    tempo: "yoga" as const,
+    name: "Yoga",
+    shortDescription: "Breath-led movement with space to settle — ask which batch suits you.",
+    meta: "Studio classes · ladies-only batches available on request",
+  },
+  "adult-dance": {
+    slug: "adult-dance" as const,
+    tempo: "dance" as const,
+    name: "Dance",
+    shortDescription: "Studio dance for adults — technique and choreography in a welcoming room.",
+    meta: "Studio classes · kids-only batches available on request",
+  },
+  "wedding-choreography": {
+    slug: "wedding-choreography" as const,
+    tempo: "wedding" as const,
+    name: "Wedding Choreography",
+    shortDescription: "Personal choreography support for wedding routines and performances.",
+    meta: "Arranged with the studio after you enquire",
+  },
+} satisfies Record<string, HomepageService>;
+
+function toShowcaseProgramme(service: HomepageService) {
+  return {
+    name: service.name,
+    href: `/programs/${service.slug}`,
+    shortDescription: service.shortDescription,
+    tempo: service.tempo,
+    meta: service.meta,
+    emphasis: service.emphasis,
+  };
+}
+
+const HOMEPAGE_CLUSTERS = [
+  {
+    id: "train" as const,
+    title: "Train",
+    lede: "Coach-led fitness — in studio, at home, or online.",
+    programmes: [
+      toShowcaseProgramme(SERVICE_BY_SLUG["functional-training"]),
+      toShowcaseProgramme(SERVICE_BY_SLUG["home-personal-training"]),
+      toShowcaseProgramme(SERVICE_BY_SLUG["online-training"]),
+    ],
+  },
+  {
+    id: "move" as const,
+    title: "Move",
+    lede: "Group energy, breath work, and studio dance.",
+    programmes: [
+      toShowcaseProgramme(SERVICE_BY_SLUG.zumba),
+      toShowcaseProgramme(SERVICE_BY_SLUG.yoga),
+      toShowcaseProgramme(SERVICE_BY_SLUG["adult-dance"]),
+    ],
+  },
+  {
+    id: "celebrate" as const,
+    title: "Celebrate",
+    lede: "Personal choreography for wedding moments.",
+    programmes: [toShowcaseProgramme(SERVICE_BY_SLUG["wedding-choreography"])],
   },
 ];
 
@@ -160,13 +204,7 @@ export default function HomePage() {
       />
 
       <ProgrammeShowcase
-        programmes={HOMEPAGE_SERVICES.map((service) => ({
-          name: service.name,
-          href: `/programs/${service.slug}`,
-          shortDescription: service.shortDescription,
-          tempo: service.tempo,
-          meta: service.meta,
-        }))}
+        clusters={HOMEPAGE_CLUSTERS}
         audienceNote="Enquiries are welcome across age groups. Maximum group batch size is 15. We will help you match the right service and batch — not every programme is for every person."
       />
 
@@ -201,8 +239,9 @@ export default function HomePage() {
       >
         <h2 id="home-practical-title">Practical information</h2>
         <p>
-          Batches run throughout the day. Message us on WhatsApp for current programme and branch
-          availability — we do not publish a full timetable until real batch schedules are confirmed.
+          Batches run throughout the day and vary by branch and programme. Message us on WhatsApp
+          for current batch availability — we do not publish class-by-class rows until real schedules
+          are confirmed. Studio operating window: 6:00 AM–10:00 PM (not a continuous class).
         </p>
         <ul className={styles.utilityFacts}>
           <li>
