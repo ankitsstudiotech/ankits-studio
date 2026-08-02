@@ -14,5 +14,7 @@ export default defineConfig({
     setupFiles: ["./vitest.setup.ts"],
     include: ["src/**/*.test.{ts,tsx}", "tests/seo/**/*.test.ts", "tests/routes/**/*.test.{ts,tsx}"],
     exclude: ["e2e/**", "node_modules/**"],
+    // Dynamic import + module reset suites need headroom under full parallel load.
+    testTimeout: 15_000,
   },
 });

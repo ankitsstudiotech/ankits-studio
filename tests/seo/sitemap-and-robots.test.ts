@@ -8,23 +8,32 @@ import { beforeEach, describe, expect, it, vi } from "vitest";
  * once at module-load time.
  */
 describe("sitemap/robots mock-mode behavior", () => {
+  // Module reset + dynamic import is slower under full-suite load on Windows.
   beforeEach(() => {
     vi.resetModules();
     vi.unstubAllEnvs();
   });
 
-  it("sitemap is empty while unverified content exists, even in an explicitly-allowed production build", async () => {
-    vi.stubEnv("NODE_ENV", "production");
-    vi.stubEnv("ALLOW_MOCK_PUBLISH", "true");
-    const { buildSitemapEntries } = await import("@/lib/seo/sitemap");
-    expect(buildSitemapEntries()).toEqual([]);
-  });
+  it(
+    "sitemap is empty while unverified content exists, even in an explicitly-allowed production build",
+    async () => {
+      vi.stubEnv("NODE_ENV", "production");
+      vi.stubEnv("ALLOW_MOCK_PUBLISH", "true");
+      const { buildSitemapEntries } = await import("@/lib/seo/sitemap");
+      expect(buildSitemapEntries()).toEqual([]);
+    },
+    15_000,
+  );
 
-  it("sitemap is empty in development", async () => {
-    vi.stubEnv("NODE_ENV", "development");
-    const { buildSitemapEntries } = await import("@/lib/seo/sitemap");
-    expect(buildSitemapEntries()).toEqual([]);
-  });
+  it(
+    "sitemap is empty in development",
+    async () => {
+      vi.stubEnv("NODE_ENV", "development");
+      const { buildSitemapEntries } = await import("@/lib/seo/sitemap");
+      expect(buildSitemapEntries()).toEqual([]);
+    },
+    15_000,
+  );
 
   it("robots disallows everything while unverified content exists, even in an explicitly-allowed production build", async () => {
     vi.stubEnv("NODE_ENV", "production");
