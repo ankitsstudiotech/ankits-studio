@@ -21,7 +21,7 @@
   font-size: 0.75rem;
   letter-spacing: 0.08em;
   text-transform: uppercase;
-  color: color-mix(in srgb, var(--color-utility-ink, #14181c) 55%, transparent);
+  color: color-mix(in srgb, var(--color-utility-ink, #14181c) 72%, transparent);
 }
 
 .title {
@@ -37,7 +37,7 @@
   max-width: 46ch;
   font-size: 1.05rem;
   line-height: 1.45;
-  color: color-mix(in srgb, var(--color-utility-ink, #14181c) 72%, transparent);
+  color: color-mix(in srgb, var(--color-utility-ink, #14181c) 82%, transparent);
 }
 
 .sectionTitle {
@@ -86,7 +86,7 @@
 .hint {
   margin: 0;
   font-size: 0.82rem;
-  color: color-mix(in srgb, var(--color-utility-ink, #14181c) 58%, transparent);
+  color: color-mix(in srgb, var(--color-utility-ink, #14181c) 78%, transparent);
 }
 
 .control {
@@ -171,7 +171,7 @@
   margin: 0;
   max-width: 34ch;
   font-size: 0.85rem;
-  color: color-mix(in srgb, var(--color-utility-ink, #14181c) 60%, transparent);
+  color: color-mix(in srgb, var(--color-utility-ink, #14181c) 78%, transparent);
 }
 
 .facts {
@@ -189,7 +189,7 @@
   text-transform: uppercase;
   font-weight: 500;
   margin-bottom: 0.2rem;
-  color: color-mix(in srgb, var(--color-utility-ink, #14181c) 55%, transparent);
+  color: color-mix(in srgb, var(--color-utility-ink, #14181c) 72%, transparent);
 }
 
 .faqList {
@@ -208,7 +208,7 @@
 .faqList p {
   margin: 0;
   max-width: 52ch;
-  color: color-mix(in srgb, var(--color-utility-ink, #14181c) 70%, transparent);
+  color: color-mix(in srgb, var(--color-utility-ink, #14181c) 82%, transparent);
 }
 
 .linkColumns {
