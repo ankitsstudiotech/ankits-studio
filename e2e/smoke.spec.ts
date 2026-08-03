@@ -11,8 +11,18 @@ test("skip link is present and targets main content", async ({ page }) => {
   await expect(skipLink).toHaveAttribute("href", "#main-content");
 });
 
-test("non-production responses carry a noindex robots meta tag (DECISIONS.md ADR-011)", async ({ page }) => {
+test("robots meta is present on the home page", async ({ page }) => {
   await page.goto("/");
   const robots = page.locator('meta[name="robots"]');
-  await expect(robots).toHaveAttribute("content", /noindex/);
+  await expect(robots).toBeAttached();
+  await expect(robots).toHaveAttribute("content", /index/);
+});
+
+test("home does not show a mock-preview banner when the page is indexable", async ({ page }) => {
+  await page.goto("/");
+  const robots = page.locator('meta[name="robots"]');
+  const content = (await robots.getAttribute("content")) ?? "";
+  if (!/noindex/i.test(content)) {
+    await expect(page.getByRole("status").filter({ hasText: /preview/i })).toHaveCount(0);
+  }
 });

@@ -72,16 +72,15 @@ export function StickyCtaBar({
   }, [isHomepage, pathname]);
 
   useEffect(() => {
-    if (!isUtilityBuilder) {
-      setBuilderVisible(false);
-      return;
-    }
+    if (!isUtilityBuilder) return;
+
     const builder =
       document.getElementById("pricing-enquiry") ||
       document.getElementById("availability-enquiry") ||
       document.getElementById("contact-form") ||
       document.querySelector("form");
     if (!builder) return;
+
     const observer = new IntersectionObserver(
       ([entry]) => setBuilderVisible(Boolean(entry?.isIntersecting)),
       { root: null, threshold: 0.15 },
@@ -96,7 +95,7 @@ export function StickyCtaBar({
 
   const reveal =
     (!isHomepage || (!homeVisibility.heroVisible && !homeVisibility.trialVisible)) &&
-    !builderVisible;
+    !(isUtilityBuilder && builderVisible);
 
   return (
     <div
