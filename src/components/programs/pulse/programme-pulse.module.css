@@ -16,6 +16,7 @@
   letter-spacing: var(--text-hero--letter-spacing);
   line-height: var(--text-hero--line-height);
   margin: 0 0 0.5rem;
+  text-transform: uppercase;
 }
 
 .bandLede {
@@ -261,18 +262,26 @@
   letter-spacing: var(--text-hero--letter-spacing);
   margin: 0.35rem 0 0.75rem;
   max-width: 14ch;
+  text-transform: uppercase;
 }
 
-.detailHero[data-tempo="yoga"] h1,
-.detailHero[data-tempo="home"] h1,
-.detailHero[data-tempo="online"] h1,
-.detailHero[data-tempo="wedding"] h1 {
-  font-family: var(--font-display);
-  font-weight: 400;
-  letter-spacing: var(--text-hero--letter-spacing);
-  text-transform: none;
-  font-size: var(--text-hero);
-  line-height: var(--text-hero--line-height);
+/* Tempo personality — padding / gap only; shared title system */
+.detailHero[data-tempo="yoga"] {
+  gap: 1.5rem;
+  padding-block: calc(var(--spacing-section) + 0.35rem);
+}
+
+.detailHero[data-tempo="zumba"] {
+  gap: 1.1rem;
+}
+
+.detailHero[data-tempo="wedding"] {
+  gap: 1.4rem;
+}
+
+.detailHero[data-tempo="home"],
+.detailHero[data-tempo="online"] {
+  gap: 1.15rem;
 }
 
 .detailHero p {
@@ -280,10 +289,6 @@
   max-width: 42ch;
   color: var(--color-muted-on-field);
   font-size: 1.05rem;
-}
-
-.detailHero[data-tempo="yoga"] {
-  gap: 1.5rem;
 }
 
 .facts {
@@ -325,27 +330,38 @@
   letter-spacing: var(--text-title--letter-spacing);
   line-height: var(--text-title--line-height);
   margin: 0 0 0.75rem;
+  text-transform: uppercase;
 }
 
 .relatedList {
   display: flex;
   flex-direction: column;
-  gap: 0.45rem;
+  gap: 0;
   margin: 0;
   padding: 0;
   list-style: none;
 }
 
-.relatedList a {
+.relatedList a,
+.relatedLink {
   color: var(--color-ink-inverse);
   min-height: 44px;
   display: inline-flex;
   align-items: center;
-  text-decoration: underline;
-  text-underline-offset: 3px;
+  text-decoration: none;
+  border-bottom: 1px solid rgb(255 255 255 / 0.1);
+  width: 100%;
+  padding: 0.55rem 0;
+  transition: color var(--duration-fast, 160ms) var(--ease-standard, ease);
 }
 
-.relatedList a:focus-visible {
+.relatedList a:hover,
+.relatedLink:hover {
+  color: var(--color-volt);
+}
+
+.relatedList a:focus-visible,
+.relatedLink:focus-visible {
   outline: 2px solid var(--color-volt);
   outline-offset: 3px;
 }

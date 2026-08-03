@@ -357,9 +357,9 @@ export const mockProgrammes: Programme[] = [
     dataStatus: "verified",
     slug: "home-personal-training",
     name: "Home Personal Training",
-    shortDescription: "Coach-led sessions at home — priced per session; coverage confirmed on enquiry.",
+    shortDescription: "Coach-led sessions at your location — priced per session.",
     longDescription:
-      "Home Personal Training brings coach-led sessions to your home. It is not a branch-floor class. Pricing is per session; coverage and rates are confirmed when you enquire. Personalised programming is available through personal training.",
+      "Home Personal Training brings coach-led sessions to your location. Pricing is per session; locality coverage and rates are confirmed when you enquire. Personalised programming is available through personal training.",
     audienceTags: ["adults", "home-delivery"],
     branchSlugs: [...ALL_BRANCHES],
     heroAccent: "strength",
@@ -370,7 +370,7 @@ export const mockProgrammes: Programme[] = [
       "Coach-led sessions in a home setting",
       "Priced per session — ask for current rates",
       "Personalised programming through personal training",
-      "Coverage confirmed when you message us",
+      "Share your locality when you message us",
     ],
     difficulty: "all-levels",
     requiredEquipment: [],
@@ -389,7 +389,7 @@ export const mockProgrammes: Programme[] = [
       {
         id: "home-area",
         question: "Which areas do you cover?",
-        answer: "Service area is confirmed when you enquire. Do not assume coverage for every neighbourhood.",
+        answer: "Service area depends on your locality — share it when you enquire.",
       },
       {
         id: "home-price",
@@ -404,7 +404,7 @@ export const mockProgrammes: Programme[] = [
     name: "Online Training",
     shortDescription: "Remote coach-led sessions on Zoom — one-to-one and group formats.",
     longDescription:
-      "Online Training with Ankit’s Studio is delivered on Zoom in one-to-one and group formats. It is not a branch-floor class. Timing and fees are confirmed when you enquire.",
+      "Online Training with Ankit’s Studio is delivered on Zoom in one-to-one and group formats. Timing and fees are confirmed when you enquire.",
     audienceTags: ["adults", "online-delivery"],
     branchSlugs: [...ALL_BRANCHES],
     heroAccent: "strength",

@@ -26,7 +26,7 @@ export const mockStudioAbout: StudioAbout = {
   teamBody:
     "Ankit’s Studio works with a team of 15+ trainers across its programmes and branches.",
   teamCountProvenance:
-    "Team size as shared by the studio. Individual names, roles and qualifications are not listed here yet.",
+    "Team size as shared by the studio.",
   trainerProfileSlugs: [],
   founderStoryStatus: "verified",
   founderStory:
@@ -51,7 +51,7 @@ export const mockStudioAbout: StudioAbout = {
       id: "about-faq-branches",
       question: "How many branches are there?",
       answer:
-        "Four open neighbourhood branches: Airoli Sector 19, Airoli Sector 8, Ghansoli and Thane.",
+        "Four neighbourhood branches: Airoli Sector 19, Airoli Sector 8, Ghansoli and Thane.",
     },
     {
       id: "about-faq-trial",

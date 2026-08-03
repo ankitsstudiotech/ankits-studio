@@ -1,5 +1,6 @@
 import Link from "next/link";
 import type { Programme } from "@/content";
+import { HeroReveal } from "@/components/motion";
 import { ProgrammeRow } from "@/components/programs/ProgrammeRow";
 import { ProgrammePulseCta } from "./ProgrammePulseMotion";
 import styles from "./programme-pulse.module.css";
@@ -20,9 +21,15 @@ const CLUSTER_COPY = {
 } as const;
 
 function deliveryMeta(programme: Programme): string | undefined {
-  if (programme.deliveryMode === "home") return "Home delivery · not a branch-floor class";
-  if (programme.deliveryMode === "online") return "Online delivery · not a branch-floor class";
-  if (programme.slug === "functional-training") return "Studio classes · primary fitness focus";
+  if (programme.deliveryMode === "home") {
+    return "Training at your location · message us with your locality";
+  }
+  if (programme.deliveryMode === "online") {
+    return "Remote sessions via Zoom · enquire for timing";
+  }
+  if (programme.slug === "functional-training") {
+    return "Studio classes · all branches";
+  }
   return "Studio classes · enquire for batch fit";
 }
 
@@ -63,14 +70,16 @@ export function ProgrammeDiscovery({ programmes, trialHref, trialLabel }: Progra
 
   return (
     <section className={`${styles.field} ${styles.band}`} aria-labelledby="programmes-index-title">
-      <h1 id="programmes-index-title" className={styles.bandTitle}>
-        Choose how you want to move
-      </h1>
-      <p className={styles.bandLede}>
-        Choose from fitness, movement and training options. Machine-free, coach-led sessions —
-        choose the format that fits your goals and routine. Ask which batch fits when you book a free
-        trial.
-      </p>
+      <HeroReveal>
+        <h1 id="programmes-index-title" className={styles.bandTitle}>
+          Choose how you want to move
+        </h1>
+        <p className={styles.bandLede}>
+          Choose from fitness, movement and training options. Machine-free, coach-led sessions —
+          choose the format that fits your goals and routine. Ask which batch fits when you book a free
+          trial.
+        </p>
+      </HeroReveal>
 
       <div className={styles.clusters}>
         {(["train", "move", "celebrate"] as const).map((clusterId) => {
