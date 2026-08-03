@@ -91,6 +91,12 @@ design-token set, and the Vitest/Playwright/axe-core testing foundation
 |---|---|---|---|
 | Resolve `docs/audits/CLAUDE-TECHNICAL-SEO-AUDIT.md` + `docs/audits/CURSOR-VISUAL-BROWSER-AUDIT.md` findings, priority-ordered (critical correctness → mock-data risk → SEO → a11y → responsive → forms → performance → visual polish → optional) | Claude | Done | `fix: resolve production readiness audit findings` — full triage and per-finding resolution in `docs/DECISIONS.md` ADR-013 and both audit docs' new "Resolution status" sections; summary in `docs/HANDOFF.md`. |
 
+## Prompt 1 — Visual system repair (active)
+
+| Task | Owner | Status | Notes |
+|---|---|---|---|
+| Shared visual-system repair: ProgrammeRow, tokens/studio/motion, Header/Footer/crumb, homepage Pulse surfaces, ProgrammeDiscovery wiring, logo temporary note | Cursor | In progress | Checkpoint `01a1a82` / tag `studio-pulse-deployed-v1-before-visual-repair`. Ledger: `docs/revamp/VISUAL-SYSTEM-DEFECT-LEDGER.md`. Do not touch `/design-lab/revamp-*`. |
+
 ## Phase 2+ 
 
 Not yet broken into per-file rows — see
