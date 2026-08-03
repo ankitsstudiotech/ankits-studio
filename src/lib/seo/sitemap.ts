@@ -3,16 +3,16 @@ import {
   getBlogPosts,
   getProgrammes,
   getPubliclyListedBranches,
-  getTrainers,
+  getPublishableTrainers,
+  shouldIndexTrainersRoute,
 } from "@/content";
 import { shouldNoIndex } from "@/content/content-mode";
 import { buildCanonicalUrl } from "./canonical";
 
-/** Static, always-present marketing routes (excludes redirect aliases and /design-lab). */
+/** Static marketing routes — `/trainers` is added only when ADR-019 threshold is met. */
 const STATIC_ROUTES: readonly string[] = [
   "/",
   "/about",
-  "/trainers",
   "/transformations",
   "/pricing",
   "/contact",
@@ -36,18 +36,20 @@ const STATIC_ROUTES: readonly string[] = [
  * Once `shouldNoIndex()` is false (a production build with zero unverified
  * content anywhere), builds real entries: every static marketing route,
  * plus one entry per verified programme/publicly-listed branch/trainer/blog
- * post. Dynamic entries are additionally filtered by `dataStatus ===
- * "verified"` even though `shouldNoIndex()` already guarantees the whole
- * content domain is verified at that point — this keeps the function
- * correct in isolation rather than relying solely on the caller's gate.
- * See docs/DECISIONS.md ADR-013 (SEO-001).
+ * post. `/trainers` and trainer slug URLs require `shouldIndexTrainersRoute()`
+ * (ADR-019). Dynamic entries are additionally filtered by publishability.
+ * See docs/DECISIONS.md ADR-013 (SEO-001) and ADR-019.
  */
 export function buildSitemapEntries(): MetadataRoute.Sitemap {
   if (shouldNoIndex()) {
     return [];
   }
 
-  const staticEntries: MetadataRoute.Sitemap = STATIC_ROUTES.map((path) => ({
+  const staticPaths = shouldIndexTrainersRoute()
+    ? [...STATIC_ROUTES, "/trainers"]
+    : STATIC_ROUTES;
+
+  const staticEntries: MetadataRoute.Sitemap = staticPaths.map((path) => ({
     url: buildCanonicalUrl(path),
   }));
 
@@ -62,9 +64,11 @@ export function buildSitemapEntries(): MetadataRoute.Sitemap {
     .filter((branch) => branch.dataStatus === "verified")
     .map((branch) => ({ url: buildCanonicalUrl(`/locations/${branch.slug}`) }));
 
-  const trainerEntries: MetadataRoute.Sitemap = getTrainers()
-    .filter((trainer) => trainer.dataStatus === "verified")
-    .map((trainer) => ({ url: buildCanonicalUrl(`/trainers/${trainer.slug}`) }));
+  const trainerEntries: MetadataRoute.Sitemap = shouldIndexTrainersRoute()
+    ? getPublishableTrainers().map((trainer) => ({
+        url: buildCanonicalUrl(`/trainers/${trainer.slug}`),
+      }))
+    : [];
 
   const blogEntries: MetadataRoute.Sitemap = getBlogPosts()
     .filter((post) => post.dataStatus === "verified")

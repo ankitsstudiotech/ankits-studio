@@ -4,7 +4,6 @@ import { describe, expect, it } from "vitest";
 import {
   getConfirmedProgrammes,
   getProgrammes,
-  getTrainers,
   isMigrationPendingProgramme,
 } from "@/content";
 import {
@@ -82,8 +81,7 @@ describe("programme structured data — ADR-017", () => {
   });
 
   it("does not embed mock trainer identities in programme JSON-LD", () => {
-    const trainerNames = getTrainers().map((trainer) => trainer.name.toLowerCase());
-    expect(trainerNames.length).toBeGreaterThan(0);
+    const forbiddenNames = ["illustrative trainer — a.", "illustrative trainer — b."];
 
     for (const programme of getConfirmedProgrammes()) {
       const page = buildWebPageJsonLd({
@@ -92,7 +90,7 @@ describe("programme structured data — ADR-017", () => {
         path: `/programs/${programme.slug}`,
       });
       const blob = JSON.stringify(page).toLowerCase();
-      for (const name of trainerNames) {
+      for (const name of forbiddenNames) {
         expect(blob).not.toContain(name);
       }
       expect(blob).not.toMatch(/instructor|teacher|coach"/);

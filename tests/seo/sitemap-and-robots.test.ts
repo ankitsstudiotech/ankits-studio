@@ -100,7 +100,8 @@ describe("buildSitemapEntries once the site is indexable", () => {
         { slug: "unverified-programme", dataStatus: "mock", mockDisclaimer: "x" },
       ],
       getPubliclyListedBranches: () => [{ slug: "airoli-sector-19", dataStatus: "verified" }],
-      getTrainers: () => [{ slug: "unverified-trainer", dataStatus: "mock", mockDisclaimer: "x" }],
+      getPublishableTrainers: () => [],
+      shouldIndexTrainersRoute: () => false,
       getBlogPosts: () => [{ slug: "real-post", dataStatus: "verified" }],
     }));
 
@@ -115,8 +116,35 @@ describe("buildSitemapEntries once the site is indexable", () => {
     expect(urls).toContain(buildCanonicalUrl("/locations/airoli-sector-19"));
     expect(urls).toContain(buildCanonicalUrl("/blog/real-post"));
     expect(urls).not.toContain(buildCanonicalUrl("/programs/unverified-programme"));
+    expect(urls).not.toContain(buildCanonicalUrl("/trainers"));
     expect(urls).not.toContain(buildCanonicalUrl("/trainers/unverified-trainer"));
     expect(urls.every((url) => !url.includes("/design-lab"))).toBe(true);
+
+    vi.doUnmock("@/content/content-mode");
+    vi.doUnmock("@/content");
+  });
+
+  it("includes /trainers and publishable trainer slugs only when indexing threshold is met", async () => {
+    vi.doMock("@/content/content-mode", () => ({ shouldNoIndex: () => false }));
+    vi.doMock("@/content", () => ({
+      getProgrammes: () => [],
+      getPubliclyListedBranches: () => [],
+      getPublishableTrainers: () => [
+        { slug: "coach-a" },
+        { slug: "coach-b" },
+        { slug: "coach-c" },
+      ],
+      shouldIndexTrainersRoute: () => true,
+      getBlogPosts: () => [],
+    }));
+
+    const { buildSitemapEntries } = await import("@/lib/seo/sitemap");
+    const { buildCanonicalUrl } = await import("@/lib/seo/canonical");
+    const urls = buildSitemapEntries().map((entry) => entry.url);
+
+    expect(urls).toContain(buildCanonicalUrl("/trainers"));
+    expect(urls).toContain(buildCanonicalUrl("/trainers/coach-a"));
+    expect(urls).toContain(buildCanonicalUrl("/trainers/coach-c"));
 
     vi.doUnmock("@/content/content-mode");
     vi.doUnmock("@/content");
