@@ -38,3 +38,113 @@
   background: color-mix(in srgb, var(--color-volt) 40%, transparent);
   color: var(--color-field);
 }
+
+/* Shared production pulse page shell (V1 visual convergence) */
+.pulse-page {
+  background: var(--color-field);
+  color: var(--color-ink-inverse);
+  flex: 1;
+}
+
+.pulse-band {
+  padding: var(--spacing-section) var(--spacing-gutter);
+  border-top: 1px solid rgb(255 255 255 / 0.08);
+  max-width: var(--width-container);
+}
+
+.pulse-band-narrow {
+  max-width: var(--width-container-narrow);
+}
+
+.pulse-kicker {
+  margin: 0 0 0.4rem;
+  font-family: var(--font-sans);
+  font-size: var(--text-overline);
+  font-weight: 600;
+  letter-spacing: var(--text-overline--letter-spacing);
+  line-height: var(--text-overline--line-height);
+  text-transform: uppercase;
+  color: var(--color-muted-on-field);
+}
+
+.pulse-title {
+  font-family: var(--font-display);
+  font-size: var(--text-hero);
+  letter-spacing: var(--text-hero--letter-spacing);
+  line-height: var(--text-hero--line-height);
+  margin: 0 0 0.85rem;
+  max-width: 16ch;
+  text-transform: none;
+}
+
+.pulse-section-title {
+  font-family: var(--font-display);
+  font-size: var(--text-title);
+  letter-spacing: var(--text-title--letter-spacing);
+  line-height: var(--text-title--line-height);
+  margin: 0 0 0.75rem;
+  max-width: 22ch;
+  text-transform: none;
+}
+
+.pulse-lede {
+  margin: 0;
+  max-width: 48ch;
+  font-size: var(--text-body-lg);
+  line-height: var(--text-body-lg--line-height);
+  color: var(--color-muted-on-field);
+}
+
+.pulse-body {
+  margin: 0;
+  max-width: 52ch;
+  font-size: var(--text-body);
+  line-height: var(--text-body--line-height);
+  color: var(--color-muted-on-field);
+}
+
+.pulse-cta {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: var(--spacing-control-lg);
+  padding: 0.65rem 1.25rem;
+  background: var(--color-accent);
+  color: var(--color-accent-foreground);
+  font-family: var(--font-sans);
+  font-size: 0.75rem;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  text-decoration: none;
+  transition: transform var(--duration-fast) var(--ease-standard),
+    background-color var(--duration-fast) var(--ease-standard);
+}
+
+.pulse-cta:hover {
+  background: var(--color-accent-hover);
+}
+
+.pulse-cta:active {
+  transform: scale(0.97);
+}
+
+.pulse-cta:focus-visible {
+  outline: 2px solid var(--color-volt);
+  outline-offset: 3px;
+}
+
+.pulse-crumb-bar {
+  background: var(--color-surface);
+  color: var(--color-ink);
+  border-bottom: 1px solid rgb(20 24 28 / 0.08);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .pulse-cta {
+    transition: none;
+  }
+  .pulse-cta:active {
+    transform: none;
+  }
+}

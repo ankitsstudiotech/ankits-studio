@@ -23,7 +23,7 @@ export function DesktopNav({ items, pathname = "" }: DesktopNavProps) {
                 href={item.href}
                 aria-current={active ? "page" : undefined}
                 className={[
-                  "inline-flex min-h-11 items-center px-3 text-xs font-medium uppercase tracking-[0.1em]",
+                  "inline-flex min-h-11 items-center px-3 text-sm font-medium",
                   "transition-[color,background-size] duration-[var(--duration-fast)] ease-[var(--ease-standard)]",
                   "bg-[linear-gradient(currentColor,currentColor)] bg-no-repeat bg-[length:0_1px] bg-[position:0_100%]",
                   "hover:bg-[length:100%_1px] focus-visible:bg-[length:100%_1px]",

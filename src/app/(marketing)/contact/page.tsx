@@ -93,7 +93,7 @@ export default async function ContactPage({ searchParams }: ContactPageProps) {
         {disclaimer ? <Caption className="mb-6 text-ink-subtle">{disclaimer}</Caption> : null}
 
         <dl className="mb-10 grid gap-4 sm:grid-cols-2">
-          <div className="rounded-[var(--radius-lg)] border border-border bg-surface-raised p-5">
+          <div className="border border-border bg-surface-raised p-5">
             <dt className="text-sm font-semibold text-ink">Central phone & WhatsApp</dt>
             <dd className="mt-2">
               {studioLinks.phoneHref ? (
@@ -129,7 +129,7 @@ export default async function ContactPage({ searchParams }: ContactPageProps) {
               </Caption>
             </dd>
           </div>
-          <div className="rounded-[var(--radius-lg)] border border-border bg-surface-raised p-5">
+          <div className="border border-border bg-surface-raised p-5">
             <dt className="text-sm font-semibold text-ink">General email</dt>
             <dd className="mt-2">
               {studioLinks.emailHref ? (

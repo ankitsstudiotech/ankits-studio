@@ -1,8 +1,8 @@
 /* Studio Pulse — Pricing utility (low tempo, honest commercial). */
 
 .page {
-  background: var(--color-utility-surface, #f4f5f6);
-  color: var(--color-utility-ink, #14181c);
+  background: var(--color-surface);
+  color: var(--color-ink);
   flex: 1;
 }
 
@@ -13,7 +13,7 @@
 }
 
 .bandWide {
-  max-width: 64rem;
+  max-width: var(--width-container);
 }
 
 .kicker {
@@ -21,7 +21,7 @@
   font-size: 0.75rem;
   letter-spacing: 0.08em;
   text-transform: uppercase;
-  color: color-mix(in srgb, var(--color-utility-ink, #14181c) 72%, transparent);
+  color: color-mix(in srgb, var(--color-ink) 72%, transparent);
 }
 
 .title {
@@ -37,14 +37,13 @@
   max-width: 46ch;
   font-size: 1.05rem;
   line-height: 1.45;
-  color: color-mix(in srgb, var(--color-utility-ink, #14181c) 82%, transparent);
+  color: color-mix(in srgb, var(--color-ink) 82%, transparent);
 }
 
 .sectionTitle {
   font-family: var(--font-display);
   font-size: clamp(1.25rem, 3vw, 1.65rem);
   letter-spacing: 0.05em;
-  text-transform: uppercase;
   margin: 0 0 0.65rem;
 }
 
@@ -88,7 +87,7 @@
 .feeMeta {
   margin: 0;
   font-size: 0.92rem;
-  color: color-mix(in srgb, var(--color-utility-ink, #14181c) 78%, transparent);
+  color: color-mix(in srgb, var(--color-ink) 78%, transparent);
   max-width: 42ch;
 }
 
@@ -99,7 +98,7 @@
   display: grid;
   gap: 0.35rem;
   font-size: 0.92rem;
-  color: color-mix(in srgb, var(--color-utility-ink, #14181c) 78%, transparent);
+  color: color-mix(in srgb, var(--color-ink) 78%, transparent);
   max-width: 40ch;
 }
 
@@ -128,7 +127,7 @@
 .hint {
   margin: 0;
   font-size: 0.82rem;
-  color: color-mix(in srgb, var(--color-utility-ink, #14181c) 78%, transparent);
+  color: color-mix(in srgb, var(--color-ink) 78%, transparent);
 }
 
 .control {
@@ -144,7 +143,7 @@
 }
 
 .control:focus-visible {
-  outline: 2px solid var(--color-coral, #ff4d2e);
+  outline: 2px solid var(--color-accent);
   outline-offset: 2px;
 }
 
@@ -175,7 +174,7 @@
 .warn {
   margin: 0;
   padding: 0.65rem 0.75rem;
-  border-left: 3px solid var(--color-coral, #ff4d2e);
+  border-left: 3px solid var(--color-accent);
   background: #fff;
   font-size: 0.9rem;
   max-width: 40ch;
@@ -195,17 +194,24 @@
   justify-content: center;
   min-height: 48px;
   padding: 0.7rem 1.25rem;
-  background: var(--color-coral, #ff4d2e);
-  color: #0b0b0c;
-  font-weight: 600;
+  background: var(--color-accent);
+  color: var(--color-accent-foreground);
+  font-family: var(--font-sans);
+  font-weight: 700;
+  font-size: 0.8rem;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
   text-decoration: none;
   border: none;
   cursor: pointer;
-  font: inherit;
+}
+
+.cta:hover {
+  background: var(--color-accent-hover);
 }
 
 .cta:focus-visible {
-  outline: 2px solid #0b0b0c;
+  outline: 2px solid var(--color-volt);
   outline-offset: 3px;
 }
 
@@ -213,7 +219,7 @@
   margin: 0;
   max-width: 34ch;
   font-size: 0.85rem;
-  color: color-mix(in srgb, var(--color-utility-ink, #14181c) 78%, transparent);
+  color: color-mix(in srgb, var(--color-ink) 78%, transparent);
 }
 
 .facts {
@@ -231,7 +237,7 @@
   text-transform: uppercase;
   font-weight: 500;
   margin-bottom: 0.2rem;
-  color: color-mix(in srgb, var(--color-utility-ink, #14181c) 72%, transparent);
+  color: color-mix(in srgb, var(--color-ink) 72%, transparent);
 }
 
 .faqList {
@@ -250,7 +256,7 @@
 .faqList p {
   margin: 0;
   max-width: 52ch;
-  color: color-mix(in srgb, var(--color-utility-ink, #14181c) 82%, transparent);
+  color: color-mix(in srgb, var(--color-ink) 82%, transparent);
 }
 
 .linkColumns {
@@ -279,7 +285,7 @@
 }
 
 .linkList a:focus-visible {
-  outline: 2px solid var(--color-coral, #ff4d2e);
+  outline: 2px solid var(--color-accent);
   outline-offset: 2px;
 }
 

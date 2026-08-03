@@ -174,10 +174,10 @@ export function MobileNav({ items, pathname = "" }: MobileNavProps) {
                               ? { target: "_blank", rel: "noopener noreferrer" }
                               : {})}
                             className={[
-                              "flex min-h-11 items-center px-3 text-sm font-medium uppercase tracking-[0.08em] touch-target",
+                              "flex min-h-11 items-center px-3 text-sm font-medium touch-target",
                               "focus-visible:outline-2 focus-visible:outline-offset-3 focus-visible:outline-[var(--color-volt)]",
                               item.isPrimaryCta
-                                ? "bg-accent text-accent-foreground justify-center"
+                                ? "bg-accent text-accent-foreground justify-center font-bold uppercase tracking-[0.08em] text-xs"
                                 : active
                                   ? "bg-field-raised text-ink-inverse"
                                   : "text-[var(--color-muted-on-field)] hover:bg-field-raised hover:text-ink-inverse",

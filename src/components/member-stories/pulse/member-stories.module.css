@@ -7,15 +7,15 @@
 }
 
 .crumbBar {
-  background: var(--color-utility-surface, #f4f5f6);
-  color: var(--color-utility-ink, #14181c);
+  background: var(--color-surface);
+  color: var(--color-ink);
   border-bottom: 1px solid rgb(20 24 28 / 0.08);
 }
 
 .band {
   padding: var(--spacing-section) var(--spacing-gutter);
   border-top: 1px solid rgb(255 255 255 / 0.08);
-  max-width: 64rem;
+  max-width: var(--width-container);
 }
 
 .bandNarrow {
@@ -51,7 +51,6 @@
   font-family: var(--font-display);
   font-size: clamp(1.35rem, 3.2vw, 1.85rem);
   letter-spacing: 0.06em;
-  text-transform: uppercase;
   margin: 0 0 0.75rem;
   max-width: 22ch;
 }
@@ -103,7 +102,7 @@
 }
 
 .linkList a:hover {
-  color: var(--color-coral, #ff4d2e);
+  color: var(--color-accent);
 }
 
 .linkList a:active {
@@ -111,7 +110,7 @@
 }
 
 .linkList a:focus-visible {
-  outline: 2px solid var(--color-coral, #ff4d2e);
+  outline: 2px solid var(--color-accent);
   outline-offset: 3px;
 }
 
@@ -154,18 +153,19 @@
   justify-content: center;
   min-height: 48px;
   padding: 0.65rem 1.25rem;
-  background: var(--color-coral, #ff4d2e);
-  color: #fff;
-  font-family: var(--font-display);
-  font-size: 0.95rem;
+  background: var(--color-accent);
+  color: var(--color-accent-foreground);
+  font-family: var(--font-sans);
+  font-size: 0.8rem;
+  font-weight: 700;
   letter-spacing: 0.06em;
   text-transform: uppercase;
   text-decoration: none;
-  transition: transform 140ms ease-out, opacity 140ms ease-out;
+  transition: transform 140ms ease-out, background-color 140ms ease-out;
 }
 
 .cta:hover {
-  opacity: 0.92;
+  background: var(--color-accent-hover);
 }
 
 .cta:active {
@@ -173,7 +173,7 @@
 }
 
 .cta:focus-visible {
-  outline: 2px solid #fff;
+  outline: 2px solid var(--color-volt);
   outline-offset: 3px;
 }
 

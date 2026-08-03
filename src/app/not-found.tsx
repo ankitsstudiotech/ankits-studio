@@ -9,10 +9,17 @@ import { SiteChrome } from "@/components/layout";
 export default function NotFound() {
   return (
     <SiteChrome>
-      <main className="flex flex-1 flex-col items-center justify-center gap-4 px-6 py-24 text-center">
-        <h1 className="text-2xl font-semibold text-ink">Page not found</h1>
-        <p className="max-w-md text-ink-muted">The page you&apos;re looking for doesn&apos;t exist or may have moved.</p>
-        <Link href="/" className="rounded bg-accent px-4 py-2 font-medium text-white">
+      <main className="flex flex-1 flex-col items-center justify-center gap-4 px-[var(--spacing-gutter)] py-[var(--spacing-section)] text-center">
+        <h1 className="font-[family-name:var(--font-display)] text-[length:var(--text-title)] tracking-[var(--text-title--letter-spacing)] text-ink">
+          Page not found
+        </h1>
+        <p className="max-w-md text-ink-muted">
+          The page you&apos;re looking for doesn&apos;t exist or may have moved.
+        </p>
+        <Link
+          href="/"
+          className="inline-flex min-h-12 items-center justify-center bg-accent px-6 text-xs font-bold uppercase tracking-[0.06em] text-accent-foreground hover:bg-accent-hover focus-visible:outline-2 focus-visible:outline-offset-3 focus-visible:outline-focus-ring"
+        >
           Return home
         </Link>
       </main>

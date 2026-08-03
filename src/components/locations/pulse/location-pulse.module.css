@@ -6,8 +6,8 @@
 }
 
 .utility {
-  background: var(--color-utility-surface, #f4f5f6);
-  color: var(--color-utility-ink, #14181c);
+  background: var(--color-surface);
+  color: var(--color-ink);
 }
 
 .band {
@@ -38,7 +38,7 @@
 .utilityLede {
   margin: 0 0 1.25rem;
   max-width: 46ch;
-  color: color-mix(in srgb, var(--color-utility-ink, #14181c) 72%, transparent);
+  color: color-mix(in srgb, var(--color-ink) 72%, transparent);
   font-size: 1rem;
 }
 
@@ -143,11 +143,19 @@
   justify-content: center;
   min-height: 48px;
   padding: 0.7rem 1.25rem;
-  background: var(--color-coral);
-  color: #0b0b0c;
-  font-weight: 600;
+  background: var(--color-accent);
+  color: var(--color-accent-foreground);
+  font-family: var(--font-sans);
+  font-weight: 700;
+  font-size: 0.8rem;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
   text-decoration: none;
   border: none;
+}
+
+.ctaPrimary:hover {
+  background: var(--color-accent-hover);
 }
 
 .ctaPrimary:focus-visible {
@@ -166,7 +174,6 @@
   font-family: var(--font-display);
   font-size: clamp(1.35rem, 3vw, 1.85rem);
   letter-spacing: 0.06em;
-  text-transform: uppercase;
   margin: 0 0 0.75rem;
 }
 
@@ -303,7 +310,7 @@
 }
 
 .utility .faqList p {
-  color: color-mix(in srgb, var(--color-utility-ink, #14181c) 70%, transparent);
+  color: color-mix(in srgb, var(--color-ink) 70%, transparent);
 }
 
 .finalCta {

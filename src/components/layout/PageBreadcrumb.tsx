@@ -6,11 +6,14 @@ export type BreadcrumbItem = {
   path?: string;
 };
 
+/**
+ * Shared breadcrumb — utility surface chrome, sentence-case labels.
+ */
 export function PageBreadcrumb({ items }: { items: BreadcrumbItem[] }) {
   return (
-    <Container className="pt-8">
+    <Container className="py-4">
       <nav aria-label="Breadcrumb">
-        <ol className="flex flex-wrap items-center gap-2 text-sm text-ink-muted">
+        <ol className="flex flex-wrap items-center gap-2 font-[family-name:var(--font-sans)] text-[length:var(--text-caption)] text-ink-muted">
           {items.map((item, index) => {
             const isLast = index === items.length - 1;
             return (
@@ -21,7 +24,10 @@ export function PageBreadcrumb({ items }: { items: BreadcrumbItem[] }) {
                     {item.name}
                   </span>
                 ) : (
-                  <Link href={item.path} className="hover:text-ink">
+                  <Link
+                    href={item.path}
+                    className="underline-offset-4 hover:text-ink hover:underline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-focus-ring"
+                  >
                     {item.name}
                   </Link>
                 )}
