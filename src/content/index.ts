@@ -13,11 +13,16 @@ import type {
   ProgrammeSlug,
   StudioAbout,
   StudioCommercial,
+  StudioTrainersPage,
   Testimonial,
   TimetableSlot,
   Trainer,
   Transformation,
 } from "./schema";
+import {
+  isTrainerPublishable,
+  TRAINERS_ROUTE_INDEX_THRESHOLD,
+} from "./schema/trainer";
 import * as verified from "./verified";
 
 /**
@@ -55,6 +60,10 @@ const businessIdentity = mergeSingular(mock.mockBusinessIdentity, verified.verif
 const contactDetails = mergeSingular(mock.mockContactDetails, verified.verifiedContactDetails);
 const studioCommercial = mergeSingular(mock.mockStudioCommercial, verified.verifiedStudioCommercial);
 const studioAbout = mergeSingular(mock.mockStudioAbout, verified.verifiedStudioAbout);
+const studioTrainersPage = mergeSingular(
+  mock.mockStudioTrainersPage,
+  verified.verifiedStudioTrainersPage,
+);
 const faqs = mergeByKey(mock.mockFaqs, verified.verifiedFaqs, byId);
 const navigationItems = mergeByKey(mock.mockNavigationItems, verified.verifiedNavigationItems, byId);
 
@@ -96,9 +105,28 @@ export function getTrainers(): Trainer[] {
   return trainers;
 }
 
+/** Profiles that pass the publishability gate — safe for public marketing surfaces. */
+export function getPublishableTrainers(): Trainer[] {
+  return trainers.filter(isTrainerPublishable);
+}
+
 export function getTrainerBySlug(slug: string): Trainer | undefined {
   return trainers.find((trainer) => trainer.slug === slug);
 }
+
+export function getPublishableTrainerBySlug(slug: string): Trainer | undefined {
+  const trainer = getTrainerBySlug(slug);
+  return trainer && isTrainerPublishable(trainer) ? trainer : undefined;
+}
+
+/**
+ * `/trainers` may be indexed only after enough publishable profiles exist (ADR-019).
+ */
+export function shouldIndexTrainersRoute(): boolean {
+  return getPublishableTrainers().length >= TRAINERS_ROUTE_INDEX_THRESHOLD;
+}
+
+export { isTrainerPublishable, TRAINERS_ROUTE_INDEX_THRESHOLD };
 
 /**
  * Public timetable accessor — **verified slots only**.
@@ -215,6 +243,10 @@ export function getStudioCommercial(): StudioCommercial {
 
 export function getStudioAbout(): StudioAbout {
   return studioAbout;
+}
+
+export function getStudioTrainersPage(): StudioTrainersPage {
+  return studioTrainersPage;
 }
 
 export function getFaqs(filter?: { programmeSlug?: ProgrammeSlug; branchSlug?: BranchSlug }): Faq[] {

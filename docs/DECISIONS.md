@@ -473,6 +473,56 @@ Legacy `/locations/airoli` permanently redirects to `/locations/airoli-sector-19
 
 **Status**: Active.
 
+## ADR-019: Trainers route indexing and profile publishability
+
+**Decision**: Individual trainer profiles and the `/trainers` marketing route follow a strict readiness gate.
+
+### Publishability (per profile)
+
+A trainer record must **not** become publicly visible merely because an owner supplied a name. Public rendering (`getPublishableTrainers` / profile routes) requires **all** of:
+
+1. `dataStatus === "verified"`
+2. `profilePublicationStatus === "published"`
+3. `profileVerificationStatus` is `verified` or `publishable`
+4. `publicationConsentStatus === "granted"`
+5. Public name
+6. Real photograph with `photoPublicationPermission === true`
+7. Role
+8. At least one confirmed programme **or** branch relationship
+9. At least one safely described qualification line, structured certification, or years-of-experience value that the owner has approved for publication
+
+Mock or draft records may exist for internal tooling but must never render on marketing routes.
+
+### Indexing of `/trainers`
+
+Until the threshold below is met:
+
+- Keep `/trainers` reachable
+- Mark `/trainers` `noindex` (`forceNoIndex`)
+- Exclude `/trainers` from the sitemap
+- Do not emit `Person`, `Employee`, `EducationalOccupationalCredential`, or trainer `ItemList` JSON-LD
+- Do not generate public `/trainers/[slug]` pages for non-publishable profiles (`notFound`)
+- Keep Trainers in **footer** navigation only (not a primary-nav promise of a complete roster)
+- Do **not** redirect `/trainers` → `/about` (About already carries the 15+ team statement; Trainers remains the future home for verified profiles)
+
+### Activation threshold
+
+`/trainers` may become indexable and enter the sitemap only when:
+
+**`getPublishableTrainers().length >= 3`** (`TRAINERS_ROUTE_INDEX_THRESHOLD`)
+
+**Rationale:** Three complete publishable profiles make a crawlable team directory useful rather than a single-person stub. Team-level copy alone (15+ count) is already covered honestly on `/about` and on the noindexed Trainers page; indexing requires enough verified people that search visitors are not sent to an empty roster. A single “lead” profile is **not** sufficient for indexing under this ADR (it may still render on the page once publishable, behind noindex, if product later enables one-card previews — today zero profiles render).
+
+Implementation: `shouldIndexTrainersRoute()` in `src/content/index.ts`.
+
+### Team-size claim
+
+Public copy may state the owner-provided **15+** team size with explicit provenance. Do not publish “highly qualified”, “government-approved”, “expert”, or ambiguous “2+ years” until evidence and subject clarification exist.
+
+**Why**: Mock illustrative trainers were publicly rendered as a card grid; sitemap and indexing would have promised a completed directory once the sitewide mock gate lifted. Accuracy and Hard Rule honesty require a publishability gate independent of “owner mentioned a name”.
+
+**Status**: Active.
+
 ## Log format for future entries
 
 ```

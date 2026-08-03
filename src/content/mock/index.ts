@@ -11,4 +11,5 @@ export * from "./faqs";
 export * from "./contact-details";
 export * from "./studio-commercial";
 export * from "./studio-about";
+export * from "./studio-trainers-page";
 export * from "./navigation";
