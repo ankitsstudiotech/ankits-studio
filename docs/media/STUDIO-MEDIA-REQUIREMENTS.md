@@ -34,8 +34,27 @@ Temporary homepage plates remain **replaceable fallbacks** (`data-media-status="
 | `about.branches` | Photograph / collage later | 16/9 | 3/2 | Exterior or entrance; no invented street text | Neighbourhood branch exterior or interior | n/a | `lazy` | cover | Neutral field plate | Pending — address + photo |
 | `trainers.coaching-action` | Photograph | 16/9 | 3/2 | Coach + member interaction (consented) | Coach-led session in progress | n/a | `lazy` | cover | `strength` plate | Pending — consent |
 | `trainers.portrait` | Photograph | 4/5 | 3/4 | Face upper-third; natural light | Named trainer portrait | n/a | `lazy` | cover + focal | `warm` plate | **Inactive** until profile publishable (ADR-019) |
+| `stories.member-portrait` | Photograph | 4/5 | 3/4 | Face upper-third; consented | Named or approved anonymous member | n/a | `lazy` | cover + focal | Inactive | Consent + photo permission required |
+| `stories.member-activity` | Photograph | 16/9 | 3/2 | Member + coach/floor (consented) | Member in a coach-led session | n/a | `lazy` | cover | Inactive | Consent required |
+| `stories.before` | Photograph | 4/5 | 3/4 | Honest framing; no exaggerated crop | Member before image (dated) | n/a | `lazy` | cover — **no** crop that exaggerates change | Inactive | Before permission + date verification |
+| `stories.after` | Photograph | 4/5 | 3/4 | Matching framing to before when paired | Member after image (dated) | n/a | `lazy` | matching treatment to before | Inactive | After permission + date verification |
+| `stories.programme-context` | Photograph | 16/9 | 3/2 | Programme atmosphere | Programme context for a story | n/a | `lazy` | cover | Fallback plate OK | May reuse programme slots |
+| `stories.branch-context` | Photograph | 16/9 | 3/2 | Branch exterior/interior | Branch context for a story | n/a | `lazy` | cover | Fallback plate OK | May reuse branch slots |
+| `stories.video-testimonial` | Muted short video | 16/9 | 16/9 | Speaker mid-frame | Optional short member video | Required poster | `lazy` | cover | Inactive | Separate AV consent |
 
 ---
+
+## Member stories & transformation media rules (ADR-022)
+
+- Never generate or use stock “members.”
+- Never reuse Google reviewer photos as studio-owned media.
+- Never publish children’s transformation content without parent or guardian consent.
+- Prefer original camera files (or lossless masters); record capture date for before/after pairs.
+- Verify image dates before publishing before/after pairs (`imageDateVerified`).
+- Cropping must not exaggerate body or result differences; disclose treatments (`imageTreatmentDisclosure`).
+- Alt text: descriptive, no invented outcomes, no medical claims.
+- Keep inactive story slots out of public loading until a publishable story references them.
+- Video testimonials: muted by default; respect `prefers-reduced-motion` (poster instead of autoplay).
 
 ## Field definitions
 
@@ -61,6 +80,7 @@ For every slot:
 - Homepage plates: `PulseMediaPlate` with `slotKey`, `data-media-status="fallback"`, `data-mock-media="true"`.
 - About plates: same pattern with `about.*` keys — do not describe fallbacks as real people or verified interiors.
 - Trainers plates: `about.team` / `trainers.coaching-action` for team-level surfaces; `trainers.portrait` stays inactive until a profile passes the publishability gate (ADR-019). Never generate faces or stock trainers.
+- Member Stories plates: `community.group` for the readiness page atmosphere; `stories.*` slots stay inactive until a publishable Member Story or Transformation references consented media (ADR-022). Never invent before/after pairs.
 - Typed catalogue: `src/content/media-slots.ts` (keys + metadata only — no binary assets).
 - Existing `MediaAsset` schema (`src` / `alt` / `width` / `height`) remains the runtime shape when assets arrive (ADR-012). Focal-point / poster may be extended later without changing homepage or About section order.
 

@@ -77,7 +77,7 @@ export const mockNavigationItems: NavigationItem[] = [
   {
     dataStatus: "verified",
     id: "nav-footer-transformations",
-    label: "Transformations",
+    label: "Member Stories",
     path: "/transformations",
     placement: "footer",
     order: 5,

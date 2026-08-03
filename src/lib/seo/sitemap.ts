@@ -4,16 +4,16 @@ import {
   getProgrammes,
   getPubliclyListedBranches,
   getPublishableTrainers,
+  shouldIndexMemberStoriesRoute,
   shouldIndexTrainersRoute,
 } from "@/content";
 import { shouldNoIndex } from "@/content/content-mode";
 import { buildCanonicalUrl } from "./canonical";
 
-/** Static marketing routes — `/trainers` is added only when ADR-019 threshold is met. */
+/** Static marketing routes — trainers and member stories added only when thresholds are met. */
 const STATIC_ROUTES: readonly string[] = [
   "/",
   "/about",
-  "/transformations",
   "/pricing",
   "/contact",
   "/blog",
@@ -45,9 +45,11 @@ export function buildSitemapEntries(): MetadataRoute.Sitemap {
     return [];
   }
 
-  const staticPaths = shouldIndexTrainersRoute()
-    ? [...STATIC_ROUTES, "/trainers"]
-    : STATIC_ROUTES;
+  const staticPaths = [
+    ...STATIC_ROUTES,
+    ...(shouldIndexTrainersRoute() ? ["/trainers"] : []),
+    ...(shouldIndexMemberStoriesRoute() ? ["/transformations"] : []),
+  ];
 
   const staticEntries: MetadataRoute.Sitemap = staticPaths.map((path) => ({
     url: buildCanonicalUrl(path),
