@@ -1,4 +1,3 @@
-import { PulseMediaPlate } from "./pulse/PulseMotion";
 import styles from "./pulse/pulse-home.module.css";
 
 export type WhyPoint = {
@@ -21,26 +20,18 @@ export function WhyStudio({ title, body, points = [] }: WhyStudioProps) {
       className={`${styles.field} ${styles.band} ${styles.diffBand}`}
       aria-labelledby="home-diff-title"
     >
-      <div className={styles.diffGrid}>
-        <PulseMediaPlate
-          slotKey="home.differentiator"
-          family="calm"
-          label="Coach-led session atmosphere placeholder — real photography pending"
-          aspect="16/9"
-        />
-        <div className={styles.diffCopy}>
-          <h2 id="home-diff-title">{title}</h2>
-          <p>{body}</p>
-          {points.length > 0 ? (
-            <ul className={styles.diffList}>
-              {points.map((point) => (
-                <li key={point.id}>
-                  <strong>{point.title}</strong> — {point.body}
-                </li>
-              ))}
-            </ul>
-          ) : null}
-        </div>
+      <div className={styles.diffCopy}>
+        <h2 id="home-diff-title">{title}</h2>
+        <p>{body}</p>
+        {points.length > 0 ? (
+          <ul className={styles.diffList}>
+            {points.map((point) => (
+              <li key={point.id}>
+                <strong>{point.title}</strong> — {point.body}
+              </li>
+            ))}
+          </ul>
+        ) : null}
       </div>
     </section>
   );

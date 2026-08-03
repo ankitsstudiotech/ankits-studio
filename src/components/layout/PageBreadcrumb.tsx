@@ -7,7 +7,9 @@ export type BreadcrumbItem = {
 };
 
 /**
- * Shared breadcrumb — utility surface chrome, sentence-case labels.
+ * Shared breadcrumb — designed for the light `.pulse-crumb-bar` strip
+ * (intentional neutral transition on dark Pulse pages). Ink tokens read correctly
+ * on surface; dark field pages should wrap this in `pulse-crumb-bar` / `crumbBar`.
  */
 export function PageBreadcrumb({ items }: { items: BreadcrumbItem[] }) {
   return (
@@ -18,9 +20,16 @@ export function PageBreadcrumb({ items }: { items: BreadcrumbItem[] }) {
             const isLast = index === items.length - 1;
             return (
               <li key={`${item.name}-${index}`} className="flex items-center gap-2">
-                {index > 0 ? <span aria-hidden>/</span> : null}
+                {index > 0 ? (
+                  <span aria-hidden className="text-ink-subtle">
+                    /
+                  </span>
+                ) : null}
                 {isLast || !item.path ? (
-                  <span aria-current={isLast ? "page" : undefined} className="text-ink break-words">
+                  <span
+                    aria-current={isLast ? "page" : undefined}
+                    className="break-words text-ink"
+                  >
                     {item.name}
                   </span>
                 ) : (

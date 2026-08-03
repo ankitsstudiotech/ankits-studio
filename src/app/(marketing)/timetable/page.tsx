@@ -44,7 +44,7 @@ const FAQ = [
     id: "faq-operating-window",
     question: "Does 6:00 AM–10:00 PM mean classes run all day?",
     answer:
-      "No. That is the studio operating window — every day, with no weekly closing day. Individual batch times vary by branch and programme and are confirmed when you enquire.",
+      "No. That is when the studio is open — every day, with no weekly closing day. Individual batch times vary by branch and programme and are confirmed when you enquire.",
   },
   {
     id: "faq-walk-in",
@@ -56,7 +56,7 @@ const FAQ = [
     id: "faq-trial",
     question: "Can I book a free trial while asking about batches?",
     answer:
-      "Yes. The WhatsApp enquiry can cover both current availability and a free trial. Opening chat does not mean your enquiry was submitted.",
+      "Yes. The WhatsApp enquiry can cover both current availability and a free trial.",
   },
 ] as const;
 
@@ -106,50 +106,59 @@ export default function TimetablePage() {
         dangerouslySetInnerHTML={{ __html: serializeJsonLd(pageJsonLd) }}
       />
 
-      <PageBreadcrumb items={breadcrumbTrail} />
+      <div className={styles.crumbBar}>
+        <PageBreadcrumb items={breadcrumbTrail} />
+      </div>
 
-      <section className={styles.band} aria-labelledby="batch-availability-title">
-        <p className={styles.kicker}>Batch availability</p>
-        <h1 id="batch-availability-title" className={styles.title}>
-          Check current batches
-        </h1>
-        <p className={styles.lede}>
-          Ask Ankit’s Studio on WhatsApp for current availability by branch and programme — then book
-          a free trial when you are ready.
-        </p>
-      </section>
-
-      <section className={styles.band} aria-labelledby="operating-hours-title">
-        <h2 id="operating-hours-title" className={styles.sectionTitle}>
-          Studio operating hours
-        </h2>
-        <div className={styles.hoursBox}>
-          <p className={styles.hoursValue}>6:00 AM to 10:00 PM · every day</p>
+      <section
+        className={`${styles.band} ${styles.bandWide} ${styles.splitBand}`}
+        aria-labelledby="batch-availability-title"
+      >
+        <div>
+          <p className={styles.kicker}>Batch availability</p>
+          <h1 id="batch-availability-title" className={styles.title}>
+            Check current batches
+          </h1>
           <p className={styles.lede}>
-            Studios operate between 6:00 AM and 10:00 PM every day — there is no weekly closing day.
-            Individual batch times vary by branch and programme.
+            Ask Ankit’s Studio on WhatsApp for current availability by branch and programme — then book
+            a free trial when you are ready.
           </p>
-          <p className={styles.pendingNote}>
-            Detailed branch-wise schedules are being updated. Advance booking is not compulsory, but
-            checking WhatsApp availability is recommended — we do not guarantee every walk-in can be
-            accommodated.
-          </p>
-        </div>
-      </section>
 
-      <section className={styles.band} aria-labelledby="enquiry-builder-title">
-        <h2 id="enquiry-builder-title" className={styles.sectionTitle}>
-          Availability enquiry
-        </h2>
-        <p className={styles.lede}>
-          Prepare a WhatsApp message for the service you want. You do not need every field filled in
-          before you open the chat.
-        </p>
-        <AvailabilityEnquiryBuilder
-          services={services}
-          branches={branchOptions}
-          fallbackHref={fallbackHref}
-        />
+          <h2 id="operating-hours-title" className={styles.sectionTitle} style={{ marginTop: "2rem" }}>
+            Studio operating hours
+          </h2>
+          <div className={styles.hoursBox}>
+            <p className={styles.hoursValue}>6:00 AM to 10:00 PM · every day</p>
+            <p className={styles.lede}>
+              Studios operate between 6:00 AM and 10:00 PM every day — there is no weekly closing day.
+              Individual batch times vary by branch and programme.
+            </p>
+            <p className={styles.pendingNote}>
+              Detailed branch-wise schedules are being updated. Advance booking is not compulsory, but
+              checking WhatsApp availability is recommended — we do not guarantee every walk-in can be
+              accommodated.
+            </p>
+          </div>
+        </div>
+
+        <section
+          id="availability-enquiry"
+          className={styles.enquiryPanel}
+          aria-labelledby="enquiry-builder-title"
+        >
+          <h2 id="enquiry-builder-title" className={styles.sectionTitle}>
+            Availability enquiry
+          </h2>
+          <p className={styles.lede}>
+            Prepare a WhatsApp message for the service you want. You do not need every field filled in
+            before you open the chat.
+          </p>
+          <AvailabilityEnquiryBuilder
+            services={services}
+            branches={branchOptions}
+            fallbackHref={fallbackHref}
+          />
+        </section>
       </section>
 
       <section className={styles.band} aria-labelledby="audience-notes-title">
@@ -166,7 +175,7 @@ export default function TimetablePage() {
           {commercial.maxGroupBatchSize != null ? (
             <li className={styles.fact}>
               <strong>Maximum group batch size</strong>
-              Up to {commercial.maxGroupBatchSize} people in a group batch — not a live seat count.
+              Up to {commercial.maxGroupBatchSize} people in a typical group batch.
             </li>
           ) : null}
         </ul>

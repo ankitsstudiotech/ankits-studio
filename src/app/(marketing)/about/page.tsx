@@ -1,6 +1,5 @@
 import type { Metadata } from "next";
 import Link from "next/link";
-import { PulseMediaPlate } from "@/components/home/pulse/PulseMotion";
 import { PageBreadcrumb } from "@/components/layout/PageBreadcrumb";
 import styles from "@/components/about/pulse/about.module.css";
 import {
@@ -13,6 +12,7 @@ import {
 import {
   getPrimaryConversionHref,
   getPrimaryConversionLabel,
+  WHATSAPP_REVIEW_HELPER,
 } from "@/lib/conversion";
 import { buildPageMetadata } from "@/lib/seo/metadata";
 import { serializeJsonLd } from "@/lib/seo/serialize";
@@ -45,7 +45,7 @@ function deliveryLabel(mode: string | undefined): string {
 
 /**
  * Honest About page — verified studio story only.
- * Founder narrative and founding year are owner-confirmed; certification claims stay unpublished.
+ * Founder narrative and founding year are published; certification claims stay unpublished.
  */
 export default function AboutPage() {
   const about = getStudioAbout();
@@ -92,38 +92,18 @@ export default function AboutPage() {
           {about.headline}
         </h1>
         <p className={styles.lede}>{about.lede}</p>
-        <div className={styles.mediaWrap} style={{ marginTop: "1.5rem" }}>
-          <PulseMediaPlate
-            slotKey="about.hero"
-            family="strength"
-            label="Studio atmosphere placeholder — real photography pending"
-            aspect="16/9"
-          />
-        </div>
       </section>
 
-      <section className={styles.band} aria-labelledby="about-approach-title">
-        <div className={styles.split}>
-          <div className={styles.mediaWrap}>
-            <PulseMediaPlate
-              slotKey="about.machine-free"
-              family="calm"
-              label="Machine-free training atmosphere placeholder — real photography pending"
-              aspect="16/9"
-            />
-          </div>
-          <div className={styles.splitCopy}>
-            <h2 id="about-approach-title" className={styles.sectionTitle}>
-              {about.approachTitle}
-            </h2>
-            {commercial.differentiator ? (
-              <p className={styles.lede} style={{ marginBottom: "0.85rem" }}>
-                {commercial.differentiator}
-              </p>
-            ) : null}
-            <p className={styles.body}>{about.approachBody}</p>
-          </div>
-        </div>
+      <section className={`${styles.band} ${styles.bandNarrow}`} aria-labelledby="about-approach-title">
+        <h2 id="about-approach-title" className={styles.sectionTitle}>
+          {about.approachTitle}
+        </h2>
+        {commercial.differentiator ? (
+          <p className={styles.lede} style={{ marginBottom: "0.85rem" }}>
+            {commercial.differentiator}
+          </p>
+        ) : null}
+        <p className={styles.body}>{about.approachBody}</p>
       </section>
 
       {showFounder && about.founderStory ? (
@@ -136,18 +116,18 @@ export default function AboutPage() {
           ) : null}
           <p className={styles.body}>{about.founderStory}</p>
           <p className={styles.provenance}>
-            Founder: Ankit Nalawade. Certification claims are not published until evidence is reviewed.
+            Founder: Ankit Nalawade. Individual certification details are not listed on this page.
           </p>
         </section>
       ) : showDevPending ? (
         <section className={`${styles.band} ${styles.bandNarrow}`}>
           <p className={styles.devPending} data-about-pending="founder">
-            Development note: founder story remains pending — omitted from the public narrative.
+            Founder story will appear here once it is ready to publish.
           </p>
         </section>
       ) : null}
 
-      <section className={styles.band} aria-labelledby="about-disciplines-title">
+      <section className={`${styles.band} ${styles.bandNarrow}`} aria-labelledby="about-disciplines-title">
         <h2 id="about-disciplines-title" className={styles.sectionTitle}>
           {about.disciplinesTitle}
         </h2>
@@ -166,40 +146,20 @@ export default function AboutPage() {
             </li>
           ))}
         </ol>
-        <div className={styles.mediaWrap} style={{ marginTop: "1.5rem" }}>
-          <PulseMediaPlate
-            slotKey="about.disciplines"
-            family="high-energy"
-            label="Multi-discipline activity placeholder — real photography pending"
-            aspect="16/9"
-          />
-        </div>
       </section>
 
-      <section className={styles.band} aria-labelledby="about-branches-title">
-        <div className={`${styles.split} ${styles.splitReverse}`}>
-          <div className={styles.mediaWrap}>
-            <PulseMediaPlate
-              slotKey="about.branches"
-              family="warm"
-              label="Neighbourhood branch atmosphere placeholder — real photography pending"
-              aspect="16/9"
-            />
-          </div>
-          <div className={styles.splitCopy}>
-            <h2 id="about-branches-title" className={styles.sectionTitle}>
-              {about.branchesTitle}
-            </h2>
-            <p className={styles.body}>{about.branchesBody}</p>
-            <ul className={styles.branchList}>
-              {branches.map((branch) => (
-                <li key={branch.slug}>
-                  <Link href={`/locations/${branch.slug}`}>{branch.locality}</Link>
-                </li>
-              ))}
-            </ul>
-          </div>
-        </div>
+      <section className={`${styles.band} ${styles.bandNarrow}`} aria-labelledby="about-branches-title">
+        <h2 id="about-branches-title" className={styles.sectionTitle}>
+          {about.branchesTitle}
+        </h2>
+        <p className={styles.body}>{about.branchesBody}</p>
+        <ul className={styles.branchList}>
+          {branches.map((branch) => (
+            <li key={branch.slug}>
+              <Link href={`/locations/${branch.slug}`}>{branch.locality}</Link>
+            </li>
+          ))}
+        </ul>
       </section>
 
       <section className={`${styles.band} ${styles.bandNarrow}`} aria-labelledby="about-team-title">
@@ -212,15 +172,6 @@ export default function AboutPage() {
           <p className={styles.body}>{about.teamBody}</p>
           <p className={styles.provenance}>{about.teamCountProvenance}</p>
         </div>
-        <div className={styles.mediaWrap} style={{ marginTop: "1.35rem" }}>
-          <PulseMediaPlate
-            slotKey="about.team"
-            family="warm"
-            label="Team photograph placeholder — real photography pending"
-            aspect="16/9"
-          />
-        </div>
-        {/* Verified trainer profiles render here later via trainerProfileSlugs — none published yet. */}
       </section>
 
       {about.faqs.length > 0 ? (
@@ -315,9 +266,7 @@ export default function AboutPage() {
             Find a Studio
           </Link>
         </div>
-        <p className={styles.ctaNote}>
-          Opening WhatsApp starts a chat — it does not mean your enquiry was submitted.
-        </p>
+        <p className={styles.ctaNote}>{WHATSAPP_REVIEW_HELPER}</p>
       </section>
     </main>
   );

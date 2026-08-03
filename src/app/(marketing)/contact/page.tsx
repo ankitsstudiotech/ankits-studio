@@ -1,12 +1,12 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import { PageBreadcrumb } from "@/components/layout/PageBreadcrumb";
-import { Badge } from "@/components/ui/Badge";
-import { Card } from "@/components/ui/Card";
-import { Section } from "@/components/ui/Section";
-import { Body, Caption, Heading } from "@/components/ui/Typography";
 import { getContactDetails, getPubliclyListedBranches, getStudioContactLinks } from "@/content";
-import { getPrimaryConversionHref, SECONDARY_TRIAL_FORM_HREF } from "@/lib/conversion";
+import {
+  getPrimaryConversionHref,
+  SECONDARY_TRIAL_FORM_HREF,
+  WHATSAPP_REVIEW_HELPER,
+} from "@/lib/conversion";
 import { buildPageMetadata } from "@/lib/seo/metadata";
 import { serializeJsonLd } from "@/lib/seo/serialize";
 import { buildBreadcrumbJsonLd } from "@/lib/seo/structured-data";
@@ -17,7 +17,7 @@ const PATH = "/contact";
 export const metadata: Metadata = buildPageMetadata({
   title: "Contact",
   description:
-    "Contact Ankit's Studio — WhatsApp for a free trial, central phone, branch directory, and a trial form.",
+    "Contact Ankit's Studio — WhatsApp for a free trial, central phone, email, and branch directory.",
   path: PATH,
 });
 
@@ -37,167 +37,134 @@ export default async function ContactPage({ searchParams }: ContactPageProps) {
   const whatsappTrialHref = getPrimaryConversionHref();
   const branches = getPubliclyListedBranches();
   const breadcrumbJsonLd = buildBreadcrumbJsonLd(breadcrumbTrail);
-  const disclaimer =
-    contact.dataStatus === "verified" ? undefined : contact.mockDisclaimer;
 
   const status = params.status;
   const statusMessage =
     status === "received"
-      ? params.mode === "mock"
-        ? `Inquiry accepted locally for development (reference ${params.ref ?? "n/a"}). Not delivered to a live inbox.`
-        : `Inquiry accepted (reference ${params.ref ?? "n/a"}).`
-      : status === "not-configured"
-        ? "Your message was not delivered. No live lead provider is configured."
-        : status === "provider-error"
-          ? "Your message was not delivered. The lead provider is not ready."
-          : null;
+      ? `Thanks — we received your enquiry reference ${params.ref ?? "n/a"}.`
+      : status === "not-configured" || status === "provider-error"
+        ? "Your message could not be delivered right now. Please reach us on WhatsApp or phone instead."
+        : null;
 
   return (
-    <main className="flex flex-1 flex-col">
+    <main className="pulse-page flex flex-1 flex-col">
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: serializeJsonLd(breadcrumbJsonLd) }}
       />
 
-      <PageBreadcrumb items={breadcrumbTrail} />
+      <div className="pulse-crumb-bar">
+        <PageBreadcrumb items={breadcrumbTrail} />
+      </div>
 
-      <Section
-        eyebrow="Contact"
-        title="Get in touch"
-        titleAs="h1"
-        description={contact.introText}
-      >
-        <Badge accent="neutral" className="mb-4">
-          {contact.dataStatus === "verified" ? "Central enquiry verified" : "Safe mock contact states"}
-        </Badge>
-        <Body className="mb-4 max-w-3xl">
-          Primary path:{" "}
-          <Link
-            href={whatsappTrialHref}
-            className="font-semibold text-ink underline underline-offset-4 hover:text-accent"
-            {...(whatsappTrialHref.startsWith("http")
-              ? { target: "_blank", rel: "noopener noreferrer" }
-              : {})}
-          >
-            book a free trial on WhatsApp
-          </Link>
-          . Opening WhatsApp does not mean a message was delivered. Secondary:{" "}
-          <Link
-            href={SECONDARY_TRIAL_FORM_HREF}
-            className="font-semibold text-ink underline underline-offset-4 hover:text-accent"
-          >
-            trial request form
-          </Link>
-          .
-        </Body>
-        {disclaimer ? <Caption className="mb-6 text-ink-subtle">{disclaimer}</Caption> : null}
-
-        <dl className="mb-10 grid gap-4 sm:grid-cols-2">
-          <div className="border border-border bg-surface-raised p-5">
-            <dt className="text-sm font-semibold text-ink">Central phone & WhatsApp</dt>
-            <dd className="mt-2">
-              {studioLinks.phoneHref ? (
-                <Body as="span">
-                  <a
-                    href={studioLinks.phoneHref}
-                    className="font-semibold text-ink underline underline-offset-4 hover:text-accent"
-                  >
-                    {contact.generalPhone}
-                  </a>
-                </Body>
-              ) : (
-                <Body as="span">{contact.generalPhone}</Body>
-              )}
-              <Caption className="mt-2 block">
-                Central studio enquiry number for calls and WhatsApp across all branches.
-                Messages are answered during studio operating hours.
-                {studioLinks.whatsappHref ? (
-                  <>
-                    {" "}
-                    <a
-                      href={whatsappTrialHref.startsWith("http") ? whatsappTrialHref : studioLinks.whatsappHref}
-                      className="font-semibold text-ink underline underline-offset-4 hover:text-accent"
-                      target="_blank"
-                      rel="noopener noreferrer"
-                    >
-                      Open WhatsApp
-                    </a>
-                    {" "}
-                    (does not confirm delivery).
-                  </>
-                ) : null}
-              </Caption>
-            </dd>
+      <div className="mx-auto grid w-full max-w-[var(--width-container)] gap-10 px-[var(--spacing-gutter)] py-[var(--spacing-section)] lg:grid-cols-2 lg:items-start lg:gap-14">
+        <section aria-labelledby="contact-title">
+          <p className="pulse-kicker">Contact</p>
+          <h1 id="contact-title" className="pulse-title">
+            Get in touch
+          </h1>
+          <p className="pulse-lede">{contact.introText}</p>
+          <div className="mt-6 flex flex-col gap-3">
+            <Link
+              href={whatsappTrialHref}
+              className="pulse-cta self-start"
+              {...(whatsappTrialHref.startsWith("http")
+                ? { target: "_blank", rel: "noopener noreferrer" }
+                : {})}
+            >
+              Book a free trial on WhatsApp
+            </Link>
+            <p className="pulse-body max-w-prose">{WHATSAPP_REVIEW_HELPER}</p>
+            <p className="pulse-body">
+              Or use the{" "}
+              <Link href={SECONDARY_TRIAL_FORM_HREF} className="font-semibold text-ink-inverse underline underline-offset-4">
+                trial message builder
+              </Link>
+              .
+            </p>
           </div>
-          <div className="border border-border bg-surface-raised p-5">
-            <dt className="text-sm font-semibold text-ink">General email</dt>
-            <dd className="mt-2">
-              {studioLinks.emailHref ? (
-                <Body as="span" className="break-all">
-                  <a
-                    href={studioLinks.emailHref}
-                    className="font-semibold text-ink underline underline-offset-4 hover:text-accent"
-                  >
-                    {contact.generalEmail}
-                  </a>
-                </Body>
-              ) : (
-                <Body as="span" className="break-all">
-                  {contact.generalEmail}
-                </Body>
-              )}
-              <Caption className="mt-2 block">
-                Public studio email. Messages are answered during studio operating hours.
-              </Caption>
-            </dd>
+        </section>
+
+        <section aria-labelledby="contact-channels" className="space-y-4">
+          <h2 id="contact-channels" className="pulse-section-title">
+            Phone, email &amp; branches
+          </h2>
+          <div className="border border-white/10 bg-field-raised p-5">
+            <p className="text-sm font-semibold text-ink-inverse">Central phone &amp; WhatsApp</p>
+            {studioLinks.phoneHref ? (
+              <a
+                href={studioLinks.phoneHref}
+                className="mt-2 block text-lg font-semibold text-ink-inverse underline underline-offset-4"
+              >
+                {contact.generalPhone}
+              </a>
+            ) : (
+              <p className="mt-2 text-lg font-semibold text-ink-inverse">{contact.generalPhone}</p>
+            )}
+            <p className="mt-2 text-sm text-[var(--color-muted-on-field)]">
+              Shared across all branches. Messages are answered during studio operating hours.
+            </p>
           </div>
-        </dl>
-      </Section>
+          <div className="border border-white/10 bg-field-raised p-5">
+            <p className="text-sm font-semibold text-ink-inverse">Email</p>
+            {studioLinks.emailHref ? (
+              <a
+                href={studioLinks.emailHref}
+                className="mt-2 block break-all font-semibold text-ink-inverse underline underline-offset-4"
+              >
+                {contact.generalEmail}
+              </a>
+            ) : (
+              <p className="mt-2 break-all font-semibold text-ink-inverse">{contact.generalEmail}</p>
+            )}
+          </div>
+          <ul className="grid gap-3 sm:grid-cols-2">
+            {branches.map((branch) => (
+              <li key={branch.slug}>
+                <Link
+                  href={`/locations/${branch.slug}`}
+                  className="block border border-white/10 bg-field-raised p-4 text-ink-inverse no-underline transition-colors hover:border-white/25"
+                >
+                  <span className="font-[family-name:var(--font-display)] text-lg tracking-wide">
+                    {branch.locality}
+                  </span>
+                  <span className="mt-1 block text-sm text-[var(--color-muted-on-field)]">
+                    {branch.address ?? "Address on the branch page"}
+                  </span>
+                </Link>
+              </li>
+            ))}
+          </ul>
+        </section>
+      </div>
 
-      <Section
-        eyebrow="Branches"
-        title="Listed locations"
-        description="All four branches share the central phone and WhatsApp number."
+      <section
+        id="contact-form"
+        className="mx-auto w-full max-w-[var(--width-container)] px-[var(--spacing-gutter)] pb-[var(--spacing-section)]"
+        aria-labelledby="contact-form-title"
       >
-        <ul className="grid gap-4 sm:grid-cols-2">
-          {branches.map((branch) => (
-            <li key={branch.slug}>
-              <Card href={`/locations/${branch.slug}`} interactive className="h-full">
-                <Heading as="h3" className="mb-2 break-words">
-                  {branch.name}
-                </Heading>
-                <Body className="mb-3 break-words">
-                  {branch.address ?? "Detailed address is being updated."}
-                </Body>
-                <Caption>
-                  {branch.dataStatus === "verified"
-                    ? "Verified branch details."
-                    : branch.mockDisclaimer}
-                </Caption>
-              </Card>
-            </li>
-          ))}
-        </ul>
-      </Section>
-
-      <Section
-        eyebrow="Inquiry"
-        title="Send a non-trial message"
-        description="Fallback form for general questions. Live delivery requires a configured lead provider."
-        narrow
-      >
-        {statusMessage ? (
-          <p
-            role="status"
-            aria-live="polite"
-            className="mb-6 rounded-[var(--radius-md)] border border-border bg-surface-raised px-4 py-3 text-sm"
+        <div className="mx-auto max-w-[var(--width-container-narrow)] border border-white/10 bg-[var(--color-surface)] p-5 text-ink sm:p-6">
+          <h2
+            id="contact-form-title"
+            className="mb-2 font-[family-name:var(--font-display)] text-[length:var(--text-heading)]"
           >
-            {statusMessage}
+            Send a general message
+          </h2>
+          <p className="mb-6 text-sm text-ink-muted">
+            For non-trial questions. Prefer WhatsApp for the fastest reply about batches and trials.
           </p>
-        ) : null}
-
-        <ContactForm />
-      </Section>
+          {statusMessage ? (
+            <p
+              role="status"
+              aria-live="polite"
+              className="mb-6 border border-border bg-surface-raised px-4 py-3 text-sm"
+            >
+              {statusMessage}
+            </p>
+          ) : null}
+          <ContactForm />
+        </div>
+      </section>
     </main>
   );
 }

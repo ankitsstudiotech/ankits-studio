@@ -1,6 +1,6 @@
 import Image from "next/image";
 import Link from "next/link";
-import { PulseCta, PulseMediaPlate } from "./pulse/PulseMotion";
+import { PulseCta } from "./pulse/PulseMotion";
 import styles from "./pulse/pulse-home.module.css";
 
 export type HeroProps = {
@@ -13,7 +13,7 @@ export type HeroProps = {
 
 /**
  * Studio Pulse hero — brand, offering, places, WhatsApp trial.
- * Copy is server-rendered at full opacity. Media deferred below copy on mobile.
+ * Copy is server-rendered at full opacity. Text-led; no media plate.
  * Full brand lockup is header-primary on small screens (hero brand softens).
  */
 export function Hero({
@@ -50,16 +50,6 @@ export function Hero({
               {secondaryCta.label}
             </Link>
           ) : null}
-        </div>
-      </div>
-      <div className={styles.heroStack} aria-hidden>
-        <div className={styles.layerA}>
-          <PulseMediaPlate
-            slotKey="home.hero"
-            family="strength"
-            label="Studio atmosphere placeholder — real photography pending"
-            aspect="16/9"
-          />
         </div>
       </div>
     </section>

@@ -37,7 +37,7 @@ const FAQ = [
     id: "faq-trial-free",
     question: "Is the trial class free?",
     answer:
-      "Yes. A free trial is available for every service at every physical branch, once per person. Opening WhatsApp starts a chat — it does not mean your enquiry was submitted.",
+      "Yes. A free trial is available for every service at every physical branch, once per person. Message us on WhatsApp to book.",
   },
   {
     id: "faq-registration",
@@ -119,87 +119,92 @@ export default function PricingPage() {
         dangerouslySetInnerHTML={{ __html: serializeJsonLd(pageJsonLd) }}
       />
 
-      <PageBreadcrumb items={breadcrumbTrail} />
+      <div className={styles.crumbBar}>
+        <PageBreadcrumb items={breadcrumbTrail} />
+      </div>
 
-      <section className={styles.band} aria-labelledby="pricing-title">
-        <p className={styles.kicker}>Pricing</p>
-        <h1 id="pricing-title" className={styles.title}>
-          Fees &amp; free trial
-        </h1>
-        <p className={styles.lede}>
-          Your trial class is free for every service at every physical branch — once per person. A
-          one-time registration fee of ₹300 per person applies after you join and is not charged again
-          after a membership break. Programme fees vary by service and branch. GST is included in
-          supplied prices. Message us for the current fee.
-        </p>
-      </section>
+      <section className={`${styles.band} ${styles.bandWide} ${styles.splitBand}`} aria-labelledby="pricing-title">
+        <div>
+          <p className={styles.kicker}>Pricing</p>
+          <h1 id="pricing-title" className={styles.title}>
+            Fees &amp; free trial
+          </h1>
+          <p className={styles.lede}>
+            Your trial class is free for every service at every physical branch — once per person. A
+            one-time registration fee of ₹300 per person applies after you join and is not charged again
+            after a membership break. Programme fees vary by service and branch. GST is included in
+            supplied prices. Message us for the current fee.
+          </p>
 
-      <section className={styles.band} aria-labelledby="confirmed-fees-title">
-        <h2 id="confirmed-fees-title" className={styles.sectionTitle}>
-          Confirmed
-        </h2>
-        <ul className={styles.confirmedList}>
-          <li className={styles.confirmedItem}>
-            <p className={styles.kicker}>Trial</p>
-            <p className={styles.feeAmount}>
-              {commercial.trialIsFree ? "Free" : "To be confirmed"}
-            </p>
-            <p className={styles.feeMeta}>
-              Free for every service and physical branch, once per person. Advance booking is not
-              compulsory, but checking WhatsApp availability is recommended.
-            </p>
-          </li>
-          {typeof registrationFee === "number" ? (
+          <h2 id="confirmed-fees-title" className={styles.sectionTitle} style={{ marginTop: "2rem" }}>
+            Confirmed
+          </h2>
+          <ul className={styles.confirmedList}>
             <li className={styles.confirmedItem}>
-              <p className={styles.kicker}>Registration</p>
-              <p className={styles.feeAmount}>₹{registrationFee}</p>
+              <p className={styles.kicker}>Trial</p>
+              <p className={styles.feeAmount}>
+                {commercial.trialIsFree ? "Free" : "To be confirmed"}
+              </p>
               <p className={styles.feeMeta}>
-                One-time registration fee per person after you join. Not recharged after a membership
-                break. Not a monthly fee, not a trial charge, and not a recurring charge.
+                Free for every service and physical branch, once per person. Advance booking is not
+                compulsory, but checking WhatsApp availability is recommended.
               </p>
             </li>
-          ) : null}
-          <li className={styles.confirmedItem}>
-            <p className={styles.kicker}>Programme fees</p>
+            {typeof registrationFee === "number" ? (
+              <li className={styles.confirmedItem}>
+                <p className={styles.kicker}>Registration</p>
+                <p className={styles.feeAmount}>₹{registrationFee}</p>
+                <p className={styles.feeMeta}>
+                  One-time registration fee per person after you join. Not recharged after a membership
+                  break. Not a monthly fee, not a trial charge, and not a recurring charge.
+                </p>
+              </li>
+            ) : null}
+            <li className={styles.confirmedItem}>
+              <p className={styles.kicker}>Programme fees</p>
             <p className={styles.feeMeta}>
               Fees vary by service and branch. GST is included in supplied prices. Exact amounts are
-              shared when you enquire — we do not publish invented monthly or package prices.
+              shared when you enquire.
             </p>
           </li>
           <li className={styles.confirmedItem}>
             <p className={styles.kicker}>Pricing bases</p>
             <p className={styles.feeMeta}>
               Wedding Choreography is priced per couple. Home Personal Training is priced per session.
-              Online Training uses Zoom (one-to-one and group). Exact rates remain pending.
+              Online Training uses Zoom (one-to-one and group). Exact rates are confirmed when you
+              enquire.
             </p>
           </li>
-        </ul>
-      </section>
+          </ul>
 
-      <section className={styles.band} aria-labelledby="why-varies-title">
-        <h2 id="why-varies-title" className={styles.sectionTitle}>
-          What affects pricing
-        </h2>
-        <p className={styles.lede}>
-          The right fee depends on the service, the branch, and how you train. Discounts are available
-          for some customer groups or plans — exact rules are confirmed when you enquire. We do not
-          publish unfinished membership legal wording as final terms here.
-        </p>
-      </section>
+          <h2 id="why-varies-title" className={styles.sectionTitle} style={{ marginTop: "2rem" }}>
+            What affects pricing
+          </h2>
+          <p className={styles.lede}>
+            The right fee depends on the service, the branch, and how you train. Discounts are available
+            for some customer groups or plans — exact rules are confirmed when you enquire. We do not
+            publish unfinished membership legal wording as final terms here.
+          </p>
+        </div>
 
-      <section className={styles.band} aria-labelledby="pricing-enquiry-title">
-        <h2 id="pricing-enquiry-title" className={styles.sectionTitle}>
-          Request current fees
-        </h2>
-        <p className={styles.lede}>
-          Prepare a WhatsApp message for the service you want. You do not need every field filled in
-          before you open the chat.
-        </p>
-        <PricingEnquiryBuilder
-          services={services}
-          branches={branchOptions}
-          fallbackHref={fallbackHref}
-        />
+        <section
+          id="pricing-enquiry"
+          className={styles.enquiryPanel}
+          aria-labelledby="pricing-enquiry-title"
+        >
+          <h2 id="pricing-enquiry-title" className={styles.sectionTitle}>
+            Request current fees
+          </h2>
+          <p className={styles.lede}>
+            Prepare a WhatsApp message for the service you want. You do not need every field filled in
+            before you open the chat.
+          </p>
+          <PricingEnquiryBuilder
+            services={services}
+            branches={branchOptions}
+            fallbackHref={fallbackHref}
+          />
+        </section>
       </section>
 
       <section className={styles.band} aria-labelledby="pending-policies-title">
@@ -207,8 +212,7 @@ export default function PricingPage() {
           Still being updated
         </h2>
         <p className={styles.lede}>
-          These details are not published yet. Ask on WhatsApp if you need them for your decision —
-          we will not invent amounts on this page.
+          These details are not published yet. Ask on WhatsApp if you need them for your decision.
         </p>
         <ul className={styles.pendingList}>
           <li>Exact monthly, quarterly, half-yearly and annual programme fee amounts</li>
@@ -216,10 +220,10 @@ export default function PricingPage() {
           <li>Exact Home Personal Training session rates and Online Training package amounts</li>
           <li>Exact discount eligibility rules</li>
           <li>
-            Final customer-facing membership legal terms (cancellation, refund, freeze, transfer) —
-            owner-confirmed policies pending legal copy
+            Final membership terms (cancellation, refund, freeze, transfer) — ask us if you need
+            details for your decision
           </li>
-          <li>Missed-class policy (owner reply still ambiguous)</li>
+          <li>Missed-class policy — confirmed when you enquire</li>
         </ul>
       </section>
 
