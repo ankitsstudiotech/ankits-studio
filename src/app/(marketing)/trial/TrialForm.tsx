@@ -139,24 +139,40 @@ export function TrialForm({
         </TextSelect>
       </Field>
 
-      <Field id="ageGroup" label="Age group" error={fieldErrors.ageGroup}>
+      <Field
+        id="ageGroup"
+        label="Age group (optional)"
+        hint="Helpful for kids’ Dance batches or programme suitability."
+        error={fieldErrors.ageGroup}
+      >
         <TextSelect
           id="ageGroup"
           name="ageGroup"
-          required
           defaultValue=""
           invalid={Boolean(fieldErrors.ageGroup)}
           aria-describedby={fieldErrors.ageGroup ? "ageGroup-error" : undefined}
         >
-          <option value="" disabled>
-            Select an age group
-          </option>
+          <option value="">Prefer not to say</option>
           {ageGroupValues.map((value) => (
             <option key={value} value={value}>
               {AGE_LABELS[value]}
             </option>
           ))}
         </TextSelect>
+      </Field>
+
+      <Field
+        id="trialDate"
+        label="Preferred trial date (optional)"
+        error={fieldErrors.trialDate}
+      >
+        <TextInput
+          id="trialDate"
+          name="trialDate"
+          type="date"
+          invalid={Boolean(fieldErrors.trialDate)}
+          aria-describedby={fieldErrors.trialDate ? "trialDate-error" : undefined}
+        />
       </Field>
 
       <Field id="message" label="Optional message" error={fieldErrors.message}>

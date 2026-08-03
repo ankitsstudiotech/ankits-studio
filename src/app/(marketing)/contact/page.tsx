@@ -109,7 +109,8 @@ export default async function ContactPage({ searchParams }: ContactPageProps) {
                 <Body as="span">{contact.generalPhone}</Body>
               )}
               <Caption className="mt-2 block">
-                Central studio enquiry number — inherited by branches; not a unique branch line.
+                Central studio enquiry number for calls and WhatsApp across all branches.
+                Messages are answered during studio operating hours.
                 {studioLinks.whatsappHref ? (
                   <>
                     {" "}
@@ -131,11 +132,22 @@ export default async function ContactPage({ searchParams }: ContactPageProps) {
           <div className="rounded-[var(--radius-lg)] border border-border bg-surface-raised p-5">
             <dt className="text-sm font-semibold text-ink">General email</dt>
             <dd className="mt-2">
-              <Body as="span" className="break-all">
-                {contact.generalEmail}
-              </Body>
+              {studioLinks.emailHref ? (
+                <Body as="span" className="break-all">
+                  <a
+                    href={studioLinks.emailHref}
+                    className="font-semibold text-ink underline underline-offset-4 hover:text-accent"
+                  >
+                    {contact.generalEmail}
+                  </a>
+                </Body>
+              ) : (
+                <Body as="span" className="break-all">
+                  {contact.generalEmail}
+                </Body>
+              )}
               <Caption className="mt-2 block">
-                Placeholder address — not a confirmed studio inbox.
+                Public studio email. Messages are answered during studio operating hours.
               </Caption>
             </dd>
           </div>
@@ -145,7 +157,7 @@ export default async function ContactPage({ searchParams }: ContactPageProps) {
       <Section
         eyebrow="Branches"
         title="Listed locations"
-        description="Branch phone and WhatsApp actions stay disabled until each branch record is verified."
+        description="All four branches share the central phone and WhatsApp number."
       >
         <ul className="grid gap-4 sm:grid-cols-2">
           {branches.map((branch) => (

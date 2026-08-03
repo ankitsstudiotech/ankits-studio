@@ -55,6 +55,15 @@ describe("trialLeadSchema", () => {
     expect(result.success).toBe(false);
   });
 
+  it("accepts a submission without ageGroup or trialDate", () => {
+    const { ageGroup: _omit, ...withoutAge } = validTrialLead;
+    void _omit;
+    expect(trialLeadSchema.safeParse(withoutAge).success).toBe(true);
+    expect(
+      trialLeadSchema.safeParse({ ...validTrialLead, ageGroup: "", trialDate: "2026-08-10" }).success,
+    ).toBe(true);
+  });
+
   it("rejects consent: false", () => {
     const result = trialLeadSchema.safeParse({ ...validTrialLead, consent: false });
     expect(result.success).toBe(false);

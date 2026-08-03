@@ -65,7 +65,7 @@ export default async function TrialPage({ searchParams }: TrialPageProps) {
         description={
           demonstrationMode
             ? "Walk through the booking form in this mock preview. Submissions stay local — they are not delivered to the studio."
-            : "Tell us how to reach you and which class you’d like to try. Live delivery requires a configured lead provider."
+            : "Tell us how to reach you and which class you’d like to try. Advance booking is not compulsory, but checking current availability on WhatsApp is recommended. Messages are answered during studio operating hours. Live form delivery requires a configured lead provider."
         }
         narrow
       >

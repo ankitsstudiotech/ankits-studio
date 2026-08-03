@@ -13,7 +13,10 @@ export const trialLeadSchema = z.object({
   branchSlug: branchSlugSchema,
   programmeSlug: programmeSlugSchema,
   preferredTiming: z.enum(preferredTimingValues),
-  ageGroup: z.enum(ageGroupValues),
+  /** Optional — helpful for kids’ batches; not required for every enquiry. */
+  ageGroup: z.union([z.literal(""), z.enum(ageGroupValues)]).optional(),
+  /** Optional preferred trial date (free text / ISO date from date input). */
+  trialDate: z.string().trim().max(40).optional(),
   message: z.string().trim().max(500).optional(),
   consent: z
     .boolean()

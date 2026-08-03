@@ -66,7 +66,7 @@ export function SiteChrome({ children }: { children: React.ReactNode }) {
         groups={toFooterGroups()}
         disclaimer={
           identityDisclaimer ??
-          "Branch addresses remain pending confirmation. Central WhatsApp opens a chat — it does not confirm message delivery. Trial form remains available as a secondary path."
+          "Central WhatsApp opens a chat — it does not confirm message delivery. Messages are answered during studio operating hours. Trial form remains available as a secondary path."
         }
       />
       <StickyCtaBar

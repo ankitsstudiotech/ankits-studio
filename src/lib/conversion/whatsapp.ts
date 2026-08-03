@@ -14,6 +14,7 @@ Name:
 Preferred branch:
 Interested service:
 Preferred time:
+Trial date:
 Question:`;
 
 export type WhatsAppTrialFields = {
@@ -21,6 +22,9 @@ export type WhatsAppTrialFields = {
   preferredBranch?: string;
   interestedService?: string;
   preferredTime?: string;
+  /** Optional — useful for kids’ batches or programme suitability. */
+  age?: string;
+  trialDate?: string;
   question?: string;
 };
 
@@ -38,7 +42,15 @@ export function getCentralWhatsAppDigits(): string | null {
 }
 
 export function buildWhatsAppMessage(fields: WhatsAppTrialFields = {}): string {
-  if (!fields.name && !fields.preferredBranch && !fields.interestedService && !fields.preferredTime && !fields.question) {
+  const hasAny =
+    fields.name ||
+    fields.preferredBranch ||
+    fields.interestedService ||
+    fields.preferredTime ||
+    fields.age ||
+    fields.trialDate ||
+    fields.question;
+  if (!hasAny) {
     return WHATSAPP_TRIAL_TEMPLATE;
   }
 
@@ -50,8 +62,12 @@ export function buildWhatsAppMessage(fields: WhatsAppTrialFields = {}): string {
     `Preferred branch: ${fields.preferredBranch ?? ""}`,
     `Interested service: ${fields.interestedService ?? ""}`,
     `Preferred time: ${fields.preferredTime ?? ""}`,
-    `Question: ${fields.question ?? ""}`,
   ];
+  if (fields.age) {
+    lines.push(`Age: ${fields.age}`);
+  }
+  lines.push(`Trial date: ${fields.trialDate ?? ""}`);
+  lines.push(`Question: ${fields.question ?? ""}`);
   return lines.join("\n");
 }
 

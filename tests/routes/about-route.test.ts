@@ -16,16 +16,17 @@ const FORBIDDEN_SD =
   /"(@type"\s*:\s*"(Person|Employee|Award|Review|AggregateRating|EducationalOccupationalCredential)"|"founder")/i;
 
 const FORBIDDEN_COPY =
-  /transform your life|unlock your potential|where passion meets|award-winning|trusted by thousands|highly qualified|government-certified|expert trainers|certified professionals|2\+\s*years/i;
+  /transform your life|unlock your potential|where passion meets|award-winning|trusted by thousands|highly qualified|government-certified|expert trainers|certified professionals|2\+\s*years|Ministry of Ayush|government certified|government approved/i;
 
 describe("about route — verified studio story only", () => {
-  it("keeps founder story, founding date and credentials pending", () => {
+  it("publishes outcome-safe founder story and founding year; keeps credentials pending", () => {
     const about = getStudioAbout();
-    expect(about.founderStoryStatus).toBe("pending");
-    expect(about.foundingDateStatus).toBe("pending");
+    expect(about.founderStoryStatus).toBe("verified");
+    expect(about.foundingDateStatus).toBe("verified");
     expect(about.credentialsStatus).toBe("pending");
-    expect(about.founderStory).toBeUndefined();
-    expect(about.foundingDateLabel).toBeUndefined();
+    expect(about.founderStory).toMatch(/Ankit Nalawade founded Ankit’s Studio in 2019/);
+    expect(about.founderStory).not.toMatch(/transform their life|all health problems|Ministry of Ayush/i);
+    expect(about.foundingDateLabel).toBe("2019");
     expect(about.credentialsSummary).toBeUndefined();
     expect(about.trainerProfileSlugs).toEqual([]);
   });
@@ -55,7 +56,7 @@ describe("about route — verified studio story only", () => {
     );
   });
 
-  it("page source omits founder placeholder and unsupported credibility claims", () => {
+  it("page source shows founder when verified and omits unsupported credibility claims", () => {
     const source = readFileSync(
       join(process.cwd(), "src", "app", "(marketing)", "about", "page.tsx"),
       "utf8",
@@ -64,6 +65,7 @@ describe("about route — verified studio story only", () => {
     expect(source).not.toMatch(FORBIDDEN_COPY);
     expect(source).not.toMatch(/mission|vision|value cards|timeline/i);
     expect(source).toMatch(/founderStoryStatus === "verified"/);
+    expect(source).toMatch(/Founded/);
     expect(source).toMatch(/getPrimaryConversionHref/);
     expect(source).toMatch(/buildWebPageJsonLd/);
     expect(source).toMatch(/15\+/);
@@ -87,13 +89,14 @@ describe("about route — verified studio story only", () => {
     expect(getPrimaryConversionLabel()).toBe("Book a Free Trial on WhatsApp");
     expect(WHATSAPP_TRIAL_TEMPLATE).toMatch(/free trial/i);
     expect(WHATSAPP_TRIAL_TEMPLATE).toMatch(/Preferred branch:/);
+    expect(WHATSAPP_TRIAL_TEMPLATE).toMatch(/Trial date:/);
     expect(WHATSAPP_TRIAL_TEMPLATE).not.toMatch(/submitted|delivered/i);
   });
 
   it("metadata uses About title direction without invented claims", () => {
     const metadata = generateMetadata();
     expect(String(metadata.title)).toMatch(/About/i);
-    expect(String(metadata.description)).toMatch(/machine-free|coach-led|branches/i);
+    expect(String(metadata.description)).toMatch(/2019|machine-free|coach-led|branches/i);
     expect(String(metadata.description)).not.toMatch(FORBIDDEN_COPY);
   });
 

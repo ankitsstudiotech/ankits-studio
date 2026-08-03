@@ -217,15 +217,17 @@ export function getBranchPhysicalProgrammes(branch: Branch): Programme[] {
 export function getStudioContactLinks(): {
   phoneHref: string | null;
   whatsappHref: string | null;
+  emailHref: string | null;
 } {
   if (contactDetails.dataStatus !== "verified") {
-    return { phoneHref: null, whatsappHref: null };
+    return { phoneHref: null, whatsappHref: null, emailHref: null };
   }
   const phone = contactDetails.generalPhone;
   const whatsapp = contactDetails.generalWhatsapp ?? contactDetails.generalPhone;
   return {
     phoneHref: `tel:${phone.replace(/\s+/g, "")}`,
     whatsappHref: `https://wa.me/${whatsapp.replace(/\D/g, "")}`,
+    emailHref: `mailto:${contactDetails.generalEmail}`,
   };
 }
 

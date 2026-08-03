@@ -45,7 +45,7 @@ function deliveryLabel(mode: string | undefined): string {
 
 /**
  * Honest About page — verified studio story only.
- * Omits founder narrative, founding date, and credentials until owner-confirmed.
+ * Founder narrative and founding year are owner-confirmed; certification claims stay unpublished.
  */
 export default function AboutPage() {
   const about = getStudioAbout();
@@ -126,6 +126,27 @@ export default function AboutPage() {
         </div>
       </section>
 
+      {showFounder && about.founderStory ? (
+        <section className={`${styles.band} ${styles.bandNarrow}`} aria-labelledby="about-founder-title">
+          <h2 id="about-founder-title" className={styles.sectionTitle}>
+            Founder
+          </h2>
+          {about.foundingDateLabel ? (
+            <p className={styles.kicker}>Founded {about.foundingDateLabel}</p>
+          ) : null}
+          <p className={styles.body}>{about.founderStory}</p>
+          <p className={styles.provenance}>
+            Founder: Ankit Nalawade. Certification claims are not published until evidence is reviewed.
+          </p>
+        </section>
+      ) : showDevPending ? (
+        <section className={`${styles.band} ${styles.bandNarrow}`}>
+          <p className={styles.devPending} data-about-pending="founder">
+            Development note: founder story remains pending — omitted from the public narrative.
+          </p>
+        </section>
+      ) : null}
+
       <section className={styles.band} aria-labelledby="about-disciplines-title">
         <h2 id="about-disciplines-title" className={styles.sectionTitle}>
           {about.disciplinesTitle}
@@ -200,17 +221,6 @@ export default function AboutPage() {
           />
         </div>
         {/* Verified trainer profiles render here later via trainerProfileSlugs — none published yet. */}
-        {showFounder && about.founderStory ? (
-          <div style={{ marginTop: "1.5rem" }}>
-            <h3 className={styles.sectionTitle}>Founder</h3>
-            <p className={styles.body}>{about.founderStory}</p>
-          </div>
-        ) : showDevPending ? (
-          <p className={styles.devPending} data-about-pending="founder">
-            Development note: founder story, founding date and credentials remain pending — omitted
-            from the public narrative.
-          </p>
-        ) : null}
       </section>
 
       {about.faqs.length > 0 ? (

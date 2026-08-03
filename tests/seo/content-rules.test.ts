@@ -51,18 +51,18 @@ describe("central enquiry phone / WhatsApp", () => {
     const links = getStudioContactLinks();
     expect(links.phoneHref).toBe("tel:+919372402074");
     expect(links.whatsappHref).toBe("https://wa.me/919372402074");
+    expect(links.emailHref).toBe("mailto:ankitsstudio5@gmail.com");
   });
 
-  it("keeps branch tel/wa.me null until the branch record itself is verified", () => {
+  it("exposes branch tel/wa.me once the branch record is verified", () => {
     for (const branch of getBranches()) {
-      expect(branch.dataStatus).not.toBe("verified");
-      expect(branch.phone).toBeNull();
+      expect(branch.dataStatus).toBe("verified");
+      expect(branch.phone).toBe(CENTRAL);
       expect(branch.whatsapp).toBe(CENTRAL);
       expect(branch.inheritsCentralEnquiry).toBe(true);
       const links = getBranchContactLinks(branch);
-      expect(links.phoneHref).toBeNull();
-      expect(links.whatsappHref).toBeNull();
-      expect(links.mapEmbedUrl).toBeNull();
+      expect(links.phoneHref).toBe("tel:+919372402074");
+      expect(links.whatsappHref).toBe("https://wa.me/919372402074");
     }
   });
 });
@@ -102,10 +102,10 @@ describe("no medical or guaranteed-outcome claims", () => {
   });
 });
 
-describe("mapEmbedUrl remains unset on non-verified branches", () => {
-  it("never exposes mapEmbedUrl before branch verification", () => {
+describe("mapEmbedUrl remains unset without embed URLs", () => {
+  it("does not invent mapEmbedUrl on verified branches", () => {
     for (const branch of getBranches()) {
-      expect(branch.dataStatus).not.toBe("verified");
+      expect(branch.dataStatus).toBe("verified");
       expect(branch.mapEmbedUrl).toBeUndefined();
     }
   });
