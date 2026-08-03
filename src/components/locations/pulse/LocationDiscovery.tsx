@@ -30,6 +30,9 @@ export function LocationDiscovery({ branches, trialHref, trialLabel }: LocationD
           const mapsUrl = getBranchMapsUrl(branch);
           const addressPending = branch.address == null;
           const mapsPending = mapsUrl == null;
+          const addressLine = branch.address
+            ? branch.address.replace(/,\s*Maharashtra\s+\d{6}$/i, "")
+            : null;
 
           return (
             <li key={branch.slug} className={styles.placeRow}>
@@ -37,6 +40,7 @@ export function LocationDiscovery({ branches, trialHref, trialLabel }: LocationD
                 <h2 className={styles.placeName}>
                   <Link href={`/locations/${branch.slug}`}>{branch.locality}</Link>
                 </h2>
+                {addressLine ? <p className={styles.placeStatus}>{addressLine}</p> : null}
                 {addressPending || mapsPending ? (
                   <p className={styles.placeStatus}>
                     {addressPending && mapsPending
@@ -52,7 +56,7 @@ export function LocationDiscovery({ branches, trialHref, trialLabel }: LocationD
                   ? "Open branch. Detailed address and map are being updated — message WhatsApp for directions."
                   : addressPending
                     ? "Open branch. Detailed address is being updated. Use Maps for directions when linked."
-                    : "Open branch with confirmed services and WhatsApp trial enquiry."}
+                    : "Open branch — printable address, Maps link, and WhatsApp trial enquiry."}
               </p>
               <div className={styles.placeActions}>
                 <Link href={`/locations/${branch.slug}`} className={styles.actionLink}>

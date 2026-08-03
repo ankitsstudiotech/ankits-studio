@@ -19,3 +19,11 @@ export const OWNER_INTERVIEW_2026_08_01 = {
   sourceName: "Ankit",
   verificationLevel: "owner_confirmed",
 } as const satisfies OwnerSource;
+
+/** Canonical provenance for the 2026-08-03 Ankit Nalawade interview (round 2). */
+export const OWNER_INTERVIEW_2026_08_03 = {
+  sourceType: "owner_interview",
+  sourceDate: "2026-08-03",
+  sourceName: "Ankit Nalawade",
+  verificationLevel: "owner_confirmed",
+} as const satisfies OwnerSource;

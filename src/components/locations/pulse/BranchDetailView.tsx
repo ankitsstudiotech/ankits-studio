@@ -130,7 +130,8 @@ export function BranchDetailView({
           Operating hours
         </h2>
         <p className={styles.bandLede}>
-          Studio operating window: {hoursLabel}. This is not a batch timetable.
+          Studio operating window: {hoursLabel}. Open every day — no weekly closing day. This is not
+          a batch timetable.
         </p>
         <ul className={styles.facts}>
           {branch.openingHours.map((entry) => (

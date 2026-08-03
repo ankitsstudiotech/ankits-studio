@@ -9,18 +9,24 @@ describe("route-level structured-data safety", () => {
     }
   });
 
-  it("LocalBusiness JSON-LD is omitted for every current branch (none are verified yet)", () => {
+  it("LocalBusiness JSON-LD emits for verified branches with owner-confirmed addresses", () => {
     for (const branch of getBranches()) {
-      expect(branch.dataStatus).not.toBe("verified");
-      expect(buildLocalBusinessJsonLd(branch)).toBeNull();
+      expect(branch.dataStatus).toBe("verified");
+      expect(branch.address).toBeTruthy();
+      expect(branch.fieldProvenance.address).toBe("owner_confirmed");
+      const jsonLd = buildLocalBusinessJsonLd(branch);
+      expect(jsonLd).not.toBeNull();
+      expect(jsonLd?.["@type"]).toBe("ExerciseGym");
+      expect(jsonLd?.address?.streetAddress).toBe(branch.address);
     }
   });
 
-  it("no branch's mock address/phone ever appears in a non-null structured-data payload", () => {
+  it("LocalBusiness JSON-LD does not invent geo, ratings, or amenities", () => {
     for (const branch of getBranches()) {
       const result = buildLocalBusinessJsonLd(branch);
-      // Omitted entirely (see docs/DECISIONS.md ADR-011) — never a partial object.
-      expect(result).toBeNull();
+      expect(result).not.toBeNull();
+      const blob = JSON.stringify(result);
+      expect(blob).not.toMatch(/geo|aggregateRating|review|priceRange|amenityFeature/i);
     }
   });
 });

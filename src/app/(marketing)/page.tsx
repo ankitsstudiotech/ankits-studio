@@ -10,6 +10,8 @@ import { TextLink } from "@/components/ui/TextLink";
 import {
   getBusinessIdentity,
   getContactDetails,
+  getPubliclyListedBranches,
+  getBranchMapsUrl,
   getStudioCommercial,
   getStudioContactLinks,
   type ProgrammeSlug,
@@ -132,33 +134,6 @@ const HOMEPAGE_CLUSTERS = [
   },
 ];
 
-const BRANCHES = [
-  {
-    name: "Airoli Sector 19",
-    href: "/locations/airoli-sector-19",
-    detail: "Neighbourhood studio in Airoli Sector 19.",
-    mapsUrl: "https://maps.app.goo.gl/NWrGtXKKYwr5xXwbA?g_st=ac",
-  },
-  {
-    name: "Airoli Sector 8",
-    href: "/locations/airoli-sector-8",
-    detail: "Open neighbourhood studio. Detailed map and address are being updated.",
-    addressPending: true,
-  },
-  {
-    name: "Ghansoli",
-    href: "/locations/ghansoli",
-    detail: "Neighbourhood studio in Ghansoli.",
-    mapsUrl: "https://maps.app.goo.gl/WzhJUEhAvC67eMgR8?g_st=ac",
-  },
-  {
-    name: "Thane",
-    href: "/locations/thane",
-    detail: "Neighbourhood studio in Thane.",
-    mapsUrl: "https://maps.app.goo.gl/bvzahC17HkciT6QQ6?g_st=ic",
-  },
-] as const;
-
 export default function HomePage() {
   const identity = getBusinessIdentity();
   const commercial = getStudioCommercial();
@@ -166,30 +141,39 @@ export default function HomePage() {
   const studioLinks = getStudioContactLinks();
   const trialHref = getPrimaryConversionHref();
   const trialLabel = getPrimaryConversionLabel();
+  const branchCards = getPubliclyListedBranches().map((branch) => ({
+    name: branch.locality,
+    href: `/locations/${branch.slug}`,
+    detail: branch.address
+      ? `${branch.locality} — open neighbourhood studio.`
+      : "Open neighbourhood studio. Detailed map and address are being updated.",
+    mapsUrl: getBranchMapsUrl(branch) ?? undefined,
+    addressPending: branch.address == null,
+  }));
 
   const factualFaqs = [
     {
       id: "faq-trial",
       question: "Is the trial class free?",
       answer:
-        "Yes. You can book a free trial on WhatsApp. Opening WhatsApp starts a chat — it does not mean a message was already delivered.",
+        "Yes. A free trial is available for every service at every physical branch, once per person. Opening WhatsApp starts a chat — it does not mean a message was already delivered.",
     },
     {
       id: "faq-hours",
       question: "What are the studio hours?",
       answer:
-        "Studios operate from 6:00 AM to 10:00 PM. That is the operating window, not a class-by-class timetable. Message us for current batch availability.",
+        "Studios operate from 6:00 AM to 10:00 PM every day — there is no weekly closing day. That is the operating window, not a class-by-class timetable. Message us for current batch availability.",
     },
     {
       id: "faq-fees",
       question: "What does it cost to join?",
-      answer: `There is a one-time registration fee of ₹${commercial.registrationFeeInr ?? 300}. Programme fees vary by service and are confirmed when you enquire.`,
+      answer: `There is a one-time registration fee of ₹${commercial.registrationFeeInr ?? 300} per person. Programme fees vary by service and branch and are confirmed when you enquire.`,
     },
     {
       id: "faq-batches",
       question: "Do you offer ladies-only or kids-only batches?",
       answer:
-        "Yes — ladies-only and kids-only batches are available. Ask which options fit when you book a trial. Not every programme suits every age.",
+        "Yes — ladies-only and kids-only batches are available. Kids Dance age groups include 3–8 years and 8–12 years. Ask which options fit when you book a trial. Not every programme suits every age.",
     },
   ];
 
@@ -198,7 +182,7 @@ export default function HomePage() {
       <Hero
         brandName={identity.displayName}
         title="Machine-free fitness. Yoga, Zumba and dance."
-        description="Four neighbourhood studios across Airoli, Ghansoli and Thane. Coach-led sessions adapted to your needs — book a free trial on WhatsApp."
+        description="Four neighbourhood studios across Airoli, Ghansoli and Thane. Coach-led sessions for working professionals and other neighbourhood visitors — book a free trial on WhatsApp."
         primaryCta={{ label: trialLabel, href: trialHref }}
         secondaryCta={{ label: "Find Your Nearest Studio", href: "/#locations" }}
       />
@@ -209,18 +193,18 @@ export default function HomePage() {
       />
 
       <WhyStudio
-        title="Machine-free. Coach-led. Adapted to you."
-        body="Sessions are built without conventional gym-machine circuits. Coaches adapt the work to your requirements and goals — without promising specific outcomes."
+        title="Machine-free. Coach-led."
+        body="Sessions use machine-free Functional Training and coach-led movement rather than conventional gym-machine circuits. Group sessions are coach-led; personalised programming is available through personal training. We do not promise specific outcomes."
         points={[
           {
             id: "machine-free",
             title: "Machine-free training",
-            body: "Coach-led movement rather than rows of gym machines.",
+            body: "Bodyweight and portable equipment — not rows of gym machines.",
           },
           {
-            id: "adapted",
-            title: "Adapted to you",
-            body: "Sessions respond to individual needs and goals.",
+            id: "coach-led",
+            title: "Coach-led group sessions",
+            body: "Group classes are led by coaches. Personalised plans are available through personal training.",
           },
           {
             id: "community",
@@ -230,7 +214,7 @@ export default function HomePage() {
         ]}
       />
 
-      <BranchExplorer locations={[...BRANCHES]} />
+      <BranchExplorer locations={branchCards} />
 
       <section
         id="practical"
@@ -241,12 +225,12 @@ export default function HomePage() {
         <p>
           Batches run throughout the day and vary by branch and programme. Message us on WhatsApp
           for current batch availability — we do not publish class-by-class rows until real schedules
-          are confirmed. Studio operating window: 6:00 AM–10:00 PM (not a continuous class).
+          Studio operating window: 6:00 AM–10:00 PM every day (not a continuous class).
         </p>
         <ul className={styles.utilityFacts}>
           <li>
             <strong>Operating window</strong>
-            6:00 AM – 10:00 PM across studios (not individual class times)
+            6:00 AM – 10:00 PM every day across studios (not individual class times)
           </li>
           <li>
             <strong>Central enquiry</strong>
