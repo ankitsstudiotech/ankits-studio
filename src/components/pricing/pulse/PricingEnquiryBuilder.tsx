@@ -142,7 +142,7 @@ export function PricingEnquiryBuilder({
         </select>
         {mode === "home" ? (
           <p className={styles.deliveryNote}>
-            Home Personal Training fees are confirmed on enquiry — we do not publish a coverage map.
+            Home Personal Training is priced per session — share your locality when you enquire.
           </p>
         ) : null}
         {mode === "online" ? (

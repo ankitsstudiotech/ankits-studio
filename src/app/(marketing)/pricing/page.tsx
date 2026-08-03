@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import { PageBreadcrumb } from "@/components/layout/PageBreadcrumb";
+import { RouteOpening } from "@/components/motion";
 import { PricingEnquiryBuilder } from "@/components/pricing/pulse/PricingEnquiryBuilder";
 import styles from "@/components/pricing/pulse/pricing.module.css";
 import {
@@ -119,22 +120,24 @@ export default function PricingPage() {
         dangerouslySetInnerHTML={{ __html: serializeJsonLd(pageJsonLd) }}
       />
 
-      <div className={styles.crumbBar}>
+      <div className="pulse-crumb-bar">
         <PageBreadcrumb items={breadcrumbTrail} />
       </div>
 
       <section className={`${styles.band} ${styles.bandWide} ${styles.splitBand}`} aria-labelledby="pricing-title">
         <div>
-          <p className={styles.kicker}>Pricing</p>
-          <h1 id="pricing-title" className={styles.title}>
-            Fees &amp; free trial
-          </h1>
-          <p className={styles.lede}>
-            Your trial class is free for every service at every physical branch — once per person. A
-            one-time registration fee of ₹300 per person applies after you join and is not charged again
-            after a membership break. Programme fees vary by service and branch. GST is included in
-            the fee quoted by the studio. Message us for the current fee.
-          </p>
+          <RouteOpening>
+            <p className={styles.kicker}>Pricing</p>
+            <h1 id="pricing-title" className={styles.title}>
+              Fees &amp; free trial
+            </h1>
+            <p className={styles.lede}>
+              Your trial class is free for every service at every physical branch — once per person. A
+              one-time registration fee of ₹300 per person applies after you join and is not charged again
+              after a membership break. Programme fees vary by service and branch. GST is included in
+              the fee quoted by the studio. Message us for the current fee.
+            </p>
+          </RouteOpening>
 
           <h2 id="confirmed-fees-title" className={styles.sectionTitle} style={{ marginTop: "2rem" }}>
             Confirmed

@@ -139,13 +139,12 @@ export function AvailabilityEnquiryBuilder({
         </select>
         {deliveryMode === "home" ? (
           <p className={styles.deliveryNote}>
-            Home Personal Training is not a branch-floor class. Share your locality instead of a studio
-            branch.
+            Training is delivered at your location — share your locality instead of a studio branch.
           </p>
         ) : null}
         {deliveryMode === "online" ? (
           <p className={styles.deliveryNote}>
-            Online Training is not a branch-floor class. Platform details are confirmed when you enquire.
+            Remote sessions via Zoom — enquire for timing and format.
           </p>
         ) : null}
       </div>

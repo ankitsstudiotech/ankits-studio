@@ -52,6 +52,7 @@
   letter-spacing: var(--text-hero--letter-spacing);
   line-height: var(--text-hero--line-height);
   margin: 0 0 0.65rem;
+  text-transform: uppercase;
 }
 
 .lede {
@@ -91,25 +92,25 @@
 }
 
 .enquiryPanel {
-  background: var(--color-surface);
-  color: var(--color-ink);
-  border: 1px solid rgb(255 255 255 / 0.1);
+  background: var(--color-field-raised);
+  color: var(--color-ink-inverse);
+  border: 1px solid var(--color-border-on-field);
   padding: 1.25rem 1.35rem;
 }
 
 .enquiryPanel .sectionTitle {
-  color: var(--color-ink);
+  color: var(--color-ink-inverse);
 }
 
 .enquiryPanel .lede,
 .enquiryPanel .hint,
 .enquiryPanel .ctaNote,
 .enquiryPanel .deliveryNote {
-  color: color-mix(in srgb, var(--color-ink) 78%, transparent);
+  color: var(--color-muted-on-field);
 }
 
 .enquiryPanel .field label {
-  color: var(--color-ink);
+  color: var(--color-ink-inverse);
 }
 
 .form {

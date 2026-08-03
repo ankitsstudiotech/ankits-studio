@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import { PageBreadcrumb } from "@/components/layout/PageBreadcrumb";
+import { RouteOpening } from "@/components/motion";
 import { getProgrammes, getPubliclyListedBranches, getStudioContactLinks } from "@/content";
 import { isConfirmedProgramme } from "@/content";
 import { buildPageMetadata } from "@/lib/seo/metadata";
@@ -41,14 +42,16 @@ export default function TrialPage() {
 
       <div className="mx-auto grid w-full max-w-[var(--width-container)] gap-10 px-[var(--spacing-gutter)] py-[var(--spacing-section)] lg:grid-cols-2 lg:items-start lg:gap-14">
         <section aria-labelledby="trial-title">
-          <p className="pulse-kicker">Free trial</p>
-          <h1 id="trial-title" className="pulse-title">
-            Book a free trial
-          </h1>
-          <p className="pulse-lede">
-            A free trial is available once per person for studio services. Share what you can —
-            every field is optional — then continue on WhatsApp to send your message.
-          </p>
+          <RouteOpening>
+            <p className="pulse-kicker">Free trial</p>
+            <h1 id="trial-title" className="pulse-title">
+              Book a free trial
+            </h1>
+            <p className="pulse-lede">
+              A free trial is available once per person for studio services. Share what you can —
+              every field is optional — then continue on WhatsApp to send your message.
+            </p>
+          </RouteOpening>
           <ul className="mt-6 list-none space-y-3 p-0 text-[length:var(--text-body)] text-[var(--color-muted-on-field)]">
             <li>Studios open daily · 6:00 AM–10:00 PM</li>
             <li>₹300 one-time registration after you join</li>
@@ -90,9 +93,12 @@ export default function TrialPage() {
         <section
           id="trial-builder"
           aria-labelledby="trial-builder-title"
-          className="rounded-none border border-white/10 bg-[var(--color-surface)] p-5 text-ink sm:p-6"
+          className="pulse-form-panel sm:p-6"
         >
-          <h2 id="trial-builder-title" className="mb-4 font-[family-name:var(--font-display)] text-[length:var(--text-heading)] text-ink">
+          <h2
+            id="trial-builder-title"
+            className="mb-4 font-[family-name:var(--font-display)] text-[length:var(--text-heading)]"
+          >
             Trial message builder
           </h2>
           <TrialWhatsAppForm branches={branches} programmes={programmes} />

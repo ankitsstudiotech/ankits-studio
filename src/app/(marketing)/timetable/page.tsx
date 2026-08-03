@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import { PageBreadcrumb } from "@/components/layout/PageBreadcrumb";
+import { RouteOpening } from "@/components/motion";
 import { AvailabilityEnquiryBuilder } from "@/components/timetable/pulse/AvailabilityEnquiryBuilder";
 import styles from "@/components/timetable/pulse/batch-availability.module.css";
 import {
@@ -106,7 +107,7 @@ export default function TimetablePage() {
         dangerouslySetInnerHTML={{ __html: serializeJsonLd(pageJsonLd) }}
       />
 
-      <div className={styles.crumbBar}>
+      <div className="pulse-crumb-bar">
         <PageBreadcrumb items={breadcrumbTrail} />
       </div>
 
@@ -115,14 +116,16 @@ export default function TimetablePage() {
         aria-labelledby="batch-availability-title"
       >
         <div>
-          <p className={styles.kicker}>Batch availability</p>
-          <h1 id="batch-availability-title" className={styles.title}>
-            Check current batches
-          </h1>
-          <p className={styles.lede}>
-            Ask Ankit’s Studio on WhatsApp for current availability by branch and programme — then book
-            a free trial when you are ready.
-          </p>
+          <RouteOpening>
+            <p className={styles.kicker}>Batch availability</p>
+            <h1 id="batch-availability-title" className={styles.title}>
+              Check current batches
+            </h1>
+            <p className={styles.lede}>
+              Ask Ankit’s Studio on WhatsApp for current availability by branch and programme — then book
+              a free trial when you are ready.
+            </p>
+          </RouteOpening>
 
           <h2 id="operating-hours-title" className={styles.sectionTitle} style={{ marginTop: "2rem" }}>
             Studio operating hours
@@ -221,7 +224,7 @@ export default function TimetablePage() {
                   ))}
                 </ul>
                 <p className={styles.deliveryNote}>
-                  Home and Online Training are delivery modes — not branch-floor classes.
+                  Home Personal Training and Online Training are delivered outside the studio floor.
                 </p>
               </>
             ) : null}

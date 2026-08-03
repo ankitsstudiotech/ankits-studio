@@ -53,15 +53,15 @@ const SERVICE_BY_SLUG = {
     slug: "home-personal-training" as const,
     tempo: "home" as const,
     name: "Home Personal Training",
-    shortDescription: "Coach-led sessions at home — a delivery mode, not a branch-floor class.",
-    meta: "Home delivery · coverage confirmed when you message us",
+    shortDescription: "Coach-led sessions at home — message us with your locality.",
+    meta: "Home delivery · message us to check availability",
   },
   "online-training": {
     slug: "online-training" as const,
     tempo: "online" as const,
     name: "Online Training",
-    shortDescription: "Remote coach-led sessions. Platform and timing confirmed on enquiry.",
-    meta: "Online delivery · not a physical branch class",
+    shortDescription: "Remote coach-led sessions via Zoom — enquire for timing.",
+    meta: "Online · one-to-one and group",
   },
   zumba: {
     slug: "zumba" as const,
@@ -224,10 +224,8 @@ export default function HomePage() {
           Practical information
         </h2>
         <p className={styles.bandLede}>
-          Batches run throughout the day and vary by branch and programme. Message us on WhatsApp
-          for current batch availability — we do not publish class-by-class rows until real schedules
-          are confirmed. Studio operating window: 6:00 AM–10:00 PM every day (not a continuous
-          class).
+          Batch times vary by branch and programme. Message us on WhatsApp for current availability.
+          Studio operating window: 6:00 AM–10:00 PM every day (not a continuous class).
         </p>
         <ul className="pulse-info-grid">
           <li>

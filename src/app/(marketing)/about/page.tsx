@@ -2,12 +2,12 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import { PageBreadcrumb } from "@/components/layout/PageBreadcrumb";
 import styles from "@/components/about/pulse/about.module.css";
+import { RouteOpening, SectionReveal } from "@/components/motion";
 import {
   getConfirmedProgrammes,
   getPubliclyListedBranches,
   getStudioAbout,
   getStudioCommercial,
-  siteHasUnverifiedContent,
 } from "@/content";
 import {
   getPrimaryConversionHref,
@@ -45,7 +45,7 @@ function deliveryLabel(mode: string | undefined): string {
 
 /**
  * Honest About page — verified studio story only.
- * Founder narrative and founding year are published; certification claims stay unpublished.
+ * Founder narrative published when verified; no pending placeholders in production.
  */
 export default function AboutPage() {
   const about = getStudioAbout();
@@ -54,7 +54,6 @@ export default function AboutPage() {
   const branches = getPubliclyListedBranches();
   const trialHref = getPrimaryConversionHref();
   const trialLabel = getPrimaryConversionLabel();
-  const showDevPending = siteHasUnverifiedContent;
 
   const physical = programmes.filter((p) => p.deliveryMode === "in-studio");
   const delivery = programmes.filter(
@@ -82,76 +81,84 @@ export default function AboutPage() {
         dangerouslySetInnerHTML={{ __html: serializeJsonLd(pageJsonLd) }}
       />
 
-      <div className={styles.crumbBar}>
+      <div className="pulse-crumb-bar">
         <PageBreadcrumb items={breadcrumbTrail} />
       </div>
 
       <section className={`${styles.band} ${styles.bandNarrow}`} aria-labelledby="about-title">
-        <p className={styles.kicker}>About Ankit’s Studio</p>
-        <h1 id="about-title" className={styles.title}>
-          {about.headline}
-        </h1>
-        <p className={styles.lede}>{about.lede}</p>
+        <RouteOpening>
+          <p className={styles.kicker}>About Ankit’s Studio</p>
+          <h1 id="about-title" className={styles.title}>
+            {about.headline}
+          </h1>
+          <p className={styles.lede}>{about.lede}</p>
+        </RouteOpening>
       </section>
 
-      <section className={`${styles.band} ${styles.bandNarrow}`} aria-labelledby="about-approach-title">
-        <h2 id="about-approach-title" className={styles.sectionTitle}>
-          {about.approachTitle}
-        </h2>
-        {commercial.differentiator ? (
-          <p className={styles.lede} style={{ marginBottom: "0.85rem" }}>
-            {commercial.differentiator}
-          </p>
-        ) : null}
-        <p className={styles.body}>{about.approachBody}</p>
+      <section
+        className={`${styles.band} ${styles.bandNarrow}`}
+        aria-labelledby="about-approach-disciplines"
+      >
+        <div className={`${styles.diffGrid} pulse-split`}>
+          <div>
+            <SectionReveal>
+              <h2 id="about-approach-disciplines" className={styles.sectionTitle}>
+                {about.approachTitle}
+              </h2>
+            </SectionReveal>
+            {commercial.differentiator ? (
+              <p className={styles.lede} style={{ marginBottom: "0.85rem" }}>
+                {commercial.differentiator}
+              </p>
+            ) : null}
+            <p className={styles.body}>{about.approachBody}</p>
+          </div>
+          <div>
+            <SectionReveal>
+              <h2 id="about-disciplines-title" className={styles.sectionTitle}>
+                {about.disciplinesTitle}
+              </h2>
+            </SectionReveal>
+            <p className={styles.body}>{about.disciplinesBody}</p>
+            <ol className={styles.disciplineIndex}>
+              {programmes.map((programme, index) => (
+                <li key={programme.slug}>
+                  <Link href={`/programs/${programme.slug}`}>
+                    <span>
+                      {String(index + 1).padStart(2, "0")} · {programme.name}
+                    </span>
+                    <span className={styles.disciplineMeta}>
+                      {deliveryLabel(programme.deliveryMode)}
+                    </span>
+                  </Link>
+                </li>
+              ))}
+            </ol>
+          </div>
+        </div>
       </section>
 
       {showFounder && about.founderStory ? (
         <section className={`${styles.band} ${styles.bandNarrow}`} aria-labelledby="about-founder-title">
-          <h2 id="about-founder-title" className={styles.sectionTitle}>
-            Founder
-          </h2>
+          <SectionReveal>
+            <h2 id="about-founder-title" className={styles.sectionTitle}>
+              Founder
+            </h2>
+          </SectionReveal>
           {about.foundingDateLabel ? (
             <p className={styles.kicker}>Founded {about.foundingDateLabel}</p>
           ) : null}
           <p className={styles.body}>{about.founderStory}</p>
-          <p className={styles.provenance}>
-            Founder: Ankit Nalawade. Individual certification details are not listed on this page.
-          </p>
-        </section>
-      ) : showDevPending ? (
-        <section className={`${styles.band} ${styles.bandNarrow}`}>
-          <p className={styles.devPending} data-about-pending="founder">
-            Founder story will appear here once it is ready to publish.
-          </p>
+          <p className={styles.provenance}>Founder: Ankit Nalawade.</p>
         </section>
       ) : null}
 
-      <section className={`${styles.band} ${styles.bandNarrow}`} aria-labelledby="about-disciplines-title">
-        <h2 id="about-disciplines-title" className={styles.sectionTitle}>
-          {about.disciplinesTitle}
-        </h2>
-        <p className={styles.body}>{about.disciplinesBody}</p>
-        <ol className={styles.disciplineIndex}>
-          {programmes.map((programme, index) => (
-            <li key={programme.slug}>
-              <Link href={`/programs/${programme.slug}`}>
-                <span>
-                  {String(index + 1).padStart(2, "0")} · {programme.name}
-                </span>
-                <span className={styles.disciplineMeta}>
-                  {deliveryLabel(programme.deliveryMode)}
-                </span>
-              </Link>
-            </li>
-          ))}
-        </ol>
-      </section>
-
       <section className={`${styles.band} ${styles.bandNarrow}`} aria-labelledby="about-branches-title">
-        <h2 id="about-branches-title" className={styles.sectionTitle}>
-          {about.branchesTitle}
-        </h2>
+        <SectionReveal>
+          <h2 id="about-branches-title" className={styles.sectionTitle}>
+            {about.branchesTitle}
+          </h2>
+        </SectionReveal>
         <p className={styles.body}>{about.branchesBody}</p>
         <ul className={styles.branchList}>
           {branches.map((branch) => (
@@ -163,9 +170,11 @@ export default function AboutPage() {
       </section>
 
       <section className={`${styles.band} ${styles.bandNarrow}`} aria-labelledby="about-team-title">
-        <h2 id="about-team-title" className={styles.sectionTitle}>
-          {about.teamTitle}
-        </h2>
+        <SectionReveal>
+          <h2 id="about-team-title" className={styles.sectionTitle}>
+            {about.teamTitle}
+          </h2>
+        </SectionReveal>
         <div className={styles.teamBlock}>
           <p className={styles.kicker}>Team size</p>
           <p className={styles.teamCount}>15+</p>
@@ -176,24 +185,30 @@ export default function AboutPage() {
 
       {about.faqs.length > 0 ? (
         <section className={`${styles.band} ${styles.bandNarrow}`} aria-labelledby="about-faq-title">
-          <h2 id="about-faq-title" className={styles.sectionTitle}>
-            FAQ
-          </h2>
-          <ul className={styles.faqList}>
+          <SectionReveal>
+            <h2 id="about-faq-title" className={styles.sectionTitle}>
+              FAQ
+            </h2>
+          </SectionReveal>
+          <div className="pulse-accordion">
             {about.faqs.map((item) => (
-              <li key={item.id}>
-                <h3>{item.question}</h3>
-                <p>{item.answer}</p>
-              </li>
+              <details key={item.id} className="pulse-accordion-item">
+                <summary>{item.question}</summary>
+                <div className="pulse-accordion-panel">
+                  <p>{item.answer}</p>
+                </div>
+              </details>
             ))}
-          </ul>
+          </div>
         </section>
       ) : null}
 
       <section className={styles.band} aria-labelledby="about-discover-title">
-        <h2 id="about-discover-title" className={styles.sectionTitle}>
-          Explore programmes and studios
-        </h2>
+        <SectionReveal>
+          <h2 id="about-discover-title" className={styles.sectionTitle}>
+            Explore programmes and studios
+          </h2>
+        </SectionReveal>
         <div className={styles.linkColumns}>
           <div>
             <p className={styles.kicker}>Programmes</p>
@@ -242,9 +257,11 @@ export default function AboutPage() {
         className={`${styles.band} ${styles.bandNarrow} ${styles.ctaBand}`}
         aria-labelledby="about-cta-title"
       >
-        <h2 id="about-cta-title" className={styles.sectionTitle}>
-          Book a free trial
-        </h2>
+        <SectionReveal>
+          <h2 id="about-cta-title" className={styles.sectionTitle}>
+            Book a free trial
+          </h2>
+        </SectionReveal>
         <p className={styles.body}>
           Try a session at a neighbourhood branch. Tell us your preferred branch, service and time on
           WhatsApp.
