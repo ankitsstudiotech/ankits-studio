@@ -6,7 +6,6 @@ import {
   ProgrammeShowcase,
   WhyStudio,
 } from "@/components/home";
-import { TextLink } from "@/components/ui/TextLink";
 import {
   getBusinessIdentity,
   getContactDetails,
@@ -144,9 +143,9 @@ export default function HomePage() {
   const branchCards = getPubliclyListedBranches().map((branch) => ({
     name: branch.locality,
     href: `/locations/${branch.slug}`,
-    detail: branch.address
-      ? `${branch.locality} — open neighbourhood studio.`
-      : "Open neighbourhood studio. Detailed map and address are being updated.",
+    locality: branch.locality,
+    address: branch.address,
+    hoursLabel: "Open daily · 6:00 AM–10:00 PM",
     mapsUrl: getBranchMapsUrl(branch) ?? undefined,
     addressPending: branch.address == null,
   }));
@@ -194,7 +193,7 @@ export default function HomePage() {
 
       <WhyStudio
         title="Machine-free. Coach-led."
-        body="Sessions use machine-free Functional Training and coach-led movement rather than conventional gym-machine circuits. Group sessions are coach-led; personalised programming is available through personal training. We do not promise specific outcomes."
+        body="Sessions use machine-free Functional Training and coach-led movement. Group sessions are coach-led; personal training is available when you want more personalised programming."
         points={[
           {
             id: "machine-free",
@@ -204,12 +203,12 @@ export default function HomePage() {
           {
             id: "coach-led",
             title: "Coach-led group sessions",
-            body: "Group classes are led by coaches. Personalised plans are available through personal training.",
+            body: "Group classes are led by coaches in a focused room.",
           },
           {
-            id: "community",
-            title: "Welcoming batches",
-            body: "Ladies-only and kids-only options are available to ask about.",
+            id: "personal-training",
+            title: "Personal training for personalised programming",
+            body: "One-to-one coaching when you want a programme tailored to you.",
           },
         ]}
       />
@@ -218,16 +217,19 @@ export default function HomePage() {
 
       <section
         id="practical"
-        className={styles.utilityBand}
+        className={`${styles.field} ${styles.band} ${styles.practicalBand}`}
         aria-labelledby="home-practical-title"
       >
-        <h2 id="home-practical-title">Practical information</h2>
-        <p>
+        <h2 id="home-practical-title" className={styles.bandTitle}>
+          Practical information
+        </h2>
+        <p className={styles.bandLede}>
           Batches run throughout the day and vary by branch and programme. Message us on WhatsApp
           for current batch availability — we do not publish class-by-class rows until real schedules
-          Studio operating window: 6:00 AM–10:00 PM every day (not a continuous class).
+          are confirmed. Studio operating window: 6:00 AM–10:00 PM every day (not a continuous
+          class).
         </p>
-        <ul className={styles.utilityFacts}>
+        <ul className="pulse-info-grid">
           <li>
             <strong>Operating window</strong>
             6:00 AM – 10:00 PM every day across studios (not individual class times)
@@ -238,10 +240,7 @@ export default function HomePage() {
             {studioLinks.phoneHref ? (
               <>
                 {" · "}
-                <a
-                  href={studioLinks.phoneHref}
-                  className="font-semibold text-ink underline underline-offset-2 hover:text-accent"
-                >
+                <a href={studioLinks.phoneHref} className={styles.practicalLink}>
                   Call
                 </a>
               </>
@@ -256,8 +255,10 @@ export default function HomePage() {
             Free trial · ₹{commercial.registrationFeeInr ?? 300} one-time registration
           </li>
         </ul>
-        <p className="mt-4">
-          <TextLink href={SECONDARY_TRIAL_FORM_HREF}>Open the trial request form →</TextLink>
+        <p className={styles.practicalFollow}>
+          <a href={SECONDARY_TRIAL_FORM_HREF} className={styles.practicalLink}>
+            Open the trial request form →
+          </a>
         </p>
       </section>
 

@@ -26,7 +26,9 @@ export function FreeTrialCta({
       <p>{body}</p>
       <PulseCta href={href}>{label}</PulseCta>
       <p className={styles.ctaNote}>{WHATSAPP_REVIEW_HELPER}</p>
-      <p className={styles.ctaNote}>Free trial class. One-time registration fee is ₹300 after you join.</p>
+      <p className={styles.ctaNote}>
+        Free trial class. One-time registration fee is ₹300 after you join.
+      </p>
       {secondaryHref && secondaryLabel ? (
         <div className={styles.ctaSecondaryRow}>
           <Link href={secondaryHref} className={styles.ctaGhost}>

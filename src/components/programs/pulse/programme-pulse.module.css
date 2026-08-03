@@ -42,7 +42,7 @@
   font-size: var(--text-heading);
   letter-spacing: 0.04em;
   margin: 0;
-  text-transform: none;
+  text-transform: uppercase;
 }
 
 .cluster[data-cluster="train"] .clusterTitle {

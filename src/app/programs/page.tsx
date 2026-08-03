@@ -1,5 +1,5 @@
-import Link from "next/link";
 import type { Metadata } from "next";
+import { PageBreadcrumb } from "@/components/layout/PageBreadcrumb";
 import { ProgrammeDiscovery } from "@/components/programs/pulse/ProgrammeDiscovery";
 import { Container } from "@/components/ui/Container";
 import { getConfirmedProgrammes, getStudioCommercial } from "@/content";
@@ -53,21 +53,9 @@ export default function ProgrammesIndexPage() {
         dangerouslySetInnerHTML={{ __html: serializeJsonLd(collectionJsonLd) }}
       />
 
-      <Container className="pt-8 pb-2">
-        <nav aria-label="Breadcrumb">
-          <ol className="flex flex-wrap items-center gap-2 text-sm text-ink-muted">
-            <li>
-              <Link href="/" className="hover:text-ink">
-                Home
-              </Link>
-            </li>
-            <li aria-hidden>/</li>
-            <li aria-current="page" className="text-ink">
-              Programmes
-            </li>
-          </ol>
-        </nav>
-      </Container>
+      <div className="pulse-crumb-bar">
+        <PageBreadcrumb items={breadcrumbTrail} />
+      </div>
 
       <ProgrammeDiscovery
         programmes={programmes}
@@ -77,9 +65,12 @@ export default function ProgrammesIndexPage() {
 
       {commercial.corporateFitnessStatus === "enquiry-only" ? (
         <Container className="pb-12">
-          <p className="max-w-2xl text-sm text-ink-muted">
+          <p className="max-w-2xl text-sm text-[var(--color-muted-on-field)]">
             {commercial.corporateFitnessNote}{" "}
-            <a href={trialHref} className="underline underline-offset-2 hover:text-ink">
+            <a
+              href={trialHref}
+              className="underline underline-offset-2 text-ink-inverse hover:text-[var(--color-volt)]"
+            >
               Enquire on WhatsApp
             </a>
             .

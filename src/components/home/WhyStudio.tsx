@@ -12,7 +12,7 @@ export type WhyStudioProps = {
   points?: WhyPoint[];
 };
 
-/** Machine-free / needs-adapted differentiator — no slogan triad. */
+/** Machine-free / coach-led differentiator — two-column editorial on desktop. */
 export function WhyStudio({ title, body, points = [] }: WhyStudioProps) {
   return (
     <section
@@ -20,14 +20,17 @@ export function WhyStudio({ title, body, points = [] }: WhyStudioProps) {
       className={`${styles.field} ${styles.band} ${styles.diffBand}`}
       aria-labelledby="home-diff-title"
     >
-      <div className={styles.diffCopy}>
-        <h2 id="home-diff-title">{title}</h2>
-        <p>{body}</p>
+      <div className={styles.diffGrid}>
+        <div className={styles.diffCopy}>
+          <h2 id="home-diff-title">{title}</h2>
+          <p>{body}</p>
+        </div>
         {points.length > 0 ? (
           <ul className={styles.diffList}>
             {points.map((point) => (
               <li key={point.id}>
-                <strong>{point.title}</strong> — {point.body}
+                <strong>{point.title}</strong>
+                <span>{point.body}</span>
               </li>
             ))}
           </ul>

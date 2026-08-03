@@ -1,5 +1,6 @@
 import Image from "next/image";
 import Link from "next/link";
+import { HeroReveal } from "@/components/motion";
 import { PulseCta } from "./pulse/PulseMotion";
 import styles from "./pulse/pulse-home.module.css";
 
@@ -13,8 +14,8 @@ export type HeroProps = {
 
 /**
  * Studio Pulse hero — brand, offering, places, WhatsApp trial.
- * Copy is server-rendered at full opacity. Text-led; no media plate.
- * Full brand lockup is header-primary on small screens (hero brand softens).
+ * Copy is server-rendered; HeroReveal adds opt-in entrance motion.
+ * Text-led; no media plate. Transparent symbol (no white plate).
  */
 export function Hero({
   brandName,
@@ -25,18 +26,16 @@ export function Hero({
 }: HeroProps) {
   return (
     <section className={`${styles.field} ${styles.hero}`} aria-labelledby="home-hero-title">
-      <div className={styles.heroCopy}>
+      <HeroReveal className={styles.heroCopy}>
         <div className={styles.heroBrand}>
-          <span className={styles.heroLogoPlate}>
-            <Image
-              src="/brand/ankits-studio-symbol.png"
-              alt=""
-              width={48}
-              height={48}
-              className={styles.heroLogo}
-              priority
-            />
-          </span>
+          <Image
+            src="/brand/ankits-studio-symbol-transparent.png"
+            alt=""
+            width={48}
+            height={48}
+            className={styles.heroLogo}
+            priority
+          />
           <p className={styles.heroBrandName}>{brandName}</p>
         </div>
         <h1 id="home-hero-title">{title}</h1>
@@ -51,7 +50,7 @@ export function Hero({
             </Link>
           ) : null}
         </div>
-      </div>
+      </HeroReveal>
     </section>
   );
 }

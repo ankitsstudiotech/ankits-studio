@@ -1,7 +1,6 @@
-import Link from "next/link";
 import type { Metadata } from "next";
+import { PageBreadcrumb } from "@/components/layout/PageBreadcrumb";
 import { BranchDetailView } from "@/components/locations/pulse/BranchDetailView";
-import { Container } from "@/components/ui/Container";
 import {
   getBranchMapsUrl,
   getBranchPhysicalProgrammes,
@@ -88,27 +87,9 @@ export default async function LocationDetailPage({ params }: LocationPageParams)
         />
       ) : null}
 
-      <Container className="pt-8">
-        <nav aria-label="Breadcrumb">
-          <ol className="flex flex-wrap items-center gap-2 text-sm text-ink-muted">
-            <li>
-              <Link href="/" className="hover:text-ink">
-                Home
-              </Link>
-            </li>
-            <li aria-hidden>/</li>
-            <li>
-              <Link href="/locations" className="hover:text-ink">
-                Locations
-              </Link>
-            </li>
-            <li aria-hidden>/</li>
-            <li aria-current="page" className="text-ink break-words">
-              {branch.locality}
-            </li>
-          </ol>
-        </nav>
-      </Container>
+      <div className="pulse-crumb-bar">
+        <PageBreadcrumb items={breadcrumbTrail} />
+      </div>
 
       <BranchDetailView
         branch={branch}

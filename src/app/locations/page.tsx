@@ -1,7 +1,6 @@
-import Link from "next/link";
 import type { Metadata } from "next";
+import { PageBreadcrumb } from "@/components/layout/PageBreadcrumb";
 import { LocationDiscovery } from "@/components/locations/pulse/LocationDiscovery";
-import { Container } from "@/components/ui/Container";
 import { getPubliclyListedBranches } from "@/content";
 import {
   getPrimaryConversionHref,
@@ -52,21 +51,9 @@ export default function LocationsIndexPage() {
         dangerouslySetInnerHTML={{ __html: serializeJsonLd(collectionJsonLd) }}
       />
 
-      <Container className="pt-8 pb-2">
-        <nav aria-label="Breadcrumb">
-          <ol className="flex flex-wrap items-center gap-2 text-sm text-ink-muted">
-            <li>
-              <Link href="/" className="hover:text-ink">
-                Home
-              </Link>
-            </li>
-            <li aria-hidden>/</li>
-            <li aria-current="page" className="text-ink">
-              Locations
-            </li>
-          </ol>
-        </nav>
-      </Container>
+      <div className="pulse-crumb-bar">
+        <PageBreadcrumb items={breadcrumbTrail} />
+      </div>
 
       <LocationDiscovery
         branches={branches}

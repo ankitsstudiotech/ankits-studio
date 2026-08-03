@@ -1,5 +1,6 @@
 import {
   getBusinessIdentity,
+  getContactDetails,
   getNavigationItems,
   getPubliclyListedBranches,
 } from "@/content";
@@ -12,6 +13,21 @@ import { SiteFooter } from "./SiteFooter";
 import { SiteHeader } from "./SiteHeader";
 import { StickyCtaBar } from "./StickyCtaBar";
 import type { FooterLinkGroup, NavItem } from "./types";
+
+/** Withheld Tier 2/3 destinations — keep routes, do not promote in footer. */
+const FOOTER_EXCLUDE_PATHS = new Set(["/trainers", "/transformations", "/blog"]);
+
+/** Launch-ready explore destinations (filter + inject missing). */
+const FOOTER_EXPLORE_ORDER: Array<{ path: string; label: string; id: string }> = [
+  { path: "/about", label: "About", id: "footer-about" },
+  { path: "/programs", label: "Programmes", id: "footer-programmes" },
+  { path: "/locations", label: "Locations", id: "footer-locations" },
+  { path: "/timetable", label: "Batch availability", id: "footer-timetable" },
+  { path: "/pricing", label: "Pricing", id: "footer-pricing" },
+  { path: "/contact", label: "Contact", id: "footer-contact" },
+  { path: "/privacy-policy", label: "Privacy policy", id: "footer-privacy" },
+  { path: "/terms", label: "Terms", id: "footer-terms" },
+];
 
 function toNavItems(): NavItem[] {
   const primaryHref = getPrimaryConversionHref();
@@ -26,11 +42,23 @@ function toNavItems(): NavItem[] {
 }
 
 function toFooterGroups(): FooterLinkGroup[] {
-  const footerLinks = getNavigationItems("footer").map((item) => ({
-    id: item.id,
-    label: item.label,
-    href: item.path,
-  }));
+  const fromContent = new Map(
+    getNavigationItems("footer")
+      .filter((item) => !FOOTER_EXCLUDE_PATHS.has(item.path))
+      .map((item) => [item.path, { id: item.id, label: item.label, href: item.path }]),
+  );
+
+  const exploreLinks = FOOTER_EXPLORE_ORDER.map((entry) => {
+    const existing = fromContent.get(entry.path);
+    return (
+      existing ?? {
+        id: entry.id,
+        label: entry.label,
+        href: entry.path,
+      }
+    );
+  });
+
   const branches = getPubliclyListedBranches().map((branch) => ({
     id: `footer-branch-${branch.slug}`,
     label: branch.name.replace(/^Ankit's Studio —\s*/i, ""),
@@ -38,7 +66,7 @@ function toFooterGroups(): FooterLinkGroup[] {
   }));
 
   return [
-    { title: "Explore", links: footerLinks },
+    { title: "Explore", links: exploreLinks },
     { title: "Branches", links: branches },
   ];
 }
@@ -52,22 +80,20 @@ function toFooterGroups(): FooterLinkGroup[] {
  */
 export function SiteChrome({ children }: { children: React.ReactNode }) {
   const identity = getBusinessIdentity();
-  const identityDisclaimer =
-    identity.dataStatus === "verified" ? undefined : identity.mockDisclaimer;
+  const contact = getContactDetails();
   const primaryHref = getPrimaryConversionHref();
+  const verifiedContact = contact.dataStatus === "verified";
 
   return (
     <>
       <SiteHeader brandName={identity.displayName} items={toNavItems()} />
-      <div className="flex flex-1 flex-col">{children}</div>
+      <div className="flex flex-1 flex-col bg-field text-ink-inverse">{children}</div>
       <SiteFooter
         brandName={identity.displayName}
         tagline={identity.tagline}
+        phone={verifiedContact ? contact.generalPhone : undefined}
+        email={verifiedContact ? contact.generalEmail : undefined}
         groups={toFooterGroups()}
-        disclaimer={
-          identityDisclaimer ??
-          "Central WhatsApp opens a chat — it does not confirm message delivery. Messages are answered during studio operating hours. Trial form remains available as a secondary path."
-        }
       />
       <StickyCtaBar
         href={primaryHref}

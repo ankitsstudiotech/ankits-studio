@@ -1,10 +1,9 @@
-import Link from "next/link";
 import type { Metadata } from "next";
+import { PageBreadcrumb } from "@/components/layout/PageBreadcrumb";
 import {
   ProgrammeDetailView,
 } from "@/components/programs/pulse/ProgrammeDetailView";
 import { LegacyProgrammeNotice } from "@/components/programs/pulse/LegacyProgrammeNotice";
-import { Container } from "@/components/ui/Container";
 import {
   getProgrammeBySlug,
   getProgrammes,
@@ -64,27 +63,9 @@ export default async function ProgrammeDetailPage({ params }: ProgrammePageParam
           type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: serializeJsonLd(breadcrumbJsonLd) }}
         />
-        <Container className="pt-8">
-          <nav aria-label="Breadcrumb">
-            <ol className="flex flex-wrap items-center gap-2 text-sm text-ink-muted">
-              <li>
-                <Link href="/" className="hover:text-ink">
-                  Home
-                </Link>
-              </li>
-              <li aria-hidden>/</li>
-              <li>
-                <Link href="/programs" className="hover:text-ink">
-                  Programmes
-                </Link>
-              </li>
-              <li aria-hidden>/</li>
-              <li aria-current="page" className="text-ink break-words">
-                {programme.name}
-              </li>
-            </ol>
-          </nav>
-        </Container>
+        <div className="pulse-crumb-bar">
+          <PageBreadcrumb items={breadcrumbTrail} />
+        </div>
         <LegacyProgrammeNotice
           programme={programme}
           relatedName={related?.name}
@@ -124,27 +105,9 @@ export default async function ProgrammeDetailPage({ params }: ProgrammePageParam
         dangerouslySetInnerHTML={{ __html: serializeJsonLd(pageJsonLd) }}
       />
 
-      <Container className="pt-8">
-        <nav aria-label="Breadcrumb">
-          <ol className="flex flex-wrap items-center gap-2 text-sm text-ink-muted">
-            <li>
-              <Link href="/" className="hover:text-ink">
-                Home
-              </Link>
-            </li>
-            <li aria-hidden>/</li>
-            <li>
-              <Link href="/programs" className="hover:text-ink">
-                Programmes
-              </Link>
-            </li>
-            <li aria-hidden>/</li>
-            <li aria-current="page" className="text-ink break-words">
-              {programme.name}
-            </li>
-          </ol>
-        </nav>
-      </Container>
+      <div className="pulse-crumb-bar">
+        <PageBreadcrumb items={breadcrumbTrail} />
+      </div>
 
       <ProgrammeDetailView
         programme={programme}

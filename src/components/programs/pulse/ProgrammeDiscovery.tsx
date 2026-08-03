@@ -1,17 +1,8 @@
 import Link from "next/link";
 import type { Programme } from "@/content";
-import { ProgrammeLaneLink, ProgrammePulseCta, type ProgrammeTempo } from "./ProgrammePulseMotion";
+import { ProgrammeRow } from "@/components/programs/ProgrammeRow";
+import { ProgrammePulseCta } from "./ProgrammePulseMotion";
 import styles from "./programme-pulse.module.css";
-
-const SLUG_TEMPO: Record<string, ProgrammeTempo> = {
-  "functional-training": "functional",
-  yoga: "yoga",
-  zumba: "zumba",
-  "adult-dance": "dance",
-  "wedding-choreography": "wedding",
-  "home-personal-training": "home",
-  "online-training": "online",
-};
 
 const CLUSTER_COPY = {
   train: {
@@ -35,6 +26,14 @@ function deliveryMeta(programme: Programme): string | undefined {
   return "Studio classes · enquire for batch fit";
 }
 
+function energyFromSlug(slug: string): "calm" | "standard" | "high" {
+  if (slug === "yoga" || slug === "home-personal-training" || slug === "online-training") {
+    return "calm";
+  }
+  if (slug === "zumba" || slug === "adult-dance") return "high";
+  return "standard";
+}
+
 export type ProgrammeDiscoveryProps = {
   programmes: Programme[];
   trialHref: string;
@@ -43,7 +42,7 @@ export type ProgrammeDiscoveryProps = {
 
 /**
  * Editorial programme index — Train / Move / Celebrate.
- * Confirmed services only; SSR names + crawlable anchors.
+ * Confirmed services only; SSR names + crawlable ProgrammeRow anchors.
  */
 export function ProgrammeDiscovery({ programmes, trialHref, trialLabel }: ProgrammeDiscoveryProps) {
   const byCluster = {
@@ -93,13 +92,14 @@ export function ProgrammeDiscovery({ programmes, trialHref, trialLabel }: Progra
               </header>
               <div className={styles.lanes}>
                 {items.map((programme) => (
-                  <ProgrammeLaneLink
+                  <ProgrammeRow
                     key={programme.slug}
                     href={`/programs/${programme.slug}`}
                     name={programme.name}
                     description={programme.shortDescription}
                     meta={deliveryMeta(programme)}
-                    tempo={SLUG_TEMPO[programme.slug] ?? "functional"}
+                    cluster={clusterId}
+                    energy={energyFromSlug(programme.slug)}
                     emphasis={programme.slug === "functional-training" ? "primary" : undefined}
                   />
                 ))}

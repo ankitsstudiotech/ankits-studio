@@ -1,4 +1,5 @@
-import { ServiceLane, type ServiceTempo } from "./pulse/PulseMotion";
+import { ProgrammeRow } from "@/components/programs/ProgrammeRow";
+import type { ServiceTempo } from "./pulse/PulseMotion";
 import styles from "./pulse/pulse-home.module.css";
 
 export type ProgrammeAccent = ServiceTempo;
@@ -25,9 +26,15 @@ export type ProgrammeShowcaseProps = {
   audienceNote?: string;
 };
 
+function energyFromTempo(tempo: ServiceTempo): "calm" | "standard" | "high" {
+  if (tempo === "yoga" || tempo === "home" || tempo === "online") return "calm";
+  if (tempo === "zumba" || tempo === "dance") return "high";
+  return "standard";
+}
+
 /**
  * Editorial service discovery — Train / Move / Celebrate clusters.
- * Every programme remains an explicit crawlable link (SSR).
+ * Every programme remains an explicit crawlable link (SSR + ProgrammeRow).
  */
 export function ProgrammeShowcase({ clusters, audienceNote }: ProgrammeShowcaseProps) {
   return (
@@ -60,14 +67,16 @@ export function ProgrammeShowcase({ clusters, audienceNote }: ProgrammeShowcaseP
             </header>
             <div className={styles.lanes}>
               {cluster.programmes.map((programme) => (
-                <ServiceLane
+                <ProgrammeRow
                   key={programme.href}
-                  tempo={programme.tempo}
                   name={programme.name}
                   description={programme.shortDescription}
                   href={programme.href}
                   meta={programme.meta}
                   emphasis={programme.emphasis}
+                  cluster={cluster.id}
+                  energy={energyFromTempo(programme.tempo)}
+                  titleAs="h4"
                 />
               ))}
             </div>
