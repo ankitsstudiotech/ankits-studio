@@ -112,7 +112,7 @@ export function getPrimaryConversionHref(): string {
 }
 
 export function getPrimaryConversionLabel(): string {
-  return "Book a Free Trial on WhatsApp";
+  return "Book a free trial on WhatsApp";
 }
 
 /** Secondary conversion path — always the trial form. */

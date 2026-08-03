@@ -677,6 +677,20 @@
   background: linear-gradient(125deg, #1a1018 0%, #3a2048 45%, #6b2f7a 100%);
 }
 
+/* Compact strip for route heroes — intentional until photography lands */
+.mediaPlateCompact {
+  height: auto;
+  max-height: 140px;
+  min-height: 88px;
+  aspect-ratio: 21 / 9;
+}
+
+@media (min-width: 900px) {
+  .mediaPlateCompact {
+    max-height: 180px;
+  }
+}
+
 .mediaFallback {
   /* Temporary until real assets land — see docs/media/STUDIO-MEDIA-REQUIREMENTS.md */
 }

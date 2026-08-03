@@ -79,8 +79,8 @@ export function ProgrammeDetailView({
         <PulseMediaPlate
           slotKey={programme.mediaSlotKey}
           family={FAMILY[tempo]}
-          label={`${programme.name} media placeholder — real photography pending`}
-          aspect="16/9"
+          label={`${programme.name} photography pending`}
+          compact
         />
       </section>
 

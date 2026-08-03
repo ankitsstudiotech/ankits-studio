@@ -86,7 +86,7 @@ describe("about route — verified studio story only", () => {
   });
 
   it("WhatsApp trial CTA label and template remain honest", () => {
-    expect(getPrimaryConversionLabel()).toBe("Book a Free Trial on WhatsApp");
+    expect(getPrimaryConversionLabel()).toBe("Book a free trial on WhatsApp");
     expect(WHATSAPP_TRIAL_TEMPLATE).toMatch(/free trial/i);
     expect(WHATSAPP_TRIAL_TEMPLATE).toMatch(/Preferred branch:/);
     expect(WHATSAPP_TRIAL_TEMPLATE).toMatch(/Trial date:/);

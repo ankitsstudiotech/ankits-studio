@@ -142,13 +142,16 @@ export function PulseMediaPlate({
   aspect = "4/5",
   className = "",
   slotKey,
+  compact = false,
 }: {
   family: "strength" | "calm" | "high-energy" | "warm";
   label: string;
-  aspect?: "3/4" | "4/5" | "16/9" | "1/1";
+  aspect?: "3/4" | "4/5" | "16/9" | "1/1" | "21/9";
   className?: string;
   /** Stable content key from STUDIO-MEDIA-REQUIREMENTS.md */
   slotKey?: string;
+  /** Shorter strip — use on detail heroes until real photography ships */
+  compact?: boolean;
 }) {
   return (
     <div
@@ -156,8 +159,15 @@ export function PulseMediaPlate({
       data-media-status="fallback"
       data-mock-media="true"
       data-mock-media-family={family}
-      className={[styles.mediaPlate, styles.mediaFallback, className].filter(Boolean).join(" ")}
-      style={{ aspectRatio: aspect.replace("/", " / ") }}
+      className={[
+        styles.mediaPlate,
+        styles.mediaFallback,
+        compact ? styles.mediaPlateCompact : "",
+        className,
+      ]
+        .filter(Boolean)
+        .join(" ")}
+      style={compact ? undefined : { aspectRatio: aspect.replace("/", " / ") }}
       role="img"
       aria-label={label}
     />

@@ -84,8 +84,8 @@ export function BranchDetailView({
         <PulseMediaPlate
           slotKey={branch.mediaSlotKey}
           family="warm"
-          label={`${branch.locality} media placeholder — real photography pending`}
-          aspect="16/9"
+          label={`${branch.locality} photography pending`}
+          compact
         />
       </section>
 

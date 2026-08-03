@@ -9,7 +9,7 @@
 .band {
   padding: var(--spacing-section) var(--spacing-gutter);
   border-top: 1px solid rgb(20 24 28 / 0.08);
-  max-width: 52rem;
+  max-width: var(--width-container-narrow);
 }
 
 .bandWide {
@@ -18,32 +18,35 @@
 
 .kicker {
   margin: 0 0 0.35rem;
-  font-size: 0.75rem;
-  letter-spacing: 0.08em;
+  font-family: var(--font-sans);
+  font-size: var(--text-overline);
+  font-weight: 600;
+  letter-spacing: var(--text-overline--letter-spacing);
   text-transform: uppercase;
   color: color-mix(in srgb, var(--color-ink) 72%, transparent);
 }
 
 .title {
   font-family: var(--font-display);
-  font-size: clamp(2rem, 5vw, 3.25rem);
-  letter-spacing: 0.03em;
-  line-height: 0.95;
+  font-size: var(--text-hero);
+  letter-spacing: var(--text-hero--letter-spacing);
+  line-height: var(--text-hero--line-height);
   margin: 0 0 0.65rem;
 }
 
 .lede {
   margin: 0 0 0;
   max-width: 46ch;
-  font-size: 1.05rem;
-  line-height: 1.45;
+  font-size: var(--text-body-lg);
+  line-height: var(--text-body-lg--line-height);
   color: color-mix(in srgb, var(--color-ink) 82%, transparent);
 }
 
 .sectionTitle {
   font-family: var(--font-display);
-  font-size: clamp(1.25rem, 3vw, 1.65rem);
-  letter-spacing: 0.05em;
+  font-size: var(--text-heading);
+  letter-spacing: 0.03em;
+  line-height: var(--text-heading--line-height);
   margin: 0 0 0.65rem;
 }
 

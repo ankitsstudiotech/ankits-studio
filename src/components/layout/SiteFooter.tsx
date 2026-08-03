@@ -17,13 +17,15 @@ export function SiteFooter({
 }: SiteFooterProps) {
   return (
     <footer className="mt-auto border-t border-white/10 bg-field text-ink-inverse">
-      <Container className="py-12 sm:py-14">
+      <Container className="py-[var(--spacing-section)]">
         <div className="grid gap-10 md:grid-cols-[minmax(0,1.2fr)_repeat(2,minmax(0,1fr))]">
           <div className="max-w-sm">
-            <p className="mb-3 font-[family-name:var(--font-display)] text-3xl tracking-[0.04em]">
+            <p className="mb-3 font-[family-name:var(--font-display)] text-[length:var(--text-title)] leading-[var(--text-title--line-height)] tracking-[var(--text-title--letter-spacing)]">
               {brandName}
             </p>
-            <p className="text-sm text-[var(--color-muted-on-field)]">{tagline}</p>
+            <p className="text-[length:var(--text-caption)] leading-[var(--text-caption--line-height)] text-[var(--color-muted-on-field)]">
+              {tagline}
+            </p>
           </div>
 
           {groups.map((group) => (

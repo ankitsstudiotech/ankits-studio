@@ -27,7 +27,7 @@ export const mockNavigationItems: NavigationItem[] = [
   {
     dataStatus: "verified",
     id: "nav-timetable",
-    label: "Batch Availability",
+    label: "Batch availability",
     path: "/timetable",
     placement: "primary",
     order: 4,
@@ -36,7 +36,7 @@ export const mockNavigationItems: NavigationItem[] = [
   {
     dataStatus: "verified",
     id: "nav-trial",
-    label: "Book a Trial",
+    label: "Book a trial",
     path: "/trial",
     placement: "primary",
     order: 6,
@@ -77,7 +77,7 @@ export const mockNavigationItems: NavigationItem[] = [
   {
     dataStatus: "verified",
     id: "nav-footer-transformations",
-    label: "Member Stories",
+    label: "Member stories",
     path: "/transformations",
     placement: "footer",
     order: 5,

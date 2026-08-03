@@ -19,22 +19,25 @@
 }
 
 .bandNarrow {
-  max-width: 46rem;
+  max-width: var(--width-container-narrow);
 }
 
 .kicker {
   margin: 0 0 0.4rem;
-  font-size: 0.75rem;
-  letter-spacing: 0.1em;
+  font-family: var(--font-sans);
+  font-size: var(--text-overline);
+  font-weight: 600;
+  letter-spacing: var(--text-overline--letter-spacing);
+  line-height: var(--text-overline--line-height);
   text-transform: uppercase;
   color: var(--color-muted-on-field);
 }
 
 .title {
   font-family: var(--font-display);
-  font-size: clamp(2.15rem, 5.5vw, 3.5rem);
-  letter-spacing: 0.02em;
-  line-height: 0.96;
+  font-size: var(--text-hero);
+  letter-spacing: var(--text-hero--letter-spacing);
+  line-height: var(--text-hero--line-height);
   margin: 0 0 0.85rem;
   max-width: 16ch;
 }
@@ -42,15 +45,16 @@
 .lede {
   margin: 0;
   max-width: 48ch;
-  font-size: 1.08rem;
-  line-height: 1.5;
+  font-size: var(--text-body-lg);
+  line-height: var(--text-body-lg--line-height);
   color: var(--color-muted-on-field);
 }
 
 .sectionTitle {
   font-family: var(--font-display);
-  font-size: clamp(1.35rem, 3.2vw, 1.85rem);
-  letter-spacing: 0.06em;
+  font-size: var(--text-title);
+  letter-spacing: var(--text-title--letter-spacing);
+  line-height: var(--text-title--line-height);
   margin: 0 0 0.75rem;
   max-width: 22ch;
 }

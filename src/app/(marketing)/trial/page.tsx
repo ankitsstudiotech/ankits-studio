@@ -47,7 +47,7 @@ export default async function TrialPage({ searchParams }: TrialPageProps) {
           : null;
 
   const statusTone =
-    status === "received" ? "text-ink" : status ? "text-accent-strength" : undefined;
+    status === "received" ? "text-ink" : status ? "text-danger" : undefined;
 
   return (
     <main className="flex flex-1 flex-col">
