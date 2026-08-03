@@ -68,7 +68,7 @@ export function ProgrammeDiscovery({ programmes, trialHref, trialLabel }: Progra
         Choose how you want to move
       </h1>
       <p className={styles.bandLede}>
-        Confirmed services at Ankit’s Studio. Machine-free, coach-led sessions adapted to your needs —
+        Services at Ankit’s Studio. Machine-free, coach-led sessions adapted to your needs —
         without promised outcomes. Ask which batch fits when you book a free trial.
       </p>
 
@@ -111,8 +111,7 @@ export function ProgrammeDiscovery({ programmes, trialHref, trialLabel }: Progra
       <div className={styles.ctaRow}>
         <ProgrammePulseCta href={trialHref}>{trialLabel}</ProgrammePulseCta>
         <p className={styles.ctaNote}>
-          Free trial · ₹300 registration after you join. Opening WhatsApp starts a chat — it does not
-          mean a message was delivered.
+          Free trial · ₹300 registration after you join.
         </p>
       </div>
 

@@ -15,12 +15,31 @@ describe("sitemap/robots mock-mode behavior", () => {
   });
 
   it(
-    "sitemap is empty while unverified content exists, even in an explicitly-allowed production build",
+    "sitemap stays empty on ALLOW_MOCK_PUBLISH preview builds",
     async () => {
       vi.stubEnv("NODE_ENV", "production");
       vi.stubEnv("ALLOW_MOCK_PUBLISH", "true");
       const { buildSitemapEntries } = await import("@/lib/seo/sitemap");
       expect(buildSitemapEntries()).toEqual([]);
+    },
+    15_000,
+  );
+
+  it(
+    "sitemap includes launch routes in real production when launch-critical content is verified",
+    async () => {
+      vi.stubEnv("NODE_ENV", "production");
+      vi.stubEnv("ALLOW_MOCK_PUBLISH", "false");
+      const { buildSitemapEntries } = await import("@/lib/seo/sitemap");
+      const { buildCanonicalUrl } = await import("@/lib/seo/canonical");
+      const urls = buildSitemapEntries().map((e) => e.url);
+      expect(urls).toContain(buildCanonicalUrl("/"));
+      expect(urls).toContain(buildCanonicalUrl("/programs"));
+      expect(urls).toContain(buildCanonicalUrl("/locations"));
+      expect(urls).toContain(buildCanonicalUrl("/trial"));
+      expect(urls).not.toContain(buildCanonicalUrl("/blog"));
+      expect(urls).not.toContain(buildCanonicalUrl("/trainers"));
+      expect(urls).not.toContain(buildCanonicalUrl("/transformations"));
     },
     15_000,
   );

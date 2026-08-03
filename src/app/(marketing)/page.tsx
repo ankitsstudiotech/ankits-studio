@@ -156,7 +156,7 @@ export default function HomePage() {
       id: "faq-trial",
       question: "Is the trial class free?",
       answer:
-        "Yes. A free trial is available for every service at every physical branch, once per person. Opening WhatsApp starts a chat — it does not mean a message was already delivered.",
+        "Yes. A free trial is available for every service at every physical branch, once per person. Message us on WhatsApp to arrange yours.",
     },
     {
       id: "faq-hours",

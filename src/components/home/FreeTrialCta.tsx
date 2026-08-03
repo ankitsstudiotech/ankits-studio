@@ -1,4 +1,5 @@
 import Link from "next/link";
+import { WHATSAPP_REVIEW_HELPER } from "@/lib/conversion";
 import { PulseCta } from "./pulse/PulseMotion";
 import styles from "./pulse/pulse-home.module.css";
 
@@ -13,7 +14,7 @@ export type FreeTrialCtaProps = {
 
 export function FreeTrialCta({
   title = "Book a free trial",
-  body = "Message Ankit’s Studio on WhatsApp. Opening the chat does not mean a message was delivered — send when you are ready.",
+  body = "Message Ankit’s Studio on WhatsApp to book a free trial.",
   href,
   label,
   secondaryHref = "/trial",
@@ -24,6 +25,7 @@ export function FreeTrialCta({
       <h2 id="home-trial-title">{title}</h2>
       <p>{body}</p>
       <PulseCta href={href}>{label}</PulseCta>
+      <p className={styles.ctaNote}>{WHATSAPP_REVIEW_HELPER}</p>
       <p className={styles.ctaNote}>Free trial class. One-time registration fee is ₹300 after you join.</p>
       {secondaryHref && secondaryLabel ? (
         <div className={styles.ctaSecondaryRow}>

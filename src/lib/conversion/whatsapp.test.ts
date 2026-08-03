@@ -27,12 +27,12 @@ describe("WhatsApp conversion", () => {
     expect(message).toContain("Name: Riya");
     expect(message).toContain("Preferred branch: Ghansoli");
     expect(message).toContain("Age: 10");
-    expect(message).toContain("Trial date: 2026-08-10");
-    expect(message).toContain("Interested service:");
+    expect(message).toContain("Preferred trial date: 2026-08-10");
+    expect(message).toContain("Interested programme:");
   });
 
-  it("includes Trial date in the default template", () => {
-    expect(WHATSAPP_TRIAL_TEMPLATE).toContain("Trial date:");
+  it("includes Preferred trial date in the default template", () => {
+    expect(WHATSAPP_TRIAL_TEMPLATE).toContain("Preferred trial date:");
   });
 
   it("uses WhatsApp as the primary conversion href", () => {

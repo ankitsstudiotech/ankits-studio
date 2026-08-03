@@ -324,5 +324,10 @@ export function getNavigationItems(placement?: NavigationPlacement): NavigationI
   return [...items].sort((a, b) => a.order - b.order);
 }
 
-export { siteHasUnverifiedContent, shouldNoIndex } from "./content-mode";
+export {
+  siteHasUnverifiedContent,
+  launchCriticalContentVerified,
+  shouldNoIndex,
+  shouldShowMockPreviewBanner,
+} from "./content-mode";
 export * from "./schema";

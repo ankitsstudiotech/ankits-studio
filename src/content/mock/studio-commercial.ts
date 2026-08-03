@@ -26,7 +26,7 @@ export const mockStudioCommercial: StudioCommercial = {
   missedClassesPolicyStatus: "ambiguous",
   corporateFitnessStatus: "enquiry-only",
   corporateFitnessNote:
-    "Corporate Fitness Sessions are an owner-confirmed offering. Details are incomplete — enquire on WhatsApp. There is no separate indexable programme page yet.",
+    "Corporate Fitness Sessions are available by enquiry on WhatsApp. Details are arranged when you get in touch.",
   typicalSessionMinutes: 60,
   maxGroupBatchSize: 15,
   ladiesOnlyBatchesAvailable: true,
@@ -36,8 +36,8 @@ export const mockStudioCommercial: StudioCommercial = {
   beginnersWelcome: true,
   differentiator:
     "Machine-free Functional Training using bodyweight movement and portable training equipment such as bands, dumbbells and kettlebells. Group sessions are coach-led; personalised programming is available through personal training.",
-  trainerCountNote: "15+ trainers (owner-confirmed count; qualifications unpublished).",
-  trainerWorkforceNote: "Workforce is a mix of employees and freelancers (owner-provided).",
+  trainerCountNote: "15+ trainers across programmes and branches.",
+  trainerWorkforceNote: "Workforce is a mix of employees and freelancers.",
   experienceNotePartial:
     "Owner stated hiring expectation of certification plus 2+ years — do not publish as proof that every trainer meets it until records are reviewed.",
   commercialPriorityNotePartial:

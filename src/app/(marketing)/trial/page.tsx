@@ -1,20 +1,19 @@
 import type { Metadata } from "next";
+import Link from "next/link";
 import { PageBreadcrumb } from "@/components/layout/PageBreadcrumb";
-import { Badge } from "@/components/ui/Badge";
-import { Section } from "@/components/ui/Section";
-import { getProgrammes, getPubliclyListedBranches } from "@/content";
-import { isLeadDemonstrationMode } from "@/lib/leads";
+import { getProgrammes, getPubliclyListedBranches, getStudioContactLinks } from "@/content";
+import { isConfirmedProgramme } from "@/content";
 import { buildPageMetadata } from "@/lib/seo/metadata";
 import { serializeJsonLd } from "@/lib/seo/serialize";
 import { buildBreadcrumbJsonLd } from "@/lib/seo/structured-data";
-import { TrialForm } from "./TrialForm";
+import { TrialWhatsAppForm } from "./TrialWhatsAppForm";
 
 const PATH = "/trial";
 
 export const metadata: Metadata = buildPageMetadata({
   title: "Book a free trial",
   description:
-    "Request a trial class at Ankit's Studio. Development builds accept mock leads locally; production does not pretend delivery without a provider.",
+    "Book a free trial at Ankit’s Studio. Tell us your preferences and continue on WhatsApp to message the studio.",
   path: PATH,
 });
 
@@ -23,74 +22,82 @@ const breadcrumbTrail = [
   { name: "Book a free trial", path: PATH },
 ];
 
-type TrialPageProps = {
-  searchParams: Promise<{ status?: string; mode?: string; ref?: string }>;
-};
-
-export default async function TrialPage({ searchParams }: TrialPageProps) {
-  const params = await searchParams;
+export default function TrialPage() {
   const branches = getPubliclyListedBranches();
-  const programmes = getProgrammes();
+  const programmes = getProgrammes().filter(isConfirmedProgramme);
+  const studioLinks = getStudioContactLinks();
   const breadcrumbJsonLd = buildBreadcrumbJsonLd(breadcrumbTrail);
 
-  const demonstrationMode = isLeadDemonstrationMode();
-  const status = params.status;
-  const statusMessage =
-    status === "received"
-      ? params.mode === "mock"
-        ? `Demonstration mode: request accepted locally (reference ${params.ref ?? "n/a"}). Nothing was sent to a live lead provider.`
-        : `Request accepted (reference ${params.ref ?? "n/a"}).`
-      : status === "not-configured"
-        ? "Your details were not delivered. No live lead provider is configured in this environment."
-        : status === "provider-error"
-          ? "Your details were not delivered. The lead provider is not ready."
-          : null;
-
-  const statusTone =
-    status === "received" ? "text-ink" : status ? "text-danger" : undefined;
-
   return (
-    <main className="flex flex-1 flex-col">
+    <main className="pulse-page flex flex-1 flex-col">
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: serializeJsonLd(breadcrumbJsonLd) }}
       />
 
-      <PageBreadcrumb items={breadcrumbTrail} />
+      <div className="pulse-crumb-bar">
+        <PageBreadcrumb items={breadcrumbTrail} />
+      </div>
 
-      <Section
-        eyebrow="Trial"
-        title="Book a free trial"
-        titleAs="h1"
-        description={
-          demonstrationMode
-            ? "Walk through the booking form in this mock preview. Submissions stay local — they are not delivered to the studio."
-            : "Tell us how to reach you and which class you’d like to try. Advance booking is not compulsory, but checking current availability on WhatsApp is recommended. Messages are answered during studio operating hours. Live form delivery requires a configured lead provider."
-        }
-        narrow
-      >
-        <Badge accent={demonstrationMode ? "strength" : "neutral"} className="mb-6">
-          {demonstrationMode
-            ? "Demonstration mode — not live delivery"
-            : "Lead routing adapter required for live delivery"}
-        </Badge>
-
-        {statusMessage ? (
-          <p
-            role="status"
-            aria-live="polite"
-            className={`mb-6 rounded-[var(--radius-md)] border border-border bg-surface-raised px-4 py-3 text-sm ${statusTone}`}
-          >
-            {statusMessage}
+      <div className="mx-auto grid w-full max-w-[var(--width-container)] gap-10 px-[var(--spacing-gutter)] py-[var(--spacing-section)] lg:grid-cols-2 lg:items-start lg:gap-14">
+        <section aria-labelledby="trial-title">
+          <p className="pulse-kicker">Free trial</p>
+          <h1 id="trial-title" className="pulse-title">
+            Book a free trial
+          </h1>
+          <p className="pulse-lede">
+            A free trial is available once per person for studio services. Share what you can —
+            every field is optional — then continue on WhatsApp to send your message.
           </p>
-        ) : null}
+          <ul className="mt-6 list-none space-y-3 p-0 text-[length:var(--text-body)] text-[var(--color-muted-on-field)]">
+            <li>Studios open daily · 6:00 AM–10:00 PM</li>
+            <li>₹300 one-time registration after you join</li>
+            <li>Programme fees confirmed when you enquire</li>
+          </ul>
+          <div className="mt-8 space-y-2 text-sm text-[var(--color-muted-on-field)]">
+            {studioLinks.phoneHref ? (
+              <p>
+                Prefer a call?{" "}
+                <a
+                  href={studioLinks.phoneHref}
+                  className="font-semibold text-ink-inverse underline underline-offset-4"
+                >
+                  {studioLinks.phoneHref.replace("tel:", "")}
+                </a>
+              </p>
+            ) : null}
+            {studioLinks.emailHref ? (
+              <p>
+                Or email{" "}
+                <a
+                  href={studioLinks.emailHref}
+                  className="font-semibold text-ink-inverse underline underline-offset-4 break-all"
+                >
+                  {studioLinks.emailHref.replace("mailto:", "")}
+                </a>
+              </p>
+            ) : null}
+            <p>
+              Prefer the form later? You can always{" "}
+              <Link href="/contact" className="font-semibold text-ink-inverse underline underline-offset-4">
+                contact us
+              </Link>
+              .
+            </p>
+          </div>
+        </section>
 
-        <TrialForm
-          branches={branches}
-          programmes={programmes}
-          demonstrationMode={demonstrationMode}
-        />
-      </Section>
+        <section
+          id="trial-builder"
+          aria-labelledby="trial-builder-title"
+          className="rounded-none border border-white/10 bg-[var(--color-surface)] p-5 text-ink sm:p-6"
+        >
+          <h2 id="trial-builder-title" className="mb-4 font-[family-name:var(--font-display)] text-[length:var(--text-heading)] text-ink">
+            Trial message builder
+          </h2>
+          <TrialWhatsAppForm branches={branches} programmes={programmes} />
+        </section>
+      </div>
     </main>
   );
 }

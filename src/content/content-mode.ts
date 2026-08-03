@@ -16,10 +16,13 @@ import {
 } from "./mock";
 
 /**
- * Mock vs. verified content mode, and the production mock-content safety
- * check — see docs/DECISIONS.md ADR-002 (the four-layer launch gate) and
- * ADR-011 (leak-path hardening). This module has no React/Next.js
- * dependency so it can be imported from next.config.ts at config-load time.
+ * Mock vs. verified content mode, and the production launch gate.
+ * See docs/DECISIONS.md ADR-002 / ADR-011.
+ *
+ * V1 launch rule: enquiry-based gaps (exact fees, batch grids) and soft
+ * unpublished domains (sample blog, illustrative FAQs, mock timetable rows
+ * that public getters already hide) must not force ALLOW_MOCK_PUBLISH or
+ * site-wide noindex. Fake customer evidence must still never publish.
  */
 
 interface ProvenanceLike {
@@ -30,60 +33,88 @@ function hasUnverified(records: readonly ProvenanceLike[]): boolean {
   return records.some((record) => record.dataStatus !== "verified");
 }
 
-const allContentDomainRecords: readonly ProvenanceLike[] = [
-  ...mockProgrammes,
-  ...mockBranches,
-  ...mockTrainers,
+/**
+ * Soft / unpublished domains — may stay mock. Public getters already withhold
+ * fake schedules, fees, trainers and testimonials. These do not block V1.
+ */
+const softContentDomainRecords: readonly ProvenanceLike[] = [
   ...mockTimetableSlots,
   ...mockPricingPlans,
   ...mockBlogPosts,
+  ...mockFaqs,
+  ...mockTrainers,
+  mockStudioTrainersPage,
+  mockStudioMemberStoriesPage,
+];
+
+/**
+ * Launch-critical marketing facts — must be verified for an indexable
+ * production build without ALLOW_MOCK_PUBLISH.
+ */
+const launchCriticalRecords: readonly ProvenanceLike[] = [
+  ...mockProgrammes,
+  ...mockBranches,
   mockBusinessIdentity,
   mockContactDetails,
   mockStudioCommercial,
   mockStudioAbout,
-  mockStudioTrainersPage,
-  mockStudioMemberStoriesPage,
-  ...mockFaqs,
   ...mockNavigationItems,
+];
+
+const allContentDomainRecords: readonly ProvenanceLike[] = [
+  ...launchCriticalRecords,
+  ...softContentDomainRecords,
 ];
 
 /** True whenever any record across the content domain isn't `"verified"`. */
 export const siteHasUnverifiedContent = hasUnverified(allContentDomainRecords);
 
+/** True when launch-critical marketing records are fully verified. */
+export const launchCriticalContentVerified = !hasUnverified(launchCriticalRecords);
+
 export const isProductionBuild = process.env.NODE_ENV === "production";
 
 /**
- * Explicit opt-in for a production build to proceed while unverified
- * content exists — e.g. a preview deploy. Must be exactly `"true"`; unset
- * or any other value is treated as not allowed.
+ * Explicit opt-in for a mock/preview production build. Must be exactly `"true"`.
+ * Preview builds stay noindex even when launch-critical content is verified.
  */
 export const isMockPublishAllowed = process.env.ALLOW_MOCK_PUBLISH === "true";
 
 /**
- * Layer 3 of the ADR-002 launch gate. Call at build/config-load time (see
- * next.config.ts). Throws — and so fails the build — when this is a
- * production build, unverified content is present, and
- * `ALLOW_MOCK_PUBLISH` was not explicitly set to `"true"`.
+ * Layer 3 — fail the production build only when launch-critical content is
+ * still unverified and the operator did not opt into a preview publish.
+ * Soft mock domains (blog samples, FAQ drafts, withheld timetable rows) are
+ * allowed without ALLOW_MOCK_PUBLISH.
  */
 export function assertMockContentSafeForBuild(): void {
-  if (isProductionBuild && siteHasUnverifiedContent && !isMockPublishAllowed) {
+  if (isProductionBuild && !launchCriticalContentVerified && !isMockPublishAllowed) {
     throw new Error(
-      'Production build blocked: unverified ("mock" or "reference-only") content ' +
-        "is present in src/content, and ALLOW_MOCK_PUBLISH is not set to \"true\". " +
-        "See docs/DECISIONS.md ADR-002 and ADR-011. Either verify the remaining " +
-        "docs/BUSINESS-DATA-STATUS.md domains, or set ALLOW_MOCK_PUBLISH=true for an " +
-        "explicitly-allowed preview build (which still ships noindex — see shouldNoIndex())."
+      'Production build blocked: unverified launch-critical content is present ' +
+        "in src/content, and ALLOW_MOCK_PUBLISH is not set to \"true\". " +
+        "Verify programmes, branches, contact, identity, about, commercial and navigation, " +
+        "or set ALLOW_MOCK_PUBLISH=true for an explicitly noindex preview build.",
     );
   }
 }
 
 /**
- * Layer 4 of the ADR-002 launch gate. True unless this is a production
- * build with zero unverified content anywhere in the content domain — i.e.
- * every other case (dev, preview, an explicitly mock-publish-allowed build)
- * stays noindex, even when `assertMockContentSafeForBuild` let the build
- * proceed.
+ * Site-wide robots gate.
+ * Indexable only for a real production build with verified launch-critical
+ * content and without ALLOW_MOCK_PUBLISH (preview stays noindex).
  */
 export function shouldNoIndex(): boolean {
-  return !(isProductionBuild && !siteHasUnverifiedContent);
+  if (!isProductionBuild) return true;
+  if (isMockPublishAllowed) return true;
+  return !launchCriticalContentVerified;
+}
+
+/**
+ * Compact preview chrome may show in development, or on an explicit
+ * ALLOW_MOCK_PUBLISH preview build, while soft or critical content remains
+ * unverified. Real production never shows it.
+ */
+export function shouldShowMockPreviewBanner(): boolean {
+  if (!siteHasUnverifiedContent) return false;
+  if (isMockPublishAllowed) return true;
+  return !isProductionBuild;
 }

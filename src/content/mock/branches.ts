@@ -88,13 +88,13 @@ const SHARED_BRANCH_FAQS = [
     id: "faq-branch-batches",
     question: "How do I check current batch availability?",
     answer:
-      "Message us on WhatsApp with your preferred branch and programme. Exact class schedules are confirmed when you enquire — we do not publish seat counts or invented timetable rows.",
+      "Message us on WhatsApp with your preferred branch and programme. We’ll confirm current batch times when you enquire.",
   },
   {
     id: "faq-branch-hours",
     question: "What are the studio operating hours?",
     answer:
-      "Studios operate from 6:00 AM to 10:00 PM every day. There is no weekly closing day. That is the studio operating window, not a continuous class timetable. Batch times vary and are confirmed on WhatsApp.",
+      "Studios are open from 6:00 AM to 10:00 PM every day — there is no weekly closing day. That is the studio open window, not a continuous class timetable. Batch times vary and are confirmed on WhatsApp.",
   },
   {
     id: "faq-branch-trial",

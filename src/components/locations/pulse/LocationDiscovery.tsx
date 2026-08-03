@@ -1,6 +1,7 @@
 import Link from "next/link";
 import type { Branch } from "@/content";
 import { getBranchMapsUrl } from "@/content";
+import { WHATSAPP_REVIEW_HELPER } from "@/lib/conversion";
 import { LocationPulseCta } from "./LocationPulseMotion";
 import styles from "./location-pulse.module.css";
 
@@ -21,15 +22,13 @@ export function LocationDiscovery({ branches, trialHref, trialLabel }: LocationD
         Four neighbourhood studios
       </h1>
       <p className={styles.bandLede}>
-        Ankit’s Studio branches in Airoli, Ghansoli, and Thane. Check current batch times on
-        WhatsApp — schedules are not published as fixed rows yet. A free trial is available.
+        Ankit’s Studio branches in Airoli, Ghansoli, and Thane. Message WhatsApp for current batch
+        times. A free trial is available.
       </p>
 
       <ul className={styles.placeList}>
         {branches.map((branch) => {
           const mapsUrl = getBranchMapsUrl(branch);
-          const addressPending = branch.address == null;
-          const mapsPending = mapsUrl == null;
           const addressLine = branch.address
             ? branch.address.replace(/,\s*Maharashtra\s+\d{6}$/i, "")
             : null;
@@ -40,23 +39,13 @@ export function LocationDiscovery({ branches, trialHref, trialLabel }: LocationD
                 <h2 className={styles.placeName}>
                   <Link href={`/locations/${branch.slug}`}>{branch.locality}</Link>
                 </h2>
-                {addressLine ? <p className={styles.placeStatus}>{addressLine}</p> : null}
-                {addressPending || mapsPending ? (
-                  <p className={styles.placeStatus}>
-                    {addressPending && mapsPending
-                      ? "Address & map updating"
-                      : addressPending
-                        ? "Detailed address updating"
-                        : "Map available"}
-                  </p>
-                ) : null}
+                <p className={styles.placeStatus}>Open daily · 6:00 AM–10:00 PM</p>
+                {addressLine ? <p className={styles.placeAddress}>{addressLine}</p> : null}
               </div>
               <p className={styles.placeMeta}>
-                {mapsPending && addressPending
-                  ? "Open branch. Detailed address and map are being updated — message WhatsApp for directions."
-                  : addressPending
-                    ? "Open branch. Detailed address is being updated. Use Maps for directions when linked."
-                    : "Open branch — printable address, Maps link, and WhatsApp trial enquiry."}
+                {mapsUrl
+                  ? "Neighbourhood studio — address, Maps link, and free trial enquiry."
+                  : "Neighbourhood studio — message WhatsApp for directions while the map updates."}
               </p>
               <div className={styles.placeActions}>
                 <Link href={`/locations/${branch.slug}`} className={styles.actionLink}>
@@ -72,7 +61,7 @@ export function LocationDiscovery({ branches, trialHref, trialLabel }: LocationD
                     Open in Google Maps
                   </a>
                 ) : (
-                  <span className={styles.actionMuted}>Maps link pending</span>
+                  <span className={styles.actionMuted}>Maps updating</span>
                 )}
               </div>
             </li>
@@ -82,10 +71,7 @@ export function LocationDiscovery({ branches, trialHref, trialLabel }: LocationD
 
       <div className={styles.ctaRow}>
         <LocationPulseCta href={trialHref}>{trialLabel}</LocationPulseCta>
-        <p className={styles.ctaNote}>
-          Prefer WhatsApp for current batch availability. Opening chat does not mean your enquiry
-          was submitted.
-        </p>
+        <p className={styles.ctaNote}>{WHATSAPP_REVIEW_HELPER}</p>
       </div>
     </section>
   );

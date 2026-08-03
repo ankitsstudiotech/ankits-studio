@@ -1,6 +1,6 @@
 import Link from "next/link";
 import type { Programme, ProgrammeSlug } from "@/content";
-import { PulseMediaPlate } from "@/components/home/pulse/PulseMotion";
+import { WHATSAPP_REVIEW_HELPER } from "@/lib/conversion";
 import { ProgrammePulseCta, type ProgrammeTempo } from "./ProgrammePulseMotion";
 import styles from "./programme-pulse.module.css";
 
@@ -12,19 +12,6 @@ const SLUG_TEMPO: Record<string, ProgrammeTempo> = {
   "wedding-choreography": "wedding",
   "home-personal-training": "home",
   "online-training": "online",
-};
-
-const FAMILY: Record<
-  ProgrammeTempo,
-  "strength" | "calm" | "high-energy" | "warm"
-> = {
-  functional: "strength",
-  yoga: "calm",
-  zumba: "high-energy",
-  dance: "high-energy",
-  wedding: "warm",
-  home: "strength",
-  online: "strength",
 };
 
 export type ProgrammeDetailViewProps = {
@@ -50,6 +37,11 @@ export function ProgrammeDetailView({
         ? "Online delivery (not a branch-floor class)"
         : "Studio sessions at listed branches";
 
+  const batchLabel =
+    programme.batchScheduleStatus === "published"
+      ? "See batch availability"
+      : "Exact times vary by branch — ask on WhatsApp. Studios are open 6:00 AM–10:00 PM daily.";
+
   return (
     <div className={styles.field}>
       <section
@@ -68,30 +60,30 @@ export function ProgrammeDetailView({
                   : "Programme"}
           </p>
           <h1 id="programme-title">{programme.name}</h1>
-          <p>{programme.longDescription}</p>
+          <p>{programme.shortDescription}</p>
           <div className={styles.ctaRow}>
             <ProgrammePulseCta href={whatsappHref}>{whatsappLabel}</ProgrammePulseCta>
-            <p className={styles.ctaNote}>
-              Opening WhatsApp starts a chat — it does not mean your enquiry was submitted.
-            </p>
+            <p className={styles.ctaNote}>{WHATSAPP_REVIEW_HELPER}</p>
           </div>
         </div>
-        <PulseMediaPlate
-          slotKey={programme.mediaSlotKey}
-          family={FAMILY[tempo]}
-          label={`${programme.name} photography pending`}
-          compact
-        />
       </section>
 
-      <section className={styles.band} aria-labelledby="programme-facts">
-        <h2 id="programme-facts" className={styles.sectionTitle}>
-          Confirmed details
+      <section className={styles.band} aria-labelledby="programme-overview">
+        <h2 id="programme-overview" className={styles.sectionTitle}>
+          At a glance
         </h2>
         <ul className={styles.facts}>
           <li className={styles.fact}>
-            <strong>Who may enquire</strong>
+            <strong>Who it’s for</strong>
             <span>{programme.whoItsFor}</span>
+          </li>
+          <li className={styles.fact}>
+            <strong>Class structure</strong>
+            <span>{programme.classStructure}</span>
+          </li>
+          <li className={styles.fact}>
+            <strong>Batch times</strong>
+            <span>{batchLabel}</span>
           </li>
           <li className={styles.fact}>
             <strong>Delivery</strong>
@@ -102,7 +94,7 @@ export function ProgrammeDetailView({
             <span>
               {programme.trialAvailable
                 ? "Free trial available — enquire on WhatsApp"
-                : "Trial status pending confirmation"}
+                : "Ask about a trial when you enquire"}
             </span>
           </li>
           <li className={styles.fact}>
@@ -114,16 +106,8 @@ export function ProgrammeDetailView({
             </span>
           </li>
           <li className={styles.fact}>
-            <strong>Batch schedule</strong>
-            <span>
-              {programme.batchScheduleStatus === "published"
-                ? "See batch availability"
-                : "Exact times vary by branch — ask on WhatsApp. Studios operate 6:00 AM–10:00 PM (operating window, not class rows)."}
-            </span>
-          </li>
-          <li className={styles.fact}>
             <strong>Group size</strong>
-            <span>Maximum 15 people per group batch</span>
+            <span>Group batches are typically up to 15 people</span>
           </li>
           {programme.ladiesOnlyBatchesAvailable ? (
             <li className={styles.fact}>
@@ -134,11 +118,29 @@ export function ProgrammeDetailView({
           {programme.kidsOnlyBatchesAvailable ? (
             <li className={styles.fact}>
               <strong>Kids-only</strong>
-              <span>Kids-only batches available on request — not a separate named service here</span>
+              <span>Kids-only batches available on request</span>
             </li>
           ) : null}
         </ul>
       </section>
+
+      {programme.benefits.length > 0 ? (
+        <section className={styles.band} aria-labelledby="programme-benefits">
+          <h2 id="programme-benefits" className={styles.sectionTitle}>
+            What the session may include
+          </h2>
+          <p className={styles.ctaNote} style={{ marginBottom: "0.85rem" }}>
+            Not every tool appears in every session or branch.
+          </p>
+          <ul className={styles.facts}>
+            {programme.benefits.map((benefit) => (
+              <li key={benefit} className={styles.fact}>
+                <span>{benefit}</span>
+              </li>
+            ))}
+          </ul>
+        </section>
+      ) : null}
 
       {locations.length > 0 && programme.deliveryMode === "in-studio" ? (
         <section className={styles.band} aria-labelledby="programme-locations">
@@ -165,7 +167,7 @@ export function ProgrammeDetailView({
           </h2>
           <p className={styles.laneDesc}>
             This service is not tied to a physical branch floor class. Coverage, platform, and timing
-            are confirmed when you enquire — do not assume it is offered inside every studio.
+            are confirmed when you enquire.
           </p>
         </section>
       ) : null}
@@ -206,8 +208,7 @@ export function ProgrammeDetailView({
           Enquire about a free trial
         </h2>
         <p className={styles.laneDesc}>
-          Message Ankit’s Studio on WhatsApp about {programme.name}. Opening the chat does not mean a
-          message was delivered.
+          Message Ankit’s Studio on WhatsApp about {programme.name}.
         </p>
         <div className={styles.ctaRow}>
           <ProgrammePulseCta href={whatsappHref}>{whatsappLabel}</ProgrammePulseCta>

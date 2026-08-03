@@ -12,9 +12,8 @@ const PATH = "/terms";
 export const metadata: Metadata = buildPageMetadata({
   title: "Terms",
   description:
-    "Draft terms of use placeholder for Ankit's Studio. Legal review is required before launch.",
+    "Draft terms of use placeholder for Ankit's Studio. Legal review is required before treating this as final counsel-approved terms.",
   path: PATH,
-  forceNoIndex: true,
 });
 
 const breadcrumbTrail = [

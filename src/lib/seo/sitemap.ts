@@ -16,7 +16,6 @@ const STATIC_ROUTES: readonly string[] = [
   "/about",
   "/pricing",
   "/contact",
-  "/blog",
   "/timetable",
   "/trial",
   "/programs",
@@ -26,19 +25,9 @@ const STATIC_ROUTES: readonly string[] = [
 ];
 
 /**
- * A sitemap entry is an implicit "this is indexable, confirmed content"
- * signal — so this returns nothing at all while the site has any
- * unverified content anywhere (`shouldNoIndex()`), rather than trying to
- * selectively include "safe" entries. This is the simplest rule that
- * satisfies "the sitemap must not imply mock location information is
- * verified" — see docs/DECISIONS.md ADR-002/ADR-011.
- *
- * Once `shouldNoIndex()` is false (a production build with zero unverified
- * content anywhere), builds real entries: every static marketing route,
- * plus one entry per verified programme/publicly-listed branch/trainer/blog
- * post. `/trainers` and trainer slug URLs require `shouldIndexTrainersRoute()`
- * (ADR-019). Dynamic entries are additionally filtered by publishability.
- * See docs/DECISIONS.md ADR-013 (SEO-001) and ADR-019.
+ * Sitemap entries for indexable production builds.
+ * Soft mock domains (sample blog) stay out until verified.
+ * `/trainers` and `/transformations` require their own publish thresholds.
  */
 export function buildSitemapEntries(): MetadataRoute.Sitemap {
   if (shouldNoIndex()) {

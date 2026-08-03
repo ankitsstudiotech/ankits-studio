@@ -1,20 +1,18 @@
 import { siteHasUnverifiedContent } from "@/content/content-mode";
+import { shouldShowMockPreviewBanner } from "@/content/content-mode";
 
 /**
- * Non-dismissable visual indicator that mock/reference-only content is in
- * use — see docs/BUSINESS-DATA-STATUS.md and ADR-002 layer-2.
+ * Compact preview notice for development / explicit mock-publish builds.
+ * Never renders in real production — see shouldShowMockPreviewBanner().
  *
  * Warning amber (not brand action purple) so status never collides with CTAs.
- * Mobile: single concise line to reduce first-viewport chrome tax.
  */
 export function MockModeIndicator() {
-  const isDevelopment = process.env.NODE_ENV === "development";
-  const isMockPreviewBuild = process.env.ALLOW_MOCK_PUBLISH === "true";
-
-  if ((!isDevelopment && !isMockPreviewBuild) || !siteHasUnverifiedContent) {
+  if (!shouldShowMockPreviewBanner()) {
     return null;
   }
 
+  const isDevelopment = process.env.NODE_ENV === "development";
   const contextLabel = isDevelopment ? "Development preview" : "Mock preview";
 
   return (
@@ -25,10 +23,12 @@ export function MockModeIndicator() {
       <p className="text-xs font-semibold tracking-wide sm:text-sm">
         {contextLabel} — some details still pending confirmation · noindex
       </p>
-      <p className="mt-0.5 hidden text-xs font-normal opacity-90 sm:block">
-        Not every address, timetable, or fee on this preview is final. This banner stays until
-        remaining content is verified.
-      </p>
+      {siteHasUnverifiedContent ? (
+        <p className="mt-0.5 hidden text-xs font-normal opacity-90 sm:block">
+          Soft unpublished domains may still be mock. This banner does not appear on a real
+          production deploy.
+        </p>
+      ) : null}
     </div>
   );
 }

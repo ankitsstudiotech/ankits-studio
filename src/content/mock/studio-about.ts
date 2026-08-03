@@ -21,12 +21,12 @@ export const mockStudioAbout: StudioAbout = {
     "The same studio brand supports functional training, Zumba, yoga, dance and wedding choreography in the studio, plus home personal training and online training. Corporate Fitness Sessions are available by enquiry. Choose the service that fits — then enquire for the current batch and fee.",
   branchesTitle: "Four neighbourhood branches",
   branchesBody:
-    "Ankit’s Studio operates through Airoli Sector 19, Airoli Sector 8, Ghansoli and Thane. Each branch page lists the printable address and Maps link.",
+    "Ankit’s Studio operates through Airoli Sector 19, Airoli Sector 8, Ghansoli and Thane. Each branch page lists the address and a Maps link.",
   teamTitle: "Team and coaching",
   teamBody:
     "Ankit’s Studio works with a team of 15+ trainers across its programmes and branches.",
   teamCountProvenance:
-    "Owner-provided team-size statement. Individual names, roles and qualifications are not published yet.",
+    "Team size as shared by the studio. Individual names, roles and qualifications are not listed here yet.",
   trainerProfileSlugs: [],
   founderStoryStatus: "verified",
   founderStory:
@@ -57,7 +57,7 @@ export const mockStudioAbout: StudioAbout = {
       id: "about-faq-trial",
       question: "How do I book a free trial?",
       answer:
-        "Message Ankit’s Studio on WhatsApp. Messages are answered during studio operating hours. Opening WhatsApp starts a chat — it does not mean your enquiry was already submitted.",
+        "Message Ankit’s Studio on WhatsApp. Messages are answered during studio operating hours.",
     },
   ],
   ownerSource: OWNER_INTERVIEW_2026_08_03,

@@ -12,7 +12,7 @@ export const mockContactDetails: ContactDetails = {
   generalWhatsapp: "+91 93724 02074",
   preferredContactOrder: ["whatsapp", "phone", "trial-form", "email"],
   introText:
-    "Message Ankit’s Studio on WhatsApp to book a free trial, or call the central studio enquiry number. Messages are answered during studio operating hours. Prefer a form? Use the trial request page — opening WhatsApp does not mean a message was delivered.",
+    "Message Ankit’s Studio on WhatsApp to book a free trial, or call the central studio enquiry number. Messages are answered during studio operating hours. Prefer a form? Use the trial request page.",
   branchesInheritCentralEnquiry: true,
   ownerSource: OWNER_INTERVIEW_2026_08_03,
 };

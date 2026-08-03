@@ -1,4 +1,5 @@
 export {
+  WHATSAPP_REVIEW_HELPER,
   WHATSAPP_TRIAL_TEMPLATE,
   buildWhatsAppMessage,
   buildWhatsAppProgrammeEnquiryMessage,

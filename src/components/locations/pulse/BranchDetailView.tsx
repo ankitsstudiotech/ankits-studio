@@ -1,6 +1,6 @@
 import Link from "next/link";
 import type { Branch, Programme } from "@/content";
-import { PulseMediaPlate } from "@/components/home/pulse/PulseMotion";
+import { WHATSAPP_REVIEW_HELPER } from "@/lib/conversion";
 import { LocationPulseCta } from "./LocationPulseMotion";
 import styles from "./location-pulse.module.css";
 
@@ -57,12 +57,12 @@ export function BranchDetailView({
         <div>
           <p className={styles.detailKicker}>Ankit’s Studio branch</p>
           {branch.openingStatus === "open" ? (
-            <span className={styles.openBadge}>Currently open</span>
+            <span className={styles.openBadge}>Open daily · {hoursLabel}</span>
           ) : null}
           <h1 id="branch-title">{branch.locality}</h1>
           <p>
             {branch.name}. Coach-led sessions at this neighbourhood studio. Ask on WhatsApp which
-            batch fits — we do not publish seat counts or invented class rows.
+            batch fits you.
           </p>
           <div className={styles.ctaRow}>
             <LocationPulseCta href={whatsappHref}>{whatsappLabel}</LocationPulseCta>
@@ -76,17 +76,9 @@ export function BranchDetailView({
                 Open in Google Maps
               </a>
             ) : null}
-            <p className={styles.ctaNote}>
-              Opening WhatsApp starts a chat — it does not mean your enquiry was submitted.
-            </p>
+            <p className={styles.ctaNote}>{WHATSAPP_REVIEW_HELPER}</p>
           </div>
         </div>
-        <PulseMediaPlate
-          slotKey={branch.mediaSlotKey}
-          family="warm"
-          label={`${branch.locality} photography pending`}
-          compact
-        />
       </section>
 
       <section className={styles.band} aria-labelledby="branch-address">
@@ -130,7 +122,7 @@ export function BranchDetailView({
                   {branch.phone}
                 </a>
                 {branch.inheritsCentralEnquiry
-                  ? " — central studio enquiry number for all branches"
+                  ? " — shared studio enquiry number for all branches"
                   : null}
               </span>
             </li>
@@ -143,8 +135,8 @@ export function BranchDetailView({
           Operating hours
         </h2>
         <p className={styles.bandLede}>
-          Studio operating window: {hoursLabel}. Open every day — no weekly closing day. This is not
-          a batch timetable.
+          Open {hoursLabel}. Open every day — no weekly closing day. Individual batch times vary by
+          programme.
         </p>
         <ul className={styles.facts}>
           {branch.openingHours.map((entry) => (
@@ -163,8 +155,8 @@ export function BranchDetailView({
           Batch availability
         </h2>
         <p className={styles.bandLede}>
-          Exact programme schedules for this branch remain pending. Message WhatsApp with your
-          preferred service and time — we confirm current batches when you enquire.
+          Message WhatsApp with your preferred service and time — we confirm current batches when you
+          enquire.
         </p>
       </section>
 
@@ -173,8 +165,8 @@ export function BranchDetailView({
           Available at this branch
         </h2>
         <p className={styles.bandLede}>
-          Confirmed physical studio services. Functional Training is a primary fitness focus without
-          excluding other programmes.
+          Studio services offered at this branch. Functional Training is a primary fitness focus
+          without excluding other programmes.
         </p>
         <ul className={styles.serviceList}>
           {orderedPhysical.map((programme) => (
@@ -214,8 +206,8 @@ export function BranchDetailView({
           </li>
           {branch.maxGroupBatchSize != null ? (
             <li className={styles.fact}>
-              <strong>Maximum group batch size</strong>
-              <span>{branch.maxGroupBatchSize}</span>
+              <strong>Group size</strong>
+              <span>Group batches are typically up to {branch.maxGroupBatchSize} people</span>
             </li>
           ) : null}
         </ul>
@@ -266,10 +258,6 @@ export function BranchDetailView({
             are optional — you can send as soon as you are ready.
           </p>
           <LocationPulseCta href={whatsappHref}>{whatsappLabel}</LocationPulseCta>
-          <p className={styles.ctaNote}>
-            Central enquiry number for all branches. Opening chat does not mean your enquiry was
-            submitted.
-          </p>
         </div>
       </section>
     </div>

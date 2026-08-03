@@ -9,7 +9,7 @@ export type LegacyProgrammeNoticeProps = {
   whatsappHref: string;
 };
 
-/** Temporary taxonomy-review page — noindex; does not claim the service is currently offered. */
+/** Older programme URL — kept for people who found a legacy link; noindex. */
 export function LegacyProgrammeNotice({
   programme,
   relatedName,
@@ -19,18 +19,18 @@ export function LegacyProgrammeNotice({
   return (
     <div>
       <div className={styles.legacyBanner} role="status">
-        This page is under service-taxonomy review. It is not listed among current owner-confirmed
-        programmes and should not be indexed as an active offering.
+        This page is kept for people who found an older link. It is not listed among our current
+        programmes.
       </div>
       <section className={styles.surfaceBand} aria-labelledby="legacy-title">
         <h1 id="legacy-title">{programme.name}</h1>
         <p>{programme.longDescription}</p>
         <p>
-          <Link href="/programs">Browse confirmed programmes →</Link>
+          <Link href="/programs">Browse current programmes →</Link>
         </p>
         {relatedName && relatedHref ? (
           <p>
-            Related confirmed service: <Link href={relatedHref}>{relatedName}</Link>
+            Related service: <Link href={relatedHref}>{relatedName}</Link>
           </p>
         ) : null}
         <p>

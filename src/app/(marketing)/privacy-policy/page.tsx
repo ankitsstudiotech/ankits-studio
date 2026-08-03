@@ -12,9 +12,8 @@ const PATH = "/privacy-policy";
 export const metadata: Metadata = buildPageMetadata({
   title: "Privacy policy",
   description:
-    "Draft privacy policy placeholder for Ankit's Studio. Legal review is required before launch.",
+    "Draft privacy policy placeholder for Ankit's Studio. Legal review is required before treating this as final counsel-approved policy.",
   path: PATH,
-  forceNoIndex: true,
 });
 
 const breadcrumbTrail = [

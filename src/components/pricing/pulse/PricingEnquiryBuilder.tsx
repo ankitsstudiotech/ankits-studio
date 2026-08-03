@@ -7,7 +7,7 @@ import {
   pricingBranchPromptNeeded,
   resolvePricingDeliveryMode,
 } from "@/lib/conversion/pricing-whatsapp";
-import { SECONDARY_TRIAL_FORM_HREF } from "@/lib/conversion/whatsapp";
+import { SECONDARY_TRIAL_FORM_HREF, WHATSAPP_REVIEW_HELPER } from "@/lib/conversion/whatsapp";
 import styles from "./pricing.module.css";
 
 export type PricingServiceOption = {
@@ -281,8 +281,7 @@ export function PricingEnquiryBuilder({
           Ask for current fees on WhatsApp
         </a>
         <p id={`${baseId}-note`} className={styles.ctaNote}>
-          Opening WhatsApp starts a chat — it does not mean your enquiry was submitted. Fields are
-          optional.
+          {WHATSAPP_REVIEW_HELPER} Fields are optional.
         </p>
       </div>
     </form>

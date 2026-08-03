@@ -1,24 +1,31 @@
 /**
  * WhatsApp primary conversion helpers.
  *
- * Opening a WhatsApp link does **not** mean a message was delivered.
  * Fields are optional — callers may open with a partial prefill.
+ * Prefer WHATSAPP_REVIEW_HELPER once near interactive builders.
  */
 
 import { getContactDetails } from "@/content";
+
+/** Single customer-facing helper for WhatsApp conversion builders. */
+export const WHATSAPP_REVIEW_HELPER =
+  "You will review the message in WhatsApp before sending.";
 
 export const WHATSAPP_TRIAL_TEMPLATE = `Hello Ankit’s Studio,
 I would like to book a free trial.
 
 Name:
+Phone:
 Preferred branch:
-Interested service:
+Interested programme:
 Preferred time:
-Trial date:
+Preferred trial date:
+Age:
 Question:`;
 
 export type WhatsAppTrialFields = {
   name?: string;
+  phone?: string;
   preferredBranch?: string;
   interestedService?: string;
   preferredTime?: string;
@@ -44,6 +51,7 @@ export function getCentralWhatsAppDigits(): string | null {
 export function buildWhatsAppMessage(fields: WhatsAppTrialFields = {}): string {
   const hasAny =
     fields.name ||
+    fields.phone ||
     fields.preferredBranch ||
     fields.interestedService ||
     fields.preferredTime ||
@@ -59,14 +67,15 @@ export function buildWhatsAppMessage(fields: WhatsAppTrialFields = {}): string {
     "I would like to book a free trial.",
     "",
     `Name: ${fields.name ?? ""}`,
+    `Phone: ${fields.phone ?? ""}`,
     `Preferred branch: ${fields.preferredBranch ?? ""}`,
-    `Interested service: ${fields.interestedService ?? ""}`,
+    `Interested programme: ${fields.interestedService ?? ""}`,
     `Preferred time: ${fields.preferredTime ?? ""}`,
+    `Preferred trial date: ${fields.trialDate ?? ""}`,
   ];
   if (fields.age) {
     lines.push(`Age: ${fields.age}`);
   }
-  lines.push(`Trial date: ${fields.trialDate ?? ""}`);
   lines.push(`Question: ${fields.question ?? ""}`);
   return lines.join("\n");
 }

@@ -7,7 +7,7 @@ import {
   availabilityBranchPromptNeeded,
   buildWhatsAppAvailabilityUrl,
 } from "@/lib/conversion/availability-whatsapp";
-import { SECONDARY_TRIAL_FORM_HREF } from "@/lib/conversion/whatsapp";
+import { SECONDARY_TRIAL_FORM_HREF, WHATSAPP_REVIEW_HELPER } from "@/lib/conversion/whatsapp";
 import styles from "./batch-availability.module.css";
 
 export type AvailabilityServiceOption = {
@@ -266,8 +266,7 @@ export function AvailabilityEnquiryBuilder({
           Check availability on WhatsApp
         </a>
         <p id={`${baseId}-note`} className={styles.ctaNote}>
-          Opening WhatsApp starts a chat — it does not mean your enquiry was submitted. Fields are
-          optional.
+          {WHATSAPP_REVIEW_HELPER} Fields are optional.
         </p>
       </div>
     </form>

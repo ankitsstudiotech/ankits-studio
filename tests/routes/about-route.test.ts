@@ -46,10 +46,10 @@ describe("about route — verified studio story only", () => {
     expect(aboutSource).not.toMatch(/2\+\s*years/i);
   });
 
-  it("shows owner-provided 15+ trainers without certification adjectives", () => {
+  it("shows 15+ trainers without certification adjectives", () => {
     const about = getStudioAbout();
     expect(about.teamBody).toMatch(/15\+/);
-    expect(about.teamCountProvenance).toMatch(/Owner-provided/i);
+    expect(about.teamCountProvenance).toMatch(/studio|team/i);
     expect(about.teamBody).not.toMatch(FORBIDDEN_COPY);
     expect(about.teamCountProvenance).not.toMatch(
       /highly qualified|certified|elite|expert|government/i,
@@ -61,6 +61,10 @@ describe("about route — verified studio story only", () => {
       join(process.cwd(), "src", "app", "(marketing)", "about", "page.tsx"),
       "utf8",
     );
+    const aboutSource = readFileSync(
+      join(process.cwd(), "src", "content", "mock", "studio-about.ts"),
+      "utf8",
+    );
     expect(source).not.toMatch(/FounderStoryPlaceholder|ScrollReveal/);
     expect(source).not.toMatch(FORBIDDEN_COPY);
     expect(source).not.toMatch(/mission|vision|value cards|timeline/i);
@@ -69,7 +73,7 @@ describe("about route — verified studio story only", () => {
     expect(source).toMatch(/getPrimaryConversionHref/);
     expect(source).toMatch(/buildWebPageJsonLd/);
     expect(source).toMatch(/15\+/);
-    expect(source).toMatch(/machine-free/i);
+    expect(aboutSource).toMatch(/machine-free/i);
   });
 
   it("lists confirmed programmes and four publicly listed branches", () => {
@@ -89,7 +93,7 @@ describe("about route — verified studio story only", () => {
     expect(getPrimaryConversionLabel()).toBe("Book a free trial on WhatsApp");
     expect(WHATSAPP_TRIAL_TEMPLATE).toMatch(/free trial/i);
     expect(WHATSAPP_TRIAL_TEMPLATE).toMatch(/Preferred branch:/);
-    expect(WHATSAPP_TRIAL_TEMPLATE).toMatch(/Trial date:/);
+    expect(WHATSAPP_TRIAL_TEMPLATE).toMatch(/Preferred trial date:/);
     expect(WHATSAPP_TRIAL_TEMPLATE).not.toMatch(/submitted|delivered/i);
   });
 
