@@ -97,6 +97,12 @@ design-token set, and the Vitest/Playwright/axe-core testing foundation
 |---|---|---|---|
 | Shared visual-system repair: ProgrammeRow, tokens/studio/motion, Header/Footer/crumb, homepage Pulse surfaces, ProgrammeDiscovery wiring, logo temporary note | Cursor | In progress | Checkpoint `01a1a82` / tag `studio-pulse-deployed-v1-before-visual-repair`. Ledger: `docs/revamp/VISUAL-SYSTEM-DEFECT-LEDGER.md`. Do not touch `/design-lab/revamp-*`. |
 
+## Prompt 2 — Visual system propagation (active)
+
+| Task | Owner | Status | Notes |
+|---|---|---|---|
+| Propagate Studio Pulse to programmes/locations/about/trial/contact/timetable/pricing (BranchRow, form panels, HeroReveal/RouteOpening, customer copy scrub). No design-lab; no trainers/transformations/blog/legal. | Cursor | Done | Branch `revamp/studio-pulse-production`. `npx tsc --noEmit` clean. Not committed / not deployed. |
+
 ## Phase 2+ 
 
 Not yet broken into per-file rows — see
