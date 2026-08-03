@@ -1,0 +1,298 @@
+/* Studio Pulse — Trainers team page (low–medium tempo, honest roster). */
+
+.page {
+  background: var(--color-field);
+  color: var(--color-ink-inverse);
+  flex: 1;
+}
+
+.crumbBar {
+  background: var(--color-utility-surface, #f4f5f6);
+  color: var(--color-utility-ink, #14181c);
+  border-bottom: 1px solid rgb(20 24 28 / 0.08);
+}
+
+.band {
+  padding: var(--spacing-section) var(--spacing-gutter);
+  border-top: 1px solid rgb(255 255 255 / 0.08);
+  max-width: 64rem;
+}
+
+.bandNarrow {
+  max-width: 46rem;
+}
+
+.kicker {
+  margin: 0 0 0.4rem;
+  font-size: 0.75rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--color-muted-on-field);
+}
+
+.title {
+  font-family: var(--font-display);
+  font-size: clamp(2.15rem, 5.5vw, 3.5rem);
+  letter-spacing: 0.02em;
+  line-height: 0.96;
+  margin: 0 0 0.85rem;
+  max-width: 14ch;
+}
+
+.lede {
+  margin: 0;
+  max-width: 48ch;
+  font-size: 1.08rem;
+  line-height: 1.5;
+  color: var(--color-muted-on-field);
+}
+
+.sectionTitle {
+  font-family: var(--font-display);
+  font-size: clamp(1.35rem, 3.2vw, 1.85rem);
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  margin: 0 0 0.75rem;
+  max-width: 22ch;
+}
+
+.body {
+  margin: 0;
+  max-width: 52ch;
+  font-size: 1.02rem;
+  line-height: 1.55;
+  color: var(--color-muted-on-field);
+}
+
+.teamBlock {
+  margin-top: 0.35rem;
+  padding: 1.15rem 0;
+  border-top: 1px solid rgb(255 255 255 / 0.12);
+  border-bottom: 1px solid rgb(255 255 255 / 0.12);
+}
+
+.teamCount {
+  font-family: var(--font-display);
+  font-size: clamp(2rem, 4vw, 2.75rem);
+  letter-spacing: 0.04em;
+  margin: 0.2rem 0 0.55rem;
+}
+
+.provenance {
+  margin: 0.65rem 0 0;
+  font-size: 0.88rem;
+  max-width: 42ch;
+  color: var(--color-muted-on-field);
+}
+
+.mediaWrap {
+  min-width: 0;
+  margin-top: 1.35rem;
+}
+
+.linkList {
+  list-style: none;
+  margin: 0.85rem 0 0;
+  padding: 0;
+}
+
+.linkList a {
+  display: flex;
+  align-items: center;
+  min-height: 48px;
+  padding: 0.35rem 0;
+  border-bottom: 1px solid rgb(255 255 255 / 0.1);
+  color: inherit;
+  text-decoration: none;
+  font-size: 1.05rem;
+}
+
+.linkList a:hover {
+  color: var(--color-coral, #ff4d2e);
+}
+
+.linkList a:focus-visible {
+  outline: 2px solid var(--color-coral, #ff4d2e);
+  outline-offset: 3px;
+}
+
+.linkMeta {
+  margin-left: auto;
+  font-size: 0.75rem;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--color-muted-on-field);
+}
+
+.branchList {
+  list-style: none;
+  margin: 0.85rem 0 0;
+  padding: 0;
+}
+
+.branchList a {
+  display: flex;
+  align-items: center;
+  min-height: 48px;
+  padding: 0.4rem 0;
+  border-bottom: 1px solid rgb(255 255 255 / 0.1);
+  color: inherit;
+  font-family: var(--font-display);
+  font-size: clamp(1.15rem, 2.4vw, 1.45rem);
+  letter-spacing: 0.04em;
+  text-underline-offset: 0.18em;
+}
+
+.branchList a:focus-visible {
+  outline: 2px solid var(--color-coral, #ff4d2e);
+  outline-offset: 3px;
+}
+
+.readinessBox {
+  margin-top: 0.5rem;
+  padding: 1rem 0;
+  border-top: 1px solid rgb(255 255 255 / 0.12);
+  border-bottom: 1px solid rgb(255 255 255 / 0.12);
+}
+
+.devPending {
+  margin: 0.75rem 0 0;
+  font-size: 0.8rem;
+  color: var(--color-muted-on-field);
+}
+
+.linkColumns {
+  display: grid;
+  gap: 1.75rem;
+}
+
+@media (min-width: 720px) {
+  .linkColumns {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+
+.moreLink {
+  margin: 0.5rem 0 0;
+  font-size: 0.9rem;
+}
+
+.moreLink a {
+  color: inherit;
+  text-underline-offset: 0.18em;
+}
+
+.ctaBand {
+  background: color-mix(in srgb, var(--color-field) 90%, var(--color-coral));
+  border-top: 1px solid rgb(255 255 255 / 0.1);
+}
+
+.ctaRow {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.85rem 1.25rem;
+  align-items: center;
+  margin-top: 1.1rem;
+}
+
+.cta {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 48px;
+  min-width: 12rem;
+  padding: 0.75rem 1.35rem;
+  background: var(--color-coral, #ff4d2e);
+  color: #0b0b0c;
+  font-weight: 600;
+  text-decoration: none;
+  border: none;
+}
+
+.cta:focus-visible {
+  outline: 2px solid #f2f0eb;
+  outline-offset: 3px;
+}
+
+.ctaSecondary {
+  display: inline-flex;
+  align-items: center;
+  min-height: 44px;
+  color: inherit;
+  text-underline-offset: 0.18em;
+}
+
+.ctaNote {
+  margin: 0.85rem 0 0;
+  max-width: 40ch;
+  font-size: 0.88rem;
+  color: var(--color-muted-on-field);
+}
+
+.profileList {
+  list-style: none;
+  margin: 1rem 0 0;
+  padding: 0;
+  display: grid;
+  gap: 1.25rem;
+}
+
+.profileItem {
+  display: grid;
+  gap: 0.85rem;
+  padding: 0.85rem 0;
+  border-bottom: 1px solid rgb(255 255 255 / 0.1);
+}
+
+@media (min-width: 720px) {
+  .profileItem {
+    grid-template-columns: 7.5rem 1fr;
+    align-items: start;
+  }
+}
+
+.profilePhoto {
+  width: 100%;
+  max-width: 7.5rem;
+  aspect-ratio: 4 / 5;
+  object-fit: cover;
+  display: block;
+}
+
+.profileName {
+  font-family: var(--font-display);
+  font-size: 1.25rem;
+  letter-spacing: 0.04em;
+  margin: 0 0 0.25rem;
+}
+
+.profileRole {
+  margin: 0 0 0.45rem;
+  font-size: 0.92rem;
+  color: var(--color-muted-on-field);
+}
+
+.profileBio {
+  margin: 0;
+  max-width: 48ch;
+  font-size: 0.95rem;
+  line-height: 1.5;
+  color: var(--color-muted-on-field);
+}
+
+.profileLink {
+  display: contents;
+  color: inherit;
+  text-decoration: none;
+}
+
+.profileLink:focus-visible .profileName {
+  outline: 2px solid var(--color-coral, #ff4d2e);
+  outline-offset: 3px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .cta {
+    transition: none !important;
+  }
+}

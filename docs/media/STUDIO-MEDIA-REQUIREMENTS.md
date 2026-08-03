@@ -32,6 +32,8 @@ Temporary homepage plates remain **replaceable fallbacks** (`data-media-status="
 | `about.team` | Photograph | 16/9 | 3/2 | Consented team group (no invented names in alt) | Ankit’s Studio coaching team | n/a | `lazy` | cover | `warm` plate | Pending — owner + consent |
 | `about.disciplines` | Photograph sequence or single | 16/9 | 3/2 | Distinct movement modes readable | Multi-discipline activity at Ankit’s Studio | n/a | `lazy` | cover | `high-energy` plate | Pending — owner |
 | `about.branches` | Photograph / collage later | 16/9 | 3/2 | Exterior or entrance; no invented street text | Neighbourhood branch exterior or interior | n/a | `lazy` | cover | Neutral field plate | Pending — address + photo |
+| `trainers.coaching-action` | Photograph | 16/9 | 3/2 | Coach + member interaction (consented) | Coach-led session in progress | n/a | `lazy` | cover | `strength` plate | Pending — consent |
+| `trainers.portrait` | Photograph | 4/5 | 3/4 | Face upper-third; natural light | Named trainer portrait | n/a | `lazy` | cover + focal | `warm` plate | **Inactive** until profile publishable (ADR-019) |
 
 ---
 
@@ -58,6 +60,7 @@ For every slot:
 
 - Homepage plates: `PulseMediaPlate` with `slotKey`, `data-media-status="fallback"`, `data-mock-media="true"`.
 - About plates: same pattern with `about.*` keys — do not describe fallbacks as real people or verified interiors.
+- Trainers plates: `about.team` / `trainers.coaching-action` for team-level surfaces; `trainers.portrait` stays inactive until a profile passes the publishability gate (ADR-019). Never generate faces or stock trainers.
 - Typed catalogue: `src/content/media-slots.ts` (keys + metadata only — no binary assets).
 - Existing `MediaAsset` schema (`src` / `alt` / `width` / `height`) remains the runtime shape when assets arrive (ADR-012). Focal-point / poster may be extended later without changing homepage or About section order.
 

@@ -380,6 +380,30 @@ export const STUDIO_MEDIA_SLOTS: readonly MediaSlotDefinition[] = [
     posterRequired: false,
     provenanceStatus: "pending",
   },
+  {
+    key: "trainers.coaching-action",
+    preferredMedium: "image",
+    desktopAspect: "16/9",
+    mobileAspect: "3/2",
+    loading: "lazy",
+    crop: "cover",
+    fallbackFamily: "strength",
+    altGuideline: "Coach-led session in progress — faces only with consent",
+    posterRequired: false,
+    provenanceStatus: "pending",
+  },
+  {
+    key: "trainers.portrait",
+    preferredMedium: "image",
+    desktopAspect: "4/5",
+    mobileAspect: "3/4",
+    loading: "lazy",
+    crop: "cover",
+    fallbackFamily: "warm",
+    altGuideline: "Individual trainer portrait — inactive until profile is publishable",
+    posterRequired: false,
+    provenanceStatus: "pending",
+  },
 ] as const;
 
 export function getMediaSlot(key: string): MediaSlotDefinition | undefined {

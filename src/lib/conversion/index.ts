@@ -27,3 +27,10 @@ export {
   type PricingDeliveryMode,
   type PricingEnquiryFields,
 } from "./pricing-whatsapp";
+
+export {
+  WHATSAPP_TRAINER_AVAILABILITY_TEMPLATE,
+  buildWhatsAppTrainerAvailabilityMessage,
+  buildWhatsAppTrainerAvailabilityUrl,
+  type TrainerAvailabilityEnquiryFields,
+} from "./trainer-whatsapp";
