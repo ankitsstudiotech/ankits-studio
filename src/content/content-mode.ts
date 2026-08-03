@@ -10,10 +10,9 @@ import {
   mockStudioCommercial,
   mockStudioAbout,
   mockStudioTrainersPage,
-  mockTestimonials,
+  mockStudioMemberStoriesPage,
   mockTimetableSlots,
   mockTrainers,
-  mockTransformations,
 } from "./mock";
 
 /**
@@ -37,14 +36,13 @@ const allContentDomainRecords: readonly ProvenanceLike[] = [
   ...mockTrainers,
   ...mockTimetableSlots,
   ...mockPricingPlans,
-  ...mockTransformations,
-  ...mockTestimonials,
   ...mockBlogPosts,
   mockBusinessIdentity,
   mockContactDetails,
   mockStudioCommercial,
   mockStudioAbout,
   mockStudioTrainersPage,
+  mockStudioMemberStoriesPage,
   ...mockFaqs,
   ...mockNavigationItems,
 ];

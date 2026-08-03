@@ -102,6 +102,7 @@ describe("buildSitemapEntries once the site is indexable", () => {
       getPubliclyListedBranches: () => [{ slug: "airoli-sector-19", dataStatus: "verified" }],
       getPublishableTrainers: () => [],
       shouldIndexTrainersRoute: () => false,
+      shouldIndexMemberStoriesRoute: () => false,
       getBlogPosts: () => [{ slug: "real-post", dataStatus: "verified" }],
     }));
 
@@ -118,6 +119,7 @@ describe("buildSitemapEntries once the site is indexable", () => {
     expect(urls).not.toContain(buildCanonicalUrl("/programs/unverified-programme"));
     expect(urls).not.toContain(buildCanonicalUrl("/trainers"));
     expect(urls).not.toContain(buildCanonicalUrl("/trainers/unverified-trainer"));
+    expect(urls).not.toContain(buildCanonicalUrl("/transformations"));
     expect(urls.every((url) => !url.includes("/design-lab"))).toBe(true);
 
     vi.doUnmock("@/content/content-mode");
@@ -135,6 +137,7 @@ describe("buildSitemapEntries once the site is indexable", () => {
         { slug: "coach-c" },
       ],
       shouldIndexTrainersRoute: () => true,
+      shouldIndexMemberStoriesRoute: () => true,
       getBlogPosts: () => [],
     }));
 
@@ -145,6 +148,7 @@ describe("buildSitemapEntries once the site is indexable", () => {
     expect(urls).toContain(buildCanonicalUrl("/trainers"));
     expect(urls).toContain(buildCanonicalUrl("/trainers/coach-a"));
     expect(urls).toContain(buildCanonicalUrl("/trainers/coach-c"));
+    expect(urls).toContain(buildCanonicalUrl("/transformations"));
 
     vi.doUnmock("@/content/content-mode");
     vi.doUnmock("@/content");
