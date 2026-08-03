@@ -1,14 +1,26 @@
 /**
  * Reduced-motion + touch utilities (Studio Pulse).
- * No default page-wide fade/translate reveal language.
+ * Reveal timing lives here; page-wide fade language remains opt-in via
+ * HeroReveal / SectionReveal / ScrollReveal islands.
  * See docs/MOTION-SYSTEM.md, ADR-009, DESIGN.md.
  */
+
+:root {
+  --ease-out-strong: cubic-bezier(0.23, 1, 0.32, 1);
+  --ease-out-soft: cubic-bezier(0.25, 1, 0.5, 1);
+  --duration-reveal: 420ms;
+  --duration-hover: 220ms;
+  --duration-tap: 160ms;
+}
 
 @media (prefers-reduced-motion: reduce) {
   :root {
     --duration-fast: 0ms;
     --duration-normal: 0ms;
     --duration-slow: 0ms;
+    --duration-reveal: 0ms;
+    --duration-hover: 0ms;
+    --duration-tap: 0ms;
   }
 
   *,

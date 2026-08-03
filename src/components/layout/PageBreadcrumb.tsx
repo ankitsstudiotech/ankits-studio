@@ -7,35 +7,35 @@ export type BreadcrumbItem = {
 };
 
 /**
- * Shared breadcrumb — designed for the light `.pulse-crumb-bar` strip
- * (intentional neutral transition on dark Pulse pages). Ink tokens read correctly
- * on surface; dark field pages should wrap this in `pulse-crumb-bar` / `crumbBar`.
+ * Shared breadcrumb for the dark `.pulse-crumb-bar` strip.
+ * Parent routes must wrap this in `div.pulse-crumb-bar` so ink-inverse /
+ * muted-on-field colours read correctly on field (not utility white).
  */
 export function PageBreadcrumb({ items }: { items: BreadcrumbItem[] }) {
   return (
     <Container className="py-4">
       <nav aria-label="Breadcrumb">
-        <ol className="flex flex-wrap items-center gap-2 font-[family-name:var(--font-sans)] text-[length:var(--text-caption)] text-ink-muted">
+        <ol className="flex flex-wrap items-center gap-2 font-[family-name:var(--font-sans)] text-[length:var(--text-caption)] text-[var(--color-muted-on-field)]">
           {items.map((item, index) => {
             const isLast = index === items.length - 1;
             return (
               <li key={`${item.name}-${index}`} className="flex items-center gap-2">
                 {index > 0 ? (
-                  <span aria-hidden className="text-ink-subtle">
+                  <span aria-hidden className="text-[var(--color-muted-on-field)] opacity-60">
                     /
                   </span>
                 ) : null}
                 {isLast || !item.path ? (
                   <span
                     aria-current={isLast ? "page" : undefined}
-                    className="break-words text-ink"
+                    className="break-words text-ink-inverse"
                   >
                     {item.name}
                   </span>
                 ) : (
                   <Link
                     href={item.path}
-                    className="underline-offset-4 hover:text-ink hover:underline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-focus-ring"
+                    className="text-[var(--color-muted-on-field)] underline-offset-4 hover:text-ink-inverse hover:underline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[var(--color-volt)]"
                   >
                     {item.name}
                   </Link>

@@ -77,3 +77,18 @@ The official lockup lives on a **white field**. Transparent knockout was **not**
 - Favicons at 16 px need a verified simplified mark if the dance-figure “a” fills in.
 
 Until that master arrives, treat `public/brand/*` as **temporary integration assets** only — see `docs/brand/STUDIO-PULSE-LOGO-INTEGRATION.md` before changing production tokens or chrome.
+
+---
+
+## Transparent symbol (2026-08 visual repair) — temporary
+
+**CDR / vector direct export is unavailable** in this environment (no CorelDRAW or Inkscape). The production dark-chrome mark currently uses a **flood-fill transparent** raster derived from the owner-supplied circular symbol crop (`ankits-studio-symbol.png` → `ankits-studio-symbol-transparent.png`).
+
+| Property | Note |
+|---|---|
+| Method | Temporary flood-fill / chroma knockout of the white field around the disc |
+| Internal whites | Preserved (figure cut-outs and highlights inside the mark stay white) |
+| Status | Temporary — replace with a brand-supplied transparent PNG/SVG when available |
+| Usage | Header + homepage hero on field (dark); no white plate |
+
+Do **not** treat this flood-fill as the final brand master.

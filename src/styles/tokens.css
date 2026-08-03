@@ -2,8 +2,10 @@
  * Design tokens — Ankit's Studio (Studio Pulse production)
  * Source: DESIGN.md + frozen /design-lab/revamp-b local tokens
  * Programme families remain semantic (ADR-012); resolved here only.
- * Default page surface = utility light so secondary routes stay readable
- * until their dedicated redesign. Homepage/shell apply field (dark) zones.
+ *
+ * Production marketing canvas = field (dark). Utility routes may still use
+ * light surface tokens for forms/booking readability. Homepage, Pulse shell,
+ * and dark chrome zones apply field tokens as the primary reading surface.
  */
 
 @theme {
@@ -13,7 +15,7 @@
   --color-surface-sunken: #e8eaec;
   --color-surface-inverse: #0b0b0c;
 
-  /* Field (Pulse dark) — available as inverse / pulse utilities */
+  /* Field (Pulse dark) — production marketing canvas */
   --color-field: #0b0b0c;
   --color-field-raised: #141416;
 
@@ -41,7 +43,8 @@
 
   --color-volt: #c8ff3d;
   --color-teal-hold: #5eead4;
-  --color-muted-on-field: #9a958c;
+  /* Secondary text on dark field — readable AA-ish on #0b0b0c */
+  --color-muted-on-field: #c2bdb4;
 
   /* Warning / mock honesty — amber, distinct from purple action */
   --color-warning: #e5a100;
@@ -50,6 +53,7 @@
   /* Borders / focus */
   --color-border: #c5c9ce;
   --color-border-strong: #8a9299;
+  --color-border-on-field: rgb(255 255 255 / 0.14);
   --color-focus-ring: #9e4b7b;
 
   --color-danger: #e11d48;
@@ -76,14 +80,18 @@
   --text-title--line-height: 0.95;
   --text-title--letter-spacing: 0.03em;
 
+  --text-section: clamp(1.35rem, 1.15rem + 0.7vw, 1.85rem);
+  --text-section--line-height: 1.1;
+  --text-section--letter-spacing: 0.03em;
+
   --text-heading: clamp(1.15rem, 1.05rem + 0.4vw, 1.35rem);
   --text-heading--line-height: 1.25;
 
-  --text-body-lg: 1.05rem;
-  --text-body-lg--line-height: 1.45;
+  --text-body-lg: 1.125rem;
+  --text-body-lg--line-height: 1.5;
 
   --text-body: 1rem;
-  --text-body--line-height: 1.45;
+  --text-body--line-height: 1.5;
 
   --text-caption: 0.875rem;
   --text-caption--line-height: 1.4;
@@ -109,6 +117,7 @@
   --shadow-lift: none;
 
   --width-container: 72rem;
+  --width-container-wide: 80rem;
   --width-container-narrow: 42rem;
   --header-height: 4rem;
   --sticky-cta-height: 4.5rem;

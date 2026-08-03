@@ -5,3 +5,5 @@ export { TextReveal, FadeIn } from "./TextReveal";
 export type { TextRevealProps, FadeInProps } from "./TextReveal";
 export { AccessibleCarousel } from "./AccessibleCarousel";
 export type { AccessibleCarouselProps, CarouselSlide } from "./AccessibleCarousel";
+export { HeroReveal, SectionReveal } from "./PulseReveal";
+export type { HeroRevealProps, SectionRevealProps } from "./PulseReveal";

@@ -7,8 +7,9 @@
 @import "./motion.css";
 
 .studio-shell {
-  background-color: var(--color-surface);
-  color: var(--color-ink);
+  /* Production canvas is Pulse field; light utility islands set their own surface. */
+  background-color: var(--color-field);
+  color: var(--color-ink-inverse);
   font-family: var(--font-sans);
   min-height: 100%;
 }
@@ -48,7 +49,7 @@
 
 .pulse-band {
   padding: var(--spacing-section) var(--spacing-gutter);
-  border-top: 1px solid rgb(255 255 255 / 0.08);
+  border-top: 1px solid var(--color-border-on-field);
   max-width: var(--width-container);
 }
 
@@ -74,7 +75,7 @@
   line-height: var(--text-hero--line-height);
   margin: 0 0 0.85rem;
   max-width: 16ch;
-  text-transform: none;
+  text-transform: uppercase;
 }
 
 .pulse-section-title {
@@ -84,12 +85,12 @@
   line-height: var(--text-title--line-height);
   margin: 0 0 0.75rem;
   max-width: 22ch;
-  text-transform: none;
+  text-transform: uppercase;
 }
 
 .pulse-lede {
   margin: 0;
-  max-width: 48ch;
+  max-width: 65ch;
   font-size: var(--text-body-lg);
   line-height: var(--text-body-lg--line-height);
   color: var(--color-muted-on-field);
@@ -97,7 +98,7 @@
 
 .pulse-body {
   margin: 0;
-  max-width: 52ch;
+  max-width: 65ch;
   font-size: var(--text-body);
   line-height: var(--text-body--line-height);
   color: var(--color-muted-on-field);
@@ -134,14 +135,121 @@
   outline-offset: 3px;
 }
 
+.pulse-cta-secondary {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: var(--spacing-control-lg);
+  padding: 0.65rem 1.25rem;
+  border: 1px solid rgb(255 255 255 / 0.28);
+  background: transparent;
+  color: var(--color-ink-inverse);
+  font-family: var(--font-sans);
+  font-size: 0.75rem;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  text-decoration: none;
+  transition:
+    border-color var(--duration-fast) var(--ease-standard),
+    color var(--duration-fast) var(--ease-standard);
+}
+
+.pulse-cta-secondary:hover {
+  border-color: var(--color-volt);
+  color: var(--color-volt);
+}
+
+.pulse-cta-secondary:focus-visible {
+  outline: 2px solid var(--color-volt);
+  outline-offset: 3px;
+}
+
+/* Dark editorial crumb strip — parent of PageBreadcrumb on Pulse routes */
 .pulse-crumb-bar {
-  background: var(--color-surface);
-  color: var(--color-ink);
-  border-bottom: 1px solid rgb(20 24 28 / 0.08);
+  background: var(--color-field);
+  color: var(--color-ink-inverse);
+  border-bottom: 1px solid var(--color-border-on-field);
+}
+
+/* Dark editorial info cells (practical facts, etc.) */
+.pulse-info-grid {
+  margin: 1rem 0 0;
+  padding: 0;
+  list-style: none;
+  display: grid;
+  gap: 0.65rem;
+}
+
+@media (min-width: 640px) {
+  .pulse-info-grid {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+
+.pulse-info-grid > li,
+.pulse-info-cell {
+  padding: 0.9rem 1rem;
+  background: var(--color-field-raised);
+  border: 1px solid var(--color-border-on-field);
+  font-size: var(--text-body);
+  line-height: var(--text-body--line-height);
+  color: var(--color-muted-on-field);
+}
+
+.pulse-info-grid strong,
+.pulse-info-cell strong {
+  display: block;
+  margin-bottom: 0.25rem;
+  font-size: var(--text-overline);
+  letter-spacing: var(--text-overline--letter-spacing);
+  text-transform: uppercase;
+  color: var(--color-ink-inverse);
+}
+
+/* Dark FAQ accordion */
+.pulse-accordion {
+  display: flex;
+  flex-direction: column;
+  gap: 0.65rem;
+}
+
+.pulse-accordion-item {
+  border: 1px solid var(--color-border-on-field);
+  background: var(--color-field-raised);
+}
+
+.pulse-accordion-item summary {
+  cursor: pointer;
+  list-style: none;
+  padding: 0.85rem 1.1rem;
+  font-family: var(--font-sans);
+  font-size: var(--text-heading);
+  font-weight: 600;
+  color: var(--color-ink-inverse);
+  marker: none;
+}
+
+.pulse-accordion-item summary::-webkit-details-marker {
+  display: none;
+}
+
+.pulse-accordion-item summary:focus-visible {
+  outline: 2px solid var(--color-volt);
+  outline-offset: 3px;
+}
+
+.pulse-accordion-panel {
+  border-top: 1px solid var(--color-border-on-field);
+  padding: 0.85rem 1.1rem 1.1rem;
+  color: var(--color-muted-on-field);
+  font-size: var(--text-body);
+  line-height: var(--text-body--line-height);
 }
 
 @media (prefers-reduced-motion: reduce) {
-  .pulse-cta {
+  .pulse-cta,
+  .pulse-cta-secondary {
     transition: none;
   }
   .pulse-cta:active {

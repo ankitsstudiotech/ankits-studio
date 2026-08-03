@@ -15,6 +15,8 @@ export type SiteHeaderProps = {
   pathname?: string;
 };
 
+const SYMBOL_SRC = "/brand/ankits-studio-symbol-transparent.png";
+
 export function SiteHeader({
   brandName = "Ankit's Studio",
   brandHref = "/",
@@ -35,16 +37,14 @@ export function SiteHeader({
             "touch-target",
           ].join(" ")}
         >
-          <span className="inline-flex shrink-0 bg-white p-0.5">
-            <Image
-              src="/brand/ankits-studio-symbol.png"
-              alt=""
-              width={32}
-              height={32}
-              className="block h-8 w-8 object-contain"
-              priority
-            />
-          </span>
+          <Image
+            src={SYMBOL_SRC}
+            alt=""
+            width={32}
+            height={32}
+            className="block h-8 w-8 shrink-0 object-contain"
+            priority
+          />
           <span className="font-[family-name:var(--font-display)] text-xl tracking-[0.04em] sm:text-2xl">
             {brandName}
           </span>
