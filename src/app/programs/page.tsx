@@ -2,7 +2,7 @@ import Link from "next/link";
 import type { Metadata } from "next";
 import { ProgrammeDiscovery } from "@/components/programs/pulse/ProgrammeDiscovery";
 import { Container } from "@/components/ui/Container";
-import { getConfirmedProgrammes } from "@/content";
+import { getConfirmedProgrammes, getStudioCommercial } from "@/content";
 import {
   getPrimaryConversionHref,
   getPrimaryConversionLabel,
@@ -32,6 +32,7 @@ const breadcrumbTrail = [
 
 export default function ProgrammesIndexPage() {
   const programmes = getConfirmedProgrammes();
+  const commercial = getStudioCommercial();
   const breadcrumbJsonLd = buildBreadcrumbJsonLd(breadcrumbTrail);
   const collectionJsonLd = buildCollectionPageJsonLd({
     name: "Programmes",
@@ -73,6 +74,18 @@ export default function ProgrammesIndexPage() {
         trialHref={trialHref}
         trialLabel={trialLabel}
       />
+
+      {commercial.corporateFitnessStatus === "enquiry-only" ? (
+        <Container className="pb-12">
+          <p className="max-w-2xl text-sm text-ink-muted">
+            {commercial.corporateFitnessNote}{" "}
+            <a href={trialHref} className="underline underline-offset-2 hover:text-ink">
+              Enquire on WhatsApp
+            </a>
+            .
+          </p>
+        </Container>
+      ) : null}
     </main>
   );
 }

@@ -19,7 +19,7 @@ import {
 const PATH = "/pricing";
 
 const PAGE_DESCRIPTION =
-  "Learn about the free trial and one-time registration fee, and request current programme pricing from Ankit’s Studio through WhatsApp.";
+  "Free trial once per person, ₹300 one-time registration, and programme fees that vary by service and branch. Request current pricing from Ankit’s Studio on WhatsApp.";
 
 export const metadata: Metadata = buildPageMetadata({
   title: "Pricing & Free Trial",
@@ -36,31 +36,37 @@ const FAQ = [
   {
     id: "faq-trial-free",
     question: "Is the trial class free?",
-    answer: "Yes. Your trial class is free. Opening WhatsApp starts a chat — it does not mean your enquiry was submitted.",
+    answer:
+      "Yes. A free trial is available for every service at every physical branch, once per person. Opening WhatsApp starts a chat — it does not mean your enquiry was submitted.",
   },
   {
     id: "faq-registration",
     question: "Is there a registration fee?",
     answer:
-      "Yes. A one-time registration fee of ₹300 applies after you join. It is not a monthly fee and not a trial charge.",
+      "Yes. A one-time registration fee of ₹300 per person applies after you join. It is not charged again after a membership break. It is not a monthly fee and not a trial charge.",
   },
   {
     id: "faq-why-no-list",
     question: "Why are exact programme fees not displayed?",
     answer:
-      "Programme fees vary by service, format and training requirement. Exact monthly and longer-term amounts have not been published yet — message us for the current fee.",
+      "Programme fees vary by service and branch. GST is included in supplied prices. Exact monthly and longer-term amounts have not been published yet — message us for the current fee.",
   },
   {
     id: "faq-how-to-get",
     question: "How can I get the current fee for a programme?",
     answer:
-      "Use the enquiry form on this page or WhatsApp. Include the service you want, and a preferred branch for studio classes when you can.",
+      "Use the enquiry form on this page or WhatsApp. Include the service you want and a preferred branch for studio classes when you can.",
   },
   {
     id: "faq-home-online",
     question: "Are Home Personal Training and Online Training priced differently?",
     answer:
-      "They are separate delivery modes, not branch-floor classes. Their fees are confirmed when you enquire — we do not publish package amounts here yet.",
+      "Home Personal Training is priced per session. Online Training uses Zoom (one-to-one and group). Exact package amounts are confirmed when you enquire.",
+  },
+  {
+    id: "faq-wedding",
+    question: "How is Wedding Choreography priced?",
+    answer: "Wedding Choreography pricing is arranged per couple. Exact amounts are confirmed when you enquire.",
   },
 ] as const;
 
@@ -121,8 +127,10 @@ export default function PricingPage() {
           Fees &amp; free trial
         </h1>
         <p className={styles.lede}>
-          Your trial class is free. A one-time registration fee of ₹300 applies. Programme fees vary
-          by service, format and training requirement. Message us for the current fee.
+          Your trial class is free for every service at every physical branch — once per person. A
+          one-time registration fee of ₹300 per person applies after you join and is not charged again
+          after a membership break. Programme fees vary by service and branch. GST is included in
+          supplied prices. Message us for the current fee.
         </p>
       </section>
 
@@ -136,23 +144,33 @@ export default function PricingPage() {
             <p className={styles.feeAmount}>
               {commercial.trialIsFree ? "Free" : "To be confirmed"}
             </p>
-            <p className={styles.feeMeta}>Trial class — not a paid membership plan.</p>
+            <p className={styles.feeMeta}>
+              Free for every service and physical branch, once per person. Advance booking is not
+              compulsory, but checking WhatsApp availability is recommended.
+            </p>
           </li>
           {typeof registrationFee === "number" ? (
             <li className={styles.confirmedItem}>
               <p className={styles.kicker}>Registration</p>
               <p className={styles.feeAmount}>₹{registrationFee}</p>
               <p className={styles.feeMeta}>
-                One-time registration fee after you join. Not a monthly fee, not a trial charge, and
-                not a recurring charge.
+                One-time registration fee per person after you join. Not recharged after a membership
+                break. Not a monthly fee, not a trial charge, and not a recurring charge.
               </p>
             </li>
           ) : null}
           <li className={styles.confirmedItem}>
             <p className={styles.kicker}>Programme fees</p>
             <p className={styles.feeMeta}>
-              Fees vary by service. Exact amounts are shared when you enquire — we do not publish
-              invented monthly or package prices.
+              Fees vary by service and branch. GST is included in supplied prices. Exact amounts are
+              shared when you enquire — we do not publish invented monthly or package prices.
+            </p>
+          </li>
+          <li className={styles.confirmedItem}>
+            <p className={styles.kicker}>Pricing bases</p>
+            <p className={styles.feeMeta}>
+              Wedding Choreography is priced per couple. Home Personal Training is priced per session.
+              Online Training uses Zoom (one-to-one and group). Exact rates remain pending.
             </p>
           </li>
         </ul>
@@ -163,9 +181,9 @@ export default function PricingPage() {
           What affects pricing
         </h2>
         <p className={styles.lede}>
-          The right fee depends on the service you choose and how you train. We do not claim fees
-          differ by branch unless confirmed, and we do not publish GST, discounts, or refund policies
-          here yet.
+          The right fee depends on the service, the branch, and how you train. Discounts are available
+          for some customer groups or plans — exact rules are confirmed when you enquire. We do not
+          publish unfinished membership legal wording as final terms here.
         </p>
       </section>
 
@@ -193,11 +211,15 @@ export default function PricingPage() {
           we will not invent amounts on this page.
         </p>
         <ul className={styles.pendingList}>
-          <li>Monthly, quarterly, half-yearly and annual programme fees</li>
-          <li>Personal-training package amounts</li>
-          <li>Wedding Choreography package amounts</li>
-          <li>Home Personal Training and Online Training charges</li>
-          <li>Discounts, refunds, cancellations and membership policies</li>
+          <li>Exact monthly, quarterly, half-yearly and annual programme fee amounts</li>
+          <li>Exact Wedding Choreography package amounts (basis: per couple)</li>
+          <li>Exact Home Personal Training session rates and Online Training package amounts</li>
+          <li>Exact discount eligibility rules</li>
+          <li>
+            Final customer-facing membership legal terms (cancellation, refund, freeze, transfer) —
+            owner-confirmed policies pending legal copy
+          </li>
+          <li>Missed-class policy (owner reply still ambiguous)</li>
         </ul>
       </section>
 

@@ -38,13 +38,19 @@ const FAQ = [
     id: "faq-why-no-grid",
     question: "Why aren’t exact batch times listed here?",
     answer:
-      "Detailed branch-wise schedules are being updated. Message us on WhatsApp for current availability by programme and branch.",
+      "Detailed branch-wise schedules are being updated. Message us on WhatsApp for current availability by programme and branch. Advance booking is not compulsory, but checking current availability on WhatsApp is recommended.",
   },
   {
     id: "faq-operating-window",
     question: "Does 6:00 AM–10:00 PM mean classes run all day?",
     answer:
-      "No. That is the studio operating window. Individual batch times vary by branch and programme and are confirmed when you enquire.",
+      "No. That is the studio operating window — every day, with no weekly closing day. Individual batch times vary by branch and programme and are confirmed when you enquire.",
+  },
+  {
+    id: "faq-walk-in",
+    question: "Do I need to book in advance for a trial?",
+    answer:
+      "Advance booking is not compulsory, but checking current availability on WhatsApp is recommended. We do not guarantee that every walk-in can be accommodated.",
   },
   {
     id: "faq-trial",
@@ -118,13 +124,15 @@ export default function TimetablePage() {
           Studio operating hours
         </h2>
         <div className={styles.hoursBox}>
-          <p className={styles.hoursValue}>6:00 AM to 10:00 PM</p>
+          <p className={styles.hoursValue}>6:00 AM to 10:00 PM · every day</p>
           <p className={styles.lede}>
-            Studios operate between 6:00 AM and 10:00 PM. Individual batch times vary by branch and
-            programme.
+            Studios operate between 6:00 AM and 10:00 PM every day — there is no weekly closing day.
+            Individual batch times vary by branch and programme.
           </p>
           <p className={styles.pendingNote}>
-            Detailed branch-wise schedules are being updated. Message us for current availability.
+            Detailed branch-wise schedules are being updated. Advance booking is not compulsory, but
+            checking WhatsApp availability is recommended — we do not guarantee every walk-in can be
+            accommodated.
           </p>
         </div>
       </section>

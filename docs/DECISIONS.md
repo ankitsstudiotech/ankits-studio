@@ -523,6 +523,20 @@ Public copy may state the owner-provided **15+** team size with explicit provena
 
 **Status**: Active.
 
+## ADR-020: Corporate Fitness Sessions — enquiry-only until content is useful
+
+**Decision:** Corporate Fitness Sessions are an owner-confirmed offering (2026-08-03) but remain **enquiry-only**. Do **not** create an indexable `/programs/corporate-fitness` page (or sitemap entry) until there is enough verified body content for a useful programme page.
+
+Public treatment:
+
+- Mention on `/programs` as an enquiry-only note with WhatsApp CTA
+- May appear in WhatsApp service pickers where appropriate
+- `StudioCommercial.corporateFitnessStatus: "enquiry-only"`
+
+**Why:** A thin indexable page would over-promise an incomplete offering. ADR-017 already requires programmes to avoid invented Course/Offer semantics; the same honesty applies to incomplete catalogue entries.
+
+**Status**: Active.
+
 ## Log format for future entries
 
 ```

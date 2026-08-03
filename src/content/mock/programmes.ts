@@ -15,18 +15,22 @@ export const mockProgrammes: Programme[] = [
     dataStatus: "verified",
     slug: "functional-training",
     name: "Functional Training",
-    shortDescription: "Machine-free, coach-led sessions built around how you move day to day.",
+    shortDescription:
+      "Machine-free Functional Training using bodyweight movement and portable equipment.",
     longDescription:
-      "Functional Training is an owner-confirmed studio service. Sessions are machine-free and coach-led, adapted to your needs and goals. We do not promise specific outcomes. Exact class length, equipment lists, and batch times are confirmed when you enquire.",
-    audienceTags: ["adults", "fitness"],
+      "Functional Training is an owner-confirmed studio service. Machine-free means sessions do not rely on conventional gym machines; coaches may use bodyweight exercises, resistance bands, dumbbells, kettlebells, battle ropes, circuit training, mobility work, and strength and conditioning. Not every tool appears in every session or branch. Typical sessions last about one hour. Group sessions are coach-led; personalised programming is available through personal training. Beginners are welcome — we do not claim every programme is medically suitable for every individual. Exact batch times are confirmed when you enquire.",
+    audienceTags: ["adults", "fitness", "working-professionals"],
     branchSlugs: [...ALL_BRANCHES],
     heroAccent: "strength",
     whoItsFor:
-      "Adults who want coach-led, machine-free fitness. Suitability depends on the batch — not every programme fits every age or ability. Ask when you book a free trial.",
-    classStructure: "Coach-led session structure varies by batch. Detailed timetable pending.",
+      "Adults who want coach-led, machine-free fitness — including working professionals and beginners. Suitability depends on the batch. Ask when you book a free trial.",
+    classStructure:
+      "Typical session duration is about one hour. Exact warm-up, workout and cool-down splits are not published. Batch times are confirmed on WhatsApp.",
     benefits: [
-      "Machine-free, coach-led sessions",
-      "Adapted to individual needs and goals",
+      "Machine-free sessions (no conventional gym-machine circuits)",
+      "Portable equipment such as bands, dumbbells and kettlebells may be used",
+      "Typical sessions about one hour",
+      "Beginners welcome",
       "Offered across studio branches",
     ],
     difficulty: "all-levels",
@@ -40,7 +44,7 @@ export const mockProgrammes: Programme[] = [
     mediaSlotKey: "service.functional-training",
     seoTitle: "Functional Training",
     seoDescription:
-      "Machine-free, coach-led Functional Training at Ankit’s Studio across Airoli, Ghansoli and Thane. Free trial on WhatsApp.",
+      "Machine-free, coach-led Functional Training at Ankit’s Studio across Airoli, Ghansoli and Thane. Typical sessions about one hour. Free trial on WhatsApp.",
     relatedProgrammeSlugs: ["home-personal-training", "online-training", "yoga"],
     ladiesOnlyBatchesAvailable: true,
     kidsOnlyBatchesAvailable: true,
@@ -49,19 +53,24 @@ export const mockProgrammes: Programme[] = [
         id: "ft-trial",
         question: "Is a trial available?",
         answer:
-          "Yes. You can enquire about a free trial on WhatsApp. Opening WhatsApp starts a chat — it does not mean a message was already delivered.",
+          "Yes. A free trial is available once per person. Opening WhatsApp starts a chat — it does not mean a message was already delivered.",
       },
       {
         id: "ft-machines",
         question: "Is this machine-based gym training?",
         answer:
-          "No. Sessions are described as machine-free and coach-led. Ask the studio how your batch is structured.",
+          "No. Machine-free means no reliance on conventional gym machines. Coaches may still use portable equipment such as bands, dumbbells and kettlebells.",
+      },
+      {
+        id: "ft-duration",
+        question: "How long is a session?",
+        answer: "Typical sessions last about one hour. Exact structure varies by batch.",
       },
       {
         id: "ft-price",
         question: "What does it cost?",
         answer:
-          "Programme fees are confirmed when you enquire. There is a one-time registration fee of ₹300 after you join. The trial class is free.",
+          "Programme fees vary by service and branch and are confirmed when you enquire. GST is included in supplied prices. There is a one-time registration fee of ₹300 per person after you join. The trial class is free.",
       },
     ],
   },
@@ -209,16 +218,17 @@ export const mockProgrammes: Programme[] = [
     name: "Dance",
     shortDescription: "Studio dance for adults — technique and choreography in a welcoming room.",
     longDescription:
-      "Dance is an owner-confirmed studio service. This page covers the Dance offering. Kids-only and ladies-only batches are audience options you can ask about — they are not automatically separate public services. Wedding choreography is listed separately.",
-    audienceTags: ["adults", "group-class"],
+      "Dance is an owner-confirmed studio service. Kids Dance and Ladies Dance are not separate general programmes — they are kids-only and ladies-only Dance batches. Children’s Dance age groups include 3–8 years and 8–12 years. Availability varies by branch and schedule. Wedding choreography is listed separately.",
+    audienceTags: ["adults", "group-class", "kids", "women"],
     branchSlugs: [...ALL_BRANCHES],
     heroAccent: "high-energy",
     whoItsFor:
-      "Adults interested in studio dance. Ask about kids-only or ladies-only batches if that fits your needs.",
-    classStructure: "Studio dance sessions. Exact styles and times confirmed on enquiry.",
+      "Adults interested in studio dance, plus families asking about kids-only Dance batches (3–8 and 8–12 years) and ladies-only Dance batches.",
+    classStructure: "Studio dance sessions. Exact styles and times confirmed on enquiry. Typical sessions are about one hour.",
     benefits: [
       "Studio dance sessions across branches",
-      "Kids-only and ladies-only batches available to ask about",
+      "Kids-only Dance batches (age groups 3–8 and 8–12 years) available to ask about",
+      "Ladies-only Dance batches available to ask about",
       "Wedding choreography is a separate service",
     ],
     difficulty: "all-levels",
@@ -232,7 +242,7 @@ export const mockProgrammes: Programme[] = [
     mediaSlotKey: "service.dance",
     seoTitle: "Dance",
     seoDescription:
-      "Dance classes at Ankit’s Studio. Ask about ladies-only and kids-only batches. Free trial on WhatsApp.",
+      "Dance classes at Ankit’s Studio. Kids-only (3–8 and 8–12) and ladies-only Dance batches available to ask about. Free trial on WhatsApp.",
     relatedProgrammeSlugs: ["zumba", "wedding-choreography", "yoga"],
     ladiesOnlyBatchesAvailable: true,
     kidsOnlyBatchesAvailable: true,
@@ -241,7 +251,13 @@ export const mockProgrammes: Programme[] = [
         id: "dance-kids",
         question: "Do you offer kids-only dance batches?",
         answer:
-          "Kids-only batches are available as an audience option. Ask when you enquire — we do not list a separate Kids Dance product on this page.",
+          "Yes. Kids Dance is a kids-only Dance batch, not a separate general programme. Age groups include 3–8 years and 8–12 years. Ask when you enquire — availability varies by branch.",
+      },
+      {
+        id: "dance-ladies",
+        question: "Do you offer ladies-only dance batches?",
+        answer:
+          "Yes. Ladies Dance is a ladies-only Dance batch, not a separate general programme. Ask when you enquire.",
       },
     ],
   },
@@ -301,7 +317,7 @@ export const mockProgrammes: Programme[] = [
     name: "Wedding Choreography",
     shortDescription: "Personal choreography support for wedding routines and performances.",
     longDescription:
-      "Wedding Choreography is an owner-confirmed service. Sessions are arranged after you enquire. We do not publish fixed packages or per-song prices here — those details are confirmed with the studio.",
+      "Wedding Choreography is an owner-confirmed service. Pricing is arranged on a per-couple basis; exact amounts and package details remain pending. Sessions are arranged after you enquire.",
     audienceTags: ["adults", "event"],
     branchSlugs: [...ALL_BRANCHES],
     heroAccent: "high-energy",
@@ -309,7 +325,7 @@ export const mockProgrammes: Programme[] = [
     classStructure: "Custom choreography arranged with the studio after enquiry.",
     benefits: [
       "Personal choreography support for wedding routines",
-      "Arranged after enquiry — no published package list",
+      "Pricing basis: per couple (exact amount pending)",
       "Enquire via WhatsApp",
     ],
     difficulty: "all-levels",
@@ -323,14 +339,14 @@ export const mockProgrammes: Programme[] = [
     mediaSlotKey: "service.wedding-choreography",
     seoTitle: "Wedding Choreography",
     seoDescription:
-      "Wedding choreography at Ankit’s Studio. Enquire on WhatsApp for personal routines — packages confirmed when you message us.",
+      "Wedding choreography at Ankit’s Studio. Per-couple pricing — enquire on WhatsApp for current details.",
     relatedProgrammeSlugs: ["adult-dance", "zumba"],
     faqEntries: [
       {
         id: "wedding-price",
-        question: "Do you list wedding packages online?",
+        question: "How is wedding choreography priced?",
         answer:
-          "Not yet. Pricing and session plans are confirmed when you enquire. Registration after joining is ₹300 one-time; programme fees vary.",
+          "Pricing is per couple. Exact amounts and packages are confirmed when you enquire. Registration after joining is ₹300 one-time per person where membership applies.",
       },
     ],
   },
@@ -338,17 +354,19 @@ export const mockProgrammes: Programme[] = [
     dataStatus: "verified",
     slug: "home-personal-training",
     name: "Home Personal Training",
-    shortDescription: "Coach-led sessions at home — a delivery mode, not a branch-floor class.",
+    shortDescription: "Coach-led sessions at home — priced per session; coverage confirmed on enquiry.",
     longDescription:
-      "Home Personal Training is an owner-confirmed delivery mode. It is not a physical branch class and is not listed as available “inside” every studio floor. Coverage area, timing, and fees are confirmed when you enquire.",
+      "Home Personal Training is an owner-confirmed delivery mode. It is not a physical branch class. The owner indicated it can cover the studio’s training offering apart from Zumba — exact home service lists and geographic coverage remain pending. Pricing is per session; exact rates are confirmed when you enquire. Personalised programming is available through personal training.",
     audienceTags: ["adults", "home-delivery"],
     branchSlugs: [...ALL_BRANCHES],
     heroAccent: "strength",
-    whoItsFor: "People who prefer coach-led sessions at home rather than in a branch.",
-    classStructure: "Home sessions scheduled after enquiry — not on a branch timetable grid.",
+    whoItsFor: "People who prefer coach-led personal training at home rather than in a branch.",
+    classStructure:
+      "Home sessions scheduled after enquiry — not on a branch timetable grid. Typical sessions are about one hour.",
     benefits: [
       "Coach-led sessions in a home setting",
-      "Adapted to individual needs and goals",
+      "Pricing basis: per session (exact rate pending)",
+      "Personalised programming through personal training",
       "Coverage confirmed when you message us",
     ],
     difficulty: "all-levels",
@@ -362,7 +380,7 @@ export const mockProgrammes: Programme[] = [
     mediaSlotKey: "service.home-personal-training",
     seoTitle: "Home Personal Training",
     seoDescription:
-      "Home Personal Training with Ankit’s Studio — coach-led sessions at your location. Coverage and fees confirmed on WhatsApp enquiry.",
+      "Home Personal Training with Ankit’s Studio — per-session pricing. Coverage and rates confirmed on WhatsApp enquiry.",
     relatedProgrammeSlugs: ["online-training", "functional-training"],
     faqEntries: [
       {
@@ -370,24 +388,30 @@ export const mockProgrammes: Programme[] = [
         question: "Which areas do you cover?",
         answer: "Service area is confirmed when you enquire. Do not assume coverage for every neighbourhood.",
       },
+      {
+        id: "home-price",
+        question: "How is Home Personal Training priced?",
+        answer: "Pricing is per session. Exact rates are confirmed when you enquire.",
+      },
     ],
   },
   {
     dataStatus: "verified",
     slug: "online-training",
     name: "Online Training",
-    shortDescription: "Remote coach-led sessions. Platform and timing confirmed on enquiry.",
+    shortDescription: "Remote coach-led sessions on Zoom — one-to-one and group formats.",
     longDescription:
-      "Online Training is an owner-confirmed delivery mode. It is not a physical branch class. Platform, format, and schedule details are confirmed when you enquire.",
+      "Online Training is an owner-confirmed delivery mode delivered on Zoom. Formats include one-to-one and group sessions. Exact prices and schedules remain pending and are confirmed when you enquire. It is not a physical branch class.",
     audienceTags: ["adults", "online-delivery"],
     branchSlugs: [...ALL_BRANCHES],
     heroAccent: "strength",
-    whoItsFor: "People who want coach-led sessions online.",
-    classStructure: "Online sessions scheduled after enquiry — not a branch timetable row.",
+    whoItsFor: "People who want coach-led sessions online via Zoom.",
+    classStructure:
+      "Online sessions on Zoom after enquiry — one-to-one or group. Typical sessions are about one hour. Not a branch timetable row.",
     benefits: [
-      "Remote coach-led sessions",
-      "Adapted to individual needs and goals",
-      "Platform details confirmed on enquiry",
+      "Remote coach-led sessions on Zoom",
+      "One-to-one and group formats",
+      "Schedule and fees confirmed on enquiry",
     ],
     difficulty: "all-levels",
     requiredEquipment: [],
@@ -400,13 +424,13 @@ export const mockProgrammes: Programme[] = [
     mediaSlotKey: "service.online-training",
     seoTitle: "Online Training",
     seoDescription:
-      "Online Training with Ankit’s Studio — remote coach-led sessions. Platform and timing confirmed when you enquire on WhatsApp.",
+      "Online Training with Ankit’s Studio on Zoom — one-to-one and group. Timing and fees confirmed when you enquire on WhatsApp.",
     relatedProgrammeSlugs: ["home-personal-training", "functional-training"],
     faqEntries: [
       {
         id: "online-platform",
         question: "Which platform do you use?",
-        answer: "Platform and format are confirmed when you enquire — they are not published here yet.",
+        answer: "Online Training uses Zoom. One-to-one and group formats are available.",
       },
     ],
   },
