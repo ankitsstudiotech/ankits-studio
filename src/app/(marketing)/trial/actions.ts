@@ -63,10 +63,7 @@ export async function submitTrialLead(
     return { fieldErrors };
   }
 
-  const ageGroup =
-    parsed.data.ageGroup && parsed.data.ageGroup !== ""
-      ? parsed.data.ageGroup
-      : undefined;
+  const ageGroup = parsed.data.ageGroup || undefined;
 
   const result = await getLeadAdapter().submitTrialLead({
     name: parsed.data.name,

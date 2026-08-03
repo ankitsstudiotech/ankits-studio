@@ -18,10 +18,21 @@ describe("WhatsApp conversion", () => {
   });
 
   it("allows partial field prefills", () => {
-    const message = buildWhatsAppMessage({ name: "Riya", preferredBranch: "Ghansoli" });
+    const message = buildWhatsAppMessage({
+      name: "Riya",
+      preferredBranch: "Ghansoli",
+      age: "10",
+      trialDate: "2026-08-10",
+    });
     expect(message).toContain("Name: Riya");
     expect(message).toContain("Preferred branch: Ghansoli");
+    expect(message).toContain("Age: 10");
+    expect(message).toContain("Trial date: 2026-08-10");
     expect(message).toContain("Interested service:");
+  });
+
+  it("includes Trial date in the default template", () => {
+    expect(WHATSAPP_TRIAL_TEMPLATE).toContain("Trial date:");
   });
 
   it("uses WhatsApp as the primary conversion href", () => {
