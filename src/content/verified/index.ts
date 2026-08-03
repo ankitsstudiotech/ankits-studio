@@ -4,6 +4,7 @@ import type {
   BusinessIdentity,
   ContactDetails,
   Faq,
+  MemberStory,
   NavigationItem,
   PricingPlan,
   Programme,
@@ -26,6 +27,7 @@ export const verifiedTrainers: Trainer[] = [];
 export const verifiedTimetableSlots: TimetableSlot[] = [];
 export const verifiedPricingPlans: PricingPlan[] = [];
 export const verifiedTransformations: Transformation[] = [];
+export const verifiedMemberStories: MemberStory[] = [];
 export const verifiedTestimonials: Testimonial[] = [];
 export const verifiedBlogPosts: BlogPost[] = [];
 
@@ -35,5 +37,7 @@ export const verifiedContactDetails: ContactDetails | null = null;
 export const verifiedStudioCommercial: import("../schema").StudioCommercial | null = null;
 export const verifiedStudioAbout: import("../schema").StudioAbout | null = null;
 export const verifiedStudioTrainersPage: import("../schema").StudioTrainersPage | null = null;
+export const verifiedStudioMemberStoriesPage: import("../schema").StudioMemberStoriesPage | null =
+  null;
 export const verifiedFaqs: Faq[] = [];
 export const verifiedNavigationItems: NavigationItem[] = [];

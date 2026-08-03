@@ -572,6 +572,40 @@ Public treatment:
 
 **Status**: Active.
 
+## ADR-022: Member Stories route indexing and evidence publishability
+
+**Decision:** First-party Member Stories and Transformations are separate from Google reviews (ADR-021). The public route remains `/transformations` with the heading **Member Stories**.
+
+### Publishability
+
+- `getPublishableMemberStories()` / `isMemberStoryPublishable` — real/approved display name, publication consent, approved text, programme or branch relationship, provenance, safe health-claim risk; mock records never pass.
+- `getPublishableTransformations()` / `isTransformationPublishable` — Member Story gates plus timeframe, member-described outcome, measurement source when measurable claims are shown, before/after permissions and image-date verification when media is shown.
+
+### Indexing of `/transformations`
+
+Until the threshold below is met:
+
+- Keep `/transformations` reachable
+- Mark `noindex` / `nofollow` (`forceNoIndex`)
+- Exclude `/transformations` from the sitemap
+- Do not emit Review, AggregateRating, Person, MedicalEntity, ClaimReview, or fake ItemList JSON-LD
+- Do not render mock or fixture evidence under `ALLOW_MOCK_PUBLISH=true`
+
+### Activation threshold
+
+`/transformations` may become indexable and enter the sitemap only when **either**:
+
+- `getPublishableMemberStories().length >= MEMBER_STORIES_INDEX_STORY_THRESHOLD` (**3**), **or**
+- `getPublishableTransformations().length >= MEMBER_STORIES_INDEX_TRANSFORMATION_THRESHOLD` (**2**)
+
+**Rationale:** Three consented stories make a directory useful; two complete transformations with stronger evidence also justify indexing. Empty readiness pages must not imply published outcomes.
+
+Implementation: `shouldIndexMemberStoriesRoute()` in `src/content/index.ts`.
+
+**Why:** Mock illustrative journeys previously rendered on `/transformations` under mock-preview. Honesty requires an evidence gate independent of `ALLOW_MOCK_PUBLISH`.
+
+**Status**: Active.
+
 ## Log format for future entries
 
 ```

@@ -6,6 +6,7 @@ import type {
   BusinessIdentity,
   ContactDetails,
   Faq,
+  MemberStory,
   NavigationItem,
   NavigationPlacement,
   PricingPlan,
@@ -13,6 +14,7 @@ import type {
   ProgrammeSlug,
   StudioAbout,
   StudioCommercial,
+  StudioMemberStoriesPage,
   StudioTrainersPage,
   Testimonial,
   TimetableSlot,
@@ -23,6 +25,14 @@ import {
   isTrainerPublishable,
   TRAINERS_ROUTE_INDEX_THRESHOLD,
 } from "./schema/trainer";
+import {
+  isMemberStoryPublishable,
+  MEMBER_STORIES_INDEX_STORY_THRESHOLD,
+} from "./schema/member-story";
+import {
+  isTransformationPublishable,
+  MEMBER_STORIES_INDEX_TRANSFORMATION_THRESHOLD,
+} from "./schema/transformation";
 import * as verified from "./verified";
 
 /**
@@ -53,6 +63,7 @@ const branches = mergeByKey(mock.mockBranches, verified.verifiedBranches, bySlug
 const trainers = mergeByKey(mock.mockTrainers, verified.verifiedTrainers, bySlug);
 const timetableSlots = mergeByKey(mock.mockTimetableSlots, verified.verifiedTimetableSlots, byId);
 const pricingPlans = mergeByKey(mock.mockPricingPlans, verified.verifiedPricingPlans, bySlug);
+const memberStories = mergeByKey(mock.mockMemberStories, verified.verifiedMemberStories, byId);
 const transformations = mergeByKey(mock.mockTransformations, verified.verifiedTransformations, bySlug);
 const testimonials = mergeByKey(mock.mockTestimonials, verified.verifiedTestimonials, byId);
 const blogPosts = mergeByKey(mock.mockBlogPosts, verified.verifiedBlogPosts, bySlug);
@@ -63,6 +74,10 @@ const studioAbout = mergeSingular(mock.mockStudioAbout, verified.verifiedStudioA
 const studioTrainersPage = mergeSingular(
   mock.mockStudioTrainersPage,
   verified.verifiedStudioTrainersPage,
+);
+const studioMemberStoriesPage = mergeSingular(
+  mock.mockStudioMemberStoriesPage,
+  verified.verifiedStudioMemberStoriesPage,
 );
 const faqs = mergeByKey(mock.mockFaqs, verified.verifiedFaqs, byId);
 const navigationItems = mergeByKey(mock.mockNavigationItems, verified.verifiedNavigationItems, byId);
@@ -156,13 +171,53 @@ export function getPricingPlans(): PricingPlan[] {
   return pricingPlans.filter((plan) => plan.dataStatus === "verified");
 }
 
-export function getTransformations(): Transformation[] {
-  return transformations;
+/** All member-story records (including drafts) — prefer publishable accessors for marketing. */
+export function getMemberStories(): MemberStory[] {
+  return memberStories;
 }
 
-export function getTestimonials(): Testimonial[] {
-  return testimonials;
+/** Publishable first-party member stories only (ADR-022). */
+export function getPublishableMemberStories(): MemberStory[] {
+  return memberStories.filter(isMemberStoryPublishable);
 }
+
+/**
+ * Transformation records for internal tooling — never treat mock fixtures as publishable.
+ * Marketing surfaces must use `getPublishableTransformations()`.
+ */
+export function getTransformations(): Transformation[] {
+  return transformations.filter((item) => item.dataStatus === "verified");
+}
+
+/** Publishable evidence-strong transformations only (ADR-022). */
+export function getPublishableTransformations(): Transformation[] {
+  return transformations.filter(isTransformationPublishable);
+}
+
+/**
+ * Legacy testimonial accessor — production list is empty.
+ * Prefer Member Stories. Design-lab fixtures are not returned here.
+ */
+export function getTestimonials(): Testimonial[] {
+  return testimonials.filter((item) => item.dataStatus === "verified");
+}
+
+/**
+ * `/transformations` (Member Stories) may be indexed only after the ADR-022 threshold.
+ */
+export function shouldIndexMemberStoriesRoute(): boolean {
+  return (
+    getPublishableMemberStories().length >= MEMBER_STORIES_INDEX_STORY_THRESHOLD ||
+    getPublishableTransformations().length >= MEMBER_STORIES_INDEX_TRANSFORMATION_THRESHOLD
+  );
+}
+
+export {
+  isMemberStoryPublishable,
+  isTransformationPublishable,
+  MEMBER_STORIES_INDEX_STORY_THRESHOLD,
+  MEMBER_STORIES_INDEX_TRANSFORMATION_THRESHOLD,
+};
 
 export function getBlogPosts(): BlogPost[] {
   return blogPosts;
@@ -249,6 +304,10 @@ export function getStudioAbout(): StudioAbout {
 
 export function getStudioTrainersPage(): StudioTrainersPage {
   return studioTrainersPage;
+}
+
+export function getStudioMemberStoriesPage(): StudioMemberStoriesPage {
+  return studioMemberStoriesPage;
 }
 
 export function getFaqs(filter?: { programmeSlug?: ProgrammeSlug; branchSlug?: BranchSlug }): Faq[] {
