@@ -550,6 +550,28 @@ Public treatment:
 
 **Status**: Active.
 
+## ADR-021: No self-serving Review or AggregateRating structured data for Ankit’s Studio
+
+**Decision:** The website is controlled by the business being reviewed. Therefore:
+
+1. **Do not emit** `Review`, `AggregateRating`, or nested `review` / `aggregateRating` / star-rating properties on:
+   - `Organization`
+   - `LocalBusiness` / `ExerciseGym`
+   - Any other page JSON-LD that marks up Ankit’s Studio as the reviewed entity
+2. **Do not** add review or aggregate-rating properties inside branch ExerciseGym markup (ADR-018 remains address/hours/telephone/`hasMap` only).
+3. Visible Google reviews (when a future Places-backed UI ships) may appear **to users** with required Maps attribution and selection disclosure, but **must not** be mirrored into self-serving review rich-result markup.
+4. Embedded third-party review widgets about this business remain self-serving for rich-result purposes under Google Search Central review snippet guidelines and do not justify adding Review/AggregateRating JSON-LD.
+5. First-party member testimonials and transformation stories likewise **must not** be wrapped in Review/AggregateRating JSON-LD about the studio.
+
+**Regression requirements:**
+
+- Keep and extend unit tests that fail if Organization / LocalBusiness / ExerciseGym / programme / about / trainers JSON-LD contains `Review`, `AggregateRating`, `aggregateRating`, `reviewRating`, or fabricated star fields.
+- Any proposal to add review structured data requires a **new ADR** citing current Google Search Central eligibility for the specific schema type and a legal/product review — default remains **omit**.
+
+**Why:** Google Search Central states that when the entity being reviewed controls the reviews about itself, pages using `LocalBusiness` or `Organization` structured data are ineligible for the star review feature (including reviews placed directly or via third-party widgets). Emitting self-serving markup creates false SEO expectations and policy risk without benefit. See [Review snippet structured data](https://developers.google.com/search/docs/appearance/structured-data/review-snippet) (“Self-serving reviews aren't allowed for LocalBusiness and Organization…”).
+
+**Status**: Active.
+
 ## Log format for future entries
 
 ```
