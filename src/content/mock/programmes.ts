@@ -25,7 +25,7 @@ export const mockProgrammes: Programme[] = [
     whoItsFor:
       "Adults who want coach-led, machine-free fitness — including working professionals and beginners. Suitability depends on the batch. Ask when you book a free trial.",
     classStructure:
-      "Typical session duration is about one hour. Exact warm-up, workout and cool-down splits are not published. Batch times are confirmed on WhatsApp.",
+      "Each session is structured by the coach and typically lasts about one hour. Batch times are confirmed on WhatsApp.",
     benefits: [
       "Bodyweight movement",
       "Resistance bands",
@@ -74,7 +74,7 @@ export const mockProgrammes: Programme[] = [
         id: "ft-price",
         question: "What does it cost?",
         answer:
-          "Programme fees vary by service and branch and are confirmed when you enquire. GST is included in supplied prices. There is a one-time registration fee of ₹300 per person after you join. The trial class is free.",
+          "Programme fees vary by service and branch and are confirmed when you enquire. GST is included in the fee quoted by the studio. There is a one-time registration fee of ₹300 per person after you join. The trial class is free.",
       },
     ],
   },

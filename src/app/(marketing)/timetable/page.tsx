@@ -38,7 +38,7 @@ const FAQ = [
     id: "faq-why-no-grid",
     question: "Why aren’t exact batch times listed here?",
     answer:
-      "Detailed branch-wise schedules are being updated. Message us on WhatsApp for current availability by programme and branch. Advance booking is not compulsory, but checking current availability on WhatsApp is recommended.",
+      "Detailed branch-wise schedules are being updated. Message us on WhatsApp for current availability by programme and branch. Advance booking is optional; checking availability on WhatsApp is recommended.",
   },
   {
     id: "faq-operating-window",
@@ -50,7 +50,7 @@ const FAQ = [
     id: "faq-walk-in",
     question: "Do I need to book in advance for a trial?",
     answer:
-      "Advance booking is not compulsory, but checking current availability on WhatsApp is recommended. We do not guarantee that every walk-in can be accommodated.",
+      "Advance booking is optional; checking availability on WhatsApp is recommended.",
   },
   {
     id: "faq-trial",
@@ -134,9 +134,8 @@ export default function TimetablePage() {
               Individual batch times vary by branch and programme.
             </p>
             <p className={styles.pendingNote}>
-              Detailed branch-wise schedules are being updated. Advance booking is not compulsory, but
-              checking WhatsApp availability is recommended — we do not guarantee every walk-in can be
-              accommodated.
+              Detailed branch-wise schedules are being updated. Advance booking is optional;
+              checking availability on WhatsApp is recommended.
             </p>
           </div>
         </div>

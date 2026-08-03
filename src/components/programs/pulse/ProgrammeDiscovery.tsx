@@ -68,8 +68,9 @@ export function ProgrammeDiscovery({ programmes, trialHref, trialLabel }: Progra
         Choose how you want to move
       </h1>
       <p className={styles.bandLede}>
-        Services at Ankit’s Studio. Machine-free, coach-led sessions adapted to your needs —
-        without promised outcomes. Ask which batch fits when you book a free trial.
+        Choose from fitness, movement and training options. Machine-free, coach-led sessions —
+        choose the format that fits your goals and routine. Ask which batch fits when you book a free
+        trial.
       </p>
 
       <div className={styles.clusters}>

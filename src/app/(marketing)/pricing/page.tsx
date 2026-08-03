@@ -49,7 +49,7 @@ const FAQ = [
     id: "faq-why-no-list",
     question: "Why are exact programme fees not displayed?",
     answer:
-      "Programme fees vary by service and branch. GST is included in supplied prices. Exact monthly and longer-term amounts have not been published yet — message us for the current fee.",
+      "Programme fees vary by service and branch. GST is included in the fee quoted by the studio. Exact monthly and longer-term amounts have not been published yet — message us for the current fee.",
   },
   {
     id: "faq-how-to-get",
@@ -133,7 +133,7 @@ export default function PricingPage() {
             Your trial class is free for every service at every physical branch — once per person. A
             one-time registration fee of ₹300 per person applies after you join and is not charged again
             after a membership break. Programme fees vary by service and branch. GST is included in
-            supplied prices. Message us for the current fee.
+            the fee quoted by the studio. Message us for the current fee.
           </p>
 
           <h2 id="confirmed-fees-title" className={styles.sectionTitle} style={{ marginTop: "2rem" }}>
@@ -163,7 +163,7 @@ export default function PricingPage() {
             <li className={styles.confirmedItem}>
               <p className={styles.kicker}>Programme fees</p>
             <p className={styles.feeMeta}>
-              Fees vary by service and branch. GST is included in supplied prices. Exact amounts are
+              Fees vary by service and branch. GST is included in the fee quoted by the studio. Exact amounts are
               shared when you enquire.
             </p>
           </li>

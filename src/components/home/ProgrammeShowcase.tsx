@@ -40,8 +40,8 @@ export function ProgrammeShowcase({ clusters, audienceNote }: ProgrammeShowcaseP
         Choose how you want to move
       </h2>
       <p className={styles.bandLede}>
-        Confirmed studio services, grouped by how most people start. Ask which batch fits you when
-        you book a trial.
+        Studio services, grouped by how most people start. Ask which batch fits you when you book a
+        trial.
       </p>
 
       <div className={styles.clusters}>

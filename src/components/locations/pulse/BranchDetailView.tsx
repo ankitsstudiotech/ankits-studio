@@ -37,8 +37,8 @@ export function BranchDetailView({
   const addressVisible = branch.address;
   const hoursLabel =
     branch.openingHours[0] != null
-      ? `${formatClock(branch.openingHours[0].opensAt)}–${formatClock(branch.openingHours[0].closesAt)} daily`
-      : "6:00 AM–10:00 PM daily";
+      ? `${formatClock(branch.openingHours[0].opensAt)}–${formatClock(branch.openingHours[0].closesAt)}`
+      : "6:00 AM–10:00 PM";
 
   const orderedPhysical = [...physicalProgrammes].sort((a, b) => {
     const order = [
