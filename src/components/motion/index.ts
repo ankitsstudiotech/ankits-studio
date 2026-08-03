@@ -7,3 +7,5 @@ export { AccessibleCarousel } from "./AccessibleCarousel";
 export type { AccessibleCarouselProps, CarouselSlide } from "./AccessibleCarousel";
 export { HeroReveal, SectionReveal } from "./PulseReveal";
 export type { HeroRevealProps, SectionRevealProps } from "./PulseReveal";
+export { RouteOpening } from "./RouteOpening";
+export type { RouteOpeningProps } from "./RouteOpening";

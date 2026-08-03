@@ -207,6 +207,45 @@
   color: var(--color-ink-inverse);
 }
 
+/* Dark form panel — field-raised interior; inputs may stay light as controls */
+.pulse-form-panel {
+  background: var(--color-field-raised);
+  color: var(--color-ink-inverse);
+  border: 1px solid var(--color-border-on-field);
+  padding: 1.25rem 1.35rem;
+}
+
+.pulse-form-panel label {
+  color: var(--color-ink-inverse);
+}
+
+.pulse-form-panel :where(p, .hint, .ctaNote, .deliveryNote, .feeMeta) {
+  color: var(--color-muted-on-field);
+}
+
+.pulse-form-panel :where(h1, h2, h3) {
+  color: var(--color-ink-inverse);
+}
+
+/* Keep shared Field controls readable on the dark panel */
+.pulse-form-panel :is(input, select, textarea):not([type="radio"]):not([type="checkbox"]) {
+  color: var(--color-ink);
+}
+
+/* Desktop two-column split */
+.pulse-split {
+  display: grid;
+  gap: 1.75rem;
+}
+
+@media (min-width: 900px) {
+  .pulse-split {
+    grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+    gap: 2.5rem;
+    align-items: start;
+  }
+}
+
 /* Dark FAQ accordion */
 .pulse-accordion {
   display: flex;

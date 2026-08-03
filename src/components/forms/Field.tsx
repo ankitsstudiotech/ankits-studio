@@ -22,11 +22,11 @@ export function Field({
   const errorId = error ? `${id}-error` : undefined;
   return (
     <div className="min-w-0">
-      <label htmlFor={id} className="block text-sm font-medium text-ink font-[family-name:var(--font-sans)]">
+      <label htmlFor={id} className="block text-sm font-medium font-[family-name:var(--font-sans)] text-current">
         {label}
       </label>
       {hint ? (
-        <p id={hintId} className="mt-1 text-[length:var(--text-caption)] text-ink-muted">
+        <p id={hintId} className="mt-1 text-[length:var(--text-caption)] text-current opacity-75">
           {hint}
         </p>
       ) : null}
