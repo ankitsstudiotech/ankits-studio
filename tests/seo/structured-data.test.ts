@@ -98,10 +98,14 @@ describe("mock status propagation — structured data omits unverified records",
     expect(buildOrganizationJsonLd(verifiedIdentity)).not.toBeNull();
   });
 
-  it("buildLocalBusinessJsonLd returns null for every current (mock/reference-only) branch", () => {
+  it("buildLocalBusinessJsonLd emits for owner-confirmed addresses on live branches", () => {
     for (const branch of getBranches()) {
-      expect(branch.dataStatus).not.toBe("verified");
-      expect(buildLocalBusinessJsonLd(branch)).toBeNull();
+      expect(branch.dataStatus).toBe("verified");
+      expect(branch.fieldProvenance.address).toBe("owner_confirmed");
+      const jsonLd = buildLocalBusinessJsonLd(branch);
+      expect(jsonLd).not.toBeNull();
+      expect(jsonLd?.["@type"]).toBe("ExerciseGym");
+      expect(jsonLd?.address?.streetAddress).toBe(branch.address);
     }
   });
 

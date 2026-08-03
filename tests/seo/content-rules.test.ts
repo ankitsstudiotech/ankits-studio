@@ -13,11 +13,12 @@ import {
 const CENTRAL = "+91 93724 02074";
 
 describe("Thane listing after owner confirmation", () => {
-  it("lists Thane publicly with pending printable address", () => {
+  it("lists Thane publicly with owner-confirmed printable address", () => {
     const thane = getBranchBySlug("thane");
     expect(thane?.publiclyListed).toBe(true);
-    expect(thane?.address).toBeNull();
-    expect(thane?.fieldProvenance.address).toBe("pending");
+    expect(thane?.dataStatus).toBe("verified");
+    expect(thane?.address).toMatch(/Edulji Road/);
+    expect(thane?.fieldProvenance.address).toBe("owner_confirmed");
     expect(thane?.mapsUrl).toContain("maps.app.goo.gl");
   });
 });
@@ -31,9 +32,12 @@ describe("four-branch model", () => {
     expect(getPubliclyListedBranches()).toHaveLength(4);
   });
 
-  it("keeps Sector 8 without a Maps URL", () => {
-    expect(getBranchBySlug("airoli-sector-8")?.mapsUrl).toBeNull();
-    expect(getBranchBySlug("airoli-sector-8")?.fieldProvenance.mapsUrl).toBe("pending");
+  it("exposes owner-confirmed Maps URLs for all four branches including Sector 8", () => {
+    for (const slug of ["airoli-sector-19", "airoli-sector-8", "ghansoli", "thane"] as const) {
+      const branch = getBranchBySlug(slug);
+      expect(branch?.mapsUrl).toMatch(/^https:\/\/maps\.app\.goo\.gl\//);
+      expect(branch?.fieldProvenance.mapsUrl).toBe("owner_confirmed");
+    }
   });
 });
 

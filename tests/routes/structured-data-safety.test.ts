@@ -18,6 +18,9 @@ describe("route-level structured-data safety", () => {
       expect(jsonLd).not.toBeNull();
       expect(jsonLd?.["@type"]).toBe("ExerciseGym");
       expect(jsonLd?.address?.streetAddress).toBe(branch.address);
+      expect(jsonLd?.telephone).toBe("+91 93724 02074");
+      expect(jsonLd?.openingHoursSpecification?.[0]?.opens).toBe("06:00");
+      expect(jsonLd?.openingHoursSpecification?.[0]?.closes).toBe("22:00");
     }
   });
 

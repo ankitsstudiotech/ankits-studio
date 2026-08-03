@@ -28,6 +28,17 @@ export interface OrganizationJsonLd {
 export interface PostalAddressJsonLd {
   "@type": "PostalAddress";
   streetAddress: string;
+  addressLocality?: string;
+  addressRegion?: string;
+  postalCode?: string;
+  addressCountry?: string;
+}
+
+export interface OpeningHoursSpecificationJsonLd {
+  "@type": "OpeningHoursSpecification";
+  dayOfWeek: string | string[];
+  opens: string;
+  closes: string;
 }
 
 /** ExerciseGym is schema.org's LocalBusiness subtype for a fitness studio. */
@@ -38,6 +49,13 @@ export interface LocalBusinessJsonLd {
   url: string;
   telephone?: string;
   address?: PostalAddressJsonLd;
+  openingHoursSpecification?: OpeningHoursSpecificationJsonLd[];
+  hasMap?: string;
+  parentOrganization?: {
+    "@type": "Organization";
+    name: string;
+    url?: string;
+  };
 }
 
 /**

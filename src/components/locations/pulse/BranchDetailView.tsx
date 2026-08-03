@@ -122,6 +122,19 @@ export function BranchDetailView({
               )}
             </span>
           </li>
+          {branch.phone ? (
+            <li className={styles.fact}>
+              <strong>Phone &amp; WhatsApp</strong>
+              <span>
+                <a href={`tel:${branch.phone.replace(/\s+/g, "")}`} className={styles.actionLink}>
+                  {branch.phone}
+                </a>
+                {branch.inheritsCentralEnquiry
+                  ? " — central studio enquiry number for all branches"
+                  : null}
+              </span>
+            </li>
+          ) : null}
         </ul>
       </section>
 

@@ -53,27 +53,75 @@ export function buildOrganizationJsonLd(identity: BusinessIdentity): Organizatio
  * `branch.phone`/`branch.address` directly, but only ever reach that code
  * path when `dataStatus === "verified"`, so there's no duplicated safety
  * gap, just two different consumers of the same verified data.
+ *
+ * Eligible properties must also be visible on the branch page (ADR-018).
+ * Do not emit geo, ratings, reviews, priceRange, amenities, or class schedules.
  */
+const SCHEMA_DAYS = [
+  "Monday",
+  "Tuesday",
+  "Wednesday",
+  "Thursday",
+  "Friday",
+  "Saturday",
+  "Sunday",
+] as const;
+
 export function buildLocalBusinessJsonLd(branch: Branch): LocalBusinessJsonLd | null {
   if (branch.dataStatus !== "verified") return null;
-  // Require a verified printable address before claiming PostalAddress (ADR location schema).
+  // Require a verified printable address before claiming PostalAddress (ADR-018).
   if (!branch.address || branch.fieldProvenance.address !== "owner_confirmed") return null;
+
+  const address: LocalBusinessJsonLd["address"] = {
+    "@type": "PostalAddress",
+    streetAddress: branch.address,
+    addressLocality: branch.locality,
+  };
+
+  if (branch.pinCode && branch.fieldProvenance.pinCode === "owner_confirmed") {
+    address.postalCode = branch.pinCode;
+  }
+
+  // Region appears in the owner-confirmed printable address string.
+  if (/\bMaharashtra\b/i.test(branch.address)) {
+    address.addressRegion = "Maharashtra";
+  }
 
   const jsonLd: LocalBusinessJsonLd = {
     "@context": "https://schema.org",
     "@type": "ExerciseGym",
     name: branch.name,
     url: buildCanonicalUrl(`/locations/${branch.slug}`),
-    address: {
-      "@type": "PostalAddress",
-      streetAddress: branch.address,
+    address,
+    parentOrganization: {
+      "@type": "Organization",
+      name: "Ankit's Studio",
+      url: siteConfig.url,
     },
   };
 
-  if (branch.phone) {
+  // Central enquiry number is shown on the branch page when present.
+  if (branch.phone && branch.fieldProvenance.phone === "owner_confirmed") {
     jsonLd.telephone = branch.phone;
-  } else if (branch.inheritsCentralEnquiry) {
-    // Central enquiry only — omit telephone rather than invent a branch line.
+  }
+
+  if (
+    branch.fieldProvenance.operatingHours === "owner_confirmed" &&
+    branch.openingHours.length > 0
+  ) {
+    jsonLd.openingHoursSpecification = branch.openingHours.map((entry) => ({
+      "@type": "OpeningHoursSpecification",
+      dayOfWeek: SCHEMA_DAYS[entry.dayOfWeek] ?? "Monday",
+      opens: entry.opensAt,
+      closes: entry.closesAt,
+    }));
+  }
+
+  if (branch.fieldProvenance.mapsUrl === "owner_confirmed") {
+    const maps = branch.mapsUrl ?? branch.mapsShortUrl;
+    if (maps) {
+      jsonLd.hasMap = maps;
+    }
   }
 
   return jsonLd;

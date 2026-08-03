@@ -455,21 +455,34 @@ judgment against the approved architecture and existing ADRs, not a default.
 
 **Status**: Active. Supersedes the positive SEO-005 note in ADR-013 (“Course emits for verified programmes”) for programme routes.
 
-## ADR-018: Branch pages use WebPage/CollectionPage + BreadcrumbList until printable address is verified
+## ADR-018: Branch pages use ExerciseGym when printable address is owner-confirmed
 
-**Decision**: Location structured data follows the programme honesty pattern (ADR-017):
+**Decision**: Location structured data follows the programme honesty pattern (ADR-017), with ExerciseGym enabled only for verified printable addresses:
 
 | Route | Allowed JSON-LD |
 |---|---|
 | `/locations` | `CollectionPage` (name, description, url) + `BreadcrumbList` |
 | Confirmed `/locations/[slug]` | `WebPage` + `BreadcrumbList` |
-| `ExerciseGym` / `LocalBusiness` | Only when `dataStatus === "verified"` **and** `address` is non-null with `fieldProvenance.address === "owner_confirmed"` |
+| `ExerciseGym` / `LocalBusiness` | When `dataStatus === "verified"` **and** `address` is non-null with `fieldProvenance.address === "owner_confirmed"` |
 
-Do not emit PostalAddress, geo, ratings, reviews, priceRange, Offer, Event, Course, or class schedules for branches. Do not emit branch-specific telephone while only the central enquiry number is known and the branch record remains unverified. Owner-confirmed Maps short URLs may appear as visible links via `getBranchMapsUrl` without requiring ExerciseGym markup. Operating hours remain visible as an operating window on the page; they are not added to JSON-LD until LocalBusiness itself is eligible.
+Eligible ExerciseGym properties (must also be visibly rendered on the branch page):
+
+- `name`, `url`
+- `PostalAddress` (`streetAddress`, `addressLocality`, optional `postalCode` / `addressRegion` when confirmed and visible)
+- `telephone` — central enquiry number when `fieldProvenance.phone === "owner_confirmed"` and shown on-page
+- `openingHoursSpecification` — operating window only when hours provenance is owner-confirmed (not batch schedules)
+- `hasMap` — owner-confirmed Maps URL when linked on-page
+- `parentOrganization` — Ankit’s Studio when the brand relationship is visible
+
+Do **not** emit: geo coordinates, ratings, reviews, priceRange, amenities, class schedules, trainer assignments, or Google Business Profile URLs until supplied.
+
+Owner-confirmed Maps short URLs may also appear as visible links via `getBranchMapsUrl` independently of ExerciseGym.
 
 Legacy `/locations/airoli` permanently redirects to `/locations/airoli-sector-19` (see `docs/migrations/LOCATION-ROUTE-MIGRATION.md`).
 
-**Why**: Google Local Business / ExerciseGym markup that includes incomplete or invented addresses creates local-SEO risk. Printable addresses are still pending for all four branches; Maps-observed street text is external corroboration only. Plain WebPage + BreadcrumbList accurately describes the pages without speculative place claims. Full audit: `docs/audits/LOCATION-STRUCTURED-DATA-AUDIT.md`.
+**Update (2026-08-03)**: Owner supplied printable addresses and Maps URLs for all four branches. ExerciseGym is therefore eligible for every publicly listed branch. Operating hours (6:00 AM–10:00 PM every day) may appear in JSON-LD because they are visible as an operating window on each branch page.
+
+**Why**: Google Local Business / ExerciseGym markup that includes incomplete or invented addresses creates local-SEO risk. Plain WebPage + BreadcrumbList remains the fallback when address provenance is incomplete. Full audit: `docs/audits/LOCATION-STRUCTURED-DATA-AUDIT.md`.
 
 **Status**: Active.
 

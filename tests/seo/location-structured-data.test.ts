@@ -17,9 +17,22 @@ const FORBIDDEN =
   /"(@type"\s*:\s*"(Offer|Event|Course|AggregateRating|Review)"|"(aggregateRating|review|geo|priceRange|hasCourseInstance)")/i;
 
 describe("location structured data — ADR-018", () => {
-  it("omits ExerciseGym for every current branch (addresses pending)", () => {
+  it("emits ExerciseGym for every verified branch with owner-confirmed address", () => {
     for (const branch of getBranches()) {
-      expect(buildLocalBusinessJsonLd(branch)).toBeNull();
+      const jsonLd = buildLocalBusinessJsonLd(branch);
+      expect(jsonLd).not.toBeNull();
+      expect(jsonLd?.["@type"]).toBe("ExerciseGym");
+      expect(jsonLd?.address?.streetAddress).toBe(branch.address);
+      expect(jsonLd?.address?.addressLocality).toBe(branch.locality);
+      expect(jsonLd?.address?.postalCode).toBe(branch.pinCode);
+      expect(jsonLd?.address?.addressRegion).toBe("Maharashtra");
+      expect(jsonLd?.telephone).toBe(branch.phone);
+      expect(jsonLd?.openingHoursSpecification).toHaveLength(7);
+      expect(jsonLd?.hasMap).toMatch(/^https:\/\/maps\.app\.goo\.gl\//);
+      expect(jsonLd?.parentOrganization?.name).toMatch(/Ankit/);
+      const blob = serializeJsonLd(jsonLd!);
+      expect(blob).not.toMatch(FORBIDDEN);
+      expect(blob).not.toMatch(/geo|aggregateRating|amenityFeature|priceRange/i);
     }
   });
 
@@ -50,16 +63,9 @@ describe("location structured data — ADR-018", () => {
     }
   });
 
-  it("does not invent Maps URLs for Sector 8", () => {
-    const sector8 = getBranches().find((b) => b.slug === "airoli-sector-8");
-    expect(sector8).toBeDefined();
-    expect(getBranchMapsUrl(sector8!)).toBeNull();
-  });
-
-  it("exposes owner-confirmed Maps URLs without requiring full branch verification", () => {
-    const withMaps = getBranches().filter((b) => b.slug !== "airoli-sector-8");
-    expect(withMaps).toHaveLength(3);
-    for (const branch of withMaps) {
+  it("exposes owner-confirmed Maps URLs for all four branches", () => {
+    expect(getBranches()).toHaveLength(4);
+    for (const branch of getBranches()) {
       const url = getBranchMapsUrl(branch);
       expect(url).toMatch(/^https:\/\/maps\.app\.goo\.gl\//);
     }
