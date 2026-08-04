@@ -7,7 +7,6 @@ import {
 import {
   getPrimaryConversionHref,
   getPrimaryConversionLabel,
-  SECONDARY_TRIAL_FORM_HREF,
 } from "@/lib/conversion";
 import { SiteFooter } from "./SiteFooter";
 import { SiteHeader } from "./SiteHeader";
@@ -99,7 +98,7 @@ export function SiteChrome({ children }: { children: React.ReactNode }) {
         href={primaryHref}
         label="WhatsApp trial"
         supportingText="Free trial"
-        hideOnPaths={[SECONDARY_TRIAL_FORM_HREF, "/book-a-free-trial"]}
+        hideOnPaths={["/book-a-free-trial"]}
       />
     </>
   );

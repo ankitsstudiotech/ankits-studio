@@ -22,24 +22,32 @@ const TRIAL_SECTION_ID = "trial";
  * On the homepage, the bar reveals only after the hero WhatsApp CTA leaves
  * the viewport, and hides again when the final #trial conversion is visible —
  * avoiding duplicate CTAs without layout shift (shell padding is always reserved).
+ *
+ * On /trial the bar soft-hides while the WhatsApp submit action is in view
+ * (same pattern as pricing / timetable / contact). /book-a-free-trial stays
+ * hard-hidden via hideOnPaths.
  */
 export function StickyCtaBar({
   label = "Book a trial",
   href = "/trial",
   supportingText = "Feel the room — book a free trial",
-  hideOnPaths = ["/trial", "/book-a-free-trial"],
+  hideOnPaths = ["/book-a-free-trial"],
   pathname: pathnameProp,
 }: StickyCtaBarProps) {
   const detectedPathname = usePathname() ?? "";
   const pathname = pathnameProp ?? detectedPathname;
   const isHomepage = pathname === "/";
-  const isUtilityBuilder =
-    pathname === "/pricing" || pathname === "/timetable" || pathname === "/contact";
+  const isFormRoute =
+    pathname === "/pricing" ||
+    pathname === "/timetable" ||
+    pathname === "/contact" ||
+    pathname === "/trial" ||
+    pathname.startsWith("/trial/");
   const [homeVisibility, setHomeVisibility] = useState({
     heroVisible: true,
     trialVisible: false,
   });
-  const [builderVisible, setBuilderVisible] = useState(false);
+  const [formCtaVisible, setFormCtaVisible] = useState(false);
 
   useEffect(() => {
     if (!isHomepage) return;
@@ -72,22 +80,24 @@ export function StickyCtaBar({
   }, [isHomepage, pathname]);
 
   useEffect(() => {
-    if (!isUtilityBuilder) return;
+    if (!isFormRoute) return;
 
-    const builder =
+    const formCta =
+      document.getElementById("trial-whatsapp-cta") ||
       document.getElementById("pricing-enquiry") ||
       document.getElementById("availability-enquiry") ||
       document.getElementById("contact-form") ||
+      document.getElementById("trial-builder") ||
       document.querySelector("form");
-    if (!builder) return;
+    if (!formCta) return;
 
     const observer = new IntersectionObserver(
-      ([entry]) => setBuilderVisible(Boolean(entry?.isIntersecting)),
-      { root: null, threshold: 0.15 },
+      ([entry]) => setFormCtaVisible(Boolean(entry?.isIntersecting)),
+      { root: null, threshold: 0.2, rootMargin: "0px 0px -8% 0px" },
     );
-    observer.observe(builder);
+    observer.observe(formCta);
     return () => observer.disconnect();
-  }, [isUtilityBuilder, pathname]);
+  }, [isFormRoute, pathname]);
 
   if (hideOnPaths.some((path) => pathname === path || pathname.startsWith(`${path}/`))) {
     return null;
@@ -95,7 +105,7 @@ export function StickyCtaBar({
 
   const reveal =
     (!isHomepage || (!homeVisibility.heroVisible && !homeVisibility.trialVisible)) &&
-    !(isUtilityBuilder && builderVisible);
+    !(isFormRoute && formCtaVisible);
 
   return (
     <div

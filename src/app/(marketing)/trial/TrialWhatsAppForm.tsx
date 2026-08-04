@@ -185,7 +185,14 @@ export function TrialWhatsAppForm({
 
       <p className="text-sm text-ink-muted">{WHATSAPP_REVIEW_HELPER}</p>
 
-      <Button type="submit" size="lg" className="self-start" disabled={!href} fullWidth>
+      <Button
+        id="trial-whatsapp-cta"
+        type="submit"
+        size="lg"
+        className="self-start"
+        disabled={!href}
+        fullWidth
+      >
         Continue on WhatsApp
       </Button>
     </form>
