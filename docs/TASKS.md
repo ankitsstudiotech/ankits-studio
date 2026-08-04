@@ -102,6 +102,7 @@ design-token set, and the Vitest/Playwright/axe-core testing foundation
 | Task | Owner | Status | Notes |
 |---|---|---|---|
 | Propagate Studio Pulse to programmes/locations/about/trial/contact/timetable/pricing (BranchRow, form panels, HeroReveal/RouteOpening, customer copy scrub). No design-lab; no trainers/transformations/blog/legal. | Cursor | Done | Branch `revamp/studio-pulse-production`. `npx tsc --noEmit` clean. Not committed / not deployed. |
+| Prompt 2 visual acceptance defects: About band/pairGrid, ProgrammeDetailView editorial, ProgrammeDiscovery closing, StickyCtaBar soft-hide | Cursor | Done | `npx tsc --noEmit` clean. No deploy. |
 
 ## Phase 2+ 
 

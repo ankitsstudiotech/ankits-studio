@@ -43,6 +43,13 @@ function formatLabel(programme: Programme): string {
   return programme.classStructure;
 }
 
+function hoursNote(programme: Programme): string {
+  if (programme.deliveryMode === "home" || programme.deliveryMode === "online") {
+    return "Session times arranged on enquiry.";
+  }
+  return "Studios open 6:00 AM–10:00 PM every day.";
+}
+
 /**
  * Programme detail — customer language, Pulse editorial structure.
  * Tempo personality via data-tempo only (padding/cue), not typography forks.
@@ -69,6 +76,27 @@ export function ProgrammeDetailView({
           ? "Celebrate"
           : "Programme";
 
+  const trialText = programme.trialAvailable
+    ? "Free trial available — enquire on WhatsApp"
+    : "Ask about a trial when you enquire";
+
+  const pricingText =
+    programme.pricingStatus === "published"
+      ? "See pricing page"
+      : "Programme fees confirmed on enquiry · ₹300 one-time registration after you join";
+
+  const audienceParts: string[] = [];
+  if (programme.ladiesOnlyBatchesAvailable) {
+    audienceParts.push("Ladies-only batches available on request");
+  }
+  if (programme.kidsOnlyBatchesAvailable) {
+    audienceParts.push("Kids-only batches available on request");
+  }
+
+  const showLocations =
+    locations.length > 0 && programme.deliveryMode === "in-studio";
+  const showRelated = related.length > 0;
+
   return (
     <div className={styles.field}>
       <section
@@ -79,12 +107,32 @@ export function ProgrammeDetailView({
         <HeroReveal>
           <p className={styles.detailKicker}>{clusterKicker}</p>
           <h1 id="programme-title">{programme.name}</h1>
-          <p>{programme.shortDescription}</p>
+          <p className={styles.detailLede}>{programme.shortDescription}</p>
           <div className={styles.ctaRow}>
             <ProgrammePulseCta href={whatsappHref}>{whatsappLabel}</ProgrammePulseCta>
             <p className={styles.ctaNote}>{WHATSAPP_REVIEW_HELPER}</p>
           </div>
         </HeroReveal>
+        <aside className={styles.summaryPanel} aria-label="Programme summary">
+          <dl className={styles.summaryList}>
+            <div>
+              <dt>Format</dt>
+              <dd>{formatLabel(programme)}</dd>
+            </div>
+            <div>
+              <dt>Delivery</dt>
+              <dd>{deliveryLabel(programme)}</dd>
+            </div>
+            <div>
+              <dt>Trial</dt>
+              <dd>{programme.trialAvailable ? "Yes" : "Ask on enquiry"}</dd>
+            </div>
+            <div>
+              <dt>Hours</dt>
+              <dd>{hoursNote(programme)}</dd>
+            </div>
+          </dl>
+        </aside>
       </section>
 
       <section className={styles.band} aria-labelledby="programme-overview">
@@ -93,56 +141,36 @@ export function ProgrammeDetailView({
             At a glance
           </h2>
         </SectionReveal>
-        <ul className={styles.facts}>
-          <li className={styles.fact}>
-            <strong>Who it’s for</strong>
-            <span>{programme.whoItsFor}</span>
-          </li>
-          <li className={styles.fact}>
-            <strong>Class structure</strong>
-            <span>{programme.classStructure}</span>
-          </li>
-          <li className={styles.fact}>
-            <strong>Batch times</strong>
-            <span>{batchLabel}</span>
-          </li>
-          <li className={styles.fact}>
-            <strong>Delivery</strong>
-            <span>{deliveryLabel(programme)}</span>
-          </li>
-          <li className={styles.fact}>
-            <strong>Trial</strong>
-            <span>
-              {programme.trialAvailable
-                ? "Free trial available — enquire on WhatsApp"
-                : "Ask about a trial when you enquire"}
-            </span>
-          </li>
-          <li className={styles.fact}>
-            <strong>Pricing</strong>
-            <span>
-              {programme.pricingStatus === "published"
-                ? "See pricing page"
-                : "Programme fees confirmed on enquiry · ₹300 one-time registration after you join"}
-            </span>
-          </li>
-          <li className={styles.fact}>
-            <strong>Group size</strong>
-            <span>Group batches are typically up to 15 people</span>
-          </li>
-          {programme.ladiesOnlyBatchesAvailable ? (
-            <li className={styles.fact}>
-              <strong>Ladies-only</strong>
-              <span>Ladies-only batches available on request</span>
-            </li>
+        <div className={styles.glanceGrid}>
+          <div className={styles.glancePanel}>
+            <p className={styles.glanceLabel}>Format</p>
+            <p className={styles.glanceBody}>
+              {programme.whoItsFor}
+              {" · "}
+              {formatLabel(programme)}
+            </p>
+          </div>
+          <div className={styles.glancePanel}>
+            <p className={styles.glanceLabel}>Availability</p>
+            <p className={styles.glanceBody}>{batchLabel}</p>
+          </div>
+          <div className={styles.glancePanel}>
+            <p className={styles.glanceLabel}>Trial &amp; pricing</p>
+            <p className={styles.glanceBody}>
+              {trialText}
+              {" · "}
+              {pricingText}
+              {" · "}
+              Group batches are typically up to 15 people
+            </p>
+          </div>
+          {audienceParts.length > 0 ? (
+            <div className={styles.glancePanel}>
+              <p className={styles.glanceLabel}>Audience</p>
+              <p className={styles.glanceBody}>{audienceParts.join(" · ")}</p>
+            </div>
           ) : null}
-          {programme.kidsOnlyBatchesAvailable ? (
-            <li className={styles.fact}>
-              <strong>Kids-only</strong>
-              <span>Kids-only batches available on request</span>
-            </li>
-          ) : null}
-        </ul>
+        </div>
       </section>
 
       {programme.benefits.length > 0 ? (
@@ -152,11 +180,12 @@ export function ProgrammeDetailView({
               What the session may include
             </h2>
           </SectionReveal>
-          <ul className={styles.facts}>
+          <p className={styles.sectionNote}>
+            Not every tool appears in every session.
+          </p>
+          <ul className={styles.includeList}>
             {programme.benefits.map((benefit) => (
-              <li key={benefit} className={styles.fact}>
-                <span>{benefit}</span>
-              </li>
+              <li key={benefit}>{benefit}</li>
             ))}
           </ul>
         </section>
@@ -168,16 +197,16 @@ export function ProgrammeDetailView({
             Format &amp; delivery
           </h2>
         </SectionReveal>
-        <ul className={styles.facts}>
-          <li className={styles.fact}>
-            <strong>Format</strong>
-            <span>{formatLabel(programme)}</span>
-          </li>
-          <li className={styles.fact}>
-            <strong>Delivery</strong>
-            <span>{deliveryLabel(programme)}</span>
-          </li>
-        </ul>
+        <div className={styles.splitFacts}>
+          <div>
+            <p className={styles.glanceLabel}>Format</p>
+            <p className={styles.glanceBody}>{formatLabel(programme)}</p>
+          </div>
+          <div>
+            <p className={styles.glanceLabel}>Delivery</p>
+            <p className={styles.glanceBody}>{deliveryLabel(programme)}</p>
+          </div>
+        </div>
       </section>
 
       <section className={styles.band} aria-labelledby="programme-availability">
@@ -186,49 +215,68 @@ export function ProgrammeDetailView({
             Availability
           </h2>
         </SectionReveal>
-        <p className={styles.laneDesc}>{batchLabel}</p>
-        <p className={styles.ctaNote} style={{ marginTop: "0.75rem" }}>
+        <div className={styles.callout}>
+          <p className={styles.glanceBody}>{batchLabel}</p>
           <Link href="/timetable" className={styles.relatedLink}>
             Ask about batch availability →
           </Link>
-        </p>
+        </div>
       </section>
 
-      {related.length > 0 ? (
-        <section className={styles.band} aria-labelledby="programme-related">
-          <SectionReveal>
-            <h2 id="programme-related" className={styles.sectionTitle}>
-              Related services
-            </h2>
-          </SectionReveal>
-          <ul className={styles.relatedList}>
-            {related.map((item) => (
-              <li key={item.slug}>
-                <Link href={`/programs/${item.slug}`} className={styles.relatedLink}>
-                  {item.name}
-                </Link>
-              </li>
-            ))}
-          </ul>
-        </section>
-      ) : null}
-
-      {locations.length > 0 && programme.deliveryMode === "in-studio" ? (
-        <section className={styles.band} aria-labelledby="programme-locations">
-          <SectionReveal>
-            <h2 id="programme-locations" className={styles.sectionTitle}>
-              Relevant locations
-            </h2>
-          </SectionReveal>
-          <ul className={styles.relatedList}>
-            {locations.map((location) => (
-              <li key={location.slug}>
-                <Link href={location.href} className={styles.relatedLink}>
-                  {location.name}
-                </Link>
-              </li>
-            ))}
-          </ul>
+      {showRelated || showLocations ? (
+        <section
+          className={styles.band}
+          aria-labelledby={
+            showRelated ? "programme-related" : "programme-locations"
+          }
+        >
+          <div
+            className={
+              showRelated && showLocations
+                ? styles.splitFacts
+                : undefined
+            }
+          >
+            {showRelated ? (
+              <div>
+                <SectionReveal>
+                  <h2 id="programme-related" className={styles.sectionTitle}>
+                    Related services
+                  </h2>
+                </SectionReveal>
+                <ul className={styles.relatedList}>
+                  {related.map((item) => (
+                    <li key={item.slug}>
+                      <Link
+                        href={`/programs/${item.slug}`}
+                        className={styles.relatedLink}
+                      >
+                        {item.name}
+                      </Link>
+                    </li>
+                  ))}
+                </ul>
+              </div>
+            ) : null}
+            {showLocations ? (
+              <div>
+                <SectionReveal>
+                  <h2 id="programme-locations" className={styles.sectionTitle}>
+                    Relevant locations
+                  </h2>
+                </SectionReveal>
+                <ul className={styles.relatedList}>
+                  {locations.map((location) => (
+                    <li key={location.slug}>
+                      <Link href={location.href} className={styles.relatedLink}>
+                        {location.name}
+                      </Link>
+                    </li>
+                  ))}
+                </ul>
+              </div>
+            ) : null}
+          </div>
         </section>
       ) : null}
 
@@ -252,7 +300,10 @@ export function ProgrammeDetailView({
         </section>
       ) : null}
 
-      <section className={styles.band} aria-labelledby="programme-trial-end">
+      <section
+        className={`${styles.band} ${styles.closingCta}`}
+        aria-labelledby="programme-trial-end"
+      >
         <SectionReveal>
           <h2 id="programme-trial-end" className={styles.sectionTitle}>
             Enquire about a free trial

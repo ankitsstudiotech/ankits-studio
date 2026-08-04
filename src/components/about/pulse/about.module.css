@@ -13,13 +13,109 @@
 }
 
 .band {
+  box-sizing: border-box;
+  width: 100%;
+  max-width: var(--width-container);
+  margin-inline: auto;
   padding: var(--spacing-section) var(--spacing-gutter);
   border-top: 1px solid rgb(255 255 255 / 0.08);
-  max-width: var(--width-container);
 }
 
-.bandNarrow {
-  max-width: var(--width-container-narrow);
+.band + .band {
+  padding-top: calc(var(--spacing-section) + 0.65rem);
+}
+
+.openGrid {
+  display: grid;
+  gap: 1.75rem;
+  width: 100%;
+  align-items: start;
+}
+
+@media (min-width: 900px) {
+  .openGrid {
+    grid-template-columns: minmax(0, 1.55fr) minmax(0, 1fr);
+    gap: 2.5rem;
+  }
+}
+
+.openMeasure {
+  /* ~7–8 of 12 columns within the open grid */
+  max-width: 48rem;
+}
+
+.openFacts {
+  display: grid;
+  gap: 0.85rem;
+  margin: 0;
+  padding: 1rem 0 0;
+  border-top: 1px solid rgb(255 255 255 / 0.12);
+}
+
+@media (min-width: 900px) {
+  .openFacts {
+    padding: 0.15rem 0 0 1.25rem;
+    border-top: none;
+    border-left: 1px solid rgb(255 255 255 / 0.12);
+  }
+}
+
+.openFacts p {
+  margin: 0;
+  display: grid;
+  gap: 0.2rem;
+}
+
+.openFactLabel {
+  font-size: var(--text-overline);
+  font-weight: 600;
+  letter-spacing: var(--text-overline--letter-spacing);
+  text-transform: uppercase;
+  color: var(--color-muted-on-field);
+}
+
+.openFactValue {
+  font-size: 1.02rem;
+  line-height: 1.35;
+  color: var(--color-ink-inverse);
+}
+
+@media (max-width: 719px) {
+  .openMeasure {
+    max-width: 100%;
+  }
+
+  .band {
+    padding-block: calc(var(--spacing-section) + 0.55rem);
+  }
+
+  .band + .band {
+    padding-top: calc(var(--spacing-section) + 1.35rem);
+    margin-top: 0.35rem;
+    border-top-width: 2px;
+    border-top-color: rgb(255 255 255 / 0.14);
+  }
+
+  .openFacts {
+    padding-top: 0.85rem;
+  }
+
+  .provenance {
+    display: none;
+  }
+
+  .linkColumns {
+    grid-template-columns: 1fr 1fr;
+    gap: 1.1rem;
+  }
+
+  .body {
+    max-width: none;
+  }
+
+  .lede {
+    max-width: none;
+  }
 }
 
 .kicker {
@@ -64,6 +160,24 @@
 .diffGrid {
   /* Layout from .pulse-split; local hook for About approach + disciplines */
   width: 100%;
+}
+
+.pairGrid {
+  display: grid;
+  gap: 1.75rem;
+  width: 100%;
+}
+
+@media (min-width: 900px) {
+  .pairGrid {
+    grid-template-columns: 1fr 1fr;
+    gap: 2.5rem;
+    align-items: start;
+  }
+
+  .pairGrid :global(.pulse-accordion) {
+    width: 100%;
+  }
 }
 
 .body {
@@ -178,10 +292,16 @@
 }
 
 .teamBlock {
-  margin-top: 0.35rem;
-  padding: 1.15rem 0;
-  border-top: 1px solid rgb(255 255 255 / 0.12);
-  border-bottom: 1px solid rgb(255 255 255 / 0.12);
+  margin-top: 0;
+  padding: 0.35rem 0 0.85rem;
+  border-top: none;
+  border-bottom: none;
+}
+
+@media (min-width: 900px) {
+  .teamBlock {
+    padding-right: 0.5rem;
+  }
 }
 
 .teamCount {
@@ -192,10 +312,11 @@
 }
 
 .provenance {
-  margin: 0.65rem 0 0;
-  font-size: 0.88rem;
-  max-width: 42ch;
-  color: var(--color-muted-on-field);
+  margin: 0.45rem 0 0;
+  font-size: 0.78rem;
+  max-width: 36ch;
+  line-height: 1.35;
+  color: color-mix(in srgb, var(--color-muted-on-field) 82%, transparent);
 }
 
 .faqList {

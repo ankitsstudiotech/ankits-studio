@@ -1,7 +1,6 @@
 import type { Metadata } from "next";
 import { PageBreadcrumb } from "@/components/layout/PageBreadcrumb";
 import { ProgrammeDiscovery } from "@/components/programs/pulse/ProgrammeDiscovery";
-import { Container } from "@/components/ui/Container";
 import { getConfirmedProgrammes, getStudioCommercial } from "@/content";
 import {
   getPrimaryConversionHref,
@@ -61,22 +60,12 @@ export default function ProgrammesIndexPage() {
         programmes={programmes}
         trialHref={trialHref}
         trialLabel={trialLabel}
+        corporateNote={
+          commercial.corporateFitnessStatus === "enquiry-only"
+            ? commercial.corporateFitnessNote
+            : undefined
+        }
       />
-
-      {commercial.corporateFitnessStatus === "enquiry-only" ? (
-        <Container className="pb-12">
-          <p className="max-w-2xl text-sm text-[var(--color-muted-on-field)]">
-            {commercial.corporateFitnessNote}{" "}
-            <a
-              href={trialHref}
-              className="underline underline-offset-2 text-ink-inverse hover:text-[var(--color-volt)]"
-            >
-              Enquire on WhatsApp
-            </a>
-            .
-          </p>
-        </Container>
-      ) : null}
     </main>
   );
 }

@@ -45,13 +45,20 @@ export type ProgrammeDiscoveryProps = {
   programmes: Programme[];
   trialHref: string;
   trialLabel: string;
+  /** Enquiry-only corporate note; rendered as restrained closing copy, not a programme row. */
+  corporateNote?: string;
 };
 
 /**
  * Editorial programme index — Train / Move / Celebrate.
  * Confirmed services only; SSR names + crawlable ProgrammeRow anchors.
  */
-export function ProgrammeDiscovery({ programmes, trialHref, trialLabel }: ProgrammeDiscoveryProps) {
+export function ProgrammeDiscovery({
+  programmes,
+  trialHref,
+  trialLabel,
+  corporateNote,
+}: ProgrammeDiscoveryProps) {
   const byCluster = {
     train: programmes.filter((p) => p.serviceCluster === "train"),
     move: programmes.filter((p) => p.serviceCluster === "move"),
@@ -118,20 +125,30 @@ export function ProgrammeDiscovery({ programmes, trialHref, trialLabel }: Progra
         })}
       </div>
 
-      <div className={styles.ctaRow}>
-        <ProgrammePulseCta href={trialHref}>{trialLabel}</ProgrammePulseCta>
-        <p className={styles.ctaNote}>
-          Free trial · ₹300 registration after you join.
+      <div className={styles.closing}>
+        <div className={styles.ctaRow}>
+          <ProgrammePulseCta href={trialHref}>{trialLabel}</ProgrammePulseCta>
+          <p className={styles.ctaNote}>Free trial · ₹300 registration after you join.</p>
+        </div>
+        <p className={styles.closingBranch}>
+          Looking for a branch instead?{" "}
+          <Link href="/locations">Browse locations</Link>.
         </p>
+        {corporateNote ? (
+          <p className={styles.corporateNote}>
+            {corporateNote}{" "}
+            <a
+              href={trialHref}
+              {...(trialHref.startsWith("http")
+                ? { target: "_blank", rel: "noopener noreferrer" }
+                : {})}
+            >
+              Enquire on WhatsApp
+            </a>
+            .
+          </p>
+        ) : null}
       </div>
-
-      <p className={styles.ctaNote} style={{ marginTop: "1.5rem" }}>
-        Looking for a branch instead?{" "}
-        <Link href="/locations" className={styles.ctaNote} style={{ textDecoration: "underline" }}>
-          Browse locations
-        </Link>
-        .
-      </p>
     </section>
   );
 }
