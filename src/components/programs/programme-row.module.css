@@ -1,4 +1,4 @@
-/* Shared programme discovery row — one title system, transform-only cues. */
+/* Shared programme discovery row — perceptible tone personalities, one component. */
 
 .row {
   display: flex;
@@ -11,63 +11,91 @@
   background: var(--color-field-raised);
   min-height: 44px;
   position: relative;
-  --cue-duration: var(--motion-fast);
-  --cue-ease: var(--ease-emphasis);
-  --cue-scale: 1.55;
-  --title-nudge: 2px;
-  transition:
-    border-color var(--cue-duration) var(--cue-ease),
-    background-color var(--cue-duration) var(--cue-ease);
-}
-
-/* Tone personalities — timing only; same component */
-.row[data-motion-tone="structured"] {
   --cue-duration: 200ms;
   --cue-ease: var(--ease-emphasis);
-  --cue-scale: 1.55;
+  --cue-scale: 1.9;
   --title-nudge: 3px;
+  --seg-gap: 0.32rem;
+  transition:
+    border-color var(--cue-duration) var(--cue-ease),
+    background-color var(--cue-duration) var(--cue-ease),
+    box-shadow var(--cue-duration) var(--cue-ease);
+}
+
+.row[data-motion-tone="structured"] {
+  --cue-duration: 190ms;
+  --cue-ease: var(--ease-emphasis);
+  --cue-scale: 2.15;
+  --title-nudge: 4px;
 }
 
 .row[data-motion-tone="fluid"] {
-  --cue-duration: 260ms;
+  --cue-duration: 160ms;
   --cue-ease: var(--ease-enter);
-  --cue-scale: 1.7;
+  --cue-scale: 1.85;
   --title-nudge: 3px;
 }
 
 .row[data-motion-tone="calm"] {
-  --cue-duration: 320ms;
+  --cue-duration: 300ms;
   --cue-ease: var(--ease-enter);
-  --cue-scale: 1.35;
-  --title-nudge: 2px;
+  --cue-scale: 1.45;
+  --title-nudge: 1px;
 }
 
 .row[data-motion-tone="expressive"] {
-  --cue-duration: 240ms;
+  --cue-duration: 200ms;
   --cue-ease: var(--ease-emphasis);
-  --cue-scale: 1.85;
+  --cue-scale: 2.05;
   --title-nudge: 4px;
 }
 
 .row[data-motion-tone="ceremonial"] {
-  --cue-duration: 360ms;
+  --cue-duration: 340ms;
   --cue-ease: var(--ease-enter);
-  --cue-scale: 1.45;
+  --cue-scale: 1.75;
   --title-nudge: 2px;
 }
 
-.row[data-motion-tone="direct"],
-.row[data-motion-tone="remote"] {
-  --cue-duration: 180ms;
+.row[data-motion-tone="direct"] {
+  --cue-duration: 160ms;
   --cue-ease: var(--ease-standard);
-  --cue-scale: 1.4;
+  --cue-scale: 1.65;
+  --title-nudge: 2px;
+}
+
+.row[data-motion-tone="remote"] {
+  --cue-duration: 150ms;
+  --cue-ease: var(--ease-standard);
+  --cue-scale: 1.5;
   --title-nudge: 2px;
 }
 
 .row:hover,
 .row:focus-visible {
-  border-color: rgb(255 255 255 / 0.28);
-  background: color-mix(in srgb, var(--color-field-raised) 70%, #1c1c20);
+  border-color: rgb(255 255 255 / 0.34);
+  background: color-mix(in srgb, var(--color-field-raised) 62%, #222228);
+  box-shadow: inset 3px 0 0 color-mix(in srgb, var(--color-accent) 55%, transparent);
+}
+
+.row[data-motion-tone="structured"]:hover,
+.row[data-motion-tone="structured"]:focus-visible,
+.row[data-emphasis="primary"]:hover,
+.row[data-emphasis="primary"]:focus-visible {
+  border-color: color-mix(in srgb, var(--color-accent-strength) 72%, #666);
+  box-shadow: inset 4px 0 0 color-mix(in srgb, var(--color-accent-strength) 80%, transparent);
+}
+
+.row[data-motion-tone="ceremonial"]:hover,
+.row[data-motion-tone="ceremonial"]:focus-visible {
+  border-color: color-mix(in srgb, var(--color-accent-warm) 55%, #555);
+  box-shadow: inset 3px 0 0 color-mix(in srgb, var(--color-accent-warm) 70%, transparent);
+}
+
+.row[data-motion-tone="calm"]:hover,
+.row[data-motion-tone="calm"]:focus-visible {
+  border-color: color-mix(in srgb, var(--color-accent-calm) 40%, #555);
+  box-shadow: inset 2px 0 0 color-mix(in srgb, var(--color-accent-calm) 55%, transparent);
 }
 
 .row:focus-visible {
@@ -84,7 +112,6 @@
 
 .row[data-emphasis="primary"]:hover,
 .row[data-emphasis="primary"]:focus-visible {
-  border-color: color-mix(in srgb, var(--color-accent-strength) 70%, #555);
   background: linear-gradient(105deg, #1a1522 0%, #241c2c 100%);
 }
 
@@ -126,16 +153,18 @@
 .cueTrack {
   display: flex;
   align-items: center;
-  gap: 0.28rem;
+  gap: var(--seg-gap);
   margin-top: 0.55rem;
-  min-height: 3px;
+  min-height: 4px;
+  position: relative;
 }
 
 .cue,
-.cueSeg {
+.cueSeg,
+.cueFine {
   display: block;
   height: 3px;
-  width: 2.25rem;
+  width: 2.35rem;
   transform-origin: left center;
   transform: scaleX(1);
   transition: transform var(--cue-duration) var(--cue-ease);
@@ -143,32 +172,43 @@
 }
 
 .cueSeg {
-  width: 0.55rem;
-  opacity: 0.55;
+  width: 0.65rem;
+  opacity: 0.7;
+}
+
+.cueFine {
+  position: absolute;
+  left: 0;
+  top: 5px;
+  width: 2rem;
+  height: 1px;
+  opacity: 0;
+  transform: scaleX(0.4);
+  background: color-mix(in srgb, var(--color-accent-warm) 85%, #fff);
 }
 
 .row[data-cluster="train"] .cue,
 .row[data-cluster="train"] .cueSeg {
-  background: color-mix(in srgb, var(--color-accent-strength) 75%, transparent);
+  background: color-mix(in srgb, var(--color-accent-strength) 80%, transparent);
 }
 
 .row[data-cluster="move"] .cue,
 .row[data-cluster="move"] .cueSeg {
-  background: color-mix(in srgb, var(--color-accent-high-energy) 75%, transparent);
+  background: color-mix(in srgb, var(--color-accent-high-energy) 80%, transparent);
 }
 
 .row[data-cluster="celebrate"] .cue,
 .row[data-cluster="celebrate"] .cueSeg {
-  background: color-mix(in srgb, var(--color-accent-warm) 80%, transparent);
+  background: color-mix(in srgb, var(--color-accent-warm) 85%, transparent);
 }
 
 .row[data-motion-tone="ceremonial"] .cue {
   height: 2px;
-  background: color-mix(in srgb, var(--color-accent-warm) 90%, #fff 10%);
 }
 
-.row[data-energy="calm"] .cue {
-  width: 1.75rem;
+.row[data-motion-tone="calm"] .cue {
+  height: 2px;
+  width: 1.85rem;
 }
 
 .row[data-energy="high"] .cue {
@@ -180,15 +220,63 @@
   transform: scaleX(var(--cue-scale));
 }
 
+/* Zumba / fluid — rhythmic segment sequence ≤280ms */
+.row[data-motion-tone="fluid"]:hover .cue,
+.row[data-motion-tone="fluid"]:focus-visible .cue {
+  transition-delay: 0ms;
+}
+
+.row[data-motion-tone="fluid"]:hover .cueSeg[data-seg="2"],
+.row[data-motion-tone="fluid"]:focus-visible .cueSeg[data-seg="2"] {
+  transform: scaleX(2.1);
+  transition-delay: 70ms;
+}
+
+.row[data-motion-tone="fluid"]:hover .cueSeg[data-seg="3"],
+.row[data-motion-tone="fluid"]:focus-visible .cueSeg[data-seg="3"] {
+  transform: scaleX(2.4);
+  transition-delay: 140ms;
+}
+
+/* Dance / expressive — dual sweep */
+.row[data-motion-tone="expressive"] .cueSeg[data-seg="2"] {
+  width: 1.1rem;
+}
+
+.row[data-motion-tone="expressive"]:hover .cue,
+.row[data-motion-tone="expressive"]:focus-visible .cue {
+  transform: scaleX(var(--cue-scale));
+}
+
+.row[data-motion-tone="expressive"]:hover .cueSeg[data-seg="2"],
+.row[data-motion-tone="expressive"]:focus-visible .cueSeg[data-seg="2"] {
+  transform: translate3d(6px, 0, 0) scaleX(1.8);
+  transition-delay: 60ms;
+}
+
+.row[data-motion-tone="expressive"]:hover .cueSeg[data-seg="3"],
+.row[data-motion-tone="expressive"]:focus-visible .cueSeg[data-seg="3"] {
+  transform: translate3d(10px, 0, 0) scaleX(1.5);
+  transition-delay: 110ms;
+}
+
+/* Wedding — secondary fine line arrives after primary */
+.row[data-motion-tone="ceremonial"]:hover .cueFine,
+.row[data-motion-tone="ceremonial"]:focus-visible .cueFine {
+  opacity: 1;
+  transform: scaleX(1.9);
+  transition-delay: 120ms;
+}
+
 .row:hover .cueSeg[data-seg="2"],
 .row:focus-visible .cueSeg[data-seg="2"] {
-  transform: scaleX(1.5);
+  transform: scaleX(1.6);
   transition-delay: 40ms;
 }
 
 .row:hover .cueSeg[data-seg="3"],
 .row:focus-visible .cueSeg[data-seg="3"] {
-  transform: scaleX(1.8);
+  transform: scaleX(1.9);
   transition-delay: 80ms;
 }
 
@@ -196,7 +284,8 @@
   .row,
   .name,
   .cue,
-  .cueSeg {
+  .cueSeg,
+  .cueFine {
     transition: none;
   }
 
@@ -208,7 +297,15 @@
   .row:hover .cue,
   .row:focus-visible .cue,
   .row:hover .cueSeg,
-  .row:focus-visible .cueSeg {
+  .row:focus-visible .cueSeg,
+  .row:hover .cueFine,
+  .row:focus-visible .cueFine {
     transform: none;
+    opacity: inherit;
+  }
+
+  .row:hover,
+  .row:focus-visible {
+    box-shadow: inset 3px 0 0 color-mix(in srgb, var(--color-accent) 45%, transparent);
   }
 }

@@ -1,6 +1,6 @@
 import Link from "next/link";
 import type { Programme, ProgrammeSlug } from "@/content";
-import { HeroReveal, SectionReveal } from "@/components/motion";
+import { MaskedLines, SectionReveal } from "@/components/motion";
 import { toneFromProgrammeSlug } from "@/components/motion/tokens";
 import { ProgrammePulseCta, type ProgrammeTempo } from "./ProgrammePulseMotion";
 import styles from "./programme-pulse.module.css";
@@ -151,15 +151,26 @@ export function ProgrammeDetailView({
         data-motion-tone={motionTone}
         aria-labelledby="programme-title"
       >
-        <HeroReveal>
-          <p className={styles.detailKicker}>{clusterKicker}</p>
-          <h1 id="programme-title">{programme.name}</h1>
-          <p className={styles.detailLede}>{programme.shortDescription}</p>
-          <div className={styles.ctaRow}>
-            <ProgrammePulseCta href={whatsappHref}>{whatsappLabel}</ProgrammePulseCta>
+        <div className={styles.detailOpening}>
+          <p className={`hero-brand-motion ${styles.detailKicker}`}>{clusterKicker}</p>
+          <MaskedLines
+            id="programme-title"
+            as="h1"
+            lines={[programme.name]}
+            className={styles.detailTitle}
+          />
+          <div className={`hero-support ${styles.detailSupport}`}>
+            <p className={styles.detailLede}>{programme.shortDescription}</p>
+            <div className={styles.ctaRow}>
+              <ProgrammePulseCta href={whatsappHref}>{whatsappLabel}</ProgrammePulseCta>
+            </div>
           </div>
-        </HeroReveal>
-        <aside className={styles.summaryPanel} aria-label="Programme summary">
+          <span className={`hero-accent-motion ${styles.detailAccent}`} aria-hidden />
+        </div>
+        <aside
+          className={`${styles.summaryPanel} ${styles.summaryMotion}`}
+          aria-label="Programme summary"
+        >
           <dl className={styles.summaryList}>
             <div>
               <dt>Format</dt>

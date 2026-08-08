@@ -67,6 +67,9 @@ export function ProgrammeRow({
             <span className={styles.cueSeg} data-motion-cue data-seg="3" />
           </>
         ) : null}
+        {tone === "ceremonial" ? (
+          <span className={styles.cueFine} data-motion-cue />
+        ) : null}
       </span>
     </motion.a>
   );

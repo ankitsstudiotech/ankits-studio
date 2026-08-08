@@ -145,7 +145,7 @@ export function MobileNav({ items, pathname = "" }: MobileNavProps) {
                 <>
                   <motion.div
                     key="nav-backdrop"
-                    className="fixed inset-0 z-40 bg-black/60"
+                    className="fixed inset-0 z-40 bg-black/70"
                     aria-hidden
                     onClick={close}
                     initial={reduce ? false : { opacity: 0 }}
