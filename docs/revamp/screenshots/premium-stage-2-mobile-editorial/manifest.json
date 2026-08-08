@@ -1,0 +1,417 @@
+{
+  "generatedAt": "2026-08-08T09:30:22.920Z",
+  "base": "http://127.0.0.1:3492",
+  "deviceScaleFactor": 1,
+  "fails": 0,
+  "heights390": [
+    {
+      "slug": "home",
+      "route": "/",
+      "before": 6611,
+      "after": 5038,
+      "reductionPct": 23.8,
+      "pngHeight": 5038
+    },
+    {
+      "slug": "about",
+      "route": "/about",
+      "before": 5413,
+      "after": 4024,
+      "reductionPct": 25.7,
+      "pngHeight": 4024
+    },
+    {
+      "slug": "pricing",
+      "route": "/pricing",
+      "before": 4794,
+      "after": 3206,
+      "reductionPct": 33.1,
+      "pngHeight": 3206
+    },
+    {
+      "slug": "timetable",
+      "route": "/timetable",
+      "before": 4594,
+      "after": 3220,
+      "reductionPct": 29.9,
+      "pngHeight": 3220
+    },
+    {
+      "slug": "programs",
+      "route": "/programs",
+      "before": 3235,
+      "after": 2935,
+      "reductionPct": 9.3,
+      "pngHeight": 2935
+    },
+    {
+      "slug": "functional-training",
+      "route": "/programs/functional-training",
+      "before": 4730,
+      "after": 3688,
+      "reductionPct": 22,
+      "pngHeight": 3688
+    },
+    {
+      "slug": "home-personal-training",
+      "route": "/programs/home-personal-training",
+      "before": 3810,
+      "after": 3035,
+      "reductionPct": 20.3,
+      "pngHeight": 3035
+    },
+    {
+      "slug": "online-training",
+      "route": "/programs/online-training",
+      "before": 3660,
+      "after": 2885,
+      "reductionPct": 21.2,
+      "pngHeight": 2885
+    },
+    {
+      "slug": "zumba",
+      "route": "/programs/zumba",
+      "before": 4027,
+      "after": 3164,
+      "reductionPct": 21.4,
+      "pngHeight": 3164
+    },
+    {
+      "slug": "yoga",
+      "route": "/programs/yoga",
+      "before": 4130,
+      "after": 3222,
+      "reductionPct": 22,
+      "pngHeight": 3222
+    },
+    {
+      "slug": "dance",
+      "route": "/programs/adult-dance",
+      "before": 4303,
+      "after": 3418,
+      "reductionPct": 20.6,
+      "pngHeight": 3418
+    },
+    {
+      "slug": "wedding-choreography",
+      "route": "/programs/wedding-choreography",
+      "before": 3921,
+      "after": 3080,
+      "reductionPct": 21.4,
+      "pngHeight": 3080
+    },
+    {
+      "slug": "locations",
+      "route": "/locations",
+      "before": 2489,
+      "after": 2188,
+      "reductionPct": 12.1,
+      "pngHeight": 2188
+    },
+    {
+      "slug": "branch-airoli-sector-19",
+      "route": "/locations/airoli-sector-19",
+      "before": 4061,
+      "after": 3476,
+      "reductionPct": 14.4,
+      "pngHeight": 3476
+    },
+    {
+      "slug": "trial",
+      "route": "/trial",
+      "before": 2939,
+      "after": 2552,
+      "reductionPct": 13.2,
+      "pngHeight": 2552
+    },
+    {
+      "slug": "contact",
+      "route": "/contact",
+      "before": 3252,
+      "after": 2951,
+      "reductionPct": 9.3,
+      "pngHeight": 2951
+    }
+  ],
+  "records": [
+    {
+      "name": "full-390-home.png",
+      "route": "/",
+      "width": 390,
+      "height": 5038,
+      "expected": 390,
+      "scrollHeight": 5038,
+      "pass": true
+    },
+    {
+      "name": "full-390-about.png",
+      "route": "/about",
+      "width": 390,
+      "height": 4024,
+      "expected": 390,
+      "scrollHeight": 4024,
+      "pass": true
+    },
+    {
+      "name": "full-390-pricing.png",
+      "route": "/pricing",
+      "width": 390,
+      "height": 3206,
+      "expected": 390,
+      "scrollHeight": 3206,
+      "pass": true
+    },
+    {
+      "name": "full-390-timetable.png",
+      "route": "/timetable",
+      "width": 390,
+      "height": 3220,
+      "expected": 390,
+      "scrollHeight": 3220,
+      "pass": true
+    },
+    {
+      "name": "full-390-programs.png",
+      "route": "/programs",
+      "width": 390,
+      "height": 2935,
+      "expected": 390,
+      "scrollHeight": 2935,
+      "pass": true
+    },
+    {
+      "name": "full-390-functional-training.png",
+      "route": "/programs/functional-training",
+      "width": 390,
+      "height": 3688,
+      "expected": 390,
+      "scrollHeight": 3688,
+      "pass": true
+    },
+    {
+      "name": "full-390-home-personal-training.png",
+      "route": "/programs/home-personal-training",
+      "width": 390,
+      "height": 3035,
+      "expected": 390,
+      "scrollHeight": 3035,
+      "pass": true
+    },
+    {
+      "name": "full-390-online-training.png",
+      "route": "/programs/online-training",
+      "width": 390,
+      "height": 2885,
+      "expected": 390,
+      "scrollHeight": 2885,
+      "pass": true
+    },
+    {
+      "name": "full-390-zumba.png",
+      "route": "/programs/zumba",
+      "width": 390,
+      "height": 3164,
+      "expected": 390,
+      "scrollHeight": 3164,
+      "pass": true
+    },
+    {
+      "name": "full-390-yoga.png",
+      "route": "/programs/yoga",
+      "width": 390,
+      "height": 3222,
+      "expected": 390,
+      "scrollHeight": 3222,
+      "pass": true
+    },
+    {
+      "name": "full-390-dance.png",
+      "route": "/programs/adult-dance",
+      "width": 390,
+      "height": 3418,
+      "expected": 390,
+      "scrollHeight": 3418,
+      "pass": true
+    },
+    {
+      "name": "full-390-wedding-choreography.png",
+      "route": "/programs/wedding-choreography",
+      "width": 390,
+      "height": 3080,
+      "expected": 390,
+      "scrollHeight": 3080,
+      "pass": true
+    },
+    {
+      "name": "full-390-locations.png",
+      "route": "/locations",
+      "width": 390,
+      "height": 2188,
+      "expected": 390,
+      "scrollHeight": 2188,
+      "pass": true
+    },
+    {
+      "name": "full-390-branch-airoli-sector-19.png",
+      "route": "/locations/airoli-sector-19",
+      "width": 390,
+      "height": 3476,
+      "expected": 390,
+      "scrollHeight": 3476,
+      "pass": true
+    },
+    {
+      "name": "full-390-trial.png",
+      "route": "/trial",
+      "width": 390,
+      "height": 2552,
+      "expected": 390,
+      "scrollHeight": 2552,
+      "pass": true
+    },
+    {
+      "name": "full-390-contact.png",
+      "route": "/contact",
+      "width": 390,
+      "height": 2951,
+      "expected": 390,
+      "scrollHeight": 2951,
+      "pass": true
+    },
+    {
+      "name": "full-1440-home.png",
+      "route": "/",
+      "width": 1440,
+      "height": 4353,
+      "expected": 1440,
+      "scrollHeight": 4353,
+      "pass": true
+    },
+    {
+      "name": "full-1440-about.png",
+      "route": "/about",
+      "width": 1440,
+      "height": 3246,
+      "expected": 1440,
+      "scrollHeight": 3246,
+      "pass": true
+    },
+    {
+      "name": "full-1440-pricing.png",
+      "route": "/pricing",
+      "width": 1440,
+      "height": 2254,
+      "expected": 1440,
+      "scrollHeight": 2254,
+      "pass": true
+    },
+    {
+      "name": "full-1440-timetable.png",
+      "route": "/timetable",
+      "width": 1440,
+      "height": 2588,
+      "expected": 1440,
+      "scrollHeight": 2588,
+      "pass": true
+    },
+    {
+      "name": "full-1440-programs.png",
+      "route": "/programs",
+      "width": 1440,
+      "height": 2660,
+      "expected": 1440,
+      "scrollHeight": 2660,
+      "pass": true
+    },
+    {
+      "name": "full-1440-functional-training.png",
+      "route": "/programs/functional-training",
+      "width": 1440,
+      "height": 3084,
+      "expected": 1440,
+      "scrollHeight": 3084,
+      "pass": true
+    },
+    {
+      "name": "full-1440-yoga.png",
+      "route": "/programs/yoga",
+      "width": 1440,
+      "height": 2863,
+      "expected": 1440,
+      "scrollHeight": 2863,
+      "pass": true
+    },
+    {
+      "name": "full-1440-wedding-choreography.png",
+      "route": "/programs/wedding-choreography",
+      "width": 1440,
+      "height": 2716,
+      "expected": 1440,
+      "scrollHeight": 2716,
+      "pass": true
+    },
+    {
+      "name": "full-1440-trial.png",
+      "route": "/trial",
+      "width": 1440,
+      "height": 2031,
+      "expected": 1440,
+      "scrollHeight": 2031,
+      "pass": true
+    },
+    {
+      "name": "full-1440-contact.png",
+      "route": "/contact",
+      "width": 1440,
+      "height": 1814,
+      "expected": 1440,
+      "scrollHeight": 1814,
+      "pass": true
+    },
+    {
+      "name": "full-768-home.png",
+      "route": "/",
+      "width": 768,
+      "height": 4076,
+      "expected": 768,
+      "scrollHeight": 4076,
+      "pass": true
+    },
+    {
+      "name": "full-768-about.png",
+      "route": "/about",
+      "width": 768,
+      "height": 3624,
+      "expected": 768,
+      "scrollHeight": 3624,
+      "pass": true
+    },
+    {
+      "name": "full-768-pricing.png",
+      "route": "/pricing",
+      "width": 768,
+      "height": 2804,
+      "expected": 768,
+      "scrollHeight": 2804,
+      "pass": true
+    },
+    {
+      "name": "full-768-timetable.png",
+      "route": "/timetable",
+      "width": 768,
+      "height": 2727,
+      "expected": 768,
+      "scrollHeight": 2727,
+      "pass": true
+    },
+    {
+      "name": "full-768-functional-training.png",
+      "route": "/programs/functional-training",
+      "width": 768,
+      "height": 3070,
+      "expected": 768,
+      "scrollHeight": 3070,
+      "pass": true
+    }
+  ]
+}
