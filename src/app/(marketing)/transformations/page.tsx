@@ -1,12 +1,12 @@
 import type { Metadata } from "next";
 import Link from "next/link";
-import { PulseMediaPlate } from "@/components/home/pulse/PulseMotion";
 import { PageBreadcrumb } from "@/components/layout/PageBreadcrumb";
 import { ConsentDisclosure } from "@/components/member-stories/pulse/ConsentDisclosure";
 import { MemberStoriesCta } from "@/components/member-stories/pulse/MemberStoriesCta";
 import { MemberStoryEditorial } from "@/components/member-stories/pulse/MemberStoryEditorial";
 import { TransformationCaseStudy } from "@/components/member-stories/pulse/TransformationCaseStudy";
 import styles from "@/components/member-stories/pulse/member-stories.module.css";
+import { RouteOpening, SectionReveal } from "@/components/motion";
 import {
   getConfirmedProgrammes,
   getPublishableMemberStories,
@@ -14,7 +14,6 @@ import {
   getPubliclyListedBranches,
   getStudioMemberStoriesPage,
   shouldIndexMemberStoriesRoute,
-  siteHasUnverifiedContent,
 } from "@/content";
 import {
   getPrimaryConversionHref,
@@ -63,12 +62,6 @@ export default function MemberStoriesPage() {
   const branches = getPubliclyListedBranches();
   const trialHref = getPrimaryConversionHref();
   const trialLabel = getPrimaryConversionLabel();
-  const showDevPending = siteHasUnverifiedContent;
-
-  const physical = programmes.filter((p) => p.deliveryMode === "in-studio");
-  const delivery = programmes.filter(
-    (p) => p.deliveryMode === "home" || p.deliveryMode === "online",
-  );
 
   const breadcrumbJsonLd = buildBreadcrumbJsonLd(breadcrumbTrail);
   const pageJsonLd = buildWebPageJsonLd({
@@ -90,129 +83,111 @@ export default function MemberStoriesPage() {
         dangerouslySetInnerHTML={{ __html: serializeJsonLd(pageJsonLd) }}
       />
 
-      <div className={styles.crumbBar}>
+      <div className="pulse-crumb-bar">
         <PageBreadcrumb items={breadcrumbTrail} />
       </div>
 
-      <section className={`${styles.band} ${styles.bandNarrow}`} aria-labelledby="stories-title">
-        <p className={styles.kicker}>Member Stories</p>
-        <h1 id="stories-title" className={styles.title}>
-          {page.headline}
-        </h1>
-        <p className={styles.lede}>{page.lede}</p>
-        <div className={styles.mediaWrap}>
-          <PulseMediaPlate
-            slotKey="community.group"
-            family="warm"
-            label="Community photograph placeholder — consented member photography pending"
-            aspect="16/9"
-          />
-        </div>
-      </section>
-
-      <section className={`${styles.band} ${styles.bandNarrow}`} aria-labelledby="consent-title">
-        <h2 id="consent-title" className={styles.sectionTitle}>
-          {page.consentTitle}
-        </h2>
-        <p className={styles.body}>{page.consentBody}</p>
-        <ConsentDisclosure>
-          Individual experiences vary. We do not promise specific results.
-        </ConsentDisclosure>
-      </section>
-
-      <section className={`${styles.band} ${styles.bandNarrow}`} aria-labelledby="readiness-title">
-        <h2 id="readiness-title" className={styles.sectionTitle}>
-          {hasPublishable ? "Published stories" : page.readinessTitle}
-        </h2>
-        {hasPublishable ? (
-          <ul className={styles.storyList}>
-            {stories.map((story) => (
-              <li key={story.id}>
-                <MemberStoryEditorial story={story} />
-              </li>
-            ))}
-            {transformations.map((item) => (
-              <li key={item.id}>
-                <TransformationCaseStudy item={item} />
-              </li>
-            ))}
-          </ul>
-        ) : (
-          <div className={styles.readinessBlock}>
-            <p className={styles.body}>{page.readinessBody}</p>
-            {page.readinessSupporting ? (
-              <p className={styles.supporting}>{page.readinessSupporting}</p>
-            ) : null}
+      <section className={styles.band} aria-labelledby="stories-title">
+        <RouteOpening>
+          <div className={styles.openGrid}>
+            <div className={styles.openMeasure}>
+              <p className={styles.kicker}>Member Stories</p>
+              <h1 id="stories-title" className={styles.title}>
+                {page.headline}
+              </h1>
+              <p className={styles.lede}>{page.lede}</p>
+            </div>
           </div>
-        )}
-        {showDevPending && !hasPublishable ? (
-          <p className={styles.devPending} data-member-stories-pending="true">
-            Development note: no publishable member stories or transformations exist yet. Fictional
-            fixtures are isolated and never shown on this route.
-          </p>
-        ) : null}
+        </RouteOpening>
+      </section>
+
+      <section className={styles.band} aria-labelledby="consent-title">
+        <SectionReveal>
+          <h2 id="consent-title" className={styles.sectionTitle}>
+            {page.consentTitle}
+          </h2>
+          <p className={styles.body}>{page.consentBody}</p>
+          <ConsentDisclosure>
+            Individual experiences vary. We do not promise specific results.
+          </ConsentDisclosure>
+        </SectionReveal>
+      </section>
+
+      <section className={styles.band} aria-labelledby="readiness-title">
+        <SectionReveal>
+          <h2 id="readiness-title" className={styles.sectionTitle}>
+            {hasPublishable ? "Published stories" : page.readinessTitle}
+          </h2>
+          {hasPublishable ? (
+            <ul className={styles.storyList}>
+              {stories.map((story) => (
+                <li key={story.id}>
+                  <MemberStoryEditorial story={story} />
+                </li>
+              ))}
+              {transformations.map((item) => (
+                <li key={item.id}>
+                  <TransformationCaseStudy item={item} />
+                </li>
+              ))}
+            </ul>
+          ) : (
+            <p className={styles.body}>{page.readinessBody}</p>
+          )}
+        </SectionReveal>
       </section>
 
       <section className={styles.band} aria-labelledby="stories-discover-title">
-        <h2 id="stories-discover-title" className={styles.sectionTitle}>
-          Explore programmes and branches
-        </h2>
-        <div className={styles.linkColumns}>
-          <div>
-            <h3 className={styles.kicker}>{page.programmesTitle}</h3>
-            <p className={styles.body}>{page.programmesBody}</p>
-            <ul className={styles.linkList}>
-              {physical.map((programme) => (
-                <li key={programme.slug}>
-                  <Link href={`/programs/${programme.slug}`}>
-                    <span>{programme.name}</span>
-                    <span className={styles.linkMeta}>{deliveryLabel(programme.deliveryMode)}</span>
-                  </Link>
-                </li>
-              ))}
-              {delivery.map((programme) => (
-                <li key={programme.slug}>
-                  <Link href={`/programs/${programme.slug}`}>
-                    <span>{programme.name}</span>
-                    <span className={styles.linkMeta}>{deliveryLabel(programme.deliveryMode)}</span>
-                  </Link>
-                </li>
-              ))}
-            </ul>
+        <SectionReveal>
+          <h2 id="stories-discover-title" className={styles.sectionTitle}>
+            What you can explore today
+          </h2>
+          <div className={styles.pairGrid}>
+            <div>
+              <h3 className={styles.kicker}>{page.programmesTitle}</h3>
+              <p className={styles.body}>{page.programmesBody}</p>
+              <ul className={styles.linkList}>
+                {programmes.map((programme) => (
+                  <li key={programme.slug}>
+                    <Link href={`/programs/${programme.slug}`}>
+                      <span>{programme.name}</span>
+                      <span className={styles.linkMeta}>{deliveryLabel(programme.deliveryMode)}</span>
+                    </Link>
+                  </li>
+                ))}
+              </ul>
+            </div>
+            <div>
+              <h3 className={styles.kicker}>{page.branchesTitle}</h3>
+              <p className={styles.body}>{page.branchesBody}</p>
+              <ul className={styles.linkList}>
+                {branches.map((branch) => (
+                  <li key={branch.slug}>
+                    <Link href={`/locations/${branch.slug}`}>{branch.locality}</Link>
+                  </li>
+                ))}
+              </ul>
+            </div>
           </div>
-          <div>
-            <h3 className={styles.kicker}>{page.branchesTitle}</h3>
-            <p className={styles.body}>{page.branchesBody}</p>
-            <ul className={styles.linkList}>
-              {branches.map((branch) => (
-                <li key={branch.slug}>
-                  <Link href={`/locations/${branch.slug}`}>
-                    <span>{branch.locality}</span>
-                    <span className={styles.linkMeta} aria-hidden>
-                      →
-                    </span>
-                  </Link>
-                </li>
-              ))}
-            </ul>
-          </div>
-        </div>
+        </SectionReveal>
       </section>
 
-      <section className={`${styles.band} ${styles.bandNarrow}`} aria-labelledby="stories-cta-title">
-        <h2 id="stories-cta-title" className={styles.sectionTitle}>
-          {page.ctaTitle}
-        </h2>
-        <p className={styles.body}>{page.ctaBody}</p>
-        <div className={styles.ctaRow}>
-          <MemberStoriesCta href={trialHref}>{trialLabel}</MemberStoriesCta>
-          <Link href={SECONDARY_TRIAL_FORM_HREF} className={styles.ctaSecondary}>
-            Prefer the trial form
-          </Link>
-        </div>
-        <p className={styles.ctaNote}>
-          Opening WhatsApp starts a chat — it does not mean your enquiry was submitted.
-        </p>
+      <section className={styles.band} aria-labelledby="stories-cta-title">
+        <SectionReveal>
+          <h2 id="stories-cta-title" className={styles.sectionTitle}>
+            {page.ctaTitle}
+          </h2>
+          <p className={styles.body}>{page.ctaBody}</p>
+          <div className={styles.ctaRow}>
+            <MemberStoriesCta href={trialHref}>{trialLabel}</MemberStoriesCta>
+            <Link href={SECONDARY_TRIAL_FORM_HREF} className={styles.ctaSecondary}>
+              Prefer the trial form
+            </Link>
+          </div>
+          <p className={styles.ctaNote}>
+            Opening WhatsApp starts a chat — it does not mean your enquiry was submitted.
+          </p>
+        </SectionReveal>
       </section>
     </main>
   );

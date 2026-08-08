@@ -30,28 +30,33 @@ describe("trainers route — honest team presentation", () => {
     expect(TRAINERS_ROUTE_INDEX_THRESHOLD).toBe(3);
   });
 
-  it("team size is owner-provided 15+ without credential adjectives", () => {
+  it("team size is owner-provided 15+ coaches without credential adjectives", () => {
     const page = getStudioTrainersPage();
     expect(page.teamSizeLabel).toBe("15+");
     expect(page.teamSizeProvenance).toBe("owner_provided");
-    expect(page.teamSizeBody).toMatch(/15\+/);
+    expect(page.teamSizeBody).toMatch(/15\+ coaches/);
+    expect(page.lede).toMatch(/15\+ coaches/);
     expect(page.teamSizeBody).not.toMatch(FORBIDDEN_COPY);
     expect(page.lede).not.toMatch(FORBIDDEN_COPY);
     expect(page.readinessBody).not.toMatch(FORBIDDEN_COPY);
+    expect(page.programmesBody).not.toMatch(/verified/i);
+    expect(page.branchesBody).not.toMatch(/verified/i);
   });
 
-  it("page source omits fake cards, credential claims, and mock roster rendering", () => {
+  it("page source omits fake cards, credential claims, media plates, and provenance UI", () => {
     const source = readFileSync(
       join(process.cwd(), "src", "app", "(marketing)", "trainers", "page.tsx"),
       "utf8",
     );
     expect(source).not.toMatch(FORBIDDEN_COPY);
     expect(source).not.toMatch(/getTrainers\(|Illustrative Trainer|Card href=\{`\/trainers/);
+    expect(source).not.toMatch(/PulseMediaPlate|teamSizeProvenanceNote|Owner-provided|readinessBodyMockPreview/);
     expect(source).toMatch(/getPublishableTrainers/);
     expect(source).toMatch(/forceNoIndex:\s*!shouldIndexTrainersRoute/);
     expect(source).toMatch(/buildWebPageJsonLd/);
     expect(source).toMatch(/buildWhatsAppTrainerAvailabilityUrl/);
     expect(source).toMatch(/15\+|teamSizeLabel/);
+    expect(source).toMatch(/RouteOpening|SectionReveal/);
   });
 
   it("slug route only resolves publishable trainers", () => {

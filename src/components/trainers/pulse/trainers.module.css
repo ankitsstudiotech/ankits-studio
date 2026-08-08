@@ -1,4 +1,4 @@
-/* Studio Pulse — Trainers team page (low–medium tempo, honest roster). */
+/* Studio Pulse — Trainers team page (full-width editorial bands). */
 
 .page {
   background: var(--color-field);
@@ -6,20 +6,85 @@
   flex: 1;
 }
 
-.crumbBar {
-  background: var(--color-field);
-  color: var(--color-ink-inverse);
-  border-bottom: 1px solid var(--color-border-on-field, rgb(255 255 255 / 0.08));
-}
-
 .band {
+  box-sizing: border-box;
+  width: 100%;
+  max-width: var(--width-container);
+  margin-inline: auto;
   padding: var(--spacing-section) var(--spacing-gutter);
   border-top: 1px solid rgb(255 255 255 / 0.08);
-  max-width: var(--width-container);
 }
 
-.bandNarrow {
-  max-width: var(--width-container-narrow);
+.band + .band {
+  padding-top: calc(var(--spacing-section) + 0.65rem);
+}
+
+.openGrid {
+  display: grid;
+  gap: 1.75rem;
+  width: 100%;
+  align-items: start;
+}
+
+@media (min-width: 900px) {
+  .openGrid {
+    grid-template-columns: minmax(0, 1.55fr) minmax(0, 1fr);
+    gap: 2.5rem;
+  }
+}
+
+.openMeasure {
+  max-width: 48rem;
+}
+
+.openFacts {
+  display: grid;
+  gap: 0.85rem;
+  margin: 0;
+  padding: 1rem 0 0;
+  border-top: 1px solid rgb(255 255 255 / 0.12);
+}
+
+@media (min-width: 900px) {
+  .openFacts {
+    padding: 0.15rem 0 0 1.25rem;
+    border-top: none;
+    border-left: 1px solid rgb(255 255 255 / 0.12);
+  }
+}
+
+.openFacts p {
+  margin: 0;
+  display: grid;
+  gap: 0.2rem;
+}
+
+.openFactLabel {
+  font-size: var(--text-overline);
+  font-weight: 600;
+  letter-spacing: var(--text-overline--letter-spacing);
+  text-transform: uppercase;
+  color: var(--color-muted-on-field);
+}
+
+.openFactValue {
+  font-size: 1.02rem;
+  line-height: 1.35;
+  color: var(--color-ink-inverse);
+}
+
+.pairGrid {
+  display: grid;
+  gap: 1.75rem;
+  width: 100%;
+}
+
+@media (min-width: 900px) {
+  .pairGrid {
+    grid-template-columns: 1fr 1fr;
+    gap: 2.5rem;
+    align-items: start;
+  }
 }
 
 .kicker {
@@ -40,6 +105,7 @@
   line-height: var(--text-hero--line-height);
   margin: 0 0 0.85rem;
   max-width: 14ch;
+  text-transform: uppercase;
 }
 
 .lede {
@@ -57,40 +123,22 @@
   line-height: var(--text-title--line-height);
   margin: 0 0 0.75rem;
   max-width: 22ch;
+  text-transform: uppercase;
 }
 
 .body {
   margin: 0;
   max-width: 52ch;
-  font-size: 1.02rem;
-  line-height: 1.55;
+  font-size: var(--text-body);
+  line-height: var(--text-body--line-height);
   color: var(--color-muted-on-field);
-}
-
-.teamBlock {
-  margin-top: 0.35rem;
-  padding: 1.15rem 0;
-  border-top: 1px solid rgb(255 255 255 / 0.12);
-  border-bottom: 1px solid rgb(255 255 255 / 0.12);
 }
 
 .teamCount {
   font-family: var(--font-display);
   font-size: clamp(2rem, 4vw, 2.75rem);
   letter-spacing: 0.04em;
-  margin: 0.2rem 0 0.55rem;
-}
-
-.provenance {
-  margin: 0.65rem 0 0;
-  font-size: 0.88rem;
-  max-width: 42ch;
-  color: var(--color-muted-on-field);
-}
-
-.mediaWrap {
-  min-width: 0;
-  margin-top: 1.35rem;
+  margin: 0 0 0.55rem;
 }
 
 .linkList {
@@ -149,30 +197,6 @@
 .branchList a:focus-visible {
   outline: 2px solid var(--color-accent);
   outline-offset: 3px;
-}
-
-.readinessBox {
-  margin-top: 0.5rem;
-  padding: 1rem 0;
-  border-top: 1px solid rgb(255 255 255 / 0.12);
-  border-bottom: 1px solid rgb(255 255 255 / 0.12);
-}
-
-.devPending {
-  margin: 0.75rem 0 0;
-  font-size: 0.8rem;
-  color: var(--color-muted-on-field);
-}
-
-.linkColumns {
-  display: grid;
-  gap: 1.75rem;
-}
-
-@media (min-width: 720px) {
-  .linkColumns {
-    grid-template-columns: 1fr 1fr;
-  }
 }
 
 .moreLink {
@@ -300,6 +324,27 @@
 .profileLink:focus-visible .profileName {
   outline: 2px solid var(--color-accent);
   outline-offset: 3px;
+}
+
+@media (max-width: 719px) {
+  .openMeasure {
+    max-width: 100%;
+  }
+
+  .band {
+    padding-block: calc(var(--spacing-section) + 0.55rem);
+  }
+
+  .band + .band {
+    padding-top: calc(var(--spacing-section) + 1.35rem);
+    border-top-width: 2px;
+    border-top-color: rgb(255 255 255 / 0.14);
+  }
+
+  .body,
+  .lede {
+    max-width: none;
+  }
 }
 
 @media (prefers-reduced-motion: reduce) {

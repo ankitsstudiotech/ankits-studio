@@ -106,21 +106,23 @@ describe("member stories route — /transformations", () => {
   it("metadata is honest and force-noindexes while below threshold", () => {
     const metadata = generateMetadata();
     expect(String(metadata.title)).toMatch(/Member Stories/i);
-    expect(String(metadata.description)).toMatch(/permission|programmes|branches/i);
+    expect(String(metadata.description)).toMatch(/permission|programmes|studios|trial/i);
     expect(String(metadata.description)).not.toMatch(/available now|latest reviews|guaranteed/i);
     expect(metadata.robots).toEqual({ index: false, follow: false });
   });
 
-  it("page source omits fake evidence and star theatre", () => {
+  it("page source omits fake evidence, media plates, and development notes", () => {
     const source = readFileSync(
       join(process.cwd(), "src", "app", "(marketing)", "transformations", "page.tsx"),
       "utf8",
     );
     expect(source).not.toMatch(FORBIDDEN_COPY);
     expect(source).not.toMatch(/TransformationStories|before\/after|carousel|AggregateRating/i);
+    expect(source).not.toMatch(/PulseMediaPlate|Development note|siteHasUnverifiedContent/);
     expect(source).toMatch(/readinessBody|getStudioMemberStoriesPage/);
     expect(source).toMatch(/getPrimaryConversionHref/);
     expect(source).toMatch(/buildWebPageJsonLd/);
+    expect(source).toMatch(/RouteOpening|SectionReveal/);
   });
 
   it("emits WebPage + BreadcrumbList only", () => {

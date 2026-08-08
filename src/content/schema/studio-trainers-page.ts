@@ -22,7 +22,6 @@ export const studioTrainersPageSchema = provenanced({
   branchesBody: z.string().min(1),
   readinessTitle: z.string().min(1),
   readinessBody: z.string().min(1),
-  readinessBodyMockPreview: z.string().min(1).optional(),
   ownerSource: ownerSourceSchema.optional(),
 });
 export type StudioTrainersPage = z.infer<typeof studioTrainersPageSchema>;

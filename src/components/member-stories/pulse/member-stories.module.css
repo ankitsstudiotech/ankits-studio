@@ -1,4 +1,4 @@
-/* Studio Pulse — Member Stories (/transformations), low tempo, evidence-conscious. */
+/* Studio Pulse — Member Stories (/transformations), low tempo. */
 
 .page {
   background: var(--color-field);
@@ -6,20 +6,49 @@
   flex: 1;
 }
 
-.crumbBar {
-  background: var(--color-field);
-  color: var(--color-ink-inverse);
-  border-bottom: 1px solid var(--color-border-on-field, rgb(255 255 255 / 0.08));
-}
-
 .band {
+  box-sizing: border-box;
+  width: 100%;
+  max-width: var(--width-container);
+  margin-inline: auto;
   padding: var(--spacing-section) var(--spacing-gutter);
   border-top: 1px solid rgb(255 255 255 / 0.08);
-  max-width: var(--width-container);
 }
 
-.bandNarrow {
-  max-width: var(--width-container-narrow);
+.band + .band {
+  padding-top: calc(var(--spacing-section) + 0.65rem);
+}
+
+.openGrid {
+  display: grid;
+  gap: 1.75rem;
+  width: 100%;
+  align-items: start;
+}
+
+@media (min-width: 900px) {
+  .openGrid {
+    grid-template-columns: minmax(0, 1.55fr) minmax(0, 1fr);
+    gap: 2.5rem;
+  }
+}
+
+.openMeasure {
+  max-width: 48rem;
+}
+
+.pairGrid {
+  display: grid;
+  gap: 1.75rem;
+  width: 100%;
+}
+
+@media (min-width: 900px) {
+  .pairGrid {
+    grid-template-columns: 1fr 1fr;
+    gap: 2.5rem;
+    align-items: start;
+  }
 }
 
 .kicker {
@@ -40,6 +69,7 @@
   line-height: var(--text-hero--line-height);
   margin: 0 0 0.85rem;
   max-width: 16ch;
+  text-transform: uppercase;
 }
 
 .lede {
@@ -57,34 +87,15 @@
   line-height: var(--text-title--line-height);
   margin: 0 0 0.75rem;
   max-width: 22ch;
+  text-transform: uppercase;
 }
 
 .body {
   margin: 0;
   max-width: 52ch;
-  font-size: 1.02rem;
-  line-height: 1.55;
+  font-size: var(--text-body);
+  line-height: var(--text-body--line-height);
   color: var(--color-muted-on-field);
-}
-
-.readinessBlock {
-  margin-top: 0.35rem;
-  padding: 1.25rem 0;
-  border-top: 1px solid rgb(255 255 255 / 0.12);
-  border-bottom: 1px solid rgb(255 255 255 / 0.12);
-}
-
-.supporting {
-  margin: 0.75rem 0 0;
-  max-width: 44ch;
-  font-size: 0.98rem;
-  line-height: 1.5;
-  color: var(--color-muted-on-field);
-}
-
-.mediaWrap {
-  min-width: 0;
-  margin-top: 1.35rem;
 }
 
 .linkList {
@@ -109,10 +120,6 @@
   color: var(--color-accent);
 }
 
-.linkList a:active {
-  transform: scale(0.99);
-}
-
 .linkList a:focus-visible {
   outline: 2px solid var(--color-accent);
   outline-offset: 3px;
@@ -132,15 +139,6 @@
   display: flex;
   flex-direction: column;
   gap: 1.5rem;
-}
-
-.devPending {
-  margin: 1rem 0 0;
-  padding: 0.75rem 0.9rem;
-  border: 1px dashed rgb(255 255 255 / 0.28);
-  font-size: 0.88rem;
-  color: var(--color-muted-on-field);
-  max-width: 48ch;
 }
 
 .ctaRow {
@@ -165,15 +163,10 @@
   letter-spacing: 0.06em;
   text-transform: uppercase;
   text-decoration: none;
-  transition: transform 140ms ease-out, background-color 140ms ease-out;
 }
 
 .cta:hover {
   background: var(--color-accent-hover);
-}
-
-.cta:active {
-  transform: scale(0.97);
 }
 
 .cta:focus-visible {
@@ -195,9 +188,10 @@
 }
 
 .provenance {
-  margin: 0.65rem 0 0;
-  font-size: 0.88rem;
-  max-width: 42ch;
+  margin: 0.85rem 0 0;
+  max-width: 48ch;
+  font-size: 0.92rem;
+  line-height: 1.5;
   color: var(--color-muted-on-field);
 }
 
@@ -242,14 +236,24 @@
   display: block;
 }
 
-.linkColumns {
-  display: grid;
-  gap: 1.75rem;
-}
+@media (max-width: 719px) {
+  .openMeasure {
+    max-width: 100%;
+  }
 
-@media (min-width: 720px) {
-  .linkColumns {
-    grid-template-columns: 1fr 1fr;
+  .band {
+    padding-block: calc(var(--spacing-section) + 0.55rem);
+  }
+
+  .band + .band {
+    padding-top: calc(var(--spacing-section) + 1.35rem);
+    border-top-width: 2px;
+    border-top-color: rgb(255 255 255 / 0.14);
+  }
+
+  .body,
+  .lede {
+    max-width: none;
   }
 }
 
@@ -257,10 +261,5 @@
   .linkList a,
   .cta {
     transition: none;
-  }
-
-  .linkList a:active,
-  .cta:active {
-    transform: none;
   }
 }

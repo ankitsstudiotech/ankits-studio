@@ -9,22 +9,21 @@ export const mockStudioMemberStoriesPage: StudioMemberStoriesPage = {
   pageTitle: "Member Stories",
   seoTitle: "Member Stories | Ankit’s Studio",
   seoDescription:
-    "Learn how Ankit’s Studio prepares real member stories with permission and explore its programmes and branches.",
-  headline: "Real stories, published with permission",
+    "Member stories from Ankit’s Studio are published with permission. Explore programmes and neighbourhood studios, or book a free trial.",
+  headline: "Member Stories",
   lede:
-    "We are preparing real member stories for publication with their permission. Stories will be published only after the member approves the wording and any photos used.",
-  consentTitle: "Evidence and consent",
-  consentBody:
-    "Individual experiences vary. We do not invent journeys, quotes, or results. When a member story appears here, it will include the member’s approved wording and clear context about the programme or branch — never guaranteed outcomes.",
-  readinessTitle: "Stories in preparation",
+    "Real experiences from people who train with Ankit’s Studio — shared only when the member agrees.",
+  consentTitle: "Published with permission",
+  consentBody: "We publish member stories only with the member’s permission.",
+  readinessTitle: "What you can explore today",
   readinessBody:
-    "We are preparing real member stories for publication with their permission.",
+    "More member stories will be added as they are approved for publication.",
   readinessSupporting:
-    "Stories will be published only after the member approves the wording and any photos used.",
+    "Meanwhile, explore programmes and neighbourhood studios, or book a free trial.",
   programmesTitle: "Explore programmes",
   programmesBody:
-    "While member stories are being prepared, you can learn about coach-led programmes and enquire for a free trial.",
-  branchesTitle: "Neighbourhood branches",
+    "Learn about coach-led programmes and find a class that suits you.",
+  branchesTitle: "Neighbourhood studios",
   branchesBody: "Train at Airoli Sector 19, Airoli Sector 8, Ghansoli or Thane.",
   ctaTitle: "Book a free trial",
   ctaBody:
