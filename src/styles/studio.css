@@ -246,7 +246,7 @@
 
 @media (min-width: 900px) {
   .pulse-split {
-    grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+    grid-template-columns: minmax(0, 0.95fr) minmax(0, 1.15fr);
     gap: 2.5rem;
     align-items: start;
   }
@@ -260,8 +260,9 @@
 }
 
 .pulse-accordion-item {
-  border: 1px solid var(--color-border-on-field);
-  background: var(--color-field-raised);
+  border: none;
+  border-bottom: 1px solid var(--color-border-on-field);
+  background: transparent;
 }
 
 .pulse-accordion-item summary {

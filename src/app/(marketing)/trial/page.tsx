@@ -40,7 +40,7 @@ export default function TrialPage() {
         <PageBreadcrumb items={breadcrumbTrail} />
       </div>
 
-      <div className="mx-auto grid w-full max-w-[var(--width-container)] gap-10 px-[var(--spacing-gutter)] py-[var(--spacing-section)] lg:grid-cols-2 lg:items-start lg:gap-14">
+      <div className="mx-auto grid w-full max-w-[var(--width-container)] gap-10 px-[var(--spacing-gutter)] py-[var(--spacing-section)] lg:grid-cols-[minmax(0,0.9fr)_minmax(0,1.2fr)] lg:items-start lg:gap-12">
         <section aria-labelledby="trial-title">
           <RouteOpening>
             <p className="pulse-kicker">Free trial</p>
