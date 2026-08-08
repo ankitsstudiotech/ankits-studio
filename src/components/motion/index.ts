@@ -11,6 +11,7 @@ export {
   MaskedLines,
   GroupReveal,
   MotionReady,
+  useMotionAllowed,
 } from "./PulseReveal";
 export type {
   HeroRevealProps,

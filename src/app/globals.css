@@ -9,7 +9,11 @@
 }
 
 body {
-  background: var(--color-surface);
-  color: var(--color-ink);
+  background: var(--color-field);
+  color: var(--color-ink-inverse);
   font-family: var(--font-sans);
+}
+
+html {
+  background: var(--color-field);
 }

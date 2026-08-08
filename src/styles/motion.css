@@ -1,22 +1,22 @@
 /**
- * Studio Pulse premium motion language.
- * Semantic durations + easings. Compositor-friendly properties only.
- * See docs/MOTION-SYSTEM.md and Stage 3 motion programme.
+ * Studio Pulse premium motion language — Stage 3 correction.
+ * Progressive enhancement: content visible without JS; motion opts in via
+ * html.motion-pending → html.motion-ready (early script + MotionReady).
  */
 
 :root {
-  /* Durations */
   --motion-instant: 120ms;
   --motion-fast: 180ms;
   --motion-base: 260ms;
   --motion-slow: 420ms;
   --motion-hero: 720ms;
+  --motion-hero-line: 520ms;
+  --motion-hero-support-delay: 480ms;
   --motion-section: 440ms;
   --motion-sticky: 200ms;
   --motion-menu-open: 280ms;
   --motion-menu-close: 180ms;
 
-  /* Legacy aliases used across the codebase */
   --duration-fast: var(--motion-instant);
   --duration-normal: var(--motion-fast);
   --duration-slow: var(--motion-slow);
@@ -24,13 +24,21 @@
   --duration-hover: var(--motion-fast);
   --duration-tap: var(--motion-instant);
 
-  /* Easings */
   --ease-exit: cubic-bezier(0.4, 0, 1, 1);
   --ease-enter: cubic-bezier(0.23, 1, 0.32, 1);
   --ease-emphasis: cubic-bezier(0.16, 1, 0.3, 1);
   --ease-standard: cubic-bezier(0.2, 0.8, 0.2, 1);
   --ease-out-strong: var(--ease-enter);
   --ease-out-soft: cubic-bezier(0.25, 1, 0.5, 1);
+}
+
+@media (max-width: 640px) {
+  :root {
+    --motion-hero-line: 400ms;
+    --motion-hero-support-delay: 360ms;
+    --motion-section: 360ms;
+    --motion-menu-open: 240ms;
+  }
 }
 
 @media (prefers-reduced-motion: reduce) {
@@ -40,6 +48,8 @@
     --motion-base: 0ms;
     --motion-slow: 0ms;
     --motion-hero: 0ms;
+    --motion-hero-line: 0ms;
+    --motion-hero-support-delay: 0ms;
     --motion-section: 0ms;
     --motion-sticky: 0ms;
     --motion-menu-open: 0ms;
@@ -61,7 +71,6 @@
     scroll-behavior: auto !important;
   }
 
-  /* Cue lines stay at resting width — no hover travel */
   [data-motion-cue] {
     transform: none !important;
   }
@@ -72,7 +81,125 @@
   min-height: 44px;
 }
 
-/* Pattern C — accent line draw (transform scaleX, not width) */
+/* —— Masked headlines: editorial rise from below clipping window —— */
+.motion-mask-line {
+  display: block;
+  overflow: hidden;
+  padding-bottom: 0.1em;
+  margin-bottom: -0.04em;
+}
+
+.motion-mask-inner {
+  display: block;
+  transform: translate3d(0, 0, 0);
+  will-change: transform;
+}
+
+/**
+ * Motion-pending (set by blocking script when motion is allowed):
+ * park lines below the clip BEFORE first paint so we never flash final→hidden.
+ * prm / reduce / no-JS: stay at final visible state.
+ */
+@media (prefers-reduced-motion: no-preference) {
+  html.motion-pending .hero-masked-title .motion-mask-inner {
+    transform: translate3d(0, 108%, 0);
+  }
+
+  html.motion-ready .hero-masked-title .motion-mask-inner {
+    animation: pulse-mask-rise var(--motion-hero-line) var(--ease-enter) both;
+    animation-delay: calc(70ms + (var(--line-index, 0) * 85ms));
+  }
+
+  html.motion-pending .hero-brand-motion {
+    opacity: 0.92;
+    transform: translate3d(0, 6px, 0);
+  }
+
+  html.motion-ready .hero-brand-motion {
+    animation: pulse-hero-brand 320ms var(--ease-enter) both;
+  }
+
+  html.motion-pending .hero-support {
+    opacity: 0;
+    transform: translate3d(0, 12px, 0);
+  }
+
+  html.motion-ready .hero-support {
+    animation: pulse-hero-support 340ms var(--ease-enter) both;
+    animation-delay: var(--motion-hero-support-delay);
+  }
+
+  html.motion-pending .hero-accent-motion {
+    transform: scaleX(0.2);
+  }
+
+  html.motion-ready .hero-accent-motion {
+    animation: pulse-accent-draw 320ms var(--ease-emphasis) both;
+    animation-delay: calc(var(--motion-hero-support-delay) + 120ms);
+  }
+}
+
+html.prm .motion-mask-inner,
+html.prm .hero-brand-motion,
+html.prm .hero-support,
+html.prm .hero-accent-motion {
+  opacity: 1 !important;
+  transform: none !important;
+  animation: none !important;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .motion-mask-inner,
+  .hero-brand-motion,
+  .hero-support,
+  .hero-accent-motion {
+    opacity: 1 !important;
+    transform: none !important;
+    animation: none !important;
+  }
+}
+
+@keyframes pulse-mask-rise {
+  from {
+    transform: translate3d(0, 108%, 0);
+  }
+  to {
+    transform: translate3d(0, 0, 0);
+  }
+}
+
+@keyframes pulse-hero-brand {
+  from {
+    opacity: 0.92;
+    transform: translate3d(0, 6px, 0);
+  }
+  to {
+    opacity: 1;
+    transform: translate3d(0, 0, 0);
+  }
+}
+
+@keyframes pulse-hero-support {
+  from {
+    opacity: 0;
+    transform: translate3d(0, 12px, 0);
+  }
+  to {
+    opacity: 1;
+    transform: translate3d(0, 0, 0);
+  }
+}
+
+@keyframes pulse-accent-draw {
+  from {
+    transform: scaleX(0.2);
+  }
+  to {
+    transform: scaleX(1);
+  }
+}
+
+/* Pattern C — accent line */
 .motion-accent-line {
   display: block;
   height: 2px;
@@ -95,27 +222,7 @@
   }
 }
 
-/* Masked headline lines — SSR text always present; motion enhances */
-.motion-mask-line {
-  display: block;
-  overflow: hidden;
-  padding-bottom: 0.06em;
-}
-
-.motion-mask-line > span {
-  display: block;
-  transform: translate3d(0, 0, 0);
-}
-
-@media (prefers-reduced-motion: no-preference) {
-  .motion-ready .motion-mask-line > span[data-animate="pending"] {
-    transform: translate3d(0, 105%, 0);
-  }
-}
-
-/* Primary CTA directional nudge on hover — see studio.css .pulse-cta */
-
-/* FAQ accordion — plus morph + panel fade (no height bounce) */
+/* FAQ */
 .pulse-accordion-item summary {
   transition: background-color var(--motion-fast) var(--ease-standard);
 }
@@ -145,7 +252,6 @@
   }
 }
 
-/* Form focus — restrained accent, no field dance on load */
 .pulse-form-panel :where(input, select, textarea) {
   transition:
     border-color var(--motion-fast) var(--ease-standard),
@@ -156,4 +262,17 @@
   outline: 2px solid var(--color-volt);
   outline-offset: 2px;
   border-color: color-mix(in srgb, var(--color-accent) 55%, transparent);
+}
+
+/* Section reveal helpers — more perceptible travel, still restrained */
+[data-section-reveal] {
+  --reveal-y: 18px;
+  --reveal-x: 0px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  [data-section-reveal] {
+    opacity: 1 !important;
+    transform: none !important;
+  }
 }

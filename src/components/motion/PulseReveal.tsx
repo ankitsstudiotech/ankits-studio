@@ -1,15 +1,30 @@
 "use client";
 
-import { Children, type ReactNode, useEffect } from "react";
+import {
+  Children,
+  type CSSProperties,
+  type ReactNode,
+  useEffect,
+} from "react";
 import { motion, useReducedMotion } from "motion/react";
 import { DISTANCE, DURATION, EASE } from "./tokens";
 
-/** Marks document for CSS-enhanced motion after hydration (SSR text stays visible). */
+/**
+ * Only animate when the user explicitly prefers motion.
+ * null (SSR / first hook frame) and true (reduce) → final state, no entrance.
+ */
+export function useMotionAllowed(): boolean {
+  return useReducedMotion() === false;
+}
+
+/** Marks document for CSS-enhanced motion after hydration. */
 export function MotionReady() {
   useEffect(() => {
-    document.documentElement.classList.add("motion-ready");
+    const root = document.documentElement;
+    root.classList.add("motion-ready");
+    root.classList.remove("motion-pending");
     return () => {
-      document.documentElement.classList.remove("motion-ready");
+      root.classList.remove("motion-ready");
     };
   }, []);
   return null;
@@ -21,11 +36,11 @@ export type HeroRevealProps = {
 };
 
 /**
- * Level 1 — brand/page opening.
- * Sequences eyebrow → H1 → copy → CTA. Content stays readable without JS.
+ * Generic route opening stagger — brand pages that are not the homepage hero.
+ * Homepage uses CSS-timed HeroOpening instead so H1 leads copy/CTA.
  */
 export function HeroReveal({ children, className = "" }: HeroRevealProps) {
-  const reduce = useReducedMotion();
+  const allow = useMotionAllowed();
   const items = Children.toArray(children);
 
   return (
@@ -33,16 +48,16 @@ export function HeroReveal({ children, className = "" }: HeroRevealProps) {
       {items.map((child, index) => (
         <motion.div
           key={index}
-          initial={reduce ? false : { opacity: 1, y: DISTANCE.copy }}
+          initial={allow ? { opacity: 1, y: DISTANCE.copy } : false}
           animate={{ opacity: 1, y: 0 }}
           transition={
-            reduce
-              ? { duration: 0 }
-              : {
+            allow
+              ? {
                   duration: DURATION.slow,
-                  delay: Math.min(index * 0.06, 0.24),
+                  delay: Math.min(index * 0.05, 0.2),
                   ease: EASE.enter,
                 }
+              : { duration: 0 }
           }
         >
           {child}
@@ -60,8 +75,8 @@ export type MaskedLinesProps = {
 };
 
 /**
- * Cinematic line mask for Bebas headlines — not character scramble.
- * SSR: full text in DOM. Motion: lines rise from a baseline mask.
+ * Editorial line mask — overflow clip + whole-line rise.
+ * Visibility is CSS-owned (prm / reduce / no-JS = final state at first paint).
  */
 export function MaskedLines({
   lines,
@@ -69,28 +84,15 @@ export function MaskedLines({
   id,
   className = "",
 }: MaskedLinesProps) {
-  const reduce = useReducedMotion();
-
   return (
-    <Tag id={id} className={className}>
+    <Tag id={id} className={["hero-masked-title", className].filter(Boolean).join(" ")}>
       {lines.map((line, index) => (
-        <span key={`${line}-${index}`} className="motion-mask-line">
-          <motion.span
-            initial={reduce ? false : { y: "105%" }}
-            animate={{ y: "0%" }}
-            transition={
-              reduce
-                ? { duration: 0 }
-                : {
-                    duration: DURATION.hero * 0.85,
-                    delay: 0.08 + index * 0.1,
-                    ease: EASE.enter,
-                  }
-            }
-            style={{ display: "block" }}
-          >
-            {line}
-          </motion.span>
+        <span
+          key={`${line}-${index}`}
+          className="motion-mask-line"
+          style={{ "--line-index": index } as CSSProperties}
+        >
+          <span className="motion-mask-inner">{line}</span>
         </span>
       ))}
     </Tag>
@@ -101,15 +103,13 @@ export type SectionRevealProps = {
   children: ReactNode;
   className?: string;
   delay?: number;
-  /** Pattern A default; B = opposing X for paired columns; C = group + accent */
   pattern?: "A" | "B" | "C";
-  /** For pattern B — which side */
   side?: "left" | "right";
 };
 
 /**
- * Level 2 — section choreography.
- * At most three patterns globally. Never fade ordinary paragraphs alone.
+ * Level 2 — section choreography (Patterns A/B/C).
+ * Trigger earlier in viewport so motion is perceptible without AOS spam.
  */
 export function SectionReveal({
   children,
@@ -118,25 +118,25 @@ export function SectionReveal({
   pattern = "A",
   side = "left",
 }: SectionRevealProps) {
-  const reduce = useReducedMotion();
+  const allow = useMotionAllowed();
 
-  const initial =
-    reduce
-      ? false
-      : pattern === "B"
-        ? { opacity: 1, x: side === "left" ? -DISTANCE.pair : DISTANCE.pair, y: 0 }
-        : { opacity: 0.98, y: DISTANCE.copy, x: 0 };
+  const initial = !allow
+    ? false
+    : pattern === "B"
+      ? { opacity: 1, x: side === "left" ? -DISTANCE.pair : DISTANCE.pair, y: 0 }
+      : { opacity: 0.92, y: 20, x: 0 };
 
   return (
     <motion.div
       className={className}
+      data-section-reveal={pattern}
       initial={initial}
       whileInView={{ opacity: 1, y: 0, x: 0 }}
-      viewport={{ once: true, amount: 0.22, margin: "0px 0px -8% 0px" }}
+      viewport={{ once: true, amount: 0.15, margin: "0px 0px -6% 0px" }}
       transition={
-        reduce
-          ? { duration: 0 }
-          : { duration: DURATION.section, delay, ease: EASE.enter }
+        allow
+          ? { duration: DURATION.section, delay, ease: EASE.enter }
+          : { duration: 0 }
       }
     >
       {children}
@@ -147,39 +147,38 @@ export function SectionReveal({
 export type GroupRevealProps = {
   children: ReactNode;
   className?: string;
-  /** Draw accent line after group settles */
   withAccent?: boolean;
 };
 
-/** Pattern C — coordinated group + optional accent line. */
 export function GroupReveal({
   children,
   className = "",
   withAccent = false,
 }: GroupRevealProps) {
-  const reduce = useReducedMotion();
+  const allow = useMotionAllowed();
 
   return (
     <motion.div
       className={className}
-      initial={reduce ? false : { opacity: 0.98, y: 10 }}
+      data-section-reveal="C"
+      initial={allow ? { opacity: 0.92, y: 18 } : false}
       whileInView={{ opacity: 1, y: 0 }}
-      viewport={{ once: true, amount: 0.2 }}
-      transition={reduce ? { duration: 0 } : { duration: DURATION.section, ease: EASE.enter }}
+      viewport={{ once: true, amount: 0.15, margin: "0px 0px -6% 0px" }}
+      transition={allow ? { duration: DURATION.section, ease: EASE.enter } : { duration: 0 }}
     >
       {withAccent ? (
         <motion.span
           className="motion-accent-line"
           aria-hidden
-          initial={reduce ? false : { scaleX: 0.35 }}
+          initial={allow ? { scaleX: 0.28 } : false}
           whileInView={{ scaleX: 1 }}
           viewport={{ once: true }}
           transition={
-            reduce
-              ? { duration: 0 }
-              : { duration: DURATION.base, delay: 0.12, ease: EASE.emphasis }
+            allow
+              ? { duration: DURATION.base, delay: 0.1, ease: EASE.emphasis }
+              : { duration: 0 }
           }
-          style={{ marginBottom: "1rem" }}
+          style={{ marginBottom: "1rem", transformOrigin: "left center" }}
         />
       ) : null}
       {children}

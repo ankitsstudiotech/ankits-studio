@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { Bebas_Neue, Space_Grotesk } from "next/font/google";
+import Script from "next/script";
 import { MockModeIndicator } from "@/components/MockModeIndicator";
 import { getBusinessIdentity } from "@/content";
 import { baseMetadata } from "@/lib/metadata";
@@ -35,7 +36,24 @@ export default function RootLayout({
       lang="en"
       className={`${bebas.variable} ${spaceGrotesk.variable} h-full antialiased`}
     >
-      <body className="studio-shell has-sticky-cta flex min-h-full flex-col">
+      <body className="studio-shell has-sticky-cta flex min-h-full flex-col bg-field text-ink-inverse">
+        <Script
+          id="motion-preference"
+          strategy="beforeInteractive"
+          dangerouslySetInnerHTML={{
+            __html: `(function(){try{var d=document.documentElement;var m=window.matchMedia('(prefers-reduced-motion: reduce)');if(m.matches){d.classList.add('prm');}else{d.classList.add('motion-pending');requestAnimationFrame(function(){requestAnimationFrame(function(){d.classList.add('motion-ready');d.classList.remove('motion-pending');});});}}catch(e){}})();`,
+          }}
+        />
+        <noscript>
+          <style
+            dangerouslySetInnerHTML={{
+              /* Incomplete #main-content shell + delayed flight payload without JS.
+                 Hide the shell and show the payload (must be @layer base to beat
+                 Tailwind [hidden]{display:none!important} — important reverses layers). */
+              __html: `@layer base{#main-content{display:none!important}div[hidden][id^="S:"],div[hidden][id^="B:"]{display:block!important}}`,
+            }}
+          />
+        </noscript>
         {organizationJsonLd ? (
           <script
             type="application/ld+json"
