@@ -55,7 +55,8 @@
     max-width: min(58rem, 70%);
   }
 
-  .heroCopy h1 {
+  .heroCopy h1,
+  .heroTitle {
     max-width: 22ch;
   }
 }
@@ -84,7 +85,8 @@
   color: var(--color-ink-inverse);
 }
 
-.heroCopy h1 {
+.heroCopy h1,
+.heroTitle {
   font-family: var(--font-display);
   font-size: clamp(2.35rem, 7vw, 4.75rem);
   line-height: 0.92;
@@ -92,6 +94,16 @@
   margin: 0;
   max-width: 20ch;
   text-transform: uppercase;
+}
+
+.heroAccent {
+  display: block;
+  width: 4.5rem;
+  height: 2px;
+  margin-top: 0.35rem;
+  background: color-mix(in srgb, var(--color-accent) 75%, transparent);
+  transform-origin: left center;
+  transform: scaleX(1);
 }
 
 .heroCopy > div > p,
@@ -316,24 +328,50 @@
   text-decoration: none;
   color: inherit;
   min-height: 44px;
+  transition:
+    border-color var(--motion-fast) var(--ease-emphasis),
+    background-color var(--motion-fast) var(--ease-standard);
 }
 
 .branchCard:hover,
-.branchCard:focus-visible {
+.branchCard:focus-within {
   border-color: var(--color-accent-hover);
 }
 
-.branchCard:focus-visible {
+.branchCard:focus-within {
   outline: 2px solid var(--color-volt);
   outline-offset: 3px;
 }
 
-.branchCard h3 {
+.branchCard h3,
+.branchName {
   font-family: var(--font-sans);
   font-size: 1.1rem;
   font-weight: 600;
   margin: 0;
   letter-spacing: -0.01em;
+  transition: transform var(--motion-fast) var(--ease-emphasis);
+}
+
+.branchCard:hover .branchName,
+.branchCard:focus-within .branchName {
+  transform: translate3d(3px, 0, 0);
+}
+
+.branchCue {
+  display: block;
+  width: 2.5rem;
+  height: 2px;
+  margin-top: 0.25rem;
+  background: color-mix(in srgb, var(--color-accent) 65%, transparent);
+  transform-origin: left center;
+  transform: scaleX(1);
+  transition: transform var(--motion-base) var(--ease-enter);
+}
+
+.branchCard:hover .branchCue,
+.branchCard:focus-within .branchCue {
+  transform: scaleX(1.85);
 }
 
 .branchHours {
@@ -573,7 +611,16 @@
 
 .faqToggle {
   color: var(--color-accent-hover);
-  transition: transform var(--duration-fast) var(--ease-standard);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 1.25rem;
+  transition: transform var(--motion-fast) var(--ease-emphasis);
+}
+
+.faqToggle[data-open="true"],
+:global(.group[open]) .faqToggle {
+  transform: rotate(45deg);
 }
 
 /* —— Media plates (replaceable fallbacks) —— */
@@ -663,7 +710,21 @@
 
 @media (prefers-reduced-motion: reduce) {
   .cta,
-  .faqToggle {
+  .faqToggle,
+  .branchCard,
+  .branchName,
+  .branchCue,
+  .name {
     transition: none;
+  }
+
+  .branchCard:hover .branchName,
+  .branchCard:focus-within .branchName {
+    transform: none;
+  }
+
+  .branchCard:hover .branchCue,
+  .branchCard:focus-within .branchCue {
+    transform: none;
   }
 }

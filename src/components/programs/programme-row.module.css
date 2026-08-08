@@ -1,4 +1,4 @@
-/* Shared programme discovery row — one title system, one cue track, equal interaction. */
+/* Shared programme discovery row — one title system, transform-only cues. */
 
 .row {
   display: flex;
@@ -11,9 +11,57 @@
   background: var(--color-field-raised);
   min-height: 44px;
   position: relative;
+  --cue-duration: var(--motion-fast);
+  --cue-ease: var(--ease-emphasis);
+  --cue-scale: 1.55;
+  --title-nudge: 2px;
   transition:
-    border-color var(--duration-normal, 220ms) var(--ease-out-strong, cubic-bezier(0.23, 1, 0.32, 1)),
-    background-color var(--duration-normal, 220ms) var(--ease-out-strong, cubic-bezier(0.23, 1, 0.32, 1));
+    border-color var(--cue-duration) var(--cue-ease),
+    background-color var(--cue-duration) var(--cue-ease);
+}
+
+/* Tone personalities — timing only; same component */
+.row[data-motion-tone="structured"] {
+  --cue-duration: 200ms;
+  --cue-ease: var(--ease-emphasis);
+  --cue-scale: 1.55;
+  --title-nudge: 3px;
+}
+
+.row[data-motion-tone="fluid"] {
+  --cue-duration: 260ms;
+  --cue-ease: var(--ease-enter);
+  --cue-scale: 1.7;
+  --title-nudge: 3px;
+}
+
+.row[data-motion-tone="calm"] {
+  --cue-duration: 320ms;
+  --cue-ease: var(--ease-enter);
+  --cue-scale: 1.35;
+  --title-nudge: 2px;
+}
+
+.row[data-motion-tone="expressive"] {
+  --cue-duration: 240ms;
+  --cue-ease: var(--ease-emphasis);
+  --cue-scale: 1.85;
+  --title-nudge: 4px;
+}
+
+.row[data-motion-tone="ceremonial"] {
+  --cue-duration: 360ms;
+  --cue-ease: var(--ease-enter);
+  --cue-scale: 1.45;
+  --title-nudge: 2px;
+}
+
+.row[data-motion-tone="direct"],
+.row[data-motion-tone="remote"] {
+  --cue-duration: 180ms;
+  --cue-ease: var(--ease-standard);
+  --cue-scale: 1.4;
+  --title-nudge: 2px;
 }
 
 .row:hover,
@@ -48,6 +96,12 @@
   line-height: 1;
   text-transform: uppercase;
   color: var(--color-ink-inverse);
+  transition: transform var(--cue-duration) var(--cue-ease);
+}
+
+.row:hover .name,
+.row:focus-visible .name {
+  transform: translate3d(var(--title-nudge), 0, 0);
 }
 
 .row[data-emphasis="primary"] .name {
@@ -69,27 +123,48 @@
   color: #c2bdb4;
 }
 
-.cue {
-  display: block;
-  width: 2.25rem;
-  max-width: 3.5rem;
-  height: 3px;
+.cueTrack {
+  display: flex;
+  align-items: center;
+  gap: 0.28rem;
   margin-top: 0.55rem;
-  background: rgb(255 255 255 / 0.22);
-  transform-origin: left center;
-  transition: width var(--duration-normal, 220ms) var(--ease-out-strong, cubic-bezier(0.23, 1, 0.32, 1));
+  min-height: 3px;
 }
 
-.row[data-cluster="train"] .cue {
+.cue,
+.cueSeg {
+  display: block;
+  height: 3px;
+  width: 2.25rem;
+  transform-origin: left center;
+  transform: scaleX(1);
+  transition: transform var(--cue-duration) var(--cue-ease);
+  background: rgb(255 255 255 / 0.22);
+}
+
+.cueSeg {
+  width: 0.55rem;
+  opacity: 0.55;
+}
+
+.row[data-cluster="train"] .cue,
+.row[data-cluster="train"] .cueSeg {
   background: color-mix(in srgb, var(--color-accent-strength) 75%, transparent);
 }
 
-.row[data-cluster="move"] .cue {
+.row[data-cluster="move"] .cue,
+.row[data-cluster="move"] .cueSeg {
   background: color-mix(in srgb, var(--color-accent-high-energy) 75%, transparent);
 }
 
-.row[data-cluster="celebrate"] .cue {
+.row[data-cluster="celebrate"] .cue,
+.row[data-cluster="celebrate"] .cueSeg {
   background: color-mix(in srgb, var(--color-accent-warm) 80%, transparent);
+}
+
+.row[data-motion-tone="ceremonial"] .cue {
+  height: 2px;
+  background: color-mix(in srgb, var(--color-accent-warm) 90%, #fff 10%);
 }
 
 .row[data-energy="calm"] .cue {
@@ -102,27 +177,38 @@
 
 .row:hover .cue,
 .row:focus-visible .cue {
-  width: 3.5rem;
+  transform: scaleX(var(--cue-scale));
+}
+
+.row:hover .cueSeg[data-seg="2"],
+.row:focus-visible .cueSeg[data-seg="2"] {
+  transform: scaleX(1.5);
+  transition-delay: 40ms;
+}
+
+.row:hover .cueSeg[data-seg="3"],
+.row:focus-visible .cueSeg[data-seg="3"] {
+  transform: scaleX(1.8);
+  transition-delay: 80ms;
 }
 
 @media (prefers-reduced-motion: reduce) {
   .row,
-  .cue {
+  .name,
+  .cue,
+  .cueSeg {
     transition: none;
   }
 
+  .row:hover .name,
+  .row:focus-visible .name {
+    transform: none;
+  }
+
   .row:hover .cue,
-  .row:focus-visible .cue {
-    width: 2.25rem;
-  }
-
-  .row[data-energy="calm"]:hover .cue,
-  .row[data-energy="calm"]:focus-visible .cue {
-    width: 1.75rem;
-  }
-
-  .row[data-energy="high"]:hover .cue,
-  .row[data-energy="high"]:focus-visible .cue {
-    width: 2.75rem;
+  .row:focus-visible .cue,
+  .row:hover .cueSeg,
+  .row:focus-visible .cueSeg {
+    transform: none;
   }
 }

@@ -73,8 +73,9 @@ export function ProgrammePulseCta({
     <motion.a
       href={href}
       className={styles.cta}
-      whileTap={reduce ? undefined : { scale: 0.96 }}
-      transition={{ type: "spring", stiffness: 500, damping: 24 }}
+      whileHover={reduce ? undefined : { y: -1 }}
+      whileTap={reduce ? undefined : { scale: 0.98 }}
+      transition={{ duration: 0.16, ease: [0.23, 1, 0.32, 1] }}
       {...(external ? { target: "_blank", rel: "noopener noreferrer" } : {})}
     >
       {children}

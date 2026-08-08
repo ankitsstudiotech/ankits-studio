@@ -116,6 +116,7 @@ export function ProgrammeDiscovery({
                     meta={deliveryMeta(programme)}
                     cluster={clusterId}
                     energy={energyFromSlug(programme.slug)}
+                    programmeSlug={programme.slug}
                     emphasis={programme.slug === "functional-training" ? "primary" : undefined}
                   />
                 ))}

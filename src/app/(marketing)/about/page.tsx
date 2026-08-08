@@ -110,20 +110,16 @@ export default function AboutPage() {
 
       <section className={styles.band} aria-labelledby="about-approach-disciplines">
         <div className={`${styles.diffGrid} pulse-split`}>
-          <div>
-            <SectionReveal>
-              <h2 id="about-approach-disciplines" className={styles.sectionTitle}>
-                {about.approachTitle}
-              </h2>
-            </SectionReveal>
+          <SectionReveal pattern="B" side="left">
+            <h2 id="about-approach-disciplines" className={styles.sectionTitle}>
+              {about.approachTitle}
+            </h2>
             <p className={styles.body}>{about.approachBody}</p>
-          </div>
-          <div>
-            <SectionReveal>
-              <h2 id="about-disciplines-title" className={styles.sectionTitle}>
-                {about.disciplinesTitle}
-              </h2>
-            </SectionReveal>
+          </SectionReveal>
+          <SectionReveal pattern="B" side="right">
+            <h2 id="about-disciplines-title" className={styles.sectionTitle}>
+              {about.disciplinesTitle}
+            </h2>
             <p className={styles.body}>{about.disciplinesBody}</p>
             <ol className={styles.disciplineIndex}>
               {programmes.map((programme, index) => (
@@ -139,7 +135,7 @@ export default function AboutPage() {
                 </li>
               ))}
             </ol>
-          </div>
+          </SectionReveal>
         </div>
       </section>
 

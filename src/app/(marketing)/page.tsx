@@ -161,6 +161,7 @@ export default function HomePage() {
       <Hero
         brandName={identity.displayName}
         title="Machine-free fitness. Yoga, Zumba and dance."
+        titleLines={["Machine-free fitness.", "Yoga, Zumba and dance."]}
         description="Four neighbourhood studios across Airoli, Ghansoli and Thane. Coach-led sessions for working professionals and other neighbourhood visitors — book a free trial on WhatsApp."
         primaryCta={{ label: trialLabel, href: trialHref }}
         secondaryCta={{ label: "Find Your Nearest Studio", href: "/#locations" }}

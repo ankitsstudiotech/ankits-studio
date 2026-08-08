@@ -347,6 +347,23 @@
   gap: 1.15rem;
 }
 
+/* Motion tone — intro pacing via CSS custom properties (one family) */
+.detailHero[data-motion-tone="calm"] {
+  --reveal-delay: 0.08s;
+}
+.detailHero[data-motion-tone="ceremonial"] {
+  --reveal-delay: 0.1s;
+}
+.detailHero[data-motion-tone="fluid"],
+.detailHero[data-motion-tone="expressive"] {
+  --reveal-delay: 0.04s;
+}
+.detailHero[data-motion-tone="structured"],
+.detailHero[data-motion-tone="direct"],
+.detailHero[data-motion-tone="remote"] {
+  --reveal-delay: 0.05s;
+}
+
 .detailLede {
   margin: 0;
   max-width: 42ch;

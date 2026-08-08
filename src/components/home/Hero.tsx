@@ -1,12 +1,14 @@
 import Image from "next/image";
 import Link from "next/link";
-import { HeroReveal } from "@/components/motion";
+import { HeroReveal, MaskedLines } from "@/components/motion";
 import { PulseCta } from "./pulse/PulseMotion";
 import styles from "./pulse/pulse-home.module.css";
 
 export type HeroProps = {
   brandName: string;
   title: string;
+  /** Optional line breaks for mask reveal — defaults to single-line title. */
+  titleLines?: string[];
   description: string;
   primaryCta: { label: string; href: string };
   secondaryCta?: { label: string; href: string };
@@ -14,16 +16,18 @@ export type HeroProps = {
 
 /**
  * Studio Pulse hero — brand, offering, places, WhatsApp trial.
- * Copy is server-rendered; HeroReveal adds opt-in entrance motion.
- * Text-led; no media plate. Transparent symbol (no white plate).
+ * Copy is server-rendered; mask + HeroReveal enhance after hydration.
  */
 export function Hero({
   brandName,
   title,
+  titleLines,
   description,
   primaryCta,
   secondaryCta,
 }: HeroProps) {
+  const lines = titleLines?.length ? titleLines : [title];
+
   return (
     <section className={`${styles.field} ${styles.hero}`} aria-labelledby="home-hero-title">
       <HeroReveal className={styles.heroCopy}>
@@ -38,7 +42,12 @@ export function Hero({
           />
           <p className={styles.heroBrandName}>{brandName}</p>
         </div>
-        <h1 id="home-hero-title">{title}</h1>
+        <MaskedLines
+          id="home-hero-title"
+          as="h1"
+          lines={lines}
+          className={styles.heroTitle}
+        />
         <p>{description}</p>
         <div className={styles.heroActions}>
           <PulseCta id="home-hero-primary-cta" href={primaryCta.href}>
@@ -50,6 +59,7 @@ export function Hero({
             </Link>
           ) : null}
         </div>
+        <span className={styles.heroAccent} aria-hidden />
       </HeroReveal>
     </section>
   );

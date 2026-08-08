@@ -1,6 +1,7 @@
 import Link from "next/link";
 import type { Programme, ProgrammeSlug } from "@/content";
 import { HeroReveal, SectionReveal } from "@/components/motion";
+import { toneFromProgrammeSlug } from "@/components/motion/tokens";
 import { ProgrammePulseCta, type ProgrammeTempo } from "./ProgrammePulseMotion";
 import styles from "./programme-pulse.module.css";
 
@@ -98,6 +99,7 @@ export function ProgrammeDetailView({
   whatsappLabel,
 }: ProgrammeDetailViewProps) {
   const tempo = SLUG_TEMPO[programme.slug] ?? "functional";
+  const motionTone = toneFromProgrammeSlug(programme.slug);
   const batchLabel = availabilityCopy(programme);
 
   const clusterKicker =
@@ -142,10 +144,11 @@ export function ProgrammeDetailView({
   }
 
   return (
-    <div className={styles.field}>
+    <div className={styles.field} data-motion-tone={motionTone}>
       <section
         className={styles.detailHero}
         data-tempo={tempo}
+        data-motion-tone={motionTone}
         aria-labelledby="programme-title"
       >
         <HeroReveal>

@@ -26,8 +26,9 @@ export function LocationPulseCta({
     <motion.a
       href={href}
       className={styles.ctaPrimary}
+      whileHover={reduce ? undefined : { y: -1 }}
       whileTap={reduce ? undefined : { scale: 0.98 }}
-      transition={{ type: "spring", stiffness: 500, damping: 32 }}
+      transition={{ duration: 0.16, ease: [0.23, 1, 0.32, 1] }}
       {...props}
     >
       {children}

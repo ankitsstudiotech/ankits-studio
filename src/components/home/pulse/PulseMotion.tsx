@@ -14,7 +14,7 @@ export type ServiceTempo =
   | "home"
   | "online";
 
-/** Conversion press feedback only — interruptible. Supports wa.me links. */
+/** Conversion press feedback — interruptible. Supports wa.me links. */
 export function PulseCta({
   href,
   children,
@@ -33,7 +33,8 @@ export function PulseCta({
       id={id}
       href={href}
       className={styles.cta}
-      whileTap={reduce ? undefined : { scale: 0.96 }}
+      whileHover={reduce ? undefined : { y: -1 }}
+      whileTap={reduce ? undefined : { scale: 0.98 }}
       transition={{ duration: 0.16, ease: [0.23, 1, 0.32, 1] }}
       {...(isExternal ? { target: "_blank", rel: "noopener noreferrer" } : {})}
     >
