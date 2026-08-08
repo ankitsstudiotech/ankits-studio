@@ -1,16 +1,17 @@
 # V1 production handoff — Ankit’s Studio
 
-_Last updated: 2026-08-03 — Production hardening + live deploy._
+_Last updated: 2026-08-08 — Prompt 4 visual approval + production verification._
 
 ## Summary
 
-Studio Pulse V1 is live on Vercel: launch copy micro-fixes, accurate Privacy/Terms, production build without `ALLOW_MOCK_PUBLISH`, and `NEXT_PUBLIC_SITE_URL` set to the production origin.
+Studio Pulse V1 is visually approved and deployed to the existing Vercel project. Production build runs **without** `ALLOW_MOCK_PUBLISH`. Canonical origin is `https://ankits-studio.vercel.app`.
 
 | Item | Value |
 |------|--------|
 | Branch | `revamp/studio-pulse-production` |
-| Git remote | **None** — add GitHub/GitLab remote for CI deploys |
-| Vercel project | `anikets-projects-c8b8ce46/ankits-studio` |
+| Release tag | `studio-pulse-v1.0.0-visual-approved` |
+| Release SHA | `7bc0e9c4e8606fc6b4a073b479c6eecb46a3d95c` (pre-release evidence HEAD; release commit supersedes with evidence/docs) |
+| Vercel project | `anikets-projects-c8b8ce46/ankits-studio` (projectId `prj_EKgqdkrNyE7xg3xuXjH1L6z6wzNW`) |
 | Production origin | https://ankits-studio.vercel.app |
 | Analytics | None wired |
 | Lead provider | Unset (WhatsApp-first trial/enquiry) |
@@ -22,26 +23,32 @@ Studio Pulse V1 is live on Vercel: launch copy micro-fixes, accurate Privacy/Ter
 | Production | https://ankits-studio.vercel.app |
 | Sitemap | https://ankits-studio.vercel.app/sitemap.xml |
 | Robots | https://ankits-studio.vercel.app/robots.txt |
-| Inspect (latest) | Vercel dashboard → project `ankits-studio` |
 
 ## Environment (Production)
 
 | Variable | Status |
 |----------|--------|
 | `NODE_ENV` | `production` (Vercel) |
-| `NEXT_PUBLIC_SITE_URL` | `https://ankits-studio.vercel.app` (Production) |
+| `NEXT_PUBLIC_SITE_URL` | `https://ankits-studio.vercel.app` |
 | `ALLOW_MOCK_PUBLISH` | **Unset** |
 | `LEAD_PROVIDER_URL` | **Unset** |
 
 When attaching a custom domain, update `NEXT_PUBLIC_SITE_URL` to that origin (no trailing slash) and redeploy.
 
-Do not invent analytics IDs. Do not commit `.env` files with secrets.
-
 ## Indexable vs withheld
 
-**In sitemap / indexable:** `/`, `/programs` (+ confirmed programme detail), `/locations` (+ 4 branches), `/timetable`, `/pricing`, `/about`, `/trial`, `/contact`, `/privacy-policy`, `/terms`
+**Indexable / sitemap-eligible:** `/`, `/about`, `/programs` (+ confirmed programme detail), `/locations` (+ four branches), `/timetable`, `/pricing`, `/trial`, `/contact`, `/privacy-policy`, `/terms`
 
-**Noindex / out of sitemap until ready:** trainers, transformations, sample blog, `/design-lab/*`
+**Noindex / out of sitemap:** `/trainers`, `/transformations`, `/blog`, legacy programme notice routes, `/design-lab/*`
+
+**Hard 404:** sample blog article fixtures (`/blog/sample-*`)
+
+## Redirects
+
+| From | To |
+|------|-----|
+| `/book-a-free-trial` | `/trial` |
+| `/locations/airoli` | `/locations/airoli-sector-19` |
 
 ## Frozen prototypes (do not modify)
 
@@ -49,40 +56,69 @@ Do not invent analytics IDs. Do not commit `.env` files with secrets.
 - `/design-lab/revamp-b`
 - `/design-lab/revamp-c`
 
-## Local validation (pre-deploy)
+## Local validation (Prompt 4)
 
-```
-npm run lint
-npm run type-check
-npm test
-npm run build   # NEXT_PUBLIC_SITE_URL set; ALLOW_MOCK_PUBLISH unset
-```
+| Check | Result |
+|-------|--------|
+| Lint | Pass (0 errors; pre-existing warnings only) |
+| Typecheck | Pass |
+| Unit tests | 253 passed |
+| Smoke / a11y / sticky / secondary / motion E2E | 26 passed |
+| Final QA probe (copy leak, sticky, SEO, WhatsApp, maps, samples 404) | 0 issues |
+| Screenshot dimensions | 99 records, 0 width fails |
+| Production build (`ALLOW_MOCK_PUBLISH` unset) | Pass |
+| Local server | `http://127.0.0.1:3485` @ HEAD `7bc0e9c` |
 
-All four passed locally before deploy. Public `.next` output scanned for localhost / mock chrome / draft legal — clean when `NEXT_PUBLIC_SITE_URL` is set.
+### Performance sanity (local production)
 
-## Live smoke (2026-08-03)
+Lighthouse CLS **0** on `/`, `/programs`, `/locations`, `/trial`. LCP audits ~3.2–3.6s on local headless (not treated as V1 blocker). Playwright navigation CLS **0**.
 
-- [x] Launch routes return 200
-- [x] No mock/dev banner on home
-- [x] No `localhost` in home HTML, robots, or sitemap
-- [x] Canonical `https://ankits-studio.vercel.app`
-- [x] robots: Allow `/`, Disallow `/design-lab`, Sitemap absolute production URL
-- [x] Privacy + Terms: “Last updated: August 2026”; no placeholder/lorem
-- [x] Pricing GST: “fee quoted by the studio”
-- [x] Timetable walk-in: “Advance booking is optional…”
+### Visual evidence (local)
 
-## Known V1 gaps (intentional)
+`docs/revamp/screenshots/final-production-candidate-7bc0e9c/` + `manifest.json`
 
-- Exact fees and batch grids remain enquiry-based
-- No photography, Google Reviews, trainers, or testimonials in V1
-- Membership cancel/refund/freeze legal detail not published (awaiting counsel)
-- Custom domain / DNS not attached until owner provides it
-- Working tree may still have uncommitted hardening files — commit before relying on git history
-- No git remote — connect repo then link Vercel for push-to-deploy
+### Defect counts (local gate)
+
+| Severity | Count |
+|----------|-------|
+| P0 | **0** |
+| P1 | **0** |
+| P2 | 2 (SSR sticky class clear; next-dev sample soft-404) |
+| P3 | 1 (blog sample not-found wording polish) |
+
+## Live verification
+
+Filled after production deploy (Prompt 4 Phases 15–17):
+
+| Item | Path / note |
+|------|-------------|
+| Live screenshots | `docs/revamp/screenshots/live-v1-visual-verification-<SHA>/` |
+| Live P0 / P1 | Pending deploy |
+| Local vs live | Pending deploy |
+
+## Rollback
+
+1. In Vercel → project `ankits-studio` → Deployments → promote the previous successful production deployment.
+2. Or redeploy tag/commit known-good: `studio-pulse-core-routes-approved` (`5cbc4bf`) only if visual V1 must be rolled back before Prompt 3/4 — prefer previous production deployment instead.
+3. Keep `ALLOW_MOCK_PUBLISH` unset on Production.
+
+## Known post-V1 backlog (not launch blockers)
+
+- Real studio photography / video
+- Official direct CorelDRAW SVG logo export
+- Exact pricing tables
+- Exact batch schedules
+- Verified trainer profiles
+- Member stories with permission
+- Google Reviews integration
+- GBP URLs
+- Final membership policy copy (cancel / refund / freeze)
+- Expanded Studio Notes editorial content
+- Optional SSR sticky padding without hydrate clear (P2-01)
+- Soften blog sample 404 copy (P3-01)
 
 ## Operator next steps
 
 1. Optional custom domain → set `NEXT_PUBLIC_SITE_URL` → redeploy.
-2. Add git remote; push `revamp/studio-pulse-production`; commit remaining hardening if not already committed.
-3. Search Console: submit sitemap after the final domain is settled.
-4. Keep `ALLOW_MOCK_PUBLISH` off Production forever for indexable V1.
+2. Search Console: submit sitemap after the final domain is settled.
+3. Keep `ALLOW_MOCK_PUBLISH` off Production forever for indexable V1.
