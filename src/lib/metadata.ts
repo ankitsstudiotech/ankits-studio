@@ -49,6 +49,12 @@ export function buildRobotsMeta(): NonNullable<Metadata["robots"]> {
   };
 }
 
+/**
+ * Root metadata omits `robots` on purpose: Next.js `not-found` auto-injects
+ * `noindex`, and pairing it with a root `index, follow` emitted dual conflicting
+ * meta tags. Every indexable/withheld route sets robots via `buildPageMetadata`
+ * (or design-lab layout metadata).
+ */
 export const baseMetadata: Metadata = {
   metadataBase: new URL(siteConfig.url),
   title: {
@@ -56,5 +62,4 @@ export const baseMetadata: Metadata = {
     template: siteConfig.titleTemplate,
   },
   description: siteConfig.description,
-  robots: buildRobotsMeta(),
 };

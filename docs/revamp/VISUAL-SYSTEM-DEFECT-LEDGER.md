@@ -5,20 +5,26 @@
 **Prompt 3 correction:** `be8c705` / `7bc0e9c` — evidence `docs/revamp/screenshots/secondary-routes-correction/`  
 **Prompt 4 final candidate:** HEAD `7bc0e9c` — evidence `docs/revamp/screenshots/final-production-candidate-7bc0e9c/`
 
-## Prompt 4 — final whole-site gate (local)
+## Prompt 4 — final whole-site gate
 
 | Severity | Count | Notes |
 |----------|-------|-------|
-| P0 | **0** | None found across 29-route matrix |
-| P1 | **0** | Sticky exclusion, secondary routes, legal copy, 404 mobile accepted |
+| P0 | **0** | None |
+| P1 | **0** | P4-01 fixed before redeploy (see below) |
 | P2 | 2 | Documented below |
 | P3 | 1 | Documented below |
+
+### Prompt 4 P1 closed before production alias
+
+| ID | Route | Defect | Fix | Status |
+|----|-------|--------|-----|--------|
+| P4-01 | 404 | Dual robots meta: `noindex` + root `index, follow` | Omit robots from `baseMetadata`; explicit noindex on `not-found` metadata | **fixed** |
 
 ### Remaining non-blocking
 
 | ID | Severity | Note |
 |----|----------|------|
-| P2-01 | P2 | Body SSR defaults `has-sticky-cta`; excluded routes clear after StickyCtaBar hydrate. Not perceptible CLS on mobile (pad clears before interaction). Avoided middleware/dynamic layout tax for V1. |
+| P2-01 | P2 | Body SSR defaults `has-sticky-cta`; excluded routes clear after StickyCtaBar hydrate. CLS measured 0 on primary routes. |
 | P2-02 | P2 | Playwright `next dev` soft-handles unknown blog static params; production hard-404s sample fixtures (verified). |
 | P3-01 | P3 | Blog sample `not-found` copy still says “sample article” — customer-harmless; polish later. |
 

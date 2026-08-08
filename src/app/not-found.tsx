@@ -1,7 +1,17 @@
+import type { Metadata } from "next";
 import Link from "next/link";
 import { SiteChrome } from "@/components/layout";
 import { RouteOpening } from "@/components/motion";
 import styles from "@/components/status/pulse/status.module.css";
+
+/**
+ * Explicit noindex. Root layout deliberately omits robots so Next’s automatic
+ * 404 `noindex` is not paired with a conflicting `index, follow` tag.
+ */
+export const metadata: Metadata = {
+  title: "Page not found",
+  robots: { index: false, follow: false },
+};
 
 /**
  * Wrapped in the same `SiteChrome` every real route uses, so a 404 doesn't
