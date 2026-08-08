@@ -12,7 +12,6 @@ import {
 import {
   getPrimaryConversionHref,
   getPrimaryConversionLabel,
-  WHATSAPP_REVIEW_HELPER,
 } from "@/lib/conversion";
 import { buildPageMetadata } from "@/lib/seo/metadata";
 import { serializeJsonLd } from "@/lib/seo/serialize";
@@ -317,7 +316,6 @@ export default function AboutPage() {
             Find a Studio
           </Link>
         </div>
-        <p className={styles.ctaNote}>{WHATSAPP_REVIEW_HELPER}</p>
       </section>
     </main>
   );

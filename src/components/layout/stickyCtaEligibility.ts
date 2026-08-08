@@ -4,20 +4,30 @@ import {
 } from "@/content";
 
 /**
- * Sticky WhatsApp CTA is conversion assistance on primary journeys only —
- * not universal chrome on legal/secondary/withheld routes.
+ * Sticky WhatsApp CTA is conversion assistance on browse journeys only.
  *
- * Allowlist (exact or confirmed detail):
+ * Allowlist:
  * `/`, `/about`, `/programs`, confirmed `/programs/[slug]`,
- * `/locations`, listed `/locations/[slug]`, `/timetable`, `/pricing`,
- * `/contact`, `/trial` (+ `/trial/*`).
+ * `/locations`, listed `/locations/[slug]`, `/timetable`, `/pricing`
  *
- * Everything else is ineligible (privacy, terms, trainers, transformations,
- * blog, 404, legacy programmes, design-lab, …).
+ * Hard-excluded conversion destinations (in-page builders own the CTA):
+ * `/trial`, `/contact` (+ aliases)
+ *
+ * Soft-hide on `/pricing` and `/timetable` while the enquiry builder is in view
+ * is handled by StickyCtaBar IntersectionObserver.
  */
 export function isStickyCtaEligiblePath(pathname: string): boolean {
   const path = pathname.split("?")[0]?.replace(/\/$/, "") || "/";
   const normalized = path === "" ? "/" : path;
+
+  if (
+    normalized === "/trial" ||
+    normalized.startsWith("/trial/") ||
+    normalized === "/contact" ||
+    normalized === "/book-a-free-trial"
+  ) {
+    return false;
+  }
 
   if (
     normalized === "/" ||
@@ -25,14 +35,8 @@ export function isStickyCtaEligiblePath(pathname: string): boolean {
     normalized === "/programs" ||
     normalized === "/locations" ||
     normalized === "/timetable" ||
-    normalized === "/pricing" ||
-    normalized === "/contact" ||
-    normalized === "/trial"
+    normalized === "/pricing"
   ) {
-    return true;
-  }
-
-  if (normalized.startsWith("/trial/")) {
     return true;
   }
 

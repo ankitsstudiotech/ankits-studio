@@ -25,8 +25,7 @@ export const mockStudioAbout: StudioAbout = {
   teamTitle: "Team and coaching",
   teamBody:
     "Ankit’s Studio works with a team of 15+ trainers across its programmes and branches.",
-  teamCountProvenance:
-    "Team size as shared by the studio.",
+  teamCountProvenance: "Our coaching team covers fitness, yoga, Zumba and dance.",
   trainerProfileSlugs: [],
   founderStoryStatus: "verified",
   founderStory:

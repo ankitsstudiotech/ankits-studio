@@ -9,7 +9,10 @@ export type DesktopNavProps = {
 };
 
 export function DesktopNav({ items, pathname = "" }: DesktopNavProps) {
-  const links = items.filter((item) => !item.isPrimaryCta);
+  // Contact stays in mobile menu + footer; desktop keeps Pricing visible without crowding.
+  const links = items.filter(
+    (item) => !item.isPrimaryCta && item.href !== "/contact",
+  );
   const cta = items.find((item) => item.isPrimaryCta);
 
   return (
@@ -23,7 +26,7 @@ export function DesktopNav({ items, pathname = "" }: DesktopNavProps) {
                 href={item.href}
                 aria-current={active ? "page" : undefined}
                 className={[
-                  "inline-flex min-h-11 items-center px-3 text-sm font-medium",
+                  "inline-flex min-h-11 items-center px-2.5 text-sm font-medium xl:px-3",
                   "transition-[color,background-size] duration-[var(--duration-fast)] ease-[var(--ease-standard)]",
                   "bg-[linear-gradient(currentColor,currentColor)] bg-no-repeat bg-[length:0_1px] bg-[position:0_100%]",
                   "hover:bg-[length:100%_1px] focus-visible:bg-[length:100%_1px]",

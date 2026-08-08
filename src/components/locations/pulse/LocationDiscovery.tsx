@@ -2,7 +2,6 @@ import type { Branch } from "@/content";
 import { getBranchMapsUrl } from "@/content";
 import { BranchRow } from "@/components/locations/BranchRow";
 import { HeroReveal } from "@/components/motion";
-import { WHATSAPP_REVIEW_HELPER } from "@/lib/conversion";
 import { LocationPulseCta } from "./LocationPulseMotion";
 import styles from "./location-pulse.module.css";
 
@@ -52,7 +51,6 @@ export function LocationDiscovery({ branches, trialHref, trialLabel }: LocationD
 
       <div className={styles.ctaRow}>
         <LocationPulseCta href={trialHref}>{trialLabel}</LocationPulseCta>
-        <p className={styles.ctaNote}>{WHATSAPP_REVIEW_HELPER}</p>
       </div>
     </section>
   );

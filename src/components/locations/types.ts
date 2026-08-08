@@ -7,7 +7,8 @@ export function isToBeConfirmed(value: string | null | undefined): boolean {
   return (
     lower === "to be confirmed" ||
     lower === "detailed address is being updated." ||
-    lower === "detailed address is being updated"
+    lower === "detailed address is being updated" ||
+    lower === "message us on whatsapp for the address."
   );
 }
 

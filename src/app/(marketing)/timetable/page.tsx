@@ -39,7 +39,7 @@ const FAQ = [
     id: "faq-why-no-grid",
     question: "Why aren’t exact batch times listed here?",
     answer:
-      "Detailed branch-wise schedules are being updated. Message us on WhatsApp for current availability by programme and branch. Advance booking is optional; checking availability on WhatsApp is recommended.",
+      "Batch times vary by branch and programme. Message us for current availability. Advance booking is optional; checking availability on WhatsApp is recommended.",
   },
   {
     id: "faq-operating-window",
@@ -137,8 +137,8 @@ export default function TimetablePage() {
               Individual batch times vary by branch and programme.
             </p>
             <p className={styles.pendingNote}>
-              Detailed branch-wise schedules are being updated. Advance booking is optional;
-              checking availability on WhatsApp is recommended.
+              Batch times vary by branch and programme. Message us for current availability. Advance
+              booking is optional; checking availability on WhatsApp is recommended.
             </p>
           </div>
         </div>

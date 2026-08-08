@@ -140,7 +140,7 @@ export const mockProgrammes: Programme[] = [
     heroAccent: "calm",
     whoItsFor:
       "People looking for breath-led, lower-impact movement. Suitability depends on the batch. Ask about ladies-only options when booking a trial.",
-    classStructure: "Breath-led session structure varies by batch. Exact times confirmed on enquiry.",
+    classStructure: "Breath-led session structure varies by batch. Message us for current batch times.",
     benefits: [
       "Breath-led studio sessions",
       "Ladies-only batches available on request",
@@ -157,7 +157,7 @@ export const mockProgrammes: Programme[] = [
     mediaSlotKey: "service.yoga",
     seoTitle: "Yoga",
     seoDescription:
-      "Yoga at Ankit’s Studio in Airoli, Ghansoli and Thane. Breath-led sessions; free trial on WhatsApp. Batch times confirmed on enquiry.",
+      "Yoga at Ankit’s Studio in Airoli, Ghansoli and Thane. Breath-led sessions; free trial on WhatsApp. Message us for current batch times.",
     relatedProgrammeSlugs: ["functional-training", "zumba", "adult-dance"],
     ladiesOnlyBatchesAvailable: true,
     kidsOnlyBatchesAvailable: true,
@@ -186,7 +186,7 @@ export const mockProgrammes: Programme[] = [
     heroAccent: "high-energy",
     whoItsFor:
       "Anyone who enjoys music-led group movement. Not every batch suits every age — ask the studio when you enquire.",
-    classStructure: "Music-led group session. Exact batch times confirmed on enquiry.",
+    classStructure: "Music-led group session. Message us for current batch times.",
     benefits: [
       "Music-led group sessions",
       "No dance background required to enquire",
@@ -227,7 +227,7 @@ export const mockProgrammes: Programme[] = [
     heroAccent: "high-energy",
     whoItsFor:
       "Adults interested in studio dance, plus families asking about kids-only Dance batches (3–8 and 8–12 years) and ladies-only Dance batches.",
-    classStructure: "Studio dance sessions. Exact styles and times confirmed on enquiry. Typical sessions are about one hour.",
+    classStructure: "Studio dance sessions. Message us for current styles and batch times. Typical sessions are about one hour.",
     benefits: [
       "Studio dance sessions across branches",
       "Kids-only Dance batches (age groups 3–8 and 8–12 years) available to ask about",
@@ -414,7 +414,7 @@ export const mockProgrammes: Programme[] = [
     benefits: [
       "Remote coach-led sessions on Zoom",
       "One-to-one and group formats",
-      "Schedule and fees confirmed on enquiry",
+      "Schedule and fees — message us for current details",
     ],
     difficulty: "all-levels",
     requiredEquipment: [],

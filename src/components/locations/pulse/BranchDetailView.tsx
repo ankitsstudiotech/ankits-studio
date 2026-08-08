@@ -1,7 +1,6 @@
 import Link from "next/link";
 import type { Branch, Programme } from "@/content";
 import { HeroReveal, SectionReveal } from "@/components/motion";
-import { WHATSAPP_REVIEW_HELPER } from "@/lib/conversion";
 import { LocationPulseCta } from "./LocationPulseMotion";
 import styles from "./location-pulse.module.css";
 
@@ -69,7 +68,6 @@ export function BranchDetailView({
                 Open in Google Maps
               </a>
             ) : null}
-            <p className={styles.ctaNote}>{WHATSAPP_REVIEW_HELPER}</p>
           </div>
         </HeroReveal>
       </section>
@@ -83,7 +81,7 @@ export function BranchDetailView({
         <ul className="pulse-info-grid">
           <li>
             <strong>Address</strong>
-            {addressLine || "Detailed address is being updated."}
+            {addressLine || "Message us on WhatsApp for the address."}
           </li>
           <li>
             <strong>Maps</strong>
@@ -92,7 +90,7 @@ export function BranchDetailView({
                 Open in Google Maps
               </a>
             ) : (
-              "Maps link is being updated. Message WhatsApp for directions."
+              "Message WhatsApp for directions to this studio."
             )}
           </li>
           {branch.phone ? (

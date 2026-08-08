@@ -20,14 +20,12 @@ const BODY_STICKY_CLASS = "has-sticky-cta";
 
 /**
  * Mobile-only sticky conversion bar. Desktop relies on header CTA.
- * Touch targets ≥ 44px. Does not invent phone/WhatsApp links.
  *
- * Route eligibility is an explicit allowlist (primary conversion journeys).
- * Ineligible routes render nothing and clear shell bottom padding.
- *
+ * Hard-excluded: /trial, /contact (and aliases) via stickyCtaEligibility.
+ * Soft-hide: /pricing and /timetable while enquiry builder is in view.
  * Homepage: reveal after hero CTA leaves view; hide when #trial is visible.
- * Form routes (/trial, /pricing, /timetable, /contact): soft-hide while the
- * primary form/WhatsApp action is in view.
+ *
+ * Body padding stays while eligible so soft-hide does not cause CLS.
  */
 export function StickyCtaBar({
   label = "Book a trial",
@@ -45,12 +43,7 @@ export function StickyCtaBar({
   const active = eligible && !hardHidden;
 
   const isHomepage = pathname === "/" || pathname === "";
-  const isFormRoute =
-    pathname === "/pricing" ||
-    pathname === "/timetable" ||
-    pathname === "/contact" ||
-    pathname === "/trial" ||
-    pathname.startsWith("/trial/");
+  const isSoftHideRoute = pathname === "/pricing" || pathname === "/timetable";
   const [homeVisibility, setHomeVisibility] = useState({
     heroVisible: true,
     trialVisible: false,
@@ -96,24 +89,20 @@ export function StickyCtaBar({
   }, [active, isHomepage, pathname]);
 
   useEffect(() => {
-    if (!active || !isFormRoute) return;
+    if (!active || !isSoftHideRoute) return;
 
     const formCta =
-      document.getElementById("trial-whatsapp-cta") ||
       document.getElementById("pricing-enquiry") ||
-      document.getElementById("availability-enquiry") ||
-      document.getElementById("contact-form") ||
-      document.getElementById("trial-builder") ||
-      document.querySelector("form");
+      document.getElementById("availability-enquiry");
     if (!formCta) return;
 
     const observer = new IntersectionObserver(
       ([entry]) => setFormCtaVisible(Boolean(entry?.isIntersecting)),
-      { root: null, threshold: 0.2, rootMargin: "0px 0px -8% 0px" },
+      { root: null, threshold: 0.15, rootMargin: "0px 0px -10% 0px" },
     );
     observer.observe(formCta);
     return () => observer.disconnect();
-  }, [active, isFormRoute, pathname]);
+  }, [active, isSoftHideRoute, pathname]);
 
   if (!active) {
     return null;
@@ -121,7 +110,7 @@ export function StickyCtaBar({
 
   const reveal =
     (!isHomepage || (!homeVisibility.heroVisible && !homeVisibility.trialVisible)) &&
-    !(isFormRoute && formCtaVisible);
+    !(isSoftHideRoute && formCtaVisible);
 
   return (
     <div

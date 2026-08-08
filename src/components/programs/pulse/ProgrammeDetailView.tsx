@@ -1,7 +1,6 @@
 import Link from "next/link";
 import type { Programme, ProgrammeSlug } from "@/content";
 import { HeroReveal, SectionReveal } from "@/components/motion";
-import { WHATSAPP_REVIEW_HELPER } from "@/lib/conversion";
 import { ProgrammePulseCta, type ProgrammeTempo } from "./ProgrammePulseMotion";
 import styles from "./programme-pulse.module.css";
 
@@ -14,6 +13,26 @@ const SLUG_TEMPO: Record<string, ProgrammeTempo> = {
   "home-personal-training": "home",
   "online-training": "online",
 };
+
+function benefitsNote(programme: Programme): string {
+  switch (programme.slug) {
+    case "functional-training":
+      return "Not every piece of equipment appears in every session.";
+    case "yoga":
+      return "Session focus varies by batch — ask which option suits you.";
+    case "zumba":
+    case "adult-dance":
+      return "Music and session focus vary by batch.";
+    case "wedding-choreography":
+      return "Routines are arranged around your event needs.";
+    case "home-personal-training":
+      return "Sessions are planned around your space and goals.";
+    case "online-training":
+      return "Format and timing are agreed when you enquire.";
+    default:
+      return "Session details vary — ask what to expect when you enquire.";
+  }
+}
 
 export type ProgrammeDetailViewProps = {
   programme: Programme;
@@ -83,7 +102,7 @@ export function ProgrammeDetailView({
   const pricingText =
     programme.pricingStatus === "published"
       ? "See pricing page"
-      : "Programme fees confirmed on enquiry · ₹300 one-time registration after you join";
+      : "Message us for the current programme fee · ₹300 one-time registration after you join";
 
   const audienceParts: string[] = [];
   if (programme.ladiesOnlyBatchesAvailable) {
@@ -110,7 +129,6 @@ export function ProgrammeDetailView({
           <p className={styles.detailLede}>{programme.shortDescription}</p>
           <div className={styles.ctaRow}>
             <ProgrammePulseCta href={whatsappHref}>{whatsappLabel}</ProgrammePulseCta>
-            <p className={styles.ctaNote}>{WHATSAPP_REVIEW_HELPER}</p>
           </div>
         </HeroReveal>
         <aside className={styles.summaryPanel} aria-label="Programme summary">
@@ -180,9 +198,7 @@ export function ProgrammeDetailView({
               What the session may include
             </h2>
           </SectionReveal>
-          <p className={styles.sectionNote}>
-            Not every tool appears in every session.
-          </p>
+          <p className={styles.sectionNote}>{benefitsNote(programme)}</p>
           <ul className={styles.includeList}>
             {programme.benefits.map((benefit) => (
               <li key={benefit}>{benefit}</li>
@@ -314,7 +330,6 @@ export function ProgrammeDetailView({
         </p>
         <div className={styles.ctaRow}>
           <ProgrammePulseCta href={whatsappHref}>{whatsappLabel}</ProgrammePulseCta>
-          <p className={styles.ctaNote}>{WHATSAPP_REVIEW_HELPER}</p>
         </div>
       </section>
     </div>

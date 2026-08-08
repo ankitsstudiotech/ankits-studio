@@ -1,5 +1,4 @@
 import Link from "next/link";
-import { WHATSAPP_REVIEW_HELPER } from "@/lib/conversion";
 import { PulseCta } from "./pulse/PulseMotion";
 import styles from "./pulse/pulse-home.module.css";
 
@@ -25,7 +24,6 @@ export function FreeTrialCta({
       <h2 id="home-trial-title">{title}</h2>
       <p>{body}</p>
       <PulseCta href={href}>{label}</PulseCta>
-      <p className={styles.ctaNote}>{WHATSAPP_REVIEW_HELPER}</p>
       <p className={styles.ctaNote}>
         Free trial class. One-time registration fee is ₹300 after you join.
       </p>

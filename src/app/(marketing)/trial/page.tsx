@@ -55,7 +55,7 @@ export default function TrialPage() {
           <ul className="mt-6 list-none space-y-3 p-0 text-[length:var(--text-body)] text-[var(--color-muted-on-field)]">
             <li>Studios open daily · 6:00 AM–10:00 PM</li>
             <li>₹300 one-time registration after you join</li>
-            <li>Programme fees confirmed when you enquire</li>
+            <li>Programme fees — message us for the current fee</li>
           </ul>
           <div className="mt-8 space-y-2 text-sm text-[var(--color-muted-on-field)]">
             {studioLinks.phoneHref ? (
