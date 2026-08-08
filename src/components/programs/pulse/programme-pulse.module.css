@@ -346,30 +346,86 @@
     align-items: end;
   }
 
+  /* Yoga — calmer breathing room */
   .detailOpeningWithMedia[data-media-compose="calm"] {
-    gap: 2rem;
+    gap: 2.25rem;
     align-items: center;
+    grid-template-columns: minmax(0, 1.2fr) minmax(0, 0.8fr);
+  }
+
+  /* Zumba — stronger visual rhythm */
+  .detailOpeningWithMedia[data-media-compose="fluid"] {
+    gap: 1.15rem;
+    align-items: stretch;
   }
 
   .detailOpeningWithMedia[data-media-compose="fluid"] .detailMedia {
     max-width: none;
+    align-self: stretch;
   }
 
+  /* Dance — controlled asymmetry past grid edge */
   .detailOpeningWithMedia[data-media-compose="expressive"] .detailMedia {
-    margin-inline-end: -0.5rem;
+    margin-inline-end: calc(-1 * clamp(0.5rem, 2vw, 1.25rem));
+    max-width: none;
   }
 
+  /* Wedding — elegant framing */
   .detailOpeningWithMedia[data-media-compose="ceremonial"] {
-    gap: 1.75rem;
+    gap: 1.85rem;
+    align-items: center;
+  }
+
+  .detailOpeningWithMedia[data-media-compose="ceremonial"] .detailMedia figure {
+    outline: 1px solid rgb(255 255 255 / 0.08);
+  }
+
+  /* Functional — decisive structured crop */
+  .detailOpeningWithMedia[data-media-compose="structured"] {
+    gap: 1.25rem;
+    align-items: stretch;
   }
 
   .detailOpeningWithMedia[data-media-compose="structured"] .detailMedia figure {
-    outline: 1px solid rgb(255 255 255 / 0.1);
+    outline: 1px solid rgb(255 255 255 / 0.12);
   }
 
-  .detailOpeningWithMedia[data-media-compose="direct"] .detailMedia,
+  /* Home PT — intimate / direct */
+  .detailOpeningWithMedia[data-media-compose="direct"] .detailMedia {
+    max-width: 20rem;
+    justify-self: end;
+  }
+
+  /* Online — training context, not fake app chrome */
   .detailOpeningWithMedia[data-media-compose="remote"] .detailMedia {
-    max-width: 22rem;
+    max-width: 21rem;
+  }
+}
+
+.includeWithMedia {
+  display: grid;
+  gap: 1.25rem;
+  align-items: start;
+}
+
+.actionMedia {
+  max-width: 26rem;
+  width: 100%;
+}
+
+.actionMedia figure {
+  border-radius: 0;
+}
+
+@media (min-width: 900px) {
+  .includeWithMedia {
+    grid-template-columns: minmax(0, 1.15fr) minmax(0, 0.75fr);
+    gap: 1.75rem;
+    align-items: center;
+  }
+
+  .actionMedia {
+    max-width: none;
   }
 }
 
@@ -603,6 +659,10 @@
 @media (min-width: 1024px) {
   .includeList {
     grid-template-columns: 1fr 1fr 1fr;
+  }
+
+  .includeWithMedia .includeList {
+    grid-template-columns: 1fr 1fr;
   }
 }
 

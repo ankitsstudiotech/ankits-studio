@@ -39,11 +39,22 @@
 
 .atmosphereMedia {
   margin: 0 0 1.75rem;
-  max-width: 52rem;
+  max-width: 48rem;
+  overflow: hidden;
 }
 
 .atmosphereMedia figure {
   border-radius: 0;
+  /* Tight plant/floor strip — keeps residual wall emblem out of frame */
+  aspect-ratio: 2.6 / 1;
+  max-height: 11rem;
+}
+
+@media (max-width: 768px) {
+  .atmosphereMedia figure {
+    aspect-ratio: 2 / 1;
+    max-height: 8.5rem;
+  }
 }
 
 .utilityLede {
