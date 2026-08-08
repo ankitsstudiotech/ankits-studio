@@ -215,7 +215,7 @@ export function BranchDetailView({
         </SectionReveal>
         <div className={styles.finalCta}>
           <p className={styles.bandLede}>
-            Prefer {branch.locality}? Start on WhatsApp with this branch already filled in.
+            Prefer {branch.locality}? Message WhatsApp to book a free trial here.
           </p>
           <LocationPulseCta href={whatsappHref}>{whatsappLabel}</LocationPulseCta>
         </div>

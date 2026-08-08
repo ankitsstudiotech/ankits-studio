@@ -83,30 +83,13 @@ const SHARED_AUDIENCE_PROVENANCE: BranchFieldProvenance = {
   media: "pending",
 };
 
+/** Keep only FAQs that add detail not already on the branch page. */
 const SHARED_BRANCH_FAQS = [
-  {
-    id: "faq-branch-batches",
-    question: "How do I check current batch availability?",
-    answer:
-      "Message us on WhatsApp with your preferred branch and programme. We’ll confirm current batch times when you enquire.",
-  },
-  {
-    id: "faq-branch-hours",
-    question: "What are the studio operating hours?",
-    answer:
-      "Studios are open from 6:00 AM to 10:00 PM every day — there is no weekly closing day. That is the studio open window, not a continuous class timetable. Batch times vary and are confirmed on WhatsApp.",
-  },
-  {
-    id: "faq-branch-trial",
-    question: "Is a trial class free?",
-    answer:
-      "Yes. A free trial is available for every service at every physical branch, once per person. Advance booking is not compulsory, but checking current availability on WhatsApp is recommended. After you join, there is a one-time registration fee of ₹300 per person.",
-  },
   {
     id: "faq-branch-audience",
     question: "Are ladies-only or kids-only batches available?",
     answer:
-      "Ladies-only and kids-only batches are available as batch options at Ankit’s Studio. Kids Dance age groups include 3–8 years and 8–12 years. Ask on WhatsApp which options fit your preferred branch and programme — availability is confirmed when you enquire.",
+      "Ladies-only and kids-only batches are available as batch options. Kids Dance age groups include 3–8 years and 8–12 years. Ask on WhatsApp which options fit — availability is confirmed when you enquire.",
   },
 ] as const;
 

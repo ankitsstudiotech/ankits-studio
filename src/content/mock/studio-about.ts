@@ -15,16 +15,16 @@ export const mockStudioAbout: StudioAbout = {
     "Ankit’s Studio combines functional training, yoga, Zumba, dance and wedding choreography across four neighbourhood branches — with home and online training as delivery options. Sessions are machine-free and coach-led.",
   approachTitle: "Machine-free, coach-led",
   approachBody:
-    "Ankit’s Studio does not rely on conventional gym-machine workouts. Machine-free Functional Training may use bodyweight movement and portable equipment such as bands, dumbbells and kettlebells. Group sessions are coach-led; personalised programming is available through personal training. We do not promise specific results.",
+    "Ankit’s Studio does not rely on conventional gym-machine workouts. Group sessions are coach-led; personalised programming is available through personal training.",
   disciplinesTitle: "One studio, different ways of moving",
   disciplinesBody:
-    "The same studio brand supports functional training, Zumba, yoga, dance and wedding choreography in the studio, plus home personal training and online training. Corporate Fitness Sessions are available by enquiry. Choose the service that fits — then enquire for the current batch and fee.",
+    "Functional training, Zumba, yoga, dance and wedding choreography in studio — plus home and online training. Choose the service that fits, then enquire for the current batch and fee.",
   branchesTitle: "Four neighbourhood branches",
   branchesBody:
-    "Ankit’s Studio operates through Airoli Sector 19, Airoli Sector 8, Ghansoli and Thane. Each branch page lists the address and a Maps link.",
+    "Airoli Sector 19, Airoli Sector 8, Ghansoli and Thane. Each branch page has the address and a Maps link.",
   teamTitle: "Team and coaching",
   teamBody:
-    "Ankit’s Studio works with a team of 15+ trainers across its programmes and branches.",
+    "Ankit’s Studio works with a team of 15+ coaches across its programmes and branches.",
   teamCountProvenance: "Our coaching team covers fitness, yoga, Zumba and dance.",
   trainerProfileSlugs: [],
   founderStoryStatus: "verified",
@@ -35,28 +35,10 @@ export const mockStudioAbout: StudioAbout = {
   credentialsStatus: "pending",
   faqs: [
     {
-      id: "about-faq-what",
-      question: "What is Ankit’s Studio?",
-      answer:
-        "A multi-branch fitness studio founded in 2019 in Navi Mumbai and Thane. It offers functional training, Zumba, yoga, dance and wedding choreography, with home and online training as delivery options.",
-    },
-    {
       id: "about-faq-machine-free",
       question: "Are sessions machine-free?",
       answer:
-        "Yes. The studio does not rely on conventional gym-machine workouts. Portable equipment such as bands, dumbbells and kettlebells may still be used. Group sessions are coach-led; personalised programming is available through personal training.",
-    },
-    {
-      id: "about-faq-branches",
-      question: "How many branches are there?",
-      answer:
-        "Four neighbourhood branches: Airoli Sector 19, Airoli Sector 8, Ghansoli and Thane.",
-    },
-    {
-      id: "about-faq-trial",
-      question: "How do I book a free trial?",
-      answer:
-        "Message Ankit’s Studio on WhatsApp. Messages are answered during studio operating hours.",
+        "Yes. The studio does not rely on conventional gym-machine workouts. Portable equipment such as bands, dumbbells and kettlebells may still be used.",
     },
   ],
   ownerSource: OWNER_INTERVIEW_2026_08_03,
