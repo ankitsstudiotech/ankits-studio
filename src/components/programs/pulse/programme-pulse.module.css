@@ -550,10 +550,76 @@
 }
 
 .legacyBanner {
-  background: var(--color-warning);
-  color: var(--color-warning-foreground);
-  padding: 0.85rem 1rem;
+  background: color-mix(in srgb, var(--color-field) 88%, var(--color-accent));
+  color: var(--color-ink-inverse);
+  border-bottom: 1px solid rgb(255 255 255 / 0.12);
+  padding: 0.85rem var(--spacing-gutter);
   font-size: 0.9rem;
+}
+
+.legacyWrap {
+  background: var(--color-field);
+  color: var(--color-ink-inverse);
+}
+
+.legacyBand {
+  padding: var(--spacing-section) var(--spacing-gutter);
+  max-width: var(--width-container);
+  margin-inline: auto;
+}
+
+.legacyTitle {
+  font-family: var(--font-display);
+  font-size: var(--text-title);
+  letter-spacing: var(--text-title--letter-spacing);
+  line-height: var(--text-title--line-height);
+  margin: 0 0 0.75rem;
+  text-transform: uppercase;
+  max-width: 18ch;
+}
+
+.legacyBody {
+  margin: 0 0 1rem;
+  max-width: 52ch;
+  font-size: var(--text-body);
+  line-height: var(--text-body--line-height);
+  color: var(--color-muted-on-field);
+}
+
+.legacyBody a {
+  color: var(--color-ink-inverse);
+  font-weight: 600;
+  text-decoration: underline;
+  text-underline-offset: 0.18em;
+}
+
+.legacyBody a:hover {
+  color: var(--color-accent);
+}
+
+.legacyCta a {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 48px;
+  padding: 0.65rem 1.25rem;
+  background: var(--color-accent);
+  color: var(--color-accent-foreground);
+  font-family: var(--font-sans);
+  font-size: 0.8rem;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  text-decoration: none;
+}
+
+.legacyCta a:hover {
+  background: var(--color-accent-hover);
+}
+
+.legacyCta a:focus-visible {
+  outline: 2px solid var(--color-volt);
+  outline-offset: 3px;
 }
 
 .surfaceBand {

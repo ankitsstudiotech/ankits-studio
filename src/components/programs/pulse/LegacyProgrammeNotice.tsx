@@ -17,30 +17,31 @@ export function LegacyProgrammeNotice({
   whatsappHref,
 }: LegacyProgrammeNoticeProps) {
   return (
-    <div>
+    <div className={styles.legacyWrap}>
       <div className={styles.legacyBanner} role="status">
-        This page is kept for people who found an older link. It is not listed among our current
-        programmes.
+        This programme list has been updated.
       </div>
-      <section className={styles.surfaceBand} aria-labelledby="legacy-title">
-        <h1 id="legacy-title">{programme.name}</h1>
-        <p>{programme.longDescription}</p>
-        <p>
-          <Link href="/programs">Browse current programmes →</Link>
+      <section className={styles.legacyBand} aria-labelledby="legacy-title">
+        <h1 id="legacy-title" className={styles.legacyTitle}>
+          {programme.name}
+        </h1>
+        <p className={styles.legacyBody}>{programme.longDescription}</p>
+        <p className={styles.legacyBody}>
+          <Link href="/programs">See current programmes</Link>
         </p>
         {relatedName && relatedHref ? (
-          <p>
-            Related service: <Link href={relatedHref}>{relatedName}</Link>
+          <p className={styles.legacyBody}>
+            Related: <Link href={relatedHref}>{relatedName}</Link>
           </p>
         ) : null}
-        <p>
+        <p className={styles.legacyCta}>
           <a
             href={whatsappHref}
             {...(whatsappHref.startsWith("http")
               ? { target: "_blank", rel: "noopener noreferrer" }
               : {})}
           >
-            Ask on WhatsApp which current service fits →
+            Enquire on WhatsApp
           </a>
         </p>
       </section>

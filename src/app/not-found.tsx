@@ -1,5 +1,7 @@
 import Link from "next/link";
 import { SiteChrome } from "@/components/layout";
+import { RouteOpening } from "@/components/motion";
+import styles from "@/components/status/pulse/status.module.css";
 
 /**
  * Wrapped in the same `SiteChrome` every real route uses, so a 404 doesn't
@@ -9,19 +11,30 @@ import { SiteChrome } from "@/components/layout";
 export default function NotFound() {
   return (
     <SiteChrome>
-      <main className="flex flex-1 flex-col items-center justify-center gap-4 px-[var(--spacing-gutter)] py-[var(--spacing-section)] text-center">
-        <h1 className="font-[family-name:var(--font-display)] text-[length:var(--text-title)] tracking-[var(--text-title--letter-spacing)] text-ink-inverse">
-          Page not found
-        </h1>
-        <p className="max-w-md text-[var(--color-muted-on-field)]">
-          The page you&apos;re looking for doesn&apos;t exist or may have moved.
-        </p>
-        <Link
-          href="/"
-          className="inline-flex min-h-12 items-center justify-center bg-accent px-6 text-xs font-bold uppercase tracking-[0.06em] text-accent-foreground hover:bg-accent-hover focus-visible:outline-2 focus-visible:outline-offset-3 focus-visible:outline-focus-ring"
-        >
-          Return home
-        </Link>
+      <main className={styles.page}>
+        <RouteOpening>
+          <p className={styles.mark} aria-hidden="true" />
+          <h1 className={styles.title}>Page not found</h1>
+          <p className={styles.body}>
+            The page you&apos;re looking for doesn&apos;t exist or may have moved.
+          </p>
+        </RouteOpening>
+        <div className={styles.actions}>
+          <Link href="/" className={styles.primary}>
+            Home
+          </Link>
+        </div>
+        <div className={styles.secondaryRow}>
+          <Link href="/programs" className={styles.secondary}>
+            Programmes
+          </Link>
+          <Link href="/locations" className={styles.secondary}>
+            Find a Studio
+          </Link>
+          <Link href="/trial" className={styles.secondary}>
+            Book a Free Trial
+          </Link>
+        </div>
       </main>
     </SiteChrome>
   );
