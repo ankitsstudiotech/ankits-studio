@@ -2,7 +2,7 @@ import { describe, expect, it } from "vitest";
 import { isStickyCtaEligiblePath } from "@/components/layout/stickyCtaEligibility";
 
 describe("sticky CTA route eligibility", () => {
-  it("allows primary conversion and marketing journeys", () => {
+  it("allows browse journeys where sticky assists conversion", () => {
     for (const path of [
       "/",
       "/about",
@@ -13,10 +13,14 @@ describe("sticky CTA route eligibility", () => {
       "/locations/airoli-sector-19",
       "/timetable",
       "/pricing",
-      "/contact",
-      "/trial",
     ]) {
       expect(isStickyCtaEligiblePath(path), path).toBe(true);
+    }
+  });
+
+  it("hard-excludes trial and contact conversion destinations", () => {
+    for (const path of ["/trial", "/trial/extra", "/contact", "/book-a-free-trial"]) {
+      expect(isStickyCtaEligiblePath(path), path).toBe(false);
     }
   });
 
@@ -35,7 +39,6 @@ describe("sticky CTA route eligibility", () => {
       "/design-lab",
       "/design-lab/revamp-a",
       "/this-page-does-not-exist",
-      "/book-a-free-trial",
     ]) {
       expect(isStickyCtaEligiblePath(path), path).toBe(false);
     }

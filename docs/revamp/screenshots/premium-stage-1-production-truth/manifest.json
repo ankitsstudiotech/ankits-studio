@@ -1,0 +1,279 @@
+{
+  "generatedAt": "2026-08-08T08:46:32.607Z",
+  "base": "http://127.0.0.1:3490",
+  "fails": 0,
+  "records": [
+    {
+      "name": "full-390-home.png",
+      "width": 390,
+      "expected": 390,
+      "sticky": 1,
+      "reveal": "false",
+      "pass": true
+    },
+    {
+      "name": "full-768-home.png",
+      "width": 768,
+      "expected": 768,
+      "sticky": 1,
+      "reveal": "false",
+      "pass": true
+    },
+    {
+      "name": "full-1440-home.png",
+      "width": 1440,
+      "expected": 1440,
+      "sticky": 1,
+      "reveal": "false",
+      "pass": true
+    },
+    {
+      "name": "full-390-pricing.png",
+      "width": 390,
+      "expected": 390,
+      "sticky": 1,
+      "reveal": "true",
+      "pass": true
+    },
+    {
+      "name": "full-768-pricing.png",
+      "width": 768,
+      "expected": 768,
+      "sticky": 1,
+      "reveal": "true",
+      "pass": true
+    },
+    {
+      "name": "full-1440-pricing.png",
+      "width": 1440,
+      "expected": 1440,
+      "sticky": 1,
+      "reveal": "false",
+      "pass": true
+    },
+    {
+      "name": "full-390-timetable.png",
+      "width": 390,
+      "expected": 390,
+      "sticky": 1,
+      "reveal": "true",
+      "pass": true
+    },
+    {
+      "name": "full-768-timetable.png",
+      "width": 768,
+      "expected": 768,
+      "sticky": 1,
+      "reveal": "false",
+      "pass": true
+    },
+    {
+      "name": "full-1440-timetable.png",
+      "width": 1440,
+      "expected": 1440,
+      "sticky": 1,
+      "reveal": "false",
+      "pass": true
+    },
+    {
+      "name": "full-390-trial.png",
+      "width": 390,
+      "expected": 390,
+      "sticky": 0,
+      "reveal": null,
+      "pass": true
+    },
+    {
+      "name": "full-768-trial.png",
+      "width": 768,
+      "expected": 768,
+      "sticky": 0,
+      "reveal": null,
+      "pass": true
+    },
+    {
+      "name": "full-1440-trial.png",
+      "width": 1440,
+      "expected": 1440,
+      "sticky": 0,
+      "reveal": null,
+      "pass": true
+    },
+    {
+      "name": "full-390-contact.png",
+      "width": 390,
+      "expected": 390,
+      "sticky": 0,
+      "reveal": null,
+      "pass": true
+    },
+    {
+      "name": "full-768-contact.png",
+      "width": 768,
+      "expected": 768,
+      "sticky": 0,
+      "reveal": null,
+      "pass": true
+    },
+    {
+      "name": "full-1440-contact.png",
+      "width": 1440,
+      "expected": 1440,
+      "sticky": 0,
+      "reveal": null,
+      "pass": true
+    },
+    {
+      "name": "full-390-about.png",
+      "width": 390,
+      "expected": 390,
+      "sticky": 1,
+      "reveal": "true",
+      "pass": true
+    },
+    {
+      "name": "full-768-about.png",
+      "width": 768,
+      "expected": 768,
+      "sticky": 1,
+      "reveal": "true",
+      "pass": true
+    },
+    {
+      "name": "full-1440-about.png",
+      "width": 1440,
+      "expected": 1440,
+      "sticky": 1,
+      "reveal": "true",
+      "pass": true
+    },
+    {
+      "name": "full-390-programs.png",
+      "width": 390,
+      "expected": 390,
+      "sticky": 1,
+      "reveal": "true",
+      "pass": true
+    },
+    {
+      "name": "full-768-programs.png",
+      "width": 768,
+      "expected": 768,
+      "sticky": 1,
+      "reveal": "true",
+      "pass": true
+    },
+    {
+      "name": "full-1440-programs.png",
+      "width": 1440,
+      "expected": 1440,
+      "sticky": 1,
+      "reveal": "true",
+      "pass": true
+    },
+    {
+      "name": "full-390-programs-functional-training.png",
+      "width": 390,
+      "expected": 390,
+      "sticky": 1,
+      "reveal": "true",
+      "pass": true
+    },
+    {
+      "name": "full-768-programs-functional-training.png",
+      "width": 768,
+      "expected": 768,
+      "sticky": 1,
+      "reveal": "true",
+      "pass": true
+    },
+    {
+      "name": "full-1440-programs-functional-training.png",
+      "width": 1440,
+      "expected": 1440,
+      "sticky": 1,
+      "reveal": "true",
+      "pass": true
+    },
+    {
+      "name": "full-390-programs-yoga.png",
+      "width": 390,
+      "expected": 390,
+      "sticky": 1,
+      "reveal": "true",
+      "pass": true
+    },
+    {
+      "name": "full-768-programs-yoga.png",
+      "width": 768,
+      "expected": 768,
+      "sticky": 1,
+      "reveal": "true",
+      "pass": true
+    },
+    {
+      "name": "full-1440-programs-yoga.png",
+      "width": 1440,
+      "expected": 1440,
+      "sticky": 1,
+      "reveal": "true",
+      "pass": true
+    },
+    {
+      "name": "full-390-programs-wedding-choreography.png",
+      "width": 390,
+      "expected": 390,
+      "sticky": 1,
+      "reveal": "true",
+      "pass": true
+    },
+    {
+      "name": "full-768-programs-wedding-choreography.png",
+      "width": 768,
+      "expected": 768,
+      "sticky": 1,
+      "reveal": "true",
+      "pass": true
+    },
+    {
+      "name": "full-1440-programs-wedding-choreography.png",
+      "width": 1440,
+      "expected": 1440,
+      "sticky": 1,
+      "reveal": "true",
+      "pass": true
+    },
+    {
+      "name": "viewport-390-pricing-enquiry-in-view.png",
+      "width": 390,
+      "expected": 390,
+      "sticky": 1,
+      "reveal": "false",
+      "pass": true
+    },
+    {
+      "name": "viewport-390-timetable-enquiry-in-view.png",
+      "width": 390,
+      "expected": 390,
+      "sticky": 1,
+      "reveal": "false",
+      "pass": true
+    },
+    {
+      "name": "viewport-390-trial.png",
+      "width": 390,
+      "expected": 390,
+      "sticky": 0,
+      "reveal": null,
+      "pass": true
+    },
+    {
+      "name": "viewport-390-contact.png",
+      "width": 390,
+      "expected": 390,
+      "sticky": 0,
+      "reveal": null,
+      "pass": true
+    }
+  ]
+}
