@@ -20,7 +20,7 @@ import {
 const PATH = "/pricing";
 
 const PAGE_DESCRIPTION =
-  "Free trial once per person, ₹300 one-time registration, and programme fees that vary by service and branch. Request current pricing from Ankit’s Studio on WhatsApp.";
+  "Free trial once per person, ₹300 one-time registration, and programme fees that vary by service and branch. Ask Ankit’s Studio for the current fee on WhatsApp.";
 
 export const metadata: Metadata = buildPageMetadata({
   title: "Pricing & Free Trial",
@@ -48,32 +48,25 @@ const FAQ = [
   },
   {
     id: "faq-why-no-list",
-    question: "Why are exact programme fees not displayed?",
+    question: "How do I get the current programme fee?",
     answer:
-      "Programme fees vary by service and branch. GST is included in the fee quoted by the studio. Exact monthly and longer-term amounts have not been published yet — message us for the current fee.",
-  },
-  {
-    id: "faq-how-to-get",
-    question: "How can I get the current fee for a programme?",
-    answer:
-      "Use the enquiry form on this page or WhatsApp. Include the service you want and a preferred branch for studio classes when you can.",
+      "Programme fees vary by service and branch. Tell us what you’re interested in and we’ll share the current fee on WhatsApp. GST is included in the fee quoted by the studio.",
   },
   {
     id: "faq-home-online",
     question: "Are Home Personal Training and Online Training priced differently?",
     answer:
-      "Home Personal Training is priced per session. Online Training uses Zoom (one-to-one and group). Exact package amounts are confirmed when you enquire.",
+      "Home Personal Training is priced per session. Online Training uses Zoom (one-to-one and group). Message us for the current rates.",
   },
   {
     id: "faq-wedding",
     question: "How is Wedding Choreography priced?",
-    answer: "Wedding Choreography pricing is arranged per couple. Exact amounts are confirmed when you enquire.",
+    answer: "Wedding Choreography pricing is arranged per couple. Message us for current details.",
   },
 ] as const;
 
 /**
  * Honest pricing page — confirmed facts only; programme fees via WhatsApp.
- * Does not render membership plan tiers (mock or otherwise).
  */
 export default function PricingPage() {
   const commercial = getStudioCommercial();
@@ -134,19 +127,20 @@ export default function PricingPage() {
             <p className={styles.lede}>
               Your trial class is free for every service at every physical branch — once per person. A
               one-time registration fee of ₹300 per person applies after you join and is not charged again
-              after a membership break. Programme fees vary by service and branch. GST is included in
-              the fee quoted by the studio. Message us for the current fee.
+              after a membership break. Programme fees vary by service and branch. Tell us what you’re
+              interested in and we’ll share the current fee on WhatsApp. GST is included in the fee
+              quoted by the studio.
             </p>
           </RouteOpening>
 
           <h2 id="confirmed-fees-title" className={styles.sectionTitle} style={{ marginTop: "2rem" }}>
-            Confirmed
+            What we can confirm today
           </h2>
           <ul className={styles.confirmedList}>
             <li className={styles.confirmedItem}>
               <p className={styles.kicker}>Trial</p>
               <p className={styles.feeAmount}>
-                {commercial.trialIsFree ? "Free" : "To be confirmed"}
+                {commercial.trialIsFree ? "Free" : "Ask on WhatsApp"}
               </p>
               <p className={styles.feeMeta}>
                 Free for every service and physical branch, once per person. Advance booking is not
@@ -165,29 +159,19 @@ export default function PricingPage() {
             ) : null}
             <li className={styles.confirmedItem}>
               <p className={styles.kicker}>Programme fees</p>
-            <p className={styles.feeMeta}>
-              Fees vary by service and branch. GST is included in the fee quoted by the studio. Exact amounts are
-              shared when you enquire.
-            </p>
-          </li>
-          <li className={styles.confirmedItem}>
-            <p className={styles.kicker}>Pricing bases</p>
-            <p className={styles.feeMeta}>
-              Wedding Choreography is priced per couple. Home Personal Training is priced per session.
-              Online Training uses Zoom (one-to-one and group). Exact rates are confirmed when you
-              enquire.
-            </p>
-          </li>
+              <p className={styles.feeMeta}>
+                Programme fees vary by service and branch. Tell us what you’re interested in and we’ll
+                share the current fee on WhatsApp. GST is included in the fee quoted by the studio.
+              </p>
+            </li>
+            <li className={styles.confirmedItem}>
+              <p className={styles.kicker}>How some services are priced</p>
+              <p className={styles.feeMeta}>
+                Wedding Choreography is priced per couple. Home Personal Training is priced per session.
+                Online Training uses Zoom (one-to-one and group). Message us for the current rates.
+              </p>
+            </li>
           </ul>
-
-          <h2 id="why-varies-title" className={styles.sectionTitle} style={{ marginTop: "2rem" }}>
-            What affects pricing
-          </h2>
-          <p className={styles.lede}>
-            The right fee depends on the service, the branch, and how you train. Discounts are available
-            for some customer groups or plans — exact rules are confirmed when you enquire. We do not
-            publish unfinished membership legal wording as final terms here.
-          </p>
         </div>
 
         <section
@@ -196,7 +180,7 @@ export default function PricingPage() {
           aria-labelledby="pricing-enquiry-title"
         >
           <h2 id="pricing-enquiry-title" className={styles.sectionTitle}>
-            Request current fees
+            Ask for the current fee
           </h2>
           <p className={styles.lede}>
             Prepare a WhatsApp message for the service you want. You do not need every field filled in
@@ -208,26 +192,6 @@ export default function PricingPage() {
             fallbackHref={fallbackHref}
           />
         </section>
-      </section>
-
-      <section className={styles.band} aria-labelledby="pending-policies-title">
-        <h2 id="pending-policies-title" className={styles.sectionTitle}>
-          Still being updated
-        </h2>
-        <p className={styles.lede}>
-          These details are not published yet. Ask on WhatsApp if you need them for your decision.
-        </p>
-        <ul className={styles.pendingList}>
-          <li>Exact monthly, quarterly, half-yearly and annual programme fee amounts</li>
-          <li>Exact Wedding Choreography package amounts (basis: per couple)</li>
-          <li>Exact Home Personal Training session rates and Online Training package amounts</li>
-          <li>Exact discount eligibility rules</li>
-          <li>
-            Final membership terms (cancellation, refund, freeze, transfer) — ask us if you need
-            details for your decision
-          </li>
-          <li>Missed-class policy — confirmed when you enquire</li>
-        </ul>
       </section>
 
       <section className={styles.band} aria-labelledby="pricing-faq-title">

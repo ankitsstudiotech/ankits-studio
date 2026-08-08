@@ -2,23 +2,22 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import { PageBreadcrumb } from "@/components/layout/PageBreadcrumb";
 import { RouteOpening } from "@/components/motion";
-import { getContactDetails, getPubliclyListedBranches, getStudioContactLinks } from "@/content";
+import { getContactDetails, getPubliclyListedBranches, getStudioContactLinks, getBranchMapsUrl } from "@/content";
 import {
   getPrimaryConversionHref,
   SECONDARY_TRIAL_FORM_HREF,
-  WHATSAPP_REVIEW_HELPER,
 } from "@/lib/conversion";
 import { buildPageMetadata } from "@/lib/seo/metadata";
 import { serializeJsonLd } from "@/lib/seo/serialize";
 import { buildBreadcrumbJsonLd } from "@/lib/seo/structured-data";
-import { ContactForm } from "./ContactForm";
+import { ContactWhatsAppBuilder } from "./ContactWhatsAppBuilder";
 
 const PATH = "/contact";
 
 export const metadata: Metadata = buildPageMetadata({
   title: "Contact",
   description:
-    "Contact Ankit's Studio — WhatsApp for a free trial, central phone, email, and branch directory.",
+    "Contact Ankit's Studio — WhatsApp, central phone, email, and four neighbourhood studios.",
   path: PATH,
 });
 
@@ -27,25 +26,20 @@ const breadcrumbTrail = [
   { name: "Contact", path: PATH },
 ];
 
-type ContactPageProps = {
-  searchParams: Promise<{ status?: string; mode?: string; ref?: string }>;
-};
-
-export default async function ContactPage({ searchParams }: ContactPageProps) {
-  const params = await searchParams;
+/**
+ * Contact prioritises WhatsApp, phone, email and branches.
+ * No server contact form — production has no live lead-delivery provider.
+ */
+export default function ContactPage() {
   const contact = getContactDetails();
   const studioLinks = getStudioContactLinks();
   const whatsappTrialHref = getPrimaryConversionHref();
   const branches = getPubliclyListedBranches();
   const breadcrumbJsonLd = buildBreadcrumbJsonLd(breadcrumbTrail);
-
-  const status = params.status;
-  const statusMessage =
-    status === "received"
-      ? `Thanks — we received your enquiry reference ${params.ref ?? "n/a"}.`
-      : status === "not-configured" || status === "provider-error"
-        ? "Your message could not be delivered right now. Please reach us on WhatsApp or phone instead."
-        : null;
+  const branchOptions = branches.map((branch) => ({
+    slug: branch.slug,
+    locality: branch.locality,
+  }));
 
   return (
     <main className="pulse-page flex flex-1 flex-col">
@@ -76,27 +70,47 @@ export default async function ContactPage({ searchParams }: ContactPageProps) {
               >
                 Book a free trial on WhatsApp
               </Link>
-              <p className="pulse-body max-w-prose">{WHATSAPP_REVIEW_HELPER}</p>
               <p className="pulse-body">
                 Or use the{" "}
                 <Link
                   href={SECONDARY_TRIAL_FORM_HREF}
                   className="font-semibold text-ink-inverse underline underline-offset-4"
                 >
-                  trial message builder
+                  free trial message builder
                 </Link>
                 .
               </p>
             </div>
           </RouteOpening>
+
+          <section
+            id="contact-enquiry"
+            className="mt-10 pulse-form-panel sm:p-6"
+            aria-labelledby="contact-enquiry-title"
+          >
+            <h2
+              id="contact-enquiry-title"
+              className="mb-2 font-[family-name:var(--font-display)] text-[length:var(--text-heading)]"
+            >
+              Send a message on WhatsApp
+            </h2>
+            <p className="mb-6 text-sm text-[var(--color-muted-on-field)]">
+              Prepare a general enquiry. For the fastest reply about batches and trials, WhatsApp is
+              best.
+            </p>
+            <ContactWhatsAppBuilder
+              branches={branchOptions}
+              fallbackHref={SECONDARY_TRIAL_FORM_HREF}
+            />
+          </section>
         </section>
 
         <section aria-labelledby="contact-channels" className="space-y-4">
           <h2 id="contact-channels" className="pulse-section-title">
-            Phone, email &amp; branches
+            Phone, email &amp; studios
           </h2>
           <div className="border border-[var(--color-border-on-field)] bg-field-raised p-5">
-            <p className="text-sm font-semibold text-ink-inverse">Central phone &amp; WhatsApp</p>
+            <p className="text-sm font-semibold text-ink-inverse">Phone &amp; WhatsApp</p>
             {studioLinks.phoneHref ? (
               <a
                 href={studioLinks.phoneHref}
@@ -125,7 +139,9 @@ export default async function ContactPage({ searchParams }: ContactPageProps) {
             )}
           </div>
           <ul className="grid gap-3 sm:grid-cols-2">
-            {branches.map((branch) => (
+            {branches.map((branch) => {
+              const mapsUrl = getBranchMapsUrl(branch);
+              return (
               <li key={branch.slug}>
                 <Link
                   href={`/locations/${branch.slug}`}
@@ -135,42 +151,20 @@ export default async function ContactPage({ searchParams }: ContactPageProps) {
                     {branch.locality}
                   </span>
                   <span className="mt-1 block text-sm text-[var(--color-muted-on-field)]">
-                    {branch.address ?? "Address on the branch page"}
+                    {branch.address ?? "See the branch page for details"}
                   </span>
+                  {mapsUrl ? (
+                    <span className="mt-2 block text-sm font-semibold underline underline-offset-4">
+                      Open in Maps
+                    </span>
+                  ) : null}
                 </Link>
               </li>
-            ))}
+              );
+            })}
           </ul>
         </section>
       </div>
-
-      <section
-        id="contact-form"
-        className="mx-auto w-full max-w-[var(--width-container)] px-[var(--spacing-gutter)] pb-[var(--spacing-section)]"
-        aria-labelledby="contact-form-title"
-      >
-        <div className="mx-auto max-w-[var(--width-container-narrow)] pulse-form-panel sm:p-6">
-          <h2
-            id="contact-form-title"
-            className="mb-2 font-[family-name:var(--font-display)] text-[length:var(--text-heading)]"
-          >
-            Send a general message
-          </h2>
-          <p className="mb-6 text-sm">
-            For non-trial questions. Prefer WhatsApp for the fastest reply about batches and trials.
-          </p>
-          {statusMessage ? (
-            <p
-              role="status"
-              aria-live="polite"
-              className="mb-6 border border-[var(--color-border-on-field)] bg-[var(--color-field)] px-4 py-3 text-sm text-[var(--color-muted-on-field)]"
-            >
-              {statusMessage}
-            </p>
-          ) : null}
-          <ContactForm />
-        </div>
-      </section>
     </main>
   );
 }

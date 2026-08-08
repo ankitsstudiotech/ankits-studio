@@ -53,8 +53,7 @@ export default function PrivacyPolicyPage() {
         <h2 className={styles.sectionTitle}>Forms and storage</h2>
         <p className={styles.body}>
           The enquiry builders prepare messages on your device. The website does not send or store
-          those WhatsApp messages itself. If you use a contact form and message delivery is not
-          available, the site will tell you and you can reach us by WhatsApp, phone or email instead.
+          those WhatsApp messages itself.
         </p>
 
         <h2 className={styles.sectionTitle}>Hosting and technical information</h2>
