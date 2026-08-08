@@ -31,20 +31,9 @@ test.describe("core routes motion gate", () => {
     await expect(page.getByRole("heading", { level: 1 })).toBeVisible();
   });
 
-  test("trial sticky CTA hides when WhatsApp action is in view", async ({ page }) => {
+  test("trial route hard-excludes sticky CTA (Stage 1)", async ({ page }) => {
     await page.setViewportSize({ width: 390, height: 844 });
     await page.goto("/trial");
-    const sticky = page.locator("[data-sticky-cta-reveal]");
-    await page.evaluate(() => window.scrollTo(0, 0));
-    await page.waitForTimeout(400);
-    await expect(sticky).toHaveAttribute("data-sticky-cta-reveal", "true");
-
-    await page.locator("#trial-whatsapp-cta").scrollIntoViewIfNeeded();
-    await page.waitForTimeout(500);
-    await expect(sticky).toHaveAttribute("data-sticky-cta-reveal", "false");
-
-    await page.evaluate(() => window.scrollTo(0, 0));
-    await page.waitForTimeout(500);
-    await expect(sticky).toHaveAttribute("data-sticky-cta-reveal", "true");
+    await expect(page.locator("[data-sticky-cta-eligible]")).toHaveCount(0);
   });
 });
