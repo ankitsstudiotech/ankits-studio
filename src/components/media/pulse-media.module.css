@@ -13,6 +13,23 @@
   width: 100%;
   height: 100%;
   object-fit: cover;
+  object-position: var(--media-object-position, 50% 50%);
+}
+
+@media (max-width: 1023px) and (min-width: 769px) {
+  .frameMedia {
+    object-position: var(--media-object-position-tablet, var(--media-object-position, 50% 50%));
+  }
+}
+
+@media (max-width: 768px) {
+  .frameMedia {
+    object-position: var(--media-object-position-mobile, var(--media-object-position, 50% 50%));
+  }
+
+  .frame {
+    aspect-ratio: var(--media-aspect-mobile, auto);
+  }
 }
 
 .geometry {
@@ -52,19 +69,19 @@
 
 .previewLabel {
   position: absolute;
-  right: 0.5rem;
-  bottom: 0.45rem;
+  right: 0.45rem;
+  bottom: 0.4rem;
   z-index: 2;
   margin: 0;
-  padding: 0.15rem 0.4rem;
+  padding: 0.12rem 0.35rem;
   font-family: var(--font-sans);
-  font-size: 0.625rem;
+  font-size: 0.6875rem; /* 11px — unobtrusive development marker */
   font-weight: 600;
-  letter-spacing: 0.06em;
+  letter-spacing: 0.05em;
   text-transform: uppercase;
-  color: rgb(255 255 255 / 0.72);
-  background: rgb(0 0 0 / 0.45);
-  border: 1px solid rgb(255 255 255 / 0.12);
+  color: rgb(255 255 255 / 0.7);
+  background: rgb(0 0 0 / 0.4);
+  border: 1px solid rgb(255 255 255 / 0.1);
   pointer-events: none;
 }
 

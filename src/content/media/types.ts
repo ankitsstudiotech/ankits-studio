@@ -46,6 +46,7 @@ export type StudioMediaItem = {
   alt: string;
   source: MediaSource;
   focalPoint?: FocalPoint;
+  tabletFocalPoint?: FocalPoint;
   mobileFocalPoint?: FocalPoint;
   motionTreatment?: MediaMotionTreatment;
   programme?: string;

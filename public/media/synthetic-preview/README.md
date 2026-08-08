@@ -1,15 +1,14 @@
 # Synthetic preview assets
 
-Temporary directory for **Stage 4A** AI concept files.
+Temporary **Stage 4A Part 2** AI concept WebP files for local/preview art direction only.
 
-- Not production truth
-- Never ship as branch / trainer / member / founder proof
+- Rendered only when `NEXT_PUBLIC_ENABLE_SYNTHETIC_MEDIA=true`
+- Default / Vercel Production: flag **false** — these files are never shown
+- Not production truth — never treat as branch / trainer / member / founder proof
 - Replace on owner media intake (Stage 4B)
-- Populate only when `NEXT_PUBLIC_ENABLE_SYNTHETIC_MEDIA=true` and catalogue entries exist
-
-**Part 1:** this folder stays empty of image binaries — geometry preview only in the app.
 
 See:
 
 - `docs/media/SYNTHETIC-MEDIA-PREVIEW-POLICY.md`
-- `docs/media/AI-CONCEPT-GENERATION-BRIEF.md`
+- `docs/media/reference/SYNTHETIC-PREVIEW-MEDIA-QA.md`
+- `docs/revamp/PREMIUM-STAGE-4A-SYNTHETIC-REVIEW.md`

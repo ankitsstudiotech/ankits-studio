@@ -1,6 +1,6 @@
 import Image from "next/image";
 import type { CSSProperties } from "react";
-import type { StudioMediaItem } from "@/content/media";
+import type { FocalPoint, StudioMediaItem } from "@/content/media";
 import { isSyntheticMediaEnabled } from "@/lib/media/feature-flag";
 import styles from "./pulse-media.module.css";
 
@@ -13,8 +13,7 @@ export type EditorialMediaFrameProps = {
   priority?: boolean;
 };
 
-function objectPosition(item: StudioMediaItem, mobile = false): string {
-  const point = mobile && item.mobileFocalPoint ? item.mobileFocalPoint : item.focalPoint;
+function toObjectPosition(point?: FocalPoint): string {
   if (!point) return "50% 50%";
   return `${point.x}% ${point.y}%`;
 }
@@ -32,11 +31,20 @@ export function EditorialMediaFrame({
 }: EditorialMediaFrameProps) {
   const showSyntheticLabel =
     item.status === "synthetic-preview" && isSyntheticMediaEnabled();
-  const aspect = item.aspectRatio.replace("/", " / ");
+  const desktopPos = toObjectPosition(item.focalPoint);
+  const tabletPos = toObjectPosition(item.tabletFocalPoint ?? item.focalPoint);
+  const mobilePos = toObjectPosition(item.mobileFocalPoint ?? item.focalPoint);
+  const aspect = (item.aspectRatio || "16/9").replace("/", " / ");
+  const mobileAspect = (item.mobileAspectRatio || item.aspectRatio || "16/9").replace(
+    "/",
+    " / ",
+  );
   const style = {
     aspectRatio: aspect,
-    ["--media-object-position" as string]: objectPosition(item),
-    ["--media-object-position-mobile" as string]: objectPosition(item, true),
+    ["--media-aspect-mobile" as string]: mobileAspect,
+    ["--media-object-position" as string]: desktopPos,
+    ["--media-object-position-tablet" as string]: tabletPos,
+    ["--media-object-position-mobile" as string]: mobilePos,
   } as CSSProperties;
 
   return (
@@ -55,15 +63,12 @@ export function EditorialMediaFrame({
           width={item.width ?? 1600}
           height={item.height ?? 900}
           className={styles.frameMedia}
-          style={{ objectPosition: objectPosition(item) }}
           sizes={sizes}
           priority={priority}
         />
       ) : item.src && item.kind === "video" ? (
         <video
           className={styles.frameMedia}
-          style={{ objectPosition: objectPosition(item) }}
-          poster={undefined}
           muted
           playsInline
           preload="metadata"

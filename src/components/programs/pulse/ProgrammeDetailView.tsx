@@ -104,6 +104,10 @@ export function ProgrammeDetailView({
   const motionTone = toneFromProgrammeSlug(programme.slug);
   const heroSlot = programmeHeroSlotKey(programme.slug);
   const heroMedia = heroSlot ? resolveSlotMedia(heroSlot) : null;
+  const actionMedia =
+    programme.slug === "functional-training"
+      ? resolveSlotMedia("programme.functional.action")
+      : null;
   const batchLabel = availabilityCopy(programme);
 
   const clusterKicker =
@@ -185,7 +189,7 @@ export function ProgrammeDetailView({
             <div className={styles.detailMedia}>
               <PulseMedia
                 item={heroMedia}
-                sizes="(max-width: 900px) 100vw, 36vw"
+                sizes="(max-width: 900px) 100vw, (max-width: 1440px) 42vw, 640px"
                 priority
               />
             </div>
@@ -242,11 +246,25 @@ export function ProgrammeDetailView({
             </h2>
           </SectionReveal>
           <p className={styles.sectionNote}>{benefitsNote(programme)}</p>
-          <ul className={styles.includeList}>
-            {programme.benefits.map((benefit) => (
-              <li key={benefit}>{benefit}</li>
-            ))}
-          </ul>
+          <div
+            className={
+              actionMedia ? styles.includeWithMedia : undefined
+            }
+          >
+            <ul className={styles.includeList}>
+              {programme.benefits.map((benefit) => (
+                <li key={benefit}>{benefit}</li>
+              ))}
+            </ul>
+            {actionMedia ? (
+              <div className={styles.actionMedia}>
+                <PulseMedia
+                  item={actionMedia}
+                  sizes="(max-width: 900px) 100vw, 28vw"
+                />
+              </div>
+            ) : null}
+          </div>
         </section>
       ) : null}
 

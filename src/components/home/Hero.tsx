@@ -83,7 +83,7 @@ export function Hero({
             item={media}
             overlay
             priority
-            sizes="(max-width: 1023px) 100vw, 48vw"
+            sizes="(max-width: 1023px) 100vw, 55vw"
           />
         </div>
       ) : null}

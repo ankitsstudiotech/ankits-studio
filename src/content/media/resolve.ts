@@ -51,11 +51,19 @@ export function resolveSlotMedia(slotKey: string): StudioMediaItem | null {
     if (catalogued.status === "synthetic-preview") {
       if (!isSyntheticMediaEnabled()) return null;
       if (!canAcceptSyntheticMedia(slotKey)) return null;
-      return catalogued;
+      // Prefer binary assets; skip empty geometry when a file-backed entry exists.
+      if (catalogued.src) return catalogued;
     }
   }
 
-  return geometryPreviewItem(slotKey);
+  // Part 1 geometry fallback only when no file-backed catalogue entry.
+  if (catalogued?.status === "synthetic-preview" && !catalogued.src) {
+    return geometryPreviewItem(slotKey);
+  }
+  if (!catalogued) {
+    return geometryPreviewItem(slotKey);
+  }
+  return null;
 }
 
 export function slotHasRenderableMedia(slotKey: string): boolean {

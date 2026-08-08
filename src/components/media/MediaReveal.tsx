@@ -32,12 +32,12 @@ export function MediaReveal({
   return (
     <motion.div
       className={[styles.reveal, className].filter(Boolean).join(" ")}
-      initial={isHero ? { opacity: 0.92, scale: 1.02 } : { opacity: 0.94, y: 14 }}
+      initial={isHero ? { opacity: 0.94, scale: 1.015 } : { opacity: 0.94, y: 14 }}
       whileInView={{ opacity: 1, scale: 1, y: 0 }}
       viewport={{ once: true, amount: 0.2 }}
       transition={{
         duration: isHero ? DURATION.slow : DURATION.section,
-        delay: isHero ? 0.05 : 0,
+        delay: isHero ? 0.04 : 0,
         ease: EASE.enter,
       }}
     >

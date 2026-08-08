@@ -114,11 +114,6 @@ export default function AboutPage() {
       </section>
 
       <section className={styles.band} aria-labelledby="about-approach-disciplines">
-        {communityMedia ? (
-          <div className={styles.communityMedia}>
-            <PulseMedia item={communityMedia} sizes="(max-width: 900px) 100vw, 720px" />
-          </div>
-        ) : null}
         <div className={`${styles.diffGrid} pulse-split`}>
           <SectionReveal pattern="B" side="left">
             <h2 id="about-approach-disciplines" className={styles.sectionTitle}>
@@ -198,6 +193,11 @@ export default function AboutPage() {
       ) : null}
 
       <section className={styles.band} aria-labelledby="about-team-title">
+        {communityMedia ? (
+          <div className={styles.communityMedia}>
+            <PulseMedia item={communityMedia} sizes="(max-width: 900px) 100vw, 720px" />
+          </div>
+        ) : null}
         <div className={faqs.length > 0 ? styles.pairGrid : undefined}>
           <div className={styles.teamBlock}>
             <SectionReveal>
