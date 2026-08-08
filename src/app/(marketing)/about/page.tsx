@@ -155,22 +155,25 @@ export default function AboutPage() {
         >
           <div className={styles.pairGrid}>
             {showFounder && about.founderStory ? (
-              <div>
+              <div className={styles.founderBlock}>
                 <SectionReveal>
                   <h2 id="about-founder-title" className={styles.sectionTitle}>
                     Founder
                   </h2>
                 </SectionReveal>
+                {about.foundingDateLabel ? (
+                  <p className={styles.founderAnchor}>
+                    <span className={styles.founderAnchorLabel}>Founded</span>
+                    <span className={styles.founderAnchorYear}>{about.foundingDateLabel}</span>
+                  </p>
+                ) : null}
+                <p className={styles.founderName}>Ankit Nalawade · Founder</p>
                 {founderMedia ? (
                   <div className={styles.founderMedia}>
                     <PulseMedia item={founderMedia} sizes="280px" />
                   </div>
                 ) : null}
-                {about.foundingDateLabel ? (
-                  <p className={styles.kicker}>Founded {about.foundingDateLabel}</p>
-                ) : null}
                 <p className={styles.body}>{about.founderStory}</p>
-                <p className={styles.provenance}>Founder: Ankit Nalawade.</p>
               </div>
             ) : null}
             <div>

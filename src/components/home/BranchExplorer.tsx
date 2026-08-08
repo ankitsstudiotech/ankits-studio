@@ -19,7 +19,7 @@ export type BranchExplorerProps = {
 const DEFAULT_HOURS = "Open daily · 6:00 AM–10:00 PM";
 
 /**
- * Homepage branch index — physical/local interaction, not bouncing pins.
+ * Homepage branch index — numbered editorial rows (not four identical cards).
  */
 export function BranchExplorer({ locations }: BranchExplorerProps) {
   return (
@@ -37,36 +37,43 @@ export function BranchExplorer({ locations }: BranchExplorerProps) {
           central WhatsApp number.
         </p>
       </SectionReveal>
-      <div className={styles.branchList}>
-        {locations.map((location) => {
+      <ol className={styles.branchRows}>
+        {locations.map((location, index) => {
           const placeLine = location.locality?.trim() || location.name;
           const hours = location.hoursLabel ?? DEFAULT_HOURS;
+          const num = String(index + 1).padStart(2, "0");
 
           return (
-            <article key={location.href} className={styles.branchCard}>
-              <h3 className={styles.branchName}>{location.name}</h3>
-              {placeLine !== location.name ? <p>{placeLine}</p> : null}
-              <p className={styles.branchHours}>{hours}</p>
-              <span className={styles.branchCue} data-motion-cue aria-hidden />
-              <div className={styles.branchActions}>
-                <Link href={location.href} className={styles.branchLink}>
-                  Studio page
-                </Link>
-                {location.mapsUrl ? (
-                  <a
-                    href={location.mapsUrl}
-                    className={styles.branchLink}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                  >
-                    Open in Maps
-                  </a>
+            <li key={location.href} className={styles.branchRow}>
+              <span className={styles.branchIndex} aria-hidden>
+                {num}
+              </span>
+              <div className={styles.branchBody}>
+                <h3 className={styles.branchName}>{location.name}</h3>
+                {placeLine !== location.name ? (
+                  <p className={styles.branchPlace}>{placeLine}</p>
                 ) : null}
+                <p className={styles.branchHours}>{hours}</p>
+                <div className={styles.branchActions}>
+                  <Link href={location.href} className={styles.branchLink}>
+                    Studio page
+                  </Link>
+                  {location.mapsUrl ? (
+                    <a
+                      href={location.mapsUrl}
+                      className={styles.branchLink}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                    >
+                      Open in Maps
+                    </a>
+                  ) : null}
+                </div>
               </div>
-            </article>
+            </li>
           );
         })}
-      </div>
+      </ol>
     </section>
   );
 }

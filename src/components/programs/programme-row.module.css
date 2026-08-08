@@ -6,9 +6,10 @@
   gap: 0.35rem;
   text-decoration: none;
   color: inherit;
-  padding: 1rem 1.15rem;
-  border: 1px solid rgb(255 255 255 / 0.12);
-  background: var(--color-field-raised);
+  padding: 0.95rem 0.15rem 1rem;
+  border: none;
+  border-bottom: 1px solid rgb(255 255 255 / 0.1);
+  background: transparent;
   min-height: 44px;
   position: relative;
   --cue-duration: 200ms;
@@ -19,7 +20,56 @@
   transition:
     border-color var(--cue-duration) var(--cue-ease),
     background-color var(--cue-duration) var(--cue-ease),
-    box-shadow var(--cue-duration) var(--cue-ease);
+    box-shadow var(--cue-duration) var(--cue-ease),
+    padding var(--cue-duration) var(--cue-ease);
+}
+
+.row:hover,
+.row:focus-visible {
+  border-color: rgb(255 255 255 / 0.22);
+  background: transparent;
+  box-shadow: inset 3px 0 0 color-mix(in srgb, var(--color-accent) 55%, transparent);
+  padding-left: 0.75rem;
+}
+
+.row[data-emphasis="primary"] {
+  border-width: 0;
+  border-bottom-width: 1px;
+  border-bottom-style: solid;
+  border-bottom-color: color-mix(in srgb, var(--color-accent-strength) 45%, #333);
+  background: transparent;
+  padding: 1.15rem 0.15rem 1.25rem;
+}
+
+.row[data-emphasis="primary"]:hover,
+.row[data-emphasis="primary"]:focus-visible {
+  background: color-mix(in srgb, var(--color-field-raised) 55%, transparent);
+  padding-left: 0.85rem;
+}
+
+/* Width rhythm — discovery composition */
+.row[data-emphasis="primary"] {
+  max-width: 100%;
+}
+
+.row[data-motion-tone="direct"],
+.row[data-motion-tone="remote"] {
+  max-width: 42rem;
+  padding-block: 0.75rem 0.85rem;
+}
+
+.row[data-motion-tone="calm"] {
+  max-width: 48rem;
+  padding-block: 1.15rem 1.25rem;
+}
+
+.row[data-cluster="move"] {
+  max-width: min(100%, 54rem);
+}
+
+.row[data-cluster="celebrate"] {
+  max-width: min(100%, 46rem);
+  margin-inline: 0;
 }
 
 .row[data-motion-tone="structured"] {
@@ -71,48 +121,26 @@
   --title-nudge: 2px;
 }
 
-.row:hover,
 .row:focus-visible {
-  border-color: rgb(255 255 255 / 0.34);
-  background: color-mix(in srgb, var(--color-field-raised) 62%, #222228);
-  box-shadow: inset 3px 0 0 color-mix(in srgb, var(--color-accent) 55%, transparent);
+  outline: 2px solid var(--color-volt);
+  outline-offset: 3px;
 }
 
 .row[data-motion-tone="structured"]:hover,
 .row[data-motion-tone="structured"]:focus-visible,
 .row[data-emphasis="primary"]:hover,
 .row[data-emphasis="primary"]:focus-visible {
-  border-color: color-mix(in srgb, var(--color-accent-strength) 72%, #666);
   box-shadow: inset 4px 0 0 color-mix(in srgb, var(--color-accent-strength) 80%, transparent);
 }
 
 .row[data-motion-tone="ceremonial"]:hover,
 .row[data-motion-tone="ceremonial"]:focus-visible {
-  border-color: color-mix(in srgb, var(--color-accent-warm) 55%, #555);
   box-shadow: inset 3px 0 0 color-mix(in srgb, var(--color-accent-warm) 70%, transparent);
 }
 
 .row[data-motion-tone="calm"]:hover,
 .row[data-motion-tone="calm"]:focus-visible {
-  border-color: color-mix(in srgb, var(--color-accent-calm) 40%, #555);
   box-shadow: inset 2px 0 0 color-mix(in srgb, var(--color-accent-calm) 55%, transparent);
-}
-
-.row:focus-visible {
-  outline: 2px solid var(--color-volt);
-  outline-offset: 3px;
-}
-
-.row[data-emphasis="primary"] {
-  border-width: 2px;
-  border-color: color-mix(in srgb, var(--color-accent-strength) 50%, #333);
-  background: linear-gradient(105deg, #16121c 0%, #1e1824 100%);
-  padding: 1.15rem 1.25rem;
-}
-
-.row[data-emphasis="primary"]:hover,
-.row[data-emphasis="primary"]:focus-visible {
-  background: linear-gradient(105deg, #1a1522 0%, #241c2c 100%);
 }
 
 .name {

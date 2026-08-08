@@ -14,9 +14,8 @@ export type LocationDiscoveryProps = {
 };
 
 /**
- * Place-first branch index — locality names lead via BranchRow.
+ * Place-first branch index — numbered editorial rows.
  * Optional generic `locations.atmosphere` only when synthetic preview resolves.
- * Never invents branch-specific photography.
  */
 export function LocationDiscovery({ branches, trialHref, trialLabel }: LocationDiscoveryProps) {
   const atmosphere = resolveSlotMedia("locations.atmosphere");
@@ -39,26 +38,32 @@ export function LocationDiscovery({ branches, trialHref, trialLabel }: LocationD
         </div>
       ) : null}
 
-      <ul className={styles.branchRows}>
-        {branches.map((branch) => {
+      <ol className={styles.branchIndexList}>
+        {branches.map((branch, index) => {
           const mapsUrl = getBranchMapsUrl(branch);
           const addressLine = branch.address
             ? branch.address.replace(/,\s*Maharashtra\s+\d{6}$/i, "")
             : null;
+          const num = String(index + 1).padStart(2, "0");
 
           return (
-            <li key={branch.slug}>
-              <BranchRow
-                name={branch.locality}
-                href={`/locations/${branch.slug}`}
-                address={addressLine}
-                mapsUrl={mapsUrl}
-                pending={!mapsUrl}
-              />
+            <li key={branch.slug} className={styles.branchIndexItem}>
+              <span className={styles.branchIndexNum} aria-hidden>
+                {num}
+              </span>
+              <div className={styles.branchIndexBody}>
+                <BranchRow
+                  name={branch.locality}
+                  href={`/locations/${branch.slug}`}
+                  address={addressLine}
+                  mapsUrl={mapsUrl}
+                  pending={!mapsUrl}
+                />
+              </div>
             </li>
           );
         })}
-      </ul>
+      </ol>
 
       <div className={styles.ctaRow}>
         <LocationPulseCta href={trialHref}>{trialLabel}</LocationPulseCta>
