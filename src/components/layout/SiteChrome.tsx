@@ -8,6 +8,7 @@ import {
   getPrimaryConversionHref,
   getPrimaryConversionLabel,
 } from "@/lib/conversion";
+import { MotionReady } from "@/components/motion";
 import { SiteFooter } from "./SiteFooter";
 import { SiteHeader } from "./SiteHeader";
 import { StickyCtaBar } from "./StickyCtaBar";
@@ -85,6 +86,7 @@ export function SiteChrome({ children }: { children: React.ReactNode }) {
 
   return (
     <>
+      <MotionReady />
       <SiteHeader brandName={identity.displayName} items={toNavItems()} />
       <div className="flex flex-1 flex-col bg-field text-ink-inverse">{children}</div>
       <SiteFooter

@@ -1,20 +1,49 @@
 /**
- * Reduced-motion + touch utilities (Studio Pulse).
- * Reveal timing lives here; page-wide fade language remains opt-in via
- * HeroReveal / SectionReveal / ScrollReveal islands.
- * See docs/MOTION-SYSTEM.md, ADR-009, DESIGN.md.
+ * Studio Pulse premium motion language.
+ * Semantic durations + easings. Compositor-friendly properties only.
+ * See docs/MOTION-SYSTEM.md and Stage 3 motion programme.
  */
 
 :root {
-  --ease-out-strong: cubic-bezier(0.23, 1, 0.32, 1);
+  /* Durations */
+  --motion-instant: 120ms;
+  --motion-fast: 180ms;
+  --motion-base: 260ms;
+  --motion-slow: 420ms;
+  --motion-hero: 720ms;
+  --motion-section: 440ms;
+  --motion-sticky: 200ms;
+  --motion-menu-open: 280ms;
+  --motion-menu-close: 180ms;
+
+  /* Legacy aliases used across the codebase */
+  --duration-fast: var(--motion-instant);
+  --duration-normal: var(--motion-fast);
+  --duration-slow: var(--motion-slow);
+  --duration-reveal: var(--motion-section);
+  --duration-hover: var(--motion-fast);
+  --duration-tap: var(--motion-instant);
+
+  /* Easings */
+  --ease-exit: cubic-bezier(0.4, 0, 1, 1);
+  --ease-enter: cubic-bezier(0.23, 1, 0.32, 1);
+  --ease-emphasis: cubic-bezier(0.16, 1, 0.3, 1);
+  --ease-standard: cubic-bezier(0.2, 0.8, 0.2, 1);
+  --ease-out-strong: var(--ease-enter);
   --ease-out-soft: cubic-bezier(0.25, 1, 0.5, 1);
-  --duration-reveal: 420ms;
-  --duration-hover: 220ms;
-  --duration-tap: 160ms;
 }
 
 @media (prefers-reduced-motion: reduce) {
   :root {
+    --motion-instant: 0ms;
+    --motion-fast: 0ms;
+    --motion-base: 0ms;
+    --motion-slow: 0ms;
+    --motion-hero: 0ms;
+    --motion-section: 0ms;
+    --motion-sticky: 0ms;
+    --motion-menu-open: 0ms;
+    --motion-menu-close: 0ms;
     --duration-fast: 0ms;
     --duration-normal: 0ms;
     --duration-slow: 0ms;
@@ -31,9 +60,100 @@
     transition-duration: 0.01ms !important;
     scroll-behavior: auto !important;
   }
+
+  /* Cue lines stay at resting width — no hover travel */
+  [data-motion-cue] {
+    transform: none !important;
+  }
 }
 
 .touch-target {
   min-width: 44px;
   min-height: 44px;
+}
+
+/* Pattern C — accent line draw (transform scaleX, not width) */
+.motion-accent-line {
+  display: block;
+  height: 2px;
+  width: 100%;
+  max-width: 4.5rem;
+  background: color-mix(in srgb, var(--color-accent) 70%, transparent);
+  transform-origin: left center;
+  transform: scaleX(0.35);
+  transition: transform var(--motion-base) var(--ease-enter);
+}
+
+.motion-accent-line[data-drawn="true"],
+.motion-ready .motion-accent-line.is-inview {
+  transform: scaleX(1);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .motion-accent-line {
+    transform: scaleX(1);
+  }
+}
+
+/* Masked headline lines — SSR text always present; motion enhances */
+.motion-mask-line {
+  display: block;
+  overflow: hidden;
+  padding-bottom: 0.06em;
+}
+
+.motion-mask-line > span {
+  display: block;
+  transform: translate3d(0, 0, 0);
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .motion-ready .motion-mask-line > span[data-animate="pending"] {
+    transform: translate3d(0, 105%, 0);
+  }
+}
+
+/* Primary CTA directional nudge on hover — see studio.css .pulse-cta */
+
+/* FAQ accordion — plus morph + panel fade (no height bounce) */
+.pulse-accordion-item summary {
+  transition: background-color var(--motion-fast) var(--ease-standard);
+}
+
+.pulse-accordion-item[open] {
+  border-color: color-mix(in srgb, var(--color-accent) 35%, var(--color-border-on-field));
+}
+
+.pulse-accordion-panel {
+  animation: pulse-faq-in var(--motion-base) var(--ease-enter) both;
+}
+
+@keyframes pulse-faq-in {
+  from {
+    opacity: 0.35;
+    transform: translate3d(0, 6px, 0);
+  }
+  to {
+    opacity: 1;
+    transform: translate3d(0, 0, 0);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .pulse-accordion-panel {
+    animation: none;
+  }
+}
+
+/* Form focus — restrained accent, no field dance on load */
+.pulse-form-panel :where(input, select, textarea) {
+  transition:
+    border-color var(--motion-fast) var(--ease-standard),
+    box-shadow var(--motion-fast) var(--ease-standard);
+}
+
+.pulse-form-panel :where(input, select, textarea):focus-visible {
+  outline: 2px solid var(--color-volt);
+  outline-offset: 2px;
+  border-color: color-mix(in srgb, var(--color-accent) 55%, transparent);
 }

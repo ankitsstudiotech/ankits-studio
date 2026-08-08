@@ -118,8 +118,9 @@
   letter-spacing: 0.06em;
   text-transform: uppercase;
   text-decoration: none;
-  transition: transform var(--duration-fast) var(--ease-standard),
-    background-color var(--duration-fast) var(--ease-standard);
+  transition:
+    transform var(--motion-instant) var(--ease-exit),
+    background-color var(--motion-fast) var(--ease-standard);
 }
 
 .pulse-cta:hover {
@@ -127,7 +128,7 @@
 }
 
 .pulse-cta:active {
-  transform: scale(0.97);
+  transform: scale(0.98);
 }
 
 .pulse-cta:focus-visible {
@@ -151,13 +152,18 @@
   text-transform: uppercase;
   text-decoration: none;
   transition:
-    border-color var(--duration-fast) var(--ease-standard),
-    color var(--duration-fast) var(--ease-standard);
+    border-color var(--motion-fast) var(--ease-standard),
+    color var(--motion-fast) var(--ease-standard),
+    transform var(--motion-instant) var(--ease-exit);
 }
 
 .pulse-cta-secondary:hover {
   border-color: var(--color-volt);
   color: var(--color-volt);
+}
+
+.pulse-cta-secondary:active {
+  transform: scale(0.99);
 }
 
 .pulse-cta-secondary:focus-visible {
