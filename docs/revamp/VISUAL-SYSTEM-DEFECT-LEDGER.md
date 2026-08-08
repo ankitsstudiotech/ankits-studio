@@ -1,56 +1,46 @@
-# Visual system defect ledger — Prompt 1 + Prompt 2
+# Visual system defect ledger — Prompt 1–3
 
-**Checkpoint Prompt 1:** `01a1a82` / `studio-pulse-deployed-v1-before-visual-repair`  
-**Approved shared system tag:** `studio-pulse-shared-system-approved`  
-**Evidence (Prompt 2 correction):** `docs/revamp/screenshots/core-routes-final-acceptance/` · `docs/revamp/traces/core-routes-final-acceptance/`  
-**Prior (invalid closure):** `docs/revamp/screenshots/core-routes-system-propagation/` — widths / sticky / motion incomplete; do not treat as acceptance.
+**Prompt 1 approved:** shared system / homepage  
+**Prompt 2 approved:** tag `studio-pulse-core-routes-approved` @ `5cbc4bf`  
+**Prompt 3 checkpoint HEAD (start):** `5cbc4bf`  
+**Before evidence:** `docs/revamp/screenshots/secondary-routes-final-acceptance/before/`  
+**After evidence:** `docs/revamp/screenshots/secondary-routes-final-acceptance/` · `docs/revamp/traces/secondary-routes-final-acceptance/`
 
-## Prompt 1 — homepage / shared chrome (closed)
+## Prompt 3 — secondary routes
 
-| ID | Route | Viewport | Element | Defect | Severity | Shared or local fix | Status | Evidence |
-|----|-------|----------|---------|--------|----------|---------------------|--------|----------|
-| VS-01…VS-13 | / + chrome | all | See Prompt 1 table | Shared system defects | P1 | Prompt 1 primitives | **fixed** | `shared-system-homepage-repair/` |
-
-## Prompt 2 — core routes (reopened → corrected)
-
-Earlier Prompt 2 “P1 = 0” closure is **reopened** — screenshots were not native-width validated; About remained left-heavy; programme detail remained dashboard-like; sticky/motion evidence incomplete.
-
-| ID | Route | Viewport | Element | Defect | Severity | Shared or local fix | Status | Evidence |
-|----|-------|----------|---------|--------|----------|---------------------|--------|----------|
-| CR-01 | /about | 1440 | Layout | Narrow left-stacked editorial; empty right | P1 | Full-width bands + openGrid facts + pairGrid | **fixed** | `1440-about.png` |
-| CR-01b | /about | 390 | Pacing | Uniform long stack | P1 | Stronger band separation; compact discovery; hide provenance | **fixed** | `390-about.png` |
-| CR-02 | /about | all | Copy | Defensive provenance / neighbourhood phrasing | P1 | Customer wording scrub | **fixed** | after-*-about |
-| CR-03 | /programs | all | Meta copy | Internal delivery phrases | P1 | ProgrammeDiscovery deliveryMeta | **fixed** | `*-programs.png` |
-| CR-03b | /programs | all | Closing | Orphan corporate + empty footer gap | P1 | Integrated `.closing` + corporateNote | **fixed** | `1440-programs.png` |
-| CR-04 | /programs/[slug] | all | Detail copy | Internal/defensive delivery language | P1 | ProgrammeDetailView rewrite | **fixed** | `*-program-*.png` |
-| CR-04b | /programs/[slug] | 1440 | Composition | Dashboard cells; empty hero right | P1 | 7/5 hero + summaryPanel; ≤4 glance panels; includeList | **fixed** | all 7 programme 1440 shots |
-| CR-05 | /programs/[slug] | all | Motion | Near-static page opening | P1 | HeroReveal + SectionReveal | **fixed** | traces + state shots |
-| CR-06 | /locations | all | Rows | Repeated generic branch meta | P1 | BranchRow + unique page lede | **fixed** | `*-locations.png` |
-| CR-07 | /locations/[slug] | all | Detail | Repetitive disclaimers | P1 | BranchDetailView cleanup | **fixed** | all 4 branch shots |
-| CR-08 | /timetable | all | Enquiry panel | Light utility admin form | P1 | Dark enquiryPanel + RouteOpening | **fixed** | `*-batch-availability.png` |
-| CR-09 | /pricing | all | Enquiry panel | Light form island | P1 | Dark enquiryPanel + copy | **fixed** | `*-pricing.png` |
-| CR-10 | /trial | all | Form panel | White form block | P1 | pulse-form-panel | **fixed** | `*-trial.png` |
-| CR-10b | /trial | 390 | Sticky CTA | Unproven hide/show vs form CTA | P1 | Soft-hide on `#trial-whatsapp-cta` | **fixed** | motion trace + e2e |
-| CR-11 | /contact | all | Message form | White full-bleed form | P1 | pulse-form-panel | **fixed** | `*-contact.png` |
-| CR-12 | / | practical | Copy | Internal “class-by-class” phrasing | P1 | Homepage micro-fix only | **fixed** | `*-homepage-regression.png` |
-| CR-13 | core routes | 390 | Sticky CTA | Risk of form obstruction | P1 | Soft-hide form routes + shell padding | **fixed** | trial sticky evidence |
-| CR-14 | programme/location | all | Interaction | Inconsistent row hover/focus | P1 | ProgrammeRow + BranchRow | **fixed** | state-1440-programs-* |
-| CR-15 | evidence | all | Screenshots | Non-native widths / contact sheets | P1 | deviceScaleFactor:1 + dimensions.json | **fixed** | `dimensions.json` all pass |
+| ID | Route | Viewport | Element | Defect | Severity | Planned fix | Status | Evidence |
+|----|-------|----------|---------|--------|----------|-------------|--------|----------|
+| SR-01 | /trainers | all | Media plates | Fake photography placeholders | P1 | Removed plates | **fixed** | after-*-trainers |
+| SR-02 | /trainers | all | Copy | Owner-provided / Development notes | P1 | Customer copy only | **fixed** | after-*-trainers |
+| SR-03 | /trainers | 1440 | Layout | Narrow left column | P1 | openGrid full editorial | **fixed** | 1440-trainers |
+| SR-04 | /transformations | all | Media | Community placeholder | P1 | Removed | **fixed** | after-*-transformations |
+| SR-05 | /transformations | all | Copy | Development note | P1 | Consent-first customer copy | **fixed** | after-*-transformations |
+| SR-06 | /blog | all | Index | Sample article cards (light UI) | P0 | Studio Notes hub, no cards | **fixed** | after-*-blog |
+| SR-07 | /blog/[slug] | all | Sample posts | Fictional articles renderable | P0 | `dynamicParams=false` + notFound; production HTTP 404 | **fixed** | sample-blog-status.json · 1440-blog-sample-404 |
+| SR-08 | /privacy-policy | all | Typography | Uneven legal measure | P1 | Shared LegalPage | **fixed** | after-*-privacy |
+| SR-09 | /terms | all | Layout | Needed shared legal system | P1 | Shared LegalPage | **fixed** | after-*-terms |
+| SR-10 | 404 | all | Composition | Missing discovery links | P1 | Pulse 404 + links | **fixed** | after-*-not-found |
+| SR-11 | error.tsx | all | Theme | Light ink / developer tone | P1 | Dark Pulse status UI | **fixed** | status.module.css |
+| SR-12 | loading | all | Theme | Light skeleton / dual main | P2 | Pulse skeleton as `role=status` | **fixed** | PulseLoadingSkeleton |
+| SR-13 | legacy programmes | all | Surface | Light surfaceBand | P1 | Dark legacy notice | **fixed** | after-*-legacy-* |
+| SR-14 | withheld routes | nav | Exposure | Must stay out of primary/footer | P1 | FOOTER_EXCLUDE confirmed | **fixed** | nav-exclusions.test |
+| SR-15 | blog samples | SEO | Indexing | Fiction crawlable as article | P0 | Hard 404 in production | **fixed** | sample-blog-status.json |
 
 ### Counts
 
-| Severity | Invalid prior claim | After correction |
-|----------|---------------------|------------------|
-| P0 | 0 | **0** |
-| P1 (scoped routes) | claimed 0 (invalid) → reopened 15+ | **0** |
+| Severity | Before | After |
+|----------|--------|-------|
+| P0 | 3 | **0** |
+| P1 | 11 | **0** |
+| P2 | 1 | **0** (SR-12 closed) |
 
 ### Remaining P2 (honest)
 
 | ID | Note |
 |----|------|
-| P2-01 | About opening right facts are compact vs tall left copy (acceptable editorial asymmetry) |
-| P2-02 | Programme detail still repeats format/delivery between hero summary and later sections (clarity > novelty) |
-| P2-03 | Mobile About remains long because verified story + FAQ + discovery are all required |
+| P2-01 | Playwright `nextdev` webServer may soft-handle unknown static blog params; production evidence proves HTTP 404 |
+| P2-02 | Trainer detail `[slug]` remains empty SSG (no publishable profiles) — acceptable |
 
-### Out of scope (Prompt 3)
-Trainers, transformations, blog, privacy, terms, 404, legacy programmes, design-lab.
+## Prompt 1–2 (closed)
+
+See tags `studio-pulse-shared-system-approved` and `studio-pulse-core-routes-approved`.
