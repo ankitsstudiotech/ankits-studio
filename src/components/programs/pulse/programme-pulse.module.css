@@ -277,20 +277,18 @@
   color: var(--color-volt);
 }
 
-/* —— Detail —— */
+/* —— Detail — Stage 5 composition families —— */
 .detailHero {
-  display: grid;
-  gap: 1.5rem;
+  display: block;
   padding: var(--spacing-section) var(--spacing-gutter);
   border-bottom: 1px solid rgb(255 255 255 / 0.08);
-  align-items: start;
 }
 
-@media (min-width: 1024px) {
-  .detailHero {
-    grid-template-columns: minmax(0, 1.4fr) minmax(0, 1fr);
-    gap: 2.25rem;
-  }
+.composeHero {
+  display: flex;
+  flex-direction: column;
+  gap: 1.25rem;
+  min-width: 0;
 }
 
 .detailKicker {
@@ -316,89 +314,377 @@
   display: flex;
   flex-direction: column;
   gap: 0.35rem;
-}
-
-.detailOpeningBlock {
-  display: flex;
-  flex-direction: column;
-  gap: 1rem;
   min-width: 0;
-}
-
-.detailOpeningWithMedia {
-  gap: 1.25rem;
 }
 
 .detailMedia {
   width: 100%;
-  max-width: 28rem;
+  max-width: 36rem;
 }
 
 .detailMedia figure {
   border-radius: 0;
 }
 
-@media (min-width: 900px) {
-  .detailOpeningWithMedia {
+.detailSupport {
+  display: flex;
+  flex-direction: column;
+  gap: 0.85rem;
+}
+
+.detailAccent {
+  display: block;
+  width: 3.5rem;
+  height: 2px;
+  margin-top: 0.35rem;
+  background: color-mix(in srgb, var(--color-accent) 70%, transparent);
+  transform-origin: left center;
+}
+
+.detailLede {
+  margin: 0;
+  max-width: 42ch;
+  color: var(--color-muted-on-field);
+  font-size: 1.05rem;
+  line-height: 1.45;
+}
+
+/* Meta rail — typographic by default (fewer boxes) */
+.metaRail {
+  min-width: 0;
+  padding: 0;
+  border: none;
+  background: transparent;
+}
+
+.metaList {
+  margin: 0;
+  display: grid;
+  gap: 0.75rem;
+}
+
+.metaItem {
+  padding: 0.55rem 0 0;
+  border-top: 1px solid rgb(255 255 255 / 0.1);
+}
+
+.metaItem:first-child {
+  border-top: none;
+  padding-top: 0;
+}
+
+.metaList dt {
+  margin: 0;
+  font-size: 0.68rem;
+  letter-spacing: 0.07em;
+  text-transform: uppercase;
+  color: #b8b4aa;
+}
+
+.metaList dd {
+  margin: 0.2rem 0 0;
+  font-size: 0.92rem;
+  line-height: 1.4;
+  color: var(--color-ink-inverse);
+}
+
+.summaryMotion {
+  transition: opacity var(--motion-section) var(--ease-enter),
+    transform var(--motion-section) var(--ease-enter);
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  html.motion-pending .summaryMotion {
+    opacity: 0.85;
+    transform: translate3d(0, 14px, 0);
+  }
+
+  html.motion-ready .summaryMotion {
+    animation: pulse-hero-support 380ms var(--ease-enter) both;
+    animation-delay: calc(var(--motion-hero-support-delay, 420ms) + 40ms);
+  }
+
+  html.motion-ready .detailHero[data-motion-tone="calm"] .summaryMotion {
+    animation-delay: calc(var(--motion-hero-support-delay, 520ms) + 80ms);
+  }
+
+  html.motion-ready .detailHero[data-motion-tone="ceremonial"] .summaryMotion {
+    animation-delay: calc(var(--motion-hero-support-delay, 540ms) + 100ms);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .summaryMotion {
+    opacity: 1 !important;
+    transform: none !important;
+    animation: none !important;
+  }
+}
+
+.detailHero[data-motion-tone="calm"] {
+  --motion-hero-line: 560ms;
+  --motion-hero-support-delay: 520ms;
+  --reveal-delay: 0.08s;
+}
+
+.detailHero[data-motion-tone="ceremonial"] {
+  --motion-hero-line: 580ms;
+  --motion-hero-support-delay: 540ms;
+  --reveal-delay: 0.1s;
+}
+
+.detailHero[data-motion-tone="structured"] {
+  --motion-hero-line: 460ms;
+  --motion-hero-support-delay: 420ms;
+  --reveal-delay: 0.05s;
+}
+
+.detailHero[data-motion-tone="fluid"],
+.detailHero[data-motion-tone="expressive"] {
+  --reveal-delay: 0.04s;
+}
+
+.detailHero[data-motion-tone="direct"],
+.detailHero[data-motion-tone="remote"] {
+  --reveal-delay: 0.05s;
+}
+
+.detailHero[data-motion-tone="calm"] .detailAccent {
+  background: color-mix(in srgb, var(--color-accent-calm) 65%, transparent);
+}
+
+.detailHero[data-motion-tone="ceremonial"] .detailAccent {
+  background: color-mix(in srgb, var(--color-accent-warm) 80%, transparent);
+  width: 4rem;
+}
+
+/* —— Family A: Structured (Functional) —— */
+@media (min-width: 1024px) {
+  .detailHero[data-compose-family="structured"] .composeHeroWithMedia {
     display: grid;
-    grid-template-columns: minmax(0, 1.15fr) minmax(0, 0.85fr);
-    gap: 1.5rem;
-    align-items: end;
-  }
-
-  /* Yoga — calmer breathing room */
-  .detailOpeningWithMedia[data-media-compose="calm"] {
-    gap: 2.25rem;
-    align-items: center;
-    grid-template-columns: minmax(0, 1.2fr) minmax(0, 0.8fr);
-  }
-
-  /* Zumba — stronger visual rhythm */
-  .detailOpeningWithMedia[data-media-compose="fluid"] {
-    gap: 1.15rem;
+    grid-template-columns: minmax(0, 5fr) minmax(0, 4fr) minmax(0, 3fr);
+    gap: 1.5rem 1.75rem;
     align-items: stretch;
   }
 
-  .detailOpeningWithMedia[data-media-compose="fluid"] .detailMedia {
+  .detailHero[data-compose-family="structured"] .detailMedia {
     max-width: none;
     align-self: stretch;
   }
 
-  /* Dance — controlled asymmetry past grid edge */
-  .detailOpeningWithMedia[data-media-compose="expressive"] .detailMedia {
-    margin-inline-end: calc(-1 * clamp(0.5rem, 2vw, 1.25rem));
-    max-width: none;
-  }
-
-  /* Wedding — elegant framing */
-  .detailOpeningWithMedia[data-media-compose="ceremonial"] {
-    gap: 1.85rem;
-    align-items: center;
-  }
-
-  .detailOpeningWithMedia[data-media-compose="ceremonial"] .detailMedia figure {
-    outline: 1px solid rgb(255 255 255 / 0.08);
-  }
-
-  /* Functional — decisive structured crop */
-  .detailOpeningWithMedia[data-media-compose="structured"] {
-    gap: 1.25rem;
-    align-items: stretch;
-  }
-
-  .detailOpeningWithMedia[data-media-compose="structured"] .detailMedia figure {
+  .detailHero[data-compose-family="structured"] .detailMedia figure {
+    height: 100%;
+    min-height: 22rem;
     outline: 1px solid rgb(255 255 255 / 0.12);
   }
 
-  /* Home PT — intimate / direct */
-  .detailOpeningWithMedia[data-media-compose="direct"] .detailMedia {
-    max-width: 20rem;
+  .detailHero[data-compose-family="structured"] .metaRail {
+    border-left: 2px solid color-mix(in srgb, var(--color-accent-strength) 55%, transparent);
+    padding-left: 1rem;
+    align-self: start;
+  }
+}
+
+/* —— Family B: Fluid / expressive (Zumba, Dance) —— */
+@media (min-width: 1024px) {
+  .detailHero[data-compose-family="fluid"] .composeHeroWithMedia {
+    display: grid;
+    grid-template-columns: minmax(0, 1.1fr) minmax(0, 1fr);
+    grid-template-areas:
+      "title media"
+      "meta meta";
+    gap: 1rem 1.5rem;
+    align-items: end;
+  }
+
+  .detailHero[data-compose-family="fluid"] .detailOpening {
+    grid-area: title;
+  }
+
+  .detailHero[data-compose-family="fluid"] .detailMedia {
+    grid-area: media;
+    max-width: none;
+    margin-inline-end: calc(-1 * clamp(0px, 2vw, 1.5rem));
+  }
+
+  .detailHero[data-compose-family="fluid"] .metaRail {
+    grid-area: meta;
+    border-top: 1px solid rgb(255 255 255 / 0.12);
+    padding-top: 1rem;
+  }
+
+  .detailHero[data-compose-family="fluid"] .metaList {
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    gap: 1rem 1.25rem;
+  }
+
+  .detailHero[data-compose-family="fluid"] .metaItem {
+    border-top: none;
+    padding-top: 0;
+    border-left: 1px solid rgb(255 255 255 / 0.1);
+    padding-left: 0.85rem;
+  }
+
+  .detailHero[data-compose-family="fluid"] .metaItem:first-child {
+    border-left: none;
+    padding-left: 0;
+  }
+
+  /* Zumba — tighter rhythm */
+  .detailHero[data-compose-family="fluid"][data-service-variant="zumba"] {
+    padding-block: calc(var(--spacing-section) - 0.25rem);
+  }
+
+  .detailHero[data-compose-family="fluid"][data-service-variant="zumba"] .detailTitle {
+    max-width: 10ch;
+  }
+
+  /* Dance — more open, stronger media break */
+  .detailHero[data-compose-family="fluid"][data-service-variant="dance"] .composeHeroWithMedia {
+    grid-template-columns: minmax(0, 0.95fr) minmax(0, 1.15fr);
+    gap: 1.5rem 2rem;
+  }
+
+  .detailHero[data-compose-family="fluid"][data-service-variant="dance"] .detailMedia {
+    margin-inline-end: calc(-1 * clamp(0.75rem, 3vw, 2rem));
+  }
+
+  .detailHero[data-compose-family="fluid"][data-service-variant="dance"] .detailTitle {
+    max-width: 8ch;
+  }
+}
+
+/* —— Family C: Calm (Yoga) —— */
+@media (min-width: 1024px) {
+  .detailHero[data-compose-family="calm"] {
+    padding-block: calc(var(--spacing-section) + 0.5rem);
+  }
+
+  .detailHero[data-compose-family="calm"] .composeHeroWithMedia {
+    display: grid;
+    grid-template-columns: minmax(0, 1.25fr) minmax(0, 0.85fr);
+    grid-template-areas:
+      "title ."
+      "title media"
+      "meta media";
+    gap: 1.75rem 2.5rem;
+    align-items: start;
+  }
+
+  .detailHero[data-compose-family="calm"] .detailOpening {
+    grid-area: title;
+    max-width: 28rem;
+    padding-block: 0.5rem 1.5rem;
+  }
+
+  .detailHero[data-compose-family="calm"] .detailTitle {
+    max-width: 8ch;
+    font-size: clamp(3.2rem, 7vw, 5rem);
+  }
+
+  .detailHero[data-compose-family="calm"] .detailMedia {
+    grid-area: media;
+    max-width: none;
+    align-self: end;
+    margin-top: 2.5rem;
+  }
+
+  .detailHero[data-compose-family="calm"] .metaRail {
+    grid-area: meta;
+    max-width: 22rem;
+  }
+
+  .detailHero[data-compose-family="calm"] .metaItem {
+    border-top-color: rgb(255 255 255 / 0.06);
+  }
+}
+
+/* —— Family D: Service / occasion —— */
+@media (min-width: 1024px) {
+  .detailHero[data-compose-family="service"] .composeHeroWithMedia {
+    display: grid;
+    grid-template-columns: minmax(0, 1.2fr) minmax(0, 0.9fr);
+    gap: 1.5rem 2rem;
+    align-items: center;
+  }
+
+  .detailHero[data-compose-family="service"] .metaRail {
+    grid-column: 1 / -1;
+    display: grid;
+    border-top: 1px solid rgb(255 255 255 / 0.1);
+    padding-top: 1.1rem;
+  }
+
+  .detailHero[data-compose-family="service"] .metaList {
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    gap: 1rem;
+  }
+
+  .detailHero[data-compose-family="service"] .metaItem {
+    border-top: none;
+    padding-top: 0;
+  }
+
+  /* Wedding — ceremonial */
+  .detailHero[data-service-variant="wedding"] .detailMedia {
+    max-width: none;
+    justify-self: stretch;
+  }
+
+  .detailHero[data-service-variant="wedding"] .detailMedia figure {
+    outline: 1px solid rgb(255 255 255 / 0.08);
+  }
+
+  .detailHero[data-service-variant="wedding"] .detailTitle {
+    max-width: 12ch;
+  }
+
+  /* Home PT — intimate */
+  .detailHero[data-service-variant="home"] .composeHeroWithMedia {
+    grid-template-columns: minmax(0, 1.35fr) minmax(0, 0.65fr);
+    align-items: start;
+  }
+
+  .detailHero[data-service-variant="home"] .detailMedia {
+    max-width: 18rem;
     justify-self: end;
   }
 
-  /* Online — training context, not fake app chrome */
-  .detailOpeningWithMedia[data-media-compose="remote"] .detailMedia {
-    max-width: 21rem;
+  /* Online — compact remote */
+  .detailHero[data-service-variant="online"] .composeHeroWithMedia {
+    grid-template-columns: minmax(0, 1.4fr) minmax(0, 0.7fr);
+  }
+
+  .detailHero[data-service-variant="online"] .detailMedia {
+    max-width: 19rem;
+    justify-self: end;
+  }
+}
+
+/* Tablet: two-zone compose before mobile stack */
+@media (min-width: 768px) and (max-width: 1023px) {
+  .composeHeroWithMedia {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+    gap: 1.25rem;
+    align-items: start;
+  }
+
+  .composeHeroWithMedia .metaRail {
+    grid-column: 1 / -1;
+  }
+
+  .composeHeroWithMedia .metaList {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 0.85rem 1.5rem;
+  }
+
+  .detailHero[data-compose-family="calm"] .detailMedia {
+    margin-top: 1rem;
+  }
+
+  .detailHero[data-compose-family="fluid"] .detailMedia {
+    margin-inline-end: 0;
   }
 }
 
@@ -426,186 +712,40 @@
 
   .actionMedia {
     max-width: none;
+    margin-inline-end: calc(-1 * clamp(0px, 1.5vw, 1rem));
   }
 }
 
-.detailSupport {
-  display: flex;
-  flex-direction: column;
-  gap: 0.85rem;
+/* Snapshot facts — typographic, not bordered cards */
+.snapshotBand .sectionTitle {
+  max-width: 18ch;
 }
 
-.detailAccent {
-  display: block;
-  width: 3.5rem;
-  height: 2px;
-  margin-top: 0.35rem;
-  background: color-mix(in srgb, var(--color-accent) 70%, transparent);
-  transform-origin: left center;
-}
-
-.detailHero[data-motion-tone="calm"] {
-  --motion-hero-line: 560ms;
-  --motion-hero-support-delay: 520ms;
-}
-
-.detailHero[data-motion-tone="ceremonial"] {
-  --motion-hero-line: 580ms;
-  --motion-hero-support-delay: 540ms;
-}
-
-.detailHero[data-motion-tone="structured"] {
-  --motion-hero-line: 460ms;
-  --motion-hero-support-delay: 420ms;
-}
-
-.detailHero[data-motion-tone="calm"] .detailAccent {
-  background: color-mix(in srgb, var(--color-accent-calm) 65%, transparent);
-}
-
-.detailHero[data-motion-tone="ceremonial"] .detailAccent {
-  background: color-mix(in srgb, var(--color-accent-warm) 80%, transparent);
-  width: 4rem;
-}
-
-.summaryMotion {
-  transition: opacity var(--motion-section) var(--ease-enter),
-    transform var(--motion-section) var(--ease-enter);
-}
-
-@media (prefers-reduced-motion: no-preference) {
-  html.motion-pending .summaryMotion {
-    opacity: 0.85;
-    transform: translate3d(0, 14px, 0);
-  }
-
-  html.motion-ready .summaryMotion {
-    animation: pulse-hero-support 380ms var(--ease-enter) both;
-    animation-delay: calc(var(--motion-hero-support-delay) + 40ms);
-  }
-
-  html.motion-ready .detailHero[data-motion-tone="calm"] .summaryMotion {
-    animation-delay: calc(var(--motion-hero-support-delay) + 80ms);
-  }
-
-  html.motion-ready .detailHero[data-motion-tone="ceremonial"] .summaryMotion {
-    animation-delay: calc(var(--motion-hero-support-delay) + 100ms);
-  }
-}
-
-@media (prefers-reduced-motion: reduce) {
-  .summaryMotion {
-    opacity: 1 !important;
-    transform: none !important;
-    animation: none !important;
-  }
-}
-
-/* Tempo personality — padding / gap; summaryPanel border accent only */
-.detailHero[data-tempo="yoga"] {
-  gap: 1.5rem;
-  padding-block: calc(var(--spacing-section) + 0.35rem);
-}
-
-.detailHero[data-tempo="yoga"] .summaryPanel {
-  border-color: color-mix(in srgb, var(--color-accent-calm) 45%, #333);
-}
-
-.detailHero[data-tempo="zumba"] {
-  gap: 1.1rem;
-}
-
-.detailHero[data-tempo="zumba"] .summaryPanel {
-  border-color: color-mix(in srgb, var(--color-accent-high-energy) 50%, #333);
-}
-
-.detailHero[data-tempo="wedding"] {
-  gap: 1.4rem;
-}
-
-.detailHero[data-tempo="wedding"] .summaryPanel {
-  border-color: color-mix(in srgb, var(--color-accent-warm) 48%, #333);
-}
-
-.detailHero[data-tempo="home"] .summaryPanel,
-.detailHero[data-tempo="online"] .summaryPanel {
-  border-color: #3a3a3c;
-}
-
-.detailHero[data-tempo="home"],
-.detailHero[data-tempo="online"] {
+.snapshotFacts {
+  display: grid;
   gap: 1.15rem;
-}
-
-/* Motion tone — intro pacing via CSS custom properties (one family) */
-.detailHero[data-motion-tone="calm"] {
-  --reveal-delay: 0.08s;
-}
-.detailHero[data-motion-tone="ceremonial"] {
-  --reveal-delay: 0.1s;
-}
-.detailHero[data-motion-tone="fluid"],
-.detailHero[data-motion-tone="expressive"] {
-  --reveal-delay: 0.04s;
-}
-.detailHero[data-motion-tone="structured"],
-.detailHero[data-motion-tone="direct"],
-.detailHero[data-motion-tone="remote"] {
-  --reveal-delay: 0.05s;
-}
-
-.detailLede {
-  margin: 0;
-  max-width: 42ch;
-  color: var(--color-muted-on-field);
-  font-size: 1.05rem;
-  line-height: 1.45;
-}
-
-.summaryPanel {
-  border: 1px solid #333;
-  background: #121214;
-  padding: 1rem 1.1rem;
-  min-width: 0;
-}
-
-.summaryList {
-  margin: 0;
-  display: grid;
-  gap: 0.85rem;
-}
-
-.summaryList dt {
-  margin: 0;
-  font-size: 0.68rem;
-  letter-spacing: 0.07em;
-  text-transform: uppercase;
-  color: #b8b4aa;
-}
-
-.summaryList dd {
-  margin: 0.2rem 0 0;
-  font-size: 0.92rem;
-  line-height: 1.4;
-  color: var(--color-ink-inverse);
-}
-
-.glanceGrid {
-  display: grid;
-  gap: 0.85rem;
   margin: 0;
 }
 
 @media (min-width: 720px) {
-  .glanceGrid {
+  .snapshotFacts {
     grid-template-columns: 1fr 1fr;
-    gap: 1rem 1.25rem;
+    gap: 1.25rem 2rem;
   }
 }
 
-.glancePanel {
-  padding: 0.85rem 0;
-  border-top: 1px solid rgb(255 255 255 / 0.12);
+.snapshotFact {
+  padding: 0.35rem 0 0.15rem;
+  border-top: 1px solid rgb(255 255 255 / 0.1);
+}
+
+[data-compose-family="calm"] .snapshotFact {
+  border-top-color: rgb(255 255 255 / 0.06);
+  padding-top: 0.75rem;
+}
+
+[data-compose-family="structured"] .snapshotFacts {
+  max-width: 52rem;
 }
 
 .glanceLabel {
@@ -678,16 +818,14 @@
   }
 }
 
-.callout {
+.availabilityNote {
   display: grid;
   gap: 0.65rem;
-  padding: 0.95rem 1.05rem;
-  border: 1px solid #333;
-  background: #121214;
-  max-width: 40rem;
+  max-width: 42rem;
+  padding: 0.15rem 0;
 }
 
-.callout .relatedLink {
+.availabilityNote .relatedLink {
   width: auto;
   border-bottom: none;
   min-height: 40px;
@@ -697,8 +835,23 @@
   color: var(--color-muted-on-field);
 }
 
-.callout .relatedLink:hover {
+.availabilityNote .relatedLink:hover {
   color: var(--color-volt);
+}
+
+@media (max-width: 767px) {
+  .detailHero[data-compose-family="fluid"] .metaList,
+  .detailHero[data-compose-family="service"] .metaList {
+    grid-template-columns: 1fr 1fr;
+  }
+
+  .detailHero[data-compose-family="fluid"] .metaItem,
+  .detailHero[data-compose-family="service"] .metaItem {
+    border-left: none;
+    padding-left: 0;
+    border-top: 1px solid rgb(255 255 255 / 0.1);
+    padding-top: 0.55rem;
+  }
 }
 
 .sectionTitle {

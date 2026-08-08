@@ -17,12 +17,28 @@ const SLUG_TEMPO: Record<string, ProgrammeTempo> = {
   "online-training": "online",
 };
 
-/** Generic trial/pricing FAQs already covered in the summary / availability callout. */
-const GENERIC_FAQ_IDS = new Set([
-  "ft-trial",
-  "ft-price",
-  "yoga-trial",
-]);
+/** Stage 5 — four composition families (not seven page forks). */
+export type ComposeFamily = "structured" | "fluid" | "calm" | "service";
+
+export function composeFamilyFromSlug(slug: string): ComposeFamily {
+  switch (slug) {
+    case "functional-training":
+      return "structured";
+    case "zumba":
+    case "adult-dance":
+      return "fluid";
+    case "yoga":
+      return "calm";
+    case "wedding-choreography":
+    case "home-personal-training":
+    case "online-training":
+      return "service";
+    default:
+      return "structured";
+  }
+}
+
+const GENERIC_FAQ_IDS = new Set(["ft-trial", "ft-price", "yoga-trial"]);
 
 function benefitsNote(programme: Programme): string {
   switch (programme.slug) {
@@ -44,13 +60,25 @@ function benefitsNote(programme: Programme): string {
   }
 }
 
-export type ProgrammeDetailViewProps = {
-  programme: Programme;
-  locations: Array<{ slug: string; name: string; href: string }>;
-  related: Array<{ slug: ProgrammeSlug; name: string }>;
-  whatsappHref: string;
-  whatsappLabel: string;
-};
+function snapshotTitle(programme: Programme): string {
+  switch (programme.slug) {
+    case "functional-training":
+      return "The session, at a glance";
+    case "yoga":
+      return "What to expect";
+    case "zumba":
+    case "adult-dance":
+      return "Class snapshot";
+    case "wedding-choreography":
+      return "What we arrange";
+    case "home-personal-training":
+      return "Training at your location";
+    case "online-training":
+      return "Training from anywhere";
+    default:
+      return "Service snapshot";
+  }
+}
 
 function deliveryLabel(programme: Programme): string {
   if (programme.deliveryMode === "home") {
@@ -89,9 +117,19 @@ function availabilityCopy(programme: Programme): string {
   return "Batch times vary by branch. Message us for current options — studios open 6:00 AM–10:00 PM every day.";
 }
 
+export type ProgrammeDetailViewProps = {
+  programme: Programme;
+  locations: Array<{ slug: string; name: string; href: string }>;
+  related: Array<{ slug: ProgrammeSlug; name: string }>;
+  whatsappHref: string;
+  whatsappLabel: string;
+};
+
+type MetaFact = { label: string; body: string };
+
 /**
- * Programme detail — customer language, Pulse editorial structure.
- * Tempo personality via data-tempo only (padding/cue), not typography forks.
+ * Programme detail — Stage 5 composition families share one component tree.
+ * Personality via data-compose-family + data-tempo / motion tone — not seven forks.
  */
 export function ProgrammeDetailView({
   programme,
@@ -102,6 +140,7 @@ export function ProgrammeDetailView({
 }: ProgrammeDetailViewProps) {
   const tempo = SLUG_TEMPO[programme.slug] ?? "functional";
   const motionTone = toneFromProgrammeSlug(programme.slug);
+  const composeFamily = composeFamilyFromSlug(programme.slug);
   const heroSlot = programmeHeroSlotKey(programme.slug);
   const heroMedia = heroSlot ? resolveSlotMedia(heroSlot) : null;
   const actionMedia =
@@ -136,7 +175,6 @@ export function ProgrammeDetailView({
     .filter((faq) => !GENERIC_FAQ_IDS.has(faq.id))
     .slice(0, 3);
 
-  // Prefer programme-specific glance facts — skip repeating hero summary verbatim.
   const glancePanels: Array<{ label: string; body: string }> = [];
   if (programme.whoItsFor) {
     glancePanels.push({ label: "Who it’s for", body: programme.whoItsFor });
@@ -151,30 +189,54 @@ export function ProgrammeDetailView({
     });
   }
 
+  const metaFacts: MetaFact[] = [
+    { label: "Format", body: formatLabel(programme) },
+    { label: "Delivery", body: deliveryLabel(programme) },
+    { label: "Trial", body: programme.trialAvailable ? "Yes" : "Ask on enquiry" },
+    { label: "Hours", body: hoursNote(programme) },
+  ];
+
+  const titleLines =
+    programme.slug === "home-personal-training"
+      ? ["Home personal", "training"]
+      : programme.slug === "wedding-choreography"
+        ? ["Wedding", "choreography"]
+        : programme.slug === "functional-training"
+          ? ["Functional", "training"]
+          : programme.slug === "online-training"
+            ? ["Online", "training"]
+            : [programme.name];
+
   return (
-    <div className={styles.field} data-motion-tone={motionTone}>
+    <div
+      className={styles.field}
+      data-motion-tone={motionTone}
+      data-compose-family={composeFamily}
+      data-service-variant={tempo}
+    >
       <section
         className={styles.detailHero}
         data-tempo={tempo}
         data-motion-tone={motionTone}
+        data-compose-family={composeFamily}
+        data-service-variant={tempo}
         data-has-media={heroMedia ? "true" : "false"}
         aria-labelledby="programme-title"
       >
         <div
           className={[
-            styles.detailOpeningBlock,
-            heroMedia ? styles.detailOpeningWithMedia : "",
+            styles.composeHero,
+            heroMedia ? styles.composeHeroWithMedia : "",
           ]
             .filter(Boolean)
             .join(" ")}
-          data-media-compose={motionTone}
         >
           <div className={styles.detailOpening}>
             <p className={`hero-brand-motion ${styles.detailKicker}`}>{clusterKicker}</p>
             <MaskedLines
               id="programme-title"
               as="h1"
-              lines={[programme.name]}
+              lines={titleLines}
               className={styles.detailTitle}
             />
             <div className={`hero-support ${styles.detailSupport}`}>
@@ -185,51 +247,47 @@ export function ProgrammeDetailView({
             </div>
             <span className={`hero-accent-motion ${styles.detailAccent}`} aria-hidden />
           </div>
+
           {heroMedia ? (
             <div className={styles.detailMedia}>
               <PulseMedia
                 item={heroMedia}
-                sizes="(max-width: 900px) 100vw, (max-width: 1440px) 42vw, 640px"
+                sizes="(max-width: 900px) 100vw, (max-width: 1440px) 42vw, 720px"
                 priority
               />
             </div>
           ) : null}
+
+          <aside
+            className={`${styles.metaRail} ${styles.summaryMotion}`}
+            aria-label="Programme summary"
+          >
+            <dl className={styles.metaList}>
+              {metaFacts.map((fact) => (
+                <div key={fact.label} className={styles.metaItem}>
+                  <dt>{fact.label}</dt>
+                  <dd>{fact.body}</dd>
+                </div>
+              ))}
+            </dl>
+          </aside>
         </div>
-        <aside
-          className={`${styles.summaryPanel} ${styles.summaryMotion}`}
-          aria-label="Programme summary"
-        >
-          <dl className={styles.summaryList}>
-            <div>
-              <dt>Format</dt>
-              <dd>{formatLabel(programme)}</dd>
-            </div>
-            <div>
-              <dt>Delivery</dt>
-              <dd>{deliveryLabel(programme)}</dd>
-            </div>
-            <div>
-              <dt>Trial</dt>
-              <dd>{programme.trialAvailable ? "Yes" : "Ask on enquiry"}</dd>
-            </div>
-            <div>
-              <dt>Hours</dt>
-              <dd>{hoursNote(programme)}</dd>
-            </div>
-          </dl>
-        </aside>
       </section>
 
       {glancePanels.length > 0 ? (
-        <section className={styles.band} aria-labelledby="programme-overview">
+        <section
+          className={`${styles.band} ${styles.snapshotBand}`}
+          aria-labelledby="programme-overview"
+          data-compose-family={composeFamily}
+        >
           <SectionReveal>
             <h2 id="programme-overview" className={styles.sectionTitle}>
-              At a glance
+              {snapshotTitle(programme)}
             </h2>
           </SectionReveal>
-          <div className={styles.glanceGrid}>
+          <div className={styles.snapshotFacts}>
             {glancePanels.map((panel) => (
-              <div key={panel.label} className={styles.glancePanel}>
+              <div key={panel.label} className={styles.snapshotFact}>
                 <p className={styles.glanceLabel}>{panel.label}</p>
                 <p className={styles.glanceBody}>{panel.body}</p>
               </div>
@@ -246,11 +304,7 @@ export function ProgrammeDetailView({
             </h2>
           </SectionReveal>
           <p className={styles.sectionNote}>{benefitsNote(programme)}</p>
-          <div
-            className={
-              actionMedia ? styles.includeWithMedia : undefined
-            }
-          >
+          <div className={actionMedia ? styles.includeWithMedia : undefined}>
             <ul className={styles.includeList}>
               {programme.benefits.map((benefit) => (
                 <li key={benefit}>{benefit}</li>
@@ -274,7 +328,7 @@ export function ProgrammeDetailView({
             Availability
           </h2>
         </SectionReveal>
-        <div className={styles.callout}>
+        <div className={styles.availabilityNote}>
           <p className={styles.glanceBody}>{batchLabel}</p>
           {programme.deliveryMode === "in-studio" ? (
             <Link href="/timetable" className={styles.relatedLink}>
