@@ -1,0 +1,122 @@
+{
+  "base": "http://127.0.0.1:3495",
+  "generatedAt": "2026-08-08T11:19:23.477Z",
+  "files": [
+    {
+      "name": "branch-default.png",
+      "bytes": 1395
+    },
+    {
+      "name": "branch-hover.png",
+      "bytes": 1440
+    },
+    {
+      "name": "dance-default.png",
+      "bytes": 8876
+    },
+    {
+      "name": "dance-hover.png",
+      "bytes": 9317
+    },
+    {
+      "name": "first-paint-js-disabled-home.png",
+      "bytes": 110921
+    },
+    {
+      "name": "first-paint-normal-home.png",
+      "bytes": 62273
+    },
+    {
+      "name": "first-paint-reduced-home.png",
+      "bytes": 97254
+    },
+    {
+      "name": "forms-and-ui.webm",
+      "bytes": 304217
+    },
+    {
+      "name": "functional-default.png",
+      "bytes": 42916
+    },
+    {
+      "name": "functional-hover.png",
+      "bytes": 49293
+    },
+    {
+      "name": "hero-100ms.png",
+      "bytes": 60859
+    },
+    {
+      "name": "hero-250ms.png",
+      "bytes": 80337
+    },
+    {
+      "name": "hero-450ms.png",
+      "bytes": 82078
+    },
+    {
+      "name": "hero-700ms.png",
+      "bytes": 107676
+    },
+    {
+      "name": "hero-final.png",
+      "bytes": 102606
+    },
+    {
+      "name": "homepage-desktop.webm",
+      "bytes": 1238800
+    },
+    {
+      "name": "homepage-mobile.webm",
+      "bytes": 878706
+    },
+    {
+      "name": "manifest.json",
+      "bytes": 2089
+    },
+    {
+      "name": "primary-cta-default.png",
+      "bytes": 2960
+    },
+    {
+      "name": "primary-cta-hover.png",
+      "bytes": 2897
+    },
+    {
+      "name": "programme-openings.webm",
+      "bytes": 950630
+    },
+    {
+      "name": "programs-personalities.webm",
+      "bytes": 740322
+    },
+    {
+      "name": "reduced-motion.webm",
+      "bytes": 547327
+    },
+    {
+      "name": "wedding-default.png",
+      "bytes": 11384
+    },
+    {
+      "name": "wedding-hover.png",
+      "bytes": 12419
+    },
+    {
+      "name": "yoga-default.png",
+      "bytes": 8764
+    },
+    {
+      "name": "yoga-hover.png",
+      "bytes": 9108
+    },
+    {
+      "name": "zumba-default.png",
+      "bytes": 8143
+    },
+    {
+      "name": "zumba-hover.png",
+      "bytes": 8659
+    }
+  ]
+}

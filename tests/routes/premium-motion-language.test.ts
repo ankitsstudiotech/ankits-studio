@@ -37,10 +37,19 @@ describe("premium motion language — Stage 3", () => {
     expect(css).not.toMatch(/\.row:hover \.cue \{\s*width:/);
   });
 
-  it("hero uses MaskedLines for line reveals", () => {
+  it("hero uses MaskedLines and CSS-timed hierarchy (no wrapping HeroReveal)", () => {
     const hero = read("src/components/home/Hero.tsx");
     expect(hero).toMatch(/MaskedLines/);
     expect(hero).toMatch(/titleLines/);
+    expect(hero).toMatch(/hero-support/);
+    expect(hero).not.toMatch(/HeroReveal/);
+  });
+
+  it("motion CSS parks headline only while motion-pending and respects prm", () => {
+    const css = read("src/styles/motion.css");
+    expect(css).toMatch(/html\.motion-pending.*hero-masked-title|hero-masked-title[\s\S]*motion-pending/);
+    expect(css).toMatch(/html\.prm/);
+    expect(css).toMatch(/pulse-mask-rise/);
   });
 
   it("mobile nav animates panel with reduced-motion support", () => {
