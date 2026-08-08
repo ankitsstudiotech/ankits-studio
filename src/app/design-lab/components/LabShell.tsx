@@ -22,7 +22,7 @@ export function LabShell({ children }: { children: React.ReactNode }) {
       className={[
         syne.variable,
         figtree.variable,
-        "studio-shell has-sticky-cta",
+        "studio-shell",
         "flex min-h-full flex-col",
       ].join(" ")}
     >

@@ -15,12 +15,9 @@ export const mockStudioMemberStoriesPage: StudioMemberStoriesPage = {
     "Real experiences from people who train with Ankit’s Studio — shared only when the member agrees.",
   consentTitle: "Published with permission",
   consentBody: "We publish member stories only with the member’s permission.",
-  readinessTitle: "What you can explore today",
-  readinessBody:
-    "More member stories will be added as they are approved for publication.",
-  readinessSupporting:
-    "Meanwhile, explore programmes and neighbourhood studios, or book a free trial.",
-  programmesTitle: "Explore programmes",
+  readinessTitle: "Stories update",
+  readinessBody: "More stories will be added as members approve them for publication.",
+  programmesTitle: "Programmes",
   programmesBody:
     "Learn about coach-led programmes and find a class that suits you.",
   branchesTitle: "Neighbourhood studios",

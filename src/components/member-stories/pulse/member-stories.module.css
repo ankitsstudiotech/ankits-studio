@@ -98,6 +98,14 @@
   color: var(--color-muted-on-field);
 }
 
+.readinessNote {
+  margin: 0;
+  max-width: 48ch;
+  font-size: var(--text-body);
+  line-height: var(--text-body--line-height);
+  color: var(--color-muted-on-field);
+}
+
 .linkList {
   list-style: none;
   margin: 0.85rem 0 0;

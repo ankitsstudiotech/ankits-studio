@@ -101,7 +101,7 @@ export default function TrainersIndexPage() {
               </p>
               <p>
                 <span className={styles.openFactLabel}>Programmes</span>
-                <span className={styles.openFactValue}>Fitness, yoga, Zumba &amp; dance</span>
+                <span className={styles.openFactValue}>Fitness, Yoga, Zumba &amp; Dance</span>
               </p>
               <p>
                 <span className={styles.openFactLabel}>Studios</span>
@@ -110,16 +110,6 @@ export default function TrainersIndexPage() {
             </aside>
           </div>
         </RouteOpening>
-      </section>
-
-      <section className={styles.band} aria-labelledby="trainers-size-title">
-        <SectionReveal>
-          <h2 id="trainers-size-title" className={styles.sectionTitle}>
-            Team size
-          </h2>
-          <p className={styles.teamCount}>{page.teamSizeLabel}</p>
-          <p className={styles.body}>{page.teamSizeBody}</p>
-        </SectionReveal>
       </section>
 
       <section className={styles.band} aria-labelledby="trainers-programmes-title">

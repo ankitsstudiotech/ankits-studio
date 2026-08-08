@@ -52,10 +52,9 @@ export default function PrivacyPolicyPage() {
 
         <h2 className={styles.sectionTitle}>Forms and storage</h2>
         <p className={styles.body}>
-          The primary trial path uses WhatsApp. This website does not claim to store or deliver
-          enquiry-form submissions to a studio inbox unless a live message delivery service is
-          configured for that environment. If you use a contact form and delivery is not available,
-          the site will tell you and you can reach us by WhatsApp, phone or email instead.
+          The enquiry builders prepare messages on your device. The website does not send or store
+          those WhatsApp messages itself. If you use a contact form and message delivery is not
+          available, the site will tell you and you can reach us by WhatsApp, phone or email instead.
         </p>
 
         <h2 className={styles.sectionTitle}>Hosting and technical information</h2>
@@ -73,10 +72,6 @@ export default function PrivacyPolicyPage() {
             ankitsstudio5@gmail.com
           </a>
           .
-        </p>
-        <p className={styles.finePrint}>
-          This page describes how the live website behaves. It is not a counsel-certified legal
-          opinion.
         </p>
       </LegalPage>
     </>

@@ -113,12 +113,12 @@ export default function MemberStoriesPage() {
         </SectionReveal>
       </section>
 
-      <section className={styles.band} aria-labelledby="readiness-title">
-        <SectionReveal>
-          <h2 id="readiness-title" className={styles.sectionTitle}>
-            {hasPublishable ? "Published stories" : page.readinessTitle}
-          </h2>
-          {hasPublishable ? (
+      {hasPublishable ? (
+        <section className={styles.band} aria-labelledby="published-stories-title">
+          <SectionReveal>
+            <h2 id="published-stories-title" className={styles.sectionTitle}>
+              Published stories
+            </h2>
             <ul className={styles.storyList}>
               {stories.map((story) => (
                 <li key={story.id}>
@@ -131,11 +131,13 @@ export default function MemberStoriesPage() {
                 </li>
               ))}
             </ul>
-          ) : (
-            <p className={styles.body}>{page.readinessBody}</p>
-          )}
-        </SectionReveal>
-      </section>
+          </SectionReveal>
+        </section>
+      ) : (
+        <section className={styles.band} aria-label="Stories update">
+          <p className={styles.readinessNote}>{page.readinessBody}</p>
+        </section>
+      )}
 
       <section className={styles.band} aria-labelledby="stories-discover-title">
         <SectionReveal>

@@ -101,10 +101,35 @@
 
 .secondaryRow {
   display: flex;
-  flex-wrap: wrap;
-  gap: 0.65rem 1.25rem;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.35rem;
+  margin-top: 0.35rem;
+  width: 100%;
+  max-width: 22rem;
+}
+
+.secondaryRow .secondary {
+  display: inline-flex;
+  align-items: center;
   justify-content: center;
-  margin-top: 0.25rem;
+  min-height: 44px;
+  width: 100%;
+  text-align: center;
+}
+
+@media (min-width: 481px) {
+  .secondaryRow {
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 0.65rem 1.25rem;
+    max-width: none;
+  }
+
+  .secondaryRow .secondary {
+    width: auto;
+  }
 }
 
 .skeleton {

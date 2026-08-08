@@ -62,12 +62,6 @@ export default function TermsPage() {
           without permission, except where the law allows.
         </p>
 
-        <h2 className={styles.sectionTitle}>Membership policies</h2>
-        <p className={styles.body}>
-          Detailed membership cancellation, refund and freeze rules are confirmed with the studio.
-          They are not published as customer-facing legal terms on this website yet.
-        </p>
-
         <h2 className={styles.sectionTitle}>Contact</h2>
         <p className={styles.body}>
           Questions about these terms:{" "}
@@ -75,9 +69,6 @@ export default function TermsPage() {
             ankitsstudio5@gmail.com
           </a>
           .
-        </p>
-        <p className={styles.finePrint}>
-          These terms describe website use. They are not a counsel-certified membership contract.
         </p>
       </LegalPage>
     </>

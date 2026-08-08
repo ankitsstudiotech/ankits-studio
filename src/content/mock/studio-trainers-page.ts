@@ -27,6 +27,6 @@ export const mockStudioTrainersPage: StudioTrainersPage = {
     "Coaching is offered across Airoli Sector 19, Airoli Sector 8, Ghansoli and Thane. Ask which coaches and batches are available at the studio nearest you.",
   readinessTitle: "Individual profiles",
   readinessBody:
-    "Individual coach profiles will be published as verified details and permissions are completed.",
+    "Individual coach profiles will be added as team details and photo permissions are completed.",
   ownerSource: OWNER_INTERVIEW_2026_08_03,
 };

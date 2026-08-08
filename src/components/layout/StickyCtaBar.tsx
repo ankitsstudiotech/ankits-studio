@@ -3,29 +3,31 @@
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useEffect, useState } from "react";
+import { isStickyCtaEligiblePath } from "./stickyCtaEligibility";
 
 export type StickyCtaBarProps = {
   label?: string;
   href?: string;
   supportingText?: string;
+  /** @deprecated Prefer allowlist in stickyCtaEligibility — kept for redirect aliases. */
   hideOnPaths?: string[];
   pathname?: string;
 };
 
 const HERO_CTA_ID = "home-hero-primary-cta";
 const TRIAL_SECTION_ID = "trial";
+const BODY_STICKY_CLASS = "has-sticky-cta";
 
 /**
  * Mobile-only sticky conversion bar. Desktop relies on header CTA.
  * Touch targets ≥ 44px. Does not invent phone/WhatsApp links.
  *
- * On the homepage, the bar reveals only after the hero WhatsApp CTA leaves
- * the viewport, and hides again when the final #trial conversion is visible —
- * avoiding duplicate CTAs without layout shift (shell padding is always reserved).
+ * Route eligibility is an explicit allowlist (primary conversion journeys).
+ * Ineligible routes render nothing and clear shell bottom padding.
  *
- * On /trial the bar soft-hides while the WhatsApp submit action is in view
- * (same pattern as pricing / timetable / contact). /book-a-free-trial stays
- * hard-hidden via hideOnPaths.
+ * Homepage: reveal after hero CTA leaves view; hide when #trial is visible.
+ * Form routes (/trial, /pricing, /timetable, /contact): soft-hide while the
+ * primary form/WhatsApp action is in view.
  */
 export function StickyCtaBar({
   label = "Book a trial",
@@ -36,7 +38,13 @@ export function StickyCtaBar({
 }: StickyCtaBarProps) {
   const detectedPathname = usePathname() ?? "";
   const pathname = pathnameProp ?? detectedPathname;
-  const isHomepage = pathname === "/";
+  const eligible = isStickyCtaEligiblePath(pathname);
+  const hardHidden = hideOnPaths.some(
+    (path) => pathname === path || pathname.startsWith(`${path}/`),
+  );
+  const active = eligible && !hardHidden;
+
+  const isHomepage = pathname === "/" || pathname === "";
   const isFormRoute =
     pathname === "/pricing" ||
     pathname === "/timetable" ||
@@ -50,7 +58,15 @@ export function StickyCtaBar({
   const [formCtaVisible, setFormCtaVisible] = useState(false);
 
   useEffect(() => {
-    if (!isHomepage) return;
+    if (active) {
+      document.body.classList.add(BODY_STICKY_CLASS);
+    } else {
+      document.body.classList.remove(BODY_STICKY_CLASS);
+    }
+  }, [active]);
+
+  useEffect(() => {
+    if (!active || !isHomepage) return;
 
     const heroCta = document.getElementById(HERO_CTA_ID);
     const trialSection = document.getElementById(TRIAL_SECTION_ID);
@@ -77,10 +93,10 @@ export function StickyCtaBar({
     observer.observe(heroCta);
     observer.observe(trialSection);
     return () => observer.disconnect();
-  }, [isHomepage, pathname]);
+  }, [active, isHomepage, pathname]);
 
   useEffect(() => {
-    if (!isFormRoute) return;
+    if (!active || !isFormRoute) return;
 
     const formCta =
       document.getElementById("trial-whatsapp-cta") ||
@@ -97,9 +113,9 @@ export function StickyCtaBar({
     );
     observer.observe(formCta);
     return () => observer.disconnect();
-  }, [isFormRoute, pathname]);
+  }, [active, isFormRoute, pathname]);
 
-  if (hideOnPaths.some((path) => pathname === path || pathname.startsWith(`${path}/`))) {
+  if (!active) {
     return null;
   }
 
@@ -119,6 +135,7 @@ export function StickyCtaBar({
       ].join(" ")}
       aria-hidden={!reveal}
       data-sticky-cta-reveal={reveal ? "true" : "false"}
+      data-sticky-cta-eligible="true"
     >
       <div className="mx-auto flex max-w-[var(--width-container)] items-center gap-3 px-[var(--spacing-gutter)] py-2.5">
         <p className="min-w-0 flex-1 truncate text-[length:var(--text-caption)] text-[var(--color-muted-on-field)]">
