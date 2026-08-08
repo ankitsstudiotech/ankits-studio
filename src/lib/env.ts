@@ -15,6 +15,12 @@ const envSchema = z.object({
    *  to a localhost placeholder in src/lib/metadata.ts when unset — no
    *  real domain is verified yet. */
   NEXT_PUBLIC_SITE_URL: z.string().url().optional(),
+  /**
+   * Stage 4A — synthetic art-direction media. Default absent/false keeps
+   * production on the approved text-led experience. Must be exactly "true"
+   * to render synthetic-preview / geometry surfaces.
+   */
+  NEXT_PUBLIC_ENABLE_SYNTHETIC_MEDIA: z.enum(["true", "false"]).optional(),
 });
 
 function loadEnv() {
