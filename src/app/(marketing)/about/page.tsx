@@ -2,7 +2,9 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import { PageBreadcrumb } from "@/components/layout/PageBreadcrumb";
 import styles from "@/components/about/pulse/about.module.css";
+import { PulseMedia } from "@/components/media";
 import { RouteOpening, SectionReveal } from "@/components/motion";
+import { resolveSlotMedia } from "@/content/media";
 import {
   getConfirmedProgrammes,
   getPubliclyListedBranches,
@@ -51,6 +53,9 @@ export default function AboutPage() {
   const branches = getPubliclyListedBranches();
   const trialHref = getPrimaryConversionHref();
   const trialLabel = getPrimaryConversionLabel();
+  const communityMedia = resolveSlotMedia("about.community");
+  // Founder portrait is verified-real-only — resolve returns null until real asset.
+  const founderMedia = resolveSlotMedia("about.founder");
 
   const breadcrumbJsonLd = buildBreadcrumbJsonLd(breadcrumbTrail);
   const pageJsonLd = buildWebPageJsonLd({
@@ -109,6 +114,11 @@ export default function AboutPage() {
       </section>
 
       <section className={styles.band} aria-labelledby="about-approach-disciplines">
+        {communityMedia ? (
+          <div className={styles.communityMedia}>
+            <PulseMedia item={communityMedia} sizes="(max-width: 900px) 100vw, 720px" />
+          </div>
+        ) : null}
         <div className={`${styles.diffGrid} pulse-split`}>
           <SectionReveal pattern="B" side="left">
             <h2 id="about-approach-disciplines" className={styles.sectionTitle}>
@@ -156,6 +166,11 @@ export default function AboutPage() {
                     Founder
                   </h2>
                 </SectionReveal>
+                {founderMedia ? (
+                  <div className={styles.founderMedia}>
+                    <PulseMedia item={founderMedia} sizes="280px" />
+                  </div>
+                ) : null}
                 {about.foundingDateLabel ? (
                   <p className={styles.kicker}>Founded {about.foundingDateLabel}</p>
                 ) : null}

@@ -29,13 +29,58 @@
   line-height: var(--text-body-lg--line-height);
 }
 
-/* —— Hero —— text-led single column (no empty media column) */
+/* —— Hero —— text-led single column; editorial split when media resolves —— */
 .hero {
   display: grid;
   grid-template-columns: 1fr;
   gap: 0;
   min-height: min(62vh, 520px);
   border-bottom: 1px solid var(--color-border-on-field, rgb(255 255 255 / 0.08));
+  align-items: stretch;
+}
+
+.heroWithMedia {
+  min-height: min(68vh, 560px);
+}
+
+.heroMedia {
+  position: relative;
+  width: 100%;
+  min-height: 200px;
+  margin: 0;
+}
+
+.heroMedia > * {
+  height: 100%;
+}
+
+.heroMedia figure {
+  height: 100%;
+  min-height: 200px;
+  border-radius: 0;
+}
+
+@media (min-width: 1024px) {
+  .heroWithMedia {
+    grid-template-columns: minmax(0, 7fr) minmax(0, 5fr);
+    gap: 0;
+  }
+
+  .heroWithMedia .heroCopy {
+    max-width: none;
+    padding-right: clamp(1rem, 3vw, 2rem);
+  }
+
+  .heroMedia {
+    min-height: 100%;
+    margin-right: 0;
+  }
+
+  .heroMedia figure {
+    min-height: 100%;
+    /* Edge-aligned editorial window — not a floating card */
+    clip-path: inset(0 0 0 0);
+  }
 }
 
 .heroCopy {
@@ -697,6 +742,22 @@
   .hero {
     grid-template-columns: 1fr;
     min-height: auto;
+  }
+
+  .heroWithMedia {
+    min-height: auto;
+  }
+
+  .heroMedia {
+    order: -1;
+    min-height: 180px;
+    max-height: 220px;
+    border-bottom: 1px solid var(--color-border-on-field, rgb(255 255 255 / 0.08));
+  }
+
+  .heroMedia figure {
+    min-height: 180px;
+    max-height: 220px;
   }
 
   .heroCopy {

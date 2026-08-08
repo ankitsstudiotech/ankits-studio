@@ -25,6 +25,21 @@
   padding-top: calc(var(--spacing-section) + 0.65rem);
 }
 
+.communityMedia {
+  margin: 0 0 1.75rem;
+  max-width: 44rem;
+}
+
+.communityMedia figure,
+.founderMedia figure {
+  border-radius: 0;
+}
+
+.founderMedia {
+  margin: 0 0 1rem;
+  max-width: 16rem;
+}
+
 .openGrid {
   display: grid;
   gap: 1.75rem;

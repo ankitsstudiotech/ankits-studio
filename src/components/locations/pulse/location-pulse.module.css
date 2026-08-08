@@ -37,6 +37,15 @@
   line-height: var(--text-body-lg--line-height);
 }
 
+.atmosphereMedia {
+  margin: 0 0 1.75rem;
+  max-width: 52rem;
+}
+
+.atmosphereMedia figure {
+  border-radius: 0;
+}
+
 .utilityLede {
   margin: 0 0 1.25rem;
   max-width: 46ch;

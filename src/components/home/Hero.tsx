@@ -1,6 +1,8 @@
 import Image from "next/image";
 import Link from "next/link";
 import { MaskedLines } from "@/components/motion";
+import { PulseMedia } from "@/components/media";
+import { resolveSlotMedia } from "@/content/media";
 import { PulseCta } from "./pulse/PulseMotion";
 import styles from "./pulse/pulse-home.module.css";
 
@@ -15,8 +17,8 @@ export type HeroProps = {
 
 /**
  * Homepage hero — H1 leads; copy/CTA follow after headline is readable.
- * Choreography is CSS-timed (motion-pending → motion-ready) so hierarchy
- * does not depend on Motion child stagger wrapping the H1.
+ * Optional editorial media when synthetic flag enables a resolvable slot
+ * (Stage 4A geometry or later verified/synthetic assets). Flag false = text-led.
  */
 export function Hero({
   brandName,
@@ -27,9 +29,17 @@ export function Hero({
   secondaryCta,
 }: HeroProps) {
   const lines = titleLines?.length ? titleLines : [title];
+  const media = resolveSlotMedia("home.hero");
+  const withMedia = Boolean(media);
 
   return (
-    <section className={`${styles.field} ${styles.hero}`} aria-labelledby="home-hero-title">
+    <section
+      className={[styles.field, styles.hero, withMedia ? styles.heroWithMedia : ""]
+        .filter(Boolean)
+        .join(" ")}
+      aria-labelledby="home-hero-title"
+      data-media-layout={withMedia ? "editorial-split" : "text-led"}
+    >
       <div className={styles.heroCopy}>
         <div className={`hero-brand-motion ${styles.heroBrand}`}>
           <Image
@@ -64,11 +74,19 @@ export function Hero({
           </div>
         </div>
 
-        <span
-          className={`hero-accent-motion ${styles.heroAccent}`}
-          aria-hidden
-        />
+        <span className={`hero-accent-motion ${styles.heroAccent}`} aria-hidden />
       </div>
+
+      {media ? (
+        <div className={styles.heroMedia}>
+          <PulseMedia
+            item={media}
+            overlay
+            priority
+            sizes="(max-width: 1023px) 100vw, 48vw"
+          />
+        </div>
+      ) : null}
     </section>
   );
 }

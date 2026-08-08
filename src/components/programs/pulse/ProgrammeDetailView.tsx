@@ -1,7 +1,9 @@
 import Link from "next/link";
 import type { Programme, ProgrammeSlug } from "@/content";
+import { PulseMedia } from "@/components/media";
 import { MaskedLines, SectionReveal } from "@/components/motion";
 import { toneFromProgrammeSlug } from "@/components/motion/tokens";
+import { programmeHeroSlotKey, resolveSlotMedia } from "@/content/media";
 import { ProgrammePulseCta, type ProgrammeTempo } from "./ProgrammePulseMotion";
 import styles from "./programme-pulse.module.css";
 
@@ -100,6 +102,8 @@ export function ProgrammeDetailView({
 }: ProgrammeDetailViewProps) {
   const tempo = SLUG_TEMPO[programme.slug] ?? "functional";
   const motionTone = toneFromProgrammeSlug(programme.slug);
+  const heroSlot = programmeHeroSlotKey(programme.slug);
+  const heroMedia = heroSlot ? resolveSlotMedia(heroSlot) : null;
   const batchLabel = availabilityCopy(programme);
 
   const clusterKicker =
@@ -149,23 +153,43 @@ export function ProgrammeDetailView({
         className={styles.detailHero}
         data-tempo={tempo}
         data-motion-tone={motionTone}
+        data-has-media={heroMedia ? "true" : "false"}
         aria-labelledby="programme-title"
       >
-        <div className={styles.detailOpening}>
-          <p className={`hero-brand-motion ${styles.detailKicker}`}>{clusterKicker}</p>
-          <MaskedLines
-            id="programme-title"
-            as="h1"
-            lines={[programme.name]}
-            className={styles.detailTitle}
-          />
-          <div className={`hero-support ${styles.detailSupport}`}>
-            <p className={styles.detailLede}>{programme.shortDescription}</p>
-            <div className={styles.ctaRow}>
-              <ProgrammePulseCta href={whatsappHref}>{whatsappLabel}</ProgrammePulseCta>
+        <div
+          className={[
+            styles.detailOpeningBlock,
+            heroMedia ? styles.detailOpeningWithMedia : "",
+          ]
+            .filter(Boolean)
+            .join(" ")}
+          data-media-compose={motionTone}
+        >
+          <div className={styles.detailOpening}>
+            <p className={`hero-brand-motion ${styles.detailKicker}`}>{clusterKicker}</p>
+            <MaskedLines
+              id="programme-title"
+              as="h1"
+              lines={[programme.name]}
+              className={styles.detailTitle}
+            />
+            <div className={`hero-support ${styles.detailSupport}`}>
+              <p className={styles.detailLede}>{programme.shortDescription}</p>
+              <div className={styles.ctaRow}>
+                <ProgrammePulseCta href={whatsappHref}>{whatsappLabel}</ProgrammePulseCta>
+              </div>
             </div>
+            <span className={`hero-accent-motion ${styles.detailAccent}`} aria-hidden />
           </div>
-          <span className={`hero-accent-motion ${styles.detailAccent}`} aria-hidden />
+          {heroMedia ? (
+            <div className={styles.detailMedia}>
+              <PulseMedia
+                item={heroMedia}
+                sizes="(max-width: 900px) 100vw, 36vw"
+                priority
+              />
+            </div>
+          ) : null}
         </div>
         <aside
           className={`${styles.summaryPanel} ${styles.summaryMotion}`}
