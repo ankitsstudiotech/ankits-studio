@@ -1,0 +1,65 @@
+{
+  "mode": "flag-false",
+  "base": "http://127.0.0.1:3456",
+  "generatedAt": "2026-08-08T15:03:27.518Z",
+  "results": [
+    {
+      "route": "home",
+      "path": "/",
+      "imageBytes": 2308,
+      "imageCount": 2,
+      "topImages": [
+        {
+          "url": "http://127.0.0.1:3456/_next/image?url=%2Fbrand%2Fankits-studio-symbol-transparent.png&w=48&q=75",
+          "bytes": 1400
+        },
+        {
+          "url": "http://127.0.0.1:3456/_next/image?url=%2Fbrand%2Fankits-studio-symbol-transparent.png&w=32&q=75",
+          "bytes": 908
+        }
+      ],
+      "fcp": 148,
+      "lcp": 148,
+      "cls": 0,
+      "transferSize": 13297,
+      "encodedBodySize": 12997,
+      "lcpElement": null
+    },
+    {
+      "route": "functional",
+      "path": "/programs/functional-training",
+      "imageBytes": 908,
+      "imageCount": 1,
+      "topImages": [
+        {
+          "url": "http://127.0.0.1:3456/_next/image?url=%2Fbrand%2Fankits-studio-symbol-transparent.png&w=32&q=75",
+          "bytes": 908
+        }
+      ],
+      "fcp": 176,
+      "lcp": 176,
+      "cls": 0,
+      "transferSize": 11843,
+      "encodedBodySize": 11543,
+      "lcpElement": null
+    },
+    {
+      "route": "yoga",
+      "path": "/programs/yoga",
+      "imageBytes": 908,
+      "imageCount": 1,
+      "topImages": [
+        {
+          "url": "http://127.0.0.1:3456/_next/image?url=%2Fbrand%2Fankits-studio-symbol-transparent.png&w=32&q=75",
+          "bytes": 908
+        }
+      ],
+      "fcp": 168,
+      "lcp": 168,
+      "cls": 0,
+      "transferSize": 11282,
+      "encodedBodySize": 10982,
+      "lcpElement": null
+    }
+  ]
+}

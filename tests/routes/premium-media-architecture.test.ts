@@ -61,13 +61,39 @@ describe("resolveSlotMedia status gates", () => {
     expect(resolveSlotMedia("locations.atmosphere")).toBeNull();
   });
 
-  it("returns synthetic-preview geometry when flag is on", () => {
+  it("returns file-backed synthetic-preview when flag is on", () => {
     vi.stubEnv("NEXT_PUBLIC_ENABLE_SYNTHETIC_MEDIA", "true");
     const hero = resolveSlotMedia("home.hero");
     expect(hero?.status).toBe("synthetic-preview");
     expect(hero?.source).toBe("ai-concept");
-    expect(hero?.src).toBeUndefined();
+    expect(hero?.src).toBe("/media/synthetic-preview/home-hero-ai-concept.webp");
     expect(hero?.consentStatus).toBe("not-applicable-synthetic");
+    expect(hero?.focalPoint).toBeDefined();
+    expect(hero?.tabletFocalPoint).toBeDefined();
+    expect(hero?.mobileFocalPoint).toBeDefined();
+  });
+
+  it("registers all twelve concept slots with file sources", () => {
+    vi.stubEnv("NEXT_PUBLIC_ENABLE_SYNTHETIC_MEDIA", "true");
+    const slots = [
+      "home.hero",
+      "home.community",
+      "programme.functional.hero",
+      "programme.functional.action",
+      "programme.zumba.hero",
+      "programme.yoga.hero",
+      "programme.dance.hero",
+      "programme.wedding.hero",
+      "programme.home-pt.hero",
+      "programme.online.hero",
+      "about.community",
+      "locations.atmosphere",
+    ] as const;
+    for (const slot of slots) {
+      const item = resolveSlotMedia(slot);
+      expect(item?.src, slot).toMatch(/^\/media\/synthetic-preview\//);
+      expect(item?.status).toBe("synthetic-preview");
+    }
   });
 
   it("never returns synthetic for founder or branch location heroes", () => {
