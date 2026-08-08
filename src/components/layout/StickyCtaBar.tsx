@@ -117,7 +117,7 @@ export function StickyCtaBar({
       className={[
         "fixed inset-x-0 bottom-0 z-30 border-t border-white/10 bg-field",
         "pb-[env(safe-area-inset-bottom,0px)] lg:hidden",
-        "transition-[opacity,transform] duration-200 ease-out motion-reduce:transition-none",
+        "transition-[opacity,transform] duration-[var(--motion-sticky)] ease-[var(--ease-enter)] motion-reduce:transition-none",
         reveal
           ? "translate-y-0 opacity-100"
           : "pointer-events-none translate-y-full opacity-0",
