@@ -79,8 +79,10 @@ async function capture(browser, name, route, w, h) {
       .evaluateAll((els) => els.map((e) => e.getAttribute("content") || ""))
   ).join(" | ");
   const canonical =
-    (await page.locator('link[rel="canonical"]').first().getAttribute("href")) ||
-    "";
+    (await page.locator('link[rel="canonical"]').count()) > 0
+      ? (await page.locator('link[rel="canonical"]').first().getAttribute("href")) ||
+        ""
+      : "";
   const record = {
     filename: name,
     sha: HEAD,

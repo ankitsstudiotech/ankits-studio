@@ -26,6 +26,7 @@
 |----|----------|------|
 | P2-01 | P2 | Body SSR defaults `has-sticky-cta`; excluded routes clear after StickyCtaBar hydrate. CLS measured 0 on primary routes. |
 | P2-02 | P2 | Playwright `next dev` soft-handles unknown blog static params; production hard-404s sample fixtures (verified). |
+| P2-03 | P2 | 404 still emits dual redundant noindex tags (Next auto `noindex` + explicit `noindex, nofollow`). Conflicting `index, follow` removed. |
 | P3-01 | P3 | Blog sample `not-found` copy still says “sample article” — customer-harmless; polish later. |
 
 ## Prompt 3 correction — remaining P1 (closed)
