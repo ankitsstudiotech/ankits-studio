@@ -1,0 +1,92 @@
+/* Studio Pulse — shared legal page measure (privacy / terms). */
+
+.page {
+  background: var(--color-field);
+  color: var(--color-ink-inverse);
+  flex: 1;
+}
+
+.article {
+  box-sizing: border-box;
+  width: 100%;
+  max-width: var(--width-container);
+  margin-inline: auto;
+  padding: var(--spacing-section) var(--spacing-gutter);
+}
+
+.kicker {
+  margin: 0 0 0.4rem;
+  font-family: var(--font-sans);
+  font-size: var(--text-overline);
+  font-weight: 600;
+  letter-spacing: var(--text-overline--letter-spacing);
+  line-height: var(--text-overline--line-height);
+  text-transform: uppercase;
+  color: var(--color-muted-on-field);
+}
+
+.title {
+  font-family: var(--font-display);
+  font-size: var(--text-hero);
+  letter-spacing: var(--text-hero--letter-spacing);
+  line-height: var(--text-hero--line-height);
+  margin: 0 0 0.5rem;
+  max-width: 18ch;
+  text-transform: uppercase;
+}
+
+.updated {
+  margin: 0 0 2rem;
+  font-family: var(--font-sans);
+  font-size: 0.9rem;
+  color: var(--color-muted-on-field);
+}
+
+.sectionTitle {
+  font-family: var(--font-display);
+  font-size: var(--text-title);
+  letter-spacing: var(--text-title--letter-spacing);
+  line-height: var(--text-title--line-height);
+  margin: 0 0 0.65rem;
+  max-width: 28ch;
+  text-transform: uppercase;
+}
+
+.body {
+  margin: 0 0 1.5rem;
+  max-width: 72ch;
+  font-family: var(--font-sans);
+  font-size: var(--text-body);
+  line-height: 1.65;
+  color: var(--color-muted-on-field);
+}
+
+.body:last-child {
+  margin-bottom: 0;
+}
+
+.link {
+  color: var(--color-ink-inverse);
+  font-weight: 600;
+  text-decoration: underline;
+  text-underline-offset: 0.18em;
+}
+
+.link:hover {
+  color: var(--color-accent);
+}
+
+.link:focus-visible {
+  outline: 2px solid var(--color-accent);
+  outline-offset: 3px;
+}
+
+.finePrint {
+  margin: 0;
+  max-width: 72ch;
+  font-family: var(--font-sans);
+  font-size: 0.88rem;
+  line-height: 1.55;
+  color: var(--color-muted-on-field);
+  opacity: 0.85;
+}

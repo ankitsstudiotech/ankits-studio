@@ -1,80 +1,89 @@
 import type { Metadata } from "next";
 import Link from "next/link";
+import styles from "@/components/blog/pulse/studio-notes.module.css";
 import { PageBreadcrumb } from "@/components/layout/PageBreadcrumb";
-import { Badge } from "@/components/ui/Badge";
-import { Card } from "@/components/ui/Card";
-import { Section } from "@/components/ui/Section";
-import { Body, Caption, Heading } from "@/components/ui/Typography";
-import { getBlogPosts } from "@/content";
+import { RouteOpening, SectionReveal } from "@/components/motion";
 import { buildPageMetadata } from "@/lib/seo/metadata";
 import { serializeJsonLd } from "@/lib/seo/serialize";
-import { buildBreadcrumbJsonLd } from "@/lib/seo/structured-data";
+import { buildBreadcrumbJsonLd, buildWebPageJsonLd } from "@/lib/seo/structured-data";
 
 const PATH = "/blog";
 
 export const metadata: Metadata = buildPageMetadata({
-  title: "Blog",
+  title: "Studio Notes",
   description:
-    "Sample blog route architecture for Ankit's Studio. Sample articles are labelled and noindex.",
+    "Studio Notes from Ankit’s Studio. Explore programmes, neighbourhood studios and batch availability.",
   path: PATH,
   forceNoIndex: true,
 });
 
 const breadcrumbTrail = [
   { name: "Home", path: "/" },
-  { name: "Blog", path: PATH },
+  { name: "Studio Notes", path: PATH },
 ];
 
+/**
+ * Concise noindex Studio Notes hub — no sample article cards (ADR-023).
+ */
 export default function BlogIndexPage() {
-  const posts = getBlogPosts();
   const breadcrumbJsonLd = buildBreadcrumbJsonLd(breadcrumbTrail);
+  const pageJsonLd = buildWebPageJsonLd({
+    name: "Studio Notes | Ankit’s Studio",
+    description:
+      "Studio Notes from Ankit’s Studio. Explore programmes, neighbourhood studios and batch availability.",
+    path: PATH,
+  });
 
   return (
-    <main className="flex flex-1 flex-col">
+    <main className={`${styles.page} flex flex-1 flex-col`}>
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: serializeJsonLd(breadcrumbJsonLd) }}
       />
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: serializeJsonLd(pageJsonLd) }}
+      />
 
-      <PageBreadcrumb items={breadcrumbTrail} />
+      <div className="pulse-crumb-bar">
+        <PageBreadcrumb items={breadcrumbTrail} />
+      </div>
 
-      <Section
-        eyebrow="Blog"
-        title="Studio notes"
-        description="Route architecture only. Sample articles are clearly labelled mock content and forced to noindex."
-      >
-        <Badge accent="neutral" className="mb-6">
-          Sample articles · noindex
-        </Badge>
+      <section className={styles.band} aria-labelledby="blog-title">
+        <RouteOpening>
+          <div className={styles.openMeasure}>
+            <p className={styles.kicker}>Studio Notes</p>
+            <h1 id="blog-title" className={styles.title}>
+              Studio Notes
+            </h1>
+            <p className={styles.lede}>
+              We’ll use this space for practical studio updates and training guidance.
+            </p>
+          </div>
+        </RouteOpening>
+      </section>
 
-        {posts.length === 0 ? (
-          <Body>Blog posts are coming soon.</Body>
-        ) : (
-          <ul className="grid gap-5 md:grid-cols-2">
-            {posts.map((post) => (
-              <li key={post.slug}>
-                <Card href={`/blog/${post.slug}`} interactive className="h-full">
-                  <Badge accent="neutral" className="mb-3">
-                    Sample
-                  </Badge>
-                  <Heading as="h2" className="mb-2 break-words">
-                    {post.title}
-                  </Heading>
-                  <Caption className="mb-3">{post.publishedAt}</Caption>
-                  <Body className="mb-3 line-clamp-3">{post.excerpt}</Body>
-                  {post.dataStatus !== "verified" ? (
-                    <Caption className="text-ink-subtle">{post.mockDisclaimer}</Caption>
-                  ) : null}
-                </Card>
-              </li>
-            ))}
+      <section className={styles.band} aria-labelledby="blog-explore-title">
+        <SectionReveal>
+          <h2 id="blog-explore-title" className={styles.sectionTitle}>
+            Explore the studio
+          </h2>
+          <p className={styles.body}>
+            Meanwhile, find a programme, neighbourhood studio, or batch time that suits you.
+          </p>
+          <ul className={styles.linkList}>
+            <li>
+              <Link href="/programs">Programmes</Link>
+            </li>
+            <li>
+              <Link href="/locations">Locations</Link>
+            </li>
+            <li>
+              <Link href="/timetable">Batch availability</Link>
+            </li>
           </ul>
-        )}
-
-        <Body className="mt-8">
-          Looking for classes instead? <Link href="/programs" className="text-accent underline-offset-4 hover:underline">Browse programmes</Link>.
-        </Body>
-      </Section>
+        </SectionReveal>
+      </section>
     </main>
   );
 }

@@ -606,6 +606,24 @@ Implementation: `shouldIndexMemberStoriesRoute()` in `src/content/index.ts`.
 
 **Status**: Active.
 
+## ADR-023: Blog remains a noindex Studio Notes hub; mock posts 404
+
+**Decision**: Keep `/blog` as a concise noindex “Studio Notes” hub without sample article cards. Sample/mock article slugs return `notFound()` in production (and when `ALLOW_MOCK_PUBLISH` is not true). Fixtures remain in content for tests only. No header/footer nav. No Article JSON-LD for non-verified posts.
+
+### Implementation notes
+
+- Index page: customer-facing Studio Notes copy and discovery links only — never list mock fixtures as cards.
+- `[slug]` route: `dataStatus !== "verified"` → `notFound()`; `generateStaticParams` returns only verified posts (empty until editorial is approved).
+- Metadata: `forceNoIndex: true` on `/blog` and `/blog/[slug]` until product explicitly opts into indexing.
+- Sitemap: only verified posts; `/blog` hub itself stays out of the static sitemap list.
+- Footer/header: `/blog` remains in `FOOTER_EXCLUDE_PATHS` and is not promoted in primary nav.
+
+**Why:** Sample articles previously looked publishable on a light card index while remaining crawlable HTML. A hub that does not render fiction, plus 404 for mock slugs, closes that honesty gap without inventing editorial content.
+
+**Status**: Active.
+
+Schema note (same change): removed unused optional `readinessBodyMockPreview` from `studioTrainersPageSchema` — development notes must not ship in page content types.
+
 ## Log format for future entries
 
 ```
