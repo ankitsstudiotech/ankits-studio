@@ -39,6 +39,7 @@ describe("trainers route — honest team presentation", () => {
     expect(page.teamSizeBody).not.toMatch(FORBIDDEN_COPY);
     expect(page.lede).not.toMatch(FORBIDDEN_COPY);
     expect(page.readinessBody).not.toMatch(FORBIDDEN_COPY);
+    expect(page.readinessBody).not.toMatch(/verified|publication gate|evidence|data status/i);
     expect(page.programmesBody).not.toMatch(/verified/i);
     expect(page.branchesBody).not.toMatch(/verified/i);
   });
