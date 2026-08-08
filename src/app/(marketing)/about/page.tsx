@@ -7,7 +7,6 @@ import {
   getConfirmedProgrammes,
   getPubliclyListedBranches,
   getStudioAbout,
-  getStudioCommercial,
 } from "@/content";
 import {
   getPrimaryConversionHref,
@@ -43,21 +42,15 @@ function deliveryLabel(mode: string | undefined): string {
 }
 
 /**
- * Honest About page — verified studio story only.
- * Founder narrative published when verified; no pending placeholders in production.
+ * About — studio philosophy, founder, branches, team.
+ * Directories deferred to /programs and /locations.
  */
 export default function AboutPage() {
   const about = getStudioAbout();
-  const commercial = getStudioCommercial();
   const programmes = getConfirmedProgrammes();
   const branches = getPubliclyListedBranches();
   const trialHref = getPrimaryConversionHref();
   const trialLabel = getPrimaryConversionLabel();
-
-  const physical = programmes.filter((p) => p.deliveryMode === "in-studio");
-  const delivery = programmes.filter(
-    (p) => p.deliveryMode === "home" || p.deliveryMode === "online",
-  );
 
   const breadcrumbJsonLd = buildBreadcrumbJsonLd(breadcrumbTrail);
   const pageJsonLd = buildWebPageJsonLd({
@@ -68,6 +61,9 @@ export default function AboutPage() {
 
   const showFounder =
     about.founderStoryStatus === "verified" && Boolean(about.founderStory);
+
+  // Keep only FAQs that add something not already on the page.
+  const faqs = about.faqs.filter((item) => item.id === "about-faq-machine-free").slice(0, 1);
 
   return (
     <main className={`${styles.page} flex flex-1 flex-col`}>
@@ -107,10 +103,6 @@ export default function AboutPage() {
                 <span className={styles.openFactLabel}>Approach</span>
                 <span className={styles.openFactValue}>Machine-free · coach-led</span>
               </p>
-              <p>
-                <span className={styles.openFactLabel}>Hours</span>
-                <span className={styles.openFactValue}>6:00 AM–10:00 PM daily</span>
-              </p>
             </aside>
           </div>
         </RouteOpening>
@@ -124,11 +116,6 @@ export default function AboutPage() {
                 {about.approachTitle}
               </h2>
             </SectionReveal>
-            {commercial.differentiator ? (
-              <p className={styles.lede} style={{ marginBottom: "0.85rem" }}>
-                {commercial.differentiator}
-              </p>
-            ) : null}
             <p className={styles.body}>{about.approachBody}</p>
           </div>
           <div>
@@ -199,25 +186,19 @@ export default function AboutPage() {
         </section>
       ) : null}
 
-      <section
-        className={styles.band}
-        aria-labelledby={
-          about.faqs.length > 0 ? "about-faq-title" : "about-team-title"
-        }
-      >
-        <div className={styles.pairGrid}>
+      <section className={styles.band} aria-labelledby="about-team-title">
+        <div className={faqs.length > 0 ? styles.pairGrid : undefined}>
           <div className={styles.teamBlock}>
             <SectionReveal>
               <h2 id="about-team-title" className={styles.sectionTitle}>
                 {about.teamTitle}
               </h2>
             </SectionReveal>
-            <p className={styles.kicker}>Team size</p>
             <p className={styles.teamCount}>15+</p>
             <p className={styles.body}>{about.teamBody}</p>
             <p className={styles.provenance}>{about.teamCountProvenance}</p>
           </div>
-          {about.faqs.length > 0 ? (
+          {faqs.length > 0 ? (
             <div>
               <SectionReveal>
                 <h2 id="about-faq-title" className={styles.sectionTitle}>
@@ -225,7 +206,7 @@ export default function AboutPage() {
                 </h2>
               </SectionReveal>
               <div className="pulse-accordion">
-                {about.faqs.map((item) => (
+                {faqs.map((item) => (
                   <details key={item.id} className="pulse-accordion-item">
                     <summary>{item.question}</summary>
                     <div className="pulse-accordion-panel">
@@ -242,50 +223,16 @@ export default function AboutPage() {
       <section className={styles.band} aria-labelledby="about-discover-title">
         <SectionReveal>
           <h2 id="about-discover-title" className={styles.sectionTitle}>
-            Explore programmes and studios
+            Next steps
           </h2>
         </SectionReveal>
-        <div className={styles.linkColumns}>
-          <div>
-            <p className={styles.kicker}>Programmes</p>
-            <ul className={styles.linkList}>
-              {physical.map((programme) => (
-                <li key={programme.slug}>
-                  <Link href={`/programs/${programme.slug}`}>{programme.name}</Link>
-                </li>
-              ))}
-            </ul>
-            {delivery.length > 0 ? (
-              <>
-                <p className={styles.kicker} style={{ marginTop: "1.1rem" }}>
-                  Home &amp; online
-                </p>
-                <ul className={styles.linkList}>
-                  {delivery.map((programme) => (
-                    <li key={programme.slug}>
-                      <Link href={`/programs/${programme.slug}`}>{programme.name}</Link>
-                    </li>
-                  ))}
-                </ul>
-              </>
-            ) : null}
-            <p className={styles.moreLink}>
-              <Link href="/programs">Explore Programmes</Link>
-            </p>
-          </div>
-          <div>
-            <p className={styles.kicker}>Locations</p>
-            <ul className={styles.linkList}>
-              {branches.map((branch) => (
-                <li key={branch.slug}>
-                  <Link href={`/locations/${branch.slug}`}>{branch.locality}</Link>
-                </li>
-              ))}
-            </ul>
-            <p className={styles.moreLink}>
-              <Link href="/locations">Find a Studio</Link>
-            </p>
-          </div>
+        <div className={styles.ctaRow}>
+          <Link className={styles.ctaSecondary} href="/programs">
+            Explore programmes
+          </Link>
+          <Link className={styles.ctaSecondary} href="/locations">
+            Find a studio
+          </Link>
         </div>
       </section>
 
@@ -309,12 +256,6 @@ export default function AboutPage() {
           >
             {trialLabel}
           </a>
-          <Link className={styles.ctaSecondary} href="/programs">
-            Explore Programmes
-          </Link>
-          <Link className={styles.ctaSecondary} href="/locations">
-            Find a Studio
-          </Link>
         </div>
       </section>
     </main>

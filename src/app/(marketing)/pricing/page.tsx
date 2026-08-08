@@ -33,51 +33,35 @@ const breadcrumbTrail = [
   { name: "Pricing", path: PATH },
 ];
 
+/** Only questions not already answered in the confirmed-facts block. */
 const FAQ = [
   {
-    id: "faq-trial-free",
-    question: "Is the trial class free?",
+    id: "faq-branch-fees",
+    question: "Do fees differ by branch?",
     answer:
-      "Yes. A free trial is available for every service at every physical branch, once per person. Message us on WhatsApp to book.",
-  },
-  {
-    id: "faq-registration",
-    question: "Is there a registration fee?",
-    answer:
-      "Yes. A one-time registration fee of ₹300 per person applies after you join. It is not charged again after a membership break. It is not a monthly fee and not a trial charge.",
-  },
-  {
-    id: "faq-why-no-list",
-    question: "How do I get the current programme fee?",
-    answer:
-      "Programme fees vary by service and branch. Tell us what you’re interested in and we’ll share the current fee on WhatsApp. GST is included in the fee quoted by the studio.",
-  },
-  {
-    id: "faq-home-online",
-    question: "Are Home Personal Training and Online Training priced differently?",
-    answer:
-      "Home Personal Training is priced per session. Online Training uses Zoom (one-to-one and group). Message us for the current rates.",
+      "Yes. Programme fees vary by service and branch. Tell us both when you enquire and we’ll share the current fee.",
   },
   {
     id: "faq-wedding",
     question: "How is Wedding Choreography priced?",
     answer: "Wedding Choreography pricing is arranged per couple. Message us for current details.",
   },
+  {
+    id: "faq-home-online",
+    question: "How is Home Personal Training priced?",
+    answer:
+      "Home Personal Training is priced per session. Online Training uses Zoom (one-to-one and group). Message us for the current rates.",
+  },
 ] as const;
 
 /**
- * Honest pricing page — confirmed facts only; programme fees via WhatsApp.
+ * Honest pricing page — confirmed facts + enquiry builder as the centre.
  */
 export default function PricingPage() {
   const commercial = getStudioCommercial();
   const programmes = getConfirmedProgrammes();
   const branches = getPubliclyListedBranches();
   const fallbackHref = getPrimaryConversionHref();
-
-  const physical = programmes.filter((p) => p.deliveryMode === "in-studio");
-  const delivery = programmes.filter(
-    (p) => p.deliveryMode === "home" || p.deliveryMode === "online",
-  );
 
   const services = programmes.map((programme) => ({
     slug: programme.slug,
@@ -125,11 +109,8 @@ export default function PricingPage() {
               Fees &amp; free trial
             </h1>
             <p className={styles.lede}>
-              Your trial class is free for every service at every physical branch — once per person. A
-              one-time registration fee of ₹300 per person applies after you join and is not charged again
-              after a membership break. Programme fees vary by service and branch. Tell us what you’re
-              interested in and we’ll share the current fee on WhatsApp. GST is included in the fee
-              quoted by the studio.
+              Confirmed facts below. Ask for the current programme fee on WhatsApp — amounts vary by
+              service and branch.
             </p>
           </RouteOpening>
 
@@ -142,33 +123,22 @@ export default function PricingPage() {
               <p className={styles.feeAmount}>
                 {commercial.trialIsFree ? "Free" : "Ask on WhatsApp"}
               </p>
-              <p className={styles.feeMeta}>
-                Free for every service and physical branch, once per person. Advance booking is not
-                compulsory, but checking WhatsApp availability is recommended.
-              </p>
+              <p className={styles.feeMeta}>Once per person, every service and physical branch.</p>
             </li>
             {typeof registrationFee === "number" ? (
               <li className={styles.confirmedItem}>
                 <p className={styles.kicker}>Registration</p>
                 <p className={styles.feeAmount}>₹{registrationFee}</p>
                 <p className={styles.feeMeta}>
-                  One-time registration fee per person after you join. Not recharged after a membership
-                  break. Not a monthly fee, not a trial charge, and not a recurring charge.
+                  One-time per person after you join. Not recharged after a membership break. Not a monthly fee and not a trial charge.
                 </p>
               </li>
             ) : null}
             <li className={styles.confirmedItem}>
               <p className={styles.kicker}>Programme fees</p>
               <p className={styles.feeMeta}>
-                Programme fees vary by service and branch. Tell us what you’re interested in and we’ll
-                share the current fee on WhatsApp. GST is included in the fee quoted by the studio.
-              </p>
-            </li>
-            <li className={styles.confirmedItem}>
-              <p className={styles.kicker}>How some services are priced</p>
-              <p className={styles.feeMeta}>
-                Wedding Choreography is priced per couple. Home Personal Training is priced per session.
-                Online Training uses Zoom (one-to-one and group). Message us for the current rates.
+                Vary by service and branch. GST is included in the fee quoted by the studio. Wedding
+                Choreography is priced per couple; Home PT per session; Online Training on Zoom.
               </p>
             </li>
           </ul>
@@ -208,51 +178,17 @@ export default function PricingPage() {
         </ul>
       </section>
 
-      <section className={`${styles.band} ${styles.bandWide}`} aria-labelledby="pricing-links-title">
-        <h2 id="pricing-links-title" className={styles.sectionTitle}>
-          Programmes &amp; locations
+      <section className={styles.band} aria-labelledby="pricing-next-title">
+        <h2 id="pricing-next-title" className={styles.sectionTitle}>
+          Next steps
         </h2>
-        <div className={styles.linkColumns}>
-          <div>
-            <p className={styles.kicker}>Studio services</p>
-            <ul className={styles.linkList}>
-              {physical.map((programme) => (
-                <li key={programme.slug}>
-                  <Link href={`/programs/${programme.slug}`}>{programme.name}</Link>
-                </li>
-              ))}
-            </ul>
-            {delivery.length > 0 ? (
-              <>
-                <p className={styles.kicker} style={{ marginTop: "1.25rem" }}>
-                  Other ways to train
-                </p>
-                <ul className={styles.linkList}>
-                  {delivery.map((programme) => (
-                    <li key={programme.slug}>
-                      <Link href={`/programs/${programme.slug}`}>{programme.name}</Link>
-                    </li>
-                  ))}
-                </ul>
-              </>
-            ) : null}
-            <p className={styles.deliveryNote}>
-              <Link href="/programs">Browse all programmes</Link>
-            </p>
-          </div>
-          <div>
-            <p className={styles.kicker}>Branches</p>
-            <ul className={styles.linkList}>
-              {branches.map((branch) => (
-                <li key={branch.slug}>
-                  <Link href={`/locations/${branch.slug}`}>{branch.locality}</Link>
-                </li>
-              ))}
-            </ul>
-            <p className={styles.deliveryNote}>
-              <Link href="/locations">All locations</Link>
-            </p>
-          </div>
+        <div className={styles.ctaRow}>
+          <Link className={styles.ctaSecondary} href="/programs">
+            Explore programmes
+          </Link>
+          <Link className={styles.ctaSecondary} href="/locations">
+            Find a studio
+          </Link>
         </div>
       </section>
     </main>

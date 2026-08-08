@@ -48,14 +48,13 @@ export default function TrialPage() {
               Book a free trial
             </h1>
             <p className="pulse-lede">
-              A free trial is available once per person for studio services. Share what you can —
-              every field is optional — then continue on WhatsApp to send your message.
+              Free once per person for studio services. Share what you can — every field is optional —
+              then continue on WhatsApp.
             </p>
           </RouteOpening>
           <ul className="mt-6 list-none space-y-3 p-0 text-[length:var(--text-body)] text-[var(--color-muted-on-field)]">
             <li>Studios open daily · 6:00 AM–10:00 PM</li>
             <li>₹300 one-time registration after you join</li>
-            <li>Programme fees — message us for the current fee</li>
           </ul>
           <div className="mt-8 space-y-2 text-sm text-[var(--color-muted-on-field)]">
             {studioLinks.phoneHref ? (

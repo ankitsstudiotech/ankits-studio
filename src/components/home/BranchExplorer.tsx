@@ -33,20 +33,14 @@ export function BranchExplorer({ locations }: BranchExplorerProps) {
       </p>
       <div className={styles.branchList}>
         {locations.map((location) => {
-          const placeLine =
-            location.address?.trim() ||
-            location.locality?.trim() ||
-            location.name;
+          const placeLine = location.locality?.trim() || location.name;
           const hours = location.hoursLabel ?? DEFAULT_HOURS;
 
           return (
             <article key={location.href} className={styles.branchCard}>
-              {location.addressPending ? (
-                <span className={styles.pendingFlag}>Map &amp; address updating</span>
-              ) : null}
               <h3>{location.name}</h3>
+              {placeLine !== location.name ? <p>{placeLine}</p> : null}
               <p className={styles.branchHours}>{hours}</p>
-              <p>{placeLine}</p>
               <div className={styles.branchActions}>
                 <Link href={location.href} className={styles.branchLink}>
                   Studio page

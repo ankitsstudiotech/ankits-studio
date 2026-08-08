@@ -12,8 +12,9 @@ export type SiteFooterProps = {
 };
 
 /**
- * Dark Pulse footer — brand column + explore/branches, full-width divider,
- * concise copyright line.
+ * Dark Pulse footer — brand column + explore/branches.
+ * Mobile (≤640px): brand block, then Explore + Branches in a compact two-column grid.
+ * Desktop: approved three-column layout unchanged in spirit.
  */
 export function SiteFooter({
   brandName = "Ankit's Studio",
@@ -25,13 +26,13 @@ export function SiteFooter({
 }: SiteFooterProps) {
   return (
     <footer className="mt-auto border-t border-white/10 bg-field text-ink-inverse">
-      <Container className="py-[var(--spacing-section)]">
-        <div className="grid gap-10 md:grid-cols-[minmax(0,1.35fr)_repeat(2,minmax(0,1fr))]">
-          <div className="max-w-sm">
-            <p className="mb-3 font-[family-name:var(--font-display)] text-[length:var(--text-title)] uppercase leading-[var(--text-title--line-height)] tracking-[var(--text-title--letter-spacing)]">
+      <Container className="py-[var(--spacing-section)] max-[640px]:py-10">
+        <div className="grid gap-10 max-[640px]:gap-8 md:grid-cols-[minmax(0,1.35fr)_repeat(2,minmax(0,1fr))]">
+          <div className="max-w-sm max-[640px]:max-w-none">
+            <p className="mb-3 font-[family-name:var(--font-display)] text-[length:var(--text-title)] uppercase leading-[var(--text-title--line-height)] tracking-[var(--text-title--letter-spacing)] max-[640px]:mb-2">
               {brandName}
             </p>
-            <p className="mb-4 text-[length:var(--text-body)] leading-[var(--text-body--line-height)] text-[var(--color-muted-on-field)]">
+            <p className="mb-4 text-[length:var(--text-body)] leading-[var(--text-body--line-height)] text-[var(--color-muted-on-field)] max-[640px]:mb-3 max-[640px]:max-w-[36ch]">
               {tagline}
             </p>
             {phone ? (
@@ -56,28 +57,30 @@ export function SiteFooter({
             ) : null}
           </div>
 
-          {groups.map((group) => (
-            <div key={group.title}>
-              <p className="mb-3 text-[length:var(--text-overline)] font-semibold uppercase tracking-[var(--text-overline--letter-spacing)] text-[var(--color-muted-on-field)]">
-                {group.title}
-              </p>
-              <ul className="flex flex-col gap-1">
-                {group.links.map((link) => (
-                  <li key={link.id}>
-                    <Link
-                      href={link.href}
-                      className="-mx-2 inline-flex min-h-11 min-w-11 items-center px-2 text-sm text-[var(--color-muted-on-field)] transition-colors hover:text-ink-inverse focus-visible:outline-2 focus-visible:outline-offset-3 focus-visible:outline-[var(--color-volt)]"
-                    >
-                      {link.label}
-                    </Link>
-                  </li>
-                ))}
-              </ul>
-            </div>
-          ))}
+          <div className="contents max-[640px]:grid max-[640px]:grid-cols-2 max-[640px]:gap-x-6 max-[640px]:gap-y-1 max-[640px]:col-span-full">
+            {groups.map((group) => (
+              <div key={group.title} className="max-[640px]:min-w-0">
+                <p className="mb-3 text-[length:var(--text-overline)] font-semibold uppercase tracking-[var(--text-overline--letter-spacing)] text-[var(--color-muted-on-field)] max-[640px]:mb-2">
+                  {group.title}
+                </p>
+                <ul className="flex flex-col gap-1 max-[640px]:gap-0">
+                  {group.links.map((link) => (
+                    <li key={link.id}>
+                      <Link
+                        href={link.href}
+                        className="-mx-2 inline-flex min-h-11 min-w-11 items-center px-2 text-sm text-[var(--color-muted-on-field)] transition-colors hover:text-ink-inverse focus-visible:outline-2 focus-visible:outline-offset-3 focus-visible:outline-[var(--color-volt)]"
+                      >
+                        {link.label}
+                      </Link>
+                    </li>
+                  ))}
+                </ul>
+              </div>
+            ))}
+          </div>
         </div>
 
-        <div className="mt-10 border-t border-[var(--color-border-on-field)] pt-6">
+        <div className="mt-10 border-t border-[var(--color-border-on-field)] pt-6 max-[640px]:mt-8 max-[640px]:pt-5">
           <p className="text-xs text-[var(--color-muted-on-field)]">{copyright}</p>
         </div>
       </Container>

@@ -34,19 +34,8 @@ const breadcrumbTrail = [
   { name: "Batch Availability", path: PATH },
 ];
 
+/** Secondary questions only — hours + “batches vary” already visible above. */
 const FAQ = [
-  {
-    id: "faq-why-no-grid",
-    question: "Why aren’t exact batch times listed here?",
-    answer:
-      "Batch times vary by branch and programme. Message us for current availability. Advance booking is optional; checking availability on WhatsApp is recommended.",
-  },
-  {
-    id: "faq-operating-window",
-    question: "Does 6:00 AM–10:00 PM mean classes run all day?",
-    answer:
-      "No. That is when the studio is open — every day, with no weekly closing day. Individual batch times vary by branch and programme and are confirmed when you enquire.",
-  },
   {
     id: "faq-walk-in",
     question: "Do I need to book in advance for a trial?",
@@ -62,19 +51,13 @@ const FAQ = [
 ] as const;
 
 /**
- * Batch Availability — calm utility page.
- * Exact class rows are not published. Operating window is shown separately.
+ * Batch Availability — calm utility page centred on the enquiry builder.
  */
 export default function TimetablePage() {
   const branches = getPubliclyListedBranches();
   const programmes = getConfirmedProgrammes();
   const commercial = getStudioCommercial();
   const fallbackHref = getPrimaryConversionHref();
-
-  const physical = programmes.filter((programme) => programme.deliveryMode === "in-studio");
-  const delivery = programmes.filter(
-    (programme) => programme.deliveryMode === "home" || programme.deliveryMode === "online",
-  );
 
   const services = programmes.map((programme) => ({
     slug: programme.slug,
@@ -122,8 +105,8 @@ export default function TimetablePage() {
               Check current batches
             </h1>
             <p className={styles.lede}>
-              Ask Ankit’s Studio on WhatsApp for current availability by branch and programme — then book
-              a free trial when you are ready.
+              Batch times vary by branch and programme. Choose your preferences and we’ll confirm the
+              current options on WhatsApp.
             </p>
           </RouteOpening>
 
@@ -133,12 +116,7 @@ export default function TimetablePage() {
           <div className={styles.hoursBox}>
             <p className={styles.hoursValue}>6:00 AM to 10:00 PM · every day</p>
             <p className={styles.lede}>
-              Studios operate between 6:00 AM and 10:00 PM every day — there is no weekly closing day.
-              Individual batch times vary by branch and programme.
-            </p>
-            <p className={styles.pendingNote}>
-              Batch times vary by branch and programme. Message us for current availability. Advance
-              booking is optional; checking availability on WhatsApp is recommended.
+              These are studio hours; individual batches vary.
             </p>
           </div>
         </div>
@@ -171,7 +149,7 @@ export default function TimetablePage() {
           <li className={styles.fact}>
             <strong>Ladies-only and kids-only</strong>
             {commercial.ladiesOnlyBatchesAvailable || commercial.kidsOnlyBatchesAvailable
-              ? "Ladies-only and kids-only batches are available as options. Exact branch and programme fit is confirmed when you enquire."
+              ? "Available as options — exact branch and programme fit is confirmed when you enquire."
               : "Ask on WhatsApp about audience options for your preferred programme."}
           </li>
           {commercial.maxGroupBatchSize != null ? (
@@ -197,54 +175,17 @@ export default function TimetablePage() {
         </ul>
       </section>
 
-      <section className={`${styles.band} ${styles.bandWide}`} aria-labelledby="related-links-title">
-        <h2 id="related-links-title" className={styles.sectionTitle}>
-          Programmes &amp; locations
+      <section className={styles.band} aria-labelledby="batch-next-title">
+        <h2 id="batch-next-title" className={styles.sectionTitle}>
+          Next steps
         </h2>
-        <div className={styles.linkColumns}>
-          <div>
-            <p className={styles.kicker}>Studio services</p>
-            <ul className={styles.linkList}>
-              {physical.map((programme) => (
-                <li key={programme.slug}>
-                  <Link href={`/programs/${programme.slug}`}>{programme.name}</Link>
-                </li>
-              ))}
-            </ul>
-            {delivery.length > 0 ? (
-              <>
-                <p className={`${styles.kicker}`} style={{ marginTop: "1.25rem" }}>
-                  Other ways to train
-                </p>
-                <ul className={styles.linkList}>
-                  {delivery.map((programme) => (
-                    <li key={programme.slug}>
-                      <Link href={`/programs/${programme.slug}`}>{programme.name}</Link>
-                    </li>
-                  ))}
-                </ul>
-                <p className={styles.deliveryNote}>
-                  Home Personal Training and Online Training are delivered outside the studio floor.
-                </p>
-              </>
-            ) : null}
-            <p className={styles.deliveryNote}>
-              <Link href="/programs">Browse all programmes</Link>
-            </p>
-          </div>
-          <div>
-            <p className={styles.kicker}>Branches</p>
-            <ul className={styles.linkList}>
-              {branches.map((branch) => (
-                <li key={branch.slug}>
-                  <Link href={`/locations/${branch.slug}`}>{branch.locality}</Link>
-                </li>
-              ))}
-            </ul>
-            <p className={styles.deliveryNote}>
-              <Link href="/locations">All locations</Link>
-            </p>
-          </div>
+        <div className={styles.ctaRow}>
+          <Link className={styles.ctaSecondary} href="/programs">
+            Explore programmes
+          </Link>
+          <Link className={styles.ctaSecondary} href="/locations">
+            Find a studio
+          </Link>
         </div>
       </section>
     </main>
