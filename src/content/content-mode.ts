@@ -98,6 +98,41 @@ export function assertMockContentSafeForBuild(): void {
 }
 
 /**
+ * True for a real hosted production release (Vercel Production) or an
+ * explicit local release simulation (`ANKITS_PRODUCTION_RELEASE=true`).
+ * Local preview builds and synthetic art-direction builds must not set these.
+ */
+export function isRealProductionRelease(): boolean {
+  if (process.env.VERCEL_ENV === "production") return true;
+  if (process.env.ANKITS_PRODUCTION_RELEASE === "true") return true;
+  return false;
+}
+
+/**
+ * Hard release gate — Stage 7.
+ * Blocks shipping synthetic media or mock-publish flags on a real production release.
+ * Does not block local `next build` preview with synthetic=true unless
+ * ANKITS_PRODUCTION_RELEASE=true or VERCEL_ENV=production.
+ */
+export function assertProductionReleaseSafe(): void {
+  if (!isRealProductionRelease()) return;
+
+  if (process.env.NEXT_PUBLIC_ENABLE_SYNTHETIC_MEDIA === "true") {
+    throw new Error(
+      "Production release blocked: NEXT_PUBLIC_ENABLE_SYNTHETIC_MEDIA=true. " +
+        "Unset the flag for Vercel Production. Synthetic media is local art-direction preview only.",
+    );
+  }
+
+  if (process.env.ALLOW_MOCK_PUBLISH === "true") {
+    throw new Error(
+      'Production release blocked: ALLOW_MOCK_PUBLISH=true. ' +
+        "Unset ALLOW_MOCK_PUBLISH for a real production release.",
+    );
+  }
+}
+
+/**
  * Site-wide robots gate.
  * Indexable only for a real production build with verified launch-critical
  * content and without ALLOW_MOCK_PUBLISH (preview stays noindex).

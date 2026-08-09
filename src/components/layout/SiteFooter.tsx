@@ -1,3 +1,4 @@
+import Image from "next/image";
 import Link from "next/link";
 import { Container } from "@/components/ui/Container";
 import type { FooterLinkGroup } from "./types";
@@ -10,6 +11,8 @@ export type SiteFooterProps = {
   groups: FooterLinkGroup[];
   copyright?: string;
 };
+
+const SYMBOL_SRC = "/brand/ankits-studio-symbol-transparent.png";
 
 /**
  * Dark Pulse footer — brand column + explore/branches.
@@ -29,7 +32,14 @@ export function SiteFooter({
       <Container className="py-[var(--spacing-section)] max-[640px]:py-10">
         <div className="grid gap-10 max-[640px]:gap-8 md:grid-cols-[minmax(0,1.35fr)_repeat(2,minmax(0,1fr))]">
           <div className="max-w-sm max-[640px]:max-w-none">
-            <p className="mb-3 font-[family-name:var(--font-display)] text-[length:var(--text-title)] uppercase leading-[var(--text-title--line-height)] tracking-[var(--text-title--letter-spacing)] max-[640px]:mb-2">
+            <p className="mb-3 flex items-center gap-2.5 font-[family-name:var(--font-display)] text-[length:var(--text-title)] uppercase leading-[var(--text-title--line-height)] tracking-[var(--text-title--letter-spacing)] max-[640px]:mb-2">
+              <Image
+                src={SYMBOL_SRC}
+                alt=""
+                width={32}
+                height={32}
+                className="block h-8 w-8 shrink-0 object-contain"
+              />
               {brandName}
             </p>
             <p className="mb-4 text-[length:var(--text-body)] leading-[var(--text-body--line-height)] text-[var(--color-muted-on-field)] max-[640px]:mb-3 max-[640px]:max-w-[36ch]">

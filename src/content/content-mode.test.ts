@@ -43,4 +43,29 @@ describe("content-mode", () => {
     const { shouldShowMockPreviewBanner } = await import("./content-mode");
     expect(shouldShowMockPreviewBanner()).toBe(false);
   });
+
+  it("blocks synthetic media on a real production release gate", async () => {
+    vi.stubEnv("NODE_ENV", "production");
+    vi.stubEnv("ANKITS_PRODUCTION_RELEASE", "true");
+    vi.stubEnv("NEXT_PUBLIC_ENABLE_SYNTHETIC_MEDIA", "true");
+    const { assertProductionReleaseSafe } = await import("./content-mode");
+    expect(() => assertProductionReleaseSafe()).toThrow(/SYNTHETIC_MEDIA/);
+  });
+
+  it("blocks ALLOW_MOCK_PUBLISH on a real production release gate", async () => {
+    vi.stubEnv("NODE_ENV", "production");
+    vi.stubEnv("ANKITS_PRODUCTION_RELEASE", "true");
+    vi.stubEnv("ALLOW_MOCK_PUBLISH", "true");
+    const { assertProductionReleaseSafe } = await import("./content-mode");
+    expect(() => assertProductionReleaseSafe()).toThrow(/ALLOW_MOCK_PUBLISH/);
+  });
+
+  it("allows local production preview builds without the release gate", async () => {
+    vi.stubEnv("NODE_ENV", "production");
+    vi.stubEnv("NEXT_PUBLIC_ENABLE_SYNTHETIC_MEDIA", "true");
+    vi.stubEnv("ANKITS_PRODUCTION_RELEASE", "false");
+    vi.stubEnv("VERCEL_ENV", "preview");
+    const { assertProductionReleaseSafe } = await import("./content-mode");
+    expect(() => assertProductionReleaseSafe()).not.toThrow();
+  });
 });
