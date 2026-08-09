@@ -38,13 +38,13 @@ export function buildPageMetadata(input: PageMetadataInput): Metadata {
       url: canonical,
       siteName: siteConfig.name,
       type: "website",
-      images: ogImagePath ? [{ url: ogImagePath }] : undefined,
+      images: [{ url: ogImagePath ?? "/opengraph-image" }],
     },
     twitter: {
       card: "summary_large_image",
       title,
       description,
-      images: ogImagePath ? [ogImagePath] : undefined,
+      images: [ogImagePath ?? "/opengraph-image"],
     },
     robots,
   };

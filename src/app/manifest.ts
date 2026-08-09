@@ -2,27 +2,33 @@ import type { MetadataRoute } from "next";
 import { siteConfig } from "@/lib/metadata";
 
 /**
- * Minimal, functional PWA manifest — not a final branding deliverable.
- * `theme_color`/`background_color` are neutral placeholders (final values
- * are a design-tokens/Track A decision, out of this task's ownership).
- * Icons reference the only real icon asset that exists (`/favicon.ico`);
- * proper 192/512px app icons are a follow-up once brand assets exist —
- * see docs/HANDOFF-SEO.md.
+ * PWA / install manifest — Studio Pulse dark theme + brand favicon ladder.
  */
 export default function manifest(): MetadataRoute.Manifest {
   return {
     name: siteConfig.name,
-    short_name: siteConfig.name,
+    short_name: "Ankit's Studio",
     description: siteConfig.description,
     start_url: "/",
     display: "standalone",
-    background_color: "#ffffff",
-    theme_color: "#ffffff",
+    background_color: "#0e0e10",
+    theme_color: "#0e0e10",
     icons: [
       {
-        src: "/favicon.ico",
-        sizes: "any",
-        type: "image/x-icon",
+        src: "/brand/favicon-192.png",
+        sizes: "192x192",
+        type: "image/png",
+      },
+      {
+        src: "/brand/favicon-512.png",
+        sizes: "512x512",
+        type: "image/png",
+      },
+      {
+        src: "/brand/ankits-studio-symbol-transparent.png",
+        sizes: "875x875",
+        type: "image/png",
+        purpose: "any",
       },
     ],
   };

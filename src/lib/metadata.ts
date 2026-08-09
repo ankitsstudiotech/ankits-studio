@@ -3,14 +3,8 @@ import { shouldNoIndex } from "@/content/content-mode";
 import { env } from "./env";
 
 /**
- * Central metadata configuration — see docs/SEO-STRATEGY.md's metadata
- * mechanics section. Every route's `metadata`/`generateMetadata` should
- * build on `baseMetadata`/`siteConfig` rather than repeating these values.
- *
- * Thane is deliberately not named here even generically ("multiple
- * locations" instead) — it isn't publicly listed yet (ADR-007 finding I2),
- * and this text ships even on a future verified-but-Thane-still-unconfirmed
- * build.
+ * Central metadata configuration — see docs/SEO-STRATEGY.md.
+ * Every route's metadata should build on `baseMetadata` / `siteConfig`.
  */
 const siteUrl = env.NEXT_PUBLIC_SITE_URL ?? "http://localhost:3000";
 
@@ -19,15 +13,12 @@ export const siteConfig = {
   defaultTitle: "Ankit's Studio",
   titleTemplate: "%s | Ankit's Studio",
   description:
-    "Strength training, personal training, yoga, Zumba, and dance programmes across multiple locations.",
+    "Machine-free, coach-led fitness, yoga, Zumba and dance across four neighbourhood studios in Airoli, Ghansoli and Thane. Book a free trial on WhatsApp.",
   url: siteUrl,
 };
 
 /**
- * Index only a fully verified production build — see
- * src/content/content-mode.ts shouldNoIndex() and DECISIONS.md ADR-011.
- * Every route's metadata should include this rather than hand-rolling a
- * `robots` value.
+ * Index only a fully verified production build — see content-mode shouldNoIndex().
  */
 export function buildRobotsMeta(): NonNullable<Metadata["robots"]> {
   const noIndex = shouldNoIndex();
@@ -52,14 +43,31 @@ export function buildRobotsMeta(): NonNullable<Metadata["robots"]> {
 /**
  * Root metadata omits `robots` on purpose: Next.js `not-found` auto-injects
  * `noindex`, and pairing it with a root `index, follow` emitted dual conflicting
- * meta tags. Every indexable/withheld route sets robots via `buildPageMetadata`
- * (or design-lab layout metadata).
+ * meta tags. Every indexable route sets robots via `buildPageMetadata`.
  */
 export const baseMetadata: Metadata = {
   metadataBase: new URL(siteConfig.url),
+  applicationName: siteConfig.name,
   title: {
     default: siteConfig.defaultTitle,
     template: siteConfig.titleTemplate,
   },
   description: siteConfig.description,
+  icons: {
+    icon: [
+      { url: "/brand/favicon-32.png", sizes: "32x32", type: "image/png" },
+      { url: "/brand/favicon-16.png", sizes: "16x16", type: "image/png" },
+      { url: "/brand/favicon-48.png", sizes: "48x48", type: "image/png" },
+      { url: "/brand/ankits-studio-symbol-transparent.png", type: "image/png" },
+    ],
+    apple: [{ url: "/brand/favicon-180.png", sizes: "180x180", type: "image/png" }],
+  },
+  openGraph: {
+    type: "website",
+    siteName: siteConfig.name,
+    locale: "en_IN",
+  },
+  twitter: {
+    card: "summary_large_image",
+  },
 };

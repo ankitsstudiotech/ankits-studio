@@ -44,6 +44,7 @@ export function buildOrganizationJsonLd(identity: BusinessIdentity): Organizatio
     name: identity.displayName,
     url: siteConfig.url,
     description: identity.description,
+    logo: `${siteConfig.url.replace(/\/$/, "")}/brand/ankits-studio-symbol-transparent.png`,
   };
 }
 
@@ -86,6 +87,9 @@ export function buildLocalBusinessJsonLd(branch: Branch): LocalBusinessJsonLd | 
   if (/\bMaharashtra\b/i.test(branch.address)) {
     address.addressRegion = "Maharashtra";
   }
+
+  // All publicly listed branches are in India.
+  address.addressCountry = "IN";
 
   const jsonLd: LocalBusinessJsonLd = {
     "@context": "https://schema.org",
