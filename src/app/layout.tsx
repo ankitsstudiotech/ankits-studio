@@ -1,6 +1,5 @@
 import type { Metadata } from "next";
 import { Bebas_Neue, Space_Grotesk } from "next/font/google";
-import Script from "next/script";
 import { MockModeIndicator } from "@/components/MockModeIndicator";
 import { getBusinessIdentity } from "@/content";
 import { baseMetadata } from "@/lib/metadata";
@@ -12,17 +11,34 @@ const bebas = Bebas_Neue({
   subsets: ["latin"],
   weight: "400",
   variable: "--font-bebas",
-  display: "swap",
+  /** optional: skip late swap becoming a second LCP under lab throttle */
+  display: "optional",
+  preload: false,
+  adjustFontFallback: true,
 });
 
 const spaceGrotesk = Space_Grotesk({
   subsets: ["latin"],
   weight: ["400", "500", "600", "700"],
   variable: "--font-space-grotesk",
-  display: "swap",
+  /**
+   * optional + no preload: under Slow-4G, preloading weight files contends
+   * with critical CSS and delays FCP/LCP even though optional skips late swap.
+   */
+  display: "optional",
+  preload: false,
+  adjustFontFallback: true,
 });
 
 export const metadata: Metadata = baseMetadata;
+
+/**
+ * Must be a true parser-blocking inline script — NOT next/script beforeInteractive.
+ * Next queues beforeInteractive onto `self.__next_s` until runtime JS loads, which
+ * under Slow-4G applies motion-pending AFTER first paint and re-hides headline
+ * lines (LCP regression).
+ */
+const MOTION_PREFERENCE_SCRIPT = `(function(){try{var d=document.documentElement;var m=window.matchMedia('(prefers-reduced-motion: reduce)');if(m.matches){d.classList.add('prm');}else{d.classList.add('motion-pending');requestAnimationFrame(function(){requestAnimationFrame(function(){d.classList.add('motion-ready');d.classList.remove('motion-pending');});});}}catch(e){}})();`;
 
 export default function RootLayout({
   children,
@@ -37,12 +53,9 @@ export default function RootLayout({
       className={`${bebas.variable} ${spaceGrotesk.variable} h-full antialiased`}
     >
       <body className="studio-shell has-sticky-cta flex min-h-full flex-col bg-field text-ink-inverse">
-        <Script
+        <script
           id="motion-preference"
-          strategy="beforeInteractive"
-          dangerouslySetInnerHTML={{
-            __html: `(function(){try{var d=document.documentElement;var m=window.matchMedia('(prefers-reduced-motion: reduce)');if(m.matches){d.classList.add('prm');}else{d.classList.add('motion-pending');requestAnimationFrame(function(){requestAnimationFrame(function(){d.classList.add('motion-ready');d.classList.remove('motion-pending');});});}}catch(e){}})();`,
-          }}
+          dangerouslySetInnerHTML={{ __html: MOTION_PREFERENCE_SCRIPT }}
         />
         <noscript>
           <style

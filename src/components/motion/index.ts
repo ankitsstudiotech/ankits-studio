@@ -8,17 +8,17 @@ export type { AccessibleCarouselProps, CarouselSlide } from "./AccessibleCarouse
 export {
   HeroReveal,
   SectionReveal,
-  MaskedLines,
   GroupReveal,
-  MotionReady,
   useMotionAllowed,
 } from "./PulseReveal";
 export type {
   HeroRevealProps,
   SectionRevealProps,
-  MaskedLinesProps,
   GroupRevealProps,
 } from "./PulseReveal";
+export { MotionReady } from "./MotionReady";
+export { MaskedLines } from "./MaskedLines";
+export type { MaskedLinesProps } from "./MaskedLines";
 export { RouteOpening } from "./RouteOpening";
 export type { RouteOpeningProps } from "./RouteOpening";
 export {

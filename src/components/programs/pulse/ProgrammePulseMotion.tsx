@@ -67,18 +67,14 @@ export function ProgrammePulseCta({
   href: string;
   children: ReactNode;
 }) {
-  const reduce = useReducedMotion();
   const external = href.startsWith("http");
   return (
-    <motion.a
+    <a
       href={href}
       className={styles.cta}
-      whileHover={reduce ? undefined : { y: -1 }}
-      whileTap={reduce ? undefined : { scale: 0.98 }}
-      transition={{ duration: 0.16, ease: [0.23, 1, 0.32, 1] }}
       {...(external ? { target: "_blank", rel: "noopener noreferrer" } : {})}
     >
       {children}
-    </motion.a>
+    </a>
   );
 }

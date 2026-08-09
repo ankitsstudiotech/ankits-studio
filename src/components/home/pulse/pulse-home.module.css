@@ -718,6 +718,10 @@
   box-shadow: 0 6px 0 color-mix(in srgb, var(--color-accent) 35%, #000);
 }
 
+.cta:active {
+  transform: scale(0.98);
+}
+
 .cta:focus-visible {
   outline: 2px solid var(--color-volt);
   outline-offset: 3px;

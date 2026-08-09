@@ -92,7 +92,6 @@
 .motion-mask-inner {
   display: block;
   transform: translate3d(0, 0, 0);
-  will-change: transform;
 }
 
 /**
@@ -101,14 +100,25 @@
  * prm / reduce / no-JS: stay at final visible state.
  */
 @media (prefers-reduced-motion: no-preference) {
-  /* Keep the first headline line visible for LCP; park subsequent lines only. */
-  html.motion-pending .hero-masked-title .motion-mask-line:not(:first-child) .motion-mask-inner {
-    transform: translate3d(0, 108%, 0);
+  /*
+   * All headline lines stay visible during motion-pending.
+   * Parking later lines at translateY(108%) made the second display line
+   * (often larger than the support paragraph) become LCP only after the
+   * rise finished — a multi-second lab gap after FCP.
+   * Soft enhance on ready preserves Stage 3 choreography without hiding copy.
+   */
+  html.motion-pending .hero-masked-title .motion-mask-inner {
+    transform: translate3d(0, 0, 0);
   }
 
-  html.motion-ready .hero-masked-title .motion-mask-inner {
-    animation: pulse-mask-rise var(--motion-hero-line) var(--ease-enter) both;
-    animation-delay: calc(70ms + (var(--line-index, 0) * 85ms));
+  html.motion-ready .hero-masked-title .motion-mask-line:first-child .motion-mask-inner {
+    transform: translate3d(0, 0, 0);
+    animation: none;
+  }
+
+  html.motion-ready .hero-masked-title .motion-mask-line:not(:first-child) .motion-mask-inner {
+    animation: pulse-mask-rise-soft 280ms var(--ease-enter) both;
+    animation-delay: calc(40ms + (var(--line-index, 0) * 45ms));
   }
 
   html.motion-pending .hero-brand-motion {
@@ -116,18 +126,22 @@
     transform: none;
   }
 
+  /* Brand polish without fill-mode hiding — avoid LCP regression on the mark. */
   html.motion-ready .hero-brand-motion {
-    animation: pulse-hero-brand 320ms var(--ease-enter) both;
+    animation: pulse-hero-brand 320ms var(--ease-enter) forwards;
   }
 
-  html.motion-pending .hero-support {
-    opacity: 0;
-    transform: translate3d(0, 12px, 0);
-  }
-
+  /*
+   * Hero support must remain paintable for LCP — it is often the largest
+   * contentful element on mobile. No entrance animation: transforms/delays
+   * can postpone the LCP paint under CPU throttle even when opacity stays 1.
+   * Headline mask rise + accent still carry Stage 3 choreography.
+   */
+  html.motion-pending .hero-support,
   html.motion-ready .hero-support {
-    animation: pulse-hero-support 340ms var(--ease-enter) both;
-    animation-delay: var(--motion-hero-support-delay);
+    opacity: 1;
+    transform: none;
+    animation: none;
   }
 
   html.motion-pending .hero-accent-motion {
@@ -169,6 +183,16 @@ html.prm .hero-accent-motion {
   }
 }
 
+/* Visible soft rise — never parks LCP-sized headline copy off-screen. */
+@keyframes pulse-mask-rise-soft {
+  from {
+    transform: translate3d(0, 0.55em, 0);
+  }
+  to {
+    transform: translate3d(0, 0, 0);
+  }
+}
+
 @keyframes pulse-hero-brand {
   from {
     opacity: 0.92;
@@ -184,6 +208,18 @@ html.prm .hero-accent-motion {
   from {
     opacity: 0;
     transform: translate3d(0, 12px, 0);
+  }
+  to {
+    opacity: 1;
+    transform: translate3d(0, 0, 0);
+  }
+}
+
+/* Home hero support — opacity stays 1 so LCP can paint immediately. */
+@keyframes pulse-hero-support-enhance {
+  from {
+    opacity: 1;
+    transform: translate3d(0, 8px, 0);
   }
   to {
     opacity: 1;

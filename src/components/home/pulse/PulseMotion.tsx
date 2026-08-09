@@ -1,6 +1,3 @@
-"use client";
-
-import { motion, useReducedMotion } from "motion/react";
 import type { ReactNode } from "react";
 import styles from "./pulse-home.module.css";
 
@@ -14,7 +11,10 @@ export type ServiceTempo =
   | "home"
   | "online";
 
-/** Conversion press feedback — interruptible. Supports wa.me links. */
+/**
+ * Conversion CTA — CSS press feedback (module `.cta:hover` / `:active`).
+ * Kept free of `motion/react` so the hero island does not pay for the library.
+ */
 export function PulseCta({
   href,
   children,
@@ -26,20 +26,16 @@ export function PulseCta({
   external?: boolean;
   id?: string;
 }) {
-  const reduce = useReducedMotion();
   const isExternal = external ?? href.startsWith("http");
   return (
-    <motion.a
+    <a
       id={id}
       href={href}
       className={styles.cta}
-      whileHover={reduce ? undefined : { y: -1 }}
-      whileTap={reduce ? undefined : { scale: 0.98 }}
-      transition={{ duration: 0.16, ease: [0.23, 1, 0.32, 1] }}
       {...(isExternal ? { target: "_blank", rel: "noopener noreferrer" } : {})}
     >
       {children}
-    </motion.a>
+    </a>
   );
 }
 

@@ -1,11 +1,6 @@
 "use client";
 
-import {
-  Children,
-  type CSSProperties,
-  type ReactNode,
-  useEffect,
-} from "react";
+import { Children, type ReactNode } from "react";
 import { motion, useReducedMotion } from "motion/react";
 import { DISTANCE, DURATION, EASE } from "./tokens";
 
@@ -15,19 +10,6 @@ import { DISTANCE, DURATION, EASE } from "./tokens";
  */
 export function useMotionAllowed(): boolean {
   return useReducedMotion() === false;
-}
-
-/** Marks document for CSS-enhanced motion after hydration. */
-export function MotionReady() {
-  useEffect(() => {
-    const root = document.documentElement;
-    root.classList.add("motion-ready");
-    root.classList.remove("motion-pending");
-    return () => {
-      root.classList.remove("motion-ready");
-    };
-  }, []);
-  return null;
 }
 
 export type HeroRevealProps = {
@@ -64,38 +46,6 @@ export function HeroReveal({ children, className = "" }: HeroRevealProps) {
         </motion.div>
       ))}
     </div>
-  );
-}
-
-export type MaskedLinesProps = {
-  lines: string[];
-  as?: "h1" | "h2";
-  id?: string;
-  className?: string;
-};
-
-/**
- * Editorial line mask — overflow clip + whole-line rise.
- * Visibility is CSS-owned (prm / reduce / no-JS = final state at first paint).
- */
-export function MaskedLines({
-  lines,
-  as: Tag = "h1",
-  id,
-  className = "",
-}: MaskedLinesProps) {
-  return (
-    <Tag id={id} className={["hero-masked-title", className].filter(Boolean).join(" ")}>
-      {lines.map((line, index) => (
-        <span
-          key={`${line}-${index}`}
-          className="motion-mask-line"
-          style={{ "--line-index": index } as CSSProperties}
-        >
-          <span className="motion-mask-inner">{line}</span>
-        </span>
-      ))}
-    </Tag>
   );
 }
 

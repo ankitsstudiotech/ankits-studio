@@ -218,6 +218,11 @@
 
 .cta:hover {
   background: var(--color-accent-hover);
+  transform: translate3d(0, -1px, 0);
+}
+
+.cta:active {
+  transform: scale(0.98);
 }
 
 .cta:focus-visible {
@@ -394,22 +399,12 @@
 }
 
 @media (prefers-reduced-motion: no-preference) {
-  html.motion-pending .summaryMotion {
-    opacity: 0.85;
-    transform: translate3d(0, 14px, 0);
-  }
-
+  /* LCP-safe: programme lede stays visible; no delayed transform entrance. */
+  html.motion-pending .summaryMotion,
   html.motion-ready .summaryMotion {
-    animation: pulse-hero-support 380ms var(--ease-enter) both;
-    animation-delay: calc(var(--motion-hero-support-delay, 420ms) + 40ms);
-  }
-
-  html.motion-ready .detailHero[data-motion-tone="calm"] .summaryMotion {
-    animation-delay: calc(var(--motion-hero-support-delay, 520ms) + 80ms);
-  }
-
-  html.motion-ready .detailHero[data-motion-tone="ceremonial"] .summaryMotion {
-    animation-delay: calc(var(--motion-hero-support-delay, 540ms) + 100ms);
+    opacity: 1;
+    transform: none;
+    animation: none;
   }
 }
 

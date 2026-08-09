@@ -10,8 +10,6 @@ import {
   type KeyboardEvent as ReactKeyboardEvent,
 } from "react";
 import { createPortal } from "react-dom";
-import { AnimatePresence, motion, useReducedMotion } from "motion/react";
-import { DURATION, EASE } from "@/components/motion/tokens";
 import type { NavItem } from "./types";
 
 export type MobileNavProps = {
@@ -28,14 +26,15 @@ function getFocusable(container: HTMLElement) {
 }
 
 /**
- * Mobile navigation — designed open/close (≤300ms), Escape, focus return, scroll lock.
+ * Mobile navigation — CSS open/close (≤300ms), Escape, focus return, scroll lock.
+ * Intentionally free of `motion/react` so site chrome does not load the library
+ * until a below-fold section actually needs it (home LCP / TBT).
  */
 export function MobileNav({ items, pathname = "" }: MobileNavProps) {
   const [open, setOpen] = useState(false);
   const panelId = useId();
   const triggerRef = useRef<HTMLButtonElement>(null);
   const panelRef = useRef<HTMLDivElement>(null);
-  const reduce = useReducedMotion();
 
   const close = useCallback(() => {
     setOpen(false);
@@ -96,9 +95,6 @@ export function MobileNav({ items, pathname = "" }: MobileNavProps) {
     }
   };
 
-  const openMs = reduce ? 0 : DURATION.menuOpen;
-  const closeMs = reduce ? 0 : DURATION.menuClose;
-
   return (
     <div className="lg:hidden">
       <button
@@ -138,99 +134,74 @@ export function MobileNav({ items, pathname = "" }: MobileNavProps) {
         </span>
       </button>
 
-      {typeof document !== "undefined"
+      {typeof document !== "undefined" && open
         ? createPortal(
-            <AnimatePresence>
-              {open ? (
-                <>
-                  <motion.div
-                    key="nav-backdrop"
-                    className="fixed inset-0 z-40 bg-black/70"
-                    aria-hidden
+            <>
+              <div
+                className="fixed inset-0 z-40 bg-black/70 transition-opacity duration-[var(--motion-menu-open)] motion-reduce:transition-none"
+                aria-hidden
+                onClick={close}
+              />
+              <div
+                ref={panelRef}
+                id={panelId}
+                role="dialog"
+                aria-modal="true"
+                aria-label="Mobile navigation"
+                className={[
+                  "fixed inset-y-0 right-0 z-50 flex w-[min(100%,22rem)] flex-col",
+                  "border-l border-white/10 bg-field",
+                  "translate-x-0 transition-transform duration-[var(--motion-menu-open)] motion-reduce:transition-none",
+                ].join(" ")}
+              >
+                <div className="flex items-center justify-between border-b border-white/10 px-4 py-3">
+                  <p className="font-[family-name:var(--font-display)] text-xl tracking-[0.04em] text-ink-inverse">
+                    Menu
+                  </p>
+                  <button
+                    type="button"
+                    className="inline-flex min-h-11 min-w-11 items-center justify-center text-ink-inverse touch-target focus-visible:outline-2 focus-visible:outline-offset-3 focus-visible:outline-[var(--color-volt)]"
+                    aria-label="Close menu"
                     onClick={close}
-                    initial={reduce ? false : { opacity: 0 }}
-                    animate={{ opacity: 1 }}
-                    exit={{ opacity: 0 }}
-                    transition={{ duration: openMs, ease: EASE.exit }}
-                  />
-                  <motion.div
-                    key="nav-panel"
-                    ref={panelRef}
-                    id={panelId}
-                    role="dialog"
-                    aria-modal="true"
-                    aria-label="Mobile navigation"
-                    className={[
-                      "fixed inset-y-0 right-0 z-50 flex w-[min(100%,22rem)] flex-col",
-                      "border-l border-white/10 bg-field",
-                    ].join(" ")}
-                    initial={reduce ? false : { x: "100%" }}
-                    animate={{ x: 0 }}
-                    exit={{ x: "100%" }}
-                    transition={{
-                      duration: open ? openMs : closeMs,
-                      ease: open ? EASE.enter : EASE.exit,
-                    }}
                   >
-                    <div className="flex items-center justify-between border-b border-white/10 px-4 py-3">
-                      <p className="font-[family-name:var(--font-display)] text-xl tracking-[0.04em] text-ink-inverse">
-                        Menu
-                      </p>
-                      <button
-                        type="button"
-                        className="inline-flex min-h-11 min-w-11 items-center justify-center text-ink-inverse touch-target focus-visible:outline-2 focus-visible:outline-offset-3 focus-visible:outline-[var(--color-volt)]"
-                        aria-label="Close menu"
-                        onClick={close}
-                      >
-                        <span aria-hidden className="text-2xl leading-none">
-                          ×
-                        </span>
-                      </button>
-                    </div>
+                    <span aria-hidden className="text-2xl leading-none">
+                      ×
+                    </span>
+                  </button>
+                </div>
 
-                    <nav aria-label="Mobile primary" className="flex-1 overflow-y-auto px-3 py-4">
-                      <ul className="flex flex-col gap-1">
-                        {items.map((item, index) => {
-                          const active = pathname === item.href;
-                          return (
-                            <motion.li
-                              key={item.id}
-                              initial={reduce ? false : { opacity: 0, y: 8 }}
-                              animate={{ opacity: 1, y: 0 }}
-                              transition={{
-                                duration: reduce ? 0 : 0.18,
-                                delay: reduce ? 0 : Math.min(0.04 + index * 0.03, 0.2),
-                                ease: EASE.enter,
-                              }}
-                            >
-                              <Link
-                                href={item.href}
-                                aria-current={active ? "page" : undefined}
-                                onClick={close}
-                                {...(item.href.startsWith("http")
-                                  ? { target: "_blank", rel: "noopener noreferrer" }
-                                  : {})}
-                                className={[
-                                  "flex min-h-11 items-center px-3 text-sm font-medium touch-target",
-                                  "focus-visible:outline-2 focus-visible:outline-offset-3 focus-visible:outline-[var(--color-volt)]",
-                                  item.isPrimaryCta
-                                    ? "bg-accent text-accent-foreground justify-center font-bold uppercase tracking-[0.08em] text-xs"
-                                    : active
-                                      ? "bg-field-raised text-ink-inverse"
-                                      : "text-[var(--color-muted-on-field)] hover:bg-field-raised hover:text-ink-inverse",
-                                ].join(" ")}
-                              >
-                                {item.label}
-                              </Link>
-                            </motion.li>
-                          );
-                        })}
-                      </ul>
-                    </nav>
-                  </motion.div>
-                </>
-              ) : null}
-            </AnimatePresence>,
+                <nav aria-label="Mobile primary" className="flex-1 overflow-y-auto px-3 py-4">
+                  <ul className="flex flex-col gap-1">
+                    {items.map((item) => {
+                      const active = pathname === item.href;
+                      return (
+                        <li key={item.id}>
+                          <Link
+                            href={item.href}
+                            aria-current={active ? "page" : undefined}
+                            onClick={close}
+                            {...(item.href.startsWith("http")
+                              ? { target: "_blank", rel: "noopener noreferrer" }
+                              : {})}
+                            className={[
+                              "flex min-h-11 items-center px-3 text-sm font-medium touch-target",
+                              "focus-visible:outline-2 focus-visible:outline-offset-3 focus-visible:outline-[var(--color-volt)]",
+                              item.isPrimaryCta
+                                ? "bg-accent text-accent-foreground justify-center font-bold uppercase tracking-[0.08em] text-xs"
+                                : active
+                                  ? "bg-field-raised text-ink-inverse"
+                                  : "text-[var(--color-muted-on-field)] hover:bg-field-raised hover:text-ink-inverse",
+                            ].join(" ")}
+                          >
+                            {item.label}
+                          </Link>
+                        </li>
+                      );
+                    })}
+                  </ul>
+                </nav>
+              </div>
+            </>,
             document.body,
           )
         : null}

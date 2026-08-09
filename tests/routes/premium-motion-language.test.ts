@@ -45,18 +45,27 @@ describe("premium motion language — Stage 3", () => {
     expect(hero).not.toMatch(/HeroReveal/);
   });
 
-  it("motion CSS parks headline only while motion-pending and respects prm", () => {
+  it("motion CSS keeps headline lines visible while motion-pending and respects prm", () => {
     const css = read("src/styles/motion.css");
-    expect(css).toMatch(/html\.motion-pending.*hero-masked-title|hero-masked-title[\s\S]*motion-pending/);
+    expect(css).toMatch(/html\.motion-pending \.hero-masked-title \.motion-mask-inner/);
     expect(css).toMatch(/html\.prm/);
-    expect(css).toMatch(/pulse-mask-rise/);
+    expect(css).toMatch(/pulse-mask-rise-soft/);
   });
 
-  it("mobile nav animates panel with reduced-motion support", () => {
+  it("keeps first hero headline line and support visible for LCP", () => {
+    const css = read("src/styles/motion.css");
+    expect(css).toMatch(/motion-mask-line:first-child[\s\S]{0,120}animation:\s*none/);
+    expect(css).toMatch(/motion-mask-line:not\(:first-child\)[\s\S]{0,160}pulse-mask-rise-soft/);
+    expect(css).toMatch(/html\.motion-ready \.hero-support[\s\S]{0,120}animation:\s*none/);
+    expect(css).toMatch(/html\.motion-pending \.hero-support[\s\S]{0,80}opacity:\s*1/);
+  });
+
+  it("mobile nav animates panel with CSS and reduced-motion support", () => {
     const nav = read("src/components/layout/MobileNav.tsx");
-    expect(nav).toMatch(/AnimatePresence/);
-    expect(nav).toMatch(/useReducedMotion/);
-    expect(nav).toMatch(/DURATION\.menuOpen|menuOpen/);
+    expect(nav).not.toMatch(/from ["']motion\/react["']/);
+    expect(nav).toMatch(/motion-reduce:transition-none/);
+    expect(nav).toMatch(/translate-x-full|translate-x-0/);
+    expect(nav).toMatch(/duration-\[var\(--motion-menu-open\)\]/);
   });
 
   it("reduced-motion policy zeros motion durations in CSS", () => {
