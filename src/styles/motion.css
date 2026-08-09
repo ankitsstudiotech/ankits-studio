@@ -101,7 +101,8 @@
  * prm / reduce / no-JS: stay at final visible state.
  */
 @media (prefers-reduced-motion: no-preference) {
-  html.motion-pending .hero-masked-title .motion-mask-inner {
+  /* Keep the first headline line visible for LCP; park subsequent lines only. */
+  html.motion-pending .hero-masked-title .motion-mask-line:not(:first-child) .motion-mask-inner {
     transform: translate3d(0, 108%, 0);
   }
 
@@ -111,8 +112,8 @@
   }
 
   html.motion-pending .hero-brand-motion {
-    opacity: 0.92;
-    transform: translate3d(0, 6px, 0);
+    opacity: 1;
+    transform: none;
   }
 
   html.motion-ready .hero-brand-motion {

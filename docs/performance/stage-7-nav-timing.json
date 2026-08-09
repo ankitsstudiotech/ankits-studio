@@ -1,0 +1,54 @@
+{
+  "base": "http://127.0.0.1:3707",
+  "generatedAt": "2026-08-09T08:57:48.992Z",
+  "rows": [
+    {
+      "route": "/",
+      "dcl": 48.799999952316284,
+      "load": 143.39999997615814,
+      "transferSize": 14022,
+      "encodedBodySize": 13722,
+      "fcp": 116
+    },
+    {
+      "route": "/programs",
+      "dcl": 40.800000071525574,
+      "load": 62,
+      "transferSize": 10343,
+      "encodedBodySize": 10043,
+      "fcp": 64
+    },
+    {
+      "route": "/programs/functional-training",
+      "dcl": 31.200000047683716,
+      "load": 57,
+      "transferSize": 12305,
+      "encodedBodySize": 12005,
+      "fcp": 60
+    },
+    {
+      "route": "/locations",
+      "dcl": 22.800000071525574,
+      "load": 38,
+      "transferSize": 9173,
+      "encodedBodySize": 8873,
+      "fcp": 40
+    },
+    {
+      "route": "/pricing",
+      "dcl": 37.39999997615814,
+      "load": 40,
+      "transferSize": 11030,
+      "encodedBodySize": 10730,
+      "fcp": 80
+    },
+    {
+      "route": "/trial",
+      "dcl": 30.100000023841858,
+      "load": 95.89999997615814,
+      "transferSize": 15651,
+      "encodedBodySize": 15351,
+      "fcp": 80
+    }
+  ]
+}
