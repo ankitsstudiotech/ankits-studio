@@ -26,6 +26,7 @@ describe("location structured data — ADR-018", () => {
       expect(jsonLd?.address?.addressLocality).toBe(branch.locality);
       expect(jsonLd?.address?.postalCode).toBe(branch.pinCode);
       expect(jsonLd?.address?.addressRegion).toBe("Maharashtra");
+      expect(jsonLd?.address?.addressCountry).toBe("IN");
       expect(jsonLd?.telephone).toBe(branch.phone);
       expect(jsonLd?.openingHoursSpecification).toHaveLength(7);
       expect(jsonLd?.hasMap).toMatch(/^https:\/\/maps\.app\.goo\.gl\//);
