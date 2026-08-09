@@ -1,0 +1,21 @@
+{
+  "visibility": {
+    "htmlClass": "bebas_neue_5e71ad7e-module__aCvHaq__variable space_grotesk_2e58c276-module__v3OTkq__variable h-full antialiased motion-ready",
+    "h1Text": "Machine-free fitness.Yoga, Zumba and dance.",
+    "firstLineText": "Machine-free fitness.",
+    "firstLineTransform": "matrix(1, 0, 0, 1, 0, 0)",
+    "firstLineOpacity": "1",
+    "firstLineInViewport": true,
+    "brandOpacity": "1"
+  },
+  "paints": [
+    {
+      "name": "first-paint",
+      "startTime": 156
+    },
+    {
+      "name": "first-contentful-paint",
+      "startTime": 156
+    }
+  ]
+}

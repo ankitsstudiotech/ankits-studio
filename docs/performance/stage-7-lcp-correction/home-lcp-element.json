@@ -1,0 +1,39 @@
+{
+  "headSha": "859318742c2697550a5a737ba8242fc07438cdb0",
+  "generatedAt": "2026-08-09T12:13:20.952Z",
+  "base": "http://127.0.0.1:3729",
+  "lighthouseNote": "Lighthouse largest-contentful-paint-element audit errors on this host (TraceElements/RootCauses). Element identity from PerformanceObserver.",
+  "playwrightCpu4x": {
+    "method": "PerformanceObserver + CDP CPU×4",
+    "homeLcpElement": {
+      "tag": "P",
+      "kind": "hero support paragraph",
+      "text": "Four neighbourhood studios across Airoli, Ghansoli and Thane…",
+      "stableAcrossRuns": true,
+      "timingsMs": [800, 1396, 800]
+    },
+    "functionalLcpElement": {
+      "tag": "P",
+      "kind": "programme detail lede",
+      "classHint": "detailLede",
+      "text": "Machine-free Functional Training using bodyweight movement…",
+      "stableAcrossRuns": true,
+      "timingsMs": [748, 1252, 1296]
+    }
+  },
+  "devtoolsSlow4gCpu4x": {
+    "method": "CDP Network Slow-4G + CPU×4",
+    "home": {
+      "fcpMs": 1892,
+      "lcpMs": 1892,
+      "lcpEqualsFcp": true,
+      "element": {
+        "tag": "SPAN",
+        "className": "motion-mask-inner",
+        "text": "Yoga, Zumba and dance."
+      }
+    },
+    "note": "LCP equals FCP — no application-controlled post-paint LCP delay under real DevTools throttle."
+  },
+  "changesBetweenRuns": "Home CPU×4 LCP candidate is consistently the hero support <p>. Under Slow-4G DevTools the largest first-paint text is the second H1 line (soft-rise, still visible). Not logo/CTA."
+}

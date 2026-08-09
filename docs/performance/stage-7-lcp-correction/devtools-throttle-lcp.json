@@ -1,0 +1,37 @@
+{
+  "elapsed": 8032,
+  "atDCL": {
+    "html": "bebas_neue_5e71ad7e-module__aCvHaq__variable space_grotesk_2e58c276-module__v3OTkq__variable h-full antialiased motion-pending",
+    "supportText": "Four neighbourhood studios across Airoli, Ghansoli",
+    "h1": "Machine-free fitness.Yoga, Zumba and dance.",
+    "rect": {
+      "top": 0,
+      "bottom": 0,
+      "h": 0,
+      "inView": false,
+      "vh": 720
+    },
+    "lcp": []
+  },
+  "final": {
+    "lcp": [
+      {
+        "t": 1892,
+        "size": 82694,
+        "tag": "SPAN",
+        "text": "Yoga, Zumba and dance.",
+        "cls": "motion-mask-inner"
+      }
+    ],
+    "paints": [
+      {
+        "name": "first-paint",
+        "t": 1892
+      },
+      {
+        "name": "first-contentful-paint",
+        "t": 1892
+      }
+    ]
+  }
+}

@@ -1,0 +1,187 @@
+{
+  "generatedAt": "2026-08-09T10:26:01.724Z",
+  "base": "http://127.0.0.1:3717",
+  "method": "PerformanceObserver + CDP CPU×4",
+  "results": [
+    {
+      "route": "/",
+      "run": 1,
+      "lcp": {
+        "startTime": 2480,
+        "size": 47815,
+        "url": null,
+        "tag": "P",
+        "id": null,
+        "className": null,
+        "text": "Four neighbourhood studios across Airoli, Ghansoli and Thane. Coach-led sessions for working professionals and other nei"
+      },
+      "entries": [
+        {
+          "startTime": 2480,
+          "size": 47815,
+          "url": null,
+          "tag": "P",
+          "id": null,
+          "className": null,
+          "text": "Four neighbourhood studios across Airoli, Ghansoli and Thane. Coach-led sessions for working professionals and other nei"
+        }
+      ]
+    },
+    {
+      "route": "/",
+      "run": 2,
+      "lcp": {
+        "startTime": 1456,
+        "size": 15345,
+        "url": null,
+        "tag": "P",
+        "id": null,
+        "className": "mb-4 text-[length:var(--text-body)] leading-[var(--text-body--line-height)] text-[var(--color-muted-on-field)] max-[640px]:mb-3 max-[640px]:max-w-[36ch]",
+        "text": "Machine-free, coach-led sessions for dance and fitness."
+      },
+      "entries": [
+        {
+          "startTime": 1036,
+          "size": 2756,
+          "url": null,
+          "tag": "SPAN",
+          "id": null,
+          "className": "font-[family-name:var(--font-display)] text-xl tracking-[0.04em] sm:text-2xl",
+          "text": "Ankit's Studio"
+        },
+        {
+          "startTime": 1456,
+          "size": 15345,
+          "url": null,
+          "tag": "P",
+          "id": null,
+          "className": "mb-4 text-[length:var(--text-body)] leading-[var(--text-body--line-height)] text-[var(--color-muted-on-field)] max-[640px]:mb-3 max-[640px]:max-w-[36ch]",
+          "text": "Machine-free, coach-led sessions for dance and fitness."
+        }
+      ]
+    },
+    {
+      "route": "/",
+      "run": 3,
+      "lcp": {
+        "startTime": 1972,
+        "size": 47815,
+        "url": null,
+        "tag": "P",
+        "id": null,
+        "className": null,
+        "text": "Four neighbourhood studios across Airoli, Ghansoli and Thane. Coach-led sessions for working professionals and other nei"
+      },
+      "entries": [
+        {
+          "startTime": 1972,
+          "size": 47815,
+          "url": null,
+          "tag": "P",
+          "id": null,
+          "className": null,
+          "text": "Four neighbourhood studios across Airoli, Ghansoli and Thane. Coach-led sessions for working professionals and other nei"
+        }
+      ]
+    },
+    {
+      "route": "/programs/functional-training",
+      "run": 1,
+      "lcp": {
+        "startTime": 1320,
+        "size": 15345,
+        "url": null,
+        "tag": "P",
+        "id": null,
+        "className": "mb-4 text-[length:var(--text-body)] leading-[var(--text-body--line-height)] text-[var(--color-muted-on-field)] max-[640px]:mb-3 max-[640px]:max-w-[36ch]",
+        "text": "Machine-free, coach-led sessions for dance and fitness."
+      },
+      "entries": [
+        {
+          "startTime": 788,
+          "size": 2756,
+          "url": null,
+          "tag": "SPAN",
+          "id": null,
+          "className": "font-[family-name:var(--font-display)] text-xl tracking-[0.04em] sm:text-2xl",
+          "text": "Ankit's Studio"
+        },
+        {
+          "startTime": 1320,
+          "size": 15345,
+          "url": null,
+          "tag": "P",
+          "id": null,
+          "className": "mb-4 text-[length:var(--text-body)] leading-[var(--text-body--line-height)] text-[var(--color-muted-on-field)] max-[640px]:mb-3 max-[640px]:max-w-[36ch]",
+          "text": "Machine-free, coach-led sessions for dance and fitness."
+        }
+      ]
+    },
+    {
+      "route": "/programs/functional-training",
+      "run": 2,
+      "lcp": {
+        "startTime": 1412,
+        "size": 15345,
+        "url": null,
+        "tag": "P",
+        "id": null,
+        "className": "mb-4 text-[length:var(--text-body)] leading-[var(--text-body--line-height)] text-[var(--color-muted-on-field)] max-[640px]:mb-3 max-[640px]:max-w-[36ch]",
+        "text": "Machine-free, coach-led sessions for dance and fitness."
+      },
+      "entries": [
+        {
+          "startTime": 868,
+          "size": 2756,
+          "url": null,
+          "tag": "SPAN",
+          "id": null,
+          "className": "font-[family-name:var(--font-display)] text-xl tracking-[0.04em] sm:text-2xl",
+          "text": "Ankit's Studio"
+        },
+        {
+          "startTime": 1412,
+          "size": 15345,
+          "url": null,
+          "tag": "P",
+          "id": null,
+          "className": "mb-4 text-[length:var(--text-body)] leading-[var(--text-body--line-height)] text-[var(--color-muted-on-field)] max-[640px]:mb-3 max-[640px]:max-w-[36ch]",
+          "text": "Machine-free, coach-led sessions for dance and fitness."
+        }
+      ]
+    },
+    {
+      "route": "/programs/functional-training",
+      "run": 3,
+      "lcp": {
+        "startTime": 1740,
+        "size": 22120,
+        "url": null,
+        "tag": "P",
+        "id": null,
+        "className": "programme-pulse-module__GKqufG__detailLede",
+        "text": "Machine-free Functional Training using bodyweight movement and portable equipment."
+      },
+      "entries": [
+        {
+          "startTime": 828,
+          "size": 2756,
+          "url": null,
+          "tag": "SPAN",
+          "id": null,
+          "className": "font-[family-name:var(--font-display)] text-xl tracking-[0.04em] sm:text-2xl",
+          "text": "Ankit's Studio"
+        },
+        {
+          "startTime": 1740,
+          "size": 22120,
+          "url": null,
+          "tag": "P",
+          "id": null,
+          "className": "programme-pulse-module__GKqufG__detailLede",
+          "text": "Machine-free Functional Training using bodyweight movement and portable equipment."
+        }
+      ]
+    }
+  ]
+}

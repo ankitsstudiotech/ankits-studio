@@ -1,0 +1,92 @@
+{
+  "headSha": "859318742c2697550a5a737ba8242fc07438cdb0",
+  "base": "http://127.0.0.1:3717",
+  "generatedAt": "2026-08-09T10:19:49.000Z",
+  "env": {
+    "NEXT_PUBLIC_ENABLE_SYNTHETIC_MEDIA": "false",
+    "NEXT_PUBLIC_SITE_URL": "https://ankits-studio.vercel.app",
+    "ALLOW_MOCK_PUBLISH": "unset"
+  },
+  "home": {
+    "runs": [
+      {
+        "lcpMs": 5098.1817,
+        "lcpDisplay": "5.1 s",
+        "fcpDisplay": "1.4 s",
+        "clsDisplay": "0",
+        "clsScore": 0,
+        "tbtDisplay": "1,210 ms",
+        "siDisplay": "3.9 s",
+        "element": null
+      },
+      {
+        "lcpMs": 5082.57585,
+        "lcpDisplay": "5.1 s",
+        "fcpDisplay": "1.4 s",
+        "clsDisplay": "0",
+        "clsScore": 0,
+        "tbtDisplay": "1,260 ms",
+        "siDisplay": "3.9 s",
+        "element": null
+      },
+      {
+        "lcpMs": 3958.311899999999,
+        "lcpDisplay": "4.0 s",
+        "fcpDisplay": "1.4 s",
+        "clsDisplay": "0",
+        "clsScore": 0,
+        "tbtDisplay": "2,040 ms",
+        "siDisplay": "2.0 s",
+        "element": null
+      }
+    ],
+    "medianLcpMs": 5082.57585,
+    "medianLcpDisplay": "5.1 s"
+  },
+  "functional": {
+    "runs": [
+      {
+        "lcpMs": 3739.2595,
+        "lcpDisplay": "3.7 s",
+        "fcpDisplay": "1.1 s",
+        "clsDisplay": "0",
+        "clsScore": 0,
+        "tbtDisplay": "1,510 ms",
+        "siDisplay": "1.6 s",
+        "element": null
+      },
+      {
+        "lcpMs": 5002.9601999999995,
+        "lcpDisplay": "5.0 s",
+        "fcpDisplay": "1.1 s",
+        "clsDisplay": "0",
+        "clsScore": 0,
+        "tbtDisplay": "1,630 ms",
+        "siDisplay": "4.5 s",
+        "element": null
+      },
+      {
+        "lcpMs": 5001.0081,
+        "lcpDisplay": "5.0 s",
+        "fcpDisplay": "1.1 s",
+        "clsDisplay": "0",
+        "clsScore": 0,
+        "tbtDisplay": "1,330 ms",
+        "siDisplay": "3.9 s",
+        "element": null
+      }
+    ],
+    "medianLcpMs": 5001.0081,
+    "medianLcpDisplay": "5.0 s"
+  },
+  "pricingDesktop": {
+    "lcpMs": 895.3462500000002,
+    "lcpDisplay": "0.9 s",
+    "fcpDisplay": "0.3 s",
+    "clsDisplay": "0",
+    "clsScore": 0,
+    "tbtDisplay": "180 ms",
+    "siDisplay": "0.8 s",
+    "element": null
+  }
+}

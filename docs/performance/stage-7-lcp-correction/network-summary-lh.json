@@ -1,0 +1,187 @@
+{
+  "criticalRequestChains": {
+    "type": "criticalrequestchain",
+    "chains": {
+      "8EF800E4068D35C0F9B5256D4940ED18": {
+        "request": {
+          "url": "http://127.0.0.1:3729/",
+          "startTime": 7784.460186,
+          "endTime": 7784.48263,
+          "responseReceivedTime": 7784.481728000001,
+          "transferSize": 14113
+        },
+        "children": {
+          "18372.6": {
+            "request": {
+              "url": "http://127.0.0.1:3729/_next/static/chunks/43wh4p6p_e6uf.css",
+              "startTime": 7784.532403,
+              "endTime": 7784.565645,
+              "responseReceivedTime": 7784.562255,
+              "transferSize": 14021
+            },
+            "children": {
+              "18372.57": {
+                "request": {
+                  "url": "http://127.0.0.1:3729/_next/static/media/0c89a48fa5027cee-s.2cyn07wtgehh0.woff2",
+                  "startTime": 7784.640185,
+                  "endTime": 7784.65022,
+                  "responseReceivedTime": 7784.647963,
+                  "transferSize": 22806
+                }
+              },
+              "18372.54": {
+                "request": {
+                  "url": "http://127.0.0.1:3729/_next/static/media/fabcf92ba1ccea36-s.1w_qz2ahumqmz.woff2",
+                  "startTime": 7784.641164,
+                  "endTime": 7784.650389,
+                  "responseReceivedTime": 7784.6482639999995,
+                  "transferSize": 9081
+                }
+              },
+              "18372.56": {
+                "request": {
+                  "url": "http://127.0.0.1:3729/_next/static/media/28868e710e86be81-s.2eksvhm1z0jwa.woff2",
+                  "startTime": 7784.817918,
+                  "endTime": 7784.824314,
+                  "responseReceivedTime": 7784.823267,
+                  "transferSize": 19410
+                }
+              }
+            }
+          },
+          "18372.7": {
+            "request": {
+              "url": "http://127.0.0.1:3729/_next/static/chunks/3etgxr-se1ahn.css",
+              "startTime": 7784.533321,
+              "endTime": 7784.555691,
+              "responseReceivedTime": 7784.551367,
+              "transferSize": 1493
+            }
+          },
+          "18372.8": {
+            "request": {
+              "url": "http://127.0.0.1:3729/_next/static/chunks/3a38ru4p1j4f9.css",
+              "startTime": 7784.53348,
+              "endTime": 7784.566136,
+              "responseReceivedTime": 7784.562545000001,
+              "transferSize": 11032
+            }
+          },
+          "18372.45": {
+            "request": {
+              "url": "http://127.0.0.1:3729/manifest.webmanifest",
+              "startTime": 7784.551579,
+              "endTime": 7784.577417,
+              "responseReceivedTime": 7784.57696,
+              "transferSize": 1100
+            }
+          }
+        }
+      }
+    },
+    "longestChain": {
+      "duration": 364.1279999995604,
+      "length": 3,
+      "transferSize": 19410
+    }
+  },
+  "bootup": [
+    {
+      "url": "http://127.0.0.1:3729/_next/static/chunks/1upe53-127sm4.js",
+      "total": 801.7000000000019,
+      "scripting": 744.6160000000019,
+      "scriptParseCompile": 11.284
+    },
+    {
+      "url": "http://127.0.0.1:3729/",
+      "total": 762.0799999999999,
+      "scripting": 31.75199999999999,
+      "scriptParseCompile": 11.528
+    },
+    {
+      "url": "Unattributable",
+      "total": 655.0000000000018,
+      "scripting": 36.708,
+      "scriptParseCompile": 0
+    },
+    {
+      "url": "http://127.0.0.1:3729/_next/static/chunks/2-5nk792mwq2y.js",
+      "total": 235.00400000000027,
+      "scripting": 177.89600000000027,
+      "scriptParseCompile": 7.168
+    },
+    {
+      "url": "http://127.0.0.1:3729/_next/static/chunks/25h0fewzl2kbn.js",
+      "total": 209.86400000000006,
+      "scripting": 92.64800000000001,
+      "scriptParseCompile": 6.292
+    }
+  ],
+  "mainthread": [
+    {
+      "group": "scriptEvaluation",
+      "groupLabel": "Script Evaluation",
+      "duration": 1119.1560000000004
+    },
+    {
+      "group": "other",
+      "groupLabel": "Other",
+      "duration": 796.7359999999994
+    },
+    {
+      "group": "styleLayout",
+      "groupLabel": "Style & Layout",
+      "duration": 552.48
+    },
+    {
+      "group": "paintCompositeRender",
+      "groupLabel": "Rendering",
+      "duration": 107.29600000000057
+    },
+    {
+      "group": "parseHTML",
+      "groupLabel": "Parse HTML & CSS",
+      "duration": 78.04
+    },
+    {
+      "group": "scriptParseCompile",
+      "groupLabel": "Script Parsing & Compilation",
+      "duration": 70.364
+    },
+    {
+      "group": "garbageCollection",
+      "groupLabel": "Garbage Collection",
+      "duration": 52.01199999999999
+    }
+  ],
+  "fonts": [
+    {
+      "url": "http://127.0.0.1:3729/_next/static/media/0c795a286deabae8-s.p.3vm0tq4e-zz_5.woff2",
+      "ms": 24.002000000327826,
+      "size": 35046
+    },
+    {
+      "url": "http://127.0.0.1:3729/_next/static/media/f7aa21714c1c53f8-s.p.0-95eo-012xnf.woff2",
+      "ms": 36.98200000077486,
+      "size": 20670
+    },
+    {
+      "url": "http://127.0.0.1:3729/_next/static/media/0c89a48fa5027cee-s.2cyn07wtgehh0.woff2",
+      "ms": 10.035000000149012,
+      "size": 22806
+    },
+    {
+      "url": "http://127.0.0.1:3729/_next/static/media/fabcf92ba1ccea36-s.1w_qz2ahumqmz.woff2",
+      "ms": 9.225000000558794,
+      "size": 9081
+    },
+    {
+      "url": "http://127.0.0.1:3729/_next/static/media/28868e710e86be81-s.2eksvhm1z0jwa.woff2",
+      "ms": 6.3960000006482005,
+      "size": 19410
+    }
+  ],
+  "failing": [],
+  "thirdParty": [],
+  "synthetic": []
+}
