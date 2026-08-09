@@ -20,7 +20,9 @@ test.describe("secondary routes smoke", () => {
     await expect(page.getByText(/member.?s permission|permission/i).first()).toBeVisible();
     await expect(page.getByText(/Development note/i)).toHaveCount(0);
     await expect(page.getByRole("heading", { name: /What you can explore today/i })).toHaveCount(1);
-    await expect(page.getByText(/More stories will be added as members approve them/i)).toBeVisible();
+    await expect(
+      page.getByText(/No member stories are published yet|More stories will be added as members approve them/i),
+    ).toBeVisible();
   });
 
   test("blog studio notes hub has no sample cards", async ({ page }) => {

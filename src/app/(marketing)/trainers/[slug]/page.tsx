@@ -20,6 +20,8 @@ type TrainerPageParams = { params: Promise<{ slug: string }> };
  * With an empty publishable roster, generateStaticParams is empty and all
  * unknown slugs 404.
  */
+export const dynamicParams = false;
+
 export function generateStaticParams() {
   return getPublishableTrainers().map((trainer) => ({ slug: trainer.slug }));
 }
@@ -27,14 +29,7 @@ export function generateStaticParams() {
 export async function generateMetadata({ params }: TrainerPageParams): Promise<Metadata> {
   const { slug } = await params;
   const trainer = getPublishableTrainerBySlug(slug);
-  if (!trainer) {
-    return buildPageMetadata({
-      title: "Trainer not found",
-      description: "This trainer profile is not available.",
-      path: `/trainers/${slug}`,
-      forceNoIndex: true,
-    });
-  }
+  if (!trainer) notFound();
 
   return buildPageMetadata({
     title: trainer.seoTitle ?? trainer.name,

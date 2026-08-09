@@ -85,8 +85,9 @@
 .motion-mask-line {
   display: block;
   overflow: hidden;
-  padding-bottom: 0.1em;
-  margin-bottom: -0.04em;
+  /* Bebas caps need extra room — 0.1em clipped descenders/baselines on mobile. */
+  padding-bottom: 0.18em;
+  margin-bottom: -0.06em;
 }
 
 .motion-mask-inner {

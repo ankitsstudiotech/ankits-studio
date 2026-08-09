@@ -23,6 +23,9 @@ import { getProgrammeOrNotFound } from "../_lib/lookup";
 
 type ProgrammePageParams = { params: Promise<{ slug: string }> };
 
+/** Unknown / malformed slugs must hard-404 — never soft-200 shells. */
+export const dynamicParams = false;
+
 export function generateStaticParams() {
   return getProgrammes().map((programme) => ({ slug: programme.slug }));
 }

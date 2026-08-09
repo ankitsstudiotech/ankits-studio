@@ -173,7 +173,9 @@ export function MobileNav({ items, pathname = "" }: MobileNavProps) {
                 <nav aria-label="Mobile primary" className="flex-1 overflow-y-auto px-3 py-4">
                   <ul className="flex flex-col gap-1">
                     {items.map((item) => {
-                      const active = pathname === item.href;
+                      const active =
+                        pathname === item.href ||
+                        (item.href !== "/" && pathname.startsWith(`${item.href}/`));
                       return (
                         <li key={item.id}>
                           <Link

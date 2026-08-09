@@ -24,6 +24,9 @@ import { getBranchOrNotFound } from "../_lib/lookup";
 
 type LocationPageParams = { params: Promise<{ slug: string }> };
 
+/** Unknown / malformed branch slugs must hard-404 — never soft-200 shells. */
+export const dynamicParams = false;
+
 export function generateStaticParams() {
   return getBranches().map((branch) => ({ slug: branch.slug }));
 }

@@ -1,0 +1,139 @@
+{
+  "mode": "portfolio",
+  "base": "http://127.0.0.1:3811",
+  "generatedAt": "2026-08-09T14:48:50.844Z",
+  "files": [
+    {
+      "file": "vp-390__home.png",
+      "route": "/",
+      "label": "vp-390",
+      "fullPage": true
+    },
+    {
+      "file": "vp-390__about.png",
+      "route": "/about",
+      "label": "vp-390",
+      "fullPage": true
+    },
+    {
+      "file": "vp-390__programs.png",
+      "route": "/programs",
+      "label": "vp-390",
+      "fullPage": true
+    },
+    {
+      "file": "vp-390__programs__functional-training.png",
+      "route": "/programs/functional-training",
+      "label": "vp-390",
+      "fullPage": true
+    },
+    {
+      "file": "vp-390__programs__home-personal-training.png",
+      "route": "/programs/home-personal-training",
+      "label": "vp-390",
+      "fullPage": true
+    },
+    {
+      "file": "vp-390__programs__online-training.png",
+      "route": "/programs/online-training",
+      "label": "vp-390",
+      "fullPage": true
+    },
+    {
+      "file": "vp-390__programs__zumba.png",
+      "route": "/programs/zumba",
+      "label": "vp-390",
+      "fullPage": true
+    },
+    {
+      "file": "vp-390__programs__yoga.png",
+      "route": "/programs/yoga",
+      "label": "vp-390",
+      "fullPage": true
+    },
+    {
+      "file": "vp-390__programs__adult-dance.png",
+      "route": "/programs/adult-dance",
+      "label": "vp-390",
+      "fullPage": true
+    },
+    {
+      "file": "vp-390__programs__wedding-choreography.png",
+      "route": "/programs/wedding-choreography",
+      "label": "vp-390",
+      "fullPage": true
+    },
+    {
+      "file": "vp-390__locations.png",
+      "route": "/locations",
+      "label": "vp-390",
+      "fullPage": true
+    },
+    {
+      "file": "vp-1440__home.png",
+      "route": "/",
+      "label": "vp-1440",
+      "fullPage": true
+    },
+    {
+      "file": "vp-1440__about.png",
+      "route": "/about",
+      "label": "vp-1440",
+      "fullPage": true
+    },
+    {
+      "file": "vp-1440__programs.png",
+      "route": "/programs",
+      "label": "vp-1440",
+      "fullPage": true
+    },
+    {
+      "file": "vp-1440__programs__functional-training.png",
+      "route": "/programs/functional-training",
+      "label": "vp-1440",
+      "fullPage": true
+    },
+    {
+      "file": "vp-1440__programs__home-personal-training.png",
+      "route": "/programs/home-personal-training",
+      "label": "vp-1440",
+      "fullPage": true
+    },
+    {
+      "file": "vp-1440__programs__online-training.png",
+      "route": "/programs/online-training",
+      "label": "vp-1440",
+      "fullPage": true
+    },
+    {
+      "file": "vp-1440__programs__zumba.png",
+      "route": "/programs/zumba",
+      "label": "vp-1440",
+      "fullPage": true
+    },
+    {
+      "file": "vp-1440__programs__yoga.png",
+      "route": "/programs/yoga",
+      "label": "vp-1440",
+      "fullPage": true
+    },
+    {
+      "file": "vp-1440__programs__adult-dance.png",
+      "route": "/programs/adult-dance",
+      "label": "vp-1440",
+      "fullPage": true
+    },
+    {
+      "file": "vp-1440__programs__wedding-choreography.png",
+      "route": "/programs/wedding-choreography",
+      "label": "vp-1440",
+      "fullPage": true
+    },
+    {
+      "file": "vp-1440__locations.png",
+      "route": "/locations",
+      "label": "vp-1440",
+      "fullPage": true
+    }
+  ]
+}

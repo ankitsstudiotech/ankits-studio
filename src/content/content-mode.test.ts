@@ -55,6 +55,7 @@ describe("content-mode", () => {
   it("blocks ALLOW_MOCK_PUBLISH on a real production release gate", async () => {
     vi.stubEnv("NODE_ENV", "production");
     vi.stubEnv("ANKITS_PRODUCTION_RELEASE", "true");
+    vi.stubEnv("NEXT_PUBLIC_ENABLE_SYNTHETIC_MEDIA", "false");
     vi.stubEnv("ALLOW_MOCK_PUBLISH", "true");
     const { assertProductionReleaseSafe } = await import("./content-mode");
     expect(() => assertProductionReleaseSafe()).toThrow(/ALLOW_MOCK_PUBLISH/);

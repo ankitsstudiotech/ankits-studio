@@ -19,7 +19,9 @@ export function DesktopNav({ items, pathname = "" }: DesktopNavProps) {
     <nav aria-label="Primary" className="hidden lg:block">
       <ul className="flex items-center gap-1">
         {links.map((item) => {
-          const active = pathname === item.href;
+          const active =
+            pathname === item.href ||
+            (item.href !== "/" && pathname.startsWith(`${item.href}/`));
           return (
             <li key={item.id}>
               <Link
