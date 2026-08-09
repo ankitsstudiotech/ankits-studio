@@ -29,6 +29,9 @@ export type { FounderStoryPlaceholderProps } from "./FounderStoryPlaceholder";
 export { TransformationStories } from "./TransformationStories";
 export type { TransformationStoriesProps, TransformationStoryItem } from "./TransformationStories";
 
+export { PulseTrustRail } from "./PulseTrustRail";
+export type { PulseTrustRailProps, TrustFact } from "./PulseTrustRail";
+
 export { BranchExplorer } from "./BranchExplorer";
 export type { BranchExplorerProps } from "./BranchExplorer";
 

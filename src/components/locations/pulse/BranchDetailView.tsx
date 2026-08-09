@@ -53,11 +53,11 @@ export function BranchDetailView({
             <span className={styles.openBadge}>Open daily · {hoursLabel}</span>
           ) : null}
           <h1 id="branch-title">{branch.locality}</h1>
+          {addressLine ? <p className={styles.detailAddress}>{addressLine}</p> : null}
           <p>
-            {branch.name}. Coach-led sessions at this studio. Ask on WhatsApp which batch fits you.
+            Coach-led sessions at this neighbourhood studio. Ask on WhatsApp which batch fits you.
           </p>
           <div className={styles.ctaRow}>
-            <LocationPulseCta href={whatsappHref}>{whatsappLabel}</LocationPulseCta>
             {mapsUrl ? (
               <a
                 href={mapsUrl}
@@ -68,6 +68,7 @@ export function BranchDetailView({
                 Open in Google Maps
               </a>
             ) : null}
+            <LocationPulseCta href={whatsappHref}>{whatsappLabel}</LocationPulseCta>
           </div>
         </HeroReveal>
       </section>

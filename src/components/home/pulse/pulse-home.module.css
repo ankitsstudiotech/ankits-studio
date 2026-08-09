@@ -415,6 +415,56 @@
   color: var(--color-ink-inverse);
 }
 
+/* —— Trust rail — typographic facts (Stage 6) —— */
+.trustBand {
+  padding-block: clamp(1.25rem, 3vw, 1.85rem);
+  background: #0e0e10;
+}
+
+.trustRail {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1rem 1.25rem;
+  max-width: var(--width-container);
+  width: 100%;
+}
+
+@media (min-width: 768px) {
+  .trustRail {
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    gap: 1.25rem 2rem;
+    align-items: start;
+  }
+}
+
+.trustFact {
+  display: flex;
+  flex-direction: column;
+  gap: 0.2rem;
+  min-width: 0;
+  padding-top: 0.35rem;
+  border-top: 1px solid rgb(255 255 255 / 0.12);
+}
+
+.trustLabel {
+  font-size: 0.68rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--color-muted-on-field);
+}
+
+.trustValue {
+  font-family: var(--font-display);
+  font-size: clamp(1.35rem, 2.8vw, 1.85rem);
+  letter-spacing: 0.03em;
+  line-height: 1.05;
+  text-transform: uppercase;
+  color: var(--color-ink-inverse);
+}
+
 /* —— Branches — numbered editorial rows —— */
 .branchRows {
   list-style: none;

@@ -24,12 +24,12 @@ export const mockStudioAbout: StudioAbout = {
     "Airoli Sector 19, Airoli Sector 8, Ghansoli and Thane. Each branch page has the address and a Maps link.",
   teamTitle: "Team and coaching",
   teamBody:
-    "Ankit’s Studio works with a team of 15+ coaches across its programmes and branches.",
-  teamCountProvenance: "Our coaching team covers fitness, yoga, Zumba and dance.",
+    "Ankit’s Studio works with a team of 15+ coaches across our programmes and studios.",
+  teamCountProvenance: "Coaches support fitness, yoga, Zumba and dance across the studio’s programmes.",
   trainerProfileSlugs: [],
   founderStoryStatus: "verified",
   founderStory:
-    "Ankit Nalawade founded Ankit’s Studio in 2019 after developing a passion for fitness, training members and building his coaching knowledge through practical experience and certification. The studio was created to make different forms of fitness and movement available through one neighbourhood studio network.",
+    "Ankit Nalawade founded Ankit’s Studio in 2019 from a passion for fitness. After training members and building his coaching knowledge through practical experience, he created a neighbourhood studio network so people could access different forms of fitness and movement in one place.",
   foundingDateStatus: "verified",
   foundingDateLabel: "2019",
   credentialsStatus: "pending",

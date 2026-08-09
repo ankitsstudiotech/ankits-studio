@@ -4,6 +4,7 @@ import {
   FreeTrialCta,
   Hero,
   ProgrammeShowcase,
+  PulseTrustRail,
   WhyStudio,
 } from "@/components/home";
 import {
@@ -191,6 +192,15 @@ export default function HomePage() {
             title: "Personal training",
             body: "One-to-one coaching when you want a programme tailored to you.",
           },
+        ]}
+      />
+
+      <PulseTrustRail
+        facts={[
+          { id: "founded", label: "Founded", value: "2019" },
+          { id: "studios", label: "Studios", value: "4" },
+          { id: "team", label: "Team", value: "15+" },
+          { id: "open", label: "Open", value: "Every day · 6 AM–10 PM" },
         ]}
       />
 

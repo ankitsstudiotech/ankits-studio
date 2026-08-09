@@ -196,11 +196,6 @@ export default function AboutPage() {
       ) : null}
 
       <section className={styles.band} aria-labelledby="about-team-title">
-        {communityMedia ? (
-          <div className={styles.communityMedia}>
-            <PulseMedia item={communityMedia} sizes="(max-width: 900px) 100vw, 720px" />
-          </div>
-        ) : null}
         <div className={faqs.length > 0 ? styles.pairGrid : undefined}>
           <div className={styles.teamBlock}>
             <SectionReveal>
@@ -232,6 +227,11 @@ export default function AboutPage() {
             </div>
           ) : null}
         </div>
+        {communityMedia ? (
+          <div className={styles.communityMedia}>
+            <PulseMedia item={communityMedia} sizes="(max-width: 900px) 100vw, 720px" />
+          </div>
+        ) : null}
       </section>
 
       <section className={styles.band} aria-labelledby="about-discover-title">

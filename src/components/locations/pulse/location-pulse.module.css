@@ -298,9 +298,19 @@
 
 .detailHero p {
   margin: 0 0 1rem;
-  max-width: 44ch;
+  max-width: 46ch;
   color: var(--color-muted-on-field);
-  font-size: 1.05rem;
+  font-size: var(--text-body-lg);
+  line-height: var(--text-body-lg--line-height);
+}
+
+.detailAddress {
+  margin: 0 0 0.75rem !important;
+  max-width: 42ch;
+  font-size: 1rem !important;
+  line-height: 1.45 !important;
+  color: var(--color-ink-inverse) !important;
+  font-weight: 500;
 }
 
 .openBadge {
