@@ -142,24 +142,40 @@ export default function ContactPage() {
             {branches.map((branch) => {
               const mapsUrl = getBranchMapsUrl(branch);
               return (
-              <li key={branch.slug}>
-                <Link
-                  href={`/locations/${branch.slug}`}
-                  className="block border border-[var(--color-border-on-field)] bg-field-raised p-4 text-ink-inverse no-underline transition-colors hover:border-white/25"
+                <li
+                  key={branch.slug}
+                  className="border border-[var(--color-border-on-field)] bg-field-raised p-4 text-ink-inverse"
                 >
-                  <span className="font-[family-name:var(--font-display)] text-lg tracking-wide uppercase">
-                    {branch.locality}
-                  </span>
-                  <span className="mt-1 block text-sm text-[var(--color-muted-on-field)]">
-                    {branch.address ?? "See the branch page for details"}
-                  </span>
-                  {mapsUrl ? (
-                    <span className="mt-2 block text-sm font-semibold underline underline-offset-4">
-                      Open in Maps
+                  <Link
+                    href={`/locations/${branch.slug}`}
+                    className="block text-ink-inverse no-underline transition-colors hover:text-white"
+                  >
+                    <span className="font-[family-name:var(--font-display)] text-lg tracking-wide uppercase">
+                      {branch.locality}
                     </span>
-                  ) : null}
-                </Link>
-              </li>
+                    <span className="mt-1 block text-sm text-[var(--color-muted-on-field)]">
+                      {branch.address ?? "See the branch page for details"}
+                    </span>
+                  </Link>
+                  <div className="mt-3 flex flex-wrap gap-x-4 gap-y-2">
+                    <Link
+                      href={`/locations/${branch.slug}`}
+                      className="text-sm font-semibold text-ink-inverse underline underline-offset-4"
+                    >
+                      Studio page
+                    </Link>
+                    {mapsUrl ? (
+                      <a
+                        href={mapsUrl}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="text-sm font-semibold text-ink-inverse underline underline-offset-4"
+                      >
+                        Open in Google Maps
+                      </a>
+                    ) : null}
+                  </div>
+                </li>
               );
             })}
           </ul>

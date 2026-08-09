@@ -10,7 +10,7 @@ export const mockStudioTrainersPage: StudioTrainersPage = {
   seoTitle: "Training Team | Ankit’s Studio",
   seoDescription:
     "Learn about the Ankit’s Studio coaching team and enquire about trainer, programme and branch availability.",
-  headline: "The coaching team",
+  headline: "Meet the coaching team",
   lede:
     "Ankit’s Studio works with a team of 15+ coaches across its fitness, yoga, Zumba and dance programmes.",
   teamSizeLabel: "15+",
@@ -25,8 +25,8 @@ export const mockStudioTrainersPage: StudioTrainersPage = {
   branchesTitle: "Four neighbourhood studios",
   branchesBody:
     "Coaching is offered across Airoli Sector 19, Airoli Sector 8, Ghansoli and Thane. Ask which coaches and batches are available at the studio nearest you.",
-  readinessTitle: "Individual profiles",
+  readinessTitle: "Coach profiles",
   readinessBody:
-    "Individual coach profiles will be added as team details and photo permissions are completed.",
+    "Named coach profiles will appear here once each profile and photo permission is ready to publish. Meanwhile, ask on WhatsApp about coaching for your preferred programme and branch.",
   ownerSource: OWNER_INTERVIEW_2026_08_03,
 };

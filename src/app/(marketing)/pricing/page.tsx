@@ -33,7 +33,7 @@ const breadcrumbTrail = [
   { name: "Pricing", path: PATH },
 ];
 
-/** Only questions not already answered in the confirmed-facts block. */
+/** Only questions not already answered in the commercial-facts block. */
 const FAQ = [
   {
     id: "faq-branch-fees",
@@ -55,7 +55,7 @@ const FAQ = [
 ] as const;
 
 /**
- * Honest pricing page — confirmed facts + enquiry builder as the centre.
+ * Honest pricing page — commercial facts + enquiry builder as the centre.
  */
 export default function PricingPage() {
   const commercial = getStudioCommercial();
@@ -109,13 +109,13 @@ export default function PricingPage() {
               Fees &amp; free trial
             </h1>
             <p className={styles.lede}>
-              Confirmed facts below. Ask for the current programme fee on WhatsApp — amounts vary by
-              service and branch.
+              Start with a free trial. Programme fees vary by service and branch — ask on WhatsApp for
+              the current amount. GST is included in the fee the studio quotes.
             </p>
           </RouteOpening>
 
           <h2 id="confirmed-fees-title" className={styles.sectionTitle} style={{ marginTop: "2rem" }}>
-            What we can confirm today
+            What applies today
           </h2>
           <ul className={styles.confirmedList}>
             <li className={styles.confirmedItem}>
