@@ -11,16 +11,17 @@ _Last updated: 2026-08-09_
 
 | Item | Value |
 |------|--------|
-| Release SHA | `HEAD_PENDING` *(fill after final deploy commit)* |
-| Release tag | `studio-pulse-v1.1.0-premium-public` *(pending deploy / live acceptance)* |
+| Release SHA | `50a485551c2e31a784217ce79ac56bc13662f396` |
+| Release tag | `studio-pulse-v1.1.0-premium-public` |
 | Rollback tag | `studio-pulse-before-final-stage-8` |
 | Freeze HEAD (Stage 8 checkpoint) | `3267969997c9806bb872ae96bf8659b01f970b8b` |
 | Branch | `revamp/studio-pulse-production` |
 | Production URL | https://ankits-studio.vercel.app |
 | Sitemap | https://ankits-studio.vercel.app/sitemap.xml |
 | Robots | https://ankits-studio.vercel.app/robots.txt |
-| Deployment id | *(record on deploy)* |
-| Deploy timestamp | *(record on deploy)* |
+| Deployment id | `dpl_7pB54oeMauHyxRBYCJJFrpJoRXqi` |
+| Deploy URL | https://ankits-studio-aeyyeiyef-anikets-projects-c8b8ce46.vercel.app |
+| Deploy timestamp | 2026-08-09T15:53:35Z |
 
 ### Gate verdicts
 
