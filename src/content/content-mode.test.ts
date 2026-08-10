@@ -69,4 +69,14 @@ describe("content-mode", () => {
     const { assertProductionReleaseSafe } = await import("./content-mode");
     expect(() => assertProductionReleaseSafe()).not.toThrow();
   });
+
+  it("noindexes hosted concept-preview even when launch-critical content is verified", async () => {
+    vi.stubEnv("NODE_ENV", "production");
+    vi.stubEnv("ALLOW_MOCK_PUBLISH", "false");
+    vi.stubEnv("ANKITS_CONCEPT_PREVIEW", "true");
+    vi.stubEnv("NEXT_PUBLIC_ENABLE_SYNTHETIC_MEDIA", "true");
+    const { shouldNoIndex, shouldShowMockPreviewBanner } = await import("./content-mode");
+    expect(shouldNoIndex()).toBe(true);
+    expect(shouldShowMockPreviewBanner()).toBe(false);
+  });
 });

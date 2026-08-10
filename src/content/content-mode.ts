@@ -110,17 +110,24 @@ export function isRealProductionRelease(): boolean {
 
 /**
  * Hard release gate — Stage 7.
- * Blocks shipping synthetic media or mock-publish flags on a real production release.
- * Does not block local `next build` preview with synthetic=true unless
+ * Blocks shipping synthetic media, concept-preview, or mock-publish flags on a
+ * real production release. Does not block local / Preview concept builds unless
  * ANKITS_PRODUCTION_RELEASE=true or VERCEL_ENV=production.
  */
 export function assertProductionReleaseSafe(): void {
   if (!isRealProductionRelease()) return;
 
+  if (process.env.ANKITS_CONCEPT_PREVIEW === "true") {
+    throw new Error(
+      "Production release blocked: ANKITS_CONCEPT_PREVIEW=true. " +
+        "Concept preview is a separate noindex Preview deployment only — never Production.",
+    );
+  }
+
   if (process.env.NEXT_PUBLIC_ENABLE_SYNTHETIC_MEDIA === "true") {
     throw new Error(
       "Production release blocked: NEXT_PUBLIC_ENABLE_SYNTHETIC_MEDIA=true. " +
-        "Unset the flag for Vercel Production. Synthetic media is local art-direction preview only.",
+        "Unset the flag for Vercel Production. Synthetic media is art-direction preview only.",
     );
   }
 
@@ -135,9 +142,11 @@ export function assertProductionReleaseSafe(): void {
 /**
  * Site-wide robots gate.
  * Indexable only for a real production build with verified launch-critical
- * content and without ALLOW_MOCK_PUBLISH (preview stays noindex).
+ * content and without ALLOW_MOCK_PUBLISH / concept-preview (those stay noindex).
  */
 export function shouldNoIndex(): boolean {
+  // Inline env read — content-mode is imported from next.config (no @/ alias).
+  if (process.env.ANKITS_CONCEPT_PREVIEW === "true") return true;
   if (!isProductionBuild) return true;
   if (isMockPublishAllowed) return true;
   return !launchCriticalContentVerified;

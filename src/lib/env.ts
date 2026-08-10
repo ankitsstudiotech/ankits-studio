@@ -21,6 +21,12 @@ const envSchema = z.object({
    * to render synthetic-preview / geometry surfaces.
    */
   NEXT_PUBLIC_ENABLE_SYNTHETIC_MEDIA: z.enum(["true", "false"]).optional(),
+  /**
+   * Hosted concept-preview deploy only. Must be paired with
+   * NEXT_PUBLIC_ENABLE_SYNTHETIC_MEDIA=true (see isConceptPreview()).
+   * Never set on Vercel Production.
+   */
+  ANKITS_CONCEPT_PREVIEW: z.enum(["true", "false"]).optional(),
 });
 
 function loadEnv() {

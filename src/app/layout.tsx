@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { Bebas_Neue, Space_Grotesk } from "next/font/google";
+import { ConceptPreviewIndicator } from "@/components/ConceptPreviewIndicator";
 import { MockModeIndicator } from "@/components/MockModeIndicator";
 import { getBusinessIdentity } from "@/content";
 import { baseMetadata } from "@/lib/metadata";
@@ -79,6 +80,7 @@ export default function RootLayout({
         >
           Skip to main content
         </a>
+        <ConceptPreviewIndicator />
         <MockModeIndicator />
         <div id="main-content" className="flex flex-1 flex-col">
           {children}
