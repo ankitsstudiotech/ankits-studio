@@ -58,6 +58,10 @@
   color: color-mix(in srgb, var(--color-accent-warm) 65%, #fff);
 }
 
+.cluster[data-cluster="teams"] .clusterTitle {
+  color: color-mix(in srgb, var(--color-accent) 75%, #fff);
+}
+
 .clusterLede {
   margin: 0.35rem 0 0;
   font-size: 0.9rem;

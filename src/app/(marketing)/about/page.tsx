@@ -179,6 +179,24 @@ export default function AboutPage() {
                   </div>
                 ) : null}
                 <p className={styles.body}>{about.founderStory}</p>
+                <ol className={styles.chronology} aria-label="Studio growth">
+                  <li>
+                    <span className={styles.chronologyYear}>2019</span>
+                    <span className={styles.chronologyPlace}>Airoli Sector 19</span>
+                  </li>
+                  <li>
+                    <span className={styles.chronologyYear}>2021</span>
+                    <span className={styles.chronologyPlace}>Airoli Sector 8</span>
+                  </li>
+                  <li>
+                    <span className={styles.chronologyYear}>2023</span>
+                    <span className={styles.chronologyPlace}>Ghansoli</span>
+                  </li>
+                  <li>
+                    <span className={styles.chronologyYear}>2026</span>
+                    <span className={styles.chronologyPlace}>Thane</span>
+                  </li>
+                </ol>
               </div>
             ) : null}
             <div>

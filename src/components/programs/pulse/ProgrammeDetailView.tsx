@@ -15,7 +15,7 @@ const SLUG_TEMPO: Record<string, ProgrammeTempo> = {
   "wedding-choreography": "wedding",
   "home-personal-training": "home",
   "online-training": "online",
-  "corporate-wellness": "wedding",
+  "corporate-wellness": "home",
 };
 
 /** Stage 5 — four composition families (not seven page forks). */

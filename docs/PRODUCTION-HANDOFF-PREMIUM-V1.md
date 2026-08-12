@@ -128,6 +128,7 @@ S8-01 (hard 404) and S8-02 (mobile H1 clip) were P1 and fixed for gate acceptanc
 
 1. Live smoke: home, About, programmes sample, all 4 branches, pricing, timetable, trial, contact, legal, robots, sitemap
 2. Confirm no synthetic labels, no mock banner, WhatsApp/tel/email/Maps live
-3. Fill `HEAD_PENDING`, deployment id, timestamp; create tag `studio-pulse-v1.1.0-premium-public` only after live acceptance
+3. Release tagged `studio-pulse-v1.1.0-premium-public` @ `50a4855` after live acceptance
 4. Search Console sitemap when domain settled
 5. Do not claim portfolio-final until real media lands
+6. No git `origin` remote in this workspace — push tags/branch from the machine that has remotes configured when ready

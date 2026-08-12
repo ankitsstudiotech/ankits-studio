@@ -72,6 +72,11 @@
   margin-inline: 0;
 }
 
+.row[data-cluster="teams"] {
+  max-width: min(100%, 50rem);
+  margin-inline: 0;
+}
+
 .row[data-motion-tone="structured"] {
   --cue-duration: 190ms;
   --cue-ease: var(--ease-emphasis);

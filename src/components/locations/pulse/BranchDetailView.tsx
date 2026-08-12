@@ -155,10 +155,14 @@ export function BranchDetailView({
             ) : null}
             {branch.facilities && branch.facilities.length > 0 ? (
               <li>
-                <strong>Amenities</strong>
-                {branch.facilities.join(", ")}. Lift not available.
+                <strong>Available</strong>
+                {branch.facilities.join(" · ")}
               </li>
             ) : null}
+            <li>
+              <strong>Not available</strong>
+              Lift
+            </li>
           </ul>
         </section>
       )}

@@ -75,7 +75,7 @@ export function toneFromProgrammeSlug(slug: string): MotionTone {
     case "wedding-choreography":
       return "ceremonial";
     case "corporate-wellness":
-      return "ceremonial";
+      return "direct";
     default:
       return "structured";
   }

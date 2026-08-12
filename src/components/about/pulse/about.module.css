@@ -427,6 +427,38 @@
   text-underline-offset: 0.18em;
 }
 
+.chronology {
+  list-style: none;
+  margin: 1.25rem 0 0;
+  padding: 0;
+  display: grid;
+  gap: 0.45rem;
+  max-width: 22rem;
+}
+
+.chronology li {
+  display: grid;
+  grid-template-columns: 3.5rem minmax(0, 1fr);
+  gap: 0.75rem;
+  align-items: baseline;
+  font-size: 0.9rem;
+  color: var(--color-muted-on-field);
+  border-top: 1px solid rgb(255 255 255 / 0.08);
+  padding-top: 0.45rem;
+}
+
+.chronologyYear {
+  font-family: var(--font-display);
+  font-size: 1.1rem;
+  letter-spacing: 0.04em;
+  color: var(--color-ink-inverse);
+}
+
+.chronologyPlace {
+  font-weight: 600;
+  color: var(--color-ink-inverse);
+}
+
 .ctaBand {
   background: color-mix(in srgb, var(--color-field) 90%, var(--color-accent));
   border-top: 1px solid rgb(255 255 255 / 0.1);
