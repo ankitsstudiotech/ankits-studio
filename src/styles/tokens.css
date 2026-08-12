@@ -19,6 +19,25 @@
   --color-field: #0b0b0c;
   --color-field-raised: #141416;
 
+  /* Paper — warm premium off-white chapter surface (hybrid system) */
+  --color-paper: #f2efe8;
+  --color-paper-muted: #e8e4dc;
+  --color-ink-on-paper: #14181c;
+  --color-ink-muted-on-paper: #4f5860;
+  --color-rule-on-paper: #d4cfc4;
+
+  /* Semantic surface aliases */
+  --surface-field: var(--color-field);
+  --surface-elevated: var(--color-field-raised);
+  --surface-paper: var(--color-paper);
+  --surface-paper-muted: var(--color-paper-muted);
+  --ink-on-dark: var(--color-ink-inverse);
+  --ink-muted-on-dark: var(--color-muted-on-field);
+  --ink-on-paper: var(--color-ink-on-paper);
+  --ink-muted-on-paper: var(--color-ink-muted-on-paper);
+  --rule-on-dark: var(--color-border-on-field);
+  --rule-on-paper: var(--color-rule-on-paper);
+
   /* Ink on utility */
   --color-ink: #14181c;
   --color-ink-muted: #5a636c;

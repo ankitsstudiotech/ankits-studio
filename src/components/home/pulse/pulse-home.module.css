@@ -287,6 +287,10 @@
   color: color-mix(in srgb, var(--color-accent-warm) 65%, #fff);
 }
 
+.cluster[data-cluster="teams"] .clusterTitle {
+  color: color-mix(in srgb, var(--color-accent) 72%, var(--color-ink-inverse));
+}
+
 .clusterLede {
   margin: 0;
   font-size: 0.95rem;
@@ -465,7 +469,21 @@
   color: var(--color-ink-inverse);
 }
 
-/* —— Branches — numbered editorial rows —— */
+/* —— Branches — numbered editorial rows on PAPER —— */
+.paperBand {
+  background: var(--surface-paper);
+  color: var(--ink-on-paper);
+  border-top: 1px solid var(--rule-on-paper);
+}
+
+.paperBand .bandTitle {
+  color: var(--ink-on-paper);
+}
+
+.paperBand .bandLede {
+  color: var(--ink-muted-on-paper);
+}
+
 .branchRows {
   list-style: none;
   margin: 0;
@@ -555,6 +573,116 @@
 }
 
 .branchLink:focus-visible {
+  outline: 2px solid var(--color-volt);
+  outline-offset: 3px;
+}
+
+.paperBand .branchRow {
+  border-top-color: var(--rule-on-paper);
+}
+
+.paperBand .branchRow:last-child {
+  border-bottom: 1px solid var(--rule-on-paper);
+}
+
+.paperBand .branchIndex {
+  color: color-mix(in srgb, var(--color-accent) 85%, var(--ink-on-paper));
+}
+
+.paperBand .branchName {
+  color: var(--ink-on-paper);
+}
+
+.paperBand .branchMeta,
+.paperBand .branchPlace {
+  color: var(--ink-muted-on-paper);
+}
+
+.paperBand .branchHours {
+  color: var(--ink-on-paper);
+}
+
+.paperBand .branchLink {
+  color: var(--ink-muted-on-paper);
+}
+
+.paperBand .branchLink:hover {
+  color: var(--color-accent);
+}
+
+.paperBand .branchLink:focus-visible {
+  outline-color: var(--color-accent);
+}
+
+.branchMeta {
+  margin: 0;
+  font-size: 0.85rem;
+  color: var(--color-muted-on-field);
+}
+
+.paperBand .branchMeta {
+  color: var(--ink-muted-on-paper);
+}
+
+/* —— Founder — compact dark chapter —— */
+.founderBand {
+  border-top: 1px solid var(--rule-on-dark);
+}
+
+.founderKicker {
+  margin: 0 0 0.35rem;
+  font-size: var(--text-overline);
+  font-weight: 600;
+  letter-spacing: var(--text-overline--letter-spacing);
+  text-transform: uppercase;
+  color: var(--ink-muted-on-dark);
+}
+
+.founderName {
+  font-family: var(--font-display);
+  font-size: clamp(2rem, 4.5vw, 2.75rem);
+  letter-spacing: 0.04em;
+  line-height: 1;
+  margin: 0 0 0.35rem;
+  text-transform: uppercase;
+  color: var(--ink-on-dark);
+}
+
+.founderAnchor {
+  margin: 0 0 0.85rem;
+  font-size: 0.8rem;
+  font-weight: 600;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: color-mix(in srgb, var(--color-accent-hover) 80%, #fff);
+}
+
+.founderCopy {
+  margin: 0 0 1rem;
+  max-width: 48ch;
+  font-size: var(--text-body-lg);
+  line-height: var(--text-body-lg--line-height);
+  color: var(--ink-muted-on-dark);
+}
+
+.founderLink {
+  display: inline-flex;
+  align-items: center;
+  min-height: 44px;
+  font-size: 0.8rem;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--ink-on-dark);
+  text-decoration: underline;
+  text-underline-offset: 0.2em;
+}
+
+.founderLink:hover {
+  color: var(--color-volt);
+}
+
+.founderLink:focus-visible {
   outline: 2px solid var(--color-volt);
   outline-offset: 3px;
 }
@@ -686,6 +814,20 @@
   color: var(--color-muted-on-field);
   font-size: var(--text-body);
   line-height: var(--text-body--line-height);
+}
+
+.ctaBandAccent {
+  background: color-mix(in srgb, var(--color-accent) 88%, #0b0b0c);
+  border-top: 1px solid color-mix(in srgb, var(--color-accent-hover) 40%, transparent);
+}
+
+.ctaBandAccent h2,
+.ctaBandAccent p {
+  color: var(--color-accent-foreground);
+}
+
+.ctaBandAccent .ctaNote {
+  color: color-mix(in srgb, var(--color-accent-foreground) 82%, transparent) !important;
 }
 
 .ctaNote {

@@ -1,5 +1,3 @@
-"use client";
-
 import Link from "next/link";
 import { SectionReveal } from "@/components/motion";
 import styles from "./pulse/pulse-home.module.css";
@@ -9,23 +7,23 @@ export type BranchExplorerProps = {
     name: string;
     href: string;
     locality?: string;
-    address?: string | null;
+    openingYear?: number;
+    landmarkHint?: string;
     hoursLabel?: string;
     mapsUrl?: string;
-    addressPending?: boolean;
   }>;
 };
 
 const DEFAULT_HOURS = "Open daily · 6:00 AM–10:00 PM";
 
 /**
- * Homepage branch index — numbered editorial rows (not four identical cards).
+ * Homepage branch index — numbered editorial rows on PAPER surface.
  */
 export function BranchExplorer({ locations }: BranchExplorerProps) {
   return (
     <section
       id="locations"
-      className={`${styles.field} ${styles.band}`}
+      className={`${styles.paperBand} ${styles.band}`}
       aria-labelledby="home-branches-title"
     >
       <SectionReveal pattern="A">
@@ -33,8 +31,8 @@ export function BranchExplorer({ locations }: BranchExplorerProps) {
           Find your nearest studio
         </h2>
         <p className={styles.bandLede}>
-          Four neighbourhood studios across Airoli, Ghansoli, and Thane. Trial enquiries use our
-          central WhatsApp number.
+          Four neighbourhood studios across Airoli, Ghansoli and Thane. Open in Maps or message us on
+          WhatsApp to book a trial.
         </p>
       </SectionReveal>
       <ol className={styles.branchRows}>
@@ -49,15 +47,15 @@ export function BranchExplorer({ locations }: BranchExplorerProps) {
                 {num}
               </span>
               <div className={styles.branchBody}>
-                <h3 className={styles.branchName}>{location.name}</h3>
-                {placeLine !== location.name ? (
-                  <p className={styles.branchPlace}>{placeLine}</p>
+                <h3 className={styles.branchName}>{placeLine}</h3>
+                {location.openingYear ? (
+                  <p className={styles.branchMeta}>Since {location.openingYear}</p>
+                ) : null}
+                {location.landmarkHint ? (
+                  <p className={styles.branchPlace}>{location.landmarkHint}</p>
                 ) : null}
                 <p className={styles.branchHours}>{hours}</p>
                 <div className={styles.branchActions}>
-                  <Link href={location.href} className={styles.branchLink}>
-                    Studio page
-                  </Link>
                   {location.mapsUrl ? (
                     <a
                       href={location.mapsUrl}
@@ -68,6 +66,9 @@ export function BranchExplorer({ locations }: BranchExplorerProps) {
                       Open in Maps
                     </a>
                   ) : null}
+                  <Link href={location.href} className={styles.branchLink}>
+                    Studio page
+                  </Link>
                 </div>
               </div>
             </li>

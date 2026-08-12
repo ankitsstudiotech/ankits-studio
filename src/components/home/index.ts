@@ -41,5 +41,11 @@ export type { CommunityTestimonialsProps } from "./CommunityTestimonials";
 export { FreeTrialCta } from "./FreeTrialCta";
 export type { FreeTrialCtaProps } from "./FreeTrialCta";
 
+export { FounderHomeMoment } from "./FounderHomeMoment";
+export type { FounderHomeMomentProps } from "./FounderHomeMoment";
+
+export { GoogleReviewProof } from "./GoogleReviewProof";
+export type { GoogleReviewProofProps } from "./GoogleReviewProof";
+
 export { FaqSection } from "./FaqSection";
 export type { FaqSectionProps, FaqItem } from "./FaqSection";

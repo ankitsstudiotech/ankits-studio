@@ -9,6 +9,7 @@ export type FreeTrialCtaProps = {
   label: string;
   secondaryHref?: string;
   secondaryLabel?: string;
+  variant?: "field" | "accent";
 };
 
 export function FreeTrialCta({
@@ -16,11 +17,15 @@ export function FreeTrialCta({
   body = "Message Ankit’s Studio on WhatsApp to book a free trial.",
   href,
   label,
-  secondaryHref = "/trial",
-  secondaryLabel = "Prefer a form? Use the trial request page",
+  secondaryHref,
+  secondaryLabel,
+  variant = "accent",
 }: FreeTrialCtaProps) {
+  const bandClass =
+    variant === "accent" ? `${styles.ctaBand} ${styles.ctaBandAccent}` : styles.ctaBand;
+
   return (
-    <section id="trial" className={styles.ctaBand} aria-labelledby="home-trial-title">
+    <section id="trial" className={bandClass} aria-labelledby="home-trial-title">
       <h2 id="home-trial-title">{title}</h2>
       <p>{body}</p>
       <PulseCta href={href}>{label}</PulseCta>

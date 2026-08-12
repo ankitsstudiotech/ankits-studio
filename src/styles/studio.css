@@ -31,8 +31,25 @@
 
 /* Pulse field band — homepage / dark chrome regions */
 .pulse-field {
-  background-color: var(--color-field);
-  color: var(--color-ink-inverse);
+  background-color: var(--surface-field);
+  color: var(--ink-on-dark);
+}
+
+/* Paper chapter — trust/local/editorial contrast within Studio Pulse */
+.pulse-paper {
+  background-color: var(--surface-paper);
+  color: var(--ink-on-paper);
+}
+
+.pulse-paper ::selection {
+  background: color-mix(in srgb, var(--color-accent) 22%, transparent);
+  color: var(--ink-on-paper);
+}
+
+/* Purple conversion chapter */
+.pulse-accent-band {
+  background: color-mix(in srgb, var(--color-accent) 92%, #0b0b0c);
+  color: var(--color-accent-foreground);
 }
 
 .pulse-field ::selection {
