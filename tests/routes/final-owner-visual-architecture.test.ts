@@ -38,6 +38,9 @@ describe("final owner homepage and discovery taxonomy", () => {
     expect(home).not.toMatch(/WhyStudio|PulseTrustRail/);
     expect(home).toMatch(/BranchExplorer/);
     expect(home).toMatch(/teams/);
+    const branchIdx = home.indexOf("<BranchExplorer");
+    const reviewIdx = home.indexOf("<GoogleReviewProof");
+    expect(branchIdx).toBeLessThan(reviewIdx);
   });
 
   it("programs discovery includes For Teams cluster", () => {

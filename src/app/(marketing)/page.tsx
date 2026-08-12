@@ -198,9 +198,9 @@ export default function HomePage() {
 
       <ProgrammeShowcase clusters={HOMEPAGE_CLUSTERS} />
 
-      <GoogleReviewProof />
-
       <BranchExplorer locations={branchCards} />
+
+      <GoogleReviewProof />
 
       <FounderHomeMoment
         copy="Ankit’s Studio began in Airoli in 2019 with the idea that fitness should feel approachable, enjoyable and sustainable. It has since grown to four studios across Navi Mumbai and Thane."
