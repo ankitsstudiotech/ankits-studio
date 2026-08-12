@@ -19,7 +19,7 @@ export type ShowcaseProgramme = {
 };
 
 export type ServiceCluster = {
-  id: "train" | "move" | "celebrate";
+  id: "train" | "move" | "celebrate" | "teams";
   title: string;
   lede: string;
   programmes: ShowcaseProgramme[];
@@ -91,7 +91,9 @@ export function ProgrammeShowcase({ clusters, audienceNote }: ProgrammeShowcaseP
                     emphasis={programme.emphasis}
                     cluster={cluster.id}
                     energy={energyFromTempo(programme.tempo)}
-                    motionTone={toneFromProgrammeSlug(slug)}
+                    motionTone={
+                      slug === "corporate-wellness" ? "direct" : toneFromProgrammeSlug(slug)
+                    }
                     programmeSlug={slug}
                     titleAs="h4"
                   />

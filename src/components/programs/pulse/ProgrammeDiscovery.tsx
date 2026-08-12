@@ -15,8 +15,12 @@ const CLUSTER_COPY = {
     lede: "Group energy, breath work, and studio dance.",
   },
   celebrate: {
-    title: "Celebrate & serve",
-    lede: "Wedding choreography and corporate wellness programmes.",
+    title: "Celebrate",
+    lede: "Personal choreography for wedding moments.",
+  },
+  teams: {
+    title: "For Teams",
+    lede: "Workplace and online fitness and wellness programmes for organisations.",
   },
 } as const;
 
@@ -66,6 +70,7 @@ export function ProgrammeDiscovery({
     train: programmes.filter((p) => p.serviceCluster === "train"),
     move: programmes.filter((p) => p.serviceCluster === "move"),
     celebrate: programmes.filter((p) => p.serviceCluster === "celebrate"),
+    teams: programmes.filter((p) => p.serviceCluster === "teams"),
   };
 
   // Stable commercial order within Train
@@ -78,7 +83,11 @@ export function ProgrammeDiscovery({
     return order.indexOf(a.slug) - order.indexOf(b.slug);
   });
   byCluster.celebrate.sort((a, b) => {
-    const order = ["wedding-choreography", "corporate-wellness"];
+    const order = ["wedding-choreography"];
+    return order.indexOf(a.slug) - order.indexOf(b.slug);
+  });
+  byCluster.teams.sort((a, b) => {
+    const order = ["corporate-wellness"];
     return order.indexOf(a.slug) - order.indexOf(b.slug);
   });
 
@@ -96,7 +105,7 @@ export function ProgrammeDiscovery({
       </HeroReveal>
 
       <div className={styles.clusters}>
-        {(["train", "move", "celebrate"] as const).map((clusterId) => {
+        {(["train", "move", "celebrate", "teams"] as const).map((clusterId) => {
           const items = byCluster[clusterId];
           if (items.length === 0) return null;
           const copy = CLUSTER_COPY[clusterId];

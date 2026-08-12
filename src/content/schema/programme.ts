@@ -20,7 +20,11 @@ export const programmeDifficultySchema = z.enum([
 ]);
 export type ProgrammeDifficulty = z.infer<typeof programmeDifficultySchema>;
 
-export const programmeClusterSchema = z.enum(["train", "move", "celebrate"]);
+/**
+ * Discovery taxonomy clusters (homepage + /programs index).
+ * Distinct from Stage 5 page-composition families (structured/fluid/calm/service).
+ */
+export const programmeClusterSchema = z.enum(["train", "move", "celebrate", "teams"]);
 export type ProgrammeCluster = z.infer<typeof programmeClusterSchema>;
 
 /**

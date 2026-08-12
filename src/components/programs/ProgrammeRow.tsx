@@ -4,7 +4,7 @@ import { motion, useReducedMotion } from "motion/react";
 import styles from "./programme-row.module.css";
 import { DURATION, EASE, type MotionTone, toneFromProgrammeSlug } from "@/components/motion/tokens";
 
-export type ProgrammeCluster = "train" | "move" | "celebrate";
+export type ProgrammeCluster = "train" | "move" | "celebrate" | "teams";
 export type ProgrammeEnergy = "calm" | "standard" | "high";
 
 export type ProgrammeRowProps = {
@@ -80,6 +80,7 @@ function clusterTone(
   energy: ProgrammeEnergy,
 ): MotionTone {
   if (cluster === "celebrate") return "ceremonial";
+  if (cluster === "teams") return "direct";
   if (cluster === "train") return energy === "calm" ? "direct" : "structured";
   if (energy === "calm") return "calm";
   if (energy === "high") return "fluid";

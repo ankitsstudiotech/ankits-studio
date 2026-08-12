@@ -1,11 +1,11 @@
 import {
   BranchExplorer,
   FaqSection,
+  FounderHomeMoment,
   FreeTrialCta,
+  GoogleReviewProof,
   Hero,
   ProgrammeShowcase,
-  PulseTrustRail,
-  WhyStudio,
 } from "@/components/home";
 import {
   getBusinessIdentity,
@@ -21,9 +21,9 @@ import { buildPageMetadata } from "@/lib/seo";
 import type { ServiceTempo } from "@/components/home/pulse/PulseMotion";
 
 export const metadata = buildPageMetadata({
-  title: "Machine-free fitness, yoga, Zumba & dance in Navi Mumbai",
+  title: "Coach-led dance & fitness in Navi Mumbai",
   description:
-    "Ankit’s Studio offers machine-free, coach-led fitness, yoga, Zumba and dance across four neighbourhood studios in Airoli, Ghansoli and Thane. Book a free trial on WhatsApp.",
+    "Ankit’s Studio offers coach-led functional training, yoga, Zumba and dance across four neighbourhood studios in Airoli, Ghansoli and Thane. Book a free trial on WhatsApp.",
   path: "/",
 });
 
@@ -41,7 +41,8 @@ const SERVICE_BY_SLUG = {
     slug: "functional-training" as const,
     tempo: "functional" as const,
     name: "Functional Training",
-    shortDescription: "Machine-free, coach-led sessions for how you move day to day.",
+    shortDescription:
+      "Coach-led, machine-free sessions — strength, mobility and everyday fitness.",
     meta: "All branches",
     emphasis: "primary" as const,
   },
@@ -49,43 +50,50 @@ const SERVICE_BY_SLUG = {
     slug: "home-personal-training" as const,
     tempo: "home" as const,
     name: "Home Personal Training",
-    shortDescription: "Coach-led sessions at your location.",
+    shortDescription: "One-to-one coaching at your location in Navi Mumbai and Thane.",
     meta: "Per session · share your locality",
   },
   "online-training": {
     slug: "online-training" as const,
     tempo: "online" as const,
     name: "Online Training",
-    shortDescription: "Coach-led sessions on Zoom.",
+    shortDescription: "Live coach-led sessions on Zoom.",
     meta: "One-to-one and group",
   },
   zumba: {
     slug: "zumba" as const,
     tempo: "zumba" as const,
     name: "Zumba",
-    shortDescription: "Music-led group energy — no dance background required.",
+    shortDescription: "High-energy dance fitness — beginner-friendly.",
     meta: "All branches",
   },
   yoga: {
     slug: "yoga" as const,
     tempo: "yoga" as const,
     name: "Yoga",
-    shortDescription: "Breath-led movement with space to settle.",
+    shortDescription: "Structured breath-led movement with mindful guidance.",
     meta: "Ladies-only batches on request",
   },
   "adult-dance": {
     slug: "adult-dance" as const,
     tempo: "dance" as const,
     name: "Dance",
-    shortDescription: "Technique and choreography in a welcoming room.",
+    shortDescription: "Energetic choreography in a welcoming studio room.",
     meta: "Kids-only batches on request",
   },
   "wedding-choreography": {
     slug: "wedding-choreography" as const,
     tempo: "wedding" as const,
     name: "Wedding Choreography",
-    shortDescription: "Personal choreography for wedding routines.",
+    shortDescription: "Easy-to-learn routines for your wedding moment.",
     meta: "Arranged after you enquire",
+  },
+  "corporate-wellness": {
+    slug: "corporate-wellness" as const,
+    tempo: "home" as const,
+    name: "Corporate Wellness",
+    shortDescription: "Employee fitness and wellness at your workplace or online.",
+    meta: "Custom programmes · enquire for scope",
   },
 } satisfies Record<string, HomepageService>;
 
@@ -97,6 +105,7 @@ function toShowcaseProgramme(service: HomepageService) {
     tempo: service.tempo,
     meta: service.meta,
     emphasis: service.emphasis,
+    slug: service.slug,
   };
 }
 
@@ -124,8 +133,14 @@ const HOMEPAGE_CLUSTERS = [
   {
     id: "celebrate" as const,
     title: "Celebrate",
-    lede: "Choreography for wedding moments.",
+    lede: "Personal choreography for wedding moments.",
     programmes: [toShowcaseProgramme(SERVICE_BY_SLUG["wedding-choreography"])],
+  },
+  {
+    id: "teams" as const,
+    title: "For Teams",
+    lede: "Workplace and online fitness and wellness programmes for organisations.",
+    programmes: [toShowcaseProgramme(SERVICE_BY_SLUG["corporate-wellness"])],
   },
 ];
 
@@ -137,23 +152,36 @@ export default function HomePage() {
     name: branch.locality,
     href: `/locations/${branch.slug}`,
     locality: branch.locality,
-    address: null,
+    openingYear: branch.openingYear,
+    landmarkHint: branch.landmarks ?? undefined,
     hoursLabel: "Open daily · 6:00 AM–10:00 PM",
     mapsUrl: getBranchMapsUrl(branch) ?? undefined,
-    addressPending: false,
   }));
 
-  const factualFaqs = [
+  const homepageFaqs = [
+    {
+      id: "faq-trial-free",
+      question: "Is the trial really free?",
+      answer:
+        "Yes — the trial class is free once per person. A one-time ₹300 registration fee applies only after you join, not for the trial.",
+    },
+    {
+      id: "faq-start-programme",
+      question: "Which programme should I start with?",
+      answer:
+        "Most people begin with Functional Training, Zumba, Yoga or Dance in studio. Home and Online training suit personalised schedules. Message us on WhatsApp and we’ll help match a batch.",
+    },
     {
       id: "faq-batches",
       question: "Do you offer ladies-only or kids-only batches?",
       answer:
-        "Yes — ladies-only and kids-only batches are available. Kids Dance age groups include 3–8 years and 8–12 years. Ask which options fit when you book a trial.",
+        "Yes — ladies-only and kids-only batches are available as options. Ask which programmes and branches fit when you book a trial.",
     },
     {
-      id: "faq-group-size",
-      question: "How large are group batches?",
-      answer: "Group batches are typically up to 15 people. We’ll help match the right service and batch for you.",
+      id: "faq-batch-times",
+      question: "How do I check current batch timings?",
+      answer:
+        "Batch times vary by programme and branch. Studios are open 6:00 AM–10:00 PM daily — message us on WhatsApp with your preferred service and branch for current availability.",
     },
   ];
 
@@ -161,61 +189,31 @@ export default function HomePage() {
     <main>
       <Hero
         brandName={identity.displayName}
-        title="Machine-free fitness. Yoga, Zumba and dance."
-        titleLines={["Machine-free fitness.", "Yoga, Zumba and dance."]}
-        description="Four neighbourhood studios across Airoli, Ghansoli and Thane. Coach-led sessions for working professionals and other neighbourhood visitors — book a free trial on WhatsApp."
+        title="Coach-led fitness, yoga, Zumba and dance."
+        titleLines={["Coach-led fitness,", "yoga, Zumba and dance."]}
+        description="Four neighbourhood studios across Airoli, Ghansoli and Thane. Approachable, energetic sessions with coach guidance — work toward your goals at your pace. Book a free trial on WhatsApp."
         primaryCta={{ label: trialLabel, href: trialHref }}
         secondaryCta={{ label: "Find Your Nearest Studio", href: "/#locations" }}
       />
 
-      <ProgrammeShowcase
-        clusters={HOMEPAGE_CLUSTERS}
-        audienceNote="Enquiries welcome across age groups. Maximum group batch size is 15."
-      />
+      <ProgrammeShowcase clusters={HOMEPAGE_CLUSTERS} />
 
-      <WhyStudio
-        title="Machine-free. Coach-led."
-        body="Sessions stay machine-free and coach-led. Personal training is available when you want more personalised programming."
-        points={[
-          {
-            id: "machine-free",
-            title: "Machine-free training",
-            body: "Bodyweight and portable equipment — not rows of gym machines.",
-          },
-          {
-            id: "coach-led",
-            title: "Coach-led group sessions",
-            body: "Group classes led by coaches in a focused room.",
-          },
-          {
-            id: "personal-training",
-            title: "Personal training",
-            body: "One-to-one coaching when you want a programme tailored to you.",
-          },
-        ]}
-      />
-
-      <PulseTrustRail
-        facts={[
-          { id: "founded", label: "Founded", value: "2019" },
-          { id: "studios", label: "Studios", value: "4" },
-          { id: "team", label: "Team", value: "15+" },
-          { id: "open", label: "Open", value: "Every day · 6 AM–10 PM" },
-        ]}
-      />
+      <GoogleReviewProof />
 
       <BranchExplorer locations={branchCards} />
+
+      <FounderHomeMoment
+        copy="Ankit’s Studio began in Airoli in 2019 with the idea that fitness should feel approachable, enjoyable and sustainable. It has since grown to four studios across Navi Mumbai and Thane."
+      />
 
       <FreeTrialCta
         href={trialHref}
         label={trialLabel}
-        body="Message Ankit’s Studio on WhatsApp to book a free trial. Studios open 6:00 AM–10:00 PM every day."
+        body="Tell us your preferred programme and branch on WhatsApp — we’ll share the current trial option and batch fit."
+        variant="accent"
       />
 
-      <FaqSection
-        items={factualFaqs}
-        description="A couple of details that help first-time visitors."
-      />
+      <FaqSection items={homepageFaqs} description="Quick answers before you message us." />
     </main>
   );
 }

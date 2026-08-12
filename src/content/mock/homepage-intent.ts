@@ -4,7 +4,7 @@
  */
 export const mockHomepageIntent = {
   sourceDate: "2026-08-12",
-  topThree: ["programmes", "google-reviews", "branches"] as const,
+  topThree: ["programmes", "branches", "google-reviews"] as const,
   sections: {
     programmes: "yes",
     googleReviews: "yes",

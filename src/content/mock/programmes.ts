@@ -487,7 +487,7 @@ export const mockProgrammes: Programme[] = [
     difficulty: "all-levels",
     requiredEquipment: [],
     taxonomyStatus: "confirmed",
-    serviceCluster: "celebrate",
+    serviceCluster: "teams",
     trialAvailable: false,
     pricingStatus: PENDING_PRICING,
     batchScheduleStatus: PENDING_BATCHES,
