@@ -1,6 +1,7 @@
 import Image from "next/image";
 import type { CSSProperties } from "react";
 import type { FocalPoint, StudioMediaItem } from "@/content/media";
+import { isConceptPreview } from "@/lib/concept-preview";
 import { isSyntheticMediaEnabled } from "@/lib/media/feature-flag";
 import styles from "./pulse-media.module.css";
 
@@ -30,7 +31,8 @@ export function EditorialMediaFrame({
   priority = false,
 }: EditorialMediaFrameProps) {
   const showSyntheticLabel =
-    item.status === "synthetic-preview" && isSyntheticMediaEnabled();
+    item.status === "synthetic-preview" &&
+    (isSyntheticMediaEnabled() || isConceptPreview());
   const desktopPos = toObjectPosition(item.focalPoint);
   const tabletPos = toObjectPosition(item.tabletFocalPoint ?? item.focalPoint);
   const mobilePos = toObjectPosition(item.mobileFocalPoint ?? item.focalPoint);

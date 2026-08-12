@@ -127,7 +127,8 @@ export function assertProductionReleaseSafe(): void {
   if (process.env.NEXT_PUBLIC_ENABLE_SYNTHETIC_MEDIA === "true") {
     throw new Error(
       "Production release blocked: NEXT_PUBLIC_ENABLE_SYNTHETIC_MEDIA=true. " +
-        "Unset the flag for Vercel Production. Synthetic media is art-direction preview only.",
+        "Unset for Vercel Production. Use owner-approved illustrative-ai in the catalogue instead; " +
+        "this flag is for concept-preview / experimental synthetic-preview only.",
     );
   }
 

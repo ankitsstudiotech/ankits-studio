@@ -119,7 +119,17 @@ export function SiteFooter({
         </div>
 
         <div className="mt-10 border-t border-[var(--color-border-on-field)] pt-6 max-[640px]:mt-8 max-[640px]:pt-5">
-          <p className="text-xs text-[var(--color-muted-on-field)]">{copyright}</p>
+          <p className="text-xs leading-relaxed text-[var(--color-muted-on-field)]">
+            Selected website visuals are illustrative AI-generated imagery while new studio photography
+            is being produced.{" "}
+            <Link
+              href="/about#visuals"
+              className="underline underline-offset-2 hover:text-ink-inverse focus-visible:outline-2 focus-visible:outline-offset-3 focus-visible:outline-[var(--color-volt)]"
+            >
+              About our visuals
+            </Link>
+          </p>
+          <p className="mt-3 text-xs text-[var(--color-muted-on-field)]">{copyright}</p>
         </div>
       </Container>
     </footer>

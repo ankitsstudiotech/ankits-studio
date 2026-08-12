@@ -1,3 +1,4 @@
+import { isConceptPreview } from "@/lib/concept-preview";
 import { isSyntheticMediaEnabled } from "@/lib/media/feature-flag";
 import { getCatalogueItem } from "./catalogue";
 import { getPremiumSlot } from "./premium-slots";
@@ -27,14 +28,30 @@ function geometryPreviewItem(slotKey: string): StudioMediaItem | null {
     branch: slot.branch,
     focalPoint: { x: 62, y: 42 },
     mobileFocalPoint: { x: 68, y: 40 },
-    // no src — EditorialMediaFrame renders geometry surface
   };
+}
+
+function canRenderCatalogueItem(item: StudioMediaItem, slotKey: string): boolean {
+  if (!item.src) return false;
+  if (!canAcceptSyntheticMedia(slotKey)) return false;
+
+  if (item.status === "verified-real") return true;
+
+  if (item.status === "illustrative-ai") {
+    return true;
+  }
+
+  if (item.status === "synthetic-preview") {
+    return isSyntheticMediaEnabled() || isConceptPreview();
+  }
+
+  return false;
 }
 
 /**
  * Resolve media for a premium slot.
- * Flag false → never returns synthetic-preview (production text-led path).
- * Real-only slots → never return synthetic.
+ * Production default: owner-approved illustrative-ai (no feature flag).
+ * verified-real > illustrative-ai > synthetic-preview (concept flag only) > fallback.
  */
 export function resolveSlotMedia(slotKey: string): StudioMediaItem | null {
   if (isVerifiedRealOnlySlot(slotKey)) {
@@ -44,19 +61,10 @@ export function resolveSlotMedia(slotKey: string): StudioMediaItem | null {
   }
 
   const catalogued = getCatalogueItem(slotKey);
-  if (catalogued) {
-    if (catalogued.status === "verified-real" && catalogued.src) {
-      return catalogued;
-    }
-    if (catalogued.status === "synthetic-preview") {
-      if (!isSyntheticMediaEnabled()) return null;
-      if (!canAcceptSyntheticMedia(slotKey)) return null;
-      // Prefer binary assets; skip empty geometry when a file-backed entry exists.
-      if (catalogued.src) return catalogued;
-    }
+  if (catalogued?.src && canRenderCatalogueItem(catalogued, slotKey)) {
+    return catalogued;
   }
 
-  // Part 1 geometry fallback only when no file-backed catalogue entry.
   if (catalogued?.status === "synthetic-preview" && !catalogued.src) {
     return geometryPreviewItem(slotKey);
   }

@@ -133,6 +133,19 @@ export const PREMIUM_MEDIA_SLOTS: readonly PremiumSlotDefinition[] = [
     compositionHint: "remote",
   },
   {
+    key: "programme.corporate-wellness.hero",
+    purpose: "Corporate Wellness programme hero — illustrative or verified real when available",
+    desktopAspect: "4/5",
+    mobileAspect: "3/4",
+    motionTreatment: "hero-reveal",
+    replacementPriority: "P1",
+    fallbackFamily: "neutral",
+    verifiedRealOnly: false,
+    geometryPreview: true,
+    programme: "corporate-wellness",
+    compositionHint: "direct",
+  },
+  {
     key: "about.community",
     purpose: "About community warmth",
     desktopAspect: "16/9",
@@ -228,6 +241,7 @@ const PROGRAMME_HERO_SLOT: Record<string, string> = {
   "wedding-choreography": "programme.wedding.hero",
   "home-personal-training": "programme.home-pt.hero",
   "online-training": "programme.online.hero",
+  "corporate-wellness": "programme.corporate-wellness.hero",
 };
 
 export function programmeHeroSlotKey(slug: string): string | undefined {

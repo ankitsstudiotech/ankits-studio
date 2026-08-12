@@ -3,18 +3,26 @@
  * See docs/media/SYNTHETIC-MEDIA-PREVIEW-POLICY.md
  */
 
-export type MediaStatus = "fallback" | "synthetic-preview" | "verified-real";
+export type MediaStatus = "fallback" | "synthetic-preview" | "illustrative-ai" | "verified-real";
 
 export type MediaKind = "image" | "video" | "poster";
 
-export type MediaSource = "ai-concept" | "owner" | "fallback" | "none";
+export type MediaSource =
+  | "ai-concept"
+  | "ai-generated-illustration"
+  | "owner"
+  | "fallback"
+  | "none";
 
 export type ConsentStatus =
   | "not-applicable-synthetic"
+  | "not-applicable-ai"
   | "pending"
   | "granted"
   | "not-required"
   | "verified-real-only";
+
+export type ReplacementStatus = "replace-after-owner-photoshoot" | "none";
 
 export type MediaMotionTreatment =
   | "hero-reveal"
@@ -53,6 +61,8 @@ export type StudioMediaItem = {
   branch?: string;
   consentStatus: ConsentStatus;
   replacementPriority: ReplacementPriority;
+  /** When interim AI should yield to owner photography */
+  replacementStatus?: ReplacementStatus;
   /** Absent for geometry-only preview */
   src?: string;
   width?: number;

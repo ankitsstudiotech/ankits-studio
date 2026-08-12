@@ -273,6 +273,19 @@ export default function AboutPage() {
         </div>
       </section>
 
+      <section className={styles.band} id="visuals" aria-labelledby="about-visuals-title">
+        <SectionReveal>
+          <h2 id="about-visuals-title" className={styles.sectionTitle}>
+            About our visuals
+          </h2>
+        </SectionReveal>
+        <p className={styles.body}>
+          Selected website visuals are illustrative AI-generated imagery while new studio photography
+          is being produced. They show the energy and approach of our programmes — not documentary
+          photographs of a specific branch, named coach, or real customer.
+        </p>
+      </section>
+
       <section className={`${styles.band} ${styles.ctaBand}`} aria-labelledby="about-cta-title">
         <SectionReveal>
           <h2 id="about-cta-title" className={styles.sectionTitle}>

@@ -35,6 +35,9 @@ export function LocationDiscovery({ branches, trialHref, trialLabel }: LocationD
       {atmosphere ? (
         <div className={styles.atmosphereMedia}>
           <PulseMedia item={atmosphere} sizes="100vw" />
+          <p className={styles.atmosphereNote}>
+            Illustrative studio atmosphere — not a photograph of a specific branch.
+          </p>
         </div>
       ) : null}
 
