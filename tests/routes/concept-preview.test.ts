@@ -87,10 +87,10 @@ describe("concept preview does not relax real-only slots", () => {
     expect(resolveSlotMedia("location.airoli-sector-19.hero")).toBeNull();
   });
 
-  it("still resolves allowed synthetic slots when flags are on", () => {
+  it("still resolves allowed illustrative slots when concept flags are on", () => {
     vi.stubEnv("ANKITS_CONCEPT_PREVIEW", "true");
     vi.stubEnv("NEXT_PUBLIC_ENABLE_SYNTHETIC_MEDIA", "true");
-    expect(resolveSlotMedia("home.hero")?.status).toBe("synthetic-preview");
-    expect(resolveSlotMedia("locations.atmosphere")?.status).toBe("synthetic-preview");
+    expect(resolveSlotMedia("home.hero")?.status).toBe("illustrative-ai");
+    expect(resolveSlotMedia("locations.atmosphere")?.status).toBe("illustrative-ai");
   });
 });

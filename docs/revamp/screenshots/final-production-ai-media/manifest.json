@@ -1,0 +1,404 @@
+{
+  "capturedAt": "2026-08-12T13:45:33.805Z",
+  "items": [
+    {
+      "file": "final-production-ai-media/full-390/home.png",
+      "path": "/",
+      "viewport": "390x2400",
+      "fullPage": true,
+      "illustrativeAiProduction": true
+    },
+    {
+      "file": "final-production-ai-media/full-390/about.png",
+      "path": "/about",
+      "viewport": "390x2400",
+      "fullPage": true,
+      "illustrativeAiProduction": true
+    },
+    {
+      "file": "final-production-ai-media/full-390/programs.png",
+      "path": "/programs",
+      "viewport": "390x2400",
+      "fullPage": true,
+      "illustrativeAiProduction": true
+    },
+    {
+      "file": "final-production-ai-media/full-390/programs-functional-training.png",
+      "path": "/programs/functional-training",
+      "viewport": "390x2400",
+      "fullPage": true,
+      "illustrativeAiProduction": true
+    },
+    {
+      "file": "final-production-ai-media/full-390/programs-zumba.png",
+      "path": "/programs/zumba",
+      "viewport": "390x2400",
+      "fullPage": true,
+      "illustrativeAiProduction": true
+    },
+    {
+      "file": "final-production-ai-media/full-390/programs-yoga.png",
+      "path": "/programs/yoga",
+      "viewport": "390x2400",
+      "fullPage": true,
+      "illustrativeAiProduction": true
+    },
+    {
+      "file": "final-production-ai-media/full-390/programs-adult-dance.png",
+      "path": "/programs/adult-dance",
+      "viewport": "390x2400",
+      "fullPage": true,
+      "illustrativeAiProduction": true
+    },
+    {
+      "file": "final-production-ai-media/full-390/programs-wedding-choreography.png",
+      "path": "/programs/wedding-choreography",
+      "viewport": "390x2400",
+      "fullPage": true,
+      "illustrativeAiProduction": true
+    },
+    {
+      "file": "final-production-ai-media/full-390/programs-home-personal-training.png",
+      "path": "/programs/home-personal-training",
+      "viewport": "390x2400",
+      "fullPage": true,
+      "illustrativeAiProduction": true
+    },
+    {
+      "file": "final-production-ai-media/full-390/programs-online-training.png",
+      "path": "/programs/online-training",
+      "viewport": "390x2400",
+      "fullPage": true,
+      "illustrativeAiProduction": true
+    },
+    {
+      "file": "final-production-ai-media/full-390/programs-corporate-wellness.png",
+      "path": "/programs/corporate-wellness",
+      "viewport": "390x2400",
+      "fullPage": true,
+      "illustrativeAiProduction": true
+    },
+    {
+      "file": "final-production-ai-media/full-390/locations.png",
+      "path": "/locations",
+      "viewport": "390x2400",
+      "fullPage": true,
+      "illustrativeAiProduction": true
+    },
+    {
+      "file": "final-production-ai-media/full-390/locations-airoli-sector-19.png",
+      "path": "/locations/airoli-sector-19",
+      "viewport": "390x2400",
+      "fullPage": true,
+      "illustrativeAiProduction": true
+    },
+    {
+      "file": "final-production-ai-media/full-390/pricing.png",
+      "path": "/pricing",
+      "viewport": "390x2400",
+      "fullPage": true,
+      "illustrativeAiProduction": true
+    },
+    {
+      "file": "final-production-ai-media/full-390/timetable.png",
+      "path": "/timetable",
+      "viewport": "390x2400",
+      "fullPage": true,
+      "illustrativeAiProduction": true
+    },
+    {
+      "file": "final-production-ai-media/full-390/trial.png",
+      "path": "/trial",
+      "viewport": "390x2400",
+      "fullPage": true,
+      "illustrativeAiProduction": true
+    },
+    {
+      "file": "final-production-ai-media/full-390/contact.png",
+      "path": "/contact",
+      "viewport": "390x2400",
+      "fullPage": true,
+      "illustrativeAiProduction": true
+    },
+    {
+      "file": "final-production-ai-media/full-768/home.png",
+      "path": "/",
+      "viewport": "768x2400",
+      "fullPage": true,
+      "illustrativeAiProduction": true
+    },
+    {
+      "file": "final-production-ai-media/full-768/programs.png",
+      "path": "/programs",
+      "viewport": "768x2400",
+      "fullPage": true,
+      "illustrativeAiProduction": true
+    },
+    {
+      "file": "final-production-ai-media/full-768/about.png",
+      "path": "/about",
+      "viewport": "768x2400",
+      "fullPage": true,
+      "illustrativeAiProduction": true
+    },
+    {
+      "file": "final-production-ai-media/full-768/locations.png",
+      "path": "/locations",
+      "viewport": "768x2400",
+      "fullPage": true,
+      "illustrativeAiProduction": true
+    },
+    {
+      "file": "final-production-ai-media/full-768/programs-functional-training.png",
+      "path": "/programs/functional-training",
+      "viewport": "768x2400",
+      "fullPage": true,
+      "illustrativeAiProduction": true
+    },
+    {
+      "file": "final-production-ai-media/full-768/programs-corporate-wellness.png",
+      "path": "/programs/corporate-wellness",
+      "viewport": "768x2400",
+      "fullPage": true,
+      "illustrativeAiProduction": true
+    },
+    {
+      "file": "final-production-ai-media/full-1440/home.png",
+      "path": "/",
+      "viewport": "1440x2400",
+      "fullPage": true,
+      "illustrativeAiProduction": true
+    },
+    {
+      "file": "final-production-ai-media/full-1440/about.png",
+      "path": "/about",
+      "viewport": "1440x2400",
+      "fullPage": true,
+      "illustrativeAiProduction": true
+    },
+    {
+      "file": "final-production-ai-media/full-1440/programs.png",
+      "path": "/programs",
+      "viewport": "1440x2400",
+      "fullPage": true,
+      "illustrativeAiProduction": true
+    },
+    {
+      "file": "final-production-ai-media/full-1440/programs-functional-training.png",
+      "path": "/programs/functional-training",
+      "viewport": "1440x2400",
+      "fullPage": true,
+      "illustrativeAiProduction": true
+    },
+    {
+      "file": "final-production-ai-media/full-1440/programs-zumba.png",
+      "path": "/programs/zumba",
+      "viewport": "1440x2400",
+      "fullPage": true,
+      "illustrativeAiProduction": true
+    },
+    {
+      "file": "final-production-ai-media/full-1440/programs-yoga.png",
+      "path": "/programs/yoga",
+      "viewport": "1440x2400",
+      "fullPage": true,
+      "illustrativeAiProduction": true
+    },
+    {
+      "file": "final-production-ai-media/full-1440/programs-adult-dance.png",
+      "path": "/programs/adult-dance",
+      "viewport": "1440x2400",
+      "fullPage": true,
+      "illustrativeAiProduction": true
+    },
+    {
+      "file": "final-production-ai-media/full-1440/programs-wedding-choreography.png",
+      "path": "/programs/wedding-choreography",
+      "viewport": "1440x2400",
+      "fullPage": true,
+      "illustrativeAiProduction": true
+    },
+    {
+      "file": "final-production-ai-media/full-1440/programs-home-personal-training.png",
+      "path": "/programs/home-personal-training",
+      "viewport": "1440x2400",
+      "fullPage": true,
+      "illustrativeAiProduction": true
+    },
+    {
+      "file": "final-production-ai-media/full-1440/programs-online-training.png",
+      "path": "/programs/online-training",
+      "viewport": "1440x2400",
+      "fullPage": true,
+      "illustrativeAiProduction": true
+    },
+    {
+      "file": "final-production-ai-media/full-1440/programs-corporate-wellness.png",
+      "path": "/programs/corporate-wellness",
+      "viewport": "1440x2400",
+      "fullPage": true,
+      "illustrativeAiProduction": true
+    },
+    {
+      "file": "final-production-ai-media/full-1440/locations.png",
+      "path": "/locations",
+      "viewport": "1440x2400",
+      "fullPage": true,
+      "illustrativeAiProduction": true
+    },
+    {
+      "file": "final-production-ai-media/full-1440/locations-airoli-sector-19.png",
+      "path": "/locations/airoli-sector-19",
+      "viewport": "1440x2400",
+      "fullPage": true,
+      "illustrativeAiProduction": true
+    },
+    {
+      "file": "final-production-ai-media/full-1440/pricing.png",
+      "path": "/pricing",
+      "viewport": "1440x2400",
+      "fullPage": true,
+      "illustrativeAiProduction": true
+    },
+    {
+      "file": "final-production-ai-media/full-1440/timetable.png",
+      "path": "/timetable",
+      "viewport": "1440x2400",
+      "fullPage": true,
+      "illustrativeAiProduction": true
+    },
+    {
+      "file": "final-production-ai-media/full-1440/trial.png",
+      "path": "/trial",
+      "viewport": "1440x2400",
+      "fullPage": true,
+      "illustrativeAiProduction": true
+    },
+    {
+      "file": "final-production-ai-media/full-1440/contact.png",
+      "path": "/contact",
+      "viewport": "1440x2400",
+      "fullPage": true,
+      "illustrativeAiProduction": true
+    },
+    {
+      "file": "final-production-ai-media/full-1920/home.png",
+      "path": "/",
+      "viewport": "1920x2400",
+      "fullPage": true,
+      "illustrativeAiProduction": true
+    },
+    {
+      "file": "final-production-ai-media/full-1920/programs.png",
+      "path": "/programs",
+      "viewport": "1920x2400",
+      "fullPage": true,
+      "illustrativeAiProduction": true
+    },
+    {
+      "file": "final-production-ai-media/full-1920/about.png",
+      "path": "/about",
+      "viewport": "1920x2400",
+      "fullPage": true,
+      "illustrativeAiProduction": true
+    },
+    {
+      "file": "final-production-ai-media/full-1920/locations.png",
+      "path": "/locations",
+      "viewport": "1920x2400",
+      "fullPage": true,
+      "illustrativeAiProduction": true
+    },
+    {
+      "file": "final-production-ai-media/full-1920/programs-functional-training.png",
+      "path": "/programs/functional-training",
+      "viewport": "1920x2400",
+      "fullPage": true,
+      "illustrativeAiProduction": true
+    },
+    {
+      "file": "final-production-ai-media/full-1920/programs-yoga.png",
+      "path": "/programs/yoga",
+      "viewport": "1920x2400",
+      "fullPage": true,
+      "illustrativeAiProduction": true
+    },
+    {
+      "file": "final-production-ai-media/full-1920/programs-corporate-wellness.png",
+      "path": "/programs/corporate-wellness",
+      "viewport": "1920x2400",
+      "fullPage": true,
+      "illustrativeAiProduction": true
+    },
+    {
+      "file": "final-production-ai-media/viewport-390x844/home-home.png",
+      "path": "/",
+      "viewport": "390x844",
+      "fullPage": false,
+      "illustrativeAiProduction": true
+    },
+    {
+      "file": "final-production-ai-media/viewport-1440x900/home-home.png",
+      "path": "/",
+      "viewport": "1440x900",
+      "fullPage": false,
+      "illustrativeAiProduction": true
+    },
+    {
+      "file": "final-production-ai-media/viewport-390x844/programs-functional-training-functional.png",
+      "path": "/programs/functional-training",
+      "viewport": "390x844",
+      "fullPage": false,
+      "illustrativeAiProduction": true
+    },
+    {
+      "file": "final-production-ai-media/viewport-1440x900/programs-functional-training-functional.png",
+      "path": "/programs/functional-training",
+      "viewport": "1440x900",
+      "fullPage": false,
+      "illustrativeAiProduction": true
+    },
+    {
+      "file": "final-production-ai-media/viewport-390x844/programs-yoga-yoga.png",
+      "path": "/programs/yoga",
+      "viewport": "390x844",
+      "fullPage": false,
+      "illustrativeAiProduction": true
+    },
+    {
+      "file": "final-production-ai-media/viewport-1440x900/programs-yoga-yoga.png",
+      "path": "/programs/yoga",
+      "viewport": "1440x900",
+      "fullPage": false,
+      "illustrativeAiProduction": true
+    },
+    {
+      "file": "final-production-ai-media/viewport-390x844/programs-corporate-wellness-corporate-wellness.png",
+      "path": "/programs/corporate-wellness",
+      "viewport": "390x844",
+      "fullPage": false,
+      "illustrativeAiProduction": true
+    },
+    {
+      "file": "final-production-ai-media/viewport-1440x900/programs-corporate-wellness-corporate-wellness.png",
+      "path": "/programs/corporate-wellness",
+      "viewport": "1440x900",
+      "fullPage": false,
+      "illustrativeAiProduction": true
+    },
+    {
+      "file": "final-production-ai-media/viewport-390x844/locations-locations.png",
+      "path": "/locations",
+      "viewport": "390x844",
+      "fullPage": false,
+      "illustrativeAiProduction": true
+    },
+    {
+      "file": "final-production-ai-media/viewport-1440x900/locations-locations.png",
+      "path": "/locations",
+      "viewport": "1440x900",
+      "fullPage": false,
+      "illustrativeAiProduction": true
+    }
+  ]
+}

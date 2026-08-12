@@ -44,6 +44,15 @@ describe("content-mode", () => {
     expect(shouldShowMockPreviewBanner()).toBe(false);
   });
 
+  it("allows production release without synthetic flag when illustrative-ai is catalogue-default", async () => {
+    vi.stubEnv("NODE_ENV", "production");
+    vi.stubEnv("ANKITS_PRODUCTION_RELEASE", "true");
+    vi.stubEnv("NEXT_PUBLIC_ENABLE_SYNTHETIC_MEDIA", "false");
+    vi.stubEnv("ALLOW_MOCK_PUBLISH", "false");
+    const { assertProductionReleaseSafe } = await import("./content-mode");
+    expect(() => assertProductionReleaseSafe()).not.toThrow();
+  });
+
   it("blocks synthetic media on a real production release gate", async () => {
     vi.stubEnv("NODE_ENV", "production");
     vi.stubEnv("ANKITS_PRODUCTION_RELEASE", "true");

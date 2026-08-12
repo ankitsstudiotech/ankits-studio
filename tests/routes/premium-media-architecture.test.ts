@@ -38,13 +38,13 @@ describe("real-only slot protection", () => {
     expect(VERIFIED_REAL_ONLY_SLOTS).toContain("about.founder");
   });
 
-  it("allows synthetic on home.hero and locations.atmosphere", () => {
+  it("allows illustrative media on home.hero and locations.atmosphere", () => {
     expect(canAcceptSyntheticMedia("home.hero")).toBe(true);
     expect(canAcceptSyntheticMedia("locations.atmosphere")).toBe(true);
     expect(canAcceptSyntheticMedia("about.community")).toBe(true);
   });
 
-  it("rejects synthetic on about.founder", () => {
+  it("rejects illustrative media on about.founder", () => {
     expect(canAcceptSyntheticMedia("about.founder")).toBe(false);
   });
 });
@@ -54,27 +54,24 @@ describe("resolveSlotMedia status gates", () => {
     vi.unstubAllEnvs();
   });
 
-  it("returns null for geometry when synthetic flag is off", () => {
+  it("returns owner-approved illustrative-ai in production without the synthetic flag", () => {
     vi.stubEnv("NEXT_PUBLIC_ENABLE_SYNTHETIC_MEDIA", "false");
-    expect(resolveSlotMedia("home.hero")).toBeNull();
-    expect(resolveSlotMedia("programme.yoga.hero")).toBeNull();
-    expect(resolveSlotMedia("locations.atmosphere")).toBeNull();
-  });
-
-  it("returns file-backed synthetic-preview when flag is on", () => {
-    vi.stubEnv("NEXT_PUBLIC_ENABLE_SYNTHETIC_MEDIA", "true");
     const hero = resolveSlotMedia("home.hero");
-    expect(hero?.status).toBe("synthetic-preview");
-    expect(hero?.source).toBe("ai-concept");
+    expect(hero?.status).toBe("illustrative-ai");
+    expect(hero?.source).toBe("ai-generated-illustration");
     expect(hero?.src).toBe("/media/synthetic-preview/home-hero-ai-concept.webp");
-    expect(hero?.consentStatus).toBe("not-applicable-synthetic");
+    expect(hero?.consentStatus).toBe("not-applicable-ai");
+    expect(hero?.replacementStatus).toBe("replace-after-owner-photoshoot");
     expect(hero?.focalPoint).toBeDefined();
-    expect(hero?.tabletFocalPoint).toBeDefined();
-    expect(hero?.mobileFocalPoint).toBeDefined();
   });
 
-  it("registers all twelve concept slots with file sources", () => {
-    vi.stubEnv("NEXT_PUBLIC_ENABLE_SYNTHETIC_MEDIA", "true");
+  it("returns null for geometry when synthetic flag is off and no illustrative asset exists", () => {
+    vi.stubEnv("NEXT_PUBLIC_ENABLE_SYNTHETIC_MEDIA", "false");
+    expect(resolveSlotMedia("programme.corporate-wellness.hero")).toBeNull();
+  });
+
+  it("registers all twelve approved illustrative slots with file sources", () => {
+    vi.stubEnv("NEXT_PUBLIC_ENABLE_SYNTHETIC_MEDIA", "false");
     const slots = [
       "home.hero",
       "home.community",
@@ -92,19 +89,20 @@ describe("resolveSlotMedia status gates", () => {
     for (const slot of slots) {
       const item = resolveSlotMedia(slot);
       expect(item?.src, slot).toMatch(/^\/media\/synthetic-preview\//);
-      expect(item?.status).toBe("synthetic-preview");
+      expect(item?.status).toBe("illustrative-ai");
     }
   });
 
-  it("never returns synthetic for founder or branch location heroes", () => {
-    vi.stubEnv("NEXT_PUBLIC_ENABLE_SYNTHETIC_MEDIA", "true");
+  it("never returns illustrative or synthetic media for founder or branch location heroes", () => {
+    vi.stubEnv("NEXT_PUBLIC_ENABLE_SYNTHETIC_MEDIA", "false");
     expect(resolveSlotMedia("about.founder")).toBeNull();
     expect(resolveSlotMedia("location.ghansoli.hero")).toBeNull();
     expect(resolveSlotMedia("location.airoli-sector-8.hero")).toBeNull();
   });
 
-  it("maps programme slugs to premium hero slots", () => {
+  it("maps programme slugs to premium hero slots including corporate wellness", () => {
     expect(programmeHeroSlotKey("functional-training")).toBe("programme.functional.hero");
     expect(programmeHeroSlotKey("wedding-choreography")).toBe("programme.wedding.hero");
+    expect(programmeHeroSlotKey("corporate-wellness")).toBe("programme.corporate-wellness.hero");
   });
 });
