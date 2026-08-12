@@ -15,3 +15,5 @@ export * from "./studio-about";
 export * from "./studio-trainers-page";
 export * from "./studio-member-stories-page";
 export * from "./navigation";
+export * from "./homepage-intent";
+export * from "./media-policy";

@@ -93,6 +93,8 @@ export const branchSchema = provenanced({
   maxGroupBatchSize: z.number().int().positive().nullable(),
   openingStatus: z.enum(["open", "temporarily-closed", "coming-soon"]),
   landmarks: z.string().nullable(),
+  /** Year this branch opened — for About/branch context only. */
+  openingYear: z.number().int().min(1900).max(2100).optional(),
   nearestStation: z.string().nullable(),
   parking: z.string().nullable(),
   facilities: z.array(z.string()).nullable(),

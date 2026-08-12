@@ -7,7 +7,7 @@ const PENDING_BATCHES = "pending" as const;
 
 /**
  * Programme catalogue after owner interview 2026-08-01 + confirmed taxonomy rebuild.
- * Confirmed services: Functional, Zumba, Yoga, Dance, Wedding, Home PT, Online.
+ * Confirmed services: Functional, Zumba, Yoga, Dance, Wedding, Home PT, Online, Corporate Wellness.
  * Legacy routes remain `migration-pending` — reachable, noindex, no silent redirects.
  */
 export const mockProgrammes: Programme[] = [
@@ -16,26 +16,26 @@ export const mockProgrammes: Programme[] = [
     slug: "functional-training",
     name: "Functional Training",
     shortDescription:
-      "Machine-free Functional Training using bodyweight movement and portable equipment.",
+      "Coach-led, machine-free sessions for strength, mobility and everyday fitness.",
     longDescription:
-      "Functional Training at Ankit’s Studio is machine-free — sessions use bodyweight movement and portable equipment such as bands, dumbbells, kettlebells and battle ropes, not conventional gym machines. Typical sessions last about one hour. Beginners are welcome; batch times are confirmed when you enquire.",
+      "Functional Training at Ankit’s Studio is energetic, coach-led and built around real-life movement — not rows of gym machines. Sessions use bodyweight work, resistance bands, dumbbells, kettlebells and mats, with strength circuits, HIIT and mobility adapted to your fitness level. Many members join to work towards goals such as fat loss, strength or stamina; coaches focus on approachable, consistent progress rather than promises.",
     audienceTags: ["adults", "fitness", "working-professionals"],
     branchSlugs: [...ALL_BRANCHES],
     heroAccent: "strength",
     whoItsFor:
-      "Adults who want coach-led, machine-free fitness — including working professionals and beginners. Suitability depends on the batch. Ask when you book a free trial.",
+      "Adults who want coach-led, machine-free fitness with personal attention in a motivating community — including beginners and working professionals.",
     classStructure:
-      "Each session is structured by the coach and typically lasts about one hour. Batch times are confirmed on WhatsApp.",
+      "Structured coach-led sessions typically last about one hour. Exercises are adapted to fitness level; batch times are confirmed on WhatsApp.",
     benefits: [
-      "Bodyweight movement",
-      "Resistance bands",
-      "Dumbbells and kettlebells",
-      "Battle ropes",
-      "Circuit training",
-      "Mobility work",
-      "Strength and conditioning",
-      "Typical session: around one hour",
-      "Beginner enquiries welcome",
+      "Coach-led strength and conditioning",
+      "Bodyweight and functional equipment",
+      "Resistance bands, dumbbells and kettlebells",
+      "Strength circuits and HIIT",
+      "Mobility and balance work",
+      "Machine-free — not conventional gym machines",
+      "Personal attention within group sessions",
+      "Motivating community atmosphere",
+      "Beginner-friendly enquiries welcome",
       "Personalised programming available through personal training",
     ],
     difficulty: "all-levels",
@@ -132,19 +132,24 @@ export const mockProgrammes: Programme[] = [
     dataStatus: "verified",
     slug: "yoga",
     name: "Yoga",
-    shortDescription: "Breath-led movement with space to settle — ask which batch suits you.",
+    shortDescription: "Calm, structured yoga with breath, mobility and mindful movement.",
     longDescription:
-      "Yoga at Ankit’s Studio emphasises breath-led movement. Ladies-only batches may be available — ask when you enquire. Exact batch times are confirmed when you message us.",
+      "Yoga at Ankit’s Studio is calm, structured and beginner-friendly — traditional asanas with attention to mobility, breathing, relaxation and mindfulness. Sessions support flexibility, strength, balance and body awareness for everyday stress management, with proper guidance from coaches. Ladies-only batches may be available — ask when you enquire.",
     audienceTags: ["adults", "low-impact"],
     branchSlugs: [...ALL_BRANCHES],
     heroAccent: "calm",
     whoItsFor:
-      "People looking for breath-led, lower-impact movement. Suitability depends on the batch. Ask about ladies-only options when booking a trial.",
-    classStructure: "Breath-led session structure varies by batch. Message us for current batch times.",
+      "People looking for structured, breath-led yoga with mindful movement — including beginners. Ladies-only batches are available on request.",
+    classStructure:
+      "Traditional asana-focused sessions with breathing and relaxation. Batch focus and times are confirmed on WhatsApp.",
     benefits: [
-      "Breath-led studio sessions",
+      "Traditional asanas with coach guidance",
+      "Mobility, breathing and relaxation",
+      "Mindfulness and body awareness",
+      "Flexibility, strength and balance",
+      "Beginner-friendly structure",
       "Ladies-only batches available on request",
-      "Offered across studio branches",
+      "Everyday stress management through movement",
     ],
     difficulty: "all-levels",
     requiredEquipment: [],
@@ -178,19 +183,24 @@ export const mockProgrammes: Programme[] = [
     dataStatus: "verified",
     slug: "zumba",
     name: "Zumba",
-    shortDescription: "Music-led group energy. No dance background required to enquire.",
+    shortDescription: "High-energy, beginner-friendly dance fitness with simple choreography.",
     longDescription:
-      "Zumba at Ankit’s Studio is a music-led group session. No prior dance experience is required to enquire. Exact batch times and formats are confirmed when you message us.",
+      "Zumba at Ankit’s Studio is high-energy, fun and easy to follow — a cardio and full-body workout through dance movement. Sessions support stamina and coordination in a friendly, non-judgmental room, especially popular among women, homemakers and working professionals. No dance background is required to enquire.",
     audienceTags: ["adults", "group-class"],
     branchSlugs: [...ALL_BRANCHES],
     heroAccent: "high-energy",
     whoItsFor:
-      "Anyone who enjoys music-led group movement. Not every batch suits every age — ask the studio when you enquire.",
-    classStructure: "Music-led group session. Message us for current batch times.",
+      "Anyone who enjoys music-led group movement — especially popular among women, homemakers and working professionals. Beginners welcome.",
+    classStructure:
+      "High-energy group sessions with simple choreography. Batch times are confirmed on WhatsApp.",
     benefits: [
-      "Music-led group sessions",
+      "High-energy, fun group sessions",
+      "Easy-to-follow dance movement",
+      "Cardio and full-body activity",
+      "Stamina and coordination",
+      "Friendly, motivating coaches",
+      "Non-judgmental community",
       "No dance background required to enquire",
-      "Offered across studio branches",
     ],
     difficulty: "all-levels",
     requiredEquipment: [],
@@ -219,19 +229,23 @@ export const mockProgrammes: Programme[] = [
     dataStatus: "verified",
     slug: "adult-dance",
     name: "Dance",
-    shortDescription: "Studio dance for adults — technique and choreography in a welcoming room.",
+    shortDescription: "Fun, energetic studio dance — adult, ladies-only and kids-only batches.",
     longDescription:
-      "Dance at Ankit’s Studio covers technique and choreography in a welcoming room. Kids Dance and Ladies Dance are kids-only and ladies-only Dance batches — not separate general programmes. Children’s Dance age groups include 3–8 years and 8–12 years. Availability varies by branch. Wedding choreography is listed separately.",
+      "Dance at Ankit’s Studio covers fun, energetic, choreography-focused sessions in a relaxed, non-judgmental room. Adult Dance is open to all adults; Ladies Dance is a ladies-only batch for a comfortable group environment; Kids Dance is a kids-only batch with age-appropriate choreography supporting confidence, coordination, rhythm and stage presence (age groups 3–8 and 8–12 years). Wedding choreography is listed separately. Branch and timing availability is confirmed when you enquire.",
     audienceTags: ["adults", "group-class", "kids", "women"],
     branchSlugs: [...ALL_BRANCHES],
     heroAccent: "high-energy",
     whoItsFor:
-      "Adults interested in studio dance, plus families asking about kids-only Dance batches (3–8 and 8–12 years) and ladies-only Dance batches.",
-    classStructure: "Studio dance sessions. Message us for current styles and batch times. Typical sessions are about one hour.",
+      "Adults who want energetic choreography-focused dance; women interested in ladies-only batches; families asking about kids-only Dance batches.",
+    classStructure:
+      "Choreography-focused studio sessions, typically about one hour. Styles and batch times are confirmed on WhatsApp.",
     benefits: [
-      "Studio dance sessions across branches",
-      "Kids-only Dance batches (age groups 3–8 and 8–12 years) available to ask about",
-      "Ladies-only Dance batches available to ask about",
+      "Fun, energetic choreography-focused sessions",
+      "Relaxed, non-judgmental environment",
+      "Adult Dance for all adults",
+      "Ladies-only Dance batches available",
+      "Kids-only Dance batches (3–8 and 8–12 years)",
+      "Confidence, coordination and rhythm",
       "Wedding choreography is a separate service",
     ],
     difficulty: "all-levels",
@@ -318,18 +332,20 @@ export const mockProgrammes: Programme[] = [
     dataStatus: "verified",
     slug: "wedding-choreography",
     name: "Wedding Choreography",
-    shortDescription: "Personal choreography support for wedding routines and performances.",
+    shortDescription: "Wedding choreography planned around your event, songs and comfort level.",
     longDescription:
-      "Wedding Choreography at Ankit’s Studio offers personal choreography support for wedding routines and performances. Pricing is arranged per couple; exact amounts are confirmed when you enquire. Sessions are arranged after you get in touch.",
+      "Wedding Choreography at Ankit’s Studio starts by understanding your event, participants, song preferences, dance experience and performance needs. Coaches plan suitable songs and easy-to-learn choreography with planned practice sessions for couple, family or group performances — adapted to participant comfort so the goal is a confident, coordinated, enjoyable performance. Pricing is arranged per couple; exact amounts are confirmed when you enquire.",
     audienceTags: ["adults", "event"],
     branchSlugs: [...ALL_BRANCHES],
     heroAccent: "high-energy",
     whoItsFor: "Individuals or groups preparing wedding dance routines.",
     classStructure: "Custom choreography arranged with the studio after enquiry.",
     benefits: [
-      "Personal choreography support for wedding routines",
+      "Understands your event, participants and song preferences",
+      "Easy-to-learn choreography with planned practice sessions",
+      "Couple, family and group performances",
+      "Adapted to participant comfort and experience",
       "Priced per couple — ask for current details",
-      "Enquire via WhatsApp",
     ],
     difficulty: "all-levels",
     requiredEquipment: [],
@@ -357,20 +373,23 @@ export const mockProgrammes: Programme[] = [
     dataStatus: "verified",
     slug: "home-personal-training",
     name: "Home Personal Training",
-    shortDescription: "Coach-led sessions at your location — priced per session.",
+    shortDescription: "One-to-one coach-led sessions at your home in Navi Mumbai and Thane.",
     longDescription:
-      "Home Personal Training brings coach-led sessions to your location. Pricing is per session; locality coverage and rates are confirmed when you enquire. Personalised programming is available through personal training.",
+      "Home Personal Training brings private, convenient one-to-one coaching to your location across Navi Mumbai and Thane, subject to location and trainer availability. Sessions suit beginners, busy professionals, homemakers and seniors — coaches consider your goals, fitness level, schedule, space and equipment when planning exercise selection, intensity, pace and progression. Pricing is per session; share your locality when you enquire.",
     audienceTags: ["adults", "home-delivery"],
     branchSlugs: [...ALL_BRANCHES],
     heroAccent: "strength",
-    whoItsFor: "People who prefer coach-led personal training at home rather than in a branch.",
+    whoItsFor:
+      "People who want one-to-one coaching at home in Navi Mumbai or Thane — including beginners, busy professionals, homemakers and seniors.",
     classStructure:
-      "Home sessions scheduled after enquiry — not on a branch timetable. Typical sessions are about one hour.",
+      "Sessions scheduled after enquiry at your location. Typical sessions are about one hour.",
     benefits: [
-      "Coach-led sessions in a home setting",
+      "Privacy and convenience at your location",
+      "One-to-one coach-led sessions",
+      "Navi Mumbai and Thane coverage — subject to availability",
+      "Personalised exercise selection and progression",
       "Priced per session — ask for current rates",
-      "Personalised programming through personal training",
-      "Share your locality when you message us",
+      "Goals, space and equipment considered",
     ],
     difficulty: "all-levels",
     requiredEquipment: [],
@@ -389,7 +408,8 @@ export const mockProgrammes: Programme[] = [
       {
         id: "home-area",
         question: "Which areas do you cover?",
-        answer: "Service area depends on your locality — share it when you enquire.",
+        answer:
+          "Home Personal Training is available across Navi Mumbai and Thane, subject to location and trainer availability. Share your locality when you enquire.",
       },
       {
         id: "home-price",
@@ -402,9 +422,9 @@ export const mockProgrammes: Programme[] = [
     dataStatus: "verified",
     slug: "online-training",
     name: "Online Training",
-    shortDescription: "Remote coach-led sessions on Zoom — one-to-one and group formats.",
+    shortDescription: "Live coach-led sessions on Zoom — one-to-one and small groups.",
     longDescription:
-      "Online Training with Ankit’s Studio is delivered on Zoom in one-to-one and group formats. Timing and fees are confirmed when you enquire.",
+      "Online Training with Ankit’s Studio uses Zoom for live, coach-led sessions in one-to-one and structured small-group formats. Coaches guide workouts with demonstrations and form corrections, adapted to your fitness level, goals, available space, equipment and schedule — useful when you cannot visit a studio regularly.",
     audienceTags: ["adults", "online-delivery"],
     branchSlugs: [...ALL_BRANCHES],
     heroAccent: "strength",
@@ -412,9 +432,11 @@ export const mockProgrammes: Programme[] = [
     classStructure:
       "Online sessions on Zoom after enquiry — one-to-one or group. Typical sessions are about one hour.",
     benefits: [
-      "Remote coach-led sessions on Zoom",
-      "One-to-one and group formats",
-      "Schedule and fees — message us for current details",
+      "Live sessions on Zoom",
+      "One-to-one and structured small-group formats",
+      "Demonstrations and form corrections",
+      "Adapted to fitness level, goals and equipment",
+      "Useful when studio visits are difficult",
     ],
     difficulty: "all-levels",
     requiredEquipment: [],
@@ -434,6 +456,64 @@ export const mockProgrammes: Programme[] = [
         id: "online-platform",
         question: "Which platform do you use?",
         answer: "Online Training uses Zoom. One-to-one and group formats are available.",
+      },
+    ],
+  },
+  {
+    dataStatus: "verified",
+    slug: "corporate-wellness",
+    name: "Corporate Wellness",
+    shortDescription:
+      "Customised employee fitness and wellness programmes — at your workplace or online.",
+    longDescription:
+      "Corporate Wellness at Ankit’s Studio helps companies invest in employee health through customised fitness and wellness programmes. Sessions can include yoga, Zumba, functional fitness, mobility, mindfulness and team-wellness activities — delivered at your workplace or online. Programmes can support employee engagement, corporate events and wellness initiatives, with coordination alongside HR, admin and facility teams. Plans depend on team size, objectives, duration, location and schedule; pricing is supplied on enquiry.",
+    audienceTags: ["corporate", "workplace", "wellness"],
+    branchSlugs: [...ALL_BRANCHES],
+    heroAccent: "calm",
+    whoItsFor:
+      "Companies and HR teams looking for structured employee fitness and wellness sessions — on-site or online.",
+    classStructure:
+      "Programme scope, format and schedule are planned after enquiry with your HR or admin contact.",
+    benefits: [
+      "Customised employee fitness and wellness programmes",
+      "Workplace or online delivery",
+      "Yoga, Zumba, functional fitness and mobility",
+      "Mindfulness and team-wellness activities",
+      "Employee-engagement and corporate event support",
+      "Coordination with HR, admin and facility teams",
+      "Plans tailored to team size, goals and schedule",
+      "Pricing supplied on enquiry",
+    ],
+    difficulty: "all-levels",
+    requiredEquipment: [],
+    taxonomyStatus: "confirmed",
+    serviceCluster: "celebrate",
+    trialAvailable: false,
+    pricingStatus: PENDING_PRICING,
+    batchScheduleStatus: PENDING_BATCHES,
+    mediaSlotKey: "service.corporate-wellness",
+    seoTitle: "Corporate Wellness",
+    seoDescription:
+      "Corporate wellness programmes for employee fitness — yoga, Zumba, functional training and team activities at your workplace or online. Enquire on WhatsApp.",
+    relatedProgrammeSlugs: ["functional-training", "yoga", "zumba", "online-training"],
+    faqEntries: [
+      {
+        id: "corporate-delivery",
+        question: "Where are corporate sessions delivered?",
+        answer:
+          "Sessions can be delivered at your workplace or online, depending on what suits your team. Scope and logistics are confirmed when you enquire.",
+      },
+      {
+        id: "corporate-pricing",
+        question: "How is Corporate Wellness priced?",
+        answer:
+          "Pricing depends on team size, programme scope, duration and delivery format. Message us for a tailored quote.",
+      },
+      {
+        id: "corporate-content",
+        question: "What can programmes include?",
+        answer:
+          "Programmes may include yoga, Zumba, functional fitness, mobility, mindfulness and team-wellness activities — planned around your objectives.",
       },
     ],
   },

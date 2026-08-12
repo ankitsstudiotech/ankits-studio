@@ -39,8 +39,10 @@ export const studioAboutSchema = provenanced({
   founderStory: z.string().min(1).optional(),
   foundingDateStatus: z.enum(["pending", "verified"]),
   foundingDateLabel: z.string().min(1).optional(),
-  credentialsStatus: z.enum(["pending", "verified"]),
+  credentialsStatus: z.enum(["pending", "verified", "withheld"]),
   credentialsSummary: z.string().min(1).optional(),
+  /** Coaching philosophy — enriches About copy; not repeated on every programme page. */
+  coachingPhilosophy: z.string().min(1).optional(),
   faqs: z.array(faqEntrySchema).default([]),
   ownerSource: ownerSourceSchema.optional(),
 });

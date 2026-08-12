@@ -27,3 +27,11 @@ export const OWNER_INTERVIEW_2026_08_03 = {
   sourceName: "Ankit Nalawade",
   verificationLevel: "owner_confirmed",
 } as const satisfies OwnerSource;
+
+/** Canonical provenance for the 2026-08-12 final requirements form. */
+export const OWNER_FORM_2026_08_12 = {
+  sourceType: "owner_interview",
+  sourceDate: "2026-08-12",
+  sourceName: "Ankit Nalawade — Requirements Form",
+  verificationLevel: "owner_confirmed",
+} as const satisfies OwnerSource;

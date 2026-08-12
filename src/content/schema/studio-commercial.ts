@@ -42,10 +42,23 @@ export const studioCommercialSchema = provenanced({
   membershipBranchTransferAllowed: z.boolean().optional(),
   membershipPauseAllowed: z.boolean().optional(),
   /** Ambiguous “Missed classes — No” — do not publish until clarified. */
-  missedClassesPolicyStatus: z.enum(["ambiguous", "pending", "published"]).optional(),
-  /** Corporate Fitness — confirmed incomplete; enquiry-only (ADR-020). */
+  missedClassesPolicyStatus: z.enum(["ambiguous", "pending", "published", "withheld"]).optional(),
+  /** Corporate Wellness — full programme page (ADR-022); legacy enquiry-only superseded. */
   corporateFitnessStatus: z.enum(["enquiry-only", "published", "pending"]).optional(),
   corporateFitnessNote: z.string().min(1).optional(),
+  /** Customer-facing membership policy copy when `membershipPoliciesStatus` is published. */
+  membershipPolicyCopy: z
+    .object({
+      cancellation: z.string().min(1),
+      refund: z.string().min(1),
+      transfer: z.string().min(1),
+      freeze: z.string().min(1),
+      expiry: z.string().min(1),
+    })
+    .optional(),
+  pricingEnquiryNote: z.string().min(1).optional(),
+  discountsEnquiryNote: z.string().min(1).optional(),
+  freeTrialJourneyNote: z.string().min(1).optional(),
   typicalSessionMinutes: z.number().int().positive().optional(),
   maxGroupBatchSize: z.number().int().positive().optional(),
   ladiesOnlyBatchesAvailable: z.boolean().optional(),

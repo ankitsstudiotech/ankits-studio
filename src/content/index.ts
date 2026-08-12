@@ -302,6 +302,14 @@ export function getStudioAbout(): StudioAbout {
   return studioAbout;
 }
 
+export function getHomepageIntent() {
+  return mock.mockHomepageIntent;
+}
+
+export function getMediaPolicy() {
+  return mock.mockMediaPolicy;
+}
+
 export function getStudioTrainersPage(): StudioTrainersPage {
   return studioTrainersPage;
 }

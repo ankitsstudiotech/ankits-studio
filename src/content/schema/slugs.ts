@@ -19,6 +19,8 @@ export const programmeSlugSchema = z.enum([
   "wedding-choreography",
   "home-personal-training",
   "online-training",
+  /** Owner form 2026-08-12 — full public programme (ADR-022). */
+  "corporate-wellness",
 ]);
 export type ProgrammeSlug = z.infer<typeof programmeSlugSchema>;
 
