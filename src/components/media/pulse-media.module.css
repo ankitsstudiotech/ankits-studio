@@ -67,6 +67,10 @@
   );
 }
 
+.frame[data-media-status="illustrative-ai"] .frameMedia {
+  filter: saturate(0.94) contrast(1.02);
+}
+
 .previewLabel {
   position: absolute;
   right: 0.45rem;

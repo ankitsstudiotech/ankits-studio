@@ -17,8 +17,8 @@ export type HeroProps = {
 
 /**
  * Homepage hero — H1 leads; copy/CTA follow after headline is readable.
- * Optional editorial media when synthetic flag enables a resolvable slot
- * (Stage 4A geometry or later verified/synthetic assets). Flag false = text-led.
+ * Optional editorial media when an owner-approved illustrative slot resolves.
+ * Flag false still renders illustrative-ai; synthetic-preview remains concept-only.
  */
 export function Hero({
   brandName,
