@@ -34,3 +34,73 @@ Honest assessment after Prompt 3 (owner-approved illustrative-ai in production).
 ## P0/P1
 
 No open P0/P1 for Prompt 3 scope.
+
+---
+
+## Correction pass — 12 August 2026 (Prompt 3 evidence repair)
+
+Historical Prompt 3 comparison artefacts (`final-production-ai-media-comparison-390.png`, `-1440.png`, `programme-family-ai-production-comparison.png`) were **broken** — they showed Chromium broken-image placeholders. **Actual route screenshots in `final-production-ai-media/` were never broken** (57/57 integrity pass).
+
+### Root cause
+
+Original generator (`docs/revamp/_create-ai-media-comparison.mjs`) embedded `file:///` Windows filesystem paths inside `page.setContent()` HTML. Chromium blocks/inaccessible local file loads in that context. Filename mismatch (`functional.png` vs `programs-functional-training.png`) compounded missing before-side images.
+
+### Fix
+
+Regenerated with `docs/revamp/_compose-ai-media-comparisons-fixed.mjs`: PNGs embedded as **data URLs**, `img.complete` awaited before capture, pixel decode validation. Outputs:
+
+- `docs/revamp/screenshots/final-production-ai-media-comparison-390-fixed.png`
+- `docs/revamp/screenshots/final-production-ai-media-comparison-1440-fixed.png`
+- `docs/revamp/screenshots/programme-family-ai-production-comparison-fixed.png`
+- Evidence package: `docs/revamp/screenshots/final-production-ai-media-correction/` + `.zip` (15 files verified)
+
+Yoga before-side at mobile/desktop uses `final-owner-visual-stage-2` fallback (text-led; not in stage-2-correction folder).
+
+### Screenshot integrity
+
+`docs/revamp/AI-MEDIA-SCREENSHOT-INTEGRITY.json` — **57/57 pass**: decodable PNG, non-zero bytes, DOM checks (no dev banner, no per-image concept label, footer disclosure on Home).
+
+### Corporate Wellness
+
+**Unchanged and intentional:** `programme.corporate-wellness.hero` resolves to **fallback** (text-led). Programme-family comparison shows this honestly vs illustrated peers. No reused raster, no fake gradient. Dedicated asset deferred to next owner step.
+
+### Measured performance (production build, `next start`, illustrative-ai default, Lighthouse mobile preset ×3 median)
+
+| Route | FCP | LCP | CLS | TBT |
+|---|---|---|---|---|
+| Home `/` mobile | 2218 ms | 3218 ms | **0.710** (2/3 runs; 1 run 0) | 1055 ms |
+| Home `/` desktop 1440 | 388 ms | 826 ms | 0 | 0 |
+| Functional mobile | 1867 ms | 2766 ms | 1.047 | 1192 ms |
+
+**Actual LCP element (Home mobile, CDP):** hero `<img>` (`pulse-media-module__frameMedia`) via `/_next/image` → `home-hero-ai-concept.webp`. **H1 remains readable on first paint** (opacity 1, visible, 320×156 px at 390).
+
+**Hero delivery audit:**
+
+| Asset | Bytes |
+|---|---|
+| Source `home-hero-ai-concept.webp` | 305,088 (~298 KB) |
+| Served mobile (w=640 webp) | 22,624 |
+| Served desktop (w=828 webp) | 34,592 |
+| Functional hero mobile (w=640) | 13,852 |
+| Yoga hero mobile (w=640) | 16,666 |
+
+Source hero kept at ~298 KB — above 250 KB target; visually negligible loss not attempted in this correction pass (owner-approved asset; mobile serves optimized 22 KB via Next/Image).
+
+### Network / console (5 routes, fresh production server)
+
+0 failed image requests · 0 broken DOM images · 0 console errors.
+
+### AI trust boundaries
+
+No regression: founder typography-only; branch text-led; no AI trainer portraits/reviews/transformations/certification proof.
+
+### Acceptance gaps (correction pass)
+
+- **CLS mobile Home median 0.710 fails ≤ 0.05 gate** — likely pre-existing layout shift (mock-data banner / long-page reflow under Lighthouse mobile emulation); not opened for broad optimisation in this pass. Desktop CLS 0.
+- H1 first-paint: **pass**
+- Image network: **pass**
+- Comparison sheets: **fixed**
+
+### P0/P1 (post-correction)
+
+**P0: 0** · **P1: 0** for Prompt 3 scope. CLS failure is documented acceptance gap, not counted as P0/P1 unless classified as new AI-induced regression (inconclusive on localhost Lighthouse; Functional CLS also elevated).
