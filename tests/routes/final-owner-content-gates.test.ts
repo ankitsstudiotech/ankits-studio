@@ -87,4 +87,8 @@ describe("final owner content gates (2026-08-12)", () => {
   it("marks corporate fitness as published programme not enquiry-only", () => {
     expect(getStudioCommercial().corporateFitnessStatus).toBe("published");
   });
+
+  it("uses teams service cluster for corporate wellness", () => {
+    expect(getProgrammeBySlug("corporate-wellness")?.serviceCluster).toBe("teams");
+  });
 });

@@ -28,18 +28,14 @@ const FORBIDDEN_SD =
   /"(@type"\s*:\s*"(Review|AggregateRating|Offer)")/;
 
 describe("Stage 6 — verified business and local trust", () => {
-  it("homepage wires a compact typographic trust rail with core facts", () => {
+  it("homepage prioritises programmes and branches without duplicate trust rail", () => {
     const home = read("src", "app", "(marketing)", "page.tsx");
-    expect(home).toMatch(/PulseTrustRail/);
-    expect(home).toMatch(/Founded/);
-    expect(home).toMatch(/2019/);
-    expect(home).toMatch(/Studios/);
-    expect(home).toMatch(/15\+/);
-    expect(home).toMatch(/Every day · 6 AM–10 PM/);
-    expect(home).not.toMatch(/Why trust us|trusted by|5-star|AggregateRating/i);
-    const rail = read("src", "components", "home", "PulseTrustRail.tsx");
-    expect(rail).toMatch(/typographic trust rail/);
-    expect(rail).not.toMatch(/aria-label="Why trust us"|trusted by thousands/i);
+    expect(home).toMatch(/ProgrammeShowcase/);
+    expect(home).toMatch(/BranchExplorer/);
+    expect(home).toMatch(/FounderHomeMoment/);
+    expect(home).not.toMatch(/PulseTrustRail|WhyStudio/);
+    const branch = read("src", "components", "home", "BranchExplorer.tsx");
+    expect(branch).toMatch(/paperBand/);
   });
 
   it("About keeps founder primary and honest team wording", () => {

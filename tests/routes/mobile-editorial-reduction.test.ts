@@ -11,7 +11,7 @@ describe("mobile editorial reduction — Stage 2 regression gate", () => {
     const home = read("src/app/(marketing)/page.tsx");
     expect(home).not.toMatch(/Practical information|Practical Information/);
     expect(home).toMatch(/faq-batches/);
-    expect(home).toMatch(/faq-group-size/);
+    expect(home).toMatch(/faq-batch-times/);
     expect(home).not.toMatch(/faq-hours|faq-registration|faq-whatsapp/i);
   });
 
