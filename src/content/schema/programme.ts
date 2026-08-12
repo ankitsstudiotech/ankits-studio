@@ -27,6 +27,10 @@ export type ProgrammeDifficulty = z.infer<typeof programmeDifficultySchema>;
 export const programmeClusterSchema = z.enum(["train", "move", "celebrate", "teams"]);
 export type ProgrammeCluster = z.infer<typeof programmeClusterSchema>;
 
+/** Primary conversion path for programme detail pages. */
+export const programmeConversionIntentSchema = z.enum(["free-trial", "service-enquiry"]);
+export type ProgrammeConversionIntent = z.infer<typeof programmeConversionIntentSchema>;
+
 /**
  * Confirmed service taxonomy fields live alongside legacy description fields.
  * Prefer owner-confirmed facts; leave unanswered details pending rather than inventing.
@@ -54,6 +58,11 @@ export const programmeSchema = provenanced({
   serviceCluster: programmeClusterSchema.optional(),
   /** Free trial is owner-confirmed for studio services. */
   trialAvailable: z.boolean().optional(),
+  /**
+   * Conversion semantics for programme detail CTAs and facts.
+   * Defaults to free-trial when omitted.
+   */
+  conversionIntent: programmeConversionIntentSchema.optional(),
   pricingStatus: z.enum(["pending", "published"]).optional(),
   batchScheduleStatus: z.enum(["pending", "published"]).optional(),
   mediaSlotKey: z.string().optional(),

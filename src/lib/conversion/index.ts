@@ -1,4 +1,13 @@
 export {
+  buildWhatsAppCorporateWellnessMessage,
+  getProgrammeConversionHref,
+  getProgrammeConversionIntent,
+  getProgrammeConversionLabel,
+  isServiceEnquiryProgramme,
+  type ProgrammeConversionFields,
+} from "./programme-conversion";
+
+export {
   WHATSAPP_REVIEW_HELPER,
   WHATSAPP_TRIAL_TEMPLATE,
   buildWhatsAppMessage,

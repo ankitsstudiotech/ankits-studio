@@ -12,9 +12,9 @@ import {
   isMigrationPendingProgramme,
 } from "@/content";
 import {
-  buildWhatsAppProgrammeEnquiryUrl,
   getPrimaryConversionHref,
-  getPrimaryConversionLabel,
+  getProgrammeConversionHref,
+  getProgrammeConversionLabel,
 } from "@/lib/conversion";
 import { buildPageMetadata } from "@/lib/seo/metadata";
 import { serializeJsonLd } from "@/lib/seo/serialize";
@@ -44,9 +44,8 @@ export async function generateMetadata({ params }: ProgrammePageParams): Promise
 export default async function ProgrammeDetailPage({ params }: ProgrammePageParams) {
   const { slug } = await params;
   const programme = getProgrammeOrNotFound(slug);
-  const whatsappHref =
-    buildWhatsAppProgrammeEnquiryUrl(programme.name) ?? getPrimaryConversionHref();
-  const whatsappLabel = getPrimaryConversionLabel();
+  const whatsappHref = getProgrammeConversionHref(programme) ?? getPrimaryConversionHref();
+  const whatsappLabel = getProgrammeConversionLabel(programme);
 
   const breadcrumbTrail = [
     { name: "Home", path: "/" },

@@ -3,6 +3,7 @@ import type { Programme, ProgrammeSlug } from "@/content";
 import { PulseMedia } from "@/components/media";
 import { MaskedLines, SectionReveal } from "@/components/motion";
 import { toneFromProgrammeSlug } from "@/components/motion/tokens";
+import { isServiceEnquiryProgramme } from "@/lib/conversion";
 import { programmeHeroSlotKey, resolveSlotMedia } from "@/content/media";
 import { ProgrammePulseCta, type ProgrammeTempo } from "./ProgrammePulseMotion";
 import styles from "./programme-pulse.module.css";
@@ -117,6 +118,9 @@ function hoursNote(programme: Programme): string {
 }
 
 function availabilityCopy(programme: Programme): string {
+  if (isServiceEnquiryProgramme(programme)) {
+    return "Programmes are arranged after enquiry. Plans depend on team size, objectives, duration, location, schedule, and workplace or online delivery — availability is confirmed with the studio when you enquire.";
+  }
   if (programme.deliveryMode === "home" || programme.deliveryMode === "online") {
     return "Session times are arranged when you enquire.";
   }
@@ -124,6 +128,24 @@ function availabilityCopy(programme: Programme): string {
     return "See batch availability for current options.";
   }
   return "Batch times vary by branch. Message us for current options — studios open 6:00 AM–10:00 PM every day.";
+}
+
+function buildMetaFacts(programme: Programme): MetaFact[] {
+  if (isServiceEnquiryProgramme(programme)) {
+    return [
+      { label: "Format", body: "Workplace or online" },
+      { label: "Programme", body: "Customised to organisation requirements" },
+      { label: "Scheduling", body: "Planned around team, location and availability" },
+      { label: "Pricing", body: "Shared on enquiry" },
+    ];
+  }
+
+  return [
+    { label: "Format", body: formatLabel(programme) },
+    { label: "Delivery", body: deliveryLabel(programme) },
+    { label: "Trial", body: programme.trialAvailable ? "Yes" : "Ask on enquiry" },
+    { label: "Hours", body: hoursNote(programme) },
+  ];
 }
 
 export type ProgrammeDetailViewProps = {
@@ -157,6 +179,7 @@ export function ProgrammeDetailView({
       ? resolveSlotMedia("programme.functional.action")
       : null;
   const batchLabel = availabilityCopy(programme);
+  const serviceEnquiry = isServiceEnquiryProgramme(programme);
 
   const clusterKicker =
     programme.serviceCluster === "train"
@@ -165,18 +188,20 @@ export function ProgrammeDetailView({
         ? "Move"
         : programme.serviceCluster === "celebrate"
           ? "Celebrate"
-          : "Programme";
+          : programme.serviceCluster === "teams"
+            ? "For Teams"
+            : "Programme";
 
   const audienceParts: string[] = [];
-  if (programme.ladiesOnlyBatchesAvailable) {
+  if (!serviceEnquiry && programme.ladiesOnlyBatchesAvailable) {
     audienceParts.push("Ladies-only batches available on request");
   }
-  if (programme.kidsOnlyBatchesAvailable) {
+  if (!serviceEnquiry && programme.kidsOnlyBatchesAvailable) {
     audienceParts.push("Kids-only batches available on request");
   }
 
   const showStudioLocations =
-    locations.length > 0 && programme.deliveryMode === "in-studio";
+    !serviceEnquiry && locations.length > 0 && programme.deliveryMode === "in-studio";
   const relatedItems = related.slice(0, 3);
   const showRelated = relatedItems.length > 0;
 
@@ -191,19 +216,14 @@ export function ProgrammeDetailView({
   if (audienceParts.length > 0) {
     glancePanels.push({ label: "Audience", body: audienceParts.join(" · ") });
   }
-  if (programme.trialAvailable) {
+  if (!serviceEnquiry && programme.trialAvailable) {
     glancePanels.push({
       label: "Trial",
       body: "Free trial available — enquire on WhatsApp",
     });
   }
 
-  const metaFacts: MetaFact[] = [
-    { label: "Format", body: formatLabel(programme) },
-    { label: "Delivery", body: deliveryLabel(programme) },
-    { label: "Trial", body: programme.trialAvailable ? "Yes" : "Ask on enquiry" },
-    { label: "Hours", body: hoursNote(programme) },
-  ];
+  const metaFacts = buildMetaFacts(programme);
 
   const titleLines =
     programme.slug === "home-personal-training"
@@ -334,12 +354,16 @@ export function ProgrammeDetailView({
       <section className={styles.band} aria-labelledby="programme-availability">
         <SectionReveal>
           <h2 id="programme-availability" className={styles.sectionTitle}>
-            Availability
+            {serviceEnquiry ? "Planning & availability" : "Availability"}
           </h2>
         </SectionReveal>
         <div className={styles.availabilityNote}>
           <p className={styles.glanceBody}>{batchLabel}</p>
-          {programme.deliveryMode === "in-studio" ? (
+          {serviceEnquiry ? (
+            <a href={whatsappHref} className={styles.relatedLink}>
+              Enquire on WhatsApp →
+            </a>
+          ) : programme.deliveryMode === "in-studio" ? (
             <Link href="/timetable" className={styles.relatedLink}>
               Ask about batch availability →
             </Link>
@@ -425,15 +449,19 @@ export function ProgrammeDetailView({
 
       <section
         className={`${styles.band} ${styles.closingCta}`}
-        aria-labelledby="programme-trial-end"
+        aria-labelledby="programme-closing-cta"
       >
         <SectionReveal>
-          <h2 id="programme-trial-end" className={styles.sectionTitle}>
-            Enquire about a free trial
+          <h2 id="programme-closing-cta" className={styles.sectionTitle}>
+            {serviceEnquiry
+              ? "Planning wellness for your team?"
+              : "Enquire about a free trial"}
           </h2>
         </SectionReveal>
         <p className={styles.laneDesc}>
-          Message Ankit’s Studio on WhatsApp about {programme.name}.
+          {serviceEnquiry
+            ? "Customised workplace and online programmes are arranged around your organisation’s requirements."
+            : `Message Ankit’s Studio on WhatsApp about ${programme.name}.`}
         </p>
         <div className={styles.ctaRow}>
           <ProgrammePulseCta href={whatsappHref}>{whatsappLabel}</ProgrammePulseCta>

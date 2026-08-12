@@ -91,4 +91,9 @@ describe("final owner content gates (2026-08-12)", () => {
   it("uses teams service cluster for corporate wellness", () => {
     expect(getProgrammeBySlug("corporate-wellness")?.serviceCluster).toBe("teams");
   });
+
+  it("uses service-enquiry conversion intent for corporate wellness", () => {
+    expect(getProgrammeBySlug("corporate-wellness")?.conversionIntent).toBe("service-enquiry");
+    expect(getProgrammeBySlug("corporate-wellness")?.trialAvailable).toBe(false);
+  });
 });

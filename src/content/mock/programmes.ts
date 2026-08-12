@@ -488,6 +488,7 @@ export const mockProgrammes: Programme[] = [
     requiredEquipment: [],
     taxonomyStatus: "confirmed",
     serviceCluster: "teams",
+    conversionIntent: "service-enquiry",
     trialAvailable: false,
     pricingStatus: PENDING_PRICING,
     batchScheduleStatus: PENDING_BATCHES,
