@@ -19,12 +19,12 @@ const FORBIDDEN_COPY =
   /transform your life|unlock your potential|where passion meets|award-winning|trusted by thousands|highly qualified|government-certified|expert trainers|certified professionals|2\+\s*years|Ministry of Ayush|government certified|government approved/i;
 
 describe("about route — verified studio story only", () => {
-  it("publishes outcome-safe founder story and founding year; keeps credentials pending", () => {
+  it("publishes outcome-safe founder story and founding year; withholds credentials", () => {
     const about = getStudioAbout();
     expect(about.founderStoryStatus).toBe("verified");
     expect(about.foundingDateStatus).toBe("verified");
-    expect(about.credentialsStatus).toBe("pending");
-    expect(about.founderStory).toMatch(/Ankit Nalawade founded Ankit’s Studio in 2019/);
+    expect(about.credentialsStatus).toBe("withheld");
+    expect(about.founderStory).toMatch(/Ankit Nalawade founded Ankit’s Studio in Airoli Sector 19 in 2019/);
     expect(about.founderStory).not.toMatch(/transform their life|all health problems|Ministry of Ayush/i);
     expect(about.foundingDateLabel).toBe("2019");
     expect(about.credentialsSummary).toBeUndefined();
@@ -33,7 +33,7 @@ describe("about route — verified studio story only", () => {
 
   it("does not publish ambiguous 2+ years experience marketing", () => {
     const commercial = getStudioCommercial();
-    expect(commercial.experienceNotePartial).toMatch(/2\+/);
+    expect(commercial.experienceNotePartial).not.toMatch(/2\+\s*years/i);
     const page = readFileSync(
       join(process.cwd(), "src", "app", "(marketing)", "about", "page.tsx"),
       "utf8",
@@ -77,7 +77,7 @@ describe("about route — verified studio story only", () => {
   });
 
   it("lists confirmed programmes and four publicly listed branches", () => {
-    expect(getConfirmedProgrammes().length).toBeGreaterThanOrEqual(7);
+    expect(getConfirmedProgrammes().length).toBeGreaterThanOrEqual(8);
     expect(getPubliclyListedBranches().map((b) => b.locality)).toEqual(
       expect.arrayContaining([
         "Airoli Sector 19",

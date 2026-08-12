@@ -45,7 +45,7 @@ describe("Stage 6 — verified business and local trust", () => {
   it("About keeps founder primary and honest team wording", () => {
     const about = getStudioAbout();
     expect(about.foundingDateLabel).toBe("2019");
-    expect(about.founderStory).toMatch(/Ankit Nalawade founded Ankit’s Studio in 2019/);
+    expect(about.founderStory).toMatch(/Ankit Nalawade founded Ankit’s Studio in Airoli Sector 19 in 2019/);
     expect(about.founderStory).not.toMatch(/Ministry of Ayush|all health problems|certification/i);
     expect(about.teamBody).toMatch(/15\+ coaches across our programmes and studios/);
     expect(about.teamBody).not.toMatch(/certified experts|highly qualified|government/i);

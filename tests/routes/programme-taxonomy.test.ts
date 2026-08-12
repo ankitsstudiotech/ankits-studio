@@ -12,13 +12,14 @@ import {
 } from "@/lib/conversion";
 
 describe("confirmed programme taxonomy", () => {
-  it("exposes exactly seven confirmed public services", () => {
+  it("exposes exactly eight confirmed public services", () => {
     const confirmed = getConfirmedProgrammes();
-    expect(confirmed).toHaveLength(7);
+    expect(confirmed).toHaveLength(8);
     expect(confirmed.every(isConfirmedProgramme)).toBe(true);
     expect(confirmed.map((p) => p.slug).sort()).toEqual(
       [
         "adult-dance",
+        "corporate-wellness",
         "functional-training",
         "home-personal-training",
         "online-training",
