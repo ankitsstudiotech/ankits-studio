@@ -15,6 +15,7 @@ const SLUG_TEMPO: Record<string, ProgrammeTempo> = {
   "wedding-choreography": "wedding",
   "home-personal-training": "home",
   "online-training": "online",
+  "corporate-wellness": "wedding",
 };
 
 /** Stage 5 — four composition families (not seven page forks). */
@@ -32,6 +33,7 @@ export function composeFamilyFromSlug(slug: string): ComposeFamily {
     case "wedding-choreography":
     case "home-personal-training":
     case "online-training":
+    case "corporate-wellness":
       return "service";
     default:
       return "structured";
@@ -55,6 +57,8 @@ function benefitsNote(programme: Programme): string {
       return "Sessions are planned around your space and goals.";
     case "online-training":
       return "Format and timing are agreed when you enquire.";
+    case "corporate-wellness":
+      return "Programme scope is tailored after enquiry with your HR or admin contact.";
     default:
       return "Session details vary — ask what to expect when you enquire.";
   }
@@ -75,6 +79,8 @@ function snapshotTitle(programme: Programme): string {
       return "Training at your location";
     case "online-training":
       return "Training from anywhere";
+    case "corporate-wellness":
+      return "Corporate programme snapshot";
     default:
       return "Service snapshot";
   }
@@ -86,6 +92,9 @@ function deliveryLabel(programme: Programme): string {
   }
   if (programme.deliveryMode === "online") {
     return "Remote sessions via Zoom (one-to-one and group).";
+  }
+  if (programme.slug === "corporate-wellness") {
+    return "Delivered at your workplace or online — planned with your team.";
   }
   return "Studio sessions at listed branches.";
 }

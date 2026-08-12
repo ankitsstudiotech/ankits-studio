@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import { PageBreadcrumb } from "@/components/layout/PageBreadcrumb";
 import { ProgrammeDiscovery } from "@/components/programs/pulse/ProgrammeDiscovery";
-import { getConfirmedProgrammes, getStudioCommercial } from "@/content";
+import { getConfirmedProgrammes } from "@/content";
 import {
   getPrimaryConversionHref,
   getPrimaryConversionLabel,
@@ -16,7 +16,7 @@ import {
 const PATH = "/programs";
 
 const PAGE_DESCRIPTION =
-  "Functional Training, Yoga, Zumba, Dance, Wedding Choreography, Home Personal Training and Online Training at Ankit’s Studio — enquire for a free trial on WhatsApp.";
+  "Functional Training, Yoga, Zumba, Dance, Wedding Choreography, Corporate Wellness, Home Personal Training and Online Training at Ankit’s Studio — enquire for a free trial on WhatsApp.";
 
 export const metadata: Metadata = buildPageMetadata({
   title: "Programmes",
@@ -31,7 +31,6 @@ const breadcrumbTrail = [
 
 export default function ProgrammesIndexPage() {
   const programmes = getConfirmedProgrammes();
-  const commercial = getStudioCommercial();
   const breadcrumbJsonLd = buildBreadcrumbJsonLd(breadcrumbTrail);
   const collectionJsonLd = buildCollectionPageJsonLd({
     name: "Programmes",
@@ -60,11 +59,6 @@ export default function ProgrammesIndexPage() {
         programmes={programmes}
         trialHref={trialHref}
         trialLabel={trialLabel}
-        corporateNote={
-          commercial.corporateFitnessStatus === "enquiry-only"
-            ? commercial.corporateFitnessNote
-            : undefined
-        }
       />
     </main>
   );

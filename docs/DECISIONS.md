@@ -548,7 +548,7 @@ Public treatment:
 
 **Why:** A thin indexable page would over-promise an incomplete offering. ADR-017 already requires programmes to avoid invented Course/Offer semantics; the same honesty applies to incomplete catalogue entries.
 
-**Status**: Active.
+**Status**: Superseded by ADR-024 (Corporate Wellness full programme page, 2026-08-12).
 
 ## ADR-021: No self-serving Review or AggregateRating structured data for Ankit’s Studio
 
@@ -571,6 +571,19 @@ Public treatment:
 **Why:** Google Search Central states that when the entity being reviewed controls the reviews about itself, pages using `LocalBusiness` or `Organization` structured data are ineligible for the star review feature (including reviews placed directly or via third-party widgets). Emitting self-serving markup creates false SEO expectations and policy risk without benefit. See [Review snippet structured data](https://developers.google.com/search/docs/appearance/structured-data/review-snippet) (“Self-serving reviews aren't allowed for LocalBusiness and Organization…”).
 
 **Status**: Active.
+
+## ADR-024: Corporate Wellness — full public programme page (supersedes ADR-020)
+
+**Decision:** The 12-Aug-2026 owner requirements form provides substantive Corporate Wellness content and names it a top growth priority. Therefore:
+
+1. **Create** indexable route `/programs/corporate-wellness` with full programme body content, metadata, canonical, sitemap entry, and discovery on `/programs` (Celebrate & serve cluster).
+2. **Remove** the enquiry-only corporate footnote from `/programs`.
+3. Set `StudioCommercial.corporateFitnessStatus: "published"` (legacy field name retained).
+4. Structured data remains conservative: **WebPage + BreadcrumbList** only — no Course, Offer, Event, or invented pricing.
+
+**Why:** ADR-020 blocked a thin indexable page. The final owner form now supplies enough verified programme detail for a useful public page without inventing commercial semantics.
+
+**Status**: Active. Supersedes ADR-020.
 
 ## ADR-022: Member Stories route indexing and evidence publishability
 

@@ -120,6 +120,11 @@ export default function AboutPage() {
               {about.approachTitle}
             </h2>
             <p className={styles.body}>{about.approachBody}</p>
+            {about.coachingPhilosophy ? (
+              <p className={styles.body} style={{ marginTop: "1rem" }}>
+                {about.coachingPhilosophy}
+              </p>
+            ) : null}
           </SectionReveal>
           <SectionReveal pattern="B" side="right">
             <h2 id="about-disciplines-title" className={styles.sectionTitle}>

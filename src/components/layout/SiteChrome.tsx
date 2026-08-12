@@ -94,6 +94,8 @@ export function SiteChrome({ children }: { children: React.ReactNode }) {
         tagline={identity.tagline}
         phone={verifiedContact ? contact.generalPhone : undefined}
         email={verifiedContact ? contact.generalEmail : undefined}
+        instagramHref={identity.socialLinks?.instagram}
+        youtubeHref={identity.socialLinks?.youtube}
         groups={toFooterGroups()}
       />
       <StickyCtaBar

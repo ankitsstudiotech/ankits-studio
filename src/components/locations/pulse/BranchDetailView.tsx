@@ -111,6 +111,58 @@ export function BranchDetailView({
         </ul>
       </section>
 
+      {(branch.nearestStation ||
+        branch.landmarks ||
+        branch.parking ||
+        (branch.nearbyTransport && branch.nearbyTransport.length > 0) ||
+        (branch.facilities && branch.facilities.length > 0)) && (
+        <section className={styles.band} aria-labelledby="branch-getting-here">
+          <SectionReveal>
+            <h2 id="branch-getting-here" className={styles.sectionTitle}>
+              Getting here
+            </h2>
+          </SectionReveal>
+          <ul className="pulse-info-grid">
+            {branch.openingYear ? (
+              <li>
+                <strong>Studio since</strong>
+                {branch.openingYear}
+              </li>
+            ) : null}
+            {branch.nearestStation ? (
+              <li>
+                <strong>Nearest station</strong>
+                {branch.nearestStation}
+              </li>
+            ) : null}
+            {branch.landmarks ? (
+              <li>
+                <strong>Landmark</strong>
+                {branch.landmarks}
+              </li>
+            ) : null}
+            {branch.nearbyTransport?.map((note) => (
+              <li key={note}>
+                <strong>Travel</strong>
+                {note}
+              </li>
+            ))}
+            {branch.parking ? (
+              <li>
+                <strong>Parking</strong>
+                {branch.parking}
+              </li>
+            ) : null}
+            {branch.facilities && branch.facilities.length > 0 ? (
+              <li>
+                <strong>Amenities</strong>
+                {branch.facilities.join(", ")}. Lift not available.
+              </li>
+            ) : null}
+          </ul>
+        </section>
+      )}
+
       <section className={styles.band} aria-labelledby="branch-services">
         <SectionReveal>
           <h2 id="branch-services" className={styles.sectionTitle}>
@@ -172,7 +224,7 @@ export function BranchDetailView({
         <section className={styles.band} aria-labelledby="branch-other-ways">
           <SectionReveal>
             <h2 id="branch-other-ways" className={styles.sectionTitle}>
-              Home &amp; online training
+              Home, online &amp; corporate
             </h2>
           </SectionReveal>
           <ul className={styles.relatedList}>

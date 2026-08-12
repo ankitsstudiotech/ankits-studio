@@ -51,8 +51,10 @@ export default async function LocationDetailPage({ params }: LocationPageParams)
     .filter((programme): programme is Programme =>
       Boolean(
         programme &&
-          (programme.deliveryMode === "home" || programme.deliveryMode === "online") &&
-          programme.taxonomyStatus === "confirmed",
+          programme.taxonomyStatus === "confirmed" &&
+          (programme.deliveryMode === "home" ||
+            programme.deliveryMode === "online" ||
+            programme.slug === "corporate-wellness"),
       ),
     );
 

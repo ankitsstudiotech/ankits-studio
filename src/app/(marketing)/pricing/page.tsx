@@ -137,11 +137,59 @@ export default function PricingPage() {
             <li className={styles.confirmedItem}>
               <p className={styles.kicker}>Programme fees</p>
               <p className={styles.feeMeta}>
-                Vary by service and branch. GST is included in the fee quoted by the studio. Wedding
-                Choreography is priced per couple; Home PT per session; Online Training on Zoom.
+                {commercial.pricingEnquiryNote ??
+                  "Vary by service and branch. GST is included in the fee quoted by the studio."}{" "}
+                Wedding Choreography is priced per couple; Home PT per session; Online Training on
+                Zoom; Corporate Wellness on enquiry.
               </p>
             </li>
+            {commercial.discountsEnquiryNote ? (
+              <li className={styles.confirmedItem}>
+                <p className={styles.kicker}>Offers</p>
+                <p className={styles.feeMeta}>{commercial.discountsEnquiryNote}</p>
+              </li>
+            ) : null}
           </ul>
+
+          {commercial.membershipPolicyCopy ? (
+            <>
+              <h2
+                id="membership-policies-title"
+                className={styles.sectionTitle}
+                style={{ marginTop: "2rem" }}
+              >
+                Membership policies
+              </h2>
+              <ul className={styles.faqList}>
+                <li>
+                  <h3>Cancellation</h3>
+                  <p>{commercial.membershipPolicyCopy.cancellation}</p>
+                </li>
+                <li>
+                  <h3>Refunds</h3>
+                  <p>{commercial.membershipPolicyCopy.refund}</p>
+                </li>
+                <li>
+                  <h3>Transfer between branches</h3>
+                  <p>{commercial.membershipPolicyCopy.transfer}</p>
+                </li>
+                <li>
+                  <h3>Freeze or pause</h3>
+                  <p>{commercial.membershipPolicyCopy.freeze}</p>
+                </li>
+                <li>
+                  <h3>Membership expiry</h3>
+                  <p>{commercial.membershipPolicyCopy.expiry}</p>
+                </li>
+              </ul>
+              <p className={styles.feeMeta} style={{ marginTop: "1rem" }}>
+                These summaries are for general information. Full terms are communicated at enrolment.{" "}
+                <Link href="/terms#membership-policies" className={styles.ctaSecondary}>
+                  Read terms
+                </Link>
+              </p>
+            </>
+          ) : null}
         </div>
 
         <section

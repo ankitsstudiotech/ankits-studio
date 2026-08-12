@@ -15,8 +15,8 @@ const CLUSTER_COPY = {
     lede: "Group energy, breath work, and studio dance.",
   },
   celebrate: {
-    title: "Celebrate",
-    lede: "Personal choreography for wedding moments.",
+    title: "Celebrate & serve",
+    lede: "Wedding choreography and corporate wellness programmes.",
   },
 } as const;
 
@@ -26,6 +26,9 @@ function deliveryMeta(programme: Programme): string | undefined {
   }
   if (programme.deliveryMode === "online") {
     return "Remote sessions via Zoom · enquire for timing";
+  }
+  if (programme.slug === "corporate-wellness") {
+    return "Workplace or online · tailored corporate programmes";
   }
   if (programme.slug === "functional-training") {
     return "Studio classes · all branches";
@@ -72,6 +75,10 @@ export function ProgrammeDiscovery({
   });
   byCluster.move.sort((a, b) => {
     const order = ["zumba", "yoga", "adult-dance"];
+    return order.indexOf(a.slug) - order.indexOf(b.slug);
+  });
+  byCluster.celebrate.sort((a, b) => {
+    const order = ["wedding-choreography", "corporate-wellness"];
     return order.indexOf(a.slug) - order.indexOf(b.slug);
   });
 

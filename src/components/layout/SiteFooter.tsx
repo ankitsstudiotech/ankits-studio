@@ -8,6 +8,8 @@ export type SiteFooterProps = {
   tagline?: string;
   phone?: string;
   email?: string;
+  instagramHref?: string;
+  youtubeHref?: string;
   groups: FooterLinkGroup[];
   copyright?: string;
 };
@@ -24,6 +26,8 @@ export function SiteFooter({
   tagline = "Strength, yoga, dance — one neighbourhood studio across Navi Mumbai.",
   phone,
   email,
+  instagramHref,
+  youtubeHref,
   groups,
   copyright = `© ${new Date().getFullYear()} Ankit's Studio`,
 }: SiteFooterProps) {
@@ -63,6 +67,30 @@ export function SiteFooter({
                 >
                   {email}
                 </a>
+              </p>
+            ) : null}
+            {instagramHref || youtubeHref ? (
+              <p className="mt-3 flex flex-wrap gap-x-4 gap-y-1 text-sm">
+                {instagramHref ? (
+                  <a
+                    href={instagramHref}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="inline-flex min-h-11 items-center text-[var(--color-muted-on-field)] underline-offset-4 hover:text-ink-inverse hover:underline focus-visible:outline-2 focus-visible:outline-offset-3 focus-visible:outline-[var(--color-volt)]"
+                  >
+                    Instagram
+                  </a>
+                ) : null}
+                {youtubeHref ? (
+                  <a
+                    href={youtubeHref}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="inline-flex min-h-11 items-center text-[var(--color-muted-on-field)] underline-offset-4 hover:text-ink-inverse hover:underline focus-visible:outline-2 focus-visible:outline-offset-3 focus-visible:outline-[var(--color-volt)]"
+                  >
+                    YouTube
+                  </a>
+                ) : null}
               </p>
             ) : null}
           </div>

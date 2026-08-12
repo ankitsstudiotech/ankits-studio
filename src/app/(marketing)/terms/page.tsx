@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { LegalPage } from "@/components/legal/pulse/LegalPage";
 import styles from "@/components/legal/pulse/legal.module.css";
+import { getStudioCommercial } from "@/content";
 import { buildPageMetadata } from "@/lib/seo/metadata";
 import { serializeJsonLd } from "@/lib/seo/serialize";
 import { buildBreadcrumbJsonLd } from "@/lib/seo/structured-data";
@@ -20,6 +21,8 @@ const breadcrumbTrail = [
 ];
 
 export default function TermsPage() {
+  const commercial = getStudioCommercial();
+  const policies = commercial.membershipPolicyCopy;
   const breadcrumbJsonLd = buildBreadcrumbJsonLd(breadcrumbTrail);
 
   return (
@@ -49,6 +52,28 @@ export default function TermsPage() {
           treatment. Choose activities that suit you, and seek appropriate professional advice where
           necessary.
         </p>
+
+        {policies ? (
+          <>
+            <h2 id="membership-policies" className={styles.sectionTitle}>
+              Membership policies
+            </h2>
+            <p className={styles.body}>
+              The following summaries apply to studio memberships. They are general information only
+              and are not legal advice. Terms communicated at enrolment prevail.
+            </p>
+            <h3 className={styles.sectionTitle}>Cancellation</h3>
+            <p className={styles.body}>{policies.cancellation}</p>
+            <h3 className={styles.sectionTitle}>Refunds</h3>
+            <p className={styles.body}>{policies.refund}</p>
+            <h3 className={styles.sectionTitle}>Transfer between branches</h3>
+            <p className={styles.body}>{policies.transfer}</p>
+            <h3 className={styles.sectionTitle}>Freeze or pause</h3>
+            <p className={styles.body}>{policies.freeze}</p>
+            <h3 className={styles.sectionTitle}>Membership expiry</h3>
+            <p className={styles.body}>{policies.expiry}</p>
+          </>
+        ) : null}
 
         <h2 className={styles.sectionTitle}>Third-party services</h2>
         <p className={styles.body}>
