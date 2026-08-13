@@ -1,0 +1,47 @@
+{
+  "totalCls": 0,
+  "shiftCount": 0,
+  "shifts": [],
+  "h1": {
+    "text": "Coach-led fitness,yoga, Zumba and dance.",
+    "opacity": "1",
+    "visibility": "visible",
+    "width": 300.71875,
+    "height": 119.515625
+  },
+  "heroGeometry": {
+    "slot": "home.hero",
+    "aspectRatio": "16 / 9",
+    "width": "390px",
+    "height": "200px",
+    "minHeight": "200px",
+    "maxHeight": "200px",
+    "imgNatural": {
+      "w": 390,
+      "h": 219,
+      "complete": true
+    },
+    "imgClient": {
+      "w": 390,
+      "h": 200
+    }
+  },
+  "heroRect": {
+    "x": 0,
+    "y": 546.25,
+    "width": 390,
+    "height": 200,
+    "top": 546.25,
+    "right": 390,
+    "bottom": 746.25,
+    "left": 0
+  },
+  "bodyPaddingBottom": "72px",
+  "hasStickyClass": true,
+  "htmlClasses": [
+    "bebas_neue_29018765-module__-6AJlq__variable",
+    "space_grotesk_df12e1fb-module__tDNN_W__variable",
+    "antialiased",
+    "motion-ready"
+  ]
+}

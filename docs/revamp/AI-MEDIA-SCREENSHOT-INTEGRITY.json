@@ -1,8 +1,9 @@
 {
-  "checkedAt": "2026-08-12T14:09:13.771Z",
+  "checkedAt": "2026-08-13T05:05:48.825Z",
   "totalExpected": 57,
   "totalChecked": 57,
   "allPass": true,
+  "exactWidthCount": 57,
   "decodableCount": 57,
   "nonZeroCount": 57,
   "results": [
@@ -10,10 +11,12 @@
       "file": "final-production-ai-media/full-390/home.png",
       "path": "/",
       "viewport": "390x2400",
-      "bytes": 478863,
+      "bytes": 459009,
       "decodablePng": true,
       "width": 390,
-      "height": 5908,
+      "height": 5780,
+      "expectedWidth": 390,
+      "widthMatches": true,
       "nonZeroBytes": true,
       "dom": {
         "path": "/",
@@ -32,6 +35,8 @@
       "decodablePng": true,
       "width": 390,
       "height": 5588,
+      "expectedWidth": 390,
+      "widthMatches": true,
       "nonZeroBytes": true,
       "dom": {
         "path": "/about",
@@ -50,6 +55,8 @@
       "decodablePng": true,
       "width": 390,
       "height": 3280,
+      "expectedWidth": 390,
+      "widthMatches": true,
       "nonZeroBytes": true,
       "dom": {
         "path": "/programs",
@@ -68,6 +75,8 @@
       "decodablePng": true,
       "width": 390,
       "height": 4389,
+      "expectedWidth": 390,
+      "widthMatches": true,
       "nonZeroBytes": true,
       "dom": {
         "path": "/programs/functional-training",
@@ -86,6 +95,8 @@
       "decodablePng": true,
       "width": 390,
       "height": 3712,
+      "expectedWidth": 390,
+      "widthMatches": true,
       "nonZeroBytes": true,
       "dom": {
         "path": "/programs/zumba",
@@ -104,6 +115,8 @@
       "decodablePng": true,
       "width": 390,
       "height": 3780,
+      "expectedWidth": 390,
+      "widthMatches": true,
       "nonZeroBytes": true,
       "dom": {
         "path": "/programs/yoga",
@@ -122,6 +135,8 @@
       "decodablePng": true,
       "width": 390,
       "height": 3854,
+      "expectedWidth": 390,
+      "widthMatches": true,
       "nonZeroBytes": true,
       "dom": {
         "path": "/programs/adult-dance",
@@ -140,6 +155,8 @@
       "decodablePng": true,
       "width": 390,
       "height": 3542,
+      "expectedWidth": 390,
+      "widthMatches": true,
       "nonZeroBytes": true,
       "dom": {
         "path": "/programs/wedding-choreography",
@@ -158,6 +175,8 @@
       "decodablePng": true,
       "width": 390,
       "height": 3548,
+      "expectedWidth": 390,
+      "widthMatches": true,
       "nonZeroBytes": true,
       "dom": {
         "path": "/programs/home-personal-training",
@@ -176,6 +195,8 @@
       "decodablePng": true,
       "width": 390,
       "height": 3328,
+      "expectedWidth": 390,
+      "widthMatches": true,
       "nonZeroBytes": true,
       "dom": {
         "path": "/programs/online-training",
@@ -194,6 +215,8 @@
       "decodablePng": true,
       "width": 390,
       "height": 3493,
+      "expectedWidth": 390,
+      "widthMatches": true,
       "nonZeroBytes": true,
       "dom": {
         "path": "/programs/corporate-wellness",
@@ -212,6 +235,8 @@
       "decodablePng": true,
       "width": 390,
       "height": 2601,
+      "expectedWidth": 390,
+      "widthMatches": true,
       "nonZeroBytes": true,
       "dom": {
         "path": "/locations",
@@ -230,6 +255,8 @@
       "decodablePng": true,
       "width": 390,
       "height": 4584,
+      "expectedWidth": 390,
+      "widthMatches": true,
       "nonZeroBytes": true,
       "dom": {
         "path": "/locations/airoli-sector-19",
@@ -248,6 +275,8 @@
       "decodablePng": true,
       "width": 390,
       "height": 4453,
+      "expectedWidth": 390,
+      "widthMatches": true,
       "nonZeroBytes": true,
       "dom": {
         "path": "/pricing",
@@ -266,6 +295,8 @@
       "decodablePng": true,
       "width": 390,
       "height": 3376,
+      "expectedWidth": 390,
+      "widthMatches": true,
       "nonZeroBytes": true,
       "dom": {
         "path": "/timetable",
@@ -284,6 +315,8 @@
       "decodablePng": true,
       "width": 390,
       "height": 2815,
+      "expectedWidth": 390,
+      "widthMatches": true,
       "nonZeroBytes": true,
       "dom": {
         "path": "/trial",
@@ -302,6 +335,8 @@
       "decodablePng": true,
       "width": 390,
       "height": 3123,
+      "expectedWidth": 390,
+      "widthMatches": true,
       "nonZeroBytes": true,
       "dom": {
         "path": "/contact",
@@ -316,10 +351,12 @@
       "file": "final-production-ai-media/full-768/home.png",
       "path": "/",
       "viewport": "768x2400",
-      "bytes": 558133,
+      "bytes": 549898,
       "decodablePng": true,
       "width": 768,
       "height": 5144,
+      "expectedWidth": 768,
+      "widthMatches": true,
       "nonZeroBytes": true,
       "dom": {
         "path": "/",
@@ -338,6 +375,8 @@
       "decodablePng": true,
       "width": 768,
       "height": 2863,
+      "expectedWidth": 768,
+      "widthMatches": true,
       "nonZeroBytes": true,
       "dom": {
         "path": "/programs",
@@ -356,6 +395,8 @@
       "decodablePng": true,
       "width": 768,
       "height": 5012,
+      "expectedWidth": 768,
+      "widthMatches": true,
       "nonZeroBytes": true,
       "dom": {
         "path": "/about",
@@ -374,6 +415,8 @@
       "decodablePng": true,
       "width": 768,
       "height": 2400,
+      "expectedWidth": 768,
+      "widthMatches": true,
       "nonZeroBytes": true,
       "dom": {
         "path": "/locations",
@@ -392,6 +435,8 @@
       "decodablePng": true,
       "width": 768,
       "height": 3375,
+      "expectedWidth": 768,
+      "widthMatches": true,
       "nonZeroBytes": true,
       "dom": {
         "path": "/programs/functional-training",
@@ -410,6 +455,8 @@
       "decodablePng": true,
       "width": 768,
       "height": 3168,
+      "expectedWidth": 768,
+      "widthMatches": true,
       "nonZeroBytes": true,
       "dom": {
         "path": "/programs/corporate-wellness",
@@ -424,10 +471,12 @@
       "file": "final-production-ai-media/full-1440/home.png",
       "path": "/",
       "viewport": "1440x2400",
-      "bytes": 1177975,
+      "bytes": 1169095,
       "decodablePng": true,
-      "width": 1460,
+      "width": 1440,
       "height": 5476,
+      "expectedWidth": 1440,
+      "widthMatches": true,
       "nonZeroBytes": true,
       "dom": {
         "path": "/",
@@ -446,6 +495,8 @@
       "decodablePng": true,
       "width": 1440,
       "height": 4394,
+      "expectedWidth": 1440,
+      "widthMatches": true,
       "nonZeroBytes": true,
       "dom": {
         "path": "/about",
@@ -464,6 +515,8 @@
       "decodablePng": true,
       "width": 1440,
       "height": 2894,
+      "expectedWidth": 1440,
+      "widthMatches": true,
       "nonZeroBytes": true,
       "dom": {
         "path": "/programs",
@@ -482,6 +535,8 @@
       "decodablePng": true,
       "width": 1440,
       "height": 3375,
+      "expectedWidth": 1440,
+      "widthMatches": true,
       "nonZeroBytes": true,
       "dom": {
         "path": "/programs/functional-training",
@@ -500,6 +555,8 @@
       "decodablePng": true,
       "width": 1440,
       "height": 3223,
+      "expectedWidth": 1440,
+      "widthMatches": true,
       "nonZeroBytes": true,
       "dom": {
         "path": "/programs/zumba",
@@ -518,6 +575,8 @@
       "decodablePng": true,
       "width": 1440,
       "height": 3298,
+      "expectedWidth": 1440,
+      "widthMatches": true,
       "nonZeroBytes": true,
       "dom": {
         "path": "/programs/yoga",
@@ -536,6 +595,8 @@
       "decodablePng": true,
       "width": 1440,
       "height": 3380,
+      "expectedWidth": 1440,
+      "widthMatches": true,
       "nonZeroBytes": true,
       "dom": {
         "path": "/programs/adult-dance",
@@ -554,6 +615,8 @@
       "decodablePng": true,
       "width": 1440,
       "height": 2989,
+      "expectedWidth": 1440,
+      "widthMatches": true,
       "nonZeroBytes": true,
       "dom": {
         "path": "/programs/wedding-choreography",
@@ -572,6 +635,8 @@
       "decodablePng": true,
       "width": 1440,
       "height": 3032,
+      "expectedWidth": 1440,
+      "widthMatches": true,
       "nonZeroBytes": true,
       "dom": {
         "path": "/programs/home-personal-training",
@@ -590,6 +655,8 @@
       "decodablePng": true,
       "width": 1440,
       "height": 2895,
+      "expectedWidth": 1440,
+      "widthMatches": true,
       "nonZeroBytes": true,
       "dom": {
         "path": "/programs/online-training",
@@ -608,6 +675,8 @@
       "decodablePng": true,
       "width": 1440,
       "height": 3257,
+      "expectedWidth": 1440,
+      "widthMatches": true,
       "nonZeroBytes": true,
       "dom": {
         "path": "/programs/corporate-wellness",
@@ -626,6 +695,8 @@
       "decodablePng": true,
       "width": 1440,
       "height": 2400,
+      "expectedWidth": 1440,
+      "widthMatches": true,
       "nonZeroBytes": true,
       "dom": {
         "path": "/locations",
@@ -644,6 +715,8 @@
       "decodablePng": true,
       "width": 1440,
       "height": 3977,
+      "expectedWidth": 1440,
+      "widthMatches": true,
       "nonZeroBytes": true,
       "dom": {
         "path": "/locations/airoli-sector-19",
@@ -662,6 +735,8 @@
       "decodablePng": true,
       "width": 1440,
       "height": 3202,
+      "expectedWidth": 1440,
+      "widthMatches": true,
       "nonZeroBytes": true,
       "dom": {
         "path": "/pricing",
@@ -680,6 +755,8 @@
       "decodablePng": true,
       "width": 1440,
       "height": 2573,
+      "expectedWidth": 1440,
+      "widthMatches": true,
       "nonZeroBytes": true,
       "dom": {
         "path": "/timetable",
@@ -698,6 +775,8 @@
       "decodablePng": true,
       "width": 1440,
       "height": 2400,
+      "expectedWidth": 1440,
+      "widthMatches": true,
       "nonZeroBytes": true,
       "dom": {
         "path": "/trial",
@@ -716,6 +795,8 @@
       "decodablePng": true,
       "width": 1440,
       "height": 2400,
+      "expectedWidth": 1440,
+      "widthMatches": true,
       "nonZeroBytes": true,
       "dom": {
         "path": "/contact",
@@ -730,10 +811,12 @@
       "file": "final-production-ai-media/full-1920/home.png",
       "path": "/",
       "viewport": "1920x2400",
-      "bytes": 1333845,
+      "bytes": 1306192,
       "decodablePng": true,
-      "width": 1940,
-      "height": 5436,
+      "width": 1920,
+      "height": 5418,
+      "expectedWidth": 1920,
+      "widthMatches": true,
       "nonZeroBytes": true,
       "dom": {
         "path": "/",
@@ -752,6 +835,8 @@
       "decodablePng": true,
       "width": 1920,
       "height": 2894,
+      "expectedWidth": 1920,
+      "widthMatches": true,
       "nonZeroBytes": true,
       "dom": {
         "path": "/programs",
@@ -770,6 +855,8 @@
       "decodablePng": true,
       "width": 1920,
       "height": 4405,
+      "expectedWidth": 1920,
+      "widthMatches": true,
       "nonZeroBytes": true,
       "dom": {
         "path": "/about",
@@ -788,6 +875,8 @@
       "decodablePng": true,
       "width": 1920,
       "height": 2400,
+      "expectedWidth": 1920,
+      "widthMatches": true,
       "nonZeroBytes": true,
       "dom": {
         "path": "/locations",
@@ -806,6 +895,8 @@
       "decodablePng": true,
       "width": 1920,
       "height": 3633,
+      "expectedWidth": 1920,
+      "widthMatches": true,
       "nonZeroBytes": true,
       "dom": {
         "path": "/programs/functional-training",
@@ -824,6 +915,8 @@
       "decodablePng": true,
       "width": 1920,
       "height": 3455,
+      "expectedWidth": 1920,
+      "widthMatches": true,
       "nonZeroBytes": true,
       "dom": {
         "path": "/programs/yoga",
@@ -842,6 +935,8 @@
       "decodablePng": true,
       "width": 1920,
       "height": 3271,
+      "expectedWidth": 1920,
+      "widthMatches": true,
       "nonZeroBytes": true,
       "dom": {
         "path": "/programs/corporate-wellness",
@@ -860,6 +955,8 @@
       "decodablePng": true,
       "width": 390,
       "height": 844,
+      "expectedWidth": 390,
+      "widthMatches": true,
       "nonZeroBytes": true,
       "dom": {
         "path": "/",
@@ -878,6 +975,8 @@
       "decodablePng": true,
       "width": 1440,
       "height": 900,
+      "expectedWidth": 1440,
+      "widthMatches": true,
       "nonZeroBytes": true,
       "dom": {
         "path": "/",
@@ -896,6 +995,8 @@
       "decodablePng": true,
       "width": 390,
       "height": 844,
+      "expectedWidth": 390,
+      "widthMatches": true,
       "nonZeroBytes": true,
       "dom": {
         "path": "/programs/functional-training",
@@ -914,6 +1015,8 @@
       "decodablePng": true,
       "width": 1440,
       "height": 900,
+      "expectedWidth": 1440,
+      "widthMatches": true,
       "nonZeroBytes": true,
       "dom": {
         "path": "/programs/functional-training",
@@ -932,6 +1035,8 @@
       "decodablePng": true,
       "width": 390,
       "height": 844,
+      "expectedWidth": 390,
+      "widthMatches": true,
       "nonZeroBytes": true,
       "dom": {
         "path": "/programs/yoga",
@@ -950,6 +1055,8 @@
       "decodablePng": true,
       "width": 1440,
       "height": 900,
+      "expectedWidth": 1440,
+      "widthMatches": true,
       "nonZeroBytes": true,
       "dom": {
         "path": "/programs/yoga",
@@ -968,6 +1075,8 @@
       "decodablePng": true,
       "width": 390,
       "height": 844,
+      "expectedWidth": 390,
+      "widthMatches": true,
       "nonZeroBytes": true,
       "dom": {
         "path": "/programs/corporate-wellness",
@@ -986,6 +1095,8 @@
       "decodablePng": true,
       "width": 1440,
       "height": 900,
+      "expectedWidth": 1440,
+      "widthMatches": true,
       "nonZeroBytes": true,
       "dom": {
         "path": "/programs/corporate-wellness",
@@ -1004,6 +1115,8 @@
       "decodablePng": true,
       "width": 390,
       "height": 844,
+      "expectedWidth": 390,
+      "widthMatches": true,
       "nonZeroBytes": true,
       "dom": {
         "path": "/locations",
@@ -1022,6 +1135,8 @@
       "decodablePng": true,
       "width": 1440,
       "height": 900,
+      "expectedWidth": 1440,
+      "widthMatches": true,
       "nonZeroBytes": true,
       "dom": {
         "path": "/locations",

@@ -45,6 +45,7 @@ async function main() {
 
     const dims = pngDimensions(buffer);
     const expected = parseViewport(item.viewport);
+    const widthMatches = dims?.width === expected.width;
     const domForPath = domChecks.find((d) => d.path === item.path && d.viewport === item.viewport);
 
     const row = {
@@ -55,17 +56,20 @@ async function main() {
       decodablePng: Boolean(dims),
       width: dims?.width ?? null,
       height: dims?.height ?? null,
+      expectedWidth: expected.width,
+      widthMatches,
       nonZeroBytes: fileStat.size > 1024,
       dom: domForPath ?? null,
     };
 
-    if (!row.decodablePng || !row.nonZeroBytes) pass = false;
+    let ok = Boolean(row.decodablePng && row.nonZeroBytes && widthMatches);
     if (domForPath) {
-      if (domForPath.hasDevelopmentPreviewBanner || domForPath.hasPerImageConceptLabel) pass = false;
-      if (!domForPath.hasFooterDisclosure && item.path === "/") pass = false;
+      if (domForPath.hasDevelopmentPreviewBanner || domForPath.hasPerImageConceptLabel) ok = false;
+      if (!domForPath.hasFooterDisclosure && item.path === "/") ok = false;
     }
+    if (!ok) pass = false;
 
-    results.push({ ...row, ok: row.decodablePng && row.nonZeroBytes });
+    results.push({ ...row, ok });
   }
 
   const summary = {
@@ -73,6 +77,7 @@ async function main() {
     totalExpected: manifest.items.length,
     totalChecked: results.length,
     allPass: pass && results.every((r) => r.ok),
+    exactWidthCount: results.filter((r) => r.widthMatches).length,
     decodableCount: results.filter((r) => r.decodablePng).length,
     nonZeroCount: results.filter((r) => r.nonZeroBytes).length,
     results,

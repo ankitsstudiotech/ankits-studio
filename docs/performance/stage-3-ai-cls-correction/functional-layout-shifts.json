@@ -1,0 +1,47 @@
+{
+  "totalCls": 0,
+  "shiftCount": 0,
+  "shifts": [],
+  "h1": {
+    "text": "Functionaltraining",
+    "opacity": "1",
+    "visibility": "visible",
+    "width": 224,
+    "height": 81.59375
+  },
+  "heroGeometry": {
+    "slot": "programme.functional.hero",
+    "aspectRatio": "4 / 3",
+    "width": "350px",
+    "height": "262.5px",
+    "minHeight": "192px",
+    "maxHeight": "none",
+    "imgNatural": {
+      "w": 390,
+      "h": 296,
+      "complete": true
+    },
+    "imgClient": {
+      "w": 350,
+      "h": 263
+    }
+  },
+  "heroRect": {
+    "x": 20,
+    "y": 442.84375,
+    "width": 350,
+    "height": 262.5,
+    "top": 442.84375,
+    "right": 370,
+    "bottom": 705.34375,
+    "left": 20
+  },
+  "bodyPaddingBottom": "72px",
+  "hasStickyClass": true,
+  "htmlClasses": [
+    "bebas_neue_29018765-module__-6AJlq__variable",
+    "space_grotesk_df12e1fb-module__tDNN_W__variable",
+    "antialiased",
+    "motion-ready"
+  ]
+}

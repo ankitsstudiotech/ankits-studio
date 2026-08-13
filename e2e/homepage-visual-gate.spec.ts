@@ -42,12 +42,27 @@ test.describe("homepage visual system gate", () => {
     }
   });
 
-  test("practical and faq stay on dark field surfaces", async ({ page }) => {
+  test("homepage chapters follow owner architecture without Practical", async ({ page }) => {
     await page.goto("/");
-    const practicalBg = await page.locator("#practical").evaluate((el) => getComputedStyle(el).backgroundColor);
+    await expect(page.locator("main")).toBeVisible();
+    await expect(page.locator("#practical")).toHaveCount(0);
+
+    const order = await page.evaluate(() => {
+      const ids = ["services", "locations", "founder", "trial", "faq"];
+      return ids.map((id) => {
+        const el = document.getElementById(id);
+        return { id, top: el ? el.getBoundingClientRect().top + window.scrollY : null };
+      });
+    });
+    const present = order.filter((row) => row.top != null);
+    expect(present.map((row) => row.id)).toEqual(["services", "locations", "founder", "trial", "faq"]);
+    const tops = present.map((row) => Number(row.top));
+    for (let i = 1; i < tops.length; i++) {
+      expect(tops[i]!).toBeGreaterThan(tops[i - 1]!);
+    }
+
+    await expect(page.locator("#faq")).toBeVisible();
     const faqBg = await page.locator("#faq").evaluate((el) => getComputedStyle(el).backgroundColor);
-    // near-black field — not white
-    expect(practicalBg).not.toMatch(/rgb\(255,\s*255,\s*255\)/);
     expect(faqBg).not.toMatch(/rgb\(255,\s*255,\s*255\)/);
   });
 });
