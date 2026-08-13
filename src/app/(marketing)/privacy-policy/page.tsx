@@ -52,6 +52,15 @@ export default function PrivacyPolicyPage() {
           process information according to their own policies when you use them.
         </p>
 
+        <h2 className={styles.sectionTitle}>Google reviews on this website</h2>
+        <p className={styles.body}>
+          The homepage may link to Google Maps so you can read public reviews on Google. If live
+          Google reviews are shown here, reviewer names and photos come from Google and are fetched
+          on our server. Reviewer photos may then load from Google’s servers in your browser. This
+          site does not run Google advertising, analytics, or a client-side Google Maps script for
+          that chapter.
+        </p>
+
         <h2 className={styles.sectionTitle}>Forms and storage</h2>
         <p className={styles.body}>
           The enquiry builders prepare messages on your device. The website does not send or store

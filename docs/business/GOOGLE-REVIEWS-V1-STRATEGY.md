@@ -5,9 +5,9 @@ Ankit’s Studio may later surface Google customer feedback. Until Places/GBP in
 ## NOW (Stage 6 / V1)
 
 - Every publicly listed branch exposes an owner-provided Google Maps URL.
-- Customer-facing CTA wording: **Open in Google Maps** (or equivalent).
+- Launch social proof: see [GOOGLE-REVIEWS-LAUNCH-IMPLEMENTATION-2026-08-13.md](./GOOGLE-REVIEWS-LAUNCH-IMPLEMENTATION-2026-08-13.md).
+- Until a server-side `GOOGLE_PLACES_API_KEY` and verified Place IDs exist, the homepage uses outbound Maps links only (no quotes, stars, or counts).
 - Do **not** scrape Google.
-- Do **not** display star ratings, review counts, or review quote cards.
 - Do **not** emit `Review` / `AggregateRating` JSON-LD.
 - Opening a Maps short link typically shows the listing (and often reviews from there). We do **not** promise a dedicated reviews screen.
 

@@ -17,6 +17,7 @@ import {
   getPrimaryConversionHref,
   getPrimaryConversionLabel,
 } from "@/lib/conversion";
+import { getGoogleSocialProof } from "@/lib/google-reviews";
 import { PageWithFooter } from "@/components/layout/PageWithFooter";
 import { buildPageMetadata } from "@/lib/seo";
 import type { ServiceTempo } from "@/components/home/pulse/PulseMotion";
@@ -145,10 +146,11 @@ const HOMEPAGE_CLUSTERS = [
   },
 ];
 
-export default function HomePage() {
+export default async function HomePage() {
   const identity = getBusinessIdentity();
   const trialHref = getPrimaryConversionHref();
   const trialLabel = getPrimaryConversionLabel();
+  const googleProof = await getGoogleSocialProof();
   const branchCards = getPubliclyListedBranches().map((branch) => ({
     name: branch.locality,
     href: `/locations/${branch.slug}`,
@@ -202,7 +204,7 @@ export default function HomePage() {
 
       <BranchExplorer locations={branchCards} />
 
-      <GoogleReviewProof />
+      <GoogleReviewProof proof={googleProof} />
 
       <FounderHomeMoment
         copy="Ankit’s Studio began in Airoli in 2019 with the idea that fitness should feel approachable, enjoyable and sustainable. It has since grown to four studios across Navi Mumbai and Thane."
