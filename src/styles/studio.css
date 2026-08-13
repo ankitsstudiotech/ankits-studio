@@ -11,7 +11,7 @@
   background-color: var(--color-field);
   color: var(--color-ink-inverse);
   font-family: var(--font-sans);
-  min-height: 100%;
+  min-height: 100dvh;
 }
 
 .studio-shell ::selection {

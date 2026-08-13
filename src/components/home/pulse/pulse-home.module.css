@@ -75,8 +75,9 @@
 
   .heroMedia {
     min-height: 100%;
-    margin-right: calc(-1 * var(--spacing-gutter, 0px));
-    width: calc(100% + var(--spacing-gutter, 0px));
+    /* Grid column already reaches the viewport edge — do not add gutter bleed. */
+    width: 100%;
+    margin-right: 0;
   }
 
   .heroMedia figure {
@@ -1011,18 +1012,22 @@
     min-height: auto;
   }
 
-  /* Copy/CTA first, then controlled cinematic crop attached to hero */
+  /* Copy/CTA first, then a reserved cinematic crop — height is definite before decode. */
   .heroMedia {
     order: 0;
-    min-height: 168px;
+    height: 200px;
+    min-height: 200px;
     max-height: 200px;
     margin-top: 0.15rem;
     border-top: 1px solid var(--color-border-on-field, rgb(255 255 255 / 0.08));
   }
 
+  .heroMedia > *,
   .heroMedia figure {
-    min-height: 168px;
+    height: 200px;
+    min-height: 200px;
     max-height: 200px;
+    aspect-ratio: auto;
   }
 
   .heroCopy {

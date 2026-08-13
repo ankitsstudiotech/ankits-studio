@@ -32,7 +32,7 @@ export function SiteFooter({
   copyright = `© ${new Date().getFullYear()} Ankit's Studio`,
 }: SiteFooterProps) {
   return (
-    <footer className="mt-auto border-t border-white/10 bg-field text-ink-inverse">
+    <footer className="border-t border-white/10 bg-field text-ink-inverse">
       <Container className="py-[var(--spacing-section)] max-[640px]:py-10">
         <div className="grid gap-10 max-[640px]:gap-8 md:grid-cols-[minmax(0,1.35fr)_repeat(2,minmax(0,1fr))]">
           <div className="max-w-sm max-[640px]:max-w-none">

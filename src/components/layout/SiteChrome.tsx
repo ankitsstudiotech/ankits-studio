@@ -88,7 +88,7 @@ export function SiteChrome({ children }: { children: React.ReactNode }) {
     <>
       <MotionReady />
       <SiteHeader brandName={identity.displayName} items={toNavItems()} />
-      <div className="flex flex-1 flex-col bg-field text-ink-inverse">{children}</div>
+      <div className="flex flex-col bg-field text-ink-inverse">{children}</div>
       <SiteFooter
         brandName={identity.displayName}
         tagline={identity.tagline}

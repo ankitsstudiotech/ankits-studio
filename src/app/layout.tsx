@@ -12,22 +12,19 @@ const bebas = Bebas_Neue({
   subsets: ["latin"],
   weight: "400",
   variable: "--font-bebas",
-  /** optional: skip late swap becoming a second LCP under lab throttle */
+  /** optional: skip a late swap after the block period; preload so lab Slow-4G still often wins. */
   display: "optional",
-  preload: false,
+  preload: true,
   adjustFontFallback: true,
+  fallback: ["Impact", "Haettenschweiler", "Arial Narrow", "sans-serif"],
 });
 
 const spaceGrotesk = Space_Grotesk({
   subsets: ["latin"],
   weight: ["400", "500", "600", "700"],
   variable: "--font-space-grotesk",
-  /**
-   * optional + no preload: under Slow-4G, preloading weight files contends
-   * with critical CSS and delays FCP/LCP even though optional skips late swap.
-   */
   display: "optional",
-  preload: false,
+  preload: true,
   adjustFontFallback: true,
 });
 
@@ -51,9 +48,9 @@ export default function RootLayout({
   return (
     <html
       lang="en"
-      className={`${bebas.variable} ${spaceGrotesk.variable} h-full antialiased`}
+      className={`${bebas.variable} ${spaceGrotesk.variable} antialiased`}
     >
-      <body className="studio-shell has-sticky-cta flex min-h-full flex-col bg-field text-ink-inverse">
+      <body className="studio-shell has-sticky-cta flex min-h-dvh flex-col bg-field text-ink-inverse">
         <script
           id="motion-preference"
           dangerouslySetInnerHTML={{ __html: MOTION_PREFERENCE_SCRIPT }}
@@ -82,7 +79,7 @@ export default function RootLayout({
         </a>
         <ConceptPreviewIndicator />
         <MockModeIndicator />
-        <div id="main-content" className="flex flex-1 flex-col">
+        <div id="main-content" className="flex flex-col">
           {children}
         </div>
       </body>

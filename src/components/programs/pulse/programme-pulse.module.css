@@ -333,6 +333,8 @@
 
 .detailMedia figure {
   border-radius: 0;
+  width: 100%;
+  min-height: 12rem;
 }
 
 .detailSupport {

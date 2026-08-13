@@ -43,6 +43,7 @@ export function EditorialMediaFrame({
   );
   const style = {
     aspectRatio: aspect,
+    ["--media-aspect" as string]: aspect,
     ["--media-aspect-mobile" as string]: mobileAspect,
     ["--media-object-position" as string]: desktopPos,
     ["--media-object-position-tablet" as string]: tabletPos,
@@ -62,8 +63,7 @@ export function EditorialMediaFrame({
         <Image
           src={item.src}
           alt={item.alt}
-          width={item.width ?? 1600}
-          height={item.height ?? 900}
+          fill
           className={styles.frameMedia}
           sizes={sizes}
           priority={priority}
