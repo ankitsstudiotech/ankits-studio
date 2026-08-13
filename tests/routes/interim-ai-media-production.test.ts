@@ -10,8 +10,15 @@ describe("interim illustrative-ai production gates", () => {
     expect(hero?.replacementStatus).toBe("replace-after-owner-photoshoot");
   });
 
-  it("leaves corporate wellness hero as fallback", () => {
-    expect(resolveSlotMedia("programme.corporate-wellness.hero")).toBeNull();
+  it("resolves corporate wellness hero as owner-approved illustrative-ai", () => {
+    const hero = resolveSlotMedia("programme.corporate-wellness.hero");
+    expect(hero?.status).toBe("illustrative-ai");
+    expect(hero?.source).toBe("ai-generated-illustration");
+    expect(hero?.consentStatus).toBe("not-applicable-ai");
+    expect(hero?.replacementStatus).toBe("replace-after-owner-photoshoot");
+    expect(hero?.src).toBe("/media/synthetic-preview/programme-corporate-wellness-hero-ai-concept.webp");
+    expect(hero?.alt).toMatch(/Illustrative workplace wellness session/i);
+    expect(hero?.alt).not.toMatch(/Ankit’s Studio Corporate Wellness session/i);
   });
 
   it("never resolves founder or branch hero slots", () => {

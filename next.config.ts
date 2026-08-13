@@ -45,6 +45,11 @@ const nextConfig: NextConfig = {
   experimental: {
     optimizePackageImports: ["motion"],
   },
+  images: {
+    // Catalogue sources top out around 1672px. 3840/2048 srcset candidates
+    // stall first paint on high-DPR viewports while the optimizer upscales.
+    deviceSizes: [640, 750, 828, 1080, 1200, 1920],
+  },
 };
 
 export default nextConfig;

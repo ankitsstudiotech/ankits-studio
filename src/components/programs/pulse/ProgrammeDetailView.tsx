@@ -16,7 +16,7 @@ const SLUG_TEMPO: Record<string, ProgrammeTempo> = {
   "wedding-choreography": "wedding",
   "home-personal-training": "home",
   "online-training": "online",
-  "corporate-wellness": "home",
+  "corporate-wellness": "corporate",
 };
 
 /** Stage 5 — four composition families (not seven page forks). */
@@ -281,7 +281,11 @@ export function ProgrammeDetailView({
             <div className={styles.detailMedia}>
               <PulseMedia
                 item={heroMedia}
-                sizes="(max-width: 900px) 100vw, (max-width: 1440px) 42vw, 720px"
+                sizes={
+                  programme.slug === "corporate-wellness"
+                    ? "(max-width: 900px) 100vw, (max-width: 1440px) 52vw, 820px"
+                    : "(max-width: 900px) 100vw, (max-width: 1440px) 42vw, 720px"
+                }
                 priority
                 reveal={false}
               />

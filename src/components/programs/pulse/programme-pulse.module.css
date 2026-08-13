@@ -660,6 +660,26 @@
     max-width: 19rem;
     justify-self: end;
   }
+
+  /* Corporate Wellness — landscape service panel, not Home PT's portrait */
+  .detailHero[data-service-variant="corporate"] .composeHeroWithMedia {
+    grid-template-columns: minmax(0, 0.95fr) minmax(24rem, 1.25fr);
+    align-items: center;
+    gap: 1.5rem 1.75rem;
+  }
+
+  .detailHero[data-service-variant="corporate"] .detailMedia {
+    max-width: none;
+    justify-self: stretch;
+  }
+
+  .detailHero[data-service-variant="corporate"] .detailMedia figure {
+    outline: 1px solid rgb(255 255 255 / 0.06);
+  }
+
+  .detailHero[data-service-variant="corporate"] .detailTitle {
+    max-width: 13ch;
+  }
 }
 
 /* Tablet: two-zone compose before mobile stack */
@@ -686,6 +706,10 @@
 
   .detailHero[data-compose-family="fluid"] .detailMedia {
     margin-inline-end: 0;
+  }
+
+  .detailHero[data-service-variant="corporate"] .detailMedia {
+    max-width: none;
   }
 }
 

@@ -134,9 +134,9 @@ export const PREMIUM_MEDIA_SLOTS: readonly PremiumSlotDefinition[] = [
   },
   {
     key: "programme.corporate-wellness.hero",
-    purpose: "Corporate Wellness programme hero — illustrative or verified real when available",
-    desktopAspect: "4/5",
-    mobileAspect: "3/4",
+    purpose: "Corporate Wellness programme hero — illustrative workplace session",
+    desktopAspect: "3/2",
+    mobileAspect: "4/3",
     motionTreatment: "hero-reveal",
     replacementPriority: "P1",
     fallbackFamily: "neutral",

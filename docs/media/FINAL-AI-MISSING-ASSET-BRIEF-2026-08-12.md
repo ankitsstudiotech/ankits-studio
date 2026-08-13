@@ -1,7 +1,7 @@
 # Final AI missing asset brief — Corporate Wellness — 12 August 2026
 
 **Slot:** `programme.corporate-wellness.hero`  
-**Status today:** `fallback` (no raster in repo)
+**Status today:** `illustrative-ai` — owner-approved raster integrated 13 August 2026 (`programme-corporate-wellness-hero-ai-concept.webp`). Original PNG archived at `public/media/illustrative-ai/corporate-wellness-hero.png`.
 
 ---
 

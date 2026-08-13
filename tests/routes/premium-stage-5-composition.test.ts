@@ -13,6 +13,12 @@ describe("Stage 5 composition families", () => {
     expect(composeFamilyFromSlug("online-training")).toBe("service");
   });
 
+  it("keeps Corporate Wellness in the service family, distinct from consumer batch pages", () => {
+    expect(composeFamilyFromSlug("corporate-wellness")).toBe("service");
+    expect(composeFamilyFromSlug("corporate-wellness")).not.toBe("structured");
+    expect(composeFamilyFromSlug("corporate-wellness")).not.toBe("fluid");
+  });
+
   it("keeps Zumba and Dance in one family with distinct variants via tempo", () => {
     expect(composeFamilyFromSlug("zumba")).toBe(composeFamilyFromSlug("adult-dance"));
   });

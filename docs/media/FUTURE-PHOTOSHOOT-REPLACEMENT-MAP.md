@@ -14,7 +14,7 @@ Handoff for when Ankit completes the new studio photoshoot. Do not request now.
 | `programme.wedding.hero` | Rehearsal footage (consented participants only) |
 | `programme.home-pt.hero` | Real home PT session (consented, typical Navi Mumbai home) |
 | `programme.online.hero` | Real remote session context (no readable screens) |
-| `programme.corporate-wellness.hero` | Workplace wellness session — mixed group, office multipurpose space |
+| `programme.corporate-wellness.hero` | Real workplace Corporate Wellness session, or real corporate/online programme photography with explicit client permission. Mixed group, office or multipurpose space. Do not require client logos. |
 | `about.community` | Real studio community/coaching atmosphere |
 | `about.founder` | Verified portrait of Ankit Nalawade |
 | `locations.atmosphere` | Neutral studio atmosphere (not branch-specific) OR retire in favour of branch heroes |

@@ -67,10 +67,10 @@ describe("resolveSlotMedia status gates", () => {
 
   it("returns null for geometry when synthetic flag is off and no illustrative asset exists", () => {
     vi.stubEnv("NEXT_PUBLIC_ENABLE_SYNTHETIC_MEDIA", "false");
-    expect(resolveSlotMedia("programme.corporate-wellness.hero")).toBeNull();
+    expect(resolveSlotMedia("about.founder")).toBeNull();
   });
 
-  it("registers all twelve approved illustrative slots with file sources", () => {
+  it("registers all thirteen approved illustrative slots with file sources", () => {
     vi.stubEnv("NEXT_PUBLIC_ENABLE_SYNTHETIC_MEDIA", "false");
     const slots = [
       "home.hero",
@@ -83,6 +83,7 @@ describe("resolveSlotMedia status gates", () => {
       "programme.wedding.hero",
       "programme.home-pt.hero",
       "programme.online.hero",
+      "programme.corporate-wellness.hero",
       "about.community",
       "locations.atmosphere",
     ] as const;

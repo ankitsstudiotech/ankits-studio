@@ -1,6 +1,6 @@
 # Owner-approved interim AI media policy — 12 August 2026
 
-**Status:** Supersedes Stage 4A *preview-only* deployment intent for the twelve approved catalogue assets.  
+**Status:** Supersedes Stage 4A *preview-only* deployment intent for the thirteen approved catalogue assets.  
 **Historical reference:** `SYNTHETIC-MEDIA-PREVIEW-POLICY.md` (Stage 4A — unchanged).
 
 ---

@@ -11,7 +11,8 @@ export type ProgrammeTempo =
   | "dance"
   | "wedding"
   | "home"
-  | "online";
+  | "online"
+  | "corporate";
 
 const HOVER_X: Record<ProgrammeTempo, number> = {
   functional: 4,
@@ -21,6 +22,7 @@ const HOVER_X: Record<ProgrammeTempo, number> = {
   wedding: 3,
   home: 0,
   online: 0,
+  corporate: 0,
 };
 
 /** Index discovery link — works without hover; reduced-motion static. */
