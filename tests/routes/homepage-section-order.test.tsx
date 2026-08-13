@@ -50,8 +50,36 @@ describe("homepage section order — final owner priority", () => {
     const { container } = render(<GoogleReviewProof proof={EXTERNAL} />);
     expect(container.querySelector("#google-reviews")).toBeTruthy();
     expect(container.querySelector("[data-google-proof-mode='external-links']")).toBeTruthy();
-    expect(container.textContent).toMatch(/What members say/);
+    expect(container.textContent).toMatch(/Reviews on Google/);
+    expect(container.textContent).toMatch(/Explore Google feedback/);
+    expect(container.textContent).not.toMatch(/What members say/);
     expect(container.textContent).not.toMatch(/failed to load|quota exceeded/i);
+  });
+
+  it("keeps quote-oriented title only when live Google reviews are shown", () => {
+    const { container } = render(
+      <GoogleReviewProof
+        proof={{
+          mode: "live-google-reviews",
+          disclosure: "One text review per studio is shown from Google’s relevance-sorted results.",
+          reviews: [
+            {
+              id: "r1",
+              branchSlug: "airoli-sector-19",
+              branchLocality: "Airoli Sector 19",
+              author: { displayName: "Alex M" },
+              rating: 5,
+              text: "Great coaching.",
+              googleMapsReviewUri: "https://maps.google.com/?cid=review-1",
+            },
+          ],
+          branchRatings: [],
+        }}
+      />,
+    );
+    expect(container.querySelector("[data-google-proof-mode='live-google-reviews']")).toBeTruthy();
+    expect(container.textContent).toMatch(/What members say/);
+    expect(container.textContent).not.toMatch(/Reviews on Google/);
   });
 
   it("renders nothing when Google proof is unavailable", () => {

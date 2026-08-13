@@ -1,9 +1,14 @@
 # Production handoff — Premium Public V1
 
+> **Superseded for current public V1:** use
+> [`docs/PRODUCTION-HANDOFF-OWNER-FINAL-2026-08-13.md`](./PRODUCTION-HANDOFF-OWNER-FINAL-2026-08-13.md)
+> (tag `studio-pulse-v1.2.0-owner-final`). This file remains the Stage 8
+> premium-public snapshot.
+
 Concise operator handoff for Studio Pulse **premium public V1** (Stage 8 gate).  
 For earlier V1 visual-approved history see `docs/PRODUCTION-HANDOFF-V1.md`.
 
-_Last updated: 2026-08-09_
+_Last updated: 2026-08-13 (pointer to owner-final handoff)_
 
 ---
 

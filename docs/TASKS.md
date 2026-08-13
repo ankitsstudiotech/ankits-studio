@@ -116,6 +116,12 @@ design-token set, and the Vitest/Playwright/axe-core testing foundation
 |---|---|---|---|
 | Integrate owner-approved Corporate Wellness illustrative hero + close eight-programme media acceptance. Catalogue, Service-family composition, screenshots, tests. No redesign, no Reviews, no deploy. | Cursor | Done | Branch `revamp/studio-pulse-production`. Two commits: feat integration + test acceptance gate. |
 
+## Prompt 6 — Final production audit, last fixes, deploy (active)
+
+| Task | Owner | Status | Notes |
+|---|---|---|---|
+| Production audit, launch-blocking fixes, clean production build without ALLOW_MOCK_PUBLISH, Vercel Production deploy, live verification. No redesign, no new AI media, no Places scrape. | Cursor | In progress | Checkpoint `studio-pulse-before-final-production-release-2026-08-13`. Google fallback title fix + clean production build. Deploy follows commit. |
+
 ## Prompt 5 — Google Reviews + Corporate Wellness sticky CTA
 
 | Task | Owner | Status | Notes |

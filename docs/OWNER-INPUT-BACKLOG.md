@@ -3,7 +3,9 @@
 Items that require Ankit (or studio staff) — not engineering inventing facts.  
 **Public V1 is not blocked** on these unless legally/functionally required.
 
-_Last updated: 2026-08-12 — Final owner form migration._
+_Last updated: 2026-08-13 — Public V1 launched; remaining items are post-V1 only._
+
+**These items do not block public V1.** Do not reopen them as a Stage 9.
 
 ---
 
@@ -30,7 +32,7 @@ _Last updated: 2026-08-12 — Final owner form migration._
 
 ## SOCIAL PROOF
 
-- Google reviews: owner wants genuine reviews with attribution — **fetch/integration deferred**
+- Google reviews: owner wants genuine reviews with attribution — **V1 ships `external-links` fallback** (Places key missing, 0/4 Place IDs). Live quotes need `GOOGLE_PLACES_API_KEY` + verified Place IDs.
 - Member stories / transformations: owner wants them — **withhold until consent + evidence**
 - `/transformations` remains noindex
 

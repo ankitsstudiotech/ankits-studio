@@ -23,14 +23,14 @@ async function measureCls(page: Page) {
     }
   });
   await page.setViewportSize({ width: 390, height: 844 });
-  await page.goto(PATH, { waitUntil: "networkidle", timeout: 120_000 });
+  await page.goto(PATH, { waitUntil: "load", timeout: 120_000 });
   await page.waitForTimeout(4000);
   return page.evaluate(() => (window as unknown as { __cls: number }).__cls ?? 0);
 }
 
 test.describe("Corporate Wellness media acceptance", () => {
   test("renders illustrative hero without concept badge or trial copy", async ({ page }) => {
-    await page.goto(PATH, { waitUntil: "networkidle" });
+    await page.goto(PATH, { waitUntil: "load" });
     const hero = page.locator('[data-media-slot="programme.corporate-wellness.hero"]');
     await expect(hero).toBeVisible();
     await expect(hero).toHaveAttribute("data-media-status", "illustrative-ai");
@@ -59,7 +59,7 @@ test.describe("Corporate Wellness media acceptance", () => {
   test("has no horizontal overflow from 360 to 1920", async ({ page }) => {
     for (const width of WIDTHS) {
       await page.setViewportSize({ width, height: 900 });
-      await page.goto(PATH, { waitUntil: "networkidle", timeout: 120_000 });
+      await page.goto(PATH, { waitUntil: "load", timeout: 120_000 });
       const metrics = await page.evaluate(() => ({
         clientWidth: document.documentElement.clientWidth,
         scrollWidth: document.documentElement.scrollWidth,
@@ -78,7 +78,7 @@ test.describe("Corporate Wellness media acceptance", () => {
     page.on("requestfailed", (req) => {
       if (req.resourceType() === "image") failed.push(`failed ${req.url()}`);
     });
-    await page.goto(PATH, { waitUntil: "networkidle", timeout: 120_000 });
+    await page.goto(PATH, { waitUntil: "load", timeout: 120_000 });
     expect(failed).toEqual([]);
   });
 

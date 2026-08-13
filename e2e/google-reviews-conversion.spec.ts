@@ -84,7 +84,9 @@ test.describe("homepage Google social proof", () => {
     });
     expect(order).toEqual({ branchesBeforeReviews: true, reviewsBeforeFounder: true });
     const body = await page.locator("#google-reviews").innerText();
-    expect(body).toMatch(/What members say/i);
+    expect(body).toMatch(/Reviews on Google/i);
+    expect(body).toMatch(/Explore Google feedback/i);
+    expect(body).not.toMatch(/What members say/i);
     expect(body).not.toMatch(/reviews failed|quota exceeded|Place ID missing/i);
     expect(body).not.toMatch(/Transformations/i);
   });

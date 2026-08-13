@@ -118,10 +118,10 @@ function ExternalLinks({
         <SectionReveal pattern="A">
           <p className={styles.googleProofKicker}>Google Reviews</p>
           <h2 id="google-reviews-title" className={styles.bandTitle}>
-            What members say
+            Reviews on Google
           </h2>
           <p className={styles.bandLede}>
-            See what members are saying about our studios on Google.
+            Explore Google feedback for each of our four studios.
           </p>
         </SectionReveal>
         <GroupReveal>

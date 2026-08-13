@@ -1,0 +1,21 @@
+{
+  "generatedAt": "2026-08-13T15:34:54.717Z",
+  "base": "http://localhost:3100",
+  "indexableCount": 22,
+  "issues": [],
+  "notes": [],
+  "redirects": {
+    "/book-a-free-trial": {
+      "status": 308,
+      "location": "/trial"
+    },
+    "/locations/airoli": {
+      "status": 308,
+      "location": "/locations/airoli-sector-19"
+    }
+  },
+  "consoleErrors": [],
+  "failedAssets": [],
+  "robotsSnippet": "User-Agent: *\nAllow: /\nDisallow: /design-lab/\nDisallow: /design-lab\n\nSitemap: https://ankits-studio.vercel.app/sitemap.xml\n",
+  "sitemapLength": 1725
+}

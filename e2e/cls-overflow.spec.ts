@@ -19,7 +19,7 @@ async function measureCls(page: Page, path: string) {
     }
   });
   await page.setViewportSize({ width: 390, height: 844 });
-  await page.goto(path, { waitUntil: "networkidle", timeout: 120_000 });
+  await page.goto(path, { waitUntil: "load", timeout: 120_000 });
   await page.waitForTimeout(5000);
   return page.evaluate(() => (window as unknown as { __cls: number }).__cls ?? 0);
 }
@@ -71,6 +71,11 @@ test.describe("CLS and horizontal overflow gates", () => {
     expect(cls).toBeLessThanOrEqual(0.05);
   });
 
+  test("Corporate Wellness Playwright CLS at 390×844 stays under 0.05", async ({ page }) => {
+    const cls = await measureCls(page, "/programs/corporate-wellness");
+    expect(cls).toBeLessThanOrEqual(0.05);
+  });
+
   test("Home has no horizontal overflow from 360 to 1920", async ({ page }) => {
     test.setTimeout(180_000);
     for (const width of WIDTHS) {
@@ -95,7 +100,7 @@ test.describe("CLS and horizontal overflow gates", () => {
       if (req.resourceType() === "image") failed.push(`failed ${req.url()}`);
     });
     for (const path of ["/", "/programs/functional-training", "/programs/corporate-wellness"]) {
-      await page.goto(path, { waitUntil: "networkidle", timeout: 120_000 });
+      await page.goto(path, { waitUntil: "load", timeout: 120_000 });
     }
     expect(failed).toEqual([]);
   });
