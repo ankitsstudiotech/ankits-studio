@@ -17,11 +17,16 @@ Prior premium-public snapshot: `docs/PRODUCTION-HANDOFF-PREMIUM-V1.md`
 | Robots | https://ankits-studio.vercel.app/robots.txt |
 | Branch | `revamp/studio-pulse-production` |
 | Pre-release checkpoint | `studio-pulse-before-final-production-release-2026-08-13` @ `68c54d4e965f6143ffb0310c22cabd40974a7482` |
+| Release SHA | `1ec03dbf2d322bcc4e6ea03b9d925e22f4c585ca` |
 | Release tag | `studio-pulse-v1.2.0-owner-final` |
 | Vercel project | `ankits-studio` (`prj_EKgqdkrNyE7xg3xuXjH1L6z6wzNW`) |
+| Deployment ID | `dpl_43vfWXFAxxGAAjZK9ghVedmnLXQW` |
+| Deploy URL | https://ankits-studio-1y3s98kd5-anikets-projects-c8b8ce46.vercel.app |
+| Aliased | https://ankits-studio.vercel.app |
+| Deployed | 2026-08-13T16:24:00Z (READY) |
+| Live screenshots | `docs/revamp/screenshots/live-owner-final-2026-08-13/` |
 | Google Reviews mode | `external-links` (no Places key; 0/4 Place IDs) |
-
-Release SHA, deployment ID, and live screenshot path are filled after deploy in this same task.
+| Live CLS (390×844, 5s) | Home 0 · Functional 0 · Corporate 0 |
 
 ---
 

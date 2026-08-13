@@ -120,7 +120,7 @@ design-token set, and the Vitest/Playwright/axe-core testing foundation
 
 | Task | Owner | Status | Notes |
 |---|---|---|---|
-| Production audit, launch-blocking fixes, clean production build without ALLOW_MOCK_PUBLISH, Vercel Production deploy, live verification. No redesign, no new AI media, no Places scrape. | Cursor | In progress | Checkpoint `studio-pulse-before-final-production-release-2026-08-13`. Google fallback title fix + clean production build. Deploy follows commit. |
+| Production audit, launch-blocking fixes, clean production build without ALLOW_MOCK_PUBLISH, Vercel Production deploy, live verification. No redesign, no new AI media, no Places scrape. | Cursor | **Done** | Tag `studio-pulse-v1.2.0-owner-final` @ `1ec03db`. Production `dpl_43vfWXFAxxGAAjZK9ghVedmnLXQW` → https://ankits-studio.vercel.app |
 
 ## Prompt 5 — Google Reviews + Corporate Wellness sticky CTA
 
