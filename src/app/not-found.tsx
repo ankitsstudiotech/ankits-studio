@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 import Link from "next/link";
-import { SiteChrome } from "@/components/layout";
+import { SiteChrome, PageWithFooter } from "@/components/layout";
 import { RouteOpening } from "@/components/motion";
 import styles from "@/components/status/pulse/status.module.css";
 
@@ -21,6 +21,7 @@ export const metadata: Metadata = {
 export default function NotFound() {
   return (
     <SiteChrome>
+      <PageWithFooter>
       <main className={styles.page}>
         <RouteOpening>
           <p className={styles.mark} aria-hidden="true" />
@@ -46,6 +47,7 @@ export default function NotFound() {
           </Link>
         </div>
       </main>
+      </PageWithFooter>
     </SiteChrome>
   );
 }

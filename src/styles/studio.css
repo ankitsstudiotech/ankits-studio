@@ -61,7 +61,6 @@
 .pulse-page {
   background: var(--color-field);
   color: var(--color-ink-inverse);
-  flex: 1;
 }
 
 .pulse-band {

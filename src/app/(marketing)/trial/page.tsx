@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import { PageBreadcrumb } from "@/components/layout/PageBreadcrumb";
+import { PageWithFooter } from "@/components/layout/PageWithFooter";
 import { RouteOpening } from "@/components/motion";
 import { getProgrammes, getPubliclyListedBranches, getStudioContactLinks } from "@/content";
 import { isConfirmedProgramme } from "@/content";
@@ -30,7 +31,8 @@ export default function TrialPage() {
   const breadcrumbJsonLd = buildBreadcrumbJsonLd(breadcrumbTrail);
 
   return (
-    <main className="pulse-page flex flex-1 flex-col">
+    <PageWithFooter>
+    <main className="pulse-page flex flex-col">
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: serializeJsonLd(breadcrumbJsonLd) }}
@@ -111,5 +113,6 @@ export default function TrialPage() {
         </section>
       </div>
     </main>
+    </PageWithFooter>
   );
 }

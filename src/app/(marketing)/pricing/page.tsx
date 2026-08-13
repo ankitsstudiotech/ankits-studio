@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import { PageBreadcrumb } from "@/components/layout/PageBreadcrumb";
+import { PageWithFooter } from "@/components/layout/PageWithFooter";
 import { RouteOpening } from "@/components/motion";
 import { PricingEnquiryBuilder } from "@/components/pricing/pulse/PricingEnquiryBuilder";
 import styles from "@/components/pricing/pulse/pricing.module.css";
@@ -87,7 +88,8 @@ export default function PricingPage() {
   const registrationFee = commercial.registrationFeeInr;
 
   return (
-    <main className={`${styles.page} flex flex-1 flex-col`}>
+    <PageWithFooter>
+    <main className={`${styles.page} flex flex-col`}>
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: serializeJsonLd(breadcrumbJsonLd) }}
@@ -240,5 +242,6 @@ export default function PricingPage() {
         </div>
       </section>
     </main>
+    </PageWithFooter>
   );
 }

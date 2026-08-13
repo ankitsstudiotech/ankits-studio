@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import { PageBreadcrumb } from "@/components/layout/PageBreadcrumb";
+import { PageWithFooter } from "@/components/layout/PageWithFooter";
 import {
   getPublishableTrainerBySlug,
   getPublishableTrainers,
@@ -63,7 +64,8 @@ export default async function TrainerDetailPage({ params }: TrainerPageParams) {
   const photo = trainer.photo!;
 
   return (
-    <main className="flex flex-1 flex-col">
+    <PageWithFooter>
+    <main className="flex flex-col">
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: serializeJsonLd(breadcrumbJsonLd) }}
@@ -120,5 +122,6 @@ export default async function TrainerDetailPage({ params }: TrainerPageParams) {
         ) : null}
       </article>
     </main>
+    </PageWithFooter>
   );
 }

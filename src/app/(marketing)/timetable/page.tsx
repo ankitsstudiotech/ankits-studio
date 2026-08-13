@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import { PageBreadcrumb } from "@/components/layout/PageBreadcrumb";
+import { PageWithFooter } from "@/components/layout/PageWithFooter";
 import { RouteOpening } from "@/components/motion";
 import { AvailabilityEnquiryBuilder } from "@/components/timetable/pulse/AvailabilityEnquiryBuilder";
 import styles from "@/components/timetable/pulse/batch-availability.module.css";
@@ -80,7 +81,8 @@ export default function TimetablePage() {
   });
 
   return (
-    <main className={`${styles.page} flex flex-1 flex-col`}>
+    <PageWithFooter>
+    <main className={`${styles.page} flex flex-col`}>
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: serializeJsonLd(breadcrumbJsonLd) }}
@@ -189,5 +191,6 @@ export default function TimetablePage() {
         </div>
       </section>
     </main>
+    </PageWithFooter>
   );
 }

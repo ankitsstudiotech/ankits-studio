@@ -14,6 +14,8 @@ export { StickyCtaBar } from "./StickyCtaBar";
 export type { StickyCtaBarProps } from "./StickyCtaBar";
 
 export { SiteChrome } from "./SiteChrome";
+export { PageWithFooter } from "./PageWithFooter";
+export { ResolvedSiteFooter } from "./ResolvedSiteFooter";
 
 export { PageBreadcrumb } from "./PageBreadcrumb";
 export type { BreadcrumbItem } from "./PageBreadcrumb";

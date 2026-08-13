@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { PageBreadcrumb } from "@/components/layout/PageBreadcrumb";
+import { PageWithFooter } from "@/components/layout/PageWithFooter";
 import {
   ProgrammeDetailView,
 } from "@/components/programs/pulse/ProgrammeDetailView";
@@ -60,7 +61,8 @@ export default async function ProgrammeDetailPage({ params }: ProgrammePageParam
       : undefined;
 
     return (
-      <main className="flex flex-1 flex-col">
+      <PageWithFooter>
+      <main className="flex flex-col">
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: serializeJsonLd(breadcrumbJsonLd) }}
@@ -75,6 +77,7 @@ export default async function ProgrammeDetailPage({ params }: ProgrammePageParam
           whatsappHref={whatsappHref}
         />
       </main>
+      </PageWithFooter>
     );
   }
 
@@ -97,7 +100,8 @@ export default async function ProgrammeDetailPage({ params }: ProgrammePageParam
     .map((item) => ({ slug: item.slug, name: item.name }));
 
   return (
-    <main className="flex flex-1 flex-col">
+    <PageWithFooter>
+    <main className="flex flex-col">
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: serializeJsonLd(breadcrumbJsonLd) }}
@@ -119,5 +123,6 @@ export default async function ProgrammeDetailPage({ params }: ProgrammePageParam
         whatsappLabel={whatsappLabel}
       />
     </main>
+    </PageWithFooter>
   );
 }

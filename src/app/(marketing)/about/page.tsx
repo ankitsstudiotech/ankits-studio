@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import { PageBreadcrumb } from "@/components/layout/PageBreadcrumb";
+import { PageWithFooter } from "@/components/layout/PageWithFooter";
 import styles from "@/components/about/pulse/about.module.css";
 import { PulseMedia } from "@/components/media";
 import { RouteOpening, SectionReveal } from "@/components/motion";
@@ -71,7 +72,8 @@ export default function AboutPage() {
   const faqs = about.faqs.filter((item) => item.id === "about-faq-machine-free").slice(0, 1);
 
   return (
-    <main className={`${styles.page} flex flex-1 flex-col`}>
+    <PageWithFooter>
+    <main className={`${styles.page} flex flex-col`}>
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: serializeJsonLd(breadcrumbJsonLd) }}
@@ -309,5 +311,6 @@ export default function AboutPage() {
         </div>
       </section>
     </main>
+    </PageWithFooter>
   );
 }

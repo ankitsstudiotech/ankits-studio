@@ -50,7 +50,7 @@ export default function RootLayout({
       lang="en"
       className={`${bebas.variable} ${spaceGrotesk.variable} antialiased`}
     >
-      <body className="studio-shell has-sticky-cta flex min-h-dvh flex-col bg-field text-ink-inverse">
+      <body className="studio-shell has-sticky-cta bg-field text-ink-inverse">
         <script
           id="motion-preference"
           dangerouslySetInnerHTML={{ __html: MOTION_PREFERENCE_SCRIPT }}
@@ -79,7 +79,7 @@ export default function RootLayout({
         </a>
         <ConceptPreviewIndicator />
         <MockModeIndicator />
-        <div id="main-content" className="flex flex-col">
+        <div id="main-content">
           {children}
         </div>
       </body>

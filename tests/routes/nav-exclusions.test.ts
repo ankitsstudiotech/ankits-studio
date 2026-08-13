@@ -5,7 +5,7 @@ import { describe, expect, it } from "vitest";
 describe("footer nav exclusions — withheld secondary routes", () => {
   it("keeps trainers, transformations, and blog out of footer promotion", () => {
     const source = readFileSync(
-      join(process.cwd(), "src", "components", "layout", "SiteChrome.tsx"),
+      join(process.cwd(), "src", "components", "layout", "ResolvedSiteFooter.tsx"),
       "utf8",
     );
     expect(source).toMatch(

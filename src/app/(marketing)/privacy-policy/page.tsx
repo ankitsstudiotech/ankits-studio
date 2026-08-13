@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { PageWithFooter } from "@/components/layout/PageWithFooter";
 import { LegalPage } from "@/components/legal/pulse/LegalPage";
 import styles from "@/components/legal/pulse/legal.module.css";
 import { buildPageMetadata } from "@/lib/seo/metadata";
@@ -23,6 +24,7 @@ export default function PrivacyPolicyPage() {
   const breadcrumbJsonLd = buildBreadcrumbJsonLd(breadcrumbTrail);
 
   return (
+    <PageWithFooter>
     <>
       <script
         type="application/ld+json"
@@ -74,5 +76,6 @@ export default function PrivacyPolicyPage() {
         </p>
       </LegalPage>
     </>
+    </PageWithFooter>
   );
 }

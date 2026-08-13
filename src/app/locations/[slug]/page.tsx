@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { PageBreadcrumb } from "@/components/layout/PageBreadcrumb";
+import { PageWithFooter } from "@/components/layout/PageWithFooter";
 import { BranchDetailView } from "@/components/locations/pulse/BranchDetailView";
 import {
   getBranchMapsUrl,
@@ -76,7 +77,8 @@ export default async function LocationDetailPage({ params }: LocationPageParams)
   const localBusinessJsonLd = buildLocalBusinessJsonLd(branch);
 
   return (
-    <main className="flex flex-1 flex-col">
+    <PageWithFooter>
+    <main className="flex flex-col">
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: serializeJsonLd(breadcrumbJsonLd) }}
@@ -105,5 +107,6 @@ export default async function LocationDetailPage({ params }: LocationPageParams)
         whatsappLabel={whatsappLabel}
       />
     </main>
+    </PageWithFooter>
   );
 }

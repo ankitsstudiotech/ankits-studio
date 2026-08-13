@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import { PageBreadcrumb } from "@/components/layout/PageBreadcrumb";
+import { PageWithFooter } from "@/components/layout/PageWithFooter";
 import { PublishableTrainerList } from "@/components/trainers/pulse/PublishableTrainerList";
 import styles from "@/components/trainers/pulse/trainers.module.css";
 import { RouteOpening, SectionReveal } from "@/components/motion";
@@ -70,7 +71,8 @@ export default function TrainersIndexPage() {
   });
 
   return (
-    <main className={`${styles.page} flex flex-1 flex-col`}>
+    <PageWithFooter>
+    <main className={`${styles.page} flex flex-col`}>
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: serializeJsonLd(breadcrumbJsonLd) }}
@@ -240,5 +242,6 @@ export default function TrainersIndexPage() {
         </SectionReveal>
       </section>
     </main>
+    </PageWithFooter>
   );
 }

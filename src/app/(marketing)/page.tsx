@@ -17,6 +17,7 @@ import {
   getPrimaryConversionHref,
   getPrimaryConversionLabel,
 } from "@/lib/conversion";
+import { PageWithFooter } from "@/components/layout/PageWithFooter";
 import { buildPageMetadata } from "@/lib/seo";
 import type { ServiceTempo } from "@/components/home/pulse/PulseMotion";
 
@@ -186,6 +187,7 @@ export default function HomePage() {
   ];
 
   return (
+    <PageWithFooter>
     <main>
       <Hero
         brandName={identity.displayName}
@@ -215,5 +217,6 @@ export default function HomePage() {
 
       <FaqSection items={homepageFaqs} description="Quick answers before you message us." />
     </main>
+    </PageWithFooter>
   );
 }

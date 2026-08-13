@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { PageBreadcrumb } from "@/components/layout/PageBreadcrumb";
+import { PageWithFooter } from "@/components/layout/PageWithFooter";
 import { LocationDiscovery } from "@/components/locations/pulse/LocationDiscovery";
 import { getPubliclyListedBranches } from "@/content";
 import {
@@ -41,7 +42,8 @@ export default function LocationsIndexPage() {
   const trialLabel = getPrimaryConversionLabel();
 
   return (
-    <main id="locations-index" className="flex flex-1 flex-col">
+    <PageWithFooter>
+    <main id="locations-index" className="flex flex-col">
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: serializeJsonLd(breadcrumbJsonLd) }}
@@ -61,5 +63,6 @@ export default function LocationsIndexPage() {
         trialLabel={trialLabel}
       />
     </main>
+    </PageWithFooter>
   );
 }

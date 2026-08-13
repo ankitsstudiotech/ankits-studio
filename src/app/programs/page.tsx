@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { PageBreadcrumb } from "@/components/layout/PageBreadcrumb";
+import { PageWithFooter } from "@/components/layout/PageWithFooter";
 import { ProgrammeDiscovery } from "@/components/programs/pulse/ProgrammeDiscovery";
 import { getConfirmedProgrammes } from "@/content";
 import {
@@ -41,7 +42,8 @@ export default function ProgrammesIndexPage() {
   const trialLabel = getPrimaryConversionLabel();
 
   return (
-    <main id="programmes-index" className="flex flex-1 flex-col">
+    <PageWithFooter>
+    <main id="programmes-index" className="flex flex-col">
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: serializeJsonLd(breadcrumbJsonLd) }}
@@ -61,5 +63,6 @@ export default function ProgrammesIndexPage() {
         trialLabel={trialLabel}
       />
     </main>
+    </PageWithFooter>
   );
 }

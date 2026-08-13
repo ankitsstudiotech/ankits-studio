@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import styles from "@/components/blog/pulse/studio-notes.module.css";
 import { PageBreadcrumb } from "@/components/layout/PageBreadcrumb";
+import { PageWithFooter } from "@/components/layout/PageWithFooter";
 import { RouteOpening, SectionReveal } from "@/components/motion";
 import { getBlogPostBySlug, getBlogPosts } from "@/content";
 import { buildPageMetadata } from "@/lib/seo/metadata";
@@ -62,7 +63,8 @@ export default async function BlogPostPage({ params }: BlogPostParams) {
   const articleJsonLd = buildArticleJsonLd(post);
 
   return (
-    <main className={`${styles.page} flex flex-1 flex-col`}>
+    <PageWithFooter>
+    <main className={`${styles.page} flex flex-col`}>
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: serializeJsonLd(breadcrumbJsonLd) }}
@@ -107,5 +109,6 @@ export default async function BlogPostPage({ params }: BlogPostParams) {
         </SectionReveal>
       </section>
     </main>
+    </PageWithFooter>
   );
 }

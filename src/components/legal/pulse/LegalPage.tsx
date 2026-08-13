@@ -22,7 +22,7 @@ export function LegalPage({
   children,
 }: LegalPageProps) {
   return (
-    <main className={`${styles.page} flex flex-1 flex-col`}>
+    <main className={styles.page}>
       <div className="pulse-crumb-bar">
         <PageBreadcrumb items={breadcrumbTrail} />
       </div>

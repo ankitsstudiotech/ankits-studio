@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import styles from "@/components/blog/pulse/studio-notes.module.css";
 import { PageBreadcrumb } from "@/components/layout/PageBreadcrumb";
+import { PageWithFooter } from "@/components/layout/PageWithFooter";
 import { RouteOpening, SectionReveal } from "@/components/motion";
 import { buildPageMetadata } from "@/lib/seo/metadata";
 import { serializeJsonLd } from "@/lib/seo/serialize";
@@ -35,7 +36,8 @@ export default function BlogIndexPage() {
   });
 
   return (
-    <main className={`${styles.page} flex flex-1 flex-col`}>
+    <PageWithFooter>
+    <main className={`${styles.page} flex flex-col`}>
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: serializeJsonLd(breadcrumbJsonLd) }}
@@ -85,5 +87,6 @@ export default function BlogIndexPage() {
         </SectionReveal>
       </section>
     </main>
+    </PageWithFooter>
   );
 }

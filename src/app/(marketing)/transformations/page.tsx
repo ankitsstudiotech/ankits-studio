@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import { PageBreadcrumb } from "@/components/layout/PageBreadcrumb";
+import { PageWithFooter } from "@/components/layout/PageWithFooter";
 import { ConsentDisclosure } from "@/components/member-stories/pulse/ConsentDisclosure";
 import { MemberStoriesCta } from "@/components/member-stories/pulse/MemberStoriesCta";
 import { MemberStoryEditorial } from "@/components/member-stories/pulse/MemberStoryEditorial";
@@ -73,7 +74,8 @@ export default function MemberStoriesPage() {
   const hasPublishable = stories.length > 0 || transformations.length > 0;
 
   return (
-    <main className={`${styles.page} flex flex-1 flex-col`}>
+    <PageWithFooter>
+    <main className={`${styles.page} flex flex-col`}>
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: serializeJsonLd(breadcrumbJsonLd) }}
@@ -192,5 +194,6 @@ export default function MemberStoriesPage() {
         </SectionReveal>
       </section>
     </main>
+    </PageWithFooter>
   );
 }
