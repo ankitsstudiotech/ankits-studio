@@ -26,6 +26,21 @@ describe("screenshot dimension integrity — CLS correction evidence", () => {
     }
   });
 
+  it("final CLS evidence Home captures match requested CSS widths exactly", () => {
+    const finalDir = join(process.cwd(), "docs/revamp/screenshots/stage-3-ai-cls-final");
+    const cases = [
+      ["home-390.png", 390],
+      ["home-1440.png", 1440],
+      ["home-1920.png", 1920],
+    ] as const;
+    for (const [file, width] of cases) {
+      const abs = join(finalDir, file);
+      expect(existsSync(abs), file).toBe(true);
+      const meta = pngHeader(abs);
+      expect(meta.width, file).toBe(width);
+    }
+  });
+
   it("integrity JSON fails the pack when a PNG width does not match the viewport", () => {
     const reportPath = join(process.cwd(), "docs/revamp/AI-MEDIA-SCREENSHOT-INTEGRITY.json");
     expect(existsSync(reportPath)).toBe(true);

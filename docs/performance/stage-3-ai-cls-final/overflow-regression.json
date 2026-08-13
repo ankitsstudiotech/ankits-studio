@@ -1,0 +1,79 @@
+{
+  "capturedAt": "2026-08-13T07:16:24.467Z",
+  "baseUrl": "http://localhost:3010",
+  "pass": true,
+  "results": [
+    {
+      "width": 360,
+      "innerWidth": 360,
+      "clientWidth": 360,
+      "documentElementScrollWidth": 360,
+      "bodyScrollWidth": 360,
+      "overflowPx": 0,
+      "offenders": []
+    },
+    {
+      "width": 390,
+      "innerWidth": 390,
+      "clientWidth": 390,
+      "documentElementScrollWidth": 390,
+      "bodyScrollWidth": 390,
+      "overflowPx": 0,
+      "offenders": []
+    },
+    {
+      "width": 430,
+      "innerWidth": 430,
+      "clientWidth": 430,
+      "documentElementScrollWidth": 430,
+      "bodyScrollWidth": 430,
+      "overflowPx": 0,
+      "offenders": []
+    },
+    {
+      "width": 768,
+      "innerWidth": 768,
+      "clientWidth": 768,
+      "documentElementScrollWidth": 768,
+      "bodyScrollWidth": 768,
+      "overflowPx": 0,
+      "offenders": []
+    },
+    {
+      "width": 1024,
+      "innerWidth": 1024,
+      "clientWidth": 1024,
+      "documentElementScrollWidth": 1024,
+      "bodyScrollWidth": 1024,
+      "overflowPx": 0,
+      "offenders": []
+    },
+    {
+      "width": 1280,
+      "innerWidth": 1280,
+      "clientWidth": 1280,
+      "documentElementScrollWidth": 1280,
+      "bodyScrollWidth": 1280,
+      "overflowPx": 0,
+      "offenders": []
+    },
+    {
+      "width": 1440,
+      "innerWidth": 1440,
+      "clientWidth": 1440,
+      "documentElementScrollWidth": 1440,
+      "bodyScrollWidth": 1440,
+      "overflowPx": 0,
+      "offenders": []
+    },
+    {
+      "width": 1920,
+      "innerWidth": 1920,
+      "clientWidth": 1920,
+      "documentElementScrollWidth": 1920,
+      "bodyScrollWidth": 1920,
+      "overflowPx": 0,
+      "offenders": []
+    }
+  ]
+}

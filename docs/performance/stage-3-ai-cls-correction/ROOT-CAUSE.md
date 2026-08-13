@@ -117,3 +117,48 @@ One Home lab run still reports the same footer node at 0.710 when first paint wi
 
 TBT median 770 ms (was 1400). Preferred ≤500 not reached without removing remaining chrome hydration (`SiteHeader`, `StickyCtaBar`, homepage `SectionReveal`). Motion library bootup dropped off the Home graph after `ProgrammeRow` stopped importing `motion/react`.
 
+## 6. Remaining 0.710 after the first fix — still the footer, not fonts
+
+The first structural pass removed `footer.mt-auto` and `html h-full`. Home Lighthouse ×5 then returned **0.710 / 0 / 0 / 0 / 0**. Median 0 hid a still-reproducible race.
+
+Failing run `after-perf-1786597457330.json`:
+
+| Field | Value |
+|---|---|
+| Score | **0.7095990279465371** (identical to the original event) |
+| Element | `body.studio-shell > div#main-content > footer.border-t` |
+| Snippet | `<footer class="border-t border-white/10 bg-field text-ink-inverse">` |
+| After rect | top **4708**, height **901**, width **412** |
+| previousRect / startTime | not emitted by Lighthouse 12.8.2 |
+| Distance fraction | **1** (after-top is many viewport-heights below the 412×823 lab viewport) |
+| Impact fraction | **0.71** (footer occupied most of the first viewport before the jump) |
+
+This is the same footer node. It is not font optional-swap: the audit names `footer.border-t`, and the prerendered HTML proves a shell/payload split.
+
+Prerendered `.next/server/app/index.html` **before** the final fix:
+
+1. Layout shell: `header` → loading skeleton (`skelBar`) → **`footer`**
+2. Hidden flight payload later: `<div hidden id="S:0"><main>…homepage…`
+
+First paint under Slow-4G showed header + short skeleton + footer in the first viewport. When `S:0` replaced the hole, the footer jumped to y≈4708.
+
+## 7. Final structural change
+
+Footer left the layout shell. `SiteChrome` now renders header + page children + sticky CTA only. Each page wraps content in `PageWithFooter`, so the footer is part of the `S:0` page payload and follows `</main>` in the HTML.
+
+Also removed leftover sticky-footer flex: `body` is no longer `flex min-h-dvh flex-col`; `#main-content` is a block; `.pulse-page` / loading `.page` no longer `flex: 1`.
+
+After-HTML order: `header` → skeleton hole → `<div hidden id="S:0"><main>…</main><footer>`.
+
+## 8. Stress-run result (port 3010)
+
+Home Lighthouse mobile ×8 CLS: **0 / 0 / 0 / 0 / 0 / 0 / 0 / 0** (8/8 ≤ 0.05).
+
+Functional Lighthouse mobile ×4 CLS: **0 / 0 / 0 / 0** (4/4 ≤ 0.05).
+
+Throttled Playwright (Slow-4G + CPU 4×, 390×844, 5s): Home **0**, Functional **0**.
+
+Home footer geometry under throttle: `footer.top = 4806` at first H1, 500 ms, 1000 ms, and final — already below the 844px viewport. H1 opacity 1.
+
+TBT is unchanged-class P2 (Home lab still hundreds–thousands of ms). Not treated in this pass.
+

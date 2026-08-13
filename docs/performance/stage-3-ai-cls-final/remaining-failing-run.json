@@ -1,0 +1,33 @@
+{
+  "source": "docs/revamp/_lh-tmp/after-perf-1786597457330.json",
+  "route": "/",
+  "preset": "perf",
+  "cls": 0.7095990279465371,
+  "shiftedNode": {
+    "selector": "body.studio-shell > div#main-content > footer.border-t",
+    "snippet": "<footer class=\"border-t border-white/10 bg-field text-ink-inverse\">",
+    "lhId": "page-1-FOOTER",
+    "path": "1,HTML,1,BODY,5,DIV,2,FOOTER"
+  },
+  "previousRect": null,
+  "currentRect": {
+    "top": 4708,
+    "bottom": 5609,
+    "left": 0,
+    "right": 412,
+    "width": 412,
+    "height": 901
+  },
+  "startTime": null,
+  "score": 0.7095990279465371,
+  "impactFraction": 0.7095990279465371,
+  "distanceFraction": 1,
+  "distanceFractionNote": "Lighthouse 12.8.2 did not emit previousRect or startTime on this audit. Distance fraction is inferred as 1 because the after-rect top (4708) is many viewport-heights below the 412×823 lab viewport, so movement saturates the CLS distance cap.",
+  "footerVisibleInInitialViewport": true,
+  "sameFooterAsOriginalRace": true,
+  "htmlProof": {
+    "shellOrder": ["header", "loading-skeleton", "footer"],
+    "pagePayload": "div[hidden][id='S:0'] > main after the shell footer",
+    "note": "Prerendered .next/server/app/index.html places the layout footer at byte ~13219 and the real homepage <main> at byte ~22211 inside a hidden S:0 flight payload."
+  }
+}
