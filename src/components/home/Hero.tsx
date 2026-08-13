@@ -83,6 +83,7 @@ export function Hero({
             item={media}
             overlay
             priority
+            reveal={false}
             sizes="(max-width: 1023px) 100vw, 55vw"
           />
         </div>

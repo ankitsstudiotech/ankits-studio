@@ -21,7 +21,18 @@
     border-color var(--cue-duration) var(--cue-ease),
     background-color var(--cue-duration) var(--cue-ease),
     box-shadow var(--cue-duration) var(--cue-ease),
-    padding var(--cue-duration) var(--cue-ease);
+    padding var(--cue-duration) var(--cue-ease),
+    transform var(--cue-duration) var(--cue-ease);
+}
+
+.row:active {
+  transform: scale(0.99);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .row:active {
+    transform: none;
+  }
 }
 
 .row:hover,

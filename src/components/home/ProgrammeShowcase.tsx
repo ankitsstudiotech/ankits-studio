@@ -1,5 +1,3 @@
-"use client";
-
 import { ProgrammeRow } from "@/components/programs/ProgrammeRow";
 import { SectionReveal, GroupReveal } from "@/components/motion";
 import type { ServiceTempo } from "./pulse/PulseMotion";

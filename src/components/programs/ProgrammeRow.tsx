@@ -1,8 +1,5 @@
-"use client";
-
-import { motion, useReducedMotion } from "motion/react";
 import styles from "./programme-row.module.css";
-import { DURATION, EASE, type MotionTone, toneFromProgrammeSlug } from "@/components/motion/tokens";
+import { type MotionTone, toneFromProgrammeSlug } from "@/components/motion/tokens";
 
 export type ProgrammeCluster = "train" | "move" | "celebrate" | "teams";
 export type ProgrammeEnergy = "calm" | "standard" | "high";
@@ -26,7 +23,8 @@ export type ProgrammeRowProps = {
 
 /**
  * Shared programme discovery row — one family, cluster + tone personalities.
- * Cue uses scaleX (compositor-friendly), never width.
+ * Hover/press cues are CSS (scaleX / transform). No motion/react on the row
+ * so homepage discovery does not hydrate eight Motion islands on first load.
  */
 export function ProgrammeRow({
   name,
@@ -40,21 +38,18 @@ export function ProgrammeRow({
   programmeSlug,
   titleAs: TitleTag = "h3",
 }: ProgrammeRowProps) {
-  const reduce = useReducedMotion();
   const tone =
     motionTone ??
     (programmeSlug ? toneFromProgrammeSlug(programmeSlug) : clusterTone(cluster, energy));
 
   return (
-    <motion.a
+    <a
       href={href}
       className={styles.row}
       data-cluster={cluster}
       data-emphasis={emphasis}
       data-energy={energy}
       data-motion-tone={tone}
-      whileTap={reduce ? undefined : { scale: 0.99 }}
-      transition={{ duration: DURATION.fast, ease: EASE.exit }}
     >
       <TitleTag className={styles.name}>{name}</TitleTag>
       <p className={styles.description}>{description}</p>
@@ -71,7 +66,7 @@ export function ProgrammeRow({
           <span className={styles.cueFine} data-motion-cue />
         ) : null}
       </span>
-    </motion.a>
+    </a>
   );
 }
 

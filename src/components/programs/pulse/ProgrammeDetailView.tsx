@@ -283,6 +283,7 @@ export function ProgrammeDetailView({
                 item={heroMedia}
                 sizes="(max-width: 900px) 100vw, (max-width: 1440px) 42vw, 720px"
                 priority
+                reveal={false}
               />
             </div>
           ) : null}

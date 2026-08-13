@@ -1,5 +1,3 @@
-"use client";
-
 import Link from "next/link";
 import { SectionReveal } from "@/components/motion";
 import styles from "./pulse/pulse-home.module.css";
