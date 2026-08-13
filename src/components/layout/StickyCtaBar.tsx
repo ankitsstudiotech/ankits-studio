@@ -2,12 +2,17 @@
 
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { useEffect, useState } from "react";
+import { useEffect, useState, useSyncExternalStore } from "react";
+import { getStickyCtaPresentation } from "@/lib/conversion";
 import { isStickyCtaEligiblePath } from "./stickyCtaEligibility";
+import { isSoftHideTargetInView, subscribeSoftHide } from "./stickyCtaSoftHide";
 
 export type StickyCtaBarProps = {
+  /** @deprecated Presentation is derived from conversion intent. */
   label?: string;
+  /** @deprecated Presentation is derived from conversion intent. */
   href?: string;
+  /** @deprecated Presentation is derived from conversion intent. */
   supportingText?: string;
   /** @deprecated Prefer allowlist in stickyCtaEligibility — kept for redirect aliases. */
   hideOnPaths?: string[];
@@ -18,37 +23,54 @@ const HERO_CTA_ID = "home-hero-primary-cta";
 const TRIAL_SECTION_ID = "trial";
 const BODY_STICKY_CLASS = "has-sticky-cta";
 
+function isProgrammeDetailPath(pathname: string): boolean {
+  const path = pathname.split("?")[0]?.replace(/\/$/, "") || "/";
+  return /^\/programs\/[^/]+$/.test(path);
+}
+
+function subscribeNoop() {
+  return () => undefined;
+}
+
+function getSoftHideSnapshot() {
+  return isSoftHideTargetInView();
+}
+
+function getSoftHideServerSnapshot() {
+  return false;
+}
+
 /**
  * Mobile-only sticky conversion bar. Desktop relies on header CTA.
  *
- * Hard-excluded: /trial, /contact (and aliases) via stickyCtaEligibility.
- * Soft-hide: /pricing and /timetable while enquiry builder is in view.
- * Homepage: reveal after hero CTA leaves view; hide when #trial is visible.
- *
- * Body padding stays while eligible so soft-hide does not cause CLS.
+ * Copy and href follow programme conversionIntent (trial vs service-enquiry).
  */
 export function StickyCtaBar({
-  label = "Book a trial",
-  href = "/trial",
-  supportingText = "Feel the room — book a free trial",
   hideOnPaths = ["/book-a-free-trial"],
   pathname: pathnameProp,
 }: StickyCtaBarProps) {
   const detectedPathname = usePathname() ?? "";
-  const pathname = pathnameProp ?? detectedPathname;
+  const pathname = detectedPathname || pathnameProp || "";
   const eligible = isStickyCtaEligiblePath(pathname);
   const hardHidden = hideOnPaths.some(
     (path) => pathname === path || pathname.startsWith(`${path}/`),
   );
   const active = eligible && !hardHidden;
+  const presentation = getStickyCtaPresentation(pathname);
 
   const isHomepage = pathname === "/" || pathname === "";
   const isSoftHideRoute = pathname === "/pricing" || pathname === "/timetable";
+  const isProgrammeRoute = isProgrammeDetailPath(pathname);
   const [homeVisibility, setHomeVisibility] = useState({
     heroVisible: true,
     trialVisible: false,
   });
-  const [formCtaVisible, setFormCtaVisible] = useState(false);
+  const targetInView = useSyncExternalStore(
+    isSoftHideRoute || isProgrammeRoute ? subscribeSoftHide : subscribeNoop,
+    getSoftHideSnapshot,
+    getSoftHideServerSnapshot,
+  );
+  const inPageCtaVisible = (isSoftHideRoute || isProgrammeRoute) && targetInView;
 
   useEffect(() => {
     if (active) {
@@ -56,6 +78,7 @@ export function StickyCtaBar({
     } else {
       document.body.classList.remove(BODY_STICKY_CLASS);
     }
+    return () => document.body.classList.remove(BODY_STICKY_CLASS);
   }, [active]);
 
   useEffect(() => {
@@ -88,29 +111,13 @@ export function StickyCtaBar({
     return () => observer.disconnect();
   }, [active, isHomepage, pathname]);
 
-  useEffect(() => {
-    if (!active || !isSoftHideRoute) return;
-
-    const formCta =
-      document.getElementById("pricing-enquiry") ||
-      document.getElementById("availability-enquiry");
-    if (!formCta) return;
-
-    const observer = new IntersectionObserver(
-      ([entry]) => setFormCtaVisible(Boolean(entry?.isIntersecting)),
-      { root: null, threshold: 0.15, rootMargin: "0px 0px -10% 0px" },
-    );
-    observer.observe(formCta);
-    return () => observer.disconnect();
-  }, [active, isSoftHideRoute, pathname]);
-
   if (!active) {
     return null;
   }
 
   const reveal =
     (!isHomepage || (!homeVisibility.heroVisible && !homeVisibility.trialVisible)) &&
-    !(isSoftHideRoute && formCtaVisible);
+    !inPageCtaVisible;
 
   return (
     <div
@@ -125,26 +132,29 @@ export function StickyCtaBar({
       aria-hidden={!reveal}
       data-sticky-cta-reveal={reveal ? "true" : "false"}
       data-sticky-cta-eligible="true"
+      data-sticky-cta-intent={presentation.intent}
+      data-sticky-cta-programme={isProgrammeRoute ? "true" : "false"}
     >
       <div className="mx-auto flex max-w-[var(--width-container)] items-center gap-3 px-[var(--spacing-gutter)] py-2.5">
         <p className="min-w-0 flex-1 truncate text-[length:var(--text-caption)] text-[var(--color-muted-on-field)]">
-          {supportingText}
+          {presentation.supportingText}
         </p>
         <Link
-          href={href}
+          href={presentation.href}
           tabIndex={reveal ? undefined : -1}
-          {...(href.startsWith("http")
+          {...(presentation.href.startsWith("http")
             ? { target: "_blank", rel: "noopener noreferrer" }
             : {})}
           className={[
-            "inline-flex min-h-11 shrink-0 items-center justify-center px-4",
-            "bg-accent text-xs font-bold uppercase tracking-[0.08em] text-accent-foreground touch-target",
+            "inline-flex min-h-11 shrink-0 items-center justify-center px-3 sm:px-4",
+            "bg-accent text-[0.6875rem] font-bold uppercase tracking-[0.06em] text-accent-foreground touch-target sm:text-xs sm:tracking-[0.08em]",
+            "whitespace-nowrap",
             "transition-[background-color,transform] duration-[var(--duration-fast)]",
             "hover:bg-accent-hover active:scale-[0.98] motion-reduce:active:scale-100",
             "focus-visible:outline-2 focus-visible:outline-offset-3 focus-visible:outline-[var(--color-volt)]",
           ].join(" ")}
         >
-          {label}
+          {presentation.label}
         </Link>
       </div>
     </div>

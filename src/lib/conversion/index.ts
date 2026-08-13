@@ -8,6 +8,12 @@ export {
 } from "./programme-conversion";
 
 export {
+  getStickyCtaPresentation,
+  type StickyCtaIntent,
+  type StickyCtaPresentation,
+} from "./sticky-cta";
+
+export {
   WHATSAPP_REVIEW_HELPER,
   WHATSAPP_TRIAL_TEMPLATE,
   buildWhatsAppMessage,

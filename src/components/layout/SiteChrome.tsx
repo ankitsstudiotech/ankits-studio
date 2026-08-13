@@ -27,19 +27,13 @@ function toNavItems(): NavItem[] {
  */
 export function SiteChrome({ children }: { children: React.ReactNode }) {
   const identity = getBusinessIdentity();
-  const primaryHref = getPrimaryConversionHref();
 
   return (
     <>
       <MotionReady />
       <SiteHeader brandName={identity.displayName} items={toNavItems()} />
       {children}
-      <StickyCtaBar
-        href={primaryHref}
-        label="WhatsApp trial"
-        supportingText="Free trial"
-        hideOnPaths={["/book-a-free-trial"]}
-      />
+      <StickyCtaBar hideOnPaths={["/book-a-free-trial"]} />
     </>
   );
 }

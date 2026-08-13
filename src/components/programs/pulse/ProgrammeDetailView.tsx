@@ -270,7 +270,7 @@ export function ProgrammeDetailView({
             />
             <div className={`hero-support ${styles.detailSupport}`}>
               <p className={styles.detailLede}>{programme.shortDescription}</p>
-              <div className={styles.ctaRow}>
+              <div id="programme-hero-cta" className={styles.ctaRow}>
                 <ProgrammePulseCta href={whatsappHref}>{whatsappLabel}</ProgrammePulseCta>
               </div>
             </div>
@@ -453,6 +453,7 @@ export function ProgrammeDetailView({
       ) : null}
 
       <section
+        id="programme-closing"
         className={`${styles.band} ${styles.closingCta}`}
         aria-labelledby="programme-closing-cta"
       >

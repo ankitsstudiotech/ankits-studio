@@ -19,12 +19,14 @@
   color: var(--color-ink-inverse);
 }
 
-.studio-shell.has-sticky-cta {
+.studio-shell.has-sticky-cta,
+.studio-shell:has([data-sticky-cta-eligible]) {
   padding-bottom: calc(var(--sticky-cta-height) + env(safe-area-inset-bottom, 0px));
 }
 
 @media (min-width: 1024px) {
-  .studio-shell.has-sticky-cta {
+  .studio-shell.has-sticky-cta,
+  .studio-shell:has([data-sticky-cta-eligible]) {
     padding-bottom: 0;
   }
 }
