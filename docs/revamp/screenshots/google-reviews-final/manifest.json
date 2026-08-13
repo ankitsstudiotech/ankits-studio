@@ -1,0 +1,78 @@
+{
+  "generatedAt": "2026-08-13T13:50:36.841Z",
+  "base": "http://127.0.0.1:3000",
+  "files": [
+    {
+      "file": "corporate-wellness-sticky-390x844.png",
+      "width": 390,
+      "height": 844,
+      "bytes": 103567
+    },
+    {
+      "file": "home-1440.png",
+      "width": 1440,
+      "height": 5870,
+      "bytes": 1203761
+    },
+    {
+      "file": "home-1920.png",
+      "width": 1920,
+      "height": 5829,
+      "bytes": 1362474
+    },
+    {
+      "file": "home-390.png",
+      "width": 390,
+      "height": 6263,
+      "bytes": 482564
+    },
+    {
+      "file": "home-768.png",
+      "width": 768,
+      "height": 5627,
+      "bytes": 590428
+    },
+    {
+      "file": "state-external-google-link-focus.png",
+      "width": 1440,
+      "height": 900,
+      "bytes": 86143
+    },
+    {
+      "file": "state-first-review-focus.png",
+      "width": 1440,
+      "height": 900,
+      "bytes": 86143
+    },
+    {
+      "file": "state-reduced-motion.png",
+      "width": 1440,
+      "height": 900,
+      "bytes": 86044
+    },
+    {
+      "file": "state-review-default.png",
+      "width": 1440,
+      "height": 900,
+      "bytes": 86044
+    },
+    {
+      "file": "viewport-1440x900.png",
+      "width": 1440,
+      "height": 900,
+      "bytes": 86044
+    },
+    {
+      "file": "viewport-390x844.png",
+      "width": 390,
+      "height": 844,
+      "bytes": 52472
+    },
+    {
+      "file": "viewport-768x1024.png",
+      "width": 768,
+      "height": 1024,
+      "bytes": 70933
+    }
+  ]
+}

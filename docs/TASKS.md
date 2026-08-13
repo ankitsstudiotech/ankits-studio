@@ -116,6 +116,12 @@ design-token set, and the Vitest/Playwright/axe-core testing foundation
 |---|---|---|---|
 | Integrate owner-approved Corporate Wellness illustrative hero + close eight-programme media acceptance. Catalogue, Service-family composition, screenshots, tests. No redesign, no Reviews, no deploy. | Cursor | Done | Branch `revamp/studio-pulse-production`. Two commits: feat integration + test acceptance gate. |
 
+## Prompt 5 — Google Reviews + Corporate Wellness sticky CTA
+
+| Task | Owner | Status | Notes |
+|---|---|---|---|
+| Fix Corporate Wellness sticky CTA via programme conversion intent; add launch-safe Google social proof (Places API or external-links fallback). No scrape, no new AI media, no deploy. | Cursor | Done | Branch `revamp/studio-pulse-production`. `9ef2867` sticky conversion, `ae825de` Google proof. Checkpoint `studio-pulse-before-google-reviews-final` at `50e918f`. Launch mode `external-links`. Not deployed. |
+
 ## Phase 2+ 
 
 Not yet broken into per-file rows — see

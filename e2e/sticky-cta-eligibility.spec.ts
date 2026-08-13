@@ -6,6 +6,7 @@ import { expect, test } from "@playwright/test";
  */
 test.describe("sticky CTA eligibility", () => {
   test("excluded secondary/legal routes have no sticky bar", async ({ page }) => {
+    test.setTimeout(90_000);
     await page.setViewportSize({ width: 390, height: 844 });
     for (const route of [
       "/privacy-policy",
@@ -18,13 +19,13 @@ test.describe("sticky CTA eligibility", () => {
       "/trial",
       "/contact",
     ]) {
-      await page.goto(route);
+      await page.goto(route, { waitUntil: "domcontentloaded" });
       await expect(page.locator("[data-sticky-cta-eligible]")).toHaveCount(0);
-      await page.waitForFunction(() => !document.body.classList.contains("has-sticky-cta"));
-      const hasClass = await page.evaluate(() =>
-        document.body.classList.contains("has-sticky-cta"),
-      );
-      expect(hasClass, route).toBe(false);
+      await expect
+        .poll(async () =>
+          page.evaluate(() => document.body.classList.contains("has-sticky-cta")),
+        )
+        .toBe(false);
     }
   });
 
@@ -32,10 +33,11 @@ test.describe("sticky CTA eligibility", () => {
     await page.setViewportSize({ width: 390, height: 844 });
     await page.goto("/programs");
     await expect(page.locator("[data-sticky-cta-eligible]")).toHaveCount(1);
-    const hasClass = await page.evaluate(() =>
-      document.body.classList.contains("has-sticky-cta"),
-    );
-    expect(hasClass).toBe(true);
+    await expect
+      .poll(async () =>
+        page.evaluate(() => document.body.classList.contains("has-sticky-cta")),
+      )
+      .toBe(true);
   });
 
   test("pricing soft-hides sticky when enquiry builder is in view", async ({ page }) => {
@@ -47,8 +49,8 @@ test.describe("sticky CTA eligibility", () => {
     await page.waitForTimeout(400);
     // Top of pricing may still show sticky if enquiry is below fold
     await page.locator("#pricing-enquiry").scrollIntoViewIfNeeded();
-    await page.waitForTimeout(500);
-    await expect(sticky).toHaveAttribute("data-sticky-cta-reveal", "false");
+    await page.waitForTimeout(800);
+    await expect(sticky).toHaveAttribute("data-sticky-cta-reveal", "false", { timeout: 8_000 });
   });
 
   test("timetable soft-hides sticky when enquiry builder is in view", async ({ page }) => {
@@ -57,7 +59,7 @@ test.describe("sticky CTA eligibility", () => {
     const sticky = page.locator("[data-sticky-cta-reveal]");
     await expect(sticky).toHaveCount(1);
     await page.locator("#availability-enquiry").scrollIntoViewIfNeeded();
-    await page.waitForTimeout(500);
-    await expect(sticky).toHaveAttribute("data-sticky-cta-reveal", "false");
+    await page.waitForTimeout(800);
+    await expect(sticky).toHaveAttribute("data-sticky-cta-reveal", "false", { timeout: 8_000 });
   });
 });

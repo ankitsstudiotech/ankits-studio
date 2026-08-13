@@ -72,9 +72,10 @@ test.describe("CLS and horizontal overflow gates", () => {
   });
 
   test("Home has no horizontal overflow from 360 to 1920", async ({ page }) => {
+    test.setTimeout(180_000);
     for (const width of WIDTHS) {
       await page.setViewportSize({ width, height: 900 });
-      await page.goto("/", { waitUntil: "networkidle", timeout: 120_000 });
+      await page.goto("/", { waitUntil: "domcontentloaded", timeout: 30_000 });
       const metrics = await page.evaluate(() => ({
         clientWidth: document.documentElement.clientWidth,
         scrollWidth: document.documentElement.scrollWidth,

@@ -61,6 +61,26 @@ describe("screenshot dimension integrity — CLS correction evidence", () => {
     }
   });
 
+  it("Google Reviews final captures match requested CSS widths exactly", () => {
+    const dir = join(process.cwd(), "docs/revamp/screenshots/google-reviews-final");
+    const cases = [
+      ["home-390.png", 390],
+      ["home-768.png", 768],
+      ["home-1440.png", 1440],
+      ["home-1920.png", 1920],
+      ["viewport-390x844.png", 390],
+      ["viewport-768x1024.png", 768],
+      ["viewport-1440x900.png", 1440],
+      ["corporate-wellness-sticky-390x844.png", 390],
+    ] as const;
+    for (const [file, width] of cases) {
+      const abs = join(dir, file);
+      expect(existsSync(abs), file).toBe(true);
+      const meta = pngHeader(abs);
+      expect(meta.width, file).toBe(width);
+    }
+  });
+
   it("integrity JSON fails the pack when a PNG width does not match the viewport", () => {
     const reportPath = join(process.cwd(), "docs/revamp/AI-MEDIA-SCREENSHOT-INTEGRITY.json");
     expect(existsSync(reportPath)).toBe(true);

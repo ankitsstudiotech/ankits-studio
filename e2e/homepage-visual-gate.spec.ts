@@ -48,14 +48,21 @@ test.describe("homepage visual system gate", () => {
     await expect(page.locator("#practical")).toHaveCount(0);
 
     const order = await page.evaluate(() => {
-      const ids = ["services", "locations", "founder", "trial", "faq"];
-      return ids.map((id) => {
-        const el = document.getElementById(id);
-        return { id, top: el ? el.getBoundingClientRect().top + window.scrollY : null };
-      });
+    const ids = ["services", "locations", "google-reviews", "founder", "trial", "faq"];
+    return ids.map((id) => {
+      const el = document.getElementById(id);
+      return { id, top: el ? el.getBoundingClientRect().top + window.scrollY : null };
     });
-    const present = order.filter((row) => row.top != null);
-    expect(present.map((row) => row.id)).toEqual(["services", "locations", "founder", "trial", "faq"]);
+  });
+  const present = order.filter((row) => row.top != null);
+  expect(present.map((row) => row.id)).toEqual([
+    "services",
+    "locations",
+    "google-reviews",
+    "founder",
+    "trial",
+    "faq",
+  ]);
     const tops = present.map((row) => Number(row.top));
     for (let i = 1; i < tops.length; i++) {
       expect(tops[i]!).toBeGreaterThan(tops[i - 1]!);

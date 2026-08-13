@@ -4,6 +4,7 @@ import { render } from "@testing-library/react";
 import { beforeAll, describe, expect, it, vi } from "vitest";
 import { GoogleReviewProof } from "@/components/home/GoogleReviewProof";
 import { BranchExplorer } from "@/components/home/BranchExplorer";
+import type { GoogleSocialProof } from "@/lib/google-reviews";
 
 beforeAll(() => {
   class MockIntersectionObserver {
@@ -14,14 +15,16 @@ beforeAll(() => {
   vi.stubGlobal("IntersectionObserver", MockIntersectionObserver);
 });
 
-const FIXTURE_REVIEWS = [
-  {
-    id: "review-fixture-1",
-    authorDisplayName: "Fixture Author",
-    excerpt: "Helpful coach-led sessions in a welcoming studio.",
-    sourceUrl: "https://www.google.com/maps/reviews/example",
-  },
-] as const;
+const EXTERNAL: GoogleSocialProof = {
+  mode: "external-links",
+  branches: [
+    {
+      slug: "airoli-sector-19",
+      locality: "Airoli Sector 19",
+      mapsUrl: "https://maps.app.goo.gl/75pmKFuezsCSd5JP8",
+    },
+  ],
+};
 
 function readHomePageSource() {
   return readFileSync(
@@ -35,17 +38,28 @@ describe("homepage section order — final owner priority", () => {
     const home = readHomePageSource();
     const branchIdx = home.indexOf("<BranchExplorer");
     const reviewIdx = home.indexOf("<GoogleReviewProof");
+    const founderIdx = home.indexOf("<FounderHomeMoment");
     expect(branchIdx).toBeGreaterThan(-1);
     expect(reviewIdx).toBeGreaterThan(-1);
+    expect(founderIdx).toBeGreaterThan(-1);
     expect(branchIdx).toBeLessThan(reviewIdx);
+    expect(reviewIdx).toBeLessThan(founderIdx);
   });
 
-  it("renders nothing for Google Reviews when the list is empty", () => {
-    const { container } = render(<GoogleReviewProof reviews={[]} />);
+  it("renders the external-links Google chapter when live reviews are unavailable", () => {
+    const { container } = render(<GoogleReviewProof proof={EXTERNAL} />);
+    expect(container.querySelector("#google-reviews")).toBeTruthy();
+    expect(container.querySelector("[data-google-proof-mode='external-links']")).toBeTruthy();
+    expect(container.textContent).toMatch(/What members say/);
+    expect(container.textContent).not.toMatch(/failed to load|quota exceeded/i);
+  });
+
+  it("renders nothing when Google proof is unavailable", () => {
+    const { container } = render(<GoogleReviewProof proof={{ mode: "unavailable" }} />);
     expect(container).toBeEmptyDOMElement();
   });
 
-  it("renders Branches before Google Reviews when fixture reviews are present", () => {
+  it("renders Branches before Google Reviews in the document", () => {
     const { container } = render(
       <>
         <BranchExplorer
@@ -59,7 +73,7 @@ describe("homepage section order — final owner priority", () => {
             },
           ]}
         />
-        <GoogleReviewProof reviews={FIXTURE_REVIEWS} />
+        <GoogleReviewProof proof={EXTERNAL} />
       </>,
     );
 
