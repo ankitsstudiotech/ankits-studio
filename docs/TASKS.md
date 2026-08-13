@@ -110,6 +110,12 @@ design-token set, and the Vitest/Playwright/axe-core testing foundation
 |---|---|---|---|
 | Secondary rebuilds: trainers/transformations/blog/legal/404/error/loading/LegacyProgrammeNotice + ADR-023 + tests. No homepage/core routes/design-lab. | Cursor | Done | `npx tsc --noEmit` clean. Unit tests for blog/trainers/member-stories/nav. E2E smoke added. Not committed / not deployed. |}
 
+## Prompt 4 — Corporate Wellness AI media (active)
+
+| Task | Owner | Status | Notes |
+|---|---|---|---|
+| Integrate owner-approved Corporate Wellness illustrative hero + close eight-programme media acceptance. Catalogue, Service-family composition, screenshots, tests. No redesign, no Reviews, no deploy. | Cursor | Done | Branch `revamp/studio-pulse-production`. Two commits: feat integration + test acceptance gate. |
+
 ## Phase 2+ 
 
 Not yet broken into per-file rows — see

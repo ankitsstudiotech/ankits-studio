@@ -18,6 +18,7 @@ describe("AI media comparison integrity", () => {
       "final-production-ai-media-comparison-390-fixed.png",
       "final-production-ai-media-comparison-1440-fixed.png",
       "programme-family-ai-production-comparison-fixed.png",
+      "programme-family-ai-production-comparison-final.png",
     ]) {
       const abs = join(SHOTS, file);
       expect(existsSync(abs), file).toBe(true);
@@ -37,9 +38,15 @@ describe("AI media comparison integrity", () => {
   });
 });
 
-describe("Corporate Wellness media fallback", () => {
-  it("keeps corporate wellness hero as honest fallback", () => {
-    expect(resolveSlotMedia("programme.corporate-wellness.hero")).toBeNull();
+describe("Corporate Wellness illustrative media", () => {
+  it("resolves the owner-approved workplace wellness hero", () => {
+    const hero = resolveSlotMedia("programme.corporate-wellness.hero");
+    expect(hero).not.toBeNull();
+    expect(hero?.status).toBe("illustrative-ai");
+    expect(hero?.verifiedRealOnly).toBeUndefined();
+    expect(hero?.focalPoint).toEqual({ x: 64, y: 48 });
+    expect(hero?.mobileFocalPoint).toEqual({ x: 70, y: 42 });
+    expect(hero?.tabletFocalPoint).toEqual({ x: 66, y: 46 });
   });
 });
 

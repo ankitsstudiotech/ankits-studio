@@ -41,6 +41,26 @@ describe("screenshot dimension integrity — CLS correction evidence", () => {
     }
   });
 
+  it("Corporate Wellness AI-final captures match requested CSS widths exactly", () => {
+    const dir = join(process.cwd(), "docs/revamp/screenshots/corporate-wellness-ai-final");
+    const cases = [
+      ["full-390.png", 390],
+      ["full-768.png", 768],
+      ["full-1024.png", 1024],
+      ["full-1440.png", 1440],
+      ["full-1920.png", 1920],
+      ["viewport-390x844.png", 390],
+      ["viewport-768x1024.png", 768],
+      ["viewport-1440x900.png", 1440],
+    ] as const;
+    for (const [file, width] of cases) {
+      const abs = join(dir, file);
+      expect(existsSync(abs), file).toBe(true);
+      const meta = pngHeader(abs);
+      expect(meta.width, file).toBe(width);
+    }
+  });
+
   it("integrity JSON fails the pack when a PNG width does not match the viewport", () => {
     const reportPath = join(process.cwd(), "docs/revamp/AI-MEDIA-SCREENSHOT-INTEGRITY.json");
     expect(existsSync(reportPath)).toBe(true);

@@ -93,7 +93,7 @@ test.describe("CLS and horizontal overflow gates", () => {
     page.on("requestfailed", (req) => {
       if (req.resourceType() === "image") failed.push(`failed ${req.url()}`);
     });
-    for (const path of ["/", "/programs/functional-training"]) {
+    for (const path of ["/", "/programs/functional-training", "/programs/corporate-wellness"]) {
       await page.goto(path, { waitUntil: "networkidle", timeout: 120_000 });
     }
     expect(failed).toEqual([]);
