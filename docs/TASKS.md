@@ -120,7 +120,7 @@ design-token set, and the Vitest/Playwright/axe-core testing foundation
 
 | Task | Owner | Status | Notes |
 |---|---|---|---|
-| Fix human-reported P1s: hero crop, hero→programmes inset jump, wide relationship gaps, branch-row scanability, trial band contrast/measure, FAQ heading alignment. Shared primitives only. No accent-cue batch, no Maps URL batch, no Reviews fetch. Then production deploy. | Cursor | **Done** | Checkpoint `studio-pulse-before-production-bug-batch-01` @ `d06ce99`. Evidence `docs/revamp/screenshots/production-bug-batch-01/`. Production deploy follows this commit. |
+| Fix human-reported P1s: hero crop, hero→programmes inset jump, wide relationship gaps, branch-row scanability, trial band contrast/measure, FAQ heading alignment. Shared primitives only. No accent-cue batch, no Maps URL batch, no Reviews fetch. Then production deploy. | Cursor | **Done** | `8cff9ce`. Checkpoint `studio-pulse-before-production-bug-batch-01` @ `d06ce99`. Production `dpl_DSVHde5ktDEdXTyTjt4PUW4aUxH4` READY → https://ankits-studio.vercel.app. Evidence `docs/revamp/screenshots/production-bug-batch-01/`. |
 
 ## Live Bugfix 02 — Layout system (active)
 
