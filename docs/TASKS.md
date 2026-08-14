@@ -116,6 +116,12 @@ design-token set, and the Vitest/Playwright/axe-core testing foundation
 |---|---|---|---|
 | Integrate owner-approved Corporate Wellness illustrative hero + close eight-programme media acceptance. Catalogue, Service-family composition, screenshots, tests. No redesign, no Reviews, no deploy. | Cursor | Done | Branch `revamp/studio-pulse-production`. Two commits: feat integration + test acceptance gate. |
 
+## Live Bugfix 02 — Layout system (active)
+
+| Task | Owner | Status | Notes |
+|---|---|---|---|
+| Wide-desktop density, divider grammar, dark-first Branches/Reviews surfaces. | Cursor | **Done** | Combined layout/divider/surface fix on `revamp/studio-pulse-production`. Checkpoint `studio-pulse-before-live-bugfix-02-layout-system`. Evidence `docs/revamp/screenshots/live-bugfix-02-layout-system/`. |
+
 ## Live Bugfix 01 — Homepage hero integration (active)
 
 | Task | Owner | Status | Notes |

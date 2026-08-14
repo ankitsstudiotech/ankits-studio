@@ -7,7 +7,20 @@
 
 .band {
   padding: var(--spacing-section) var(--spacing-gutter);
-  border-top: 1px solid rgb(255 255 255 / 0.08);
+  border-top: var(--rule-structural-width) solid var(--rule-structural);
+  width: 100%;
+  max-width: var(--layout-content);
+  margin-inline: auto;
+  box-sizing: border-box;
+}
+
+.bandTitle,
+.bandLede,
+.clusters,
+.closing {
+  width: 100%;
+  max-width: var(--layout-content);
+  margin-inline: auto;
 }
 
 .bandTitle {
@@ -246,7 +259,7 @@
   margin-top: 1.1rem;
   padding-top: 1.25rem;
   padding-bottom: 0.25rem;
-  border-top: 1px solid rgb(255 255 255 / 0.08);
+  border-top: var(--rule-structural-width) solid var(--rule-structural);
 }
 
 .closing .ctaRow {
@@ -290,7 +303,11 @@
 .detailHero {
   display: block;
   padding: var(--spacing-section) var(--spacing-gutter);
-  border-bottom: 1px solid rgb(255 255 255 / 0.08);
+  border-bottom: var(--rule-structural-width) solid var(--rule-structural);
+  width: 100%;
+  max-width: var(--layout-content);
+  margin-inline: auto;
+  box-sizing: border-box;
 }
 
 .composeHero {
@@ -345,8 +362,8 @@
 
 .detailAccent {
   display: block;
-  width: 3.5rem;
-  height: 2px;
+  width: var(--cue-length);
+  height: var(--cue-thickness);
   margin-top: 0.35rem;
   background: color-mix(in srgb, var(--color-accent) 70%, transparent);
   transform-origin: left center;
@@ -376,7 +393,7 @@
 
 .metaItem {
   padding: 0.55rem 0 0;
-  border-top: 1px solid rgb(255 255 255 / 0.1);
+  border-top: var(--rule-structural-width) solid var(--rule-structural);
 }
 
 .metaItem:first-child {
@@ -456,7 +473,6 @@
 
 .detailHero[data-motion-tone="ceremonial"] .detailAccent {
   background: color-mix(in srgb, var(--color-accent-warm) 80%, transparent);
-  width: 4rem;
 }
 
 /* —— Family A: Structured (Functional) —— */
@@ -510,7 +526,7 @@
 
   .detailHero[data-compose-family="fluid"] .metaRail {
     grid-area: meta;
-    border-top: 1px solid rgb(255 255 255 / 0.12);
+    border-top: var(--rule-structural-width) solid var(--rule-structural);
     padding-top: 1rem;
   }
 
@@ -522,7 +538,7 @@
   .detailHero[data-compose-family="fluid"] .metaItem {
     border-top: none;
     padding-top: 0;
-    border-left: 1px solid rgb(255 255 255 / 0.1);
+    border-left: var(--rule-structural-width) solid var(--rule-structural);
     padding-left: 0.85rem;
   }
 
@@ -612,7 +628,7 @@
   .detailHero[data-compose-family="service"] .metaRail {
     grid-column: 1 / -1;
     display: grid;
-    border-top: 1px solid rgb(255 255 255 / 0.1);
+    border-top: var(--rule-structural-width) solid var(--rule-structural);
     padding-top: 1.1rem;
   }
 
@@ -761,7 +777,7 @@
 
 .snapshotFact {
   padding: 0.35rem 0 0.15rem;
-  border-top: 1px solid rgb(255 255 255 / 0.1);
+  border-top: var(--rule-structural-width) solid var(--rule-structural);
 }
 
 [data-compose-family="calm"] .snapshotFact {
@@ -802,12 +818,12 @@
   padding: 0;
   display: grid;
   gap: 0;
-  border-top: 1px solid rgb(255 255 255 / 0.1);
+  border-top: var(--rule-structural-width) solid var(--rule-structural);
 }
 
 .includeList li {
   padding: 0.55rem 0;
-  border-bottom: 1px solid rgb(255 255 255 / 0.08);
+  border-bottom: var(--rule-structural-width) solid var(--rule-structural);
   font-size: 0.95rem;
   line-height: 1.4;
   color: var(--color-muted-on-field);
@@ -874,7 +890,7 @@
   .detailHero[data-compose-family="service"] .metaItem {
     border-left: none;
     padding-left: 0;
-    border-top: 1px solid rgb(255 255 255 / 0.1);
+    border-top: var(--rule-structural-width) solid var(--rule-structural);
     padding-top: 0.55rem;
   }
 }
@@ -904,7 +920,7 @@
   display: inline-flex;
   align-items: center;
   text-decoration: none;
-  border-bottom: 1px solid rgb(255 255 255 / 0.1);
+  border-bottom: var(--rule-structural-width) solid var(--rule-structural);
   width: 100%;
   padding: 0.55rem 0;
   transition:
@@ -927,7 +943,7 @@
 .closingCta {
   padding-block: calc(var(--spacing-section) + 0.85rem);
   background: color-mix(in srgb, var(--color-field) 88%, var(--color-accent));
-  border-top: 1px solid rgb(255 255 255 / 0.12);
+  border-top: var(--rule-structural-width) solid var(--rule-structural);
 }
 
 .closingCta .sectionTitle {
@@ -941,7 +957,7 @@
 .legacyBanner {
   background: color-mix(in srgb, var(--color-field) 88%, var(--color-accent));
   color: var(--color-ink-inverse);
-  border-bottom: 1px solid rgb(255 255 255 / 0.12);
+  border-bottom: var(--rule-structural-width) solid var(--rule-structural);
   padding: 0.85rem var(--spacing-gutter);
   font-size: 0.9rem;
 }

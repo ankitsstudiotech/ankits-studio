@@ -37,7 +37,7 @@
   color: var(--ink-on-dark);
 }
 
-/* Paper chapter — trust/local/editorial contrast within Studio Pulse */
+/* Paper — keep token for utility/readability islands; not a marketing band. */
 .pulse-paper {
   background-color: var(--surface-paper);
   color: var(--ink-on-paper);
@@ -66,9 +66,17 @@
 }
 
 .pulse-band {
+  /* Full-bleed background; constrain inner content with .pulse-wrap */
   padding: var(--spacing-section) var(--spacing-gutter);
-  border-top: 1px solid var(--color-border-on-field);
-  max-width: var(--width-container);
+  border-top: var(--rule-structural-width) solid var(--rule-structural);
+  width: 100%;
+  box-sizing: border-box;
+}
+
+.pulse-wrap {
+  width: 100%;
+  max-width: var(--layout-content);
+  margin-inline: auto;
 }
 
 .pulse-band-narrow {

@@ -1,15 +1,16 @@
 /* Shared branch discovery row — equal interaction to ProgrammeRow. */
 
 .row {
-  display: flex;
-  flex-direction: column;
-  gap: 0.45rem;
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 0.45rem 1.5rem;
   padding: 1rem 0.15rem 1.1rem;
   border: none;
   border-bottom: none;
   background: transparent;
   min-height: 44px;
   color: inherit;
+  width: 100%;
 }
 
 .primary {
@@ -88,18 +89,32 @@
 
 .cue {
   display: block;
-  width: 2.25rem;
-  max-width: 3.5rem;
-  height: 3px;
+  width: var(--cue-length);
+  height: var(--cue-thickness);
   margin-top: 0.35rem;
   background: rgb(255 255 255 / 0.22);
   transform-origin: left center;
-  transition: width var(--duration-normal, 220ms) var(--ease-out-strong, cubic-bezier(0.23, 1, 0.32, 1));
+  transform: scaleX(1);
+  transition: transform var(--duration-normal, 220ms) var(--ease-out-strong, cubic-bezier(0.23, 1, 0.32, 1));
 }
 
 .row:hover .cue,
 .row:focus-within .cue {
-  width: 3.5rem;
+  transform: scaleX(1.5);
+}
+
+@media (min-width: 1200px) {
+  .row {
+    grid-template-columns: minmax(0, 8fr) minmax(11rem, 4fr);
+    align-items: start;
+  }
+
+  .actions {
+    justify-self: end;
+    flex-direction: column;
+    align-items: flex-end;
+    margin-top: 0.2rem;
+  }
 }
 
 @media (prefers-reduced-motion: reduce) {
@@ -110,6 +125,6 @@
 
   .row:hover .cue,
   .row:focus-within .cue {
-    width: 2.25rem;
+    transform: none;
   }
 }

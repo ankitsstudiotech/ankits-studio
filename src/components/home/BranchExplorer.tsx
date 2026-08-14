@@ -17,7 +17,7 @@ export type BranchExplorerProps = {
 const DEFAULT_HOURS = "Open daily · 6:00 AM–10:00 PM";
 
 /**
- * Homepage branch index — numbered editorial rows on PAPER surface.
+ * Homepage branch index — numbered editorial rows on elevated charcoal.
  */
 export function BranchExplorer({ locations }: BranchExplorerProps) {
   return (

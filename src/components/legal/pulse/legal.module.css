@@ -9,7 +9,7 @@
 .article {
   box-sizing: border-box;
   width: 100%;
-  max-width: var(--width-container);
+  max-width: var(--layout-content);
   margin-inline: auto;
   padding: var(--spacing-section) var(--spacing-gutter);
 }

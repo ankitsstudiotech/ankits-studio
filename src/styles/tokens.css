@@ -18,8 +18,9 @@
   /* Field (Pulse dark) — production marketing canvas */
   --color-field: #0b0b0c;
   --color-field-raised: #141416;
+  --color-field-plum: #161218;
 
-  /* Paper — warm premium off-white chapter surface (hybrid system) */
+  /* Paper — reserved for utility/readability islands, not marketing bands */
   --color-paper: #f2efe8;
   --color-paper-muted: #e8e4dc;
   --color-ink-on-paper: #14181c;
@@ -140,6 +141,17 @@
   --width-container-narrow: 42rem;
   --header-height: 4rem;
   --sticky-cta-height: 4.5rem;
+
+  /* Layout grammar — Live Bugfix 02
+   * Marketing content sits in --layout-content (80rem / 12 implicit columns).
+   * At >=1200px, editorial rows use 8fr copy + 4fr meta (8/12 + 4/12).
+   * Prose measure stays --layout-prose. Backgrounds may full-bleed; rules align to content. */
+  --layout-content: var(--width-container-wide);
+  --layout-prose: 65ch;
+  --rule-structural-width: 1px;
+  --rule-structural: var(--color-border-on-field);
+  --cue-length: 2.35rem;
+  --cue-thickness: 3px;
 
   --breakpoint-sm: 640px;
   --breakpoint-md: 768px;

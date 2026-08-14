@@ -51,21 +51,23 @@ export function ProgrammeRow({
       data-energy={energy}
       data-motion-tone={tone}
     >
-      <TitleTag className={styles.name}>{name}</TitleTag>
-      <p className={styles.description}>{description}</p>
+      <div className={styles.copy}>
+        <TitleTag className={styles.name}>{name}</TitleTag>
+        <p className={styles.description}>{description}</p>
+        <span className={styles.cueTrack} aria-hidden>
+          <span className={styles.cue} data-motion-cue />
+          {tone === "fluid" || tone === "expressive" ? (
+            <>
+              <span className={styles.cueSeg} data-motion-cue data-seg="2" />
+              <span className={styles.cueSeg} data-motion-cue data-seg="3" />
+            </>
+          ) : null}
+          {tone === "ceremonial" ? (
+            <span className={styles.cueFine} data-motion-cue />
+          ) : null}
+        </span>
+      </div>
       {meta ? <p className={styles.meta}>{meta}</p> : null}
-      <span className={styles.cueTrack} aria-hidden>
-        <span className={styles.cue} data-motion-cue />
-        {tone === "fluid" || tone === "expressive" ? (
-          <>
-            <span className={styles.cueSeg} data-motion-cue data-seg="2" />
-            <span className={styles.cueSeg} data-motion-cue data-seg="3" />
-          </>
-        ) : null}
-        {tone === "ceremonial" ? (
-          <span className={styles.cueFine} data-motion-cue />
-        ) : null}
-      </span>
     </a>
   );
 }

@@ -9,21 +9,24 @@
 .crumbBar {
   background: var(--color-field);
   color: var(--color-ink-inverse);
-  border-bottom: 1px solid var(--color-border-on-field, rgb(255 255 255 / 0.08));
+  border-bottom: var(--rule-structural-width) solid var(--rule-structural);
 }
 
 .band {
   padding: var(--spacing-section) var(--spacing-gutter);
-  border-top: 1px solid rgb(255 255 255 / 0.08);
+  border-top: var(--rule-structural-width) solid var(--rule-structural);
   max-width: var(--width-container-narrow);
+  margin-inline: auto;
+  width: 100%;
+  box-sizing: border-box;
 }
 
 .bandWide {
-  max-width: var(--width-container);
+  max-width: var(--layout-content);
 }
 
 .splitBand {
-  max-width: var(--width-container);
+  max-width: var(--layout-content);
   display: grid;
   gap: 2rem;
 }
@@ -73,8 +76,8 @@
 
 .hoursBox {
   padding: 1.15rem 0;
-  border-top: 1px solid rgb(255 255 255 / 0.1);
-  border-bottom: 1px solid rgb(255 255 255 / 0.1);
+  border-top: var(--rule-structural-width) solid var(--rule-structural);
+  border-bottom: var(--rule-structural-width) solid var(--rule-structural);
 }
 
 .hoursValue {
@@ -94,11 +97,11 @@
 
 .confirmedItem {
   padding: 1rem 0;
-  border-bottom: 1px solid rgb(255 255 255 / 0.1);
+  border-bottom: var(--rule-structural-width) solid var(--rule-structural);
 }
 
 .confirmedItem:first-child {
-  border-top: 1px solid rgb(255 255 255 / 0.1);
+  border-top: var(--rule-structural-width) solid var(--rule-structural);
 }
 
 .feeAmount {

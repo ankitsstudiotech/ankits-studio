@@ -1,17 +1,19 @@
 /* Shared programme discovery row — perceptible tone personalities, one component. */
 
 .row {
-  display: flex;
-  flex-direction: column;
-  gap: 0.35rem;
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 0.35rem 1.5rem;
   text-decoration: none;
   color: inherit;
   padding: 0.95rem 0.15rem 1rem;
   border: none;
-  border-bottom: 1px solid rgb(255 255 255 / 0.1);
+  border-bottom: var(--rule-structural-width) solid var(--rule-structural);
   background: transparent;
   min-height: 44px;
   position: relative;
+  width: 100%;
+  max-width: none;
   --cue-duration: 200ms;
   --cue-ease: var(--ease-emphasis);
   --cue-scale: 1.9;
@@ -23,6 +25,32 @@
     box-shadow var(--cue-duration) var(--cue-ease),
     padding var(--cue-duration) var(--cue-ease),
     transform var(--cue-duration) var(--cue-ease);
+}
+
+.copy {
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 0.35rem;
+}
+
+@media (min-width: 1200px) {
+  .row {
+    grid-template-columns: minmax(0, 8fr) minmax(11rem, 4fr);
+    align-items: start;
+    padding-block: 1.05rem 1.15rem;
+  }
+
+  .row:not(:has(.meta)) {
+    grid-template-columns: 1fr;
+  }
+
+  .meta {
+    justify-self: end;
+    text-align: right;
+    max-width: 22ch;
+    margin: 0.2rem 0 0;
+  }
 }
 
 .row:active {
@@ -44,48 +72,14 @@
 }
 
 .row[data-emphasis="primary"] {
-  border-width: 0;
-  border-bottom-width: 1px;
-  border-bottom-style: solid;
-  border-bottom-color: color-mix(in srgb, var(--color-accent-strength) 45%, #333);
   background: transparent;
-  padding: 1.15rem 0.15rem 1.25rem;
+  padding-block: 1.15rem 1.25rem;
 }
 
 .row[data-emphasis="primary"]:hover,
 .row[data-emphasis="primary"]:focus-visible {
   background: color-mix(in srgb, var(--color-field-raised) 55%, transparent);
   padding-left: 0.85rem;
-}
-
-/* Width rhythm — discovery composition */
-.row[data-emphasis="primary"] {
-  max-width: 100%;
-}
-
-.row[data-motion-tone="direct"],
-.row[data-motion-tone="remote"] {
-  max-width: 42rem;
-  padding-block: 0.75rem 0.85rem;
-}
-
-.row[data-motion-tone="calm"] {
-  max-width: 48rem;
-  padding-block: 1.15rem 1.25rem;
-}
-
-.row[data-cluster="move"] {
-  max-width: min(100%, 54rem);
-}
-
-.row[data-cluster="celebrate"] {
-  max-width: min(100%, 46rem);
-  margin-inline: 0;
-}
-
-.row[data-cluster="teams"] {
-  max-width: min(100%, 50rem);
-  margin-inline: 0;
 }
 
 .row[data-motion-tone="structured"] {
@@ -207,8 +201,8 @@
 .cueSeg,
 .cueFine {
   display: block;
-  height: 3px;
-  width: 2.35rem;
+  height: var(--cue-thickness);
+  width: var(--cue-length);
   transform-origin: left center;
   transform: scaleX(1);
   transition: transform var(--cue-duration) var(--cue-ease);
@@ -224,7 +218,7 @@
   position: absolute;
   left: 0;
   top: 5px;
-  width: 2rem;
+  width: var(--cue-length);
   height: 1px;
   opacity: 0;
   transform: scaleX(0.4);
@@ -247,16 +241,11 @@
 }
 
 .row[data-motion-tone="ceremonial"] .cue {
-  height: 2px;
+  background: color-mix(in srgb, var(--color-accent-warm) 85%, transparent);
 }
 
 .row[data-motion-tone="calm"] .cue {
-  height: 2px;
-  width: 1.85rem;
-}
-
-.row[data-energy="high"] .cue {
-  width: 2.75rem;
+  background: color-mix(in srgb, var(--color-accent-calm) 80%, transparent);
 }
 
 .row:hover .cue,

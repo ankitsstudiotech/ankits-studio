@@ -17,7 +17,7 @@ export function Container({
     <Comp
       className={[
         "mx-auto w-full px-[var(--spacing-gutter)]",
-        narrow ? "max-w-[var(--width-container-narrow)]" : "max-w-[var(--width-container)]",
+        narrow ? "max-w-[var(--width-container-narrow)]" : "max-w-[var(--layout-content)]",
         className,
       ]
         .filter(Boolean)

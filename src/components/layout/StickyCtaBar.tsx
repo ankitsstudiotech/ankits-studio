@@ -135,7 +135,7 @@ export function StickyCtaBar({
       data-sticky-cta-intent={presentation.intent}
       data-sticky-cta-programme={isProgrammeRoute ? "true" : "false"}
     >
-      <div className="mx-auto flex max-w-[var(--width-container)] items-center gap-3 px-[var(--spacing-gutter)] py-2.5">
+      <div className="mx-auto flex max-w-[var(--layout-content)] items-center gap-3 px-[var(--spacing-gutter)] py-2.5">
         <p className="min-w-0 flex-1 truncate text-[length:var(--text-caption)] text-[var(--color-muted-on-field)]">
           {presentation.supportingText}
         </p>
