@@ -81,6 +81,24 @@ describe("screenshot dimension integrity — CLS correction evidence", () => {
     }
   });
 
+  it("Production Bug Batch 01 captures match requested CSS widths", () => {
+    const dir = join(process.cwd(), "docs/revamp/screenshots/production-bug-batch-01");
+    const cases = [
+      ["after-390x844-home.png", 390],
+      ["after-768x1024-home.png", 768],
+      ["after-1440x900-home.png", 1440],
+      ["after-1536-home-hero.png", 1536],
+      ["after-1920x1080-home.png", 1920],
+      ["wide-layout-before-after.png", 1800],
+    ] as const;
+    for (const [file, width] of cases) {
+      const abs = join(dir, file);
+      expect(existsSync(abs), file).toBe(true);
+      const meta = pngHeader(abs);
+      expect(meta.width, file).toBe(width);
+    }
+  });
+
   it("integrity JSON fails the pack when a PNG width does not match the viewport", () => {
     const reportPath = join(process.cwd(), "docs/revamp/AI-MEDIA-SCREENSHOT-INTEGRITY.json");
     expect(existsSync(reportPath)).toBe(true);

@@ -36,7 +36,11 @@
 
 @media (min-width: 1200px) {
   .row {
-    grid-template-columns: minmax(0, 8fr) minmax(11rem, 4fr);
+    grid-template-columns:
+      minmax(0, var(--layout-copy-max))
+      minmax(var(--layout-meta-min), var(--layout-meta-max))
+      minmax(0, 1fr);
+    column-gap: 1.75rem;
     align-items: start;
     padding-block: 1.05rem 1.15rem;
   }
@@ -46,8 +50,8 @@
   }
 
   .meta {
-    justify-self: end;
-    text-align: right;
+    justify-self: start;
+    text-align: left;
     max-width: 22ch;
     margin: 0.2rem 0 0;
   }

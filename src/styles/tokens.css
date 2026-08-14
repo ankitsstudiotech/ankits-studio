@@ -122,6 +122,8 @@
 
   --spacing-section: clamp(2rem, 5vw, 3.5rem);
   --spacing-gutter: 1.25rem;
+  /* Shared marketing page gutter — matches homepage hero copy inset. */
+  --layout-gutter: clamp(1.25rem, 4.5vw, 4rem);
   --spacing-stack: clamp(1rem, 0.85rem + 0.6vw, 1.5rem);
   --spacing-control: 2.75rem; /* 44px min control height */
   --spacing-control-lg: 3rem; /* 48px primary CTA */
@@ -142,12 +144,16 @@
   --header-height: 4rem;
   --sticky-cta-height: 4.5rem;
 
-  /* Layout grammar — Live Bugfix 02
-   * Marketing content sits in --layout-content (80rem / 12 implicit columns).
-   * At >=1200px, editorial rows use 8fr copy + 4fr meta (8/12 + 4/12).
-   * Prose measure stays --layout-prose. Backgrounds may full-bleed; rules align to content. */
-  --layout-content: var(--width-container-wide);
+  /* Layout grammar — Production Bug Batch 01
+   * Full-bleed backgrounds. Shared left edge = --layout-gutter (same as hero).
+   * Inner content max --layout-content, left-aligned (not extra-centered).
+   * Related copy + meta sit in a bounded pair; remaining track is breathing space.
+   * Do not pin short metadata to the far edge of the content box. */
+  --layout-content: 90rem;
   --layout-prose: 65ch;
+  --layout-copy-max: 42rem;
+  --layout-meta-min: 11rem;
+  --layout-meta-max: 18rem;
   --rule-structural-width: 1px;
   --rule-structural: var(--color-border-on-field);
   --cue-length: 2.35rem;

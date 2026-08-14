@@ -33,7 +33,7 @@ export function SiteFooter({
 }: SiteFooterProps) {
   return (
     <footer className="border-t border-white/10 bg-field text-ink-inverse">
-      <Container className="py-[var(--spacing-section)] max-[640px]:py-10">
+      <Container full className="py-[var(--spacing-section)] max-[640px]:py-10">
         <div className="grid gap-10 max-[640px]:gap-8 md:grid-cols-[minmax(0,1.35fr)_repeat(2,minmax(0,1fr))]">
           <div className="max-w-sm max-[640px]:max-w-none">
             <p className="mb-3 flex items-center gap-2.5 font-[family-name:var(--font-display)] text-[length:var(--text-title)] uppercase leading-[var(--text-title--line-height)] tracking-[var(--text-title--letter-spacing)] max-[640px]:mb-2">

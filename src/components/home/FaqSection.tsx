@@ -27,11 +27,13 @@ export function FaqSection({
       className={`${styles.field} ${styles.band}`}
       aria-labelledby="home-faq-title"
     >
-      <p className={styles.faqKicker}>FAQ</p>
-      <h2 id="home-faq-title" className={styles.bandTitle}>
-        Quick answers
-      </h2>
-      <p className={styles.bandLede}>{description}</p>
+      <div className={styles.bandIntro}>
+        <p className={styles.faqKicker}>FAQ</p>
+        <h2 id="home-faq-title" className={styles.bandTitle}>
+          Quick answers
+        </h2>
+        <p className={styles.bandLede}>{description}</p>
+      </div>
       <div className="pulse-accordion">
         {items.map((item) => (
           <details key={item.id} className="pulse-accordion-item group">

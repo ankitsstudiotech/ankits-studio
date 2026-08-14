@@ -54,7 +54,7 @@ export default function ContactPage() {
         <PageBreadcrumb items={breadcrumbTrail} />
       </div>
 
-      <div className="mx-auto grid w-full max-w-[var(--layout-content)] gap-10 px-[var(--spacing-gutter)] py-[var(--spacing-section)] lg:grid-cols-[minmax(0,0.95fr)_minmax(0,1.15fr)] lg:items-start lg:gap-12">
+      <div className="grid w-full max-w-[var(--layout-content)] gap-10 px-[var(--layout-gutter)] py-[var(--spacing-section)] lg:grid-cols-[minmax(0,0.95fr)_minmax(0,1.15fr)] lg:items-start lg:gap-12">
         <section aria-labelledby="contact-title">
           <RouteOpening>
             <p className="pulse-kicker">Contact</p>

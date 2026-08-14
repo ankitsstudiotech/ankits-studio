@@ -28,7 +28,7 @@ export function SiteHeader({
 
   return (
     <header className="sticky top-0 z-30 border-b border-white/10 bg-field">
-      <Container className="flex h-[var(--header-height)] items-center justify-between gap-4">
+      <Container full className="flex h-[var(--header-height)] items-center justify-between gap-4">
         <Link
           href={brandHref}
           className={[

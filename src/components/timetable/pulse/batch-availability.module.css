@@ -13,7 +13,7 @@
 }
 
 .band {
-  padding: var(--spacing-section) var(--spacing-gutter);
+  padding: var(--spacing-section) var(--layout-gutter);
   border-top: var(--rule-structural-width) solid var(--rule-structural);
   max-width: var(--width-container-narrow);
   margin-inline: auto;

@@ -6,11 +6,9 @@
 }
 
 .band {
-  padding: var(--spacing-section) var(--spacing-gutter);
+  padding: var(--spacing-section) var(--layout-gutter);
   border-top: var(--rule-structural-width) solid var(--rule-structural);
   width: 100%;
-  max-width: var(--layout-content);
-  margin-inline: auto;
   box-sizing: border-box;
 }
 
@@ -20,7 +18,7 @@
 .closing {
   width: 100%;
   max-width: var(--layout-content);
-  margin-inline: auto;
+  margin-inline: 0;
 }
 
 .bandTitle {
@@ -302,11 +300,9 @@
 /* —— Detail — Stage 5 composition families —— */
 .detailHero {
   display: block;
-  padding: var(--spacing-section) var(--spacing-gutter);
+  padding: var(--spacing-section) var(--layout-gutter);
   border-bottom: var(--rule-structural-width) solid var(--rule-structural);
   width: 100%;
-  max-width: var(--layout-content);
-  margin-inline: auto;
   box-sizing: border-box;
 }
 
@@ -315,6 +311,7 @@
   flex-direction: column;
   gap: 1.25rem;
   min-width: 0;
+  max-width: var(--layout-content);
 }
 
 .detailKicker {

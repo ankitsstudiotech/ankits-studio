@@ -7,21 +7,26 @@ Do not reintroduce route-local max-widths, random divider lengths, or full-width
 ## Container width
 
 - Viewport backgrounds may full-bleed (`FIELD`, elevated charcoal, plum).
-- Content sits in `--layout-content` (`--width-container-wide` = `80rem`), gutters `--spacing-gutter` (`1.25rem`), centered with `margin-inline: auto`.
-- Shared primitive: `.pulse-wrap` and `Container` (default, not `narrow`).
-- Do not add a new per-route max-width (`64rem` / `72rem` / `80rem` forks).
+- Content sits in `--layout-content` (`90rem`), gutter `--layout-gutter` (`clamp(1.25rem, 4.5vw, 4rem)`), **left-aligned** so it shares the homepage hero inset.
+- Shared primitive: `.pulse-wrap`, `.pulse-band`, and `Container` (default, not `narrow`). Header/footer use `Container full`.
+- Do not extra-center a second inset on top of the gutter. Do not add route-local max-width forks.
 - `.pulse-band` is full-bleed (padding + structural top rule). Inner content uses `.pulse-wrap` / `--layout-content`.
 
 ## Desktop grid
 
-At `>= 1200px`, major editorial rows use an implicit 12-column track inside `--layout-content`:
+At `>= 1200px`, related copy + meta use a bounded pair, not a stretched 8/4:
 
-- Primary copy: `8fr` (title + description + accent cue)
-- Secondary meta / actions: `4fr`, right-aligned, short measure (`~22ch`)
+- Copy: `minmax(0, var(--layout-copy-max))` (`42rem`)
+- Meta / actions: `minmax(var(--layout-meta-min), var(--layout-meta-max))` (`11–18rem`), `justify-self: start`
+- Optional `minmax(0, 1fr)` breathing **after** the pair
 
-Below `1200px` (including 768 / 1024 tablet): stack to one column. Do not squeeze metadata beside copy.
+Do not pin a short phrase to the far edge of a 1400px+ track.
 
-Programme rows without meta stay one column. Do not invent filler to occupy `4fr`.
+Below `1200px` (including 768 / 1024 tablet): stack to one column.
+
+Programme rows without meta stay one column. Do not invent filler.
+
+Supersedes the Live Bugfix 02 `8fr + 4fr` far-edge rule. See `docs/revamp/PRODUCTION-BUG-BATCH-01-SPATIAL-AUDIT.md`.
 
 ## Prose measure
 

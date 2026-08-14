@@ -116,6 +116,12 @@ design-token set, and the Vitest/Playwright/axe-core testing foundation
 |---|---|---|---|
 | Integrate owner-approved Corporate Wellness illustrative hero + close eight-programme media acceptance. Catalogue, Service-family composition, screenshots, tests. No redesign, no Reviews, no deploy. | Cursor | Done | Branch `revamp/studio-pulse-production`. Two commits: feat integration + test acceptance gate. |
 
+## Production Bug Batch 01 — Homepage + shared desktop spatial system (active)
+
+| Task | Owner | Status | Notes |
+|---|---|---|---|
+| Fix human-reported P1s: hero crop, hero→programmes inset jump, wide relationship gaps, branch-row scanability, trial band contrast/measure, FAQ heading alignment. Shared primitives only. No accent-cue batch, no Maps URL batch, no Reviews fetch. Then production deploy. | Cursor | **Done** | Checkpoint `studio-pulse-before-production-bug-batch-01` @ `d06ce99`. Evidence `docs/revamp/screenshots/production-bug-batch-01/`. Production deploy follows this commit. |
+
 ## Live Bugfix 02 — Layout system (active)
 
 | Task | Owner | Status | Notes |

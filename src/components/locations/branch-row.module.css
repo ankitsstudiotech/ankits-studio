@@ -105,14 +105,18 @@
 
 @media (min-width: 1200px) {
   .row {
-    grid-template-columns: minmax(0, 8fr) minmax(11rem, 4fr);
+    grid-template-columns:
+      minmax(0, var(--layout-copy-max))
+      minmax(var(--layout-meta-min), var(--layout-meta-max))
+      minmax(0, 1fr);
+    column-gap: 1.75rem;
     align-items: start;
   }
 
   .actions {
-    justify-self: end;
+    justify-self: start;
     flex-direction: column;
-    align-items: flex-end;
+    align-items: flex-start;
     margin-top: 0.2rem;
   }
 }

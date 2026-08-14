@@ -26,19 +26,25 @@ export function FreeTrialCta({
 
   return (
     <section id="trial" className={bandClass} aria-labelledby="home-trial-title">
-      <h2 id="home-trial-title">{title}</h2>
-      <p>{body}</p>
-      <PulseCta href={href}>{label}</PulseCta>
-      <p className={styles.ctaNote}>
-        Free trial class. One-time registration fee is ₹300 after you join.
-      </p>
-      {secondaryHref && secondaryLabel ? (
-        <div className={styles.ctaSecondaryRow}>
-          <Link href={secondaryHref} className={styles.ctaGhost}>
-            {secondaryLabel}
-          </Link>
+      <div className={styles.ctaBandInner}>
+        <div className={styles.ctaCopy}>
+          <h2 id="home-trial-title">{title}</h2>
+          <p>{body}</p>
         </div>
-      ) : null}
+        <div className={styles.ctaActions}>
+          <PulseCta href={href}>{label}</PulseCta>
+          <p className={styles.ctaNote}>
+            Free trial class. One-time registration fee is ₹300 after you join.
+          </p>
+          {secondaryHref && secondaryLabel ? (
+            <div className={styles.ctaSecondaryRow}>
+              <Link href={secondaryHref} className={styles.ctaGhost}>
+                {secondaryLabel}
+              </Link>
+            </div>
+          ) : null}
+        </div>
+      </div>
     </section>
   );
 }

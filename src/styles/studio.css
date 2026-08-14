@@ -66,8 +66,8 @@
 }
 
 .pulse-band {
-  /* Full-bleed background; constrain inner content with .pulse-wrap */
-  padding: var(--spacing-section) var(--spacing-gutter);
+  /* Full-bleed background; inner content uses .pulse-wrap */
+  padding: var(--spacing-section) var(--layout-gutter);
   border-top: var(--rule-structural-width) solid var(--rule-structural);
   width: 100%;
   box-sizing: border-box;
@@ -76,7 +76,15 @@
 .pulse-wrap {
   width: 100%;
   max-width: var(--layout-content);
-  margin-inline: auto;
+  margin-inline: 0;
+}
+
+.pulse-heading-stack {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  width: 100%;
+  max-width: var(--layout-content);
 }
 
 .pulse-band-narrow {
@@ -294,7 +302,7 @@
 .pulse-accordion-item summary {
   cursor: pointer;
   list-style: none;
-  padding: 0.85rem 1.1rem;
+  padding: 0.85rem 0;
   font-family: var(--font-sans);
   font-size: var(--text-heading);
   font-weight: 600;
@@ -313,7 +321,7 @@
 
 .pulse-accordion-panel {
   border-top: 1px solid var(--color-border-on-field);
-  padding: 0.85rem 1.1rem 1.1rem;
+  padding: 0.85rem 0 1.1rem;
   color: var(--color-muted-on-field);
   font-size: var(--text-body);
   line-height: var(--text-body--line-height);
