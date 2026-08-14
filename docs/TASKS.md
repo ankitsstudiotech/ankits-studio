@@ -120,7 +120,7 @@ design-token set, and the Vitest/Playwright/axe-core testing foundation
 
 | Task | Owner | Status | Notes |
 |---|---|---|---|
-| Homepage hero: remove duplicate brand lockup, blend media/content seam, align H1 to Studio Pulse `--text-hero`. No redesign, no Reviews, no new AI media, no other-route refactor. Then production deploy. | Cursor | **Done** | Checkpoint `studio-pulse-before-live-bugfix-01-home-hero` @ `ab0646f`. Evidence `docs/revamp/LIVE-BUGFIX-01-HOME-HERO-REVIEW.md`. Production deploy follows this commit. |
+| Homepage hero: remove duplicate brand lockup, blend media/content seam, align H1 to Studio Pulse `--text-hero`. No redesign, no Reviews, no new AI media, no other-route refactor. Then production deploy. | Cursor | **Done** | `f3f7d58`. Checkpoint `studio-pulse-before-live-bugfix-01-home-hero` @ `ab0646f`. Production `dpl_Gmpzqmvw19tfKZRABHhcrUQDoxM8` READY → https://ankits-studio.vercel.app |
 
 ## Prompt 6 — Final production audit, last fixes, deploy (active)
 

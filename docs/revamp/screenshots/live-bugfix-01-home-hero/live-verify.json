@@ -1,0 +1,81 @@
+{
+  "url": "https://ankits-studio.vercel.app",
+  "capturedAt": "2026-08-14T04:40:50.433Z",
+  "viewports": {
+    "390": {
+      "h1Count": 1,
+      "h1Text": "Coach-led fitness,yoga, Zumba anddance.",
+      "h1Size": "40px",
+      "h1Lines": 3,
+      "heroBrand": false,
+      "heroLogo": false,
+      "headerLogo": "/_next/image?url=%2Fbrand%2Fankits-studio-symbol-transparent.png&w=64&q=75",
+      "mockBanner": false,
+      "conceptLabel": false,
+      "layout": "editorial-blend",
+      "mediaPosition": "relative",
+      "mask": "linear-gradient(rgba(0, 0, 0, 0) 0%, rgb(0, 0, 0) 44px)",
+      "imgSrc": "https://ankits-studio.vercel.app/_next/image?url=%2Fmedia%2Fsynthetic-preview%2Fhome-hero-ai-concept.webp&w=640&q=75",
+      "imgNatural": {
+        "w": 390,
+        "h": 219
+      },
+      "overflow": false,
+      "cls": 0,
+      "ctaVisible": true,
+      "ctaHref": "https://wa.me/919372402074?text=Hello%20Ankit%E2%80%99s%20Studio%2C%0AI%20would%20like%20to%20book%20a%20free%20trial.%0A%0AName%3A%0APhone%3A%0APreferred%20branch%3A%0AInterested%20programme%3A%0APreferred%20time%3A%0APreferred%20trial%20date%3A%0AAge%3A%0AQuestion%3A",
+      "consoleErrors": [],
+      "failedImages": []
+    },
+    "1440": {
+      "h1Count": 1,
+      "h1Text": "Coach-led fitness,yoga, Zumba anddance.",
+      "h1Size": "72px",
+      "h1Lines": 3,
+      "heroBrand": false,
+      "heroLogo": false,
+      "headerLogo": "/_next/image?url=%2Fbrand%2Fankits-studio-symbol-transparent.png&w=64&q=75",
+      "mockBanner": false,
+      "conceptLabel": false,
+      "layout": "editorial-blend",
+      "mediaPosition": "absolute",
+      "mask": "linear-gradient(90deg, rgba(0, 0, 0, 0) 0%, rgba(0, 0, 0, 0.12) 14%, rgba(0, 0, 0, 0.45) 30%, rgba(0, 0, 0, 0.82) 46%, rgb(0, 0, 0) 62%)",
+      "imgSrc": "https://ankits-studio.vercel.app/_next/image?url=%2Fmedia%2Fsynthetic-preview%2Fhome-hero-ai-concept.webp&w=1920&q=75",
+      "imgNatural": {
+        "w": 1254,
+        "h": 705
+      },
+      "overflow": false,
+      "cls": 0,
+      "ctaVisible": true,
+      "ctaHref": "https://wa.me/919372402074?text=Hello%20Ankit%E2%80%99s%20Studio%2C%0AI%20would%20like%20to%20book%20a%20free%20trial.%0A%0AName%3A%0APhone%3A%0APreferred%20branch%3A%0AInterested%20programme%3A%0APreferred%20time%3A%0APreferred%20trial%20date%3A%0AAge%3A%0AQuestion%3A",
+      "consoleErrors": [],
+      "failedImages": []
+    },
+    "1920": {
+      "h1Count": 1,
+      "h1Text": "Coach-led fitness,yoga, Zumba anddance.",
+      "h1Size": "72px",
+      "h1Lines": 3,
+      "heroBrand": false,
+      "heroLogo": false,
+      "headerLogo": "/_next/image?url=%2Fbrand%2Fankits-studio-symbol-transparent.png&w=64&q=75",
+      "mockBanner": false,
+      "conceptLabel": false,
+      "layout": "editorial-blend",
+      "mediaPosition": "absolute",
+      "mask": "linear-gradient(90deg, rgba(0, 0, 0, 0) 0%, rgba(0, 0, 0, 0.12) 14%, rgba(0, 0, 0, 0.45) 30%, rgba(0, 0, 0, 0.82) 46%, rgb(0, 0, 0) 62%)",
+      "imgSrc": "https://ankits-studio.vercel.app/_next/image?url=%2Fmedia%2Fsynthetic-preview%2Fhome-hero-ai-concept.webp&w=1920&q=75",
+      "imgNatural": {
+        "w": 1672,
+        "h": 941
+      },
+      "overflow": false,
+      "cls": 0,
+      "ctaVisible": true,
+      "ctaHref": "https://wa.me/919372402074?text=Hello%20Ankit%E2%80%99s%20Studio%2C%0AI%20would%20like%20to%20book%20a%20free%20trial.%0A%0AName%3A%0APhone%3A%0APreferred%20branch%3A%0AInterested%20programme%3A%0APreferred%20time%3A%0APreferred%20trial%20date%3A%0AAge%3A%0AQuestion%3A",
+      "consoleErrors": [],
+      "failedImages": []
+    }
+  }
+}
