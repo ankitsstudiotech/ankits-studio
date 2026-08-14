@@ -8,7 +8,6 @@ import {
   ProgrammeShowcase,
 } from "@/components/home";
 import {
-  getBusinessIdentity,
   getPubliclyListedBranches,
   getBranchMapsUrl,
   type ProgrammeSlug,
@@ -147,7 +146,6 @@ const HOMEPAGE_CLUSTERS = [
 ];
 
 export default async function HomePage() {
-  const identity = getBusinessIdentity();
   const trialHref = getPrimaryConversionHref();
   const trialLabel = getPrimaryConversionLabel();
   const googleProof = await getGoogleSocialProof();
@@ -192,9 +190,8 @@ export default async function HomePage() {
     <PageWithFooter>
     <main>
       <Hero
-        brandName={identity.displayName}
         title="Coach-led fitness, yoga, Zumba and dance."
-        titleLines={["Coach-led fitness,", "yoga, Zumba and dance."]}
+        titleLines={["Coach-led fitness,", "yoga, Zumba and", "dance."]}
         description="Four neighbourhood studios across Airoli, Ghansoli and Thane. Approachable, energetic sessions with coach guidance — work toward your goals at your pace. Book a free trial on WhatsApp."
         primaryCta={{ label: trialLabel, href: trialHref }}
         secondaryCta={{ label: "Find Your Nearest Studio", href: "/#locations" }}

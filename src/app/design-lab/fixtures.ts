@@ -44,7 +44,6 @@ export const labFooterGroups: FooterLinkGroup[] = [
 ];
 
 export const labHero: HeroProps = {
-  brandName: "Ankit's Studio",
   title: "Machine-free fitness. Yoga, Zumba and dance.",
   description:
     "Four neighbourhood studios. Coach-led sessions adapted to your needs — book a free trial on WhatsApp.",

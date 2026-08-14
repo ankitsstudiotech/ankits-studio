@@ -116,6 +116,12 @@ design-token set, and the Vitest/Playwright/axe-core testing foundation
 |---|---|---|---|
 | Integrate owner-approved Corporate Wellness illustrative hero + close eight-programme media acceptance. Catalogue, Service-family composition, screenshots, tests. No redesign, no Reviews, no deploy. | Cursor | Done | Branch `revamp/studio-pulse-production`. Two commits: feat integration + test acceptance gate. |
 
+## Live Bugfix 01 — Homepage hero integration (active)
+
+| Task | Owner | Status | Notes |
+|---|---|---|---|
+| Homepage hero: remove duplicate brand lockup, blend media/content seam, align H1 to Studio Pulse `--text-hero`. No redesign, no Reviews, no new AI media, no other-route refactor. Then production deploy. | Cursor | **Done** | Checkpoint `studio-pulse-before-live-bugfix-01-home-hero` @ `ab0646f`. Evidence `docs/revamp/LIVE-BUGFIX-01-HOME-HERO-REVIEW.md`. Production deploy follows this commit. |
+
 ## Prompt 6 — Final production audit, last fixes, deploy (active)
 
 | Task | Owner | Status | Notes |

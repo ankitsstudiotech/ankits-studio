@@ -29,7 +29,7 @@
   line-height: var(--text-body-lg--line-height);
 }
 
-/* —— Hero —— text-led single column; editorial split when media resolves —— */
+/* —— Hero —— text-led; desktop blends media under the copy field —— */
 .hero {
   display: grid;
   grid-template-columns: 1fr;
@@ -37,6 +37,9 @@
   min-height: min(62vh, 520px);
   border-bottom: 1px solid var(--color-border-on-field, rgb(255 255 255 / 0.08));
   align-items: stretch;
+  position: relative;
+  isolation: isolate;
+  overflow: hidden;
 }
 
 .heroWithMedia {
@@ -60,30 +63,83 @@
   border-radius: 0;
 }
 
+/* Stacked crop: dissolve the top edge into the field — not a card border. */
+.heroMedia::after {
+  content: "";
+  position: absolute;
+  inset: 0 0 auto;
+  height: 3.5rem;
+  z-index: 1;
+  pointer-events: none;
+  background: linear-gradient(180deg, var(--color-field) 0%, transparent 100%);
+}
+
+@media (max-width: 1023px) {
+  .heroMedia {
+    -webkit-mask-image: linear-gradient(180deg, transparent 0%, #000 2.75rem);
+    mask-image: linear-gradient(180deg, transparent 0%, #000 2.75rem);
+  }
+}
+
 @media (min-width: 1024px) {
-  /* ~5–6 cols copy / ~6–7 cols media; media reaches viewport edge */
   .heroWithMedia {
-    grid-template-columns: minmax(0, 5.25fr) minmax(0, 6.75fr);
-    gap: 0;
     min-height: min(78vh, 720px);
   }
 
-  .heroWithMedia .heroCopy {
-    max-width: none;
-    padding-right: clamp(1.25rem, 3.5vw, 2.75rem);
-  }
-
-  .heroMedia {
-    min-height: 100%;
-    /* Grid column already reaches the viewport edge — do not add gutter bleed. */
+  .heroWithMedia .heroMedia {
+    position: absolute;
+    inset: 0;
+    z-index: 0;
     width: 100%;
-    margin-right: 0;
+    min-height: 100%;
+    margin: 0;
+    -webkit-mask-image: linear-gradient(
+      90deg,
+      transparent 0%,
+      rgba(0, 0, 0, 0.12) 14%,
+      rgba(0, 0, 0, 0.45) 30%,
+      rgba(0, 0, 0, 0.82) 46%,
+      #000 62%
+    );
+    mask-image: linear-gradient(
+      90deg,
+      transparent 0%,
+      rgba(0, 0, 0, 0.12) 14%,
+      rgba(0, 0, 0, 0.45) 30%,
+      rgba(0, 0, 0, 0.82) 46%,
+      #000 62%
+    );
   }
 
-  .heroMedia figure {
+  .heroWithMedia .heroMedia > *,
+  .heroWithMedia .heroMedia figure {
+    height: 100%;
     min-height: 100%;
-    /* Full-bleed editorial plane — not a floating card */
-    border-radius: 0;
+    width: 100%;
+    aspect-ratio: auto !important;
+  }
+
+  /* Cinematic field → image dissolve. No hard vertical seam. */
+  .heroWithMedia .heroMedia::after {
+    inset: 0;
+    height: auto;
+    background: linear-gradient(
+      90deg,
+      var(--color-field) 0%,
+      color-mix(in srgb, var(--color-field) 78%, transparent) 22%,
+      color-mix(in srgb, var(--color-field) 38%, transparent) 40%,
+      color-mix(in srgb, var(--color-field) 10%, transparent) 54%,
+      transparent 68%
+    );
+  }
+
+  .heroWithMedia .heroCopy {
+    position: relative;
+    z-index: 1;
+    width: min(46rem, 58%);
+    max-width: none;
+    min-height: min(78vh, 720px);
+    padding-right: clamp(1.25rem, 3vw, 2.5rem);
   }
 }
 
@@ -100,49 +156,28 @@
 
 @media (min-width: 1024px) {
   .heroCopy {
-    padding-left: clamp(2rem, 10vw, 7rem);
-    max-width: min(58rem, 70%);
+    padding-left: clamp(1.5rem, 4.5vw, 4rem);
+    padding-top: clamp(2rem, 6vh, 3.25rem);
+    padding-bottom: clamp(2rem, 6vh, 3.25rem);
   }
-
-  .heroCopy h1,
-  .heroTitle {
-    max-width: 22ch;
-  }
-}
-
-.heroBrand {
-  display: flex;
-  align-items: center;
-  gap: 0.75rem;
-}
-
-.heroLogo {
-  display: block;
-  width: 48px;
-  height: 48px;
-  object-fit: contain;
-  flex-shrink: 0;
-}
-
-.heroBrandName {
-  font-family: var(--font-display);
-  font-size: clamp(1.35rem, 3vw, 1.85rem);
-  letter-spacing: 0.04em;
-  line-height: 1;
-  margin: 0;
-  text-transform: uppercase;
-  color: var(--color-ink-inverse);
 }
 
 .heroCopy h1,
 .heroTitle {
   font-family: var(--font-display);
-  font-size: clamp(2.35rem, 7vw, 4.75rem);
-  line-height: 0.98;
-  letter-spacing: 0.02em;
+  font-size: var(--text-hero);
+  line-height: var(--text-hero--line-height);
+  letter-spacing: var(--text-hero--letter-spacing);
   margin: 0;
-  max-width: 20ch;
+  max-width: none;
   text-transform: uppercase;
+}
+
+@media (min-width: 1024px) {
+  .heroCopy h1 :global(.motion-mask-line),
+  .heroTitle :global(.motion-mask-line) {
+    white-space: nowrap;
+  }
 }
 
 .heroAccent {
@@ -161,20 +196,12 @@
   gap: 0.85rem;
 }
 
-.heroCopy > div > p,
-.heroCopy p,
 .heroSupport > p {
   margin: 0;
   max-width: 56ch;
   color: var(--color-muted-on-field);
   font-size: var(--text-body-lg);
   line-height: var(--text-body-lg--line-height);
-}
-
-.heroCopy .heroBrandName {
-  max-width: none;
-  font-size: clamp(1.35rem, 3vw, 1.85rem);
-  color: var(--color-ink-inverse);
 }
 
 .heroActions {
@@ -1198,8 +1225,7 @@ a.googleProofAuthorName:hover {
     height: 200px;
     min-height: 200px;
     max-height: 200px;
-    margin-top: 0.15rem;
-    border-top: 1px solid var(--color-border-on-field, rgb(255 255 255 / 0.08));
+    margin-top: 0;
   }
 
   .heroMedia > *,
@@ -1211,13 +1237,8 @@ a.googleProofAuthorName:hover {
   }
 
   .heroCopy {
-    padding: 1.1rem var(--spacing-gutter) 1.35rem;
+    padding: 1.1rem var(--spacing-gutter) 1.25rem;
     gap: 0.7rem;
-  }
-
-  /* Header already carries brand — drop duplicate lockup on small screens */
-  .heroBrand {
-    display: none;
   }
 
   .heroStack:empty {

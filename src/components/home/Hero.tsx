@@ -1,4 +1,3 @@
-import Image from "next/image";
 import Link from "next/link";
 import { MaskedLines } from "@/components/motion";
 import { PulseMedia } from "@/components/media";
@@ -7,7 +6,6 @@ import { PulseCta } from "./pulse/PulseMotion";
 import styles from "./pulse/pulse-home.module.css";
 
 export type HeroProps = {
-  brandName: string;
   title: string;
   titleLines?: string[];
   description: string;
@@ -17,11 +15,10 @@ export type HeroProps = {
 
 /**
  * Homepage hero — H1 leads; copy/CTA follow after headline is readable.
+ * Header already carries brand; this surface does not repeat the lockup.
  * Optional editorial media when an owner-approved illustrative slot resolves.
- * Flag false still renders illustrative-ai; synthetic-preview remains concept-only.
  */
 export function Hero({
-  brandName,
   title,
   titleLines,
   description,
@@ -38,21 +35,9 @@ export function Hero({
         .filter(Boolean)
         .join(" ")}
       aria-labelledby="home-hero-title"
-      data-media-layout={withMedia ? "editorial-split" : "text-led"}
+      data-media-layout={withMedia ? "editorial-blend" : "text-led"}
     >
       <div className={styles.heroCopy}>
-        <div className={`hero-brand-motion ${styles.heroBrand}`}>
-          <Image
-            src="/brand/ankits-studio-symbol-transparent.png"
-            alt=""
-            width={48}
-            height={48}
-            className={styles.heroLogo}
-            priority
-          />
-          <p className={styles.heroBrandName}>{brandName}</p>
-        </div>
-
         <MaskedLines
           id="home-hero-title"
           as="h1"
@@ -81,10 +66,10 @@ export function Hero({
         <div className={styles.heroMedia}>
           <PulseMedia
             item={media}
-            overlay
+            overlay={false}
             priority
             reveal={false}
-            sizes="(max-width: 1023px) 100vw, 55vw"
+            sizes="100vw"
           />
         </div>
       ) : null}

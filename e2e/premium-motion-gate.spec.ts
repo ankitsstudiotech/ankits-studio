@@ -15,19 +15,15 @@ test.describe("premium motion gate", () => {
   test("hero support stays after headline in DOM order", async ({ page }) => {
     await page.goto("/");
     const order = await page.evaluate(() => {
-      const brand = document.querySelector(".hero-brand-motion");
       const title = document.querySelector("#home-hero-title");
       const support = document.querySelector(".hero-support");
-      if (!brand || !title || !support) return null;
-      const pos = (a: Element, b: Element) =>
-        a.compareDocumentPosition(b) & Node.DOCUMENT_POSITION_FOLLOWING ? 1 : -1;
-      return {
-        brandBeforeTitle: pos(brand, title) === 1,
-        titleBeforeSupport: pos(title, support) === 1,
-      };
+      if (!title || !support) return null;
+      const following =
+        title.compareDocumentPosition(support) & Node.DOCUMENT_POSITION_FOLLOWING;
+      return { titleBeforeSupport: following !== 0 };
     });
-    expect(order?.brandBeforeTitle).toBe(true);
     expect(order?.titleBeforeSupport).toBe(true);
+    await expect(page.locator("section[aria-labelledby='home-hero-title'] .hero-brand-motion")).toHaveCount(0);
   });
 
   test("programme rows expose motion tone attributes", async ({ page }) => {

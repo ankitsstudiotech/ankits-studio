@@ -16,6 +16,9 @@ test.describe("homepage visual system gate", () => {
       /ankits-studio-symbol-transparent/,
     );
     await expect(page.locator("header .bg-white")).toHaveCount(0);
+    const hero = page.locator("section[aria-labelledby='home-hero-title']");
+    await expect(hero.locator("img[src*='ankits-studio-symbol']")).toHaveCount(0);
+    await expect(hero.locator(".hero-brand-motion")).toHaveCount(0);
 
     const body = await page.locator("body").innerText();
     expect(body).not.toMatch(/open neighbourhood studio/i);
