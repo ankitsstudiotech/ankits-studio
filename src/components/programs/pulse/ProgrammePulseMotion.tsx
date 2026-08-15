@@ -57,7 +57,7 @@ export function ProgrammeLaneLink({
       <h3 className={styles.laneName}>{name}</h3>
       <p className={styles.laneDesc}>{description}</p>
       {meta ? <p className={styles.laneMeta}>{meta}</p> : null}
-      <span className={styles.cue} aria-hidden />
+      <span className={`programme-cue ${styles.cue}`} aria-hidden />
     </motion.a>
   );
 }

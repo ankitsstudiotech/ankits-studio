@@ -240,10 +240,9 @@ html.prm .hero-accent-motion {
 /* Pattern C — accent line */
 .motion-accent-line {
   display: block;
-  height: 2px;
-  width: 100%;
-  max-width: 4.5rem;
-  background: color-mix(in srgb, var(--color-accent) 70%, transparent);
+  height: var(--cue-thickness);
+  width: var(--cue-length);
+  background: var(--color-accent);
   transform-origin: left center;
   transform: scaleX(0.35);
   transition: transform var(--motion-base) var(--ease-enter);

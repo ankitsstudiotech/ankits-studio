@@ -157,7 +157,9 @@
   --rule-structural-width: 1px;
   --rule-structural: var(--color-border-on-field);
   --cue-length: 2.35rem;
-  --cue-thickness: 3px;
+  --cue-thickness: 2px;
+  --cue-hover-scale: 1.9;
+  --cue-duration: 200ms;
 
   --breakpoint-sm: 640px;
   --breakpoint-md: 768px;

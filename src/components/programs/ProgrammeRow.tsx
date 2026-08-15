@@ -22,7 +22,8 @@ export type ProgrammeRowProps = {
 };
 
 /**
- * Shared programme discovery row — one family, cluster + tone personalities.
+ * Shared programme discovery row — one family.
+ * Programme identity is composition/content/media, not cue colour or segments.
  * Hover/press cues are CSS (scaleX / transform). No motion/react on the row
  * so homepage discovery does not hydrate eight Motion islands on first load.
  */
@@ -55,16 +56,7 @@ export function ProgrammeRow({
         <TitleTag className={styles.name}>{name}</TitleTag>
         <p className={styles.description}>{description}</p>
         <span className={styles.cueTrack} aria-hidden>
-          <span className={styles.cue} data-motion-cue />
-          {tone === "fluid" || tone === "expressive" ? (
-            <>
-              <span className={styles.cueSeg} data-motion-cue data-seg="2" />
-              <span className={styles.cueSeg} data-motion-cue data-seg="3" />
-            </>
-          ) : null}
-          {tone === "ceremonial" ? (
-            <span className={styles.cueFine} data-motion-cue />
-          ) : null}
+          <span className={`programme-cue ${styles.cue}`} data-motion-cue />
         </span>
       </div>
       {meta ? <p className={styles.meta}>{meta}</p> : null}

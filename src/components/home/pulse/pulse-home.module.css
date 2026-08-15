@@ -189,13 +189,7 @@
 }
 
 .heroAccent {
-  display: block;
-  width: var(--cue-length);
-  height: var(--cue-thickness);
   margin-top: 0.35rem;
-  background: color-mix(in srgb, var(--color-accent) 75%, transparent);
-  transform-origin: left center;
-  transform: scaleX(1);
 }
 
 .heroSupport {

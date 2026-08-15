@@ -116,6 +116,12 @@ design-token set, and the Vitest/Playwright/axe-core testing foundation
 |---|---|---|---|
 | Integrate owner-approved Corporate Wellness illustrative hero + close eight-programme media acceptance. Catalogue, Service-family composition, screenshots, tests. No redesign, no Reviews, no deploy. | Cursor | Done | Branch `revamp/studio-pulse-production`. Two commits: feat integration + test acceptance gate. |
 
+## Production Bug Batch 02 — Programme accent cue + divider grammar (active)
+
+| Task | Owner | Status | Notes |
+|---|---|---|---|
+| Unify programme accent cues (one solid purple primitive, one hover model, Wedding single line). Structural dividers stay 1px solid neutral. No Maps URL batch. Then production deploy. | Cursor | **Done** | Checkpoint `studio-pulse-before-production-bug-batch-02` @ `7c31d20`. Evidence `docs/revamp/screenshots/production-bug-batch-02/`. Production deploy follows. |
+
 ## Production Bug Batch 01 — Homepage + shared desktop spatial system (active)
 
 | Task | Owner | Status | Notes |

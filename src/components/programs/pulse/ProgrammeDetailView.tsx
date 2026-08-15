@@ -274,7 +274,7 @@ export function ProgrammeDetailView({
                 <ProgrammePulseCta href={whatsappHref}>{whatsappLabel}</ProgrammePulseCta>
               </div>
             </div>
-            <span className={`hero-accent-motion ${styles.detailAccent}`} aria-hidden />
+            <span className={`hero-accent-motion programme-cue ${styles.detailAccent}`} aria-hidden />
           </div>
 
           {heroMedia ? (

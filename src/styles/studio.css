@@ -79,6 +79,25 @@
   margin-inline: 0;
 }
 
+/* Programme accent cue — one shared primitive (Production Bug Batch 02).
+   Short solid purple. Not a structural divider. Decorative; aria-hidden in markup. */
+.programme-cue {
+  display: block;
+  width: var(--cue-length);
+  height: var(--cue-thickness);
+  background: var(--color-accent);
+  transform-origin: left center;
+  transform: scaleX(1);
+  pointer-events: none;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .programme-cue {
+    transform: none;
+    transition: none;
+  }
+}
+
 .pulse-heading-stack {
   display: flex;
   flex-direction: column;

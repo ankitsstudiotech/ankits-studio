@@ -51,17 +51,23 @@ Structural rules stay static. Do not animate them.
 
 ## Accent cue
 
-Short personality line, not a divider:
+One shared programme cue. Not a divider. Not programme-specific.
 
-- Length: `--cue-length` (`2.35rem`)
-- Thickness: `--cue-thickness` (`3px`)
+- Primitive: `.programme-cue`
+- Colour: `--color-accent` (`#6b2f7a`) only
+- Length: `--cue-length` (`2.35rem`, ~38px)
+- Thickness: `--cue-thickness` (`2px`)
 - Alignment: left of the copy stack, below description
-- Motion: `transform: scaleX(...)` only (never `width`)
-- Personality via colour, timing, and optional segments (`cueSeg` / `cueFine`)
+- Hover/focus: `transform: scaleX(var(--cue-hover-scale))` (`1.9`) from the left
+- No segments, no second line, no dashed/gradient tracks, no per-programme colour
 
-Visitor grammar: **short coloured line = cue**. **Long hairline = structure**.
+Visitor grammar: **short purple line = cue**. **Long hairline = structure**.
+
+Programme identity is expressed through composition, content, and media, not through cue colours or segment counts.
 
 Reduced motion: cues render at their rest `scaleX(1)` immediately.
+
+See `docs/revamp/PRODUCTION-BUG-BATCH-02-LINE-GRAMMAR.md`.
 
 ## Dark surface hierarchy
 

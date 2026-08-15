@@ -59,7 +59,7 @@ export function Hero({
           </div>
         </div>
 
-        <span className={`hero-accent-motion ${styles.heroAccent}`} aria-hidden />
+        <span className={`hero-accent-motion programme-cue ${styles.heroAccent}`} aria-hidden />
       </div>
 
       {media ? (
