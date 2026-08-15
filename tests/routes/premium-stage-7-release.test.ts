@@ -64,7 +64,9 @@ describe("Stage 7 — redirects links and release environment", () => {
 
   it("exposes Maps URLs with safe attributes in location surfaces", () => {
     for (const branch of getPubliclyListedBranches()) {
-      expect(getBranchMapsUrl(branch)).toMatch(/^https:\/\/maps\.app\.goo\.gl\//);
+      expect(getBranchMapsUrl(branch)).toMatch(/^https:\/\/www\.google\.com\/maps\?cid=\d+$/);
+      expect(getBranchMapsUrl(branch)).not.toMatch(/\/maps\/dir\//);
+      expect(getBranchMapsUrl(branch)).not.toMatch(/destination=/);
     }
     const row = read("src", "components", "locations", "BranchRow.tsx");
     expect(row).toMatch(/noopener noreferrer/);

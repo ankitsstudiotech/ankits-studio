@@ -23,7 +23,7 @@ test.describe("homepage visual system gate", () => {
     const body = await page.locator("body").innerText();
     expect(body).not.toMatch(/open neighbourhood studio/i);
 
-    const footer = await page.locator("footer").innerText();
+    const footer = await page.getByRole("contentinfo").innerText();
     expect(footer).not.toMatch(/\bTrainers\b/);
     expect(footer).not.toMatch(/Member stories/i);
     expect(footer).not.toMatch(/\bBlog\b/);

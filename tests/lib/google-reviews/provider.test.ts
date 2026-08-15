@@ -27,7 +27,8 @@ describe("Google social proof provider", () => {
     if (proof.mode !== "external-links") return;
     expect(proof.branches).toHaveLength(4);
     for (const branch of proof.branches) {
-      expect(branch.mapsUrl).toMatch(/^https:\/\/maps\.app\.goo\.gl\//);
+      expect(branch.mapsUrl).toMatch(/^https:\/\/www\.google\.com\/maps\?cid=\d+$/);
+      expect(branch.mapsUrl).not.toMatch(/\/maps\/dir\/|destination=/);
     }
   });
 

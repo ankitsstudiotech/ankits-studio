@@ -29,7 +29,8 @@ describe("location structured data — ADR-018", () => {
       expect(jsonLd?.address?.addressCountry).toBe("IN");
       expect(jsonLd?.telephone).toBe(branch.phone);
       expect(jsonLd?.openingHoursSpecification).toHaveLength(7);
-      expect(jsonLd?.hasMap).toMatch(/^https:\/\/maps\.app\.goo\.gl\//);
+      expect(jsonLd?.hasMap).toMatch(/^https:\/\/www\.google\.com\/maps\?cid=\d+$/);
+      expect(jsonLd?.hasMap).not.toMatch(/\/maps\/dir\/|destination=/);
       expect(jsonLd?.parentOrganization?.name).toMatch(/Ankit/);
       const blob = serializeJsonLd(jsonLd!);
       expect(blob).not.toMatch(FORBIDDEN);
@@ -68,7 +69,8 @@ describe("location structured data — ADR-018", () => {
     expect(getBranches()).toHaveLength(4);
     for (const branch of getBranches()) {
       const url = getBranchMapsUrl(branch);
-      expect(url).toMatch(/^https:\/\/maps\.app\.goo\.gl\//);
+      expect(url).toMatch(/^https:\/\/www\.google\.com\/maps\?cid=\d+$/);
+      expect(url).not.toMatch(/\/maps\/dir\/|destination=/);
     }
   });
 

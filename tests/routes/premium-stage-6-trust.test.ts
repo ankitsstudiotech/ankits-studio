@@ -55,7 +55,8 @@ describe("Stage 6 — verified business and local trust", () => {
     expect(branches).toHaveLength(4);
     for (const branch of branches) {
       const url = getBranchMapsUrl(branch);
-      expect(url, branch.slug).toMatch(/^https:\/\/maps\.app\.goo\.gl\//);
+      expect(url, branch.slug).toMatch(/^https:\/\/www\.google\.com\/maps\?cid=\d+$/);
+      expect(url).not.toMatch(/\/maps\/dir\/|destination=/);
       expect(url).not.toMatch(/localhost/);
     }
   });
