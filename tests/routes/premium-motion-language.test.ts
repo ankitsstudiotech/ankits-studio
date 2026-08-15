@@ -33,8 +33,11 @@ describe("premium motion language — Stage 3", () => {
     const row = read("src/components/programs/ProgrammeRow.tsx");
     const css = read("src/components/programs/programme-row.module.css");
     expect(row).toMatch(/data-motion-tone/);
+    expect(row).toMatch(/programme-cue/);
+    expect(row).not.toMatch(/cueSeg|cueFine/);
     expect(css).toMatch(/scaleX/);
     expect(css).not.toMatch(/\.row:hover \.cue \{\s*width:/);
+    expect(css).not.toMatch(/cueSeg|cueFine/);
   });
 
   it("hero uses MaskedLines and CSS-timed hierarchy (no wrapping HeroReveal)", () => {

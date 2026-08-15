@@ -36,8 +36,9 @@ test.describe("premium motion gate", () => {
     await expect(yoga).toHaveAttribute("data-motion-tone", "calm");
     await expect(wedding).toHaveAttribute("data-motion-tone", "ceremonial");
     await expect(zumba).toHaveAttribute("data-motion-tone", "fluid");
-    await expect(zumba.locator("[data-seg='2']")).toHaveCount(1);
-    await expect(wedding.locator("[data-motion-cue]").nth(1)).toBeVisible();
+    await expect(page.locator('a[href^="/programs/"] [data-motion-cue]')).toHaveCount(8);
+    await expect(zumba.locator("[data-seg]")).toHaveCount(0);
+    await expect(wedding.locator("[data-motion-cue]")).toHaveCount(1);
     await ft.hover();
     await yoga.focus();
     await expect(yoga).toBeFocused();
