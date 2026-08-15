@@ -1,4 +1,5 @@
 import * as mock from "./mock";
+import { toMapsPlaceListingHref } from "./maps-place-listing";
 import type {
   Branch,
   BranchSlug,
@@ -249,13 +250,23 @@ export function getBranchContactLinks(branch: Branch): {
 }
 
 /**
- * Owner-confirmed Maps short URL for a branch, or null when pending.
- * Does not invent addresses or coordinates. Safe to show as an external
- * "Open in Google Maps" action when provenance is owner_confirmed.
+ * Owner-confirmed Maps short URL as stored in branch content, or null when pending.
+ * This URL currently 302s to Google's /maps/dir/ navigation state — do not use
+ * it as a public href. Use `getBranchMapsUrl` for outbound listing links.
  */
-export function getBranchMapsUrl(branch: Branch): string | null {
+export function getBranchMapsOwnerUrl(branch: Branch): string | null {
   if (branch.fieldProvenance.mapsUrl !== "owner_confirmed") return null;
   return branch.mapsUrl ?? branch.mapsShortUrl ?? null;
+}
+
+/**
+ * Public Maps href for a branch: the place listing for the same owner-confirmed
+ * destination. Never a directions / navigation URL.
+ */
+export function getBranchMapsUrl(branch: Branch): string | null {
+  const ownerUrl = getBranchMapsOwnerUrl(branch);
+  if (!ownerUrl) return null;
+  return toMapsPlaceListingHref(ownerUrl);
 }
 
 /** Physical floor programmes only — never home/online delivery modes. */
@@ -338,4 +349,10 @@ export {
   shouldNoIndex,
   shouldShowMockPreviewBanner,
 } from "./content-mode";
+export {
+  isMapsDirectionsHref,
+  OWNER_CONFIRMED_MAPS_SHORT_URLS,
+  OWNER_MAPS_PLACE_LISTING_HREFS,
+  toMapsPlaceListingHref,
+} from "./maps-place-listing";
 export * from "./schema";

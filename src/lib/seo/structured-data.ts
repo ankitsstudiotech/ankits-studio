@@ -1,4 +1,4 @@
-import type { Branch, BlogPost, BusinessIdentity, Faq, Programme } from "@/content";
+import { getBranchMapsUrl, type Branch, type BlogPost, type BusinessIdentity, type Faq, type Programme } from "@/content";
 import { siteConfig } from "@/lib/metadata";
 import { buildCanonicalUrl } from "./canonical";
 import type {
@@ -121,11 +121,9 @@ export function buildLocalBusinessJsonLd(branch: Branch): LocalBusinessJsonLd | 
     }));
   }
 
-  if (branch.fieldProvenance.mapsUrl === "owner_confirmed") {
-    const maps = branch.mapsUrl ?? branch.mapsShortUrl;
-    if (maps) {
-      jsonLd.hasMap = maps;
-    }
+  const maps = getBranchMapsUrl(branch);
+  if (maps) {
+    jsonLd.hasMap = maps;
   }
 
   return jsonLd;
