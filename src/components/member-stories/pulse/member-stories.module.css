@@ -259,8 +259,6 @@
 
   .band + .band {
     padding-top: calc(var(--spacing-section) + 1.35rem);
-    border-top-width: 2px;
-    border-top-color: rgb(255 255 255 / 0.14);
   }
 
   .body,

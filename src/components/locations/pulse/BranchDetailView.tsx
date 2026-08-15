@@ -178,6 +178,7 @@ export function BranchDetailView({
             <li key={programme.slug}>
               <Link
                 href={`/programs/${programme.slug}`}
+                className="pulse-related-pair"
                 data-emphasis={programme.slug === "functional-training" ? "primary" : undefined}
               >
                 <span className={styles.serviceName}>{programme.name}</span>
@@ -234,7 +235,7 @@ export function BranchDetailView({
           <ul className={styles.relatedList}>
             {otherProgrammes.map((programme) => (
               <li key={programme.slug}>
-                <Link href={`/programs/${programme.slug}`}>
+                <Link href={`/programs/${programme.slug}`} className="pulse-related-pair">
                   <span className={styles.serviceName}>{programme.name}</span>
                   <span aria-hidden>→</span>
                 </Link>

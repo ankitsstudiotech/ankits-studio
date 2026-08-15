@@ -79,6 +79,18 @@
   margin-inline: 0;
 }
 
+/* Related identity + short meta stay adjacent (Batch 01 / 03).
+   Do not grow a 42rem first track — these pairs are short labels, not
+   programme-row copy columns. Breathing space stays outside the group. */
+.pulse-related-pair {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: flex-start;
+  gap: 0.65rem 1.75rem;
+  width: 100%;
+}
+
 /* Programme accent cue — one shared primitive (Production Bug Batch 02).
    Short solid purple. Not a structural divider. Decorative; aria-hidden in markup. */
 .programme-cue {

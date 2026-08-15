@@ -116,6 +116,12 @@ design-token set, and the Vitest/Playwright/axe-core testing foundation
 |---|---|---|---|
 | Integrate owner-approved Corporate Wellness illustrative hero + close eight-programme media acceptance. Catalogue, Service-family composition, screenshots, tests. No redesign, no Reviews, no deploy. | Cursor | Done | Branch `revamp/studio-pulse-production`. Two commits: feat integration + test acceptance gate. |
 
+## Production Bug Batch 03 — Global recurrence sweep + Maps semantics (active)
+
+| Task | Owner | Status | Notes |
+|---|---|---|---|
+| Sweep public app for Batch 01/02 recurrence P1s; fix Maps destination semantics using owner-confirmed URLs. No redesign, no Reviews fetch, no new media. Then production deploy. | Cursor | In progress | Checkpoint `studio-pulse-before-production-bug-batch-03-global-sweep` @ `ff079ca`. Batch 01 `8cff9ce` and Batch 02 `f08cdbd` are ancestors. |
+
 ## Production Bug Batch 02 — Programme accent cue + divider grammar (active)
 
 | Task | Owner | Status | Notes |

@@ -136,7 +136,7 @@ export default function AboutPage() {
             <ol className={styles.disciplineIndex}>
               {programmes.map((programme, index) => (
                 <li key={programme.slug}>
-                  <Link href={`/programs/${programme.slug}`}>
+                  <Link href={`/programs/${programme.slug}`} className="pulse-related-pair">
                     <span>
                       {String(index + 1).padStart(2, "0")} · {programme.name}
                     </span>

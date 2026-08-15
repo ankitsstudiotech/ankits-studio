@@ -895,7 +895,6 @@
 .relatedList a:hover,
 .relatedLink:hover {
   color: var(--color-volt);
-  border-bottom-color: color-mix(in srgb, var(--color-volt) 55%, transparent);
 }
 
 .relatedList a:focus-visible,

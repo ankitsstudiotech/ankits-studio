@@ -145,8 +145,6 @@
   .band + .band {
     padding-top: calc(var(--spacing-section) + 1.35rem);
     margin-top: 0.35rem;
-    border-top-width: 2px;
-    border-top-color: rgb(255 255 255 / 0.14);
   }
 
   .openFacts {
@@ -290,10 +288,7 @@
 }
 
 .disciplineIndex a {
-  display: flex;
   align-items: center;
-  justify-content: space-between;
-  gap: 1rem;
   min-height: 48px;
   padding: 0.55rem 0;
   border-bottom: var(--rule-structural-width) solid var(--rule-structural);
