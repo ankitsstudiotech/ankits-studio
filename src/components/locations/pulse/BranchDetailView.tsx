@@ -167,22 +167,25 @@ export function BranchDetailView({
         </section>
       )}
 
-      <section className={styles.band} aria-labelledby="branch-services">
+      <section
+        className={styles.band}
+        data-discovery="service-index"
+        aria-labelledby="branch-services"
+      >
         <SectionReveal>
           <h2 id="branch-services" className={styles.sectionTitle}>
             Available at this branch
           </h2>
         </SectionReveal>
-        <ul className={styles.serviceList}>
+        <ul className={styles.serviceIndex}>
           {orderedPhysical.map((programme) => (
             <li key={programme.slug}>
               <Link
                 href={`/programs/${programme.slug}`}
-                className="pulse-related-pair"
+                className={styles.serviceIndexLink}
                 data-emphasis={programme.slug === "functional-training" ? "primary" : undefined}
               >
                 <span className={styles.serviceName}>{programme.name}</span>
-                <span aria-hidden>→</span>
               </Link>
             </li>
           ))}
@@ -226,18 +229,21 @@ export function BranchDetailView({
       </section>
 
       {otherProgrammes.length > 0 ? (
-        <section className={styles.band} aria-labelledby="branch-other-ways">
+        <section
+          className={styles.band}
+          data-discovery="service-index"
+          aria-labelledby="branch-other-ways"
+        >
           <SectionReveal>
             <h2 id="branch-other-ways" className={styles.sectionTitle}>
               Home, online &amp; corporate
             </h2>
           </SectionReveal>
-          <ul className={styles.relatedList}>
+          <ul className={styles.serviceIndex}>
             {otherProgrammes.map((programme) => (
               <li key={programme.slug}>
-                <Link href={`/programs/${programme.slug}`} className="pulse-related-pair">
+                <Link href={`/programs/${programme.slug}`} className={styles.serviceIndexLink}>
                   <span className={styles.serviceName}>{programme.name}</span>
-                  <span aria-hidden>→</span>
                 </Link>
               </li>
             ))}

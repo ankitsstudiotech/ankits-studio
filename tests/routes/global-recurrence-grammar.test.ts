@@ -25,6 +25,7 @@ describe("global recurrence grammar — Bug Batch 03", () => {
     const studio = read("src/styles/studio.css");
     expect(studio).toMatch(/--rule-structural-width\)\s+solid\s+var\(--rule-structural\)/);
     expect(studio).toMatch(/\.pulse-related-pair/);
+    expect(studio).toMatch(/width:\s*auto/);
     expect(read("src/components/about/pulse/about.module.css")).not.toMatch(
       /border-top-width:\s*2px/,
     );
@@ -39,9 +40,11 @@ describe("global recurrence grammar — Bug Batch 03", () => {
     const about = read("src/components/about/pulse/about.module.css");
     expect(about).not.toMatch(/\.disciplineIndex a[\s\S]*justify-content:\s*space-between/);
     const detail = read("src/components/locations/pulse/BranchDetailView.tsx");
-    expect(detail).toMatch(/pulse-related-pair/);
+    expect(detail).toMatch(/serviceIndex/);
+    expect(detail).not.toMatch(/pulse-related-pair/);
     const aboutPage = read("src/app/(marketing)/about/page.tsx");
-    expect(aboutPage).toMatch(/pulse-related-pair/);
+    expect(aboutPage).toMatch(/disciplineLink/);
+    expect(aboutPage).not.toMatch(/pulse-related-pair/);
   });
 
   it("keeps the Batch 02 programme-cue primitive", () => {

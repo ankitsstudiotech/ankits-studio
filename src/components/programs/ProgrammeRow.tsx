@@ -3,6 +3,8 @@ import { type MotionTone, toneFromProgrammeSlug } from "@/components/motion/toke
 
 export type ProgrammeCluster = "train" | "move" | "celebrate" | "teams";
 export type ProgrammeEnergy = "calm" | "standard" | "high";
+/** Visual composition only — data fields stay shared. */
+export type ProgrammeRowLayout = "featured" | "cell" | "index";
 
 export type ProgrammeRowProps = {
   name: string;
@@ -19,11 +21,13 @@ export type ProgrammeRowProps = {
   programmeSlug?: string;
   /** Heading level for the programme name (default h3). */
   titleAs?: "h3" | "h4";
+  /** Contextual visual variant. Never stretch sparse copy through the page track. */
+  layout?: ProgrammeRowLayout;
 };
 
 /**
- * Shared programme discovery row — one family.
- * Programme identity is composition/content/media, not cue colour or segments.
+ * Shared programme discovery data row.
+ * Visual anatomy is layout-specific: featured editorial, matrix cell, or dense index.
  * Hover/press cues are CSS (scaleX / transform). No motion/react on the row
  * so homepage discovery does not hydrate eight Motion islands on first load.
  */
@@ -38,10 +42,12 @@ export function ProgrammeRow({
   motionTone,
   programmeSlug,
   titleAs: TitleTag = "h3",
+  layout = "index",
 }: ProgrammeRowProps) {
   const tone =
     motionTone ??
     (programmeSlug ? toneFromProgrammeSlug(programmeSlug) : clusterTone(cluster, energy));
+  const splitSupport = layout === "featured" || layout === "index";
 
   return (
     <a
@@ -50,16 +56,24 @@ export function ProgrammeRow({
       data-cluster={cluster}
       data-emphasis={emphasis}
       data-energy={energy}
+      data-layout={layout}
       data-motion-tone={tone}
     >
       <div className={styles.copy}>
         <TitleTag className={styles.name}>{name}</TitleTag>
-        <p className={styles.description}>{description}</p>
+        {splitSupport ? null : <p className={styles.description}>{description}</p>}
         <span className={styles.cueTrack} aria-hidden>
           <span className={`programme-cue ${styles.cue}`} data-motion-cue />
         </span>
       </div>
-      {meta ? <p className={styles.meta}>{meta}</p> : null}
+      {splitSupport ? (
+        <div className={styles.support}>
+          <p className={styles.description}>{description}</p>
+          {meta ? <p className={styles.meta}>{meta}</p> : null}
+        </div>
+      ) : meta ? (
+        <p className={styles.meta}>{meta}</p>
+      ) : null}
     </a>
   );
 }

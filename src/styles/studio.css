@@ -80,15 +80,16 @@
 }
 
 /* Related identity + short meta stay adjacent (Batch 01 / 03).
-   Do not grow a 42rem first track — these pairs are short labels, not
-   programme-row copy columns. Breathing space stays outside the group. */
+   Width is auto so sparse pairs cannot claim the full page track.
+   Discovery lists use contextual variants, not this helper. */
 .pulse-related-pair {
   display: flex;
   flex-wrap: wrap;
   align-items: center;
   justify-content: flex-start;
   gap: 0.65rem 1.75rem;
-  width: 100%;
+  width: auto;
+  max-width: 100%;
 }
 
 /* Programme accent cue — one shared primitive (Production Bug Batch 02).

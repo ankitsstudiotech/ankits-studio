@@ -115,7 +115,10 @@ export default function AboutPage() {
         </RouteOpening>
       </section>
 
-      <section className={styles.band} aria-labelledby="about-approach-disciplines">
+      <section
+        className={styles.band}
+        aria-labelledby="about-approach-disciplines"
+      >
         <div className={`${styles.diffGrid} pulse-split`}>
           <SectionReveal pattern="B" side="left">
             <h2 id="about-approach-disciplines" className={styles.sectionTitle}>
@@ -133,20 +136,21 @@ export default function AboutPage() {
               {about.disciplinesTitle}
             </h2>
             <p className={styles.body}>{about.disciplinesBody}</p>
-            <ol className={styles.disciplineIndex}>
-              {programmes.map((programme, index) => (
-                <li key={programme.slug}>
-                  <Link href={`/programs/${programme.slug}`} className="pulse-related-pair">
-                    <span>
-                      {String(index + 1).padStart(2, "0")} · {programme.name}
-                    </span>
-                    <span className={styles.disciplineMeta}>
-                      {deliveryLabel(programme.deliveryMode)}
-                    </span>
-                  </Link>
-                </li>
-              ))}
-            </ol>
+            <ol className={styles.disciplineIndex} data-discovery="meta-index">
+                {programmes.map((programme, index) => (
+                  <li key={programme.slug}>
+                    <Link href={`/programs/${programme.slug}`} className={styles.disciplineLink}>
+                      <span className={styles.disciplineNum}>
+                        {String(index + 1).padStart(2, "0")}
+                      </span>
+                      <span className={styles.disciplineName}>{programme.name}</span>
+                      <span className={styles.disciplineMeta}>
+                        {deliveryLabel(programme.deliveryMode)}
+                      </span>
+                    </Link>
+                  </li>
+                ))}
+              </ol>
           </SectionReveal>
         </div>
       </section>

@@ -383,28 +383,30 @@ export function ProgrammeDetailView({
       {showRelated || showStudioLocations ? (
         <section
           className={styles.band}
+          data-discovery="related-close"
           aria-labelledby={
             showRelated ? "programme-related" : "programme-locations"
           }
         >
           <div
-            className={
-              showRelated && showStudioLocations ? styles.splitFacts : undefined
+            className={styles.relatedDiscovery}
+            data-columns={
+              showRelated && showStudioLocations ? "asymmetric" : "single"
             }
           >
             {showRelated ? (
-              <div>
+              <div className={styles.relatedPrimary}>
                 <SectionReveal>
                   <h2 id="programme-related" className={styles.sectionTitle}>
                     Related services
                   </h2>
                 </SectionReveal>
-                <ul className={styles.relatedList}>
+    <ul className={styles.relatedIndex} data-count={relatedItems.length}>
                   {relatedItems.map((item) => (
                     <li key={item.slug}>
                       <Link
                         href={`/programs/${item.slug}`}
-                        className={styles.relatedLink}
+                        className={styles.relatedIndexLink}
                       >
                         {item.name}
                       </Link>
@@ -414,7 +416,7 @@ export function ProgrammeDetailView({
               </div>
             ) : null}
             {showStudioLocations ? (
-              <div>
+              <div className={styles.relatedSecondary}>
                 <SectionReveal>
                   <h2 id="programme-locations" className={styles.sectionTitle}>
                     Locations
@@ -423,8 +425,8 @@ export function ProgrammeDetailView({
                 <p className={styles.glanceBody}>
                   Available across our four studios.
                 </p>
-                <Link href="/locations" className={styles.relatedLink}>
-                  Find a studio →
+                <Link href="/locations" className={styles.relatedFind}>
+                  Find a studio
                 </Link>
               </div>
             ) : null}

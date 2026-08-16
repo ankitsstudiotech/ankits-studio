@@ -48,4 +48,5 @@ export type {
   ProgrammeRowProps,
   ProgrammeCluster,
   ProgrammeEnergy,
+  ProgrammeRowLayout,
 } from "./ProgrammeRow";
