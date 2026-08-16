@@ -92,16 +92,22 @@ export function ProgrammeDiscovery({
   });
 
   return (
-    <section className={`${styles.field} ${styles.band}`} aria-labelledby="programmes-index-title">
+    <section
+      className={`${styles.field} ${styles.band}`}
+      data-discovery="programme-index"
+      aria-labelledby="programmes-index-title"
+    >
       <HeroReveal>
-        <h1 id="programmes-index-title" className={styles.bandTitle}>
-          Choose how you want to move
-        </h1>
-        <p className={styles.bandLede}>
-          Choose from fitness, movement and training options. Machine-free, coach-led sessions —
-          choose the format that fits your goals and routine. Ask which batch fits when you book a free
-          trial.
-        </p>
+        <header className={styles.indexIntro}>
+          <h1 id="programmes-index-title" className={styles.bandTitle}>
+            Choose how you want to move
+          </h1>
+          <p className={styles.bandLede}>
+            Choose from fitness, movement and training options. Machine-free, coach-led sessions —
+            choose the format that fits your goals and routine. Ask which batch fits when you book a free
+            trial.
+          </p>
+        </header>
       </HeroReveal>
 
       <div className={styles.clusters}>
@@ -122,20 +128,25 @@ export function ProgrammeDiscovery({
                 </h2>
                 <p className={styles.clusterLede}>{copy.lede}</p>
               </header>
-              <div className={styles.lanes}>
-                {items.map((programme) => (
-                  <ProgrammeRow
-                    key={programme.slug}
-                    href={`/programs/${programme.slug}`}
-                    name={programme.name}
-                    description={programme.shortDescription}
-                    meta={deliveryMeta(programme)}
-                    cluster={clusterId}
-                    energy={energyFromSlug(programme.slug)}
-                    programmeSlug={programme.slug}
-                    emphasis={programme.slug === "functional-training" ? "primary" : undefined}
-                  />
-                ))}
+              <div className={styles.lanes} data-matrix="index">
+                {items.map((programme) => {
+                  const isFeatured =
+                    programme.slug === "functional-training" || items.length === 1;
+                  return (
+                    <ProgrammeRow
+                      key={programme.slug}
+                      href={`/programs/${programme.slug}`}
+                      name={programme.name}
+                      description={programme.shortDescription}
+                      meta={deliveryMeta(programme)}
+                      cluster={clusterId}
+                      energy={energyFromSlug(programme.slug)}
+                      programmeSlug={programme.slug}
+                      emphasis={programme.slug === "functional-training" ? "primary" : undefined}
+                      layout={isFeatured ? "featured" : "cell"}
+                    />
+                  );
+                })}
               </div>
             </section>
           );

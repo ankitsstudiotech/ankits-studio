@@ -24,6 +24,7 @@ export function BranchExplorer({ locations }: BranchExplorerProps) {
     <section
       id="locations"
       className={`${styles.paperBand} ${styles.band}`}
+      data-discovery="branch-index"
       aria-labelledby="home-branches-title"
     >
       <SectionReveal pattern="A">

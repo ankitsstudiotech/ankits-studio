@@ -39,15 +39,69 @@ function slugFromHref(href: string): string {
   return parts[parts.length - 1] ?? "";
 }
 
+function ClusterBlock({
+  cluster,
+  matrix,
+}: {
+  cluster: ServiceCluster;
+  matrix: "train" | "move" | "pair";
+}) {
+  return (
+    <section
+      className={styles.cluster}
+      data-cluster={cluster.id}
+      aria-labelledby={`home-cluster-${cluster.id}`}
+    >
+      <GroupReveal>
+        <header className={styles.clusterHeader}>
+          <h3 id={`home-cluster-${cluster.id}`} className={styles.clusterTitle}>
+            {cluster.title}
+          </h3>
+          <p className={styles.clusterLede}>{cluster.lede}</p>
+        </header>
+      </GroupReveal>
+      <div className={styles.lanes} data-matrix={matrix}>
+        {cluster.programmes.map((programme) => {
+          const slug = programme.slug ?? slugFromHref(programme.href);
+          const layout =
+            programme.emphasis === "primary" && matrix === "train" ? "featured" : "cell";
+          return (
+            <ProgrammeRow
+              key={programme.href}
+              name={programme.name}
+              description={programme.shortDescription}
+              href={programme.href}
+              meta={programme.meta}
+              emphasis={programme.emphasis}
+              cluster={cluster.id}
+              energy={energyFromTempo(programme.tempo)}
+              motionTone={slug === "corporate-wellness" ? "direct" : toneFromProgrammeSlug(slug)}
+              programmeSlug={slug}
+              titleAs="h4"
+              layout={layout}
+            />
+          );
+        })}
+      </div>
+    </section>
+  );
+}
+
 /**
- * Editorial service discovery — Train / Move / Celebrate.
- * Section header uses Pattern A; rows carry cluster personalities.
+ * Editorial programme matrix — Train / Move / Celebrate / For Teams.
+ * Desktop uses the field; mobile stays a stacked reading order.
  */
 export function ProgrammeShowcase({ clusters, audienceNote }: ProgrammeShowcaseProps) {
+  const train = clusters.find((cluster) => cluster.id === "train");
+  const move = clusters.find((cluster) => cluster.id === "move");
+  const celebrate = clusters.find((cluster) => cluster.id === "celebrate");
+  const teams = clusters.find((cluster) => cluster.id === "teams");
+
   return (
     <section
       id="services"
       className={`${styles.field} ${styles.band}`}
+      data-discovery="programme-matrix"
       aria-labelledby="home-services-title"
     >
       <SectionReveal pattern="A">
@@ -61,45 +115,14 @@ export function ProgrammeShowcase({ clusters, audienceNote }: ProgrammeShowcaseP
       </SectionReveal>
 
       <div className={styles.clusters}>
-        {clusters.map((cluster) => (
-          <section
-            key={cluster.id}
-            className={styles.cluster}
-            data-cluster={cluster.id}
-            aria-labelledby={`home-cluster-${cluster.id}`}
-          >
-            <GroupReveal>
-              <header className={styles.clusterHeader}>
-                <h3 id={`home-cluster-${cluster.id}`} className={styles.clusterTitle}>
-                  {cluster.title}
-                </h3>
-                <p className={styles.clusterLede}>{cluster.lede}</p>
-              </header>
-            </GroupReveal>
-            <div className={styles.lanes}>
-              {cluster.programmes.map((programme) => {
-                const slug = programme.slug ?? slugFromHref(programme.href);
-                return (
-                  <ProgrammeRow
-                    key={programme.href}
-                    name={programme.name}
-                    description={programme.shortDescription}
-                    href={programme.href}
-                    meta={programme.meta}
-                    emphasis={programme.emphasis}
-                    cluster={cluster.id}
-                    energy={energyFromTempo(programme.tempo)}
-                    motionTone={
-                      slug === "corporate-wellness" ? "direct" : toneFromProgrammeSlug(slug)
-                    }
-                    programmeSlug={slug}
-                    titleAs="h4"
-                  />
-                );
-              })}
-            </div>
-          </section>
-        ))}
+        {train ? <ClusterBlock cluster={train} matrix="train" /> : null}
+        {move ? <ClusterBlock cluster={move} matrix="move" /> : null}
+        {celebrate || teams ? (
+          <div className={styles.clusterPair}>
+            {celebrate ? <ClusterBlock cluster={celebrate} matrix="pair" /> : null}
+            {teams ? <ClusterBlock cluster={teams} matrix="pair" /> : null}
+          </div>
+        ) : null}
       </div>
 
       {audienceNote ? <p className={styles.audienceNote}>{audienceNote}</p> : null}
