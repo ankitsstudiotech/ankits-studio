@@ -116,11 +116,17 @@ design-token set, and the Vitest/Playwright/axe-core testing foundation
 |---|---|---|---|
 | Integrate owner-approved Corporate Wellness illustrative hero + close eight-programme media acceptance. Catalogue, Service-family composition, screenshots, tests. No redesign, no Reviews, no deploy. | Cursor | Done | Branch `revamp/studio-pulse-production`. Two commits: feat integration + test acceptance gate. |
 
+## Production Design Repair Batch 04 — Systemic row-list composition (active)
+
+| Task | Owner | Status | Notes |
+|---|---|---|---|
+| Redesign Root Cause 1 sparse full-width row lists into contextual editorial variants. No About/branch hero, no snapshotFacts, no Reviews. Then production deploy. | Cursor | In progress | Checkpoint `studio-pulse-before-dead-space-row-redesign` @ `dfa7d35`. Occupancy gate 12/12 at 1536/1920. |
+
 ## Production Bug Batch 03 — Global recurrence sweep + Maps semantics (active)
 
 | Task | Owner | Status | Notes |
 |---|---|---|---|
-| Sweep public app for Batch 01/02 recurrence P1s; fix Maps destination semantics using owner-confirmed URLs. No redesign, no Reviews fetch, no new media. Then production deploy. | Cursor | In progress | Checkpoint `studio-pulse-before-production-bug-batch-03-global-sweep` @ `ff079ca`. Batch 01 `8cff9ce` and Batch 02 `f08cdbd` are ancestors. |
+| Sweep public app for Batch 01/02 recurrence P1s; fix Maps destination semantics using owner-confirmed URLs. No redesign, no Reviews fetch, no new media. Then production deploy. | Cursor | **Done** | Checkpoint `studio-pulse-before-production-bug-batch-03-global-sweep` @ `ff079ca`. Release `dfa7d35` / `dpl_5DjyjEVrdoostMX29wCtXH8KthzB` READY → https://ankits-studio.vercel.app. Evidence `docs/revamp/screenshots/production-bug-batch-03/`. |
 
 ## Production Bug Batch 02 — Programme accent cue + divider grammar (active)
 

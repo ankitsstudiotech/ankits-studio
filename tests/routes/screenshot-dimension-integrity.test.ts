@@ -117,6 +117,31 @@ describe("screenshot dimension integrity — CLS correction evidence", () => {
     }
   });
 
+  it("Batch 04 dead-space row redesign comparison sheet is 1800 CSS px wide", () => {
+    const abs = join(
+      process.cwd(),
+      "docs/revamp/screenshots/batch-04-dead-space-row-redesign/row-list-before-after-critical.png",
+    );
+    expect(existsSync(abs)).toBe(true);
+    const meta = pngHeader(abs);
+    expect(meta.width).toBe(1800);
+  });
+
+  it("Batch 04 after section clips at 1536 match the viewport width", () => {
+    const dir = join(process.cwd(), "docs/revamp/screenshots/batch-04-dead-space-row-redesign");
+    const cases = [
+      "after-home-programmes-1536x730.png",
+      "after-home-branches-1536x730.png",
+      "after-programs-index-1536x730.png",
+      "after-branch-available-1536x730.png",
+    ] as const;
+    for (const file of cases) {
+      const abs = join(dir, file);
+      expect(existsSync(abs), file).toBe(true);
+      expect(pngHeader(abs).width, file).toBe(1536);
+    }
+  });
+
   it("integrity JSON fails the pack when a PNG width does not match the viewport", () => {
     const reportPath = join(process.cwd(), "docs/revamp/AI-MEDIA-SCREENSHOT-INTEGRITY.json");
     expect(existsSync(reportPath)).toBe(true);
