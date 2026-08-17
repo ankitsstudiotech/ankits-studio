@@ -948,17 +948,8 @@ a.googleProofAuthorName:hover {
   }
 }
 
-.founderYear {
-  margin: 0 0 0.35rem;
-  font-family: var(--font-display);
-  font-size: clamp(4.25rem, 11vw, 8.5rem);
-  letter-spacing: 0.02em;
-  line-height: 0.78;
-  color: var(--ink-on-dark);
-}
-
 .founderKicker {
-  margin: 0 0 0.35rem;
+  margin: 0.35rem 0 0.45rem;
   font-size: var(--text-overline);
   font-weight: 600;
   letter-spacing: var(--text-overline--letter-spacing);
@@ -968,10 +959,10 @@ a.googleProofAuthorName:hover {
 
 .founderName {
   font-family: var(--font-display);
-  font-size: clamp(2rem, 4.5vw, 2.75rem);
-  letter-spacing: 0.04em;
-  line-height: 1;
-  margin: 0 0 0.35rem;
+  font-size: clamp(2.6rem, 6.5vw, 5.25rem);
+  letter-spacing: 0.03em;
+  line-height: 0.88;
+  margin: 0;
   text-transform: uppercase;
   color: var(--ink-on-dark);
 }
@@ -1024,9 +1015,8 @@ a.googleProofAuthorName:hover {
 }
 
 @media (max-width: 719px) {
-  .founderYear {
-    font-size: clamp(2.8rem, 18vw, 3.6rem);
-    margin-bottom: 0.2rem;
+  .founderName {
+    font-size: clamp(2.4rem, 14vw, 3.4rem);
   }
 
   .founderCopy {

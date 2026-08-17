@@ -34,6 +34,24 @@
   max-width: 36rem;
 }
 
+.teamChapter {
+  display: grid;
+  gap: 1.5rem 2.75rem;
+  width: 100%;
+}
+
+.teamChapter .communityMedia {
+  margin: 0;
+  max-width: none;
+}
+
+@media (min-width: 900px) {
+  .teamChapter[data-has-media="true"] {
+    grid-template-columns: minmax(16rem, 26rem) minmax(0, 1fr);
+    align-items: end;
+  }
+}
+
 .communityMedia figure,
 .founderMedia figure {
   border-radius: 0;

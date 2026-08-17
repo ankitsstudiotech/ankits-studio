@@ -20,7 +20,7 @@ export type FounderHomeMomentProps = {
  */
 export function FounderHomeMoment({
   name = "Ankit Nalawade",
-  foundedLabel = "Founded in Airoli · 2019",
+  foundedLabel = "Founded in Airoli",
   copy,
   aboutHref = "/about",
   chronology = [],
@@ -36,13 +36,12 @@ export function FounderHomeMoment({
     >
       <div className={styles.founderGrid}>
         <SectionReveal pattern="B" side="left">
-          <p className={styles.founderYear} aria-hidden="true">
-            {anchorYear}
-          </p>
-          <p className={styles.founderKicker}>Founder</p>
           <h2 id="home-founder-title" className={styles.founderName}>
             {name}
           </h2>
+          <p className={styles.founderKicker}>
+            Founder · since {anchorYear}
+          </p>
           <p className={styles.founderAnchor}>{foundedLabel}</p>
         </SectionReveal>
         <SectionReveal pattern="B" side="right">

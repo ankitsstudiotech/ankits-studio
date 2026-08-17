@@ -3,6 +3,7 @@ import Link from "next/link";
 import { PageBreadcrumb } from "@/components/layout/PageBreadcrumb";
 import { PageWithFooter } from "@/components/layout/PageWithFooter";
 import styles from "@/components/about/pulse/about.module.css";
+import { ClosingBand } from "@/components/conversion/ClosingBand";
 import { PulseMedia } from "@/components/media";
 import { RouteOpening, SectionReveal } from "@/components/motion";
 import { resolveSlotMedia } from "@/content/media";
@@ -68,8 +69,8 @@ export default function AboutPage() {
   const showFounder =
     about.founderStoryStatus === "verified" && Boolean(about.founderStory);
 
-  // Keep only FAQs that add something not already on the page.
-  const faqs = about.faqs.filter((item) => item.id === "about-faq-machine-free").slice(0, 1);
+  // Machine-free is already covered in the approach section — do not render a 1-item FAQ chapter.
+
 
   return (
     <PageWithFooter>
@@ -238,7 +239,10 @@ export default function AboutPage() {
       ) : null}
 
       <section className={styles.band} aria-labelledby="about-team-title">
-        <div className={faqs.length > 0 ? styles.pairGrid : undefined}>
+        <div
+          className={styles.teamChapter}
+          data-has-media={communityMedia ? "true" : "false"}
+        >
           <div className={styles.teamBlock}>
             <SectionReveal>
               <h2 id="about-team-title" className={styles.sectionTitle}>
@@ -249,31 +253,12 @@ export default function AboutPage() {
             <p className={styles.body}>{about.teamBody}</p>
             <p className={styles.provenance}>{about.teamCountProvenance}</p>
           </div>
-          {faqs.length > 0 ? (
-            <div>
-              <SectionReveal>
-                <h2 id="about-faq-title" className={styles.sectionTitle}>
-                  FAQ
-                </h2>
-              </SectionReveal>
-              <div className="pulse-accordion">
-                {faqs.map((item) => (
-                  <details key={item.id} className="pulse-accordion-item">
-                    <summary>{item.question}</summary>
-                    <div className="pulse-accordion-panel">
-                      <p>{item.answer}</p>
-                    </div>
-                  </details>
-                ))}
-              </div>
+          {communityMedia ? (
+            <div className={styles.communityMedia}>
+              <PulseMedia item={communityMedia} sizes="(max-width: 900px) 100vw, 720px" />
             </div>
           ) : null}
         </div>
-        {communityMedia ? (
-          <div className={styles.communityMedia}>
-            <PulseMedia item={communityMedia} sizes="(max-width: 900px) 100vw, 720px" />
-          </div>
-        ) : null}
       </section>
 
       <section className={styles.band} aria-labelledby="about-discover-title">
@@ -305,28 +290,21 @@ export default function AboutPage() {
         </p>
       </section>
 
-      <section className={`${styles.band} ${styles.ctaBand}`} aria-labelledby="about-cta-title">
-        <SectionReveal>
-          <h2 id="about-cta-title" className={styles.sectionTitle}>
-            Book a free trial
-          </h2>
-        </SectionReveal>
-        <p className={styles.body}>
-          Try a session at a neighbourhood branch. Tell us your preferred branch, service and time on
-          WhatsApp.
-        </p>
-        <div className={styles.ctaRow}>
-          <a
-            className={styles.cta}
-            href={trialHref}
-            {...(trialHref.startsWith("http")
-              ? { target: "_blank", rel: "noopener noreferrer" }
-              : {})}
-          >
-            {trialLabel}
-          </a>
-        </div>
-      </section>
+      <ClosingBand
+        titleId="about-cta-title"
+        title="Book a free trial"
+        body="Try a session at a neighbourhood branch. Tell us your preferred branch, service and time on WhatsApp."
+      >
+        <a
+          className={styles.cta}
+          href={trialHref}
+          {...(trialHref.startsWith("http")
+            ? { target: "_blank", rel: "noopener noreferrer" }
+            : {})}
+        >
+          {trialLabel}
+        </a>
+      </ClosingBand>
     </main>
     </PageWithFooter>
   );

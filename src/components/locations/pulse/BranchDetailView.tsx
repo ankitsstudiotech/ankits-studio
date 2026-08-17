@@ -1,5 +1,6 @@
 import Link from "next/link";
 import { getBranchDirectoryNumeral, type Branch, type Programme } from "@/content";
+import { ClosingBand } from "@/components/conversion/ClosingBand";
 import { HeroReveal, SectionReveal } from "@/components/motion";
 import { LocationPulseCta } from "./LocationPulseMotion";
 import styles from "./location-pulse.module.css";
@@ -148,8 +149,7 @@ export function BranchDetailView({
         </ul>
       </section>
 
-      {(branch.nearestStation ||
-        branch.landmarks ||
+      {(branch.landmarks ||
         branch.parking ||
         (branch.nearbyTransport && branch.nearbyTransport.length > 0) ||
         (branch.facilities && branch.facilities.length > 0)) && (
@@ -160,21 +160,9 @@ export function BranchDetailView({
             </h2>
           </SectionReveal>
           <ul className="pulse-info-grid">
-            {branch.openingYear ? (
-              <li>
-                <strong>Studio since</strong>
-                {branch.openingYear}
-              </li>
-            ) : null}
-            {branch.nearestStation ? (
-              <li>
-                <strong>Nearest station</strong>
-                {branch.nearestStation}
-              </li>
-            ) : null}
             {branch.landmarks ? (
               <li>
-                <strong>Landmark</strong>
+                <strong>On arrival</strong>
                 {branch.landmarks}
               </li>
             ) : null}
@@ -288,39 +276,13 @@ export function BranchDetailView({
         </section>
       ) : null}
 
-      {branch.faqEntries.length > 0 ? (
-        <section className={styles.band} aria-labelledby="branch-faq">
-          <SectionReveal>
-            <h2 id="branch-faq" className={styles.sectionTitle}>
-              FAQ
-            </h2>
-          </SectionReveal>
-          <div className="pulse-accordion">
-            {branch.faqEntries.map((faq) => (
-              <details key={faq.id} className="pulse-accordion-item">
-                <summary>{faq.question}</summary>
-                <div className="pulse-accordion-panel">
-                  <p>{faq.answer}</p>
-                </div>
-              </details>
-            ))}
-          </div>
-        </section>
-      ) : null}
-
-      <section className={styles.band} aria-labelledby="branch-final-cta">
-        <SectionReveal>
-          <h2 id="branch-final-cta" className={styles.sectionTitle}>
-            Book a free trial
-          </h2>
-        </SectionReveal>
-        <div className={styles.finalCta}>
-          <p className={styles.bandLede}>
-            Prefer {branch.locality}? Message WhatsApp to book a free trial here.
-          </p>
-          <LocationPulseCta href={whatsappHref}>{whatsappLabel}</LocationPulseCta>
-        </div>
-      </section>
+      <ClosingBand
+        titleId="branch-final-cta"
+        title="Book a free trial"
+        body={`Prefer ${branch.locality}? Message WhatsApp to book a free trial here.`}
+      >
+        <LocationPulseCta href={whatsappHref}>{whatsappLabel}</LocationPulseCta>
+      </ClosingBand>
     </div>
   );
 }
