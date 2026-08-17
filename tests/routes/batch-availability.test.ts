@@ -23,6 +23,7 @@ describe("batch availability route — no fake timetable semantics", () => {
     expect(source).not.toMatch(/BranchTimetable|BatchPreview|TimetablePreview/);
     expect(source).not.toMatch(/\bavailable seats\b|\blive availability\b/i);
     expect(source).toMatch(/AvailabilityEnquiryBuilder/);
+    expect(source).toMatch(/FaqBlock/);
     expect(source).toMatch(/6:00 AM to 10:00 PM|6:00 AM and 10:00 PM/);
     expect(source).toMatch(/availability-enquiry/);
     expect(source).not.toMatch(/getTimetableSlots/);

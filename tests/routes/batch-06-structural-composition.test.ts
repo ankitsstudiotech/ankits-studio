@@ -95,6 +95,18 @@ describe("Batch 06 — thin FAQs and residual duplication", () => {
     expect(branch).not.toMatch(/Nearest station/);
   });
 
+  it("utility routes follow the shared FAQ count rule", () => {
+    const timetable = read("src/app/(marketing)/timetable/page.tsx");
+    const pricing = read("src/app/(marketing)/pricing/page.tsx");
+    expect(timetable).toMatch(/FaqBlock/);
+    expect(timetable).toMatch(/id: "faq-walk-in"/);
+    expect(timetable).toMatch(/id: "faq-trial"/);
+    expect(pricing).toMatch(/FaqBlock/);
+    expect(pricing).toMatch(/id: "faq-branch-fees"/);
+    expect(pricing).toMatch(/id: "faq-wedding"/);
+    expect(pricing).toMatch(/id: "faq-home-online"/);
+  });
+
   it("Home founder leads with the name, not a giant 2019 numeral", () => {
     const founder = read("src/components/home/FounderHomeMoment.tsx");
     expect(founder).toMatch(/Founder · since/);

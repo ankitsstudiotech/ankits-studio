@@ -29,6 +29,7 @@ describe("pricing route — honest commercial claims", () => {
     expect(source).not.toMatch(/getPricingPlans|formatInr|Most popular|strikethrough|countdown/i);
     expect(source).not.toMatch(/Basic|Premium|per month|₹9|₹2/);
     expect(source).toMatch(/PricingEnquiryBuilder/);
+    expect(source).toMatch(/FaqBlock/);
     expect(source).toMatch(/registration fee of ₹300|₹\{registrationFee\}|₹300/);
     expect(source).toMatch(/buildWebPageJsonLd/);
     expect(source).toMatch(/one-time/i);

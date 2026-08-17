@@ -20,6 +20,19 @@ test.describe("keyboard release gate", () => {
     await expect(firstField).toBeVisible();
   });
 
+  test("pricing FAQ accordion opens with keyboard", async ({ page }) => {
+    await page.goto("/pricing");
+    const item = page.locator(".pulse-accordion-item").first();
+    await expect(item).toBeVisible();
+    const summary = item.locator("summary");
+    await summary.focus();
+    await expect(summary).toBeFocused();
+    await page.keyboard.press("Enter");
+    await expect(item).toHaveAttribute("open", "");
+    await page.keyboard.press("Enter");
+    await expect(item).not.toHaveAttribute("open");
+  });
+
   test("mobile nav opens and closes with keyboard affordances", async ({ page }) => {
     await page.setViewportSize({ width: 390, height: 844 });
     await page.goto("/");

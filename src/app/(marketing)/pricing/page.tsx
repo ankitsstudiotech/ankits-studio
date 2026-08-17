@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import Link from "next/link";
+import { FaqBlock } from "@/components/content/FaqBlock";
 import { PageBreadcrumb } from "@/components/layout/PageBreadcrumb";
 import { PageWithFooter } from "@/components/layout/PageWithFooter";
 import { RouteOpening } from "@/components/motion";
@@ -214,18 +215,8 @@ export default function PricingPage() {
         </section>
       </section>
 
-      <section className={styles.band} aria-labelledby="pricing-faq-title">
-        <h2 id="pricing-faq-title" className={styles.sectionTitle}>
-          FAQ
-        </h2>
-        <ul className={styles.faqList}>
-          {FAQ.map((item) => (
-            <li key={item.id}>
-              <h3>{item.question}</h3>
-              <p>{item.answer}</p>
-            </li>
-          ))}
-        </ul>
+      <section className={styles.band}>
+        <FaqBlock items={[...FAQ]} titleId="pricing-faq-title" />
       </section>
 
       <section className={styles.band} aria-labelledby="pricing-next-title">

@@ -298,6 +298,21 @@ test.describe("Batch 06 FAQ composition gate", () => {
       expect(oneQuestionFaq, route).toBe(false);
     });
   }
+
+  test("/timetable uses Good to know for two questions", async ({ page }) => {
+    await page.setViewportSize({ width: 1536, height: 730 });
+    await page.goto("/timetable", { waitUntil: "domcontentloaded" });
+    await expect(page.getByRole("heading", { name: /good to know/i })).toBeVisible();
+    await expect(page.locator("#batch-faq-title")).toHaveText(/good to know/i);
+    await expect(page.locator(".pulse-accordion-item")).toHaveCount(0);
+  });
+
+  test("/pricing uses a three-question FAQ accordion", async ({ page }) => {
+    await page.setViewportSize({ width: 1536, height: 730 });
+    await page.goto("/pricing", { waitUntil: "domcontentloaded" });
+    await expect(page.locator("#pricing-faq-title")).toHaveText(/^faq$/i);
+    await expect(page.locator(".pulse-accordion-item")).toHaveCount(3);
+  });
 });
 
 test.describe("composition occupancy gate — Batch 04 Root Cause 1", () => {
