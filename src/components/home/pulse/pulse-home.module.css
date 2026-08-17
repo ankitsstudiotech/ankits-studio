@@ -923,9 +923,38 @@ a.googleProofAuthorName:hover {
   color: var(--color-muted-on-field);
 }
 
-/* —— Founder — compact dark chapter —— */
+/* —— Founder — editorial dark chapter —— */
 .founderBand {
   border-top: var(--rule-structural-width) solid var(--rule-structural);
+}
+
+.founderGrid {
+  display: grid;
+  gap: 1.35rem;
+  width: 100%;
+  max-width: var(--layout-content);
+}
+
+.founderGrid > * {
+  min-width: 0;
+}
+
+@media (min-width: 768px) {
+  .founderGrid {
+    grid-template-columns: minmax(12rem, 22rem) minmax(0, 1fr);
+    gap: 1.75rem 3rem;
+    align-items: end;
+    justify-content: start;
+  }
+}
+
+.founderYear {
+  margin: 0 0 0.35rem;
+  font-family: var(--font-display);
+  font-size: clamp(4.25rem, 11vw, 8.5rem);
+  letter-spacing: 0.02em;
+  line-height: 0.78;
+  color: var(--ink-on-dark);
 }
 
 .founderKicker {
@@ -948,7 +977,7 @@ a.googleProofAuthorName:hover {
 }
 
 .founderAnchor {
-  margin: 0 0 0.85rem;
+  margin: 0;
   font-size: 0.8rem;
   font-weight: 600;
   letter-spacing: 0.06em;
@@ -958,10 +987,51 @@ a.googleProofAuthorName:hover {
 
 .founderCopy {
   margin: 0 0 1rem;
-  max-width: 48ch;
+  max-width: 46ch;
   font-size: var(--text-body-lg);
   line-height: var(--text-body-lg--line-height);
   color: var(--ink-muted-on-dark);
+}
+
+.founderChronology {
+  list-style: none;
+  margin: 0 0 0.85rem;
+  padding: 0;
+  display: grid;
+  gap: 0.35rem;
+  max-width: none;
+}
+
+.founderChronology li {
+  display: grid;
+  grid-template-columns: 3.4rem minmax(0, 1fr);
+  gap: 0.75rem;
+  align-items: baseline;
+  padding-top: 0.4rem;
+  border-top: var(--rule-structural-width) solid var(--rule-structural);
+  font-size: 0.92rem;
+}
+
+.founderChronologyYear {
+  font-family: var(--font-display);
+  letter-spacing: 0.04em;
+  color: var(--ink-on-dark);
+}
+
+.founderChronologyPlace {
+  font-weight: 600;
+  color: var(--ink-on-dark);
+}
+
+@media (max-width: 719px) {
+  .founderYear {
+    font-size: clamp(2.8rem, 18vw, 3.6rem);
+    margin-bottom: 0.2rem;
+  }
+
+  .founderCopy {
+    max-width: none;
+  }
 }
 
 .founderLink {

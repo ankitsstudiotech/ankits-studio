@@ -87,31 +87,44 @@ export default function AboutPage() {
         <PageBreadcrumb items={breadcrumbTrail} />
       </div>
 
-      <section className={styles.band} aria-labelledby="about-title">
-        <RouteOpening>
-          <div className={styles.openGrid}>
-            <div className={styles.openMeasure}>
-              <p className={styles.kicker}>About Ankit’s Studio</p>
-              <h1 id="about-title" className={styles.title}>
-                {about.headline}
-              </h1>
-              <p className={styles.lede}>{about.lede}</p>
-            </div>
-            <aside className={styles.openFacts} aria-label="Studio at a glance">
-              <p>
-                <span className={styles.openFactLabel}>Branches</span>
-                <span className={styles.openFactValue}>{branches.length} neighbourhood studios</span>
-              </p>
-              <p>
-                <span className={styles.openFactLabel}>Team</span>
-                <span className={styles.openFactValue}>15+ coaches</span>
-              </p>
-              <p>
-                <span className={styles.openFactLabel}>Approach</span>
-                <span className={styles.openFactValue}>Machine-free · coach-led</span>
-              </p>
-            </aside>
+      <section
+        className={styles.band}
+        aria-labelledby="about-title"
+        data-compose="about-opening"
+      >
+        <RouteOpening className={styles.openGrid}>
+          <div className={styles.openMeasure}>
+            <p className={styles.kicker}>About Ankit’s Studio</p>
+            <h1 id="about-title" className={styles.title}>
+              {about.headline}
+            </h1>
+            <p className={styles.lede}>{about.lede}</p>
           </div>
+          <aside className={styles.openRail} aria-label="Studio at a glance">
+            {about.foundingDateLabel ? (
+              <p className={styles.openYear}>
+                <span className={styles.openYearLabel}>Founded</span>
+                <span className={styles.openYearValue}>{about.foundingDateLabel}</span>
+              </p>
+            ) : null}
+            <p className={styles.openArc}>From one studio to four neighbourhoods</p>
+            <dl className={styles.openFacts}>
+              <div>
+                <dt className={styles.openFactLabel}>Studios</dt>
+                <dd className={styles.openFactValue}>
+                  {branches.length} neighbourhood studios
+                </dd>
+              </div>
+              <div>
+                <dt className={styles.openFactLabel}>Approach</dt>
+                <dd className={styles.openFactValue}>Machine-free · coach-led</dd>
+              </div>
+              <div>
+                <dt className={styles.openFactLabel}>Team</dt>
+                <dd className={styles.openFactValue}>15+ coaches</dd>
+              </div>
+            </dl>
+          </aside>
         </RouteOpening>
       </section>
 

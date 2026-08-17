@@ -205,6 +205,12 @@ export default async function HomePage() {
 
       <FounderHomeMoment
         copy="Ankit’s Studio began in Airoli in 2019 with the idea that fitness should feel approachable, enjoyable and sustainable. It has since grown to four studios across Navi Mumbai and Thane."
+        chronology={branchCards
+          .filter((branch) => typeof branch.openingYear === "number")
+          .map((branch) => ({
+            year: branch.openingYear as number,
+            place: branch.locality,
+          }))}
       />
 
       <FreeTrialCta
