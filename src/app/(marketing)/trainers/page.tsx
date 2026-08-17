@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import { PageBreadcrumb } from "@/components/layout/PageBreadcrumb";
 import { PageWithFooter } from "@/components/layout/PageWithFooter";
+import { ClosingBand } from "@/components/conversion/ClosingBand";
 import { PublishableTrainerList } from "@/components/trainers/pulse/PublishableTrainerList";
 import styles from "@/components/trainers/pulse/trainers.module.css";
 import { RouteOpening, SectionReveal } from "@/components/motion";
@@ -211,36 +212,26 @@ export default function TrainersIndexPage() {
         </SectionReveal>
       </section>
 
-      <section
-        className={`${styles.band} ${styles.ctaBand}`}
-        aria-labelledby="trainers-cta-title"
+      <ClosingBand
+        titleId="trainers-cta-title"
+        title="Ask about availability"
+        body="Enquire on WhatsApp about training availability for your preferred branch and programme."
+        secondary={
+          <Link className={styles.ctaSecondary} href="/programs">
+            Explore Programmes
+          </Link>
+        }
       >
-        <SectionReveal>
-          <h2 id="trainers-cta-title" className={styles.sectionTitle}>
-            Ask about availability
-          </h2>
-          <p className={styles.body}>
-            Enquire on WhatsApp about training availability for your preferred branch and programme.
-          </p>
-          <div className={styles.ctaRow}>
-            <a
-              className={styles.cta}
-              href={enquiryHref}
-              {...(enquiryHref.startsWith("http")
-                ? { target: "_blank", rel: "noopener noreferrer" }
-                : {})}
-            >
-              Ask on WhatsApp
-            </a>
-            <Link className={styles.ctaSecondary} href="/programs">
-              Explore Programmes
-            </Link>
-          </div>
-          <p className={styles.ctaNote}>
-            Opening WhatsApp starts a chat — it does not mean your enquiry was submitted.
-          </p>
-        </SectionReveal>
-      </section>
+        <a
+          className={styles.cta}
+          href={enquiryHref}
+          {...(enquiryHref.startsWith("http")
+            ? { target: "_blank", rel: "noopener noreferrer" }
+            : {})}
+        >
+          Ask on WhatsApp
+        </a>
+      </ClosingBand>
     </main>
     </PageWithFooter>
   );

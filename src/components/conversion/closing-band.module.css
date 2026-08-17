@@ -1,0 +1,119 @@
+/* Editorial closing conversion — content left, action right. */
+
+.root {
+  box-sizing: border-box;
+  width: 100%;
+  padding: 2.1rem var(--layout-gutter) 2.35rem;
+  border-top: var(--rule-structural-width) solid var(--rule-structural);
+}
+
+.field {
+  background: color-mix(in srgb, var(--color-field) 88%, var(--color-accent));
+}
+
+.accent {
+  background: color-mix(in srgb, var(--color-accent) 88%, #0b0b0c);
+  border-top: 1px solid color-mix(in srgb, var(--color-accent-hover) 40%, transparent);
+}
+
+.inner {
+  display: grid;
+  gap: 1.1rem 2rem;
+  width: 100%;
+  max-width: var(--layout-content);
+  align-items: start;
+}
+
+@media (min-width: 768px) {
+  .inner {
+    grid-template-columns: minmax(0, 1fr) auto;
+    align-items: start;
+    column-gap: 2.75rem;
+  }
+}
+
+.copy {
+  min-width: 0;
+}
+
+.title {
+  font-family: var(--font-display);
+  font-size: clamp(1.85rem, 4.2vw, 3.15rem);
+  letter-spacing: 0.02em;
+  line-height: 0.95;
+  margin: 0 0 0.55rem;
+  max-width: 16ch;
+  text-transform: uppercase;
+  color: var(--color-ink-inverse);
+}
+
+.body {
+  margin: 0;
+  max-width: 46ch;
+  font-size: var(--text-body);
+  line-height: var(--text-body--line-height);
+  color: var(--color-muted-on-field);
+}
+
+.note {
+  margin: 0.55rem 0 0;
+  max-width: 42ch;
+  font-size: 0.8rem;
+  line-height: 1.4;
+  color: var(--color-muted-on-field);
+}
+
+.accent .title,
+.accent .body {
+  color: var(--color-accent-foreground);
+}
+
+.accent .note {
+  color: color-mix(in srgb, var(--color-accent-foreground) 82%, transparent);
+}
+
+.action {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 0.65rem;
+  min-width: 0;
+}
+
+@media (min-width: 768px) {
+  .action {
+    align-items: flex-end;
+    justify-self: end;
+    padding-top: 0.15rem;
+  }
+}
+
+/* Inverse cream fill on the Home purple band — primary only, never ghost links. */
+.accent .actionPrimary :global(a) {
+  background: var(--color-ink-inverse);
+  color: var(--color-field);
+}
+
+.accent .actionPrimary :global(a:hover) {
+  background: #fff;
+  color: var(--color-field);
+  box-shadow: 0 6px 0 color-mix(in srgb, var(--color-field) 28%, transparent);
+}
+
+.actionSecondary {
+  font-size: 0.82rem;
+}
+
+@media (max-width: 767px) {
+  .root {
+    padding-block: 1.85rem 2.1rem;
+  }
+
+  .title {
+    max-width: none;
+  }
+
+  .body {
+    max-width: none;
+  }
+}

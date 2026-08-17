@@ -1,5 +1,7 @@
 import Link from "next/link";
 import type { Programme, ProgrammeSlug } from "@/content";
+import { FaqBlock } from "@/components/content/FaqBlock";
+import { ClosingBand } from "@/components/conversion/ClosingBand";
 import { PulseMedia } from "@/components/media";
 import { MaskedLines, SectionReveal } from "@/components/motion";
 import { toneFromProgrammeSlug } from "@/components/motion/tokens";
@@ -207,20 +209,25 @@ export function ProgrammeDetailView({
 
   const faqs = (programme.faqEntries ?? [])
     .filter((faq) => !GENERIC_FAQ_IDS.has(faq.id))
+    .filter((faq) => {
+      if (audienceParts.length === 0) return true;
+      return !/ladies|kids-only|kids only/i.test(faq.question);
+    })
+    .filter((faq) => {
+      if (!programme.classStructure) return true;
+      return !/how long|duration|session length/i.test(faq.question);
+    })
     .slice(0, 3);
 
   const glancePanels: Array<{ label: string; body: string }> = [];
   if (programme.whoItsFor) {
     glancePanels.push({ label: "Who it’s for", body: programme.whoItsFor });
   }
-  if (audienceParts.length > 0) {
-    glancePanels.push({ label: "Audience", body: audienceParts.join(" · ") });
+  if (programme.classStructure) {
+    glancePanels.push({ label: "Session", body: programme.classStructure });
   }
-  if (!serviceEnquiry && programme.trialAvailable) {
-    glancePanels.push({
-      label: "Trial",
-      body: "Free trial available — enquire on WhatsApp",
-    });
+  if (audienceParts.length > 0) {
+    glancePanels.push({ label: "Options", body: audienceParts.join(" · ") });
   }
 
   const metaFacts = buildMetaFacts(programme);
@@ -321,7 +328,7 @@ export function ProgrammeDetailView({
               {snapshotTitle(programme)}
             </h2>
           </SectionReveal>
-          <div className={styles.snapshotFacts}>
+          <div className={styles.snapshotFacts} data-count={glancePanels.length}>
             {glancePanels.map((panel) => (
               <div key={panel.label} className={styles.snapshotFact}>
                 <p className={styles.glanceLabel}>{panel.label}</p>
@@ -329,6 +336,11 @@ export function ProgrammeDetailView({
               </div>
             ))}
           </div>
+          {faqs.length === 1 ? <FaqBlock items={faqs} /> : null}
+        </section>
+      ) : faqs.length === 1 ? (
+        <section className={styles.band}>
+          <FaqBlock items={faqs} />
         </section>
       ) : null}
 
@@ -419,13 +431,8 @@ export function ProgrammeDetailView({
             ) : null}
             {showStudioLocations ? (
               <div className={styles.relatedSecondary}>
-                <SectionReveal>
-                  <h2 id="programme-locations" className={styles.sectionTitle}>
-                    Locations
-                  </h2>
-                </SectionReveal>
-                <p className={styles.glanceBody}>
-                  Available across our four studios.
+                <p id="programme-locations" className={styles.relatedFindLabel}>
+                  Train near you
                 </p>
                 <Link href="/locations" className={styles.relatedFind}>
                   Find a studio
@@ -436,47 +443,28 @@ export function ProgrammeDetailView({
         </section>
       ) : null}
 
-      {faqs.length > 0 ? (
-        <section className={styles.band} aria-labelledby="programme-faq">
-          <SectionReveal>
-            <h2 id="programme-faq" className={styles.sectionTitle}>
-              FAQ
-            </h2>
-          </SectionReveal>
-          <div className="pulse-accordion">
-            {faqs.map((faq) => (
-              <details key={faq.id} className="pulse-accordion-item">
-                <summary>{faq.question}</summary>
-                <div className="pulse-accordion-panel">
-                  <p>{faq.answer}</p>
-                </div>
-              </details>
-            ))}
-          </div>
+      {faqs.length >= 2 ? (
+        <section className={styles.band}>
+          <FaqBlock items={faqs} titleId="programme-faq" />
         </section>
       ) : null}
 
-      <section
+      <ClosingBand
         id="programme-closing"
-        className={`${styles.band} ${styles.closingCta}`}
-        aria-labelledby="programme-closing-cta"
-      >
-        <SectionReveal>
-          <h2 id="programme-closing-cta" className={styles.sectionTitle}>
-            {serviceEnquiry
-              ? "Planning wellness for your team?"
-              : "Enquire about a free trial"}
-          </h2>
-        </SectionReveal>
-        <p className={styles.laneDesc}>
-          {serviceEnquiry
+        titleId="programme-closing-cta"
+        title={
+          serviceEnquiry
+            ? "Planning wellness for your team?"
+            : "Enquire about a free trial"
+        }
+        body={
+          serviceEnquiry
             ? "Customised workplace and online programmes are arranged around your organisation’s requirements."
-            : `Message Ankit’s Studio on WhatsApp about ${programme.name}.`}
-        </p>
-        <div className={styles.ctaRow}>
-          <ProgrammePulseCta href={whatsappHref}>{whatsappLabel}</ProgrammePulseCta>
-        </div>
-      </section>
+            : `Message Ankit’s Studio on WhatsApp about ${programme.name}.`
+        }
+      >
+        <ProgrammePulseCta href={whatsappHref}>{whatsappLabel}</ProgrammePulseCta>
+      </ClosingBand>
     </div>
   );
 }

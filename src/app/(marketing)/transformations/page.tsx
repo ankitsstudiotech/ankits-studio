@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import { PageBreadcrumb } from "@/components/layout/PageBreadcrumb";
 import { PageWithFooter } from "@/components/layout/PageWithFooter";
+import { ClosingBand } from "@/components/conversion/ClosingBand";
 import { ConsentDisclosure } from "@/components/member-stories/pulse/ConsentDisclosure";
 import { MemberStoriesCta } from "@/components/member-stories/pulse/MemberStoriesCta";
 import { MemberStoryEditorial } from "@/components/member-stories/pulse/MemberStoryEditorial";
@@ -176,23 +177,18 @@ export default function MemberStoriesPage() {
         </SectionReveal>
       </section>
 
-      <section className={styles.band} aria-labelledby="stories-cta-title">
-        <SectionReveal>
-          <h2 id="stories-cta-title" className={styles.sectionTitle}>
-            {page.ctaTitle}
-          </h2>
-          <p className={styles.body}>{page.ctaBody}</p>
-          <div className={styles.ctaRow}>
-            <MemberStoriesCta href={trialHref}>{trialLabel}</MemberStoriesCta>
-            <Link href={SECONDARY_TRIAL_FORM_HREF} className={styles.ctaSecondary}>
-              Prefer the trial form
-            </Link>
-          </div>
-          <p className={styles.ctaNote}>
-            Opening WhatsApp starts a chat — it does not mean your enquiry was submitted.
-          </p>
-        </SectionReveal>
-      </section>
+      <ClosingBand
+        titleId="stories-cta-title"
+        title={page.ctaTitle}
+        body={page.ctaBody}
+        secondary={
+          <Link href={SECONDARY_TRIAL_FORM_HREF} className={styles.ctaSecondary}>
+            Prefer the trial form
+          </Link>
+        }
+      >
+        <MemberStoriesCta href={trialHref}>{trialLabel}</MemberStoriesCta>
+      </ClosingBand>
     </main>
     </PageWithFooter>
   );
