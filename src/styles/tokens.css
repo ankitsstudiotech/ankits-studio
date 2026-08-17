@@ -48,6 +48,8 @@
   /* Brand accent — logo-derived deep purple (docs/brand/STUDIO-PULSE-LOGO-INTEGRATION.md) */
   --color-accent: #6b2f7a;
   --color-accent-hover: #9e4b7b;
+  /* Small labels on field — WCAG AA vs #0b0b0c (raw accent is 2.16:1). */
+  --color-accent-label: color-mix(in srgb, #6b2f7a 42%, #f4f1ea);
   --color-accent-soft: color-mix(in srgb, #6b2f7a 14%, #f4f5f6);
   --color-accent-foreground: #ffffff;
 
@@ -88,20 +90,21 @@
   --font-display: var(--font-bebas), "Bebas Neue", Impact, Haettenschweiler, sans-serif;
   --font-sans: var(--font-space-grotesk), "Space Grotesk", system-ui, sans-serif;
 
-  --text-display: clamp(3rem, 1.5rem + 5vw, 6.5rem);
+  --text-display: clamp(3.25rem, 1.4rem + 6vw, 10rem);
   --text-display--line-height: 0.88;
   --text-display--letter-spacing: 0.02em;
 
-  --text-hero: clamp(2.5rem, 1.4rem + 3.5vw, 4.5rem);
+  /* Mobile stays within ~3.5 lines; desktop reaches blueprint hero scale. */
+  --text-hero: clamp(2.75rem, 1.2rem + 5.8vw, 8rem);
   --text-hero--line-height: 0.9;
   --text-hero--letter-spacing: 0.02em;
 
-  --text-title: clamp(1.75rem, 1.3rem + 1.5vw, 2.75rem);
-  --text-title--line-height: 0.95;
+  --text-title: clamp(2rem, 1.2rem + 2.2vw, 3.75rem);
+  --text-title--line-height: 0.92;
   --text-title--letter-spacing: 0.03em;
 
-  --text-section: clamp(1.35rem, 1.15rem + 0.7vw, 1.85rem);
-  --text-section--line-height: 1.1;
+  --text-section: clamp(1.5rem, 1.15rem + 1.1vw, 2.35rem);
+  --text-section--line-height: 1.05;
   --text-section--letter-spacing: 0.03em;
 
   --text-heading: clamp(1.15rem, 1.05rem + 0.4vw, 1.35rem);
@@ -120,10 +123,11 @@
   --text-overline--letter-spacing: 0.12em;
   --text-overline--line-height: 1.3;
 
-  --spacing-section: clamp(2rem, 5vw, 3.5rem);
+  --spacing-section: clamp(3rem, 4.2vw, 8rem);
   --spacing-gutter: 1.25rem;
-  /* Shared marketing page gutter — matches homepage hero copy inset. */
+  /* Shared marketing page gutter — 20px mobile / 64px wide desktop target. */
   --layout-gutter: clamp(1.25rem, 4.5vw, 4rem);
+  --guide-line: rgb(244 241 234 / 0.12);
   --spacing-stack: clamp(1rem, 0.85rem + 0.6vw, 1.5rem);
   --spacing-control: 2.75rem; /* 44px min control height */
   --spacing-control-lg: 3rem; /* 48px primary CTA */

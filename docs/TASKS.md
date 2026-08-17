@@ -207,3 +207,9 @@ until Track H's branch/structured-data code exists.
   any route ahead of the phase/tier it's scoped to in
   [IMPLEMENTATION-PLAN.md](./IMPLEMENTATION-PLAN.md) without a
   `DECISIONS.md` entry explaining the reprioritization.
+
+## Final editorial art-direction pass (active)
+
+| Task | Owner | Status | Notes |
+|---|---|---|---|
+| Whole-application editorial art-direction per `docs/art-direction/ankits_studio_final_art_direction_pack` blueprint. Content locked to production. Map: `docs/art-direction/FINAL-IMPLEMENTATION-MAP.md`. | Cursor | Done | Checkpoint `studio-pulse-before-final-editorial-pass` @ `57264c1560722abfb7aaba2b65706c0c9f5ad044`. Visual/motion + listed art-direction docs. |

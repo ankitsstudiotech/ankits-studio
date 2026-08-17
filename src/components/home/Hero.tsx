@@ -31,7 +31,12 @@ export function Hero({
 
   return (
     <section
-      className={[styles.field, styles.hero, withMedia ? styles.heroWithMedia : ""]
+      className={[
+        styles.field,
+        styles.hero,
+        withMedia ? styles.heroWithMedia : "",
+        styles.heroGuides,
+      ]
         .filter(Boolean)
         .join(" ")}
       aria-labelledby="home-hero-title"

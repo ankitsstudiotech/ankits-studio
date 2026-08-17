@@ -1,5 +1,6 @@
 import {
   getBusinessIdentity,
+  getConfirmedProgrammes,
   getContactDetails,
   getNavigationItems,
   getPubliclyListedBranches,
@@ -40,6 +41,12 @@ function toFooterGroups(): FooterLinkGroup[] {
     );
   });
 
+  const programmes = getConfirmedProgrammes().map((programme) => ({
+    id: `footer-programme-${programme.slug}`,
+    label: programme.name,
+    href: `/programs/${programme.slug}`,
+  }));
+
   const branches = getPubliclyListedBranches().map((branch) => ({
     id: `footer-branch-${branch.slug}`,
     label: branch.name.replace(/^Ankit's Studio —\s*/i, ""),
@@ -48,6 +55,7 @@ function toFooterGroups(): FooterLinkGroup[] {
 
   return [
     { title: "Explore", links: exploreLinks },
+    { title: "Programmes", links: programmes },
     { title: "Branches", links: branches },
   ];
 }

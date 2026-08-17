@@ -136,7 +136,7 @@
 
 .pulse-title {
   font-family: var(--font-display);
-  font-size: var(--text-hero);
+  font-size: clamp(2.5rem, 5vw, 4.5rem);
   letter-spacing: var(--text-hero--letter-spacing);
   line-height: var(--text-hero--line-height);
   margin: 0 0 0.85rem;
@@ -184,6 +184,7 @@
   letter-spacing: 0.06em;
   text-transform: uppercase;
   text-decoration: none;
+  border-radius: 0;
   transition:
     transform var(--motion-instant) var(--ease-exit),
     background-color var(--motion-fast) var(--ease-standard);
@@ -235,6 +236,54 @@
 .pulse-cta-secondary:focus-visible {
   outline: 2px solid var(--color-volt);
   outline-offset: 3px;
+}
+
+/* Selected editorial frames — 1px rules that bound real modules, not graph paper. */
+.editorial-frame {
+  border: var(--rule-structural-width) solid var(--rule-structural);
+}
+
+.editorial-guides {
+  position: relative;
+}
+
+.editorial-guides::before,
+.editorial-guides::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  width: 1px;
+  background: var(--guide-line, rgb(244 241 234 / 0.12));
+  pointer-events: none;
+  z-index: 2;
+}
+
+.editorial-guides::before {
+  left: var(--layout-gutter);
+}
+
+.editorial-guides::after {
+  right: var(--layout-gutter);
+}
+
+.editorial-mono :is(img, video) {
+  filter: grayscale(1) contrast(1.08);
+  transition: filter var(--duration-normal) var(--ease-standard);
+}
+
+.editorial-mono:hover :is(img, video),
+.editorial-mono:focus-within :is(img, video) {
+  filter: grayscale(0.15) contrast(1.04);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .editorial-mono :is(img, video),
+  .editorial-mono:hover :is(img, video),
+  .editorial-mono:focus-within :is(img, video) {
+    filter: grayscale(1) contrast(1.08);
+    transition: none;
+  }
 }
 
 /* Dark editorial crumb strip — parent of PageBreadcrumb on Pulse routes */

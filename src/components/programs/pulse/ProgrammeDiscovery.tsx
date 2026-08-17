@@ -1,7 +1,8 @@
 import Link from "next/link";
 import type { Programme } from "@/content";
+import { PulseMedia } from "@/components/media";
 import { HeroReveal } from "@/components/motion";
-import { ProgrammeRow } from "@/components/programs/ProgrammeRow";
+import { programmeHeroSlotKey, resolveSlotMedia } from "@/content/media";
 import { ProgrammePulseCta } from "./ProgrammePulseMotion";
 import styles from "./programme-pulse.module.css";
 
@@ -24,6 +25,17 @@ const CLUSTER_COPY = {
   },
 } as const;
 
+const PROGRAMME_ORDER = [
+  "functional-training",
+  "home-personal-training",
+  "online-training",
+  "zumba",
+  "yoga",
+  "adult-dance",
+  "wedding-choreography",
+  "corporate-wellness",
+] as const;
+
 function deliveryMeta(programme: Programme): string | undefined {
   if (programme.deliveryMode === "home") {
     return "Training at your location · message us with your locality";
@@ -40,12 +52,8 @@ function deliveryMeta(programme: Programme): string | undefined {
   return "Studio classes · enquire for batch fit";
 }
 
-function energyFromSlug(slug: string): "calm" | "standard" | "high" {
-  if (slug === "yoga" || slug === "home-personal-training" || slug === "online-training") {
-    return "calm";
-  }
-  if (slug === "zumba" || slug === "adult-dance") return "high";
-  return "standard";
+function keepColour(slug: string): boolean {
+  return slug === "yoga" || slug === "zumba" || slug === "adult-dance";
 }
 
 export type ProgrammeDiscoveryProps = {
@@ -57,8 +65,7 @@ export type ProgrammeDiscoveryProps = {
 };
 
 /**
- * Editorial programme index — Train / Move / Celebrate.
- * Confirmed services only; SSR names + crawlable ProgrammeRow anchors.
+ * Magazine programme index — paired media/type chapters, not a Home matrix clone.
  */
 export function ProgrammeDiscovery({
   programmes,
@@ -66,30 +73,15 @@ export function ProgrammeDiscovery({
   trialLabel,
   corporateNote,
 }: ProgrammeDiscoveryProps) {
-  const byCluster = {
-    train: programmes.filter((p) => p.serviceCluster === "train"),
-    move: programmes.filter((p) => p.serviceCluster === "move"),
-    celebrate: programmes.filter((p) => p.serviceCluster === "celebrate"),
-    teams: programmes.filter((p) => p.serviceCluster === "teams"),
-  };
+  const ordered = [...programmes].sort(
+    (a, b) => PROGRAMME_ORDER.indexOf(a.slug as (typeof PROGRAMME_ORDER)[number]) -
+      PROGRAMME_ORDER.indexOf(b.slug as (typeof PROGRAMME_ORDER)[number]),
+  );
 
-  // Stable commercial order within Train
-  byCluster.train.sort((a, b) => {
-    const order = ["functional-training", "home-personal-training", "online-training"];
-    return order.indexOf(a.slug) - order.indexOf(b.slug);
-  });
-  byCluster.move.sort((a, b) => {
-    const order = ["zumba", "yoga", "adult-dance"];
-    return order.indexOf(a.slug) - order.indexOf(b.slug);
-  });
-  byCluster.celebrate.sort((a, b) => {
-    const order = ["wedding-choreography"];
-    return order.indexOf(a.slug) - order.indexOf(b.slug);
-  });
-  byCluster.teams.sort((a, b) => {
-    const order = ["corporate-wellness"];
-    return order.indexOf(a.slug) - order.indexOf(b.slug);
-  });
+  const pairs: Programme[][] = [];
+  for (let i = 0; i < ordered.length; i += 2) {
+    pairs.push(ordered.slice(i, i + 2));
+  }
 
   return (
     <section
@@ -110,47 +102,53 @@ export function ProgrammeDiscovery({
         </header>
       </HeroReveal>
 
-      <div className={styles.clusters}>
-        {(["train", "move", "celebrate", "teams"] as const).map((clusterId) => {
-          const items = byCluster[clusterId];
-          if (items.length === 0) return null;
-          const copy = CLUSTER_COPY[clusterId];
-          return (
-            <section
-              key={clusterId}
-              className={styles.cluster}
-              data-cluster={clusterId}
-              aria-labelledby={`programmes-cluster-${clusterId}`}
-            >
-              <header className={styles.clusterHeader}>
-                <h2 id={`programmes-cluster-${clusterId}`} className={styles.clusterTitle}>
-                  {copy.title}
-                </h2>
-                <p className={styles.clusterLede}>{copy.lede}</p>
-              </header>
-              <div className={styles.lanes} data-matrix="index">
-                {items.map((programme) => {
-                  const isFeatured =
-                    programme.slug === "functional-training" || items.length === 1;
-                  return (
-                    <ProgrammeRow
-                      key={programme.slug}
-                      href={`/programs/${programme.slug}`}
-                      name={programme.name}
-                      description={programme.shortDescription}
-                      meta={deliveryMeta(programme)}
-                      cluster={clusterId}
-                      energy={energyFromSlug(programme.slug)}
-                      programmeSlug={programme.slug}
-                      emphasis={programme.slug === "functional-training" ? "primary" : undefined}
-                      layout={isFeatured ? "featured" : "cell"}
-                    />
-                  );
-                })}
-              </div>
-            </section>
-          );
-        })}
+      <div className={styles.pairSequence} data-programme-pairs>
+        {pairs.map((pair, pairIndex) => (
+          <div
+            key={pair.map((item) => item.slug).join("-")}
+            className={styles.pairBand}
+            data-flip={pairIndex % 2 === 1 ? "true" : "false"}
+          >
+            {pair.map((programme, itemIndex) => {
+              const globalIndex = pairIndex * 2 + itemIndex;
+              const cluster = programme.serviceCluster ?? "train";
+              const copy = CLUSTER_COPY[cluster];
+              const slot = programmeHeroSlotKey(programme.slug);
+              const media = slot ? resolveSlotMedia(slot) : null;
+              const mediaDominant = pairIndex % 2 === 0 ? itemIndex === 0 : itemIndex === 1;
+
+              return (
+                <article
+                  key={programme.slug}
+                  className={styles.pairModule}
+                  data-dominant={mediaDominant ? "media" : "type"}
+                  data-cluster={cluster}
+                >
+                  <p className={styles.pairChapter}>
+                    {String(globalIndex + 1).padStart(2, "0")} / {copy.title}
+                  </p>
+                  <p className={styles.pairClusterLede}>{copy.lede}</p>
+                  {media ? (
+                    <div
+                      className={`${styles.pairMedia} ${keepColour(programme.slug) ? "" : "editorial-mono"}`}
+                    >
+                      <PulseMedia item={media} sizes="(max-width: 900px) 100vw, 50vw" />
+                    </div>
+                  ) : null}
+                  <div className={styles.pairCopy}>
+                    <h2 className={styles.pairName}>
+                      <Link href={`/programs/${programme.slug}`}>{programme.name}</Link>
+                    </h2>
+                    <p className={styles.pairDescription}>{programme.shortDescription}</p>
+                    {deliveryMeta(programme) ? (
+                      <p className={styles.pairMeta}>{deliveryMeta(programme)}</p>
+                    ) : null}
+                  </div>
+                </article>
+              );
+            })}
+          </div>
+        ))}
       </div>
 
       <div className={styles.closing}>

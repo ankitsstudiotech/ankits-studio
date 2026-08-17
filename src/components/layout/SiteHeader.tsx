@@ -25,14 +25,18 @@ export function SiteHeader({
 }: SiteHeaderProps) {
   const detectedPathname = usePathname() ?? "";
   const pathname = pathnameProp ?? detectedPathname;
+  const cta = items.find((item) => item.isPrimaryCta);
 
   return (
     <header className="sticky top-0 z-30 border-b border-white/10 bg-field">
-      <Container full className="flex h-[var(--header-height)] items-center justify-between gap-4">
+      <Container
+        full
+        className="grid h-[var(--header-height)] grid-cols-[minmax(0,1fr)_auto] items-center gap-3 lg:grid-cols-[minmax(0,1fr)_auto_minmax(0,1fr)]"
+      >
         <Link
           href={brandHref}
           className={[
-            "inline-flex min-h-11 items-center gap-2.5 text-ink-inverse",
+            "inline-flex min-h-11 items-center gap-2.5 justify-self-start text-ink-inverse",
             "focus-visible:outline-2 focus-visible:outline-offset-3 focus-visible:outline-[var(--color-volt)]",
             "touch-target",
           ].join(" ")}
@@ -51,7 +55,27 @@ export function SiteHeader({
         </Link>
 
         <DesktopNav items={items} pathname={pathname} />
-        <MobileNav items={items} pathname={pathname} />
+
+        <div className="flex items-center justify-end gap-2 justify-self-end">
+          {cta ? (
+            <Link
+              href={cta.href}
+              {...(cta.href.startsWith("http")
+                ? { target: "_blank", rel: "noopener noreferrer" }
+                : {})}
+              className={[
+                "hidden lg:inline-flex min-h-11 items-center justify-center px-4",
+                "bg-accent text-xs font-bold uppercase tracking-[0.1em] text-accent-foreground touch-target",
+                "transition-[background-color,transform] duration-[var(--duration-fast)]",
+                "hover:bg-accent-hover active:scale-[0.98] motion-reduce:active:scale-100",
+                "focus-visible:outline-2 focus-visible:outline-offset-3 focus-visible:outline-[var(--color-volt)]",
+              ].join(" ")}
+            >
+              {cta.label}
+            </Link>
+          ) : null}
+          <MobileNav items={items} pathname={pathname} />
+        </div>
       </Container>
     </header>
   );

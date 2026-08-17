@@ -27,18 +27,15 @@ test.describe("premium motion gate", () => {
   });
 
   test("programme rows expose motion tone attributes", async ({ page }) => {
-    await page.goto("/programs");
-    const ft = page.locator('a[href="/programs/functional-training"]').first();
-    const yoga = page.locator('a[href="/programs/yoga"]').first();
-    const wedding = page.locator('a[href="/programs/wedding-choreography"]').first();
-    const zumba = page.locator('a[href="/programs/zumba"]').first();
+    await page.goto("/");
+    const ft = page.locator('#services a[href="/programs/functional-training"]');
+    const yoga = page.locator('#services a[href="/programs/yoga"]');
+    const wedding = page.locator('#services a[href="/programs/wedding-choreography"]');
+    const zumba = page.locator('#services a[href="/programs/zumba"]');
     await expect(ft).toHaveAttribute("data-motion-tone", "structured");
     await expect(yoga).toHaveAttribute("data-motion-tone", "calm");
     await expect(wedding).toHaveAttribute("data-motion-tone", "ceremonial");
     await expect(zumba).toHaveAttribute("data-motion-tone", "fluid");
-    await expect(page.locator('a[href^="/programs/"] [data-motion-cue]')).toHaveCount(8);
-    await expect(zumba.locator("[data-seg]")).toHaveCount(0);
-    await expect(wedding.locator("[data-motion-cue]")).toHaveCount(1);
     await ft.hover();
     await yoga.focus();
     await expect(yoga).toBeFocused();

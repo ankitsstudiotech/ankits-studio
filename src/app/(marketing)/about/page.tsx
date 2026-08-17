@@ -135,6 +135,9 @@ export default function AboutPage() {
       >
         <div className={`${styles.diffGrid} pulse-split`}>
           <SectionReveal pattern="B" side="left">
+            <p className={styles.chapterMark} aria-hidden>
+              01
+            </p>
             <h2 id="about-approach-disciplines" className={styles.sectionTitle}>
               {about.approachTitle}
             </h2>
@@ -182,6 +185,9 @@ export default function AboutPage() {
             {showFounder && about.founderStory ? (
               <div className={styles.founderBlock}>
                 <SectionReveal>
+                  <p className={styles.chapterMark} aria-hidden>
+                    02
+                  </p>
                   <h2 id="about-founder-title" className={styles.sectionTitle}>
                     Founder
                   </h2>
@@ -245,6 +251,9 @@ export default function AboutPage() {
         >
           <div className={styles.teamBlock}>
             <SectionReveal>
+              <p className={styles.chapterMark} aria-hidden>
+                03
+              </p>
               <h2 id="about-team-title" className={styles.sectionTitle}>
                 {about.teamTitle}
               </h2>

@@ -1,5 +1,5 @@
 import { ProgrammeRow } from "@/components/programs/ProgrammeRow";
-import { SectionReveal, GroupReveal } from "@/components/motion";
+import { SectionReveal } from "@/components/motion";
 import type { ServiceTempo } from "./pulse/PulseMotion";
 import { toneFromProgrammeSlug } from "@/components/motion/tokens";
 import styles from "./pulse/pulse-home.module.css";
@@ -28,6 +28,13 @@ export type ProgrammeShowcaseProps = {
   audienceNote?: string;
 };
 
+const TAXONOMY: Record<ServiceCluster["id"], string> = {
+  train: "Train",
+  move: "Move",
+  celebrate: "Celebrate",
+  teams: "For Teams",
+};
+
 function energyFromTempo(tempo: ServiceTempo): "calm" | "standard" | "high" {
   if (tempo === "yoga" || tempo === "home" || tempo === "online") return "calm";
   if (tempo === "zumba" || tempo === "dance") return "high";
@@ -39,63 +46,18 @@ function slugFromHref(href: string): string {
   return parts[parts.length - 1] ?? "";
 }
 
-function ClusterBlock({
-  cluster,
-  matrix,
-}: {
-  cluster: ServiceCluster;
-  matrix: "train" | "move" | "pair";
-}) {
-  return (
-    <section
-      className={styles.cluster}
-      data-cluster={cluster.id}
-      aria-labelledby={`home-cluster-${cluster.id}`}
-    >
-      <GroupReveal>
-        <header className={styles.clusterHeader}>
-          <h3 id={`home-cluster-${cluster.id}`} className={styles.clusterTitle}>
-            {cluster.title}
-          </h3>
-          <p className={styles.clusterLede}>{cluster.lede}</p>
-        </header>
-      </GroupReveal>
-      <div className={styles.lanes} data-matrix={matrix}>
-        {cluster.programmes.map((programme) => {
-          const slug = programme.slug ?? slugFromHref(programme.href);
-          const layout =
-            programme.emphasis === "primary" && matrix === "train" ? "featured" : "cell";
-          return (
-            <ProgrammeRow
-              key={programme.href}
-              name={programme.name}
-              description={programme.shortDescription}
-              href={programme.href}
-              meta={programme.meta}
-              emphasis={programme.emphasis}
-              cluster={cluster.id}
-              energy={energyFromTempo(programme.tempo)}
-              motionTone={slug === "corporate-wellness" ? "direct" : toneFromProgrammeSlug(slug)}
-              programmeSlug={slug}
-              titleAs="h4"
-              layout={layout}
-            />
-          );
-        })}
-      </div>
-    </section>
-  );
-}
-
 /**
- * Editorial programme matrix — Train / Move / Celebrate / For Teams.
- * Desktop uses the field; mobile stays a stacked reading order.
+ * Editorial programme matrix — eight numbered modules on one framed field.
+ * Taxonomy labels remain TRAIN / MOVE / CELEBRATE / FOR TEAMS.
  */
 export function ProgrammeShowcase({ clusters, audienceNote }: ProgrammeShowcaseProps) {
-  const train = clusters.find((cluster) => cluster.id === "train");
-  const move = clusters.find((cluster) => cluster.id === "move");
-  const celebrate = clusters.find((cluster) => cluster.id === "celebrate");
-  const teams = clusters.find((cluster) => cluster.id === "teams");
+  const modules = clusters.flatMap((cluster) =>
+    cluster.programmes.map((programme) => ({
+      ...programme,
+      cluster: cluster.id,
+      taxonomy: TAXONOMY[cluster.id],
+    })),
+  );
 
   return (
     <section
@@ -114,15 +76,37 @@ export function ProgrammeShowcase({ clusters, audienceNote }: ProgrammeShowcaseP
         </p>
       </SectionReveal>
 
-      <div className={styles.clusters}>
-        {train ? <ClusterBlock cluster={train} matrix="train" /> : null}
-        {move ? <ClusterBlock cluster={move} matrix="move" /> : null}
-        {celebrate || teams ? (
-          <div className={styles.clusterPair}>
-            {celebrate ? <ClusterBlock cluster={celebrate} matrix="pair" /> : null}
-            {teams ? <ClusterBlock cluster={teams} matrix="pair" /> : null}
-          </div>
-        ) : null}
+      <ul className={styles.clusterKey} aria-label="Programme groups">
+        {clusters.map((cluster) => (
+          <li key={cluster.id} className={styles.clusterKeyItem} data-cluster={cluster.id}>
+            <p className={styles.clusterKeyTitle}>{TAXONOMY[cluster.id]}</p>
+            <p className={styles.clusterKeyLede}>{cluster.lede}</p>
+          </li>
+        ))}
+      </ul>
+
+      <div className={styles.moduleMatrix} data-matrix="editorial">
+        {modules.map((programme, index) => {
+          const slug = programme.slug ?? slugFromHref(programme.href);
+          return (
+            <ProgrammeRow
+              key={programme.href}
+              name={programme.name}
+              description={programme.shortDescription}
+              href={programme.href}
+              meta={programme.meta}
+              emphasis={programme.emphasis}
+              cluster={programme.cluster}
+              energy={energyFromTempo(programme.tempo)}
+              motionTone={slug === "corporate-wellness" ? "direct" : toneFromProgrammeSlug(slug)}
+              programmeSlug={slug}
+              titleAs="h3"
+              layout="module"
+              index={String(index + 1).padStart(2, "0")}
+              taxonomy={programme.taxonomy}
+            />
+          );
+        })}
       </div>
 
       {audienceNote ? <p className={styles.audienceNote}>{audienceNote}</p> : null}

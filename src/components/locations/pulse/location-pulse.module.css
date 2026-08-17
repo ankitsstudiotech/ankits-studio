@@ -76,6 +76,137 @@
   max-width: 52ch;
 }
 
+.studioDirectory {
+  list-style: none;
+  margin: 0 0 2rem;
+  padding: 0;
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 0;
+  width: 100%;
+  max-width: none;
+  border-top: var(--rule-structural-width) solid var(--rule-structural);
+}
+
+.studioColumn {
+  display: flex;
+  flex-direction: column;
+  gap: 0.45rem;
+  min-width: 0;
+  padding: 1.25rem 0 1.4rem;
+  border-bottom: var(--rule-structural-width) solid var(--rule-structural);
+}
+
+@media (min-width: 768px) {
+  .studioDirectory {
+    grid-template-columns: 1fr 1fr;
+  }
+
+  .studioColumn {
+    padding: 1.4rem 1.35rem 1.55rem 0;
+    border-right: var(--rule-structural-width) solid var(--rule-structural);
+  }
+
+  .studioColumn:nth-child(2n) {
+    border-right: 0;
+    padding-right: 0;
+    padding-left: 1.35rem;
+  }
+}
+
+@media (min-width: 1200px) {
+  .studioDirectory {
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+  }
+
+  .studioColumn,
+  .studioColumn:nth-child(2n) {
+    padding: 1.5rem 1.25rem 1.7rem 0;
+    border-right: var(--rule-structural-width) solid var(--rule-structural);
+    border-bottom: 0;
+    padding-left: 0;
+  }
+
+  .studioColumn:last-child {
+    border-right: 0;
+    padding-right: 0;
+  }
+}
+
+.studioNum {
+  font-family: var(--font-display);
+  font-size: 1.15rem;
+  letter-spacing: 0.08em;
+  color: var(--color-accent-label);
+}
+
+.studioName {
+  font-family: var(--font-display);
+  font-size: clamp(2rem, 3.2vw, 3.4rem);
+  letter-spacing: 0.03em;
+  line-height: 0.92;
+  margin: 0;
+  text-transform: uppercase;
+}
+
+.studioName a {
+  color: inherit;
+  text-decoration: none;
+}
+
+.studioName a:hover {
+  color: color-mix(in srgb, var(--color-accent) 40%, #fff);
+}
+
+.studioName a:focus-visible {
+  outline: 2px solid var(--color-volt);
+  outline-offset: 4px;
+}
+
+.studioAddress,
+.studioLandmark,
+.studioHours {
+  margin: 0;
+  font-size: 0.92rem;
+  line-height: 1.4;
+  color: var(--color-muted-on-field);
+  max-width: 28ch;
+}
+
+.studioHours {
+  color: var(--color-ink-inverse);
+  font-weight: 600;
+}
+
+.studioActions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.75rem 1.15rem;
+  margin-top: 0.45rem;
+}
+
+.studioAction {
+  display: inline-flex;
+  align-items: center;
+  min-height: 44px;
+  color: var(--color-muted-on-field);
+  font-size: 0.82rem;
+  font-weight: 600;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  text-decoration: underline;
+  text-underline-offset: 0.18em;
+}
+
+.studioAction:hover {
+  color: var(--color-volt);
+}
+
+.studioAction:focus-visible {
+  outline: 2px solid var(--color-volt);
+  outline-offset: 3px;
+}
+
 .branchIndexList {
   list-style: none;
   margin: 0 0 1.5rem;

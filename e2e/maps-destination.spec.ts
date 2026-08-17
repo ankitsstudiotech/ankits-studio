@@ -39,7 +39,9 @@ test.describe("Maps destination semantics", () => {
         expect(link.rel || "").toMatch(/noreferrer/);
         expect(link.text).not.toMatch(/^Directions$/i);
         if (/cid=/.test(link.href)) {
-          expect(Object.values(OWNER_PLACE)).toContain(link.href);
+          const cid = link.href.match(/cid=(\d+)/)?.[1];
+          const known = Object.values(OWNER_PLACE).map((url) => url.match(/cid=(\d+)/)?.[1]);
+          expect(known, link.href).toContain(cid);
         }
       }
     });

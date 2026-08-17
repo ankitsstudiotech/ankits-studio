@@ -70,6 +70,8 @@ describe("Stage 6 — verified business and local trust", () => {
     const row = read("src", "components", "locations", "BranchRow.tsx");
     expect(row).toMatch(/Open in Google Maps/);
     expect(row).toMatch(/noopener noreferrer/);
+    const discovery = read("src", "components", "locations", "pulse", "LocationDiscovery.tsx");
+    expect(discovery).toMatch(/Open in Google Maps/);
     const contact = read("src", "app", "(marketing)", "contact", "page.tsx");
     expect(contact).toMatch(/getBranchMapsUrl/);
     expect(contact).toMatch(/Open in Google Maps/);

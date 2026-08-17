@@ -9,7 +9,7 @@ import { expect, test } from "@playwright/test";
 const TARGETS: Array<{ route: string; selector: string; label: string }> = [
   { route: "/", selector: "#services", label: "home programme discovery" },
   { route: "/", selector: "#locations", label: "home branch discovery" },
-  { route: "/programs", selector: '[data-discovery="programme-index"]', label: "programmes index" },
+  { route: "/programs", selector: "[data-programme-pairs]", label: "programmes index" },
   { route: "/about", selector: '[data-discovery="meta-index"]', label: "about programme list" },
   {
     route: "/programs/functional-training",

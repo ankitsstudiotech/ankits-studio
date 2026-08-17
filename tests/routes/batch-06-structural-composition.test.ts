@@ -13,7 +13,7 @@ describe("Batch 06 — closing conversion family", () => {
     const css = read("src/components/conversion/closing-band.module.css");
     expect(band).toMatch(/data-compose="closing-band"/);
     expect(band).toMatch(/variant === "accent"/);
-    expect(css).toMatch(/grid-template-columns:\s*minmax\(0,\s*1fr\)\s+auto/);
+    expect(css).toMatch(/grid-template-columns:\s*minmax\(0,\s*8fr\)\s+minmax\(12rem,\s*4fr\)/);
     expect(css).not.toMatch(/width:\s*100%[\s\S]{0,80}button/);
     expect(css).toMatch(/\.accent \.actionPrimary :global\(a\)/);
   });

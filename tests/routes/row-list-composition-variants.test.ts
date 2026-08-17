@@ -10,7 +10,7 @@ describe("row-list composition variants — Batch 04", () => {
   it("ProgrammeRow exposes contextual layouts instead of one stretched anatomy", () => {
     const row = read("src/components/programs/ProgrammeRow.tsx");
     expect(row).toMatch(/layout\?: ProgrammeRowLayout/);
-    expect(row).toMatch(/"featured" \| "cell" \| "index"/);
+    expect(row).toMatch(/"featured" \| "cell" \| "index" \| "module"/);
     expect(row).toMatch(/data-layout=\{layout\}/);
     const css = read("src/components/programs/programme-row.module.css");
     expect(css).not.toMatch(/minmax\(0,\s*var\(--layout-copy-max\)\)/);
@@ -18,18 +18,20 @@ describe("row-list composition variants — Batch 04", () => {
     expect(css).toMatch(/data-layout="featured"/);
     expect(css).toMatch(/data-layout="cell"/);
     expect(css).toMatch(/data-layout="index"/);
+    expect(css).toMatch(/data-layout="module"/);
   });
 
   it("homepage programme discovery uses an editorial matrix, not eight stacked rows", () => {
     const showcase = read("src/components/home/ProgrammeShowcase.tsx");
-    expect(showcase).toMatch(/layout=\{layout\}/);
-    expect(showcase).toMatch(/data-matrix=\{matrix\}/);
-    expect(showcase).toMatch(/clusterPair/);
+    expect(showcase).toMatch(/layout="module"/);
+    expect(showcase).toMatch(/data-matrix="editorial"/);
     expect(showcase).toMatch(/Choose how you want to move/);
+    expect(showcase).toMatch(/For Teams/);
+    expect(showcase).toMatch(/cluster.lede/);
+    expect(showcase).toMatch(/clusterKey/);
     const css = read("src/components/home/pulse/pulse-home.module.css");
-    expect(css).toMatch(/lanes\[data-matrix="train"\]/);
-    expect(css).toMatch(/lanes\[data-matrix="move"\]/);
-    expect(css).toMatch(/grid-template-columns:\s*1fr 1fr 1fr/);
+    expect(css).toMatch(/\.moduleMatrix/);
+    expect(css).toMatch(/grid-template-columns:\s*repeat\(4,/);
   });
 
   it("homepage branches use a 2×2 locality index", () => {
@@ -43,14 +45,17 @@ describe("row-list composition variants — Batch 04", () => {
     expect(css).not.toMatch(/minmax\(0,\s*36rem\)\s+max-content/);
   });
 
-  it("programmes index uses dense index layout, not homepage matrix clone", () => {
+  it("programmes index uses paired editorial bands, not homepage matrix clone", () => {
     const discovery = read("src/components/programs/pulse/ProgrammeDiscovery.tsx");
-    expect(discovery).toMatch(/isFeatured/);
-    expect(discovery).toMatch(/layout=\{isFeatured \? "featured" : "cell"\}/);
-    expect(discovery).toMatch(/data-matrix="index"/);
+    expect(discovery).toMatch(/pairSequence/);
+    expect(discovery).toMatch(/pairBand/);
     expect(discovery).toMatch(/indexIntro/);
-    expect(discovery).not.toMatch(/data-matrix="train"/);
     expect(discovery).toMatch(/For Teams/);
+    expect(discovery).not.toMatch(/data-matrix="train"/);
+    expect(discovery).not.toMatch(/layout=\{isFeatured \? "featured" : "cell"\}/);
+    const css = read("src/components/programs/pulse/programme-pulse.module.css");
+    expect(css).toMatch(/\.pairBand/);
+    expect(css).toMatch(/\[data-flip="true"\]/);
   });
 
   it("branch available-services uses a compact typographic index without arrows", () => {

@@ -61,43 +61,41 @@ export function GoogleReviewsRail({ reviews }: { reviews: readonly GoogleLiveRev
       >
         {reviews.map((review) => (
           <li key={review.id} className={styles.googleProofLiveItem}>
-            <StarRating rating={review.rating} />
-            <GoogleReviewText text={review.text} />
-            {review.translated ? (
-              <p className={styles.googleProofNote}>Translated from the original Google review.</p>
-            ) : null}
-            <footer className={styles.googleProofAuthor}>
+            <div className={styles.googleProofAuthor}>
               {review.author.photoUri ? (
                 // Google-provided avatar only — not next/image, not generated.
                 // eslint-disable-next-line @next/next/no-img-element
                 <img
                   src={review.author.photoUri}
-                    alt={`${review.author.displayName}’s Google profile photo`}
-                  width={40}
-                  height={40}
+                  alt={`${review.author.displayName}’s Google profile photo`}
+                  width={36}
+                  height={36}
                   className={styles.googleProofAvatar}
                   referrerPolicy="no-referrer"
                 />
               ) : null}
-              <div className={styles.googleProofAuthorCopy}>
-                {review.author.profileUri ? (
-                  <a
-                    href={review.author.profileUri}
-                    className={styles.googleProofAuthorName}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                  >
-                    {review.author.displayName}
-                  </a>
-                ) : (
-                  <p className={styles.googleProofAuthorName}>{review.author.displayName}</p>
-                )}
-                <p className={styles.googleProofMeta}>
-                  {review.branchLocality}
-                  {review.relativePublishTime ? ` · ${review.relativePublishTime}` : ""}
-                </p>
-              </div>
-            </footer>
+              {review.author.profileUri ? (
+                <a
+                  href={review.author.profileUri}
+                  className={styles.googleProofAuthorName}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  {review.author.displayName}
+                </a>
+              ) : (
+                <p className={styles.googleProofAuthorName}>{review.author.displayName}</p>
+              )}
+            </div>
+            <StarRating rating={review.rating} />
+            <p className={styles.googleProofMeta}>
+              {review.branchLocality}
+              {review.relativePublishTime ? ` · ${review.relativePublishTime}` : ""}
+            </p>
+            <GoogleReviewText text={review.text} />
+            {review.translated ? (
+              <p className={styles.googleProofNote}>Translated from the original Google review.</p>
+            ) : null}
             <a
               href={review.googleMapsReviewUri}
               className={styles.googleProofAction}

@@ -33,7 +33,7 @@ describe("hero narrative composition — Batch 05", () => {
     expect(page).toMatch(/From one studio to four neighbourhoods/);
     expect(page).not.toMatch(/Meet our founder/);
     const css = read("src/components/about/pulse/about.module.css");
-    expect(css).toMatch(/grid-template-columns:\s*minmax\(0,\s*38rem\)\s+minmax\(18rem,\s*1fr\)/);
+    expect(css).toMatch(/grid-template-columns:\s*minmax\(0,\s*1fr\)\s+minmax\(18rem,\s*0\.72fr\)/);
     expect(css).not.toMatch(/border-radius:\s*1rem/);
   });
 

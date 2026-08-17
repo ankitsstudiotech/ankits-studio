@@ -31,9 +31,9 @@ test.describe("core routes visual gate", () => {
     await expect(page).toHaveURL(/\/trial$/);
   });
 
-  test("programmes index uses ProgrammeRow uppercase titles", async ({ page }) => {
+  test("programmes index uses uppercase programme titles", async ({ page }) => {
     await page.goto("/programs");
-    const titles = page.locator("#programmes-index a[href^='/programs/'] h3, #programmes-index a[href^='/programs/'] h4");
+    const titles = page.locator("[data-discovery='programme-index'] h2.pairName, [data-discovery='programme-index'] h2");
     const count = await titles.count();
     expect(count).toBeGreaterThanOrEqual(7);
     for (let i = 0; i < count; i++) {
