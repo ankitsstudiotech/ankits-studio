@@ -113,6 +113,17 @@ export function getPubliclyListedBranches(): Branch[] {
   return branches.filter((branch) => branch.publiclyListed);
 }
 
+/** 1-based directory index matching the Home 01–04 branch system. */
+export function getBranchDirectoryIndex(slug: string): number | null {
+  const index = getPubliclyListedBranches().findIndex((branch) => branch.slug === slug);
+  return index >= 0 ? index + 1 : null;
+}
+
+export function getBranchDirectoryNumeral(slug: string): string | null {
+  const index = getBranchDirectoryIndex(slug);
+  return index == null ? null : String(index).padStart(2, "0");
+}
+
 export function getBranchBySlug(slug: BranchSlug): Branch | undefined {
   return branches.find((branch) => branch.slug === slug);
 }

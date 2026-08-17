@@ -282,18 +282,87 @@
 }
 
 .detailHero {
-  display: grid;
-  gap: 1.25rem;
+  display: block;
   padding: var(--spacing-section) var(--layout-gutter);
   border-bottom: var(--rule-structural-width) solid var(--rule-structural);
   width: 100%;
   box-sizing: border-box;
 }
 
-@media (min-width: 900px) {
-  .detailHero {
-    grid-template-columns: minmax(0, 1fr);
-    align-items: start;
+.detailHeroGrid {
+  display: grid;
+  gap: 1.5rem;
+  width: 100%;
+  max-width: var(--layout-content);
+  align-items: start;
+}
+
+.detailHeroGrid > * {
+  min-width: 0;
+}
+
+@media (min-width: 768px) {
+  .detailHeroGrid {
+    grid-template-columns: minmax(0, 38rem) minmax(16rem, 1fr);
+    gap: 2rem 3rem;
+    align-items: end;
+    justify-content: start;
+  }
+}
+
+.detailOpening .ctaRow {
+  margin-top: 1.15rem;
+}
+
+.detailRail {
+  min-width: 0;
+}
+
+.detailNum {
+  margin: 0 0 0.35rem;
+  font-family: var(--font-display);
+  font-size: clamp(4.5rem, 12vw, 8.75rem);
+  letter-spacing: 0.02em;
+  line-height: 0.78;
+  color: color-mix(in srgb, var(--color-accent) 42%, #fff);
+}
+
+.detailFacts {
+  display: grid;
+  gap: 0.7rem;
+  margin: 0 0 0.85rem;
+  padding: 0.75rem 0 0;
+  border-top: var(--rule-structural-width) solid var(--rule-structural);
+}
+
+.detailFacts div {
+  display: grid;
+  gap: 0.12rem;
+}
+
+.detailFacts dt {
+  font-size: var(--text-overline);
+  font-weight: 600;
+  letter-spacing: var(--text-overline--letter-spacing);
+  text-transform: uppercase;
+  color: var(--color-muted-on-field);
+}
+
+.detailFacts dd {
+  margin: 0;
+  font-size: 1.02rem;
+  line-height: 1.35;
+  color: var(--color-ink-inverse);
+}
+
+@media (max-width: 719px) {
+  .detailNum {
+    font-size: clamp(2.4rem, 16vw, 3.2rem);
+    margin-bottom: 0.15rem;
+  }
+
+  .detailFacts {
+    padding-top: 0.65rem;
   }
 }
 
@@ -314,10 +383,10 @@
   line-height: 0.95;
   margin: 0 0 0.65rem;
   text-transform: uppercase;
-  max-width: 12ch;
+  max-width: 14ch;
 }
 
-.detailHero p {
+.detailOpening p {
   margin: 0 0 1rem;
   max-width: 46ch;
   color: var(--color-muted-on-field);

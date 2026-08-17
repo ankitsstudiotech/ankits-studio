@@ -284,6 +284,8 @@ export function ProgrammeDetailView({
                 sizes={
                   programme.slug === "corporate-wellness"
                     ? "(max-width: 900px) 100vw, (max-width: 1440px) 52vw, 820px"
+                    : programme.slug === "yoga"
+                      ? "(max-width: 900px) 100vw, (max-width: 1440px) 48vw, 780px"
                     : "(max-width: 900px) 100vw, (max-width: 1440px) 42vw, 720px"
                 }
                 priority

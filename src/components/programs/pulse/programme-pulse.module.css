@@ -593,19 +593,20 @@
 
   .detailHero[data-compose-family="calm"] .composeHeroWithMedia {
     display: grid;
-    grid-template-columns: minmax(0, 1.25fr) minmax(0, 0.85fr);
+    /* Text track sized to the copy; 2rem gap is the Calm breath — not an empty 1fr column. */
+    grid-template-columns: minmax(18rem, 32rem) minmax(0, 1fr);
     grid-template-areas:
-      "title ."
       "title media"
       "meta media";
-    gap: 1.75rem 2.5rem;
+    column-gap: 2rem;
+    row-gap: 1.15rem;
     align-items: start;
   }
 
   .detailHero[data-compose-family="calm"] .detailOpening {
     grid-area: title;
-    max-width: 28rem;
-    padding-block: 0.5rem 1.5rem;
+    max-width: none;
+    padding-block: 0.35rem 0.5rem;
   }
 
   .detailHero[data-compose-family="calm"] .detailTitle {
@@ -615,14 +616,22 @@
 
   .detailHero[data-compose-family="calm"] .detailMedia {
     grid-area: media;
+    width: 100%;
     max-width: none;
-    align-self: end;
-    margin-top: 2.5rem;
+    justify-self: stretch;
+    align-self: stretch;
+    margin-top: 0;
+  }
+
+  .detailHero[data-compose-family="calm"] .detailMedia figure {
+    width: 100%;
+    height: 100%;
+    min-height: 24rem;
   }
 
   .detailHero[data-compose-family="calm"] .metaRail {
     grid-area: meta;
-    max-width: 22rem;
+    max-width: none;
   }
 
   .detailHero[data-compose-family="calm"] .metaItem {
@@ -731,7 +740,7 @@
   }
 
   .detailHero[data-compose-family="calm"] .detailMedia {
-    margin-top: 1rem;
+    margin-top: 0;
   }
 
   .detailHero[data-compose-family="fluid"] .detailMedia {

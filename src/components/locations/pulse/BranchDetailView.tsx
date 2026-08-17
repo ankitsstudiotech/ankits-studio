@@ -1,5 +1,5 @@
 import Link from "next/link";
-import type { Branch, Programme } from "@/content";
+import { getBranchDirectoryNumeral, type Branch, type Programme } from "@/content";
 import { HeroReveal, SectionReveal } from "@/components/motion";
 import { LocationPulseCta } from "./LocationPulseMotion";
 import styles from "./location-pulse.module.css";
@@ -44,20 +44,58 @@ export function BranchDetailView({
     return order.indexOf(a.slug) - order.indexOf(b.slug);
   });
 
+  const directoryNumeral = getBranchDirectoryNumeral(branch.slug);
+  const neighbourhood = `Coach-led sessions in ${branch.locality}. Ask on WhatsApp which batch fits you.`;
+
   return (
     <div className={styles.field}>
-      <section className={styles.detailHero} aria-labelledby="branch-title">
-        <HeroReveal>
-          <p className={styles.detailKicker}>Ankit’s Studio</p>
-          {branch.openingStatus === "open" ? (
-            <span className={styles.openBadge}>Open daily · {hoursLabel}</span>
-          ) : null}
-          <h1 id="branch-title">{branch.locality}</h1>
-          {addressLine ? <p className={styles.detailAddress}>{addressLine}</p> : null}
-          <p>
-            Coach-led sessions at this neighbourhood studio. Ask on WhatsApp which batch fits you.
-          </p>
-          <div className={styles.ctaRow}>
+      <section
+        className={styles.detailHero}
+        aria-labelledby="branch-title"
+        data-compose="branch-opening"
+      >
+        <HeroReveal className={styles.detailHeroGrid}>
+          <div className={styles.detailOpening}>
+            <p className={styles.detailKicker}>Ankit’s Studio</p>
+            <h1 id="branch-title">{branch.locality}</h1>
+            {addressLine ? <p className={styles.detailAddress}>{addressLine}</p> : null}
+            <p>{neighbourhood}</p>
+            <div className={styles.ctaRow}>
+              <LocationPulseCta href={whatsappHref}>{whatsappLabel}</LocationPulseCta>
+            </div>
+          </div>
+          <aside className={styles.detailRail} aria-label={`${branch.locality} locality`}>
+            {directoryNumeral ? (
+              <p className={styles.detailNum} aria-hidden="true">
+                {directoryNumeral}
+              </p>
+            ) : null}
+            <dl className={styles.detailFacts}>
+              {branch.openingYear ? (
+                <div>
+                  <dt>Since</dt>
+                  <dd>{branch.openingYear}</dd>
+                </div>
+              ) : null}
+              {branch.openingStatus === "open" ? (
+                <div>
+                  <dt>Hours</dt>
+                  <dd>Open daily · {hoursLabel}</dd>
+                </div>
+              ) : null}
+              {branch.landmarks ? (
+                <div>
+                  <dt>Landmark</dt>
+                  <dd>{branch.landmarks}</dd>
+                </div>
+              ) : null}
+              {branch.nearestStation ? (
+                <div>
+                  <dt>Station</dt>
+                  <dd>{branch.nearestStation}</dd>
+                </div>
+              ) : null}
+            </dl>
             {mapsUrl ? (
               <a
                 href={mapsUrl}
@@ -68,8 +106,7 @@ export function BranchDetailView({
                 Open in Google Maps
               </a>
             ) : null}
-            <LocationPulseCta href={whatsappHref}>{whatsappLabel}</LocationPulseCta>
-          </div>
+          </aside>
         </HeroReveal>
       </section>
 
