@@ -1,5 +1,6 @@
 import { GroupReveal, SectionReveal } from "@/components/motion";
 import type { GoogleSocialProof } from "@/lib/google-reviews";
+import { GoogleReviewsRail } from "./GoogleReviewsRail";
 import styles from "./pulse/pulse-home.module.css";
 
 export type GoogleReviewProofProps = {
@@ -14,17 +15,6 @@ function GoogleMapsAttribution() {
   );
 }
 
-function StarRating({ rating }: { rating: number }) {
-  const rounded = Math.round(rating);
-  const clamped = Math.min(5, Math.max(0, rounded));
-  return (
-    <p className={styles.reviewRating}>
-      <span className="sr-only">{`${rating} out of 5 stars`}</span>
-      <span aria-hidden="true">{`${"★".repeat(clamped)}${"☆".repeat(5 - clamped)}`}</span>
-    </p>
-  );
-}
-
 function LiveReviews({ proof }: { proof: Extract<GoogleSocialProof, { mode: "live-google-reviews" }> }) {
   return (
     <section
@@ -33,69 +23,60 @@ function LiveReviews({ proof }: { proof: Extract<GoogleSocialProof, { mode: "liv
       aria-labelledby="google-reviews-title"
       data-google-proof-mode="live-google-reviews"
     >
-      <div className={styles.googleProofLayout}>
+      <div className={`${styles.googleProofLayout} ${styles.googleProofLiveLayout}`}>
         <SectionReveal pattern="A">
-          <p className={styles.googleProofKicker}>Google Reviews</p>
+          <p className={styles.googleProofKicker}>Reviews on Google</p>
           <h2 id="google-reviews-title" className={styles.bandTitle}>
-            What members say
+            What members are saying
           </h2>
           <p className={styles.bandLede}>{proof.disclosure}</p>
+          {proof.branchRatings.length > 0 ? (
+            <ul className={styles.googleProofRatings}>
+              {proof.branchRatings.map((branch) => (
+                <li key={branch.branchSlug}>
+                  {branch.googleMapsUri ? (
+                    <a
+                      href={branch.googleMapsUri}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                    >
+                      {branch.branchLocality}
+                    </a>
+                  ) : (
+                    <span>{branch.branchLocality}</span>
+                  )}
+                  <span>
+                    {branch.rating.toFixed(1)} · {branch.userRatingCount} Google reviews
+                  </span>
+                </li>
+              ))}
+            </ul>
+          ) : null}
+          <p className={styles.googleProofNote}>
+            Reviews aren’t verified by Google, but Google checks for and removes fake content when
+            it’s identified.
+          </p>
           <GoogleMapsAttribution />
         </SectionReveal>
         <GroupReveal>
-          <ul className={styles.googleProofList}>
-            {proof.reviews.map((review) => (
-              <li key={review.id} className={styles.googleProofLiveItem}>
-                <StarRating rating={review.rating} />
-                <blockquote cite={review.googleMapsReviewUri} className={styles.googleProofQuote}>
-                  <p>{review.text}</p>
-                </blockquote>
-                {review.translated ? (
-                  <p className={styles.googleProofNote}>Translated from the original Google review.</p>
-                ) : null}
-                <footer className={styles.googleProofAuthor}>
-                  {review.author.photoUri ? (
-                    // Google-provided avatar only — not next/image, not generated.
-                    // eslint-disable-next-line @next/next/no-img-element
-                    <img
-                      src={review.author.photoUri}
-                      alt={`${review.author.displayName}’s Google profile photo`}
-                      width={40}
-                      height={40}
-                      className={styles.googleProofAvatar}
-                      referrerPolicy="no-referrer"
-                    />
-                  ) : null}
-                  <div className={styles.googleProofAuthorCopy}>
-                    {review.author.profileUri ? (
-                      <a
-                        href={review.author.profileUri}
-                        className={styles.googleProofAuthorName}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                      >
-                        {review.author.displayName}
-                      </a>
-                    ) : (
-                      <p className={styles.googleProofAuthorName}>{review.author.displayName}</p>
-                    )}
-                    <p className={styles.googleProofMeta}>
-                      {review.branchLocality}
-                      {review.relativePublishTime ? ` · ${review.relativePublishTime}` : ""}
-                    </p>
-                  </div>
-                </footer>
-                <a
-                  href={review.googleMapsReviewUri}
-                  className={styles.googleProofAction}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                >
-                  View on Google Maps
-                </a>
-              </li>
-            ))}
-          </ul>
+          <GoogleReviewsRail reviews={proof.reviews} />
+          {proof.fallbackBranches?.length ? (
+            <ul className={styles.googleProofList}>
+              {(proof.fallbackBranches ?? []).map((branch) => (
+                <li key={branch.slug} className={styles.googleProofRow}>
+                  <h3 className={styles.googleProofBranch}>{branch.locality}</h3>
+                  <a
+                    href={branch.mapsUrl}
+                    className={styles.googleProofAction}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                  >
+                    View on Google
+                  </a>
+                </li>
+              ))}
+            </ul>
+          ) : null}
         </GroupReveal>
       </div>
     </section>

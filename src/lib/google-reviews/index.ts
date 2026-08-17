@@ -1,7 +1,15 @@
 export { getGoogleSocialProof } from "./provider";
 export { getGooglePlacesApiKey } from "./credentials";
 export { VERIFIED_GOOGLE_PLACE_IDS } from "./place-ids";
-export { selectFirstUsableReview, isUsableTextReview } from "./review-selection";
+export {
+  selectFirstUsableReview,
+  selectUsableReviews,
+  isUsableTextReview,
+} from "./review-selection";
+export {
+  getPlaceDetailsRequestCount,
+  resetPlaceDetailsRequestCount,
+} from "./places-provider";
 export type {
   GoogleSocialProof,
   GoogleSocialProofMode,

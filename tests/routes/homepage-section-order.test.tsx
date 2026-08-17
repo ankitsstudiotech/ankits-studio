@@ -52,7 +52,7 @@ describe("homepage section order — final owner priority", () => {
     expect(container.querySelector("[data-google-proof-mode='external-links']")).toBeTruthy();
     expect(container.textContent).toMatch(/Reviews on Google/);
     expect(container.textContent).toMatch(/Explore Google feedback/);
-    expect(container.textContent).not.toMatch(/What members say/);
+    expect(container.textContent).not.toMatch(/What members are saying/);
     expect(container.textContent).not.toMatch(/failed to load|quota exceeded/i);
   });
 
@@ -61,7 +61,7 @@ describe("homepage section order — final owner priority", () => {
       <GoogleReviewProof
         proof={{
           mode: "live-google-reviews",
-          disclosure: "One text review per studio is shown from Google’s relevance-sorted results.",
+          disclosure: "Reviews supplied by Google Maps. Text reviews are shown in Google relevance order, up to two per studio.",
           reviews: [
             {
               id: "r1",
@@ -74,12 +74,14 @@ describe("homepage section order — final owner priority", () => {
             },
           ],
           branchRatings: [],
+          fallbackBranches: [],
         }}
       />,
     );
     expect(container.querySelector("[data-google-proof-mode='live-google-reviews']")).toBeTruthy();
-    expect(container.textContent).toMatch(/What members say/);
-    expect(container.textContent).not.toMatch(/Reviews on Google/);
+    expect(container.textContent).toMatch(/What members are saying/);
+    expect(container.textContent).toMatch(/Reviews on Google/);
+    expect(container.textContent).toMatch(/View review on Google Maps/);
   });
 
   it("renders nothing when Google proof is unavailable", () => {

@@ -20,10 +20,11 @@ export type GoogleLiveReview = {
   branchSlug: string;
   branchLocality: string;
   author: GoogleReviewAuthor;
-  rating: number;
+  rating?: number;
   relativePublishTime?: string;
   text: string;
   googleMapsReviewUri: string;
+  flagContentUri?: string;
   originalLanguage?: string;
   translated?: boolean;
 };
@@ -50,6 +51,7 @@ export type GoogleSocialProofLive = {
   reviews: readonly GoogleLiveReview[];
   disclosure: string;
   branchRatings: readonly GoogleBranchRating[];
+  fallbackBranches: readonly GoogleExternalBranchLink[];
 };
 
 export type GoogleSocialProof =
@@ -77,6 +79,7 @@ export type PlacesReview = {
   authorAttribution?: PlacesAuthorAttribution;
   publishTime?: string;
   googleMapsUri?: string;
+  flagContentUri?: string;
 };
 
 export type PlacesDisplayName = {
@@ -105,6 +108,7 @@ export type VerifiedGooglePlace = {
   matchStatus: "verified";
 };
 
+/** Precise Place Details (New) field mask — never `*`. */
 export const PLACES_DETAILS_FIELD_MASK = [
   "id",
   "displayName",
@@ -112,8 +116,21 @@ export const PLACES_DETAILS_FIELD_MASK = [
   "googleMapsUri",
   "rating",
   "userRatingCount",
-  "reviews",
+  "reviews.name",
+  "reviews.relativePublishTimeDescription",
+  "reviews.text",
+  "reviews.originalText",
+  "reviews.rating",
+  "reviews.authorAttribution",
+  "reviews.publishTime",
+  "reviews.googleMapsUri",
+  "reviews.flagContentUri",
 ].join(",");
 
-export const MAX_HOMEPAGE_REVIEWS = 4;
-export const MAX_REVIEWS_PER_BRANCH = 1;
+export const MAX_HOMEPAGE_REVIEWS = 8;
+export const MAX_REVIEWS_PER_BRANCH = 2;
+export const MAX_PLACE_DETAILS_REQUESTS = 4;
+export const PLACES_REQUEST_TIMEOUT_MS = 4000;
+
+export const GOOGLE_REVIEW_DISCLOSURE =
+  "Reviews supplied by Google Maps. Text reviews are shown in Google relevance order, up to two per studio.";

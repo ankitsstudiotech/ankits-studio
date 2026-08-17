@@ -84,11 +84,22 @@ test.describe("homepage Google social proof", () => {
     });
     expect(order).toEqual({ branchesBeforeReviews: true, reviewsBeforeFounder: true });
     const body = await page.locator("#google-reviews").innerText();
+    const mode = await page.locator("#google-reviews").getAttribute("data-google-proof-mode");
     expect(body).toMatch(/Reviews on Google/i);
-    expect(body).toMatch(/Explore Google feedback/i);
-    expect(body).not.toMatch(/What members say/i);
     expect(body).not.toMatch(/reviews failed|quota exceeded|Place ID missing/i);
     expect(body).not.toMatch(/Transformations/i);
+    expect(body).not.toMatch(/John Doe|mock review/i);
+    if (mode === "live-google-reviews") {
+      expect(body).toMatch(/What members are saying/i);
+      expect(body).toMatch(/relevance order/i);
+      expect(body).toMatch(/Google Maps/i);
+      const reviewLinks = page.locator("#google-reviews").getByRole("link", { name: /View review on Google Maps/i });
+      expect(await reviewLinks.count()).toBeGreaterThan(0);
+      expect(await reviewLinks.count()).toBeLessThanOrEqual(8);
+    } else {
+      expect(body).toMatch(/Explore Google feedback/i);
+      expect(body).not.toMatch(/What members are saying/i);
+    }
   });
 
   test("homepage images complete without broken src", async ({ page }) => {

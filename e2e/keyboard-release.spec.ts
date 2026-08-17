@@ -33,6 +33,27 @@ test.describe("keyboard release gate", () => {
     await expect(item).not.toHaveAttribute("open");
   });
 
+  test("home Google review rail is keyboard operable when live", async ({ page }) => {
+    await page.goto("/");
+    const chapter = page.locator("#google-reviews");
+    await expect(chapter).toBeVisible();
+    if ((await chapter.getAttribute("data-google-proof-mode")) !== "live-google-reviews") {
+      return;
+    }
+    const next = chapter.getByRole("button", { name: /Next reviews/i });
+    if ((await next.count()) === 0) return;
+    await next.focus();
+    await expect(next).toBeFocused();
+    await page.keyboard.press("Enter");
+    const readMore = chapter.getByRole("button", { name: /Read more/i }).locator("visible=true").first();
+    if ((await readMore.count()) > 0) {
+      await readMore.focus();
+      await expect(readMore).toBeFocused();
+      await readMore.press("Enter");
+      await expect(chapter.getByRole("button", { name: /Show less/i }).first()).toBeVisible();
+    }
+  });
+
   test("mobile nav opens and closes with keyboard affordances", async ({ page }) => {
     await page.setViewportSize({ width: 390, height: 844 });
     await page.goto("/");

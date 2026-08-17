@@ -15,8 +15,9 @@ beforeAll(() => {
 const LIVE: GoogleSocialProof = {
   mode: "live-google-reviews",
   disclosure:
-    "This review is from Google’s relevance-sorted results. It is not displayed chronologically.",
+    "Reviews supplied by Google Maps. Text reviews are shown in Google relevance order, up to two per studio.",
   branchRatings: [],
+  fallbackBranches: [],
   reviews: [
     {
       id: "places/ChIJ/reviews/abc",
@@ -39,13 +40,13 @@ describe("Google review attribution and source links", () => {
   it("keeps Google author identity, rating text, and Maps source access", () => {
     render(<GoogleReviewProof proof={LIVE} />);
     expect(screen.getByText("Alex M")).toBeTruthy();
-    expect(screen.getByAltText("Alex M’s Google profile photo")).toBeTruthy();
+    expect(screen.getByRole("img")).toHaveAttribute("src", "https://lh3.googleusercontent.com/a/example");
     expect(screen.getByText("5 out of 5 stars")).toBeTruthy();
-    const source = screen.getByRole("link", { name: /view on google maps/i });
+    const source = screen.getByRole("link", { name: /view review on google maps/i });
     expect(source.getAttribute("href")).toBe("https://maps.google.com/?cid=review-abc");
     expect(source.getAttribute("rel")).toMatch(/noopener/);
     expect(screen.getByText("Google Maps")).toHaveAttribute("translate", "no");
-    expect(screen.getByText(/relevance-sorted/i)).toBeTruthy();
+    expect(screen.getByText(/relevance order/i)).toBeTruthy();
     expect(screen.getByText(/Airoli Sector 19/)).toBeTruthy();
   });
 

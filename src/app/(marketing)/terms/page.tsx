@@ -80,7 +80,13 @@ export default function TermsPage() {
         <h2 className={styles.sectionTitle}>Third-party services</h2>
         <p className={styles.body}>
           Links to WhatsApp, Google Maps, phone and email open third-party applications or services.
-          Those services have their own terms and privacy practices.
+          Those services have their own terms and privacy practices. When this website displays
+          Google Maps content such as public reviews, that content is provided by Google and is
+          subject to the{" "}
+          <a href="https://maps.google.com/help/terms_maps/" className={styles.link}>
+            Google Maps / Google Earth Additional Terms of Service
+          </a>
+          .
         </p>
 
         <h2 className={styles.sectionTitle}>Intellectual property</h2>

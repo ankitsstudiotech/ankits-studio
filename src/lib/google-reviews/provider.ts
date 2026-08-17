@@ -5,7 +5,7 @@ import {
 import { getGooglePlacesApiKey } from "./credentials";
 import { VERIFIED_GOOGLE_PLACE_IDS } from "./place-ids";
 import { fetchPlaceDetails, type PlacesFetch } from "./places-provider";
-import { reviewText, selectFirstUsableReview, toLiveReviewId } from "./review-selection";
+import { reviewText, selectUsableReviews, toLiveReviewId } from "./review-selection";
 import { logGoogleReviewsDiagnostic } from "./log";
 import type {
   GoogleBranchRating,
@@ -14,7 +14,12 @@ import type {
   GoogleSocialProof,
   VerifiedGooglePlace,
 } from "./types";
-import { MAX_HOMEPAGE_REVIEWS } from "./types";
+import {
+  GOOGLE_REVIEW_DISCLOSURE,
+  MAX_HOMEPAGE_REVIEWS,
+  MAX_PLACE_DETAILS_REQUESTS,
+  MAX_REVIEWS_PER_BRANCH,
+} from "./types";
 
 function externalBranchLinks(): GoogleExternalBranchLink[] {
   const links: GoogleExternalBranchLink[] = [];
@@ -38,14 +43,11 @@ function fallbackProof(): GoogleSocialProof {
   return { mode: "external-links", branches };
 }
 
-function liveDisclosure(reviewCount: number): string {
-  if (reviewCount <= 1) {
-    return "This review is from Google’s relevance-sorted results. It is not displayed chronologically.";
-  }
-  if (reviewCount === 4) {
-    return "One text review per studio is shown from Google’s relevance-sorted results.";
-  }
-  return "Reviews shown are selected from Google’s relevance-sorted results. They are not displayed chronologically.";
+function mapsUrlForPlace(place: VerifiedGooglePlace): string | undefined {
+  return (
+    externalBranchLinks().find((branch) => branch.slug === place.branchSlug)?.mapsUrl ??
+    place.googleMapsUri
+  );
 }
 
 export type GoogleSocialProofOptions = {
@@ -56,7 +58,8 @@ export type GoogleSocialProofOptions = {
 
 /**
  * Runtime Google social proof. Never persists review PII.
- * Missing credentials, unresolved Place IDs, or API failure → external-links.
+ * Missing credentials, unresolved Place IDs, or total API failure → external-links.
+ * One failed branch does not drop reviews from the others.
  */
 export async function getGoogleSocialProof(
   options: GoogleSocialProofOptions = {},
@@ -64,7 +67,10 @@ export async function getGoogleSocialProof(
   const fallback = fallbackProof();
   const apiKey =
     options.apiKey === undefined ? getGooglePlacesApiKey() : options.apiKey;
-  const verifiedPlaces = options.verifiedPlaces ?? VERIFIED_GOOGLE_PLACE_IDS;
+  const verifiedPlaces = (options.verifiedPlaces ?? VERIFIED_GOOGLE_PLACE_IDS).slice(
+    0,
+    MAX_PLACE_DETAILS_REQUESTS,
+  );
 
   if (!apiKey) {
     return fallback;
@@ -76,19 +82,33 @@ export async function getGoogleSocialProof(
   }
 
   try {
+    const detailsByPlace = await Promise.all(
+      verifiedPlaces.map(async (place) => ({
+        place,
+        details: await fetchPlaceDetails({
+          placeId: place.placeId,
+          apiKey,
+          fetchImpl: options.fetchImpl,
+        }),
+      })),
+    );
+
     const reviews: GoogleLiveReview[] = [];
     const branchRatings: GoogleBranchRating[] = [];
+    const fallbackBranches: GoogleExternalBranchLink[] = [];
 
-    for (const place of verifiedPlaces) {
-      if (reviews.length >= MAX_HOMEPAGE_REVIEWS) break;
-
-      const details = await fetchPlaceDetails({
-        placeId: place.placeId,
-        apiKey,
-        fetchImpl: options.fetchImpl,
-      });
-
-      if (!details) continue;
+    for (const { place, details } of detailsByPlace) {
+      if (!details) {
+        const mapsUrl = mapsUrlForPlace(place);
+        if (mapsUrl) {
+          fallbackBranches.push({
+            slug: place.branchSlug,
+            locality: place.branchLocality,
+            mapsUrl,
+          });
+        }
+        continue;
+      }
 
       if (
         typeof details.rating === "number" &&
@@ -103,27 +123,41 @@ export async function getGoogleSocialProof(
         });
       }
 
-      const selected = selectFirstUsableReview(details.reviews);
-      if (!selected) continue;
+      const selected = selectUsableReviews(details.reviews, MAX_REVIEWS_PER_BRANCH);
+      if (selected.length === 0) {
+        const mapsUrl = mapsUrlForPlace(place);
+        if (mapsUrl) {
+          fallbackBranches.push({
+            slug: place.branchSlug,
+            locality: place.branchLocality,
+            mapsUrl,
+          });
+        }
+        continue;
+      }
 
-      const original = selected.originalText?.text?.trim();
-      const displayed = reviewText(selected);
-      reviews.push({
-        id: toLiveReviewId(details, selected),
-        branchSlug: place.branchSlug,
-        branchLocality: place.branchLocality,
-        author: {
-          displayName: selected.authorAttribution!.displayName!.trim(),
-          profileUri: selected.authorAttribution?.uri?.trim() || undefined,
-          photoUri: selected.authorAttribution?.photoUri?.trim() || undefined,
-        },
-        rating: selected.rating!,
-        relativePublishTime: selected.relativePublishTimeDescription,
-        text: displayed,
-        googleMapsReviewUri: selected.googleMapsUri!.trim(),
-        originalLanguage: selected.originalText?.languageCode,
-        translated: Boolean(original && original !== displayed),
-      });
+      for (const review of selected) {
+        if (reviews.length >= MAX_HOMEPAGE_REVIEWS) break;
+        const original = review.originalText?.text?.trim();
+        const displayed = reviewText(review);
+        reviews.push({
+          id: toLiveReviewId(details, review),
+          branchSlug: place.branchSlug,
+          branchLocality: place.branchLocality,
+          author: {
+            displayName: review.authorAttribution!.displayName!.trim(),
+            profileUri: review.authorAttribution?.uri?.trim() || undefined,
+            photoUri: review.authorAttribution?.photoUri?.trim() || undefined,
+          },
+          rating: typeof review.rating === "number" ? review.rating : undefined,
+          relativePublishTime: review.relativePublishTimeDescription,
+          text: displayed,
+          googleMapsReviewUri: review.googleMapsUri!.trim(),
+          flagContentUri: review.flagContentUri?.trim() || undefined,
+          originalLanguage: review.originalText?.languageCode,
+          translated: Boolean(original && original !== displayed),
+        });
+      }
     }
 
     if (reviews.length === 0) {
@@ -134,8 +168,9 @@ export async function getGoogleSocialProof(
     return {
       mode: "live-google-reviews",
       reviews: reviews.slice(0, MAX_HOMEPAGE_REVIEWS),
-      disclosure: liveDisclosure(Math.min(reviews.length, MAX_HOMEPAGE_REVIEWS)),
+      disclosure: GOOGLE_REVIEW_DISCLOSURE,
       branchRatings,
+      fallbackBranches,
     };
   } catch {
     logGoogleReviewsDiagnostic("Live review assembly failed");

@@ -1,4 +1,8 @@
-import { PLACES_DETAILS_FIELD_MASK, type PlacesPlaceDetails } from "./types";
+import {
+  PLACES_DETAILS_FIELD_MASK,
+  PLACES_REQUEST_TIMEOUT_MS,
+  type PlacesPlaceDetails,
+} from "./types";
 import { logGoogleReviewsDiagnostic } from "./log";
 
 const PLACE_DETAILS_ENDPOINT = "https://places.googleapis.com/v1/places";
@@ -8,18 +12,36 @@ export type PlacesFetch = (
   init?: RequestInit,
 ) => Promise<Response>;
 
+let placeDetailsRequestCount = 0;
+
+export function resetPlaceDetailsRequestCount(): void {
+  placeDetailsRequestCount = 0;
+}
+
+export function getPlaceDetailsRequestCount(): number {
+  return placeDetailsRequestCount;
+}
+
 export async function fetchPlaceDetails(options: {
   placeId: string;
   apiKey: string;
   fetchImpl?: PlacesFetch;
+  timeoutMs?: number;
 }): Promise<PlacesPlaceDetails | null> {
-  const { placeId, apiKey, fetchImpl = fetch } = options;
+  const {
+    placeId,
+    apiKey,
+    fetchImpl = fetch,
+    timeoutMs = PLACES_REQUEST_TIMEOUT_MS,
+  } = options;
   const url = `${PLACE_DETAILS_ENDPOINT}/${encodeURIComponent(placeId)}`;
+  placeDetailsRequestCount += 1;
 
   try {
     const response = await fetchImpl(url, {
       method: "GET",
       cache: "no-store",
+      signal: AbortSignal.timeout(timeoutMs),
       headers: {
         "Content-Type": "application/json",
         "X-Goog-Api-Key": apiKey,
@@ -59,6 +81,7 @@ export async function searchPlaceByText(options: {
     const response = await fetchImpl("https://places.googleapis.com/v1/places:searchText", {
       method: "POST",
       cache: "no-store",
+      signal: AbortSignal.timeout(PLACES_REQUEST_TIMEOUT_MS),
       headers: {
         "Content-Type": "application/json",
         "X-Goog-Api-Key": apiKey,

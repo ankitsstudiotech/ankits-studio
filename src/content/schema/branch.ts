@@ -69,6 +69,11 @@ export const branchSchema = provenanced({
   pinCode: z.string().min(1).nullable(),
   /** Owner-supplied Maps short URL. Null while pending (Sector 8). */
   mapsUrl: z.string().url().nullable(),
+  /**
+   * Official Places API (New) Place ID. Durable Google identifier only —
+   * never a substitute for the public Maps CID listing URL.
+   */
+  googlePlaceId: z.string().min(1).optional(),
   googleBusinessProfileUrl: z.string().url().nullable(),
   /**
    * Branch-specific phone. Null when only the central enquiry number applies.

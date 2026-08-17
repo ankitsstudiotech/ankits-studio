@@ -1,23 +1,62 @@
 import { afterEach, describe, expect, it, vi } from "vitest";
 import { getGoogleSocialProof } from "@/lib/google-reviews";
-import type { PlacesFetch } from "@/lib/google-reviews/places-provider";
-import type { VerifiedGooglePlace } from "@/lib/google-reviews/types";
+import {
+  getPlaceDetailsRequestCount,
+  resetPlaceDetailsRequestCount,
+  type PlacesFetch,
+} from "@/lib/google-reviews/places-provider";
+import { PLACES_DETAILS_FIELD_MASK, type VerifiedGooglePlace } from "@/lib/google-reviews/types";
 
-const PLACES: readonly VerifiedGooglePlace[] = [
-  {
-    branchSlug: "airoli-sector-19",
-    branchLocality: "Airoli Sector 19",
-    placeId: "ChIJ-test-airoli-19",
-    displayName: "Ankit's Studio — Airoli Sector 19",
-    formattedAddress: "Sector 19, Airoli",
-    googleMapsUri: "https://maps.google.com/?cid=19",
+function place(slug: string, locality: string, id: string): VerifiedGooglePlace {
+  return {
+    branchSlug: slug,
+    branchLocality: locality,
+    placeId: id,
+    displayName: `Ankit's Studio — ${locality}`,
+    formattedAddress: locality,
+    googleMapsUri: `https://maps.google.com/?cid=${slug}`,
     confidence: "high",
     matchStatus: "verified",
-  },
+  };
+}
+
+const FOUR_PLACES: readonly VerifiedGooglePlace[] = [
+  place("airoli-sector-19", "Airoli Sector 19", "ChIJ-test-airoli-19"),
+  place("airoli-sector-8", "Airoli Sector 8", "ChIJ-test-airoli-8"),
+  place("ghansoli", "Ghansoli", "ChIJ-test-ghansoli"),
+  place("thane", "Thane", "ChIJ-test-thane"),
 ];
+
+function livePayload(id: string, reviews: unknown[], extras: Record<string, unknown> = {}) {
+  return {
+    id,
+    displayName: { text: "Ankit's Studio" },
+    rating: 4.6,
+    userRatingCount: 80,
+    googleMapsUri: `https://maps.google.com/?cid=${id}`,
+    reviews,
+    ...extras,
+  };
+}
+
+function usableReview(name: string, text: string, rating: number) {
+  return {
+    name: `places/${name}`,
+    rating,
+    text: { text },
+    relativePublishTimeDescription: "2 weeks ago",
+    googleMapsUri: `https://maps.google.com/?cid=review-${name}`,
+    authorAttribution: {
+      displayName: name,
+      uri: "https://www.google.com/maps/contrib/1",
+      photoUri: "https://lh3.googleusercontent.com/a/example",
+    },
+  };
+}
 
 afterEach(() => {
   vi.restoreAllMocks();
+  resetPlaceDetailsRequestCount();
 });
 
 describe("Google social proof provider", () => {
@@ -43,11 +82,11 @@ describe("Google social proof provider", () => {
     expect(fetchImpl).not.toHaveBeenCalled();
   });
 
-  it("falls back silently when Place Details fails", async () => {
+  it("falls back silently when every Place Details call fails", async () => {
     const fetchImpl = vi.fn(async () => new Response("quota", { status: 429 }));
     const proof = await getGoogleSocialProof({
       apiKey: "test-key",
-      verifiedPlaces: PLACES,
+      verifiedPlaces: FOUR_PLACES,
       fetchImpl,
     });
     expect(proof.mode).toBe("external-links");
@@ -55,72 +94,158 @@ describe("Google social proof provider", () => {
     expect(proof.branches.length).toBe(4);
   });
 
-  it("selects one usable review per verified branch without star filtering", async () => {
+  it("keeps reviews from successful branches when one Place Details call fails", async () => {
+    const fetchImpl = vi.fn<PlacesFetch>(async (input) => {
+      if (String(input).includes("ChIJ-test-thane")) {
+        return new Response("timeout", { status: 504 });
+      }
+      const id = String(input).split("/").pop() ?? "id";
+      return new Response(
+        JSON.stringify(
+          livePayload(id, [usableReview(`${id}-a`, `First relevant ${id}`, 4), usableReview(`${id}-b`, `Second ${id}`, 2)]),
+        ),
+        { status: 200, headers: { "Content-Type": "application/json" } },
+      );
+    });
+
+    const proof = await getGoogleSocialProof({
+      apiKey: "test-key",
+      verifiedPlaces: FOUR_PLACES,
+      fetchImpl,
+    });
+
+    expect(proof.mode).toBe("live-google-reviews");
+    if (proof.mode !== "live-google-reviews") return;
+    expect(proof.reviews).toHaveLength(6);
+    expect(proof.reviews.some((item) => item.branchSlug === "thane")).toBe(false);
+    expect(proof.fallbackBranches.map((item) => item.slug)).toEqual(["thane"]);
+    expect(JSON.stringify(proof)).not.toMatch(/504|timeout|quota/i);
+  });
+
+  it("selects two usable reviews per branch without star filtering", async () => {
     const fetchImpl = vi.fn(async () =>
       new Response(
-        JSON.stringify({
-          id: "ChIJ-test-airoli-19",
-          displayName: { text: "Ankit's Studio — Airoli Sector 19" },
-          rating: 4.6,
-          userRatingCount: 80,
-          googleMapsUri: "https://maps.google.com/?cid=19",
-          reviews: [
-            {
-              name: "places/ChIJ-test-airoli-19/reviews/abc",
-              rating: 4,
-              text: { text: "First relevant Google review." },
-              relativePublishTimeDescription: "2 weeks ago",
-              googleMapsUri: "https://maps.google.com/?cid=review-abc",
-              authorAttribution: {
-                displayName: "Alex M",
-                uri: "https://www.google.com/maps/contrib/1",
-                photoUri: "https://lh3.googleusercontent.com/a/example",
-              },
-            },
-            {
-              rating: 5,
-              text: { text: "Later five-star review." },
-              googleMapsUri: "https://maps.google.com/?cid=review-xyz",
-              authorAttribution: { displayName: "Priya K" },
-            },
-          ],
-        }),
+        JSON.stringify(
+          livePayload("ChIJ-test-airoli-19", [
+            usableReview("Alex M", "First relevant Google review.", 4),
+            usableReview("Priya K", "Later five-star review.", 5),
+            usableReview("Sam R", "Third review must not appear.", 5),
+          ]),
+        ),
         { status: 200, headers: { "Content-Type": "application/json" } },
       ),
     );
 
     const proof = await getGoogleSocialProof({
       apiKey: "test-key",
-      verifiedPlaces: PLACES,
+      verifiedPlaces: [FOUR_PLACES[0]!],
       fetchImpl,
     });
 
     expect(proof.mode).toBe("live-google-reviews");
     if (proof.mode !== "live-google-reviews") return;
-    expect(proof.reviews).toHaveLength(1);
+    expect(proof.reviews).toHaveLength(2);
     expect(proof.reviews[0]?.text).toBe("First relevant Google review.");
     expect(proof.reviews[0]?.rating).toBe(4);
-    expect(proof.reviews[0]?.author.displayName).toBe("Alex M");
-    expect(proof.reviews[0]?.googleMapsReviewUri).toBe(
-      "https://maps.google.com/?cid=review-abc",
-    );
-    expect(proof.disclosure).toMatch(/relevance-sorted/i);
-    expect(JSON.stringify(proof)).not.toMatch(/Later five-star review/);
+    expect(proof.reviews[1]?.text).toBe("Later five-star review.");
+    expect(proof.disclosure).toMatch(/relevance order/i);
+    expect(JSON.stringify(proof)).not.toMatch(/Third review must not appear/);
   });
 
-  it("does not send the API key as a query string", async () => {
+  it("still shows a review when rating is missing", async () => {
+    const fetchImpl = vi.fn(async () =>
+      new Response(
+        JSON.stringify(
+          livePayload("ChIJ-test-airoli-19", [
+            {
+              ...usableReview("Alex M", "Text only, no star.", 4),
+              rating: undefined,
+            },
+          ]),
+        ),
+        { status: 200, headers: { "Content-Type": "application/json" } },
+      ),
+    );
+    const proof = await getGoogleSocialProof({
+      apiKey: "test-key",
+      verifiedPlaces: [FOUR_PLACES[0]!],
+      fetchImpl,
+    });
+    expect(proof.mode).toBe("live-google-reviews");
+    if (proof.mode !== "live-google-reviews") return;
+    expect(proof.reviews[0]?.text).toBe("Text only, no star.");
+    expect(proof.reviews[0]?.rating).toBeUndefined();
+  });
+
+  it("skips empty text and missing avatars without inventing content", async () => {
+    const fetchImpl = vi.fn(async () =>
+      new Response(
+        JSON.stringify(
+          livePayload("ChIJ-test-airoli-19", [
+            { ...usableReview("Empty", "   ", 5), text: { text: "   " } },
+            {
+              ...usableReview("No Photo", "Usable without avatar.", 3),
+              authorAttribution: { displayName: "No Photo" },
+            },
+          ]),
+        ),
+        { status: 200, headers: { "Content-Type": "application/json" } },
+      ),
+    );
+    const proof = await getGoogleSocialProof({
+      apiKey: "test-key",
+      verifiedPlaces: [FOUR_PLACES[0]!],
+      fetchImpl,
+    });
+    expect(proof.mode).toBe("live-google-reviews");
+    if (proof.mode !== "live-google-reviews") return;
+    expect(proof.reviews).toHaveLength(1);
+    expect(proof.reviews[0]?.author.displayName).toBe("No Photo");
+    expect(proof.reviews[0]?.author.photoUri).toBeUndefined();
+    expect(JSON.stringify(proof)).not.toMatch(/John Doe|placeholder reviewer/i);
+  });
+
+  it("issues at most four Place Details requests and never puts the key in the URL", async () => {
+    resetPlaceDetailsRequestCount();
     const fetchImpl = vi.fn<PlacesFetch>(async (input, init) => {
       expect(String(input)).not.toMatch(/key=/i);
       expect((init?.headers as Record<string, string>)["X-Goog-Api-Key"]).toBe("test-key");
-      expect((init?.headers as Record<string, string>)["X-Goog-FieldMask"]).toMatch(/reviews/);
+      expect((init?.headers as Record<string, string>)["X-Goog-FieldMask"]).toBe(PLACES_DETAILS_FIELD_MASK);
       expect((init?.headers as Record<string, string>)["X-Goog-FieldMask"]).not.toMatch(/\*/);
+      expect(init?.cache).toBe("no-store");
       return new Response("no", { status: 403 });
     });
     await getGoogleSocialProof({
       apiKey: "test-key",
-      verifiedPlaces: PLACES,
+      verifiedPlaces: FOUR_PLACES,
       fetchImpl,
     });
-    expect(fetchImpl).toHaveBeenCalled();
+    expect(fetchImpl).toHaveBeenCalledTimes(4);
+    expect(getPlaceDetailsRequestCount()).toBe(4);
+  });
+
+  it("does not average branch ratings into a fake studio score", async () => {
+    const fetchImpl = vi.fn<PlacesFetch>(async (input) => {
+      const thane = String(input).includes("thane");
+      return new Response(
+        JSON.stringify(
+          livePayload(
+            String(input).split("/").pop() ?? "id",
+            [usableReview("Alex M", "A review.", 4)],
+            thane ? { rating: 4.1, userRatingCount: 12 } : { rating: 4.9, userRatingCount: 90 },
+          ),
+        ),
+        { status: 200, headers: { "Content-Type": "application/json" } },
+      );
+    });
+    const proof = await getGoogleSocialProof({
+      apiKey: "test-key",
+      verifiedPlaces: FOUR_PLACES,
+      fetchImpl,
+    });
+    expect(proof.mode).toBe("live-google-reviews");
+    if (proof.mode !== "live-google-reviews") return;
+    expect(proof.branchRatings).toHaveLength(4);
+    expect(JSON.stringify(proof)).not.toMatch(/across all studios/i);
   });
 });

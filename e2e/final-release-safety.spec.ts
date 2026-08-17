@@ -33,14 +33,21 @@ test.describe("final production HTML safety", () => {
     });
   }
 
-  test("Google fallback does not imply on-page quotes", async ({ page }) => {
+  test("Google reviews chapter is live or the verified fallback — never an error shell", async ({ page }) => {
     await page.goto("/", { waitUntil: "domcontentloaded" });
     const chapter = page.locator("#google-reviews");
     await expect(chapter).toBeVisible();
     await expect(chapter).toContainText(/Reviews on Google/i);
-    await expect(chapter).not.toContainText(/What members say/i);
-    await expect(chapter).not.toContainText(/★|⭐/);
-    await expect(chapter.getByRole("link", { name: /View on Google/i })).toHaveCount(4);
+    await expect(chapter).not.toContainText(/reviews failed|quota exceeded|Place ID missing/i);
+    const mode = await chapter.getAttribute("data-google-proof-mode");
+    if (mode === "live-google-reviews") {
+      await expect(chapter).toContainText(/What members are saying/i);
+      await expect(chapter.getByRole("link", { name: /View review on Google Maps/i }).first()).toBeVisible();
+    } else {
+      await expect(chapter).not.toContainText(/What members are saying/i);
+      await expect(chapter).not.toContainText(/★|⭐/);
+      await expect(chapter.getByRole("link", { name: /View on Google/i })).toHaveCount(4);
+    }
   });
 
   test("Corporate Wellness sticky is enquiry, not trial", async ({ page }) => {

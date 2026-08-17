@@ -18,6 +18,7 @@ import {
 } from "@/lib/conversion";
 import { getGoogleSocialProof } from "@/lib/google-reviews";
 import { PageWithFooter } from "@/components/layout/PageWithFooter";
+import { connection } from "next/server";
 import { buildPageMetadata } from "@/lib/seo";
 import type { ServiceTempo } from "@/components/home/pulse/PulseMotion";
 
@@ -146,6 +147,7 @@ const HOMEPAGE_CLUSTERS = [
 ];
 
 export default async function HomePage() {
+  await connection();
   const trialHref = getPrimaryConversionHref();
   const trialLabel = getPrimaryConversionLabel();
   const googleProof = await getGoogleSocialProof();
