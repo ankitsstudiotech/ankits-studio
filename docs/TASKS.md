@@ -116,6 +116,12 @@ design-token set, and the Vitest/Playwright/axe-core testing foundation
 |---|---|---|---|
 | Integrate owner-approved Corporate Wellness illustrative hero + close eight-programme media acceptance. Catalogue, Service-family composition, screenshots, tests. No redesign, no Reviews, no deploy. | Cursor | Done | Branch `revamp/studio-pulse-production`. Two commits: feat integration + test acceptance gate. |
 
+## Production Design Repair Batch 06 — Final structural composition (active)
+
+| Task | Owner | Status | Notes |
+|---|---|---|---|
+| Closing CTA family, variable facts, thin FAQs, About team/FAQ, related aside, founder hierarchy, Getting Here de-dupe. No heroes, no Reviews. Then production deploy. | Cursor | **Done** | Checkpoint `studio-pulse-before-batch-06-final-structural-cleanup` @ `bc9075a`. Shared `ClosingBand` + content-aware facts/FAQ. Evidence in `docs/revamp/screenshots/batch-06-final-structural-cleanup/`. Production deploy follows. |
+
 ## Production Design Repair Batch 05 — Hero + narrative composition (active)
 
 | Task | Owner | Status | Notes |

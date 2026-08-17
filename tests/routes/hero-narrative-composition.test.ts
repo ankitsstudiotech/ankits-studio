@@ -40,7 +40,7 @@ describe("hero narrative composition — Batch 05", () => {
   it("Home founder is a typographic editorial moment without a portrait slot", () => {
     const founder = read("src/components/home/FounderHomeMoment.tsx");
     expect(founder).toMatch(/data-compose="founder-opening"/);
-    expect(founder).toMatch(/founderYear/);
+    expect(founder).toMatch(/Founder · since/);
     expect(founder).toMatch(/founderChronology/);
     expect(founder).not.toMatch(/PulseMedia|founderMedia|portrait/);
     expect(founder).not.toMatch(/Meet our founder/);

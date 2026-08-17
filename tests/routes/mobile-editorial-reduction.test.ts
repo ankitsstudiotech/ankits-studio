@@ -20,7 +20,8 @@ describe("mobile editorial reduction — Stage 2 regression gate", () => {
     expect(about).toMatch(/Explore programmes/);
     expect(about).toMatch(/Find a studio/);
     expect(about).not.toMatch(/Browse all programmes|All locations/);
-    expect(about).toMatch(/about-faq-machine-free/);
+    expect(about).not.toMatch(/about-faq-machine-free/);
+    expect(about).toMatch(/[Mm]achine-free is already covered/);
   });
 
   it("pricing centres the enquiry builder and drops the programme/location directory", () => {
@@ -46,7 +47,8 @@ describe("mobile editorial reduction — Stage 2 regression gate", () => {
     const detail = read("src/components/programs/pulse/ProgrammeDetailView.tsx");
     expect(detail).not.toMatch(/Format &amp; delivery|Format & delivery/);
     expect(detail).toMatch(/related\.slice\(0, 3\)/);
-    expect(detail).toMatch(/Available across our four studios/);
+    expect(detail).toMatch(/Train near you/);
+    expect(detail).toMatch(/Find a studio/);
     expect(detail).toMatch(/GENERIC_FAQ_IDS/);
   });
 

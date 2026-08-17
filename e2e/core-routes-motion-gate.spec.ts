@@ -14,8 +14,8 @@ test.describe("core routes motion gate", () => {
     await expect(yoga).toBeFocused();
   });
 
-  test("about FAQ expands and collapses", async ({ page }) => {
-    await page.goto("/about");
+  test("corporate wellness FAQ accordion expands and collapses", async ({ page }) => {
+    await page.goto("/programs/corporate-wellness");
     const item = page.locator(".pulse-accordion-item").first();
     await expect(item).toBeVisible();
     await item.locator("summary").click();

@@ -206,6 +206,100 @@ test.describe("composition occupancy gate — Batch 05 Root Cause 2A", () => {
   }
 });
 
+const CTA_TARGETS: Array<{ route: string; selector: string; label: string }> = [
+  { route: "/", selector: '[data-compose="closing-band"]', label: "home trial closing band" },
+  { route: "/about", selector: '[data-compose="closing-band"]', label: "about closing band" },
+  {
+    route: "/programs/functional-training",
+    selector: '[data-compose="closing-band"]',
+    label: "functional closing band",
+  },
+  {
+    route: "/programs/corporate-wellness",
+    selector: '[data-compose="closing-band"]',
+    label: "corporate closing band",
+  },
+  {
+    route: "/locations/airoli-sector-19",
+    selector: '[data-compose="closing-band"]',
+    label: "airoli 19 closing band",
+  },
+  { route: "/trainers", selector: '[data-compose="closing-band"]', label: "trainers closing band" },
+  {
+    route: "/transformations",
+    selector: '[data-compose="closing-band"]',
+    label: "transformations closing band",
+  },
+];
+
+test.describe("composition occupancy gate — Batch 06 closing CTA family", () => {
+  for (const width of [1536, 1920] as const) {
+    const height = width === 1536 ? 730 : 1080;
+    for (const target of CTA_TARGETS) {
+      test(`${target.label} is not a left-cluster at ${width}`, async ({ page }) => {
+        await page.setViewportSize({ width, height });
+        await page.emulateMedia({ reducedMotion: "reduce" });
+        await page.goto(target.route, { waitUntil: "domcontentloaded" });
+        const section = page.locator(target.selector).first();
+        await expect(section).toBeVisible();
+        await section.evaluate((el) => el.setAttribute("data-occupancy-target", "true"));
+        await section.scrollIntoViewIfNeeded();
+        const metrics = await page.evaluate(measureSection);
+        expect(metrics, target.label).not.toHaveProperty("error");
+        const occupancy = Number(metrics.occupancyRatio);
+        const flagged = Number(metrics.flaggedBandHeight);
+        const h = Number(metrics.sectionHeight);
+        const p1A = occupancy < 0.45 && h > 220;
+        const pageCapUnused =
+          width === 1920 && occupancy >= 0.55 && Number(metrics.rightEmptyRatio) <= 0.22;
+        const p1B = flagged > 220 && !pageCapUnused;
+        expect(
+          { occupancy, flagged, height: h, p1A, p1B, maxRowRE: metrics.maxRowRightEmptyRatio },
+          `${target.label} @${width} occupancy=${occupancy.toFixed(2)} flagged=${Math.round(flagged)}px`,
+        ).toEqual(expect.objectContaining({ p1A: false, p1B: false }));
+      });
+    }
+  }
+});
+
+test.describe("Batch 06 FAQ composition gate", () => {
+  const faqRoutes = [
+    "/",
+    "/about",
+    "/programs/functional-training",
+    "/programs/yoga",
+    "/programs/zumba",
+    "/programs/adult-dance",
+    "/programs/wedding-choreography",
+    "/programs/home-personal-training",
+    "/programs/online-training",
+    "/programs/corporate-wellness",
+    "/locations/airoli-sector-19",
+    "/locations/thane",
+    "/pricing",
+    "/timetable",
+  ];
+
+  for (const route of faqRoutes) {
+    test(`${route} has no standalone one-question FAQ chapter`, async ({ page }) => {
+      await page.setViewportSize({ width: 1536, height: 730 });
+      await page.goto(route, { waitUntil: "domcontentloaded" });
+      const oneQuestionFaq = await page.evaluate(() => {
+        const headings = Array.from(document.querySelectorAll("h2"));
+        return headings.some((heading) => {
+          const text = (heading.textContent || "").trim();
+          if (!/^faq$/i.test(text)) return false;
+          const section = heading.closest("section") ?? heading.parentElement;
+          if (!section) return false;
+          const questions = section.querySelectorAll("details, dt, h3");
+          return questions.length === 1;
+        });
+      });
+      expect(oneQuestionFaq, route).toBe(false);
+    });
+  }
+});
+
 test.describe("composition occupancy gate — Batch 04 Root Cause 1", () => {
   for (const width of [1536, 1920] as const) {
     const height = width === 1536 ? 730 : 1080;

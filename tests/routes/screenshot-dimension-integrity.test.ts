@@ -170,6 +170,23 @@ describe("screenshot dimension integrity — CLS correction evidence", () => {
     }
   });
 
+  it("Batch 06 comparison sheets are 1800 CSS px wide", () => {
+    const dir = join(process.cwd(), "docs/revamp/screenshots/batch-06-final-structural-cleanup");
+    for (const file of [
+      "01-cta-family-before-after.png",
+      "02-fact-system-before-after.png",
+      "03-faq-before-after.png",
+      "04-about-related-polish.png",
+      "05-founder-branch-content-polish.png",
+      "06-utility-route-audit.png",
+      "07-batch-06-live-final-composition.png",
+    ] as const) {
+      const abs = join(dir, file);
+      expect(existsSync(abs), file).toBe(true);
+      expect(pngHeader(abs).width, file).toBe(1800);
+    }
+  });
+
   it("integrity JSON fails the pack when a PNG width does not match the viewport", () => {
     const reportPath = join(process.cwd(), "docs/revamp/AI-MEDIA-SCREENSHOT-INTEGRITY.json");
     expect(existsSync(reportPath)).toBe(true);

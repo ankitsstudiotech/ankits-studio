@@ -70,7 +70,7 @@ describe("row-list composition variants — Batch 04", () => {
     expect(view).toMatch(/asymmetric/);
     expect(view).toMatch(/Find a studio/);
     const css = read("src/components/programs/pulse/programme-pulse.module.css");
-    expect(css).toMatch(/minmax\(0,\s*1\.7fr\)\s+minmax\(13rem,\s*0\.72fr\)/);
+    expect(css).toMatch(/minmax\(0,\s*1fr\)\s+minmax\(10rem,\s*13\.5rem\)/);
   });
 
   it("about programme list is a compact numbered index supporting the narrative", () => {
