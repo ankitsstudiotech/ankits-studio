@@ -88,7 +88,7 @@
 }
 
 .linkList a:hover {
-  color: var(--color-accent);
+  color: var(--color-accent-label);
 }
 
 .linkList a:focus-visible {

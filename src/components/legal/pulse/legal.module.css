@@ -73,7 +73,7 @@
 }
 
 .link:hover {
-  color: var(--color-accent);
+  color: var(--color-accent-label);
 }
 
 .link:focus-visible {

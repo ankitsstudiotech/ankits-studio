@@ -388,7 +388,7 @@
 }
 
 .disciplineLink:hover {
-  color: var(--color-accent);
+  color: var(--color-accent-label);
 }
 
 .disciplineLink:focus-visible {

@@ -1268,7 +1268,7 @@
 }
 
 .legacyBody a:hover {
-  color: var(--color-accent);
+  color: var(--color-accent-label);
 }
 
 .legacyCta a {
