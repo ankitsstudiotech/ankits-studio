@@ -116,11 +116,17 @@ design-token set, and the Vitest/Playwright/axe-core testing foundation
 |---|---|---|---|
 | Integrate owner-approved Corporate Wellness illustrative hero + close eight-programme media acceptance. Catalogue, Service-family composition, screenshots, tests. No redesign, no Reviews, no deploy. | Cursor | Done | Branch `revamp/studio-pulse-production`. Two commits: feat integration + test acceptance gate. |
 
+## Production Design Repair Batch 05 — Hero + narrative composition (active)
+
+| Task | Owner | Status | Notes |
+|---|---|---|---|
+| Redesign About opening, Home founder, four branch heroes, and Yoga/Calm hero gap. No snapshotFacts, FAQ, Reviews, or Batch 04 matrices. Then production deploy. | Cursor | **Done** | Checkpoint `studio-pulse-before-batch-05-hero-composition-repair` @ `ec33a4e`. Implementation `f460fda` / `e1cd02c`. Evidence in this commit. Production deploy follows. |
+
 ## Production Design Repair Batch 04 — Systemic row-list composition (active)
 
 | Task | Owner | Status | Notes |
 |---|---|---|---|
-| Redesign Root Cause 1 sparse full-width row lists into contextual editorial variants. No About/branch hero, no snapshotFacts, no Reviews. Then production deploy. | Cursor | In progress | Checkpoint `studio-pulse-before-dead-space-row-redesign` @ `dfa7d35`. Occupancy gate 12/12 at 1536/1920. |
+| Redesign Root Cause 1 sparse full-width row lists into contextual editorial variants. No About/branch hero, no snapshotFacts, no Reviews. Then production deploy. | Cursor | **Done** | Checkpoint `studio-pulse-before-dead-space-row-redesign` @ `dfa7d35`. Release `ec33a4e` / `dpl_6F7KJUpmKhqAh9J7czdYgqoMFmjj` READY → https://ankits-studio.vercel.app. |
 
 ## Production Bug Batch 03 — Global recurrence sweep + Maps semantics (active)
 

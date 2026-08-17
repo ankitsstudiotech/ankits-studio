@@ -142,6 +142,34 @@ describe("screenshot dimension integrity — CLS correction evidence", () => {
     }
   });
 
+  it("Batch 05 comparison sheets are 1800 CSS px wide", () => {
+    const dir = join(process.cwd(), "docs/revamp/screenshots/batch-05-hero-narrative-composition");
+    for (const file of [
+      "batch-05-about-founder-before-after.png",
+      "batch-05-branch-heroes-before-after.png",
+      "batch-05-programme-hero-audit.png",
+    ] as const) {
+      const abs = join(dir, file);
+      expect(existsSync(abs), file).toBe(true);
+      expect(pngHeader(abs).width, file).toBe(1800);
+    }
+  });
+
+  it("Batch 05 after hero clips at 1536 match the viewport width", () => {
+    const dir = join(process.cwd(), "docs/revamp/screenshots/batch-05-hero-narrative-composition");
+    const cases = [
+      "after-about-hero-1536x730.png",
+      "after-home-founder-1536x730.png",
+      "after-branch-airoli-19-1536x730.png",
+      "after-yoga-hero-1536x730.png",
+    ] as const;
+    for (const file of cases) {
+      const abs = join(dir, file);
+      expect(existsSync(abs), file).toBe(true);
+      expect(pngHeader(abs).width, file).toBe(1536);
+    }
+  });
+
   it("integrity JSON fails the pack when a PNG width does not match the viewport", () => {
     const reportPath = join(process.cwd(), "docs/revamp/AI-MEDIA-SCREENSHOT-INTEGRITY.json");
     expect(existsSync(reportPath)).toBe(true);

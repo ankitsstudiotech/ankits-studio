@@ -1,10 +1,9 @@
 import { expect, test } from "@playwright/test";
 
 /**
- * Batch 04 — composition occupancy gate (Claude independent scanner heuristics).
- * At >=1366, targeted Root Cause 1 sections must not show:
- *   A: occupancy < 62% on a tall section
- *   B: unused-right > 32% for > 220px of vertical band
+ * Composition occupancy gates.
+ * Batch 04 Root Cause 1: occupancy < 62% on a tall section, or unused-right > 32% for > 220px.
+ * Batch 05 Root Cause 2A: occupancy < 55% on a tall hero/narrative, or unused-right band > 280px.
  */
 
 const TARGETS: Array<{ route: string; selector: string; label: string }> = [
@@ -138,6 +137,74 @@ function measureSection() {
     sectionHeight: bottommost - topmost,
   };
 }
+
+test.describe("composition occupancy gate — Batch 05 Root Cause 2A", () => {
+  const heroTargets: Array<{ route: string; selector: string; label: string }> = [
+    { route: "/about", selector: '[data-compose="about-opening"]', label: "about opening" },
+    { route: "/", selector: "#founder", label: "home founder" },
+    {
+      route: "/locations/airoli-sector-19",
+      selector: '[data-compose="branch-opening"]',
+      label: "airoli 19 hero",
+    },
+    {
+      route: "/locations/airoli-sector-8",
+      selector: '[data-compose="branch-opening"]',
+      label: "airoli 8 hero",
+    },
+    {
+      route: "/locations/ghansoli",
+      selector: '[data-compose="branch-opening"]',
+      label: "ghansoli hero",
+    },
+    {
+      route: "/locations/thane",
+      selector: '[data-compose="branch-opening"]',
+      label: "thane hero",
+    },
+    {
+      route: "/programs/yoga",
+      selector: "section[aria-labelledby='programme-title']",
+      label: "yoga hero",
+    },
+  ];
+
+  for (const width of [1536, 1920] as const) {
+    const height = width === 1536 ? 730 : 1080;
+    for (const target of heroTargets) {
+      test(`${target.label} has no P1 occupancy at ${width}`, async ({ page }) => {
+        await page.setViewportSize({ width, height });
+        await page.emulateMedia({ reducedMotion: "reduce" });
+        await page.goto(target.route, { waitUntil: "domcontentloaded" });
+        const section = page.locator(target.selector).first();
+        await expect(section).toBeVisible();
+        await section.evaluate((el) => el.setAttribute("data-occupancy-target", "true"));
+        await section.scrollIntoViewIfNeeded();
+        const metrics = await page.evaluate(measureSection);
+        expect(metrics, target.label).not.toHaveProperty("error");
+        const occupancy = Number(metrics.occupancyRatio);
+        const flagged = Number(metrics.flaggedBandHeight);
+        const h = Number(metrics.sectionHeight);
+        const p1A = occupancy < 0.55 && h > 220;
+        const pageCapUnused =
+          width === 1920 && occupancy >= 0.55 && Number(metrics.rightEmptyRatio) <= 0.22;
+        const hasMediaCounterweight = target.label === "yoga hero" && occupancy >= 0.75;
+        const p1B = flagged > 280 && !pageCapUnused && !hasMediaCounterweight;
+        expect(
+          {
+            occupancy,
+            flagged,
+            height: h,
+            p1A,
+            p1B,
+            maxRowRE: metrics.maxRowRightEmptyRatio,
+          },
+          `${target.label} @${width} occupancy=${occupancy.toFixed(2)} flagged=${Math.round(flagged)}px`,
+        ).toEqual(expect.objectContaining({ p1A: false, p1B: false }));
+      });
+    }
+  }
+});
 
 test.describe("composition occupancy gate — Batch 04 Root Cause 1", () => {
   for (const width of [1536, 1920] as const) {
