@@ -30,6 +30,10 @@
 
 .heroInner {
   min-width: 0;
+  width: 100%;
+  max-width: 54rem;
+  margin-inline: auto;
+  text-align: left;
 }
 
 .heroTitle {
@@ -263,7 +267,9 @@
   }
 
   .heroInner {
-    grid-column: 3 / span 8;
+    grid-column: 1 / -1;
+    justify-self: center;
+    width: min(54rem, 100%);
   }
 
   .heroTitle {
