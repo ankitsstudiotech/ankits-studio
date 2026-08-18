@@ -12,8 +12,9 @@
 }
 
 .accent {
-  background: color-mix(in srgb, var(--color-accent) 88%, #0b0b0c);
-  border-top: 1px solid color-mix(in srgb, var(--color-accent-hover) 40%, transparent);
+  /* Free-trial conversion band: keep the editorial base field, use purple only for emphasis. */
+  background: var(--color-field);
+  padding-block: clamp(1.6rem, 2.9vw, 2.35rem);
 }
 
 .inner {
@@ -63,11 +64,6 @@
   color: var(--color-muted-on-field);
 }
 
-.accent .title,
-.accent .body {
-  color: var(--color-accent-foreground);
-}
-
 .accent .note {
   color: color-mix(in srgb, var(--color-accent-foreground) 82%, transparent);
 }
@@ -88,19 +84,23 @@
   }
 }
 
-/* Inverse cream fill on the Home purple band — primary only, never ghost links. */
+.actionSecondary {
+  font-size: 0.82rem;
+}
+
+.actionPrimary {
+  min-width: 0;
+}
+
+/* Contract: accent ClosingBand keeps the primary CTA visually purple. */
 .accent .actionPrimary :global(a) {
-  background: var(--color-ink-inverse);
-  color: var(--color-field);
+  background: var(--color-accent);
+  color: var(--color-accent-foreground);
 }
 
 .accent .actionPrimary :global(a:hover) {
-  background: #fff;
-  color: var(--color-field);
-}
-
-.actionSecondary {
-  font-size: 0.82rem;
+  background: var(--color-accent-hover);
+  color: var(--color-accent-foreground);
 }
 
 @media (max-width: 767px) {
@@ -115,4 +115,122 @@
   .body {
     max-width: none;
   }
+}
+
+/* —— Free-trial editorial conversion strip —— */
+
+.freeTrialInner {
+  display: grid;
+  width: 100%;
+  max-width: var(--layout-content);
+  grid-template-columns: minmax(0, 1fr);
+  /* Mobile: explicit single-column named areas to avoid overlap. */
+  grid-template-areas:
+    "proposition"
+    "process"
+    "trial"
+    "action";
+  gap: 0.95rem 1.6rem;
+  align-items: start;
+}
+
+/* Mobile: single-column sequence (headline → process → trial fact → action). */
+@media (min-width: 768px) {
+  .freeTrialInner {
+    grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+    grid-template-areas:
+      "proposition process"
+      "trial action";
+    column-gap: 0;
+    row-gap: 1.05rem;
+    align-items: end;
+  }
+
+  .freeTrialProcess,
+  .freeTrialAction {
+    border-inline-start: var(--rule-structural-width) solid var(--rule-structural);
+    padding-inline-start: var(--spacing-rule-content);
+  }
+}
+
+/* Desktop: proposition → process → trial fact → action in one row. */
+@media (min-width: 1024px) {
+  .freeTrialInner {
+    /* Balance proposition/process/trial/action across the full content width. */
+    grid-template-columns: minmax(0, 3fr) minmax(0, 2.7fr) minmax(0, 2.1fr) minmax(0, 2.2fr);
+    grid-template-areas: "proposition process trial action";
+    column-gap: 0;
+    row-gap: 0;
+    gap: 0;
+    align-items: start;
+  }
+
+  .freeTrialTrialFact {
+    border-inline-start: var(--rule-structural-width) solid var(--rule-structural);
+    padding-inline-start: var(--spacing-rule-content);
+  }
+
+  .freeTrialAction {
+    border-inline-start: var(--rule-structural-width) solid var(--rule-structural);
+    padding-inline-start: var(--spacing-rule-content);
+    padding-inline-end: var(--spacing-rule-content);
+  }
+}
+
+.freeTrialProposition {
+  grid-area: proposition;
+}
+
+.freeTrialProcess {
+  grid-area: process;
+}
+
+.freeTrialTrialFact {
+  grid-area: trial;
+}
+
+.freeTrialAction {
+  grid-area: action;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 0.65rem;
+  min-width: 0;
+}
+
+.freeTrialTitle {
+  font-family: var(--font-display);
+  font-size: clamp(2.35rem, 3.9vw, 3.9rem);
+  letter-spacing: 0.02em;
+  line-height: 0.9;
+  margin: 0;
+  max-width: 16ch;
+  text-transform: uppercase;
+  color: var(--color-ink-inverse);
+}
+
+.freeTrialTitleLine {
+  display: block;
+}
+
+/* Trial fact region owns its vertical rhythm; don't add top margin from the shared `.note` style. */
+.freeTrialTrialFact .note {
+  margin: 0;
+  /* Keep trial-fact in the same supporting typographic family as process copy. */
+  font-size: var(--text-body);
+  line-height: var(--text-body--line-height);
+  color: var(--color-muted-on-field);
+  max-width: none;
+}
+
+/* Match supporting body rhythm within the action area. */
+.freeTrialProcess .body,
+.freeTrialTrialFact .note {
+  max-width: none;
+}
+
+/* CTA should be strong UI type, not “tiny button”. */
+.freeTrialAction :global(a) {
+  font-size: var(--text-caption);
+  line-height: var(--text-caption--line-height);
 }

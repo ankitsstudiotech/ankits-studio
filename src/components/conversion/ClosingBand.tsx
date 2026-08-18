@@ -29,6 +29,20 @@ export function ClosingBand({
   children,
   secondary,
 }: ClosingBandProps) {
+  const isAccentFreeTrial = variant === "accent" && id === "trial";
+
+  const splitFreeTrialTitle =
+    isAccentFreeTrial && title.trim().toLowerCase() === "book a free trial";
+
+  const renderedTitle = splitFreeTrialTitle ? (
+    <>
+      <span className={styles.freeTrialTitleLine}>Book a</span>
+      <span className={styles.freeTrialTitleLine}>Free trial</span>
+    </>
+  ) : (
+    title
+  );
+
   return (
     <section
       id={id}
@@ -37,21 +51,46 @@ export function ClosingBand({
       data-compose="closing-band"
       data-cta-variant={variant}
     >
-      <div className={styles.inner}>
-        <div className={styles.copy}>
-          <SectionReveal>
-            <h2 id={titleId} className={styles.title}>
-              {title}
-            </h2>
-          </SectionReveal>
-          <p className={styles.body}>{body}</p>
-          {note ? <p className={styles.note}>{note}</p> : null}
+      {isAccentFreeTrial ? (
+        <div className={styles.freeTrialInner}>
+          <div className={styles.freeTrialProposition}>
+            <SectionReveal>
+              <h2 id={titleId} className={styles.freeTrialTitle}>
+                {renderedTitle}
+              </h2>
+            </SectionReveal>
+          </div>
+
+          <div className={styles.freeTrialProcess}>
+            <p className={styles.body}>{body}</p>
+          </div>
+
+          <div className={styles.freeTrialTrialFact}>
+            {note ? <p className={styles.note}>{note}</p> : null}
+          </div>
+
+          <div className={styles.freeTrialAction}>
+            <div className={styles.actionPrimary}>{children}</div>
+            {secondary ? <div className={styles.actionSecondary}>{secondary}</div> : null}
+          </div>
         </div>
-        <div className={styles.action}>
-          <div className={styles.actionPrimary}>{children}</div>
-          {secondary ? <div className={styles.actionSecondary}>{secondary}</div> : null}
+      ) : (
+        <div className={styles.inner}>
+          <div className={styles.copy}>
+            <SectionReveal>
+              <h2 id={titleId} className={styles.title}>
+                {title}
+              </h2>
+            </SectionReveal>
+            <p className={styles.body}>{body}</p>
+            {note ? <p className={styles.note}>{note}</p> : null}
+          </div>
+          <div className={styles.action}>
+            <div className={styles.actionPrimary}>{children}</div>
+            {secondary ? <div className={styles.actionSecondary}>{secondary}</div> : null}
+          </div>
         </div>
-      </div>
+      )}
     </section>
   );
 }

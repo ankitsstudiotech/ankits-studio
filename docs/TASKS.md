@@ -214,6 +214,12 @@ until Track H's branch/structured-data code exists.
 |---|---|---|---|
 | Compact Google review-order disclosure; review-cell separator inset; hide review-rail scrollbar; site-wide vertical-rule inset sweep. No redesign, no Places/fetch change. Then production deploy. | Cursor | **Done** | Checkpoint `studio-pulse-before-review-rule-spacing-fix` @ `021b286`. Shared `--spacing-rule-content`. Evidence `docs/bugs/VERTICAL-RULE-INSET-AUDIT.md`. Production deploy follows this commit. |
 
+## Production bug — free-trial conversion band composition + CTA-band recurrence sweep (active)
+
+| Task | Owner | Status | Notes |
+|---|---|---|---|
+| Recompose the Home “BOOK A FREE TRIAL” conversion band (desktop/tablet/mobile) to remove dead space and visual CTA detachment, then audit/fix genuine recurrences of the same CTA-band composition defect family. Includes human visual gate + tests + production deploy. | Cursor | **In progress** | Checkpoint tag: `studio-pulse-before-free-trial-band-fix`. Follow-up micro-fix checkpoint: `studio-pulse-before-free-trial-grid-rhythm-fix`. |
+
 ## Final editorial art-direction pass (active)
 
 | Task | Owner | Status | Notes |
