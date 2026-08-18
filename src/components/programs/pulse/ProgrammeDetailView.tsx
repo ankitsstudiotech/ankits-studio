@@ -337,11 +337,17 @@ export function ProgrammeDetailView({
               </div>
             ))}
           </div>
-          {faqs.length === 1 ? <FaqBlock items={faqs} /> : null}
+          {faqs.length === 1 ? (
+            <div className={styles.snapshotNote}>
+              <FaqBlock items={faqs} />
+            </div>
+          ) : null}
         </section>
       ) : faqs.length === 1 ? (
         <section className={styles.band}>
-          <FaqBlock items={faqs} />
+          <div className={styles.snapshotNote}>
+            <FaqBlock items={faqs} />
+          </div>
         </section>
       ) : null}
 
@@ -368,7 +374,7 @@ export function ProgrammeDetailView({
               <div className={styles.actionMedia}>
                 <PulseMedia
                   item={actionMedia}
-                  sizes="(max-width: 900px) 100vw, 28vw"
+                  sizes="(max-width: 899px) 100vw, (max-width: 1280px) 38vw, 420px"
                 />
               </div>
             ) : null}
@@ -441,39 +447,23 @@ export function ProgrammeDetailView({
                       </li>
                     ))}
                   </ul>
-                  {showStudioLocations ? (
-                    <Link
-                      href="/locations"
-                      className={styles.relatedStudio}
-                      aria-labelledby="programme-locations"
-                    >
-                      <span id="programme-locations" className={styles.relatedFindLabel}>
-                        Train near you
-                      </span>
-                      <span className={styles.relatedFind}>Find a studio</span>
-                      <span className={styles.relatedIndexArrow} aria-hidden="true">
-                        →
-                      </span>
-                    </Link>
-                  ) : null}
                 </div>
               </>
-            ) : showStudioLocations ? (
-              <div className={styles.relatedFrame}>
-                <Link
-                  href="/locations"
-                  className={styles.relatedStudio}
-                  aria-labelledby="programme-locations"
-                >
-                  <span id="programme-locations" className={styles.relatedFindLabel}>
-                    Train near you
-                  </span>
-                  <span className={styles.relatedFind}>Find a studio</span>
-                  <span className={styles.relatedIndexArrow} aria-hidden="true">
-                    →
-                  </span>
-                </Link>
-              </div>
+            ) : null}
+            {showStudioLocations ? (
+              <Link
+                href="/locations"
+                className={styles.relatedStudio}
+                aria-labelledby="programme-locations"
+              >
+                <span id="programme-locations" className={styles.relatedFindLabel}>
+                  Train near you
+                </span>
+                <span className={styles.relatedFind}>Find a studio</span>
+                <span className={styles.relatedIndexArrow} aria-hidden="true">
+                  →
+                </span>
+              </Link>
             ) : null}
           </div>
         </section>

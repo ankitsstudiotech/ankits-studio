@@ -14,7 +14,10 @@ describe("Batch 06 — closing conversion family", () => {
     expect(band).toMatch(/data-compose="closing-band"/);
     expect(band).toMatch(/variant === "accent"/);
     expect(band).toMatch(/variant === "compact"/);
+    expect(band).toMatch(/compactProposition/);
+    expect(band).not.toMatch(/compactContext/);
     expect(css).toMatch(/grid-template-columns:\s*minmax\(0,\s*8fr\)\s+minmax\(12rem,\s*4fr\)/);
+    expect(css).toMatch(/\.compact \.compactInner \{[\s\S]*align-items:\s*center/);
     expect(css).not.toMatch(/width:\s*100%[\s\S]{0,80}button/);
     expect(css).toMatch(/\.accent \.actionPrimary :global\(a\)/);
   });
@@ -43,10 +46,13 @@ describe("Batch 06 — content-aware facts and includes", () => {
     const detail = read("src/components/programs/pulse/ProgrammeDetailView.tsx");
     const css = read("src/components/programs/pulse/programme-pulse.module.css");
     expect(detail).toMatch(/data-count=\{glancePanels\.length\}/);
+    expect(detail).toMatch(/snapshotNote/);
     expect(detail).not.toMatch(/empty fact|placeholder fact|nbsp;{4}/i);
     expect(css).toMatch(/\.snapshotFacts\[data-count="3"\]/);
+    expect(css).toMatch(/\.snapshotFacts \+ \.snapshotNote \{/);
     expect(css).toMatch(/\.includeList \{[^}]*display:\s*grid/);
     expect(css).toMatch(/grid-template-columns:\s*repeat\(3,/);
+    expect(css).toMatch(/\.includeWithMedia \{[\s\S]*grid-template-columns:\s*minmax\(0,\s*1\.65fr\)/);
   });
 
   it("does not invent extra glance facts beyond who / session / options", () => {
@@ -123,7 +129,11 @@ describe("Batch 06 — thin FAQs and residual duplication", () => {
     expect(detail).toMatch(/Train near you/);
     expect(detail).toMatch(/Find a studio/);
     expect(detail).toMatch(/relatedStudio/);
+    expect(detail).toMatch(
+      /relatedFrame[\s\S]*relatedIndex[\s\S]*<\/ul>[\s\S]*<\/div>[\s\S]*relatedStudio/,
+    );
     expect(css).toMatch(/\.relatedStudio \{/);
     expect(css).toMatch(/\.relatedFind \{/);
+    expect(css).toMatch(/\.relatedFrame \+ \.relatedStudio \{/);
   });
 });

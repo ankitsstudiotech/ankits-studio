@@ -74,9 +74,13 @@ describe("row-list composition variants — Batch 04", () => {
     expect(view).toMatch(/relatedStudio/);
     expect(view).toMatch(/relatedFrame/);
     expect(view).toMatch(/Find a studio/);
+    expect(view).toMatch(
+      /relatedFrame[\s\S]*relatedIndex[\s\S]*<\/ul>[\s\S]*<\/div>[\s\S]*relatedStudio/,
+    );
     const css = read("src/components/programs/pulse/programme-pulse.module.css");
     expect(css).toMatch(/\.relatedFrame \{/);
     expect(css).toMatch(/\.relatedStudio \{/);
+    expect(css).toMatch(/\.relatedFrame \+ \.relatedStudio \{/);
     expect(css).toMatch(/grid-template-columns:\s*max-content minmax\(0,\s*1fr\) auto/);
   });
 

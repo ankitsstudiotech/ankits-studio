@@ -84,14 +84,12 @@ export function ClosingBand({
                 {title}
               </h2>
             </SectionReveal>
-          </div>
-          <div className={styles.compactContext}>
             <p className={styles.body}>{body}</p>
             {note ? <p className={styles.note}>{note}</p> : null}
-            <div className={styles.action}>
-              <div className={styles.actionPrimary}>{children}</div>
-              {secondary ? <div className={styles.actionSecondary}>{secondary}</div> : null}
-            </div>
+          </div>
+          <div className={styles.action}>
+            <div className={styles.actionPrimary}>{children}</div>
+            {secondary ? <div className={styles.actionSecondary}>{secondary}</div> : null}
           </div>
         </div>
       ) : (
