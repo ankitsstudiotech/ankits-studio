@@ -2,7 +2,7 @@ import type { ReactNode } from "react";
 import { SectionReveal } from "@/components/motion";
 import styles from "./closing-band.module.css";
 
-export type ClosingBandVariant = "accent" | "field";
+export type ClosingBandVariant = "accent" | "field" | "compact";
 
 export type ClosingBandProps = {
   id?: string;
@@ -30,6 +30,8 @@ export function ClosingBand({
   secondary,
 }: ClosingBandProps) {
   const isAccentFreeTrial = variant === "accent" && id === "trial";
+  const rootTone =
+    variant === "accent" ? styles.accent : variant === "compact" ? styles.compact : styles.field;
 
   const splitFreeTrialTitle =
     isAccentFreeTrial && title.trim().toLowerCase() === "book a free trial";
@@ -46,7 +48,7 @@ export function ClosingBand({
   return (
     <section
       id={id}
-      className={`${styles.root} ${variant === "accent" ? styles.accent : styles.field}`}
+      className={`${styles.root} ${rootTone}`}
       aria-labelledby={titleId}
       data-compose="closing-band"
       data-cta-variant={variant}

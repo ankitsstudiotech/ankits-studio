@@ -68,14 +68,15 @@ describe("row-list composition variants — Batch 04", () => {
     expect(css).toMatch(/grid-template-columns:\s*1fr 1fr 1fr/);
   });
 
-  it("programme related + locations share one asymmetric closing composition", () => {
+  it("programme related + locations share one discovery composition", () => {
     const view = read("src/components/programs/pulse/ProgrammeDetailView.tsx");
     expect(view).toMatch(/relatedDiscovery/);
-    expect(view).toMatch(/data-columns/);
-    expect(view).toMatch(/asymmetric/);
+    expect(view).toMatch(/relatedStudio/);
+    expect(view).toMatch(/data-has-studio/);
     expect(view).toMatch(/Find a studio/);
     const css = read("src/components/programs/pulse/programme-pulse.module.css");
-    expect(css).toMatch(/minmax\(0,\s*1fr\)\s+minmax\(10rem,\s*13\.5rem\)/);
+    expect(css).toMatch(/\.relatedStudio \{/);
+    expect(css).toMatch(/grid-template-columns:\s*max-content minmax\(0,\s*1fr\)/);
   });
 
   it("about programme list is a compact numbered index supporting the narrative", () => {

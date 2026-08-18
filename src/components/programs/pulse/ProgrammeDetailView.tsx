@@ -112,6 +112,10 @@ function formatLabel(programme: Programme): string {
   return programme.classStructure;
 }
 
+function padIndex(index: number): string {
+  return String(index + 1).padStart(2, "0");
+}
+
 function hoursNote(programme: Programme): string {
   if (programme.deliveryMode === "home" || programme.deliveryMode === "online") {
     return "Session times arranged on enquiry.";
@@ -323,8 +327,11 @@ export function ProgrammeDetailView({
             </h2>
           </SectionReveal>
           <div className={styles.snapshotFacts} data-count={glancePanels.length}>
-            {glancePanels.map((panel) => (
+            {glancePanels.map((panel, index) => (
               <div key={panel.label} className={styles.snapshotFact}>
+                <p className={styles.editorialIndex} aria-hidden="true">
+                  {padIndex(index)}
+                </p>
                 <p className={styles.glanceLabel}>{panel.label}</p>
                 <p className={styles.glanceBody}>{panel.body}</p>
               </div>
@@ -347,9 +354,14 @@ export function ProgrammeDetailView({
           </SectionReveal>
           <p className={styles.sectionNote}>{benefitsNote(programme)}</p>
           <div className={actionMedia ? styles.includeWithMedia : undefined}>
-            <ul className={styles.includeList}>
-              {programme.benefits.map((benefit) => (
-                <li key={benefit}>{benefit}</li>
+            <ul className={styles.includeList} data-count={programme.benefits.length}>
+              {programme.benefits.map((benefit, index) => (
+                <li key={benefit}>
+                  <span className={styles.editorialIndex} aria-hidden="true">
+                    {padIndex(index)}
+                  </span>
+                  <span className={styles.includeText}>{benefit}</span>
+                </li>
               ))}
             </ul>
             {actionMedia ? (
@@ -364,24 +376,27 @@ export function ProgrammeDetailView({
         </section>
       ) : null}
 
-      <section className={styles.band} aria-labelledby="programme-availability">
-        <SectionReveal>
-          <h2 id="programme-availability" className={styles.sectionTitle}>
-            {serviceEnquiry ? "Planning & availability" : "Availability"}
-          </h2>
-        </SectionReveal>
-        <div className={styles.availabilityNote}>
-          <p className={styles.glanceBody}>{batchLabel}</p>
+      <section
+        className={`${styles.band} ${styles.availabilityBand}`}
+        aria-labelledby="programme-availability"
+      >
+        <div className={styles.availabilityStrip}>
+          <SectionReveal>
+            <h2 id="programme-availability" className={styles.sectionTitle}>
+              {serviceEnquiry ? "Planning & availability" : "Availability"}
+            </h2>
+          </SectionReveal>
+          <p className={styles.availabilityCopy}>{batchLabel}</p>
           {serviceEnquiry ? (
-            <a href={whatsappHref} className={styles.relatedLink}>
+            <a href={whatsappHref} className={styles.availabilityAction}>
               Enquire on WhatsApp →
             </a>
           ) : programme.deliveryMode === "in-studio" ? (
-            <Link href="/timetable" className={styles.relatedLink}>
+            <Link href="/timetable" className={styles.availabilityAction}>
               Ask about batch availability →
             </Link>
           ) : (
-            <Link href="/pricing" className={styles.relatedLink}>
+            <Link href="/pricing" className={styles.availabilityAction}>
               Ask about current fees →
             </Link>
           )}
@@ -398,38 +413,43 @@ export function ProgrammeDetailView({
         >
           <div
             className={styles.relatedDiscovery}
-            data-columns={
-              showRelated && showStudioLocations ? "asymmetric" : "single"
-            }
+            data-has-studio={showStudioLocations ? "true" : "false"}
           >
             {showRelated ? (
-              <div className={styles.relatedPrimary}>
+              <>
                 <SectionReveal>
                   <h2 id="programme-related" className={styles.sectionTitle}>
                     Related services
                   </h2>
                 </SectionReveal>
-    <ul className={styles.relatedIndex} data-count={relatedItems.length}>
-                  {relatedItems.map((item) => (
+                <ul className={styles.relatedIndex} data-count={relatedItems.length}>
+                  {relatedItems.map((item, index) => (
                     <li key={item.slug}>
                       <Link
                         href={`/programs/${item.slug}`}
                         className={styles.relatedIndexLink}
                       >
-                        {item.name}
+                        <span className={styles.editorialIndex} aria-hidden="true">
+                          {padIndex(index)}
+                        </span>
+                        <span className={styles.relatedIndexName}>{item.name}</span>
+                        <span className={styles.relatedIndexArrow} aria-hidden="true">
+                          →
+                        </span>
                       </Link>
                     </li>
                   ))}
                 </ul>
-              </div>
+              </>
             ) : null}
             {showStudioLocations ? (
-              <div className={styles.relatedSecondary}>
+              <div className={styles.relatedStudio}>
                 <p id="programme-locations" className={styles.relatedFindLabel}>
                   Train near you
                 </p>
                 <Link href="/locations" className={styles.relatedFind}>
                   Find a studio
+                  <span aria-hidden="true"> →</span>
                 </Link>
               </div>
             ) : null}
@@ -446,6 +466,7 @@ export function ProgrammeDetailView({
       <ClosingBand
         id="programme-closing"
         titleId="programme-closing-cta"
+        variant="compact"
         title={
           serviceEnquiry
             ? "Planning wellness for your team?"

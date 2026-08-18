@@ -13,6 +13,7 @@ describe("Batch 06 — closing conversion family", () => {
     const css = read("src/components/conversion/closing-band.module.css");
     expect(band).toMatch(/data-compose="closing-band"/);
     expect(band).toMatch(/variant === "accent"/);
+    expect(band).toMatch(/variant === "compact"/);
     expect(css).toMatch(/grid-template-columns:\s*minmax\(0,\s*8fr\)\s+minmax\(12rem,\s*4fr\)/);
     expect(css).not.toMatch(/width:\s*100%[\s\S]{0,80}button/);
     expect(css).toMatch(/\.accent \.actionPrimary :global\(a\)/);
@@ -44,8 +45,8 @@ describe("Batch 06 — content-aware facts and includes", () => {
     expect(detail).toMatch(/data-count=\{glancePanels\.length\}/);
     expect(detail).not.toMatch(/empty fact|placeholder fact|nbsp;{4}/i);
     expect(css).toMatch(/\.snapshotFacts\[data-count="3"\]/);
-    expect(css).toMatch(/\.includeList \{[^}]*columns:\s*1/);
-    expect(css).not.toMatch(/\.includeList \{[^}]*grid-template-columns/);
+    expect(css).toMatch(/\.includeList \{[^}]*display:\s*grid/);
+    expect(css).toMatch(/grid-template-columns:\s*repeat\(3,/);
   });
 
   it("does not invent extra glance facts beyond who / session / options", () => {
@@ -121,6 +122,8 @@ describe("Batch 06 — thin FAQs and residual duplication", () => {
     const css = read("src/components/programs/pulse/programme-pulse.module.css");
     expect(detail).toMatch(/Train near you/);
     expect(detail).toMatch(/Find a studio/);
-    expect(css).toMatch(/minmax\(10rem,\s*13\.5rem\)/);
+    expect(detail).toMatch(/relatedStudio/);
+    expect(css).toMatch(/\.relatedStudio \{/);
+    expect(css).toMatch(/\.relatedFind \{/);
   });
 });
