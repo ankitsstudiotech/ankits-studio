@@ -87,6 +87,8 @@ export default function PricingPage() {
   });
 
   const registrationFee = commercial.registrationFeeInr;
+  const programmeFeeCopy = `${commercial.pricingEnquiryNote ??
+    "Vary by service and branch. GST is included in the fee quoted by the studio."} Wedding Choreography is priced per couple; Home PT per session; Online Training on Zoom; Corporate Wellness on enquiry.`;
 
   return (
     <PageWithFooter>
@@ -104,134 +106,151 @@ export default function PricingPage() {
         <PageBreadcrumb items={breadcrumbTrail} />
       </div>
 
-      <section className={`${styles.band} ${styles.bandWide} ${styles.splitBand}`} aria-labelledby="pricing-title">
-        <div>
+      <div className={styles.wrap}>
+        <header className={styles.hero} aria-labelledby="pricing-title">
           <RouteOpening>
-            <p className={styles.kicker}>Pricing</p>
             <h1 id="pricing-title" className={styles.title}>
               Fees &amp; free trial
             </h1>
-            <p className={styles.lede}>
+            <p className={styles.heroLede}>
               Start with a free trial. Programme fees vary by service and branch — ask on WhatsApp for
               the current amount. GST is included in the fee the studio quotes.
             </p>
           </RouteOpening>
+        </header>
 
-          <h2 id="confirmed-fees-title" className={styles.sectionTitle} style={{ marginTop: "2rem" }}>
-            What applies today
-          </h2>
-          <ul className={styles.confirmedList}>
-            <li className={styles.confirmedItem}>
-              <p className={styles.kicker}>Trial</p>
-              <p className={styles.feeAmount}>
-                {commercial.trialIsFree ? "Free" : "Ask on WhatsApp"}
-              </p>
-              <p className={styles.feeMeta}>Once per person, every service and physical branch.</p>
-            </li>
-            {typeof registrationFee === "number" ? (
-              <li className={styles.confirmedItem}>
-                <p className={styles.kicker}>Registration</p>
-                <p className={styles.feeAmount}>₹{registrationFee}</p>
-                <p className={styles.feeMeta}>
-                  One-time per person after you join. Not recharged after a membership break. Not a monthly fee and not a trial charge.
+        <div className={styles.primary}>
+          <section className={styles.factsCol} aria-labelledby="confirmed-fees-title">
+            <h2 id="confirmed-fees-title" className={styles.factsKicker}>
+              What applies today
+            </h2>
+
+            <div className={styles.heroNumbers}>
+              <div className={styles.fact}>
+                <p className={styles.factLabelAccent}>Trial</p>
+                <p className={styles.factValue}>
+                  {commercial.trialIsFree ? "Free" : "Ask on WhatsApp"}
                 </p>
-              </li>
-            ) : null}
-            <li className={styles.confirmedItem}>
-              <p className={styles.kicker}>Programme fees</p>
-              <p className={styles.feeMeta}>
-                {commercial.pricingEnquiryNote ??
-                  "Vary by service and branch. GST is included in the fee quoted by the studio."}{" "}
-                Wedding Choreography is priced per couple; Home PT per session; Online Training on
-                Zoom; Corporate Wellness on enquiry.
-              </p>
-            </li>
-            {commercial.discountsEnquiryNote ? (
-              <li className={styles.confirmedItem}>
-                <p className={styles.kicker}>Offers</p>
-                <p className={styles.feeMeta}>{commercial.discountsEnquiryNote}</p>
-              </li>
-            ) : null}
-          </ul>
+                <p className={styles.factCopy}>Once per person, every service and physical branch.</p>
+              </div>
+              {typeof registrationFee === "number" ? (
+                <div className={styles.fact}>
+                  <p className={styles.factLabel}>Registration</p>
+                  <p className={styles.factValue}>₹{registrationFee}</p>
+                  <p className={styles.factCopy}>
+                    One-time per person after you join. Not recharged after a membership break. Not a monthly fee and not a trial charge.
+                  </p>
+                </div>
+              ) : null}
+            </div>
 
-          {commercial.membershipPolicyCopy ? (
-            <>
-              <h2
-                id="membership-policies-title"
-                className={styles.sectionTitle}
-                style={{ marginTop: "2rem" }}
-              >
+            <div className={styles.infoBlock}>
+              <div className={styles.infoRow}>
+                <h3 className={styles.infoTitle}>Programme fees</h3>
+                <p className={styles.infoCopy}>{programmeFeeCopy}</p>
+              </div>
+              {commercial.discountsEnquiryNote ? (
+                <div className={styles.infoRow}>
+                  <h3 className={styles.infoTitle}>Offers</h3>
+                  <p className={styles.infoCopy}>{commercial.discountsEnquiryNote}</p>
+                </div>
+              ) : null}
+            </div>
+          </section>
+
+          <section
+            id="pricing-enquiry"
+            className={styles.enquiryPanel}
+            aria-labelledby="pricing-enquiry-title"
+          >
+            <span className={styles.formMark} aria-hidden="true" />
+            <h2 id="pricing-enquiry-title" className={styles.enquiryTitle}>
+              Ask for the current fee
+            </h2>
+            <p className={styles.enquiryLede}>
+              Prepare a WhatsApp message for the service you want. You do not need every field filled in
+              before you open the chat.
+            </p>
+            <PricingEnquiryBuilder
+              services={services}
+              branches={branchOptions}
+              fallbackHref={fallbackHref}
+            />
+          </section>
+        </div>
+
+        {commercial.membershipPolicyCopy ? (
+          <div className={styles.lower}>
+            <section className={styles.policyCol} aria-labelledby="membership-policies-title">
+              <h2 id="membership-policies-title" className={styles.policyTitle}>
                 Membership policies
               </h2>
-              <ul className={styles.faqList}>
-                <li>
+              <ul className={styles.policyList}>
+                <li className={styles.policyItem}>
                   <h3>Cancellation</h3>
                   <p>{commercial.membershipPolicyCopy.cancellation}</p>
                 </li>
-                <li>
+                <li className={styles.policyItem}>
                   <h3>Refunds</h3>
                   <p>{commercial.membershipPolicyCopy.refund}</p>
                 </li>
-                <li>
+                <li className={styles.policyItem}>
                   <h3>Transfer between branches</h3>
                   <p>{commercial.membershipPolicyCopy.transfer}</p>
                 </li>
-                <li>
+                <li className={styles.policyItem}>
                   <h3>Freeze or pause</h3>
                   <p>{commercial.membershipPolicyCopy.freeze}</p>
                 </li>
-                <li>
+                <li className={styles.policyItem}>
                   <h3>Membership expiry</h3>
                   <p>{commercial.membershipPolicyCopy.expiry}</p>
                 </li>
               </ul>
-              <p className={styles.feeMeta} style={{ marginTop: "1rem" }}>
+              <p className={styles.policyNote}>
                 These summaries are for general information. Full terms are communicated at enrolment.{" "}
-                <Link href="/terms#membership-policies" className={styles.ctaSecondary}>
+                <Link href="/terms#membership-policies" className={styles.termsLink}>
                   Read terms
                 </Link>
               </p>
-            </>
-          ) : null}
-        </div>
+            </section>
 
-        <section
-          id="pricing-enquiry"
-          className={styles.enquiryPanel}
-          aria-labelledby="pricing-enquiry-title"
-        >
-          <h2 id="pricing-enquiry-title" className={styles.sectionTitle}>
-            Ask for the current fee
+            <div className={styles.faqCol}>
+              <FaqBlock items={[...FAQ]} titleId="pricing-faq-title" />
+            </div>
+          </div>
+        ) : (
+          <div className={styles.lower}>
+            <div className={styles.faqCol}>
+              <FaqBlock items={[...FAQ]} titleId="pricing-faq-title" />
+            </div>
+          </div>
+        )}
+
+        <nav className={styles.nextBand} aria-labelledby="pricing-next-title">
+          <h2 id="pricing-next-title" className="sr-only">
+            Next steps
           </h2>
-          <p className={styles.lede}>
-            Prepare a WhatsApp message for the service you want. You do not need every field filled in
-            before you open the chat.
-          </p>
-          <PricingEnquiryBuilder
-            services={services}
-            branches={branchOptions}
-            fallbackHref={fallbackHref}
-          />
-        </section>
-      </section>
-
-      <section className={styles.band}>
-        <FaqBlock items={[...FAQ]} titleId="pricing-faq-title" />
-      </section>
-
-      <section className={styles.band} aria-labelledby="pricing-next-title">
-        <h2 id="pricing-next-title" className={styles.sectionTitle}>
-          Next steps
-        </h2>
-        <div className={styles.ctaRow}>
-          <Link className={styles.ctaSecondary} href="/programs">
-            Explore programmes
+          <Link className={styles.nextLink} href="/programs">
+            <span className={styles.nextIndex}>01</span>
+            <span className={styles.nextTitle}>
+              Explore programmes
+              <span className={styles.nextArrow} aria-hidden="true">
+                →
+              </span>
+            </span>
           </Link>
-          <Link className={styles.ctaSecondary} href="/locations">
-            Find a studio
+          <Link className={styles.nextLink} href="/locations">
+            <span className={styles.nextIndex}>02</span>
+            <span className={styles.nextTitle}>
+              Find a studio
+              <span className={styles.nextArrow} aria-hidden="true">
+                →
+              </span>
+            </span>
           </Link>
-        </div>
-      </section>
+        </nav>
+      </div>
     </main>
     </PageWithFooter>
   );
