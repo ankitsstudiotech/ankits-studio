@@ -1,7 +1,7 @@
 import { render, screen } from "@testing-library/react";
 import { beforeAll, describe, expect, it, vi } from "vitest";
 import { GoogleReviewProof } from "@/components/home/GoogleReviewProof";
-import type { GoogleSocialProof } from "@/lib/google-reviews";
+import { GOOGLE_REVIEW_DISCLOSURE, type GoogleSocialProof } from "@/lib/google-reviews";
 
 beforeAll(() => {
   class MockIntersectionObserver {
@@ -14,8 +14,7 @@ beforeAll(() => {
 
 const LIVE: GoogleSocialProof = {
   mode: "live-google-reviews",
-  disclosure:
-    "Reviews supplied by Google Maps. Text reviews are shown in Google relevance order, up to two per studio.",
+  disclosure: GOOGLE_REVIEW_DISCLOSURE,
   branchRatings: [],
   fallbackBranches: [],
   reviews: [
@@ -48,6 +47,16 @@ describe("Google review attribution and source links", () => {
     expect(screen.getByText("Google Maps")).toHaveAttribute("translate", "no");
     expect(screen.getByText(/relevance order/i)).toBeTruthy();
     expect(screen.getByText(/Airoli Sector 19/)).toBeTruthy();
+  });
+
+  it("renders compact review-order metadata and omits the verification-policy sentence", () => {
+    render(<GoogleReviewProof proof={LIVE} />);
+    const disclosure = screen.getByText(GOOGLE_REVIEW_DISCLOSURE);
+    expect(disclosure).toBeTruthy();
+    expect(disclosure.getAttribute("data-review-disclosure")).not.toBeNull();
+    expect(screen.queryByText(/Reviews supplied by Google Maps/i)).toBeNull();
+    expect(screen.queryByText(/aren[’']t verified by Google/i)).toBeNull();
+    expect(screen.queryByText(/checks for and removes fake content/i)).toBeNull();
   });
 
   it("labels fallback Maps actions as View on Google, not Read reviews", () => {

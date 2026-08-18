@@ -77,7 +77,7 @@ For each verified branch: reviews with usable text + author display name + indiv
 - Maximum 8 cards
 - Rating is display data only and is not used to select, sort, or drop reviews
 - Empty text is skipped; nothing is invented
-- UI disclosure: “Reviews supplied by Google Maps. Text reviews are shown in Google relevance order, up to two per studio.”
+- UI disclosure (compact metadata, not body copy): “Shown in Google relevance order · up to 2 per studio.”
 
 ## Attribution
 

@@ -149,7 +149,7 @@ Shared primitive: `ProgrammeDetailView` `data-compose-family` + `data-service-va
 
 ## G. REVIEWS (Home chapter; no standalone marketing route)
 
-Covered under Home. Attribution: “Google Maps”, “Reviews aren’t verified…”, per-review Maps + report links, Google avatars only when API provides them. No fake avatars.
+Covered under Home. Attribution: “Google Maps”, compact review-order metadata, per-review Maps + report links, Google avatars only when API provides them. No fake avatars.
 
 ---
 

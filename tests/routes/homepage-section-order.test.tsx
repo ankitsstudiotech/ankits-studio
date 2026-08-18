@@ -61,7 +61,7 @@ describe("homepage section order — final owner priority", () => {
       <GoogleReviewProof
         proof={{
           mode: "live-google-reviews",
-          disclosure: "Reviews supplied by Google Maps. Text reviews are shown in Google relevance order, up to two per studio.",
+          disclosure: "Shown in Google relevance order · up to 2 per studio",
           reviews: [
             {
               id: "r1",

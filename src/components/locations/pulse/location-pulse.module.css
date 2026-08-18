@@ -121,10 +121,14 @@
 
   .studioColumn,
   .studioColumn:nth-child(2n) {
-    padding: 1.5rem 1.25rem 1.7rem 0;
+    padding: 1.5rem var(--spacing-rule-content) 1.7rem 0;
     border-right: var(--rule-structural-width) solid var(--rule-structural);
     border-bottom: 0;
     padding-left: 0;
+  }
+
+  .studioColumn:not(:first-child) {
+    padding-left: var(--spacing-rule-content);
   }
 
   .studioColumn:last-child {

@@ -160,6 +160,8 @@
   --layout-meta-max: 18rem;
   --rule-structural-width: 1px;
   --rule-structural: var(--color-border-on-field);
+  /* Breathing room between a 1px content separator and adjacent copy/media. */
+  --spacing-rule-content: 1.5rem;
   --cue-length: 2.35rem;
   --cue-thickness: 2px;
   --cue-hover-scale: 1.9;

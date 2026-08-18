@@ -29,7 +29,6 @@ function LiveReviews({ proof }: { proof: Extract<GoogleSocialProof, { mode: "liv
           <h2 id="google-reviews-title" className={styles.bandTitle}>
             What members are saying
           </h2>
-          <p className={styles.bandLede}>{proof.disclosure}</p>
           {proof.branchRatings.length > 0 ? (
             <ul className={styles.googleProofRatings}>
               {proof.branchRatings.map((branch) => (
@@ -52,9 +51,8 @@ function LiveReviews({ proof }: { proof: Extract<GoogleSocialProof, { mode: "liv
               ))}
             </ul>
           ) : null}
-          <p className={styles.googleProofNote}>
-            Reviews aren’t verified by Google, but Google checks for and removes fake content when
-            it’s identified.
+          <p className={styles.googleProofDisclosure} data-review-disclosure="">
+            {proof.disclosure}
           </p>
           <GoogleMapsAttribution />
         </SectionReveal>

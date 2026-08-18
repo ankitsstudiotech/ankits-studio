@@ -133,4 +133,4 @@ export const MAX_PLACE_DETAILS_REQUESTS = 4;
 export const PLACES_REQUEST_TIMEOUT_MS = 4000;
 
 export const GOOGLE_REVIEW_DISCLOSURE =
-  "Reviews supplied by Google Maps. Text reviews are shown in Google relevance order, up to two per studio.";
+  "Shown in Google relevance order · up to 2 per studio";

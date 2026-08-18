@@ -208,6 +208,12 @@ until Track H's branch/structured-data code exists.
   [IMPLEMENTATION-PLAN.md](./IMPLEMENTATION-PLAN.md) without a
   `DECISIONS.md` entry explaining the reprioritization.
 
+## Production bug — review rail polish + vertical-rule inset (active)
+
+| Task | Owner | Status | Notes |
+|---|---|---|---|
+| Compact Google review-order disclosure; review-cell separator inset; hide review-rail scrollbar; site-wide vertical-rule inset sweep. No redesign, no Places/fetch change. Then production deploy. | Cursor | **Done** | Checkpoint `studio-pulse-before-review-rule-spacing-fix` @ `021b286`. Shared `--spacing-rule-content`. Evidence `docs/bugs/VERTICAL-RULE-INSET-AUDIT.md`. Production deploy follows this commit. |
+
 ## Final editorial art-direction pass (active)
 
 | Task | Owner | Status | Notes |

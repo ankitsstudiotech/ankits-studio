@@ -10,6 +10,7 @@ export {
   getPlaceDetailsRequestCount,
   resetPlaceDetailsRequestCount,
 } from "./places-provider";
+export { GOOGLE_REVIEW_DISCLOSURE } from "./types";
 export type {
   GoogleSocialProof,
   GoogleSocialProofMode,

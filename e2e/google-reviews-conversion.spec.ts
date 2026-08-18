@@ -91,8 +91,12 @@ test.describe("homepage Google social proof", () => {
     expect(body).not.toMatch(/John Doe|mock review/i);
     if (mode === "live-google-reviews") {
       expect(body).toMatch(/What members are saying/i);
-      expect(body).toMatch(/relevance order/i);
+      expect(body).toMatch(/Shown in Google relevance order/);
+      expect(body).toMatch(/up to 2 per studio/);
       expect(body).toMatch(/Google Maps/i);
+      expect(body).not.toMatch(/Reviews supplied by Google Maps/i);
+      expect(body).not.toMatch(/aren[’']t verified by Google/i);
+      expect(body).not.toMatch(/checks for and removes fake content/i);
       const reviewLinks = page.locator("#google-reviews").getByRole("link", { name: /View review on Google Maps/i });
       expect(await reviewLinks.count()).toBeGreaterThan(0);
       expect(await reviewLinks.count()).toBeLessThanOrEqual(8);
@@ -114,5 +118,57 @@ test.describe("homepage Google social proof", () => {
   test("header CTA remains the site-wide trial label", async ({ page }) => {
     await page.goto("/programs/corporate-wellness", { waitUntil: "domcontentloaded" });
     await expect(page.locator("header")).toContainText(/Book a free trial on WhatsApp/i);
+  });
+
+  test("live review rail hides the scrollbar, keeps inset, and advances with Next", async ({
+    page,
+  }) => {
+    await page.setViewportSize({ width: 1536, height: 730 });
+    await page.goto("/", { waitUntil: "domcontentloaded" });
+    const chapter = page.locator("#google-reviews");
+    await expect(chapter).toBeVisible();
+    if ((await chapter.getAttribute("data-google-proof-mode")) !== "live-google-reviews") {
+      return;
+    }
+
+    const rail = chapter.getByRole("list", { name: /Google reviews/i });
+    await expect(rail).toBeVisible();
+    const metrics = await rail.evaluate((el) => {
+      const style = getComputedStyle(el);
+      const items = [...el.querySelectorAll(":scope > li")];
+      const paddings = items.slice(0, 2).map((item) => {
+        const cs = getComputedStyle(item);
+        return {
+          padStart: Number.parseFloat(cs.paddingInlineStart),
+          padEnd: Number.parseFloat(cs.paddingInlineEnd),
+          borderStart: Number.parseFloat(cs.borderInlineStartWidth),
+        };
+      });
+      return {
+        overflowX: style.overflowX,
+        scrollbarWidth: style.scrollbarWidth,
+        scrollWidth: el.scrollWidth,
+        clientWidth: el.clientWidth,
+        paddings,
+      };
+    });
+    expect(metrics.overflowX).toBe("auto");
+    expect(metrics.scrollbarWidth).toBe("none");
+    expect(metrics.scrollWidth).toBeGreaterThan(metrics.clientWidth);
+    expect(metrics.paddings[0]?.padStart).toBeGreaterThanOrEqual(20);
+    expect(metrics.paddings[0]?.padEnd).toBeGreaterThanOrEqual(20);
+    if (metrics.paddings[1]) {
+      expect(metrics.paddings[1].padStart).toBeGreaterThanOrEqual(20);
+      expect(metrics.paddings[1].borderStart).toBeGreaterThan(0);
+    }
+
+    const prev = chapter.getByRole("button", { name: /Previous reviews/i });
+    const next = chapter.getByRole("button", { name: /Next reviews/i });
+    await expect(prev).toBeDisabled();
+    await expect(next).toBeEnabled();
+    const before = await rail.evaluate((el) => el.scrollLeft);
+    await next.click();
+    await expect.poll(async () => rail.evaluate((el) => el.scrollLeft)).toBeGreaterThan(before);
+    await expect(prev).toBeEnabled();
   });
 });
