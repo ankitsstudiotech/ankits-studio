@@ -28,12 +28,12 @@ const CLUSTER_COPY = {
 const PROGRAMME_ORDER = [
   "functional-training",
   "home-personal-training",
-  "online-training",
   "zumba",
+  "online-training",
   "yoga",
   "adult-dance",
-  "wedding-choreography",
   "corporate-wellness",
+  "wedding-choreography",
 ] as const;
 
 function deliveryMeta(programme: Programme): string | undefined {
@@ -108,7 +108,6 @@ export function ProgrammeDiscovery({
           <div
             key={pair.map((item) => item.slug).join("-")}
             className={styles.pairBand}
-            data-flip={pairIndex % 2 === 1 ? "true" : "false"}
           >
             {pair.map((programme, itemIndex) => {
               const globalIndex = pairIndex * 2 + itemIndex;
@@ -116,13 +115,12 @@ export function ProgrammeDiscovery({
               const copy = CLUSTER_COPY[cluster];
               const slot = programmeHeroSlotKey(programme.slug);
               const media = slot ? resolveSlotMedia(slot) : null;
-              const mediaDominant = pairIndex % 2 === 0 ? itemIndex === 0 : itemIndex === 1;
+              const meta = deliveryMeta(programme);
 
               return (
                 <article
                   key={programme.slug}
                   className={styles.pairModule}
-                  data-dominant={mediaDominant ? "media" : "type"}
                   data-cluster={cluster}
                 >
                   <p className={styles.pairChapter}>
@@ -135,16 +133,14 @@ export function ProgrammeDiscovery({
                     >
                       <PulseMedia item={media} sizes="(max-width: 900px) 100vw, 50vw" />
                     </div>
-                  ) : null}
-                  <div className={styles.pairCopy}>
-                    <h2 className={styles.pairName}>
-                      <Link href={`/programs/${programme.slug}`}>{programme.name}</Link>
-                    </h2>
-                    <p className={styles.pairDescription}>{programme.shortDescription}</p>
-                    {deliveryMeta(programme) ? (
-                      <p className={styles.pairMeta}>{deliveryMeta(programme)}</p>
-                    ) : null}
-                  </div>
+                  ) : (
+                    <div className={styles.pairMedia} aria-hidden="true" />
+                  )}
+                  <h2 className={styles.pairName}>
+                    <Link href={`/programs/${programme.slug}`}>{programme.name}</Link>
+                  </h2>
+                  <p className={styles.pairDescription}>{programme.shortDescription}</p>
+                  <p className={styles.pairMeta}>{meta}</p>
                 </article>
               );
             })}

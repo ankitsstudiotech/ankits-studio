@@ -12,6 +12,10 @@
   box-sizing: border-box;
 }
 
+.band:has(.pairSequence) {
+  padding-bottom: 0;
+}
+
 .bandTitle,
 .bandLede,
 .clusters,
@@ -32,23 +36,30 @@
 
 .indexIntro {
   display: grid;
-  gap: 0.75rem 2.5rem;
+  gap: 0.75rem;
   margin: 0 0 1.75rem;
+  width: 100%;
+  max-width: var(--layout-content);
+  align-items: start;
 }
 
 @media (min-width: 900px) {
   .indexIntro {
-    grid-template-columns: minmax(0, 1.15fr) minmax(0, 0.85fr);
-    align-items: end;
+    max-width: 58rem;
+    grid-template-columns: minmax(0, 1.2fr) minmax(14rem, 0.85fr);
+    column-gap: 1.5rem;
+    align-items: start;
   }
 
   .indexIntro .bandTitle {
     margin: 0;
+    max-width: none;
   }
 
   .indexIntro .bandLede {
     margin: 0;
-    max-width: none;
+    max-width: 36ch;
+    padding-top: 0.2em;
   }
 }
 
@@ -340,32 +351,40 @@
   display: grid;
   grid-template-columns: 1fr;
   align-items: stretch;
-  border-bottom: var(--rule-structural-width) solid var(--rule-structural);
 }
 
 @media (min-width: 900px) {
   .pairBand {
     grid-template-columns: 1fr 1fr;
+    grid-template-rows: auto auto auto auto auto auto;
+    row-gap: 0.85rem;
+    border-bottom: var(--rule-structural-width) solid var(--rule-structural);
   }
 
-  .pairBand[data-flip="true"] .pairModule:first-child {
-    order: 2;
+  .pairBand:last-child {
+    border-bottom: 0;
   }
 }
 
 .pairModule {
   display: grid;
-  grid-template-rows: auto auto minmax(11rem, 1fr) auto;
   gap: 0.85rem;
   padding: 1.35rem 0 1.5rem;
   border-bottom: var(--rule-structural-width) solid var(--rule-structural);
   min-width: 0;
-  height: 100%;
+}
+
+.pairBand:last-child .pairModule:last-child {
+  border-bottom: 0;
 }
 
 @media (min-width: 900px) {
   .pairModule {
-    padding: 1.75rem 1.5rem 1.9rem 0;
+    grid-template-rows: subgrid;
+    grid-row: span 6;
+    gap: 0;
+    height: 100%;
+    padding: 1.75rem var(--spacing-rule-content) 1.9rem 0;
     border-bottom: 0;
     border-right: var(--rule-structural-width) solid var(--rule-structural);
   }
@@ -373,7 +392,7 @@
   .pairModule:last-child {
     border-right: 0;
     padding-right: 0;
-    padding-left: 1.5rem;
+    padding-left: var(--spacing-rule-content);
   }
 }
 
@@ -395,27 +414,32 @@
 }
 
 .pairMedia {
+  position: relative;
   min-width: 0;
-  min-height: 11rem;
+  width: 100%;
+  aspect-ratio: 16 / 9;
+  overflow: hidden;
+}
+
+.pairMedia > :global(*) {
+  display: block;
+  width: 100%;
   height: 100%;
-  align-self: stretch;
 }
 
 .pairMedia :global(figure) {
+  position: relative;
   border-radius: 0;
-  aspect-ratio: auto !important;
+  aspect-ratio: 16 / 9 !important;
   width: 100%;
   height: 100%;
-  min-height: 11rem;
+  min-height: 0;
   max-height: none;
 }
 
-.pairModule[data-dominant="media"] .pairMedia {
-  min-height: 16rem;
-}
-
-.pairModule[data-dominant="type"] .pairMedia {
-  min-height: 11rem;
+.pairMedia :global(img),
+.pairMedia :global(video) {
+  object-fit: cover;
 }
 
 .pairName {
@@ -425,6 +449,7 @@
   line-height: 0.92;
   margin: 0;
   text-transform: uppercase;
+  align-self: start;
 }
 
 .pairName a {
@@ -453,27 +478,6 @@
   margin: 0;
   font-size: var(--text-caption);
   color: var(--color-muted-on-field);
-}
-
-@media (max-width: 899px) {
-  .pairModule {
-    grid-template-rows: auto;
-    height: auto;
-  }
-
-  .pairModule[data-dominant="type"] .pairMedia,
-  .pairModule[data-dominant="media"] .pairMedia {
-    max-width: none;
-    min-height: 0;
-    height: auto;
-  }
-
-  .pairMedia :global(figure) {
-    aspect-ratio: 16 / 9 !important;
-    height: auto;
-    min-height: 0;
-    max-height: 12rem;
-  }
 }
 
 /* —— Detail — Stage 5 composition families —— */

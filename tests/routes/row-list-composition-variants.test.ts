@@ -51,11 +51,15 @@ describe("row-list composition variants — Batch 04", () => {
     expect(discovery).toMatch(/pairBand/);
     expect(discovery).toMatch(/indexIntro/);
     expect(discovery).toMatch(/For Teams/);
+    expect(discovery).not.toMatch(/data-flip/);
+    expect(discovery).not.toMatch(/data-dominant/);
     expect(discovery).not.toMatch(/data-matrix="train"/);
     expect(discovery).not.toMatch(/layout=\{isFeatured \? "featured" : "cell"\}/);
     const css = read("src/components/programs/pulse/programme-pulse.module.css");
     expect(css).toMatch(/\.pairBand/);
-    expect(css).toMatch(/\[data-flip="true"\]/);
+    expect(css).toMatch(/grid-template-rows:\s*subgrid/);
+    expect(css).toMatch(/aspect-ratio:\s*16 \/ 9/);
+    expect(css).not.toMatch(/\[data-flip="true"\]/);
   });
 
   it("branch available-services uses a compact typographic index without arrows", () => {
