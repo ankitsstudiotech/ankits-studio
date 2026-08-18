@@ -3,8 +3,8 @@ import Link from "next/link";
 import { PageBreadcrumb } from "@/components/layout/PageBreadcrumb";
 import { PageWithFooter } from "@/components/layout/PageWithFooter";
 import styles from "@/components/about/pulse/about.module.css";
-import { ClosingBand } from "@/components/conversion/ClosingBand";
 import { PulseMedia } from "@/components/media";
+import { FreeTrialCta } from "@/components/home/FreeTrialCta";
 import { RouteOpening, SectionReveal } from "@/components/motion";
 import { resolveSlotMedia } from "@/content/media";
 import {
@@ -299,21 +299,13 @@ export default function AboutPage() {
         </p>
       </section>
 
-      <ClosingBand
+      <FreeTrialCta
+        id="about-cta"
         titleId="about-cta-title"
-        title="Book a free trial"
         body="Try a session at a neighbourhood branch. Tell us your preferred branch, service and time on WhatsApp."
-      >
-        <a
-          className={styles.cta}
-          href={trialHref}
-          {...(trialHref.startsWith("http")
-            ? { target: "_blank", rel: "noopener noreferrer" }
-            : {})}
-        >
-          {trialLabel}
-        </a>
-      </ClosingBand>
+        href={trialHref}
+        label={trialLabel}
+      />
     </main>
     </PageWithFooter>
   );

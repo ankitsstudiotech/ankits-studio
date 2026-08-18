@@ -2,7 +2,7 @@ import type { ReactNode } from "react";
 import { SectionReveal } from "@/components/motion";
 import styles from "./closing-band.module.css";
 
-export type ClosingBandVariant = "accent" | "field" | "compact";
+export type ClosingBandVariant = "accent" | "field" | "compact" | "service-enquiry";
 
 export type ClosingBandProps = {
   id?: string;
@@ -16,8 +16,9 @@ export type ClosingBandProps = {
 };
 
 /**
- * Shared editorial close: copy mass left, action mass right.
- * Accent = Home purple trial band. Field = quieter programme/branch/readiness close.
+ * Shared editorial close.
+ * Accent / service-enquiry = Homepage free-trial grammar (proposition / process / trial / action).
+ * Field = quieter non-trial close (e.g. trainers availability).
  */
 export function ClosingBand({
   id,
@@ -29,12 +30,15 @@ export function ClosingBand({
   children,
   secondary,
 }: ClosingBandProps) {
-  const isAccentFreeTrial = variant === "accent" && id === "trial";
-  const rootTone =
-    variant === "accent" ? styles.accent : variant === "compact" ? styles.compact : styles.field;
+  const usesEditorialLayout = variant === "accent" || variant === "service-enquiry";
+  const rootTone = usesEditorialLayout
+    ? styles.accent
+    : variant === "compact"
+      ? styles.compact
+      : styles.field;
 
   const splitFreeTrialTitle =
-    isAccentFreeTrial && title.trim().toLowerCase() === "book a free trial";
+    usesEditorialLayout && title.trim().toLowerCase() === "book a free trial";
 
   const renderedTitle = splitFreeTrialTitle ? (
     <>
@@ -53,8 +57,11 @@ export function ClosingBand({
       data-compose="closing-band"
       data-cta-variant={variant}
     >
-      {isAccentFreeTrial ? (
-        <div className={styles.freeTrialInner}>
+      {usesEditorialLayout ? (
+        <div
+          className={styles.freeTrialInner}
+          data-has-note={note ? "true" : "false"}
+        >
           <div className={styles.freeTrialProposition}>
             <SectionReveal>
               <h2 id={titleId} className={styles.freeTrialTitle}>
@@ -67,9 +74,11 @@ export function ClosingBand({
             <p className={styles.body}>{body}</p>
           </div>
 
-          <div className={styles.freeTrialTrialFact}>
-            {note ? <p className={styles.note}>{note}</p> : null}
-          </div>
+          {note ? (
+            <div className={styles.freeTrialTrialFact}>
+              <p className={styles.note}>{note}</p>
+            </div>
+          ) : null}
 
           <div className={styles.freeTrialAction}>
             <div className={styles.actionPrimary}>{children}</div>

@@ -1,6 +1,6 @@
 import Link from "next/link";
 import { getBranchDirectoryNumeral, type Branch, type Programme } from "@/content";
-import { ClosingBand } from "@/components/conversion/ClosingBand";
+import { FreeTrialCta } from "@/components/home/FreeTrialCta";
 import { HeroReveal, SectionReveal } from "@/components/motion";
 import { LocationPulseCta } from "./LocationPulseMotion";
 import styles from "./location-pulse.module.css";
@@ -276,13 +276,13 @@ export function BranchDetailView({
         </section>
       ) : null}
 
-      <ClosingBand
-        titleId="branch-final-cta"
-        title="Book a free trial"
+      <FreeTrialCta
+        id="branch-final-cta"
+        titleId="branch-final-cta-title"
         body={`Prefer ${branch.locality}? Message WhatsApp to book a free trial here.`}
-      >
-        <LocationPulseCta href={whatsappHref}>{whatsappLabel}</LocationPulseCta>
-      </ClosingBand>
+        href={whatsappHref}
+        label={whatsappLabel}
+      />
     </div>
   );
 }

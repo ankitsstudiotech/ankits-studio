@@ -1,10 +1,10 @@
 import Link from "next/link";
 import type { Branch } from "@/content";
 import { getBranchMapsUrl } from "@/content";
+import { FreeTrialCta } from "@/components/home/FreeTrialCta";
 import { PulseMedia } from "@/components/media";
 import { HeroReveal } from "@/components/motion";
 import { resolveSlotMedia } from "@/content/media";
-import { LocationPulseCta } from "./LocationPulseMotion";
 import styles from "./location-pulse.module.css";
 
 export type LocationDiscoveryProps = {
@@ -23,6 +23,7 @@ export function LocationDiscovery({ branches, trialHref, trialLabel }: LocationD
   const atmosphere = resolveSlotMedia("locations.atmosphere");
 
   return (
+    <>
     <section className={`${styles.field} ${styles.band}`} aria-labelledby="locations-index-title">
       <HeroReveal>
         <h1 id="locations-index-title" className={styles.bandTitle}>
@@ -87,11 +88,15 @@ export function LocationDiscovery({ branches, trialHref, trialLabel }: LocationD
           </p>
         </div>
       ) : null}
-
-      <div className={styles.ctaRow}>
-        <LocationPulseCta href={trialHref}>{trialLabel}</LocationPulseCta>
-      </div>
     </section>
+
+      <FreeTrialCta
+        id="locations-trial"
+        titleId="locations-trial-title"
+        href={trialHref}
+        label={trialLabel}
+      />
+    </>
   );
 }
 

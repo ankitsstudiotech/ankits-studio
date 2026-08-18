@@ -2,6 +2,7 @@ import Link from "next/link";
 import type { Programme, ProgrammeSlug } from "@/content";
 import { FaqBlock } from "@/components/content/FaqBlock";
 import { ClosingBand } from "@/components/conversion/ClosingBand";
+import { FreeTrialCta } from "@/components/home/FreeTrialCta";
 import { PulseMedia } from "@/components/media";
 import { MaskedLines, SectionReveal } from "@/components/motion";
 import { toneFromProgrammeSlug } from "@/components/motion/tokens";
@@ -475,23 +476,25 @@ export function ProgrammeDetailView({
         </section>
       ) : null}
 
-      <ClosingBand
-        id="programme-closing"
-        titleId="programme-closing-cta"
-        variant="compact"
-        title={
-          serviceEnquiry
-            ? "Planning wellness for your team?"
-            : "Enquire about a free trial"
-        }
-        body={
-          serviceEnquiry
-            ? "Customised workplace and online programmes are arranged around your organisation’s requirements."
-            : `Message Ankit’s Studio on WhatsApp about ${programme.name}.`
-        }
-      >
-        <ProgrammePulseCta href={whatsappHref}>{whatsappLabel}</ProgrammePulseCta>
-      </ClosingBand>
+      {serviceEnquiry ? (
+        <ClosingBand
+          id="programme-closing"
+          titleId="programme-closing-cta"
+          variant="service-enquiry"
+          title="Planning wellness for your team?"
+          body="Customised workplace and online programmes are arranged around your organisation’s requirements."
+        >
+          <ProgrammePulseCta href={whatsappHref}>{whatsappLabel}</ProgrammePulseCta>
+        </ClosingBand>
+      ) : (
+        <FreeTrialCta
+          id="programme-closing"
+          titleId="programme-closing-cta"
+          body={`Message Ankit’s Studio on WhatsApp about ${programme.name}.`}
+          href={whatsappHref}
+          label={whatsappLabel}
+        />
+      )}
     </div>
   );
 }

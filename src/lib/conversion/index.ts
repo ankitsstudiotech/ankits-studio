@@ -24,6 +24,7 @@ export {
   getPrimaryConversionHref,
   getPrimaryConversionLabel,
   SECONDARY_TRIAL_FORM_HREF,
+  FREE_TRIAL_REGISTRATION_NOTE,
   type WhatsAppTrialFields,
 } from "./whatsapp";
 

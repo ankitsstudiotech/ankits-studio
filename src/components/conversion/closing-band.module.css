@@ -187,6 +187,22 @@
   }
 }
 
+/* Service-enquiry (no trial-fact): keep the same separators without an empty column. */
+@media (min-width: 768px) {
+  .freeTrialInner[data-has-note="false"] {
+    grid-template-columns: minmax(0, 1.2fr) minmax(0, 1.35fr) minmax(0, 0.95fr);
+    grid-template-areas: "proposition process action";
+    column-gap: 0;
+    row-gap: 0;
+    align-items: start;
+  }
+
+  .freeTrialInner[data-has-note="false"] .freeTrialAction {
+    border-inline-start: var(--rule-structural-width) solid var(--rule-structural);
+    padding-inline-start: var(--spacing-rule-content);
+  }
+}
+
 .freeTrialProposition {
   grid-area: proposition;
 }

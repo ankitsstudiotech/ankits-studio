@@ -126,3 +126,7 @@ export function getPrimaryConversionLabel(): string {
 
 /** Secondary conversion path — always the trial form. */
 export const SECONDARY_TRIAL_FORM_HREF = "/trial";
+
+/** Shared trial-fact copy — fee applies after joining, never for the trial itself. */
+export const FREE_TRIAL_REGISTRATION_NOTE =
+  "Free trial class. One-time registration fee is ₹300 after you join.";

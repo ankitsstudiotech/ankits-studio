@@ -8,36 +8,43 @@ function read(rel: string) {
 }
 
 describe("Batch 06 — closing conversion family", () => {
-  it("uses one shared ClosingBand primitive with copy-left action-right composition", () => {
+  it("uses one shared ClosingBand primitive with the Homepage free-trial composition", () => {
     const band = read("src/components/conversion/ClosingBand.tsx");
     const css = read("src/components/conversion/closing-band.module.css");
     expect(band).toMatch(/data-compose="closing-band"/);
     expect(band).toMatch(/variant === "accent"/);
-    expect(band).toMatch(/variant === "compact"/);
-    expect(band).toMatch(/compactProposition/);
-    expect(band).not.toMatch(/compactContext/);
-    expect(css).toMatch(/grid-template-columns:\s*minmax\(0,\s*8fr\)\s+minmax\(12rem,\s*4fr\)/);
-    expect(css).toMatch(/\.compact \.compactInner \{[\s\S]*align-items:\s*center/);
+    expect(band).toMatch(/service-enquiry/);
+    expect(band).toMatch(/usesEditorialLayout/);
+    expect(band).not.toMatch(/id === "trial"/);
+    expect(css).toMatch(/grid-template-areas:\s*"proposition process trial action"/);
     expect(css).not.toMatch(/width:\s*100%[\s\S]{0,80}button/);
     expect(css).toMatch(/\.accent \.actionPrimary :global\(a\)/);
   });
 
   it("Home trial, programmes, branches, About, trainers and stories share ClosingBand", () => {
     expect(read("src/components/home/FreeTrialCta.tsx")).toMatch(/ClosingBand/);
-    expect(read("src/components/programs/pulse/ProgrammeDetailView.tsx")).toMatch(/ClosingBand/);
-    expect(read("src/components/locations/pulse/BranchDetailView.tsx")).toMatch(/ClosingBand/);
-    expect(read("src/app/(marketing)/about/page.tsx")).toMatch(/ClosingBand/);
+    expect(read("src/components/programs/pulse/ProgrammeDetailView.tsx")).toMatch(/FreeTrialCta/);
+    expect(read("src/components/locations/pulse/BranchDetailView.tsx")).toMatch(/FreeTrialCta/);
+    expect(read("src/app/(marketing)/about/page.tsx")).toMatch(/FreeTrialCta/);
     expect(read("src/app/(marketing)/trainers/page.tsx")).toMatch(/Ask about availability/);
-    expect(read("src/app/(marketing)/transformations/page.tsx")).toMatch(/ClosingBand/);
+    expect(read("src/app/(marketing)/trainers/page.tsx")).toMatch(/ClosingBand/);
+    expect(read("src/app/(marketing)/transformations/page.tsx")).toMatch(/FreeTrialCta/);
   });
 
   it("preserves Corporate Wellness enquiry copy and Home purple accent identity", () => {
     const detail = read("src/components/programs/pulse/ProgrammeDetailView.tsx");
-    expect(detail).toMatch(/serviceEnquiry\s*\?\s*"Planning wellness for your team\?"/);
+    expect(detail).toMatch(/serviceEnquiry\s*\?\s*\(/);
+    expect(detail).toMatch(/variant="service-enquiry"/);
+    expect(detail).toMatch(/Planning wellness for your team\?/);
+    expect(detail).toMatch(/FreeTrialCta/);
+    expect(detail).not.toMatch(/Enquire about a free trial/);
     expect(detail).toMatch(/isServiceEnquiryProgramme/);
     const home = read("src/components/home/FreeTrialCta.tsx");
     expect(home).toMatch(/variant = "accent"/);
-    expect(home).toMatch(/Free trial class/);
+    expect(home).toMatch(/FREE_TRIAL_REGISTRATION_NOTE/);
+    expect(read("src/lib/conversion/whatsapp.ts")).toMatch(
+      /Free trial class\. One-time registration fee is ₹300 after you join\./,
+    );
   });
 });
 

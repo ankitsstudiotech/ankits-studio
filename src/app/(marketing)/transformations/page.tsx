@@ -2,12 +2,11 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import { PageBreadcrumb } from "@/components/layout/PageBreadcrumb";
 import { PageWithFooter } from "@/components/layout/PageWithFooter";
-import { ClosingBand } from "@/components/conversion/ClosingBand";
 import { ConsentDisclosure } from "@/components/member-stories/pulse/ConsentDisclosure";
-import { MemberStoriesCta } from "@/components/member-stories/pulse/MemberStoriesCta";
 import { MemberStoryEditorial } from "@/components/member-stories/pulse/MemberStoryEditorial";
 import { TransformationCaseStudy } from "@/components/member-stories/pulse/TransformationCaseStudy";
 import styles from "@/components/member-stories/pulse/member-stories.module.css";
+import { FreeTrialCta } from "@/components/home/FreeTrialCta";
 import { RouteOpening, SectionReveal } from "@/components/motion";
 import {
   getConfirmedProgrammes,
@@ -177,18 +176,16 @@ export default function MemberStoriesPage() {
         </SectionReveal>
       </section>
 
-      <ClosingBand
+      <FreeTrialCta
+        id="stories-cta"
         titleId="stories-cta-title"
         title={page.ctaTitle}
         body={page.ctaBody}
-        secondary={
-          <Link href={SECONDARY_TRIAL_FORM_HREF} className={styles.ctaSecondary}>
-            Prefer the trial form
-          </Link>
-        }
-      >
-        <MemberStoriesCta href={trialHref}>{trialLabel}</MemberStoriesCta>
-      </ClosingBand>
+        href={trialHref}
+        label={trialLabel}
+        secondaryHref={SECONDARY_TRIAL_FORM_HREF}
+        secondaryLabel="Prefer the trial form"
+      />
     </main>
     </PageWithFooter>
   );

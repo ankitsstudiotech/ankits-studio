@@ -1,9 +1,9 @@
 import Link from "next/link";
 import type { Programme } from "@/content";
+import { FreeTrialCta } from "@/components/home/FreeTrialCta";
 import { PulseMedia } from "@/components/media";
 import { HeroReveal } from "@/components/motion";
 import { programmeHeroSlotKey, resolveSlotMedia } from "@/content/media";
-import { ProgrammePulseCta } from "./ProgrammePulseMotion";
 import styles from "./programme-pulse.module.css";
 
 const CLUSTER_COPY = {
@@ -84,6 +84,7 @@ export function ProgrammeDiscovery({
   }
 
   return (
+    <>
     <section
       className={`${styles.field} ${styles.band}`}
       data-discovery="programme-index"
@@ -150,31 +151,30 @@ export function ProgrammeDiscovery({
           </div>
         ))}
       </div>
-
-      <div className={styles.closing}>
-        <div className={styles.ctaRow}>
-          <ProgrammePulseCta href={trialHref}>{trialLabel}</ProgrammePulseCta>
-          <p className={styles.ctaNote}>Free trial · ₹300 registration after you join.</p>
-        </div>
-        <p className={styles.closingBranch}>
-          Looking for a branch instead?{" "}
-          <Link href="/locations">Browse locations</Link>.
-        </p>
-        {corporateNote ? (
-          <p className={styles.corporateNote}>
-            {corporateNote}{" "}
-            <a
-              href={trialHref}
-              {...(trialHref.startsWith("http")
-                ? { target: "_blank", rel: "noopener noreferrer" }
-                : {})}
-            >
-              Enquire on WhatsApp
-            </a>
-            .
-          </p>
-        ) : null}
-      </div>
     </section>
+
+      <FreeTrialCta
+        id="programmes-trial"
+        titleId="programmes-trial-title"
+        href={trialHref}
+        label={trialLabel}
+        secondaryHref="/locations"
+        secondaryLabel="Browse locations"
+      />
+      {corporateNote ? (
+        <p className={styles.corporateNote}>
+          {corporateNote}{" "}
+          <a
+            href={trialHref}
+            {...(trialHref.startsWith("http")
+              ? { target: "_blank", rel: "noopener noreferrer" }
+              : {})}
+          >
+            Enquire on WhatsApp
+          </a>
+          .
+        </p>
+      ) : null}
+    </>
   );
 }
