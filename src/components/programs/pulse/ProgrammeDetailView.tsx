@@ -288,13 +288,7 @@ export function ProgrammeDetailView({
             <div className={styles.detailMedia}>
               <PulseMedia
                 item={heroMedia}
-                sizes={
-                  programme.slug === "corporate-wellness"
-                    ? "(max-width: 900px) 100vw, (max-width: 1440px) 52vw, 820px"
-                    : programme.slug === "yoga"
-                      ? "(max-width: 900px) 100vw, (max-width: 1440px) 48vw, 780px"
-                    : "(max-width: 900px) 100vw, (max-width: 1440px) 42vw, 720px"
-                }
+                sizes="(max-width: 900px) 100vw, (max-width: 1440px) 42vw, 720px"
                 priority
                 reveal={false}
               />

@@ -495,8 +495,9 @@
 
 .detailKicker {
   margin: 0;
-  font-size: 0.75rem;
-  letter-spacing: 0.08em;
+  font-size: var(--text-overline);
+  letter-spacing: var(--text-overline--letter-spacing);
+  line-height: var(--text-overline--line-height);
   text-transform: uppercase;
   color: var(--color-muted-on-field);
 }
@@ -544,8 +545,8 @@
   margin: 0;
   max-width: 42ch;
   color: var(--color-muted-on-field);
-  font-size: 1.05rem;
-  line-height: 1.45;
+  font-size: var(--text-body-lg);
+  line-height: var(--text-body-lg--line-height);
 }
 
 /* Meta rail — typographic by default (fewer boxes) */
@@ -574,16 +575,17 @@
 
 .metaList dt {
   margin: 0;
-  font-size: 0.68rem;
-  letter-spacing: 0.07em;
+  font-size: var(--text-overline);
+  letter-spacing: var(--text-overline--letter-spacing);
+  line-height: var(--text-overline--line-height);
   text-transform: uppercase;
-  color: #b8b4aa;
+  color: var(--color-muted-on-field);
 }
 
 .metaList dd {
   margin: 0.2rem 0 0;
-  font-size: 0.92rem;
-  line-height: 1.4;
+  font-size: var(--text-body);
+  line-height: var(--text-body--line-height);
   color: var(--color-ink-inverse);
 }
 
@@ -638,245 +640,49 @@
   --reveal-delay: 0.05s;
 }
 
-/* —— Family A: Structured (Functional) —— */
+/* —— Unified programme-detail hero (Functional Training anatomy) —— */
 @media (min-width: 1024px) {
-  .detailHero[data-compose-family="structured"] .composeHeroWithMedia {
+  .composeHeroWithMedia {
     display: grid;
     grid-template-columns: minmax(0, 5fr) minmax(0, 4fr) minmax(0, 3fr);
     gap: 1.5rem 1.75rem;
     align-items: stretch;
   }
 
-  .detailHero[data-compose-family="structured"] .detailMedia {
+  .composeHeroWithMedia .detailMedia {
     max-width: none;
     align-self: stretch;
   }
 
-  .detailHero[data-compose-family="structured"] .detailMedia figure {
+  .composeHeroWithMedia .detailMedia figure {
     height: 100%;
     min-height: 22rem;
     outline: 1px solid rgb(255 255 255 / 0.12);
   }
 
-  .detailHero[data-compose-family="structured"] .metaRail {
-    border-left: 2px solid color-mix(in srgb, var(--color-accent-strength) 55%, transparent);
-    padding-left: 1rem;
+  .composeHeroWithMedia .metaRail {
+    border-left: var(--rule-structural-width) solid var(--rule-structural);
+    padding-left: var(--spacing-rule-content);
     align-self: start;
   }
 }
 
-/* —— Family B: Fluid / expressive (Zumba, Dance) —— */
-@media (min-width: 1024px) {
-  .detailHero[data-compose-family="fluid"] .composeHeroWithMedia {
-    display: grid;
-    grid-template-columns: minmax(0, 1.1fr) minmax(0, 1fr);
-    grid-template-areas:
-      "title media"
-      "meta meta";
-    gap: 1rem 1.5rem;
-    align-items: end;
-  }
-
-  .detailHero[data-compose-family="fluid"] .detailOpening {
-    grid-area: title;
-  }
-
-  .detailHero[data-compose-family="fluid"] .detailMedia {
-    grid-area: media;
-    max-width: none;
-    margin-inline-end: calc(-1 * clamp(0px, 2vw, 1.5rem));
-  }
-
-  .detailHero[data-compose-family="fluid"] .metaRail {
-    grid-area: meta;
-    border-top: var(--rule-structural-width) solid var(--rule-structural);
-    padding-top: 1rem;
-  }
-
-  .detailHero[data-compose-family="fluid"] .metaList {
-    grid-template-columns: repeat(4, minmax(0, 1fr));
-    gap: 1rem 1.25rem;
-  }
-
-  .detailHero[data-compose-family="fluid"] .metaItem {
-    border-top: none;
-    padding-top: 0;
-    border-left: var(--rule-structural-width) solid var(--rule-structural);
-    padding-left: 0.85rem;
-  }
-
-  .detailHero[data-compose-family="fluid"] .metaItem:first-child {
-    border-left: none;
-    padding-left: 0;
-  }
-
-  /* Zumba — tighter rhythm */
-  .detailHero[data-compose-family="fluid"][data-service-variant="zumba"] {
-    padding-block: calc(var(--spacing-section) - 0.25rem);
-  }
-
-  .detailHero[data-compose-family="fluid"][data-service-variant="zumba"] .detailTitle {
-    max-width: 10ch;
-  }
-
-  /* Dance — more open, stronger media break */
-  .detailHero[data-compose-family="fluid"][data-service-variant="dance"] .composeHeroWithMedia {
-    grid-template-columns: minmax(0, 0.95fr) minmax(0, 1.15fr);
-    gap: 1.5rem 2rem;
-  }
-
-  .detailHero[data-compose-family="fluid"][data-service-variant="dance"] .detailMedia {
-    margin-inline-end: calc(-1 * clamp(0.75rem, 3vw, 2rem));
-  }
-
-  .detailHero[data-compose-family="fluid"][data-service-variant="dance"] .detailTitle {
-    max-width: 8ch;
-  }
-}
-
-/* —— Family C: Calm (Yoga) —— */
-@media (min-width: 1024px) {
-  .detailHero[data-compose-family="calm"] {
-    padding-block: calc(var(--spacing-section) + 0.5rem);
-  }
-
-  .detailHero[data-compose-family="calm"] .composeHeroWithMedia {
-    display: grid;
-    /* Text track sized to the copy; 2rem gap is the Calm breath — not an empty 1fr column. */
-    grid-template-columns: minmax(18rem, 32rem) minmax(0, 1fr);
-    grid-template-areas:
-      "title media"
-      "meta media";
-    column-gap: 2rem;
-    row-gap: 1.15rem;
-    align-items: start;
-  }
-
-  .detailHero[data-compose-family="calm"] .detailOpening {
-    grid-area: title;
-    max-width: none;
-    padding-block: 0.35rem 0.5rem;
-  }
-
-  .detailHero[data-compose-family="calm"] .detailTitle {
-    max-width: 8ch;
-    font-size: clamp(3.2rem, 7vw, 5rem);
-  }
-
-  .detailHero[data-compose-family="calm"] .detailMedia {
-    grid-area: media;
-    width: 100%;
-    max-width: none;
-    justify-self: stretch;
-    align-self: stretch;
-    margin-top: 0;
-  }
-
-  .detailHero[data-compose-family="calm"] .detailMedia figure {
-    width: 100%;
-    height: 100%;
-    min-height: 24rem;
-  }
-
-  .detailHero[data-compose-family="calm"] .metaRail {
-    grid-area: meta;
-    max-width: none;
-  }
-
-  .detailHero[data-compose-family="calm"] .metaItem {
-    border-top-color: rgb(255 255 255 / 0.06);
-  }
-}
-
-/* —— Family D: Service / occasion —— */
-@media (min-width: 1024px) {
-  .detailHero[data-compose-family="service"] .composeHeroWithMedia {
-    display: grid;
-    grid-template-columns: minmax(0, 1.2fr) minmax(0, 0.9fr);
-    gap: 1.5rem 2rem;
-    align-items: center;
-  }
-
-  .detailHero[data-compose-family="service"] .metaRail {
-    grid-column: 1 / -1;
-    display: grid;
-    border-top: var(--rule-structural-width) solid var(--rule-structural);
-    padding-top: 1.1rem;
-  }
-
-  .detailHero[data-compose-family="service"] .metaList {
-    grid-template-columns: repeat(4, minmax(0, 1fr));
-    gap: 1rem;
-  }
-
-  .detailHero[data-compose-family="service"] .metaItem {
-    border-top: none;
-    padding-top: 0;
-  }
-
-  /* Wedding — ceremonial */
-  .detailHero[data-service-variant="wedding"] .detailMedia {
-    max-width: none;
-    justify-self: stretch;
-  }
-
-  .detailHero[data-service-variant="wedding"] .detailMedia figure {
-    outline: 1px solid rgb(255 255 255 / 0.08);
-  }
-
-  .detailHero[data-service-variant="wedding"] .detailTitle {
-    max-width: 12ch;
-  }
-
-  /* Home PT — intimate */
-  .detailHero[data-service-variant="home"] .composeHeroWithMedia {
-    grid-template-columns: minmax(0, 1.35fr) minmax(0, 0.65fr);
-    align-items: start;
-  }
-
-  .detailHero[data-service-variant="home"] .detailMedia {
-    max-width: 18rem;
-    justify-self: end;
-  }
-
-  /* Online — compact remote */
-  .detailHero[data-service-variant="online"] .composeHeroWithMedia {
-    grid-template-columns: minmax(0, 1.4fr) minmax(0, 0.7fr);
-  }
-
-  .detailHero[data-service-variant="online"] .detailMedia {
-    max-width: 19rem;
-    justify-self: end;
-  }
-
-  /* Corporate Wellness — landscape service panel, not Home PT's portrait */
-  .detailHero[data-service-variant="corporate"] .composeHeroWithMedia {
-    grid-template-columns: minmax(0, 0.95fr) minmax(24rem, 1.25fr);
-    align-items: center;
-    gap: 1.5rem 1.75rem;
-  }
-
-  .detailHero[data-service-variant="corporate"] .detailMedia {
-    max-width: none;
-    justify-self: stretch;
-  }
-
-  .detailHero[data-service-variant="corporate"] .detailMedia figure {
-    outline: 1px solid rgb(255 255 255 / 0.06);
-  }
-
-  .detailHero[data-service-variant="corporate"] .detailTitle {
-    max-width: 13ch;
-  }
-}
-
-/* Tablet: two-zone compose before mobile stack */
+/* Tablet: deliberate two-zone transition before unified desktop row */
 @media (min-width: 768px) and (max-width: 1023px) {
   .composeHeroWithMedia {
     display: grid;
     grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
     gap: 1.25rem;
     align-items: start;
+  }
+
+  .composeHeroWithMedia .detailMedia {
+    max-width: none;
+    min-height: 14rem;
+  }
+
+  .composeHeroWithMedia .detailMedia figure {
+    min-height: 14rem;
   }
 
   .composeHeroWithMedia .metaRail {
@@ -886,18 +692,6 @@
   .composeHeroWithMedia .metaList {
     grid-template-columns: repeat(2, minmax(0, 1fr));
     gap: 0.85rem 1.5rem;
-  }
-
-  .detailHero[data-compose-family="calm"] .detailMedia {
-    margin-top: 0;
-  }
-
-  .detailHero[data-compose-family="fluid"] .detailMedia {
-    margin-inline-end: 0;
-  }
-
-  .detailHero[data-service-variant="corporate"] .detailMedia {
-    max-width: none;
   }
 }
 
@@ -970,29 +764,26 @@
   border-top: var(--rule-structural-width) solid var(--rule-structural);
 }
 
-[data-compose-family="calm"] .snapshotFact {
-  border-top-color: rgb(255 255 255 / 0.06);
-  padding-top: 0.75rem;
-}
-
 .glanceLabel {
   margin: 0 0 0.3rem;
-  font-size: 0.7rem;
-  letter-spacing: 0.07em;
+  font-size: var(--text-overline);
+  letter-spacing: var(--text-overline--letter-spacing);
+  line-height: var(--text-overline--line-height);
   text-transform: uppercase;
-  color: #b8b4aa;
+  color: var(--color-muted-on-field);
 }
 
 .glanceBody {
   margin: 0;
-  font-size: 0.95rem;
-  line-height: 1.45;
+  font-size: var(--text-body);
+  line-height: var(--text-body--line-height);
   color: var(--color-muted-on-field);
 }
 
 .sectionNote {
   margin: -0.25rem 0 0.85rem;
-  font-size: 0.82rem;
+  font-size: var(--text-caption);
+  line-height: var(--text-caption--line-height);
   color: color-mix(in srgb, var(--color-muted-on-field) 90%, transparent);
   max-width: 42ch;
 }
@@ -1010,8 +801,8 @@
   break-inside: avoid;
   padding: 0.55rem 0;
   border-bottom: var(--rule-structural-width) solid var(--rule-structural);
-  font-size: 0.95rem;
-  line-height: 1.4;
+  font-size: var(--text-body);
+  line-height: var(--text-body--line-height);
   color: var(--color-muted-on-field);
 }
 
@@ -1165,17 +956,8 @@
 }
 
 @media (max-width: 767px) {
-  .detailHero[data-compose-family="fluid"] .metaList,
-  .detailHero[data-compose-family="service"] .metaList {
+  .composeHeroWithMedia .metaList {
     grid-template-columns: 1fr 1fr;
-  }
-
-  .detailHero[data-compose-family="fluid"] .metaItem,
-  .detailHero[data-compose-family="service"] .metaItem {
-    border-left: none;
-    padding-left: 0;
-    border-top: var(--rule-structural-width) solid var(--rule-structural);
-    padding-top: 0.55rem;
   }
 }
 

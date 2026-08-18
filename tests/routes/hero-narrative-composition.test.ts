@@ -64,15 +64,13 @@ describe("hero narrative composition — Batch 05", () => {
     expect(css).toMatch(/grid-template-columns:\s*minmax\(0,\s*38rem\)\s+minmax\(16rem,\s*1fr\)/);
   });
 
-  it("Calm yoga hero no longer reserves an empty grid cell beside the title", () => {
+  it("programme detail heroes share one unified three-column grid", () => {
     const css = read("src/components/programs/pulse/programme-pulse.module.css");
     expect(css).toMatch(
-      /\.detailHero\[data-compose-family="calm"\] \.composeHeroWithMedia \{[\s\S]*grid-template-columns:\s*minmax\(18rem,\s*32rem\)\s+minmax\(0,\s*1fr\)/,
+      /\.composeHeroWithMedia \{[\s\S]*grid-template-columns:\s*minmax\(0,\s*5fr\)\s+minmax\(0,\s*4fr\)\s+minmax\(0,\s*3fr\)/,
     );
-    expect(css).toMatch(/grid-template-areas:\s*"title media"\s+"meta media"/);
-    expect(css).not.toMatch(/"title \."/);
-    expect(css).toMatch(/data-compose-family="structured"/);
-    expect(css).toMatch(/data-compose-family="fluid"/);
-    expect(css).toMatch(/data-compose-family="service"/);
+    expect(css).not.toMatch(/max-width:\s*18rem/);
+    expect(css).not.toMatch(/max-width:\s*19rem/);
+    expect(css).not.toMatch(/grid-template-areas:\s*"title media"/);
   });
 });
