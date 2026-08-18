@@ -157,11 +157,13 @@ export default function TimetablePage() {
               before you open the chat.
             </p>
           </div>
-          <AvailabilityEnquiryBuilder
-            services={services}
-            branches={branchOptions}
-            fallbackHref={fallbackHref}
-          />
+          <div className={styles.enquiryPanel}>
+            <AvailabilityEnquiryBuilder
+              services={services}
+              branches={branchOptions}
+              fallbackHref={fallbackHref}
+            />
+          </div>
         </section>
 
         <div className={styles.know}>
