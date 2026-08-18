@@ -45,21 +45,30 @@ describe("row-list composition variants — Batch 04", () => {
     expect(css).not.toMatch(/minmax\(0,\s*36rem\)\s+max-content/);
   });
 
-  it("programmes index uses paired editorial bands, not homepage matrix clone", () => {
+  it("programmes index uses category-led discovery, not an eight-cell matrix", () => {
     const discovery = read("src/components/programs/pulse/ProgrammeDiscovery.tsx");
-    expect(discovery).toMatch(/pairSequence/);
-    expect(discovery).toMatch(/pairBand/);
-    expect(discovery).toMatch(/indexIntro/);
+    expect(discovery).toMatch(/data-programme-pairs/);
+    expect(discovery).toMatch(/data-chapter="train"/);
+    expect(discovery).toMatch(/data-chapter="move"/);
     expect(discovery).toMatch(/For Teams/);
-    expect(discovery).not.toMatch(/data-flip/);
-    expect(discovery).not.toMatch(/data-dominant/);
+    expect(discovery).toMatch(/functional-training/);
+    expect(discovery).toMatch(/home-personal-training/);
+    expect(discovery).toMatch(/online-training/);
+    expect(discovery).toMatch(/zumba/);
+    expect(discovery).toMatch(/yoga/);
+    expect(discovery).toMatch(/adult-dance/);
+    expect(discovery).toMatch(/corporate-wellness/);
+    expect(discovery).toMatch(/wedding-choreography/);
+    expect(discovery).not.toMatch(/pairSequence/);
+    expect(discovery).not.toMatch(/pairBand/);
+    expect(discovery).not.toMatch(/shortDescription/);
     expect(discovery).not.toMatch(/data-matrix="train"/);
     expect(discovery).not.toMatch(/layout=\{isFeatured \? "featured" : "cell"\}/);
     const css = read("src/components/programs/pulse/programme-pulse.module.css");
-    expect(css).toMatch(/\.pairBand/);
-    expect(css).toMatch(/grid-template-rows:\s*subgrid/);
-    expect(css).toMatch(/aspect-ratio:\s*16 \/ 9/);
-    expect(css).not.toMatch(/\[data-flip="true"\]/);
+    expect(css).toMatch(/grid-template-columns:\s*repeat\(12,/);
+    expect(css).toMatch(/aspect-ratio:\s*4 \/ 3/);
+    expect(css).toMatch(/aspect-ratio:\s*1 \/ 1/);
+    expect(css).not.toMatch(/\.pairBand/);
   });
 
   it("branch available-services uses a compact typographic index without arrows", () => {

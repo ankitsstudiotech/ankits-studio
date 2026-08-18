@@ -6,50 +6,8 @@ import { HeroReveal } from "@/components/motion";
 import { programmeHeroSlotKey, resolveSlotMedia } from "@/content/media";
 import styles from "./programme-pulse.module.css";
 
-const CLUSTER_COPY = {
-  train: {
-    title: "Train",
-    lede: "Coach-led fitness — in studio, at home, or online.",
-  },
-  move: {
-    title: "Move",
-    lede: "Group energy, breath work, and studio dance.",
-  },
-  celebrate: {
-    title: "Celebrate",
-    lede: "Personal choreography for wedding moments.",
-  },
-  teams: {
-    title: "For Teams",
-    lede: "Workplace and online fitness and wellness programmes for organisations.",
-  },
-} as const;
-
-const PROGRAMME_ORDER = [
-  "functional-training",
-  "home-personal-training",
-  "zumba",
-  "online-training",
-  "yoga",
-  "adult-dance",
-  "corporate-wellness",
-  "wedding-choreography",
-] as const;
-
-function deliveryMeta(programme: Programme): string | undefined {
-  if (programme.deliveryMode === "home") {
-    return "Training at your location · message us with your locality";
-  }
-  if (programme.deliveryMode === "online") {
-    return "Remote sessions via Zoom · enquire for timing";
-  }
-  if (programme.slug === "corporate-wellness") {
-    return "Workplace or online · tailored corporate programmes";
-  }
-  if (programme.slug === "functional-training") {
-    return "Studio classes · all branches";
-  }
-  return "Studio classes · enquire for batch fit";
+function bySlug(programmes: Programme[], slug: string): Programme | undefined {
+  return programmes.find((programme) => programme.slug === slug);
 }
 
 function keepColour(slug: string): boolean {
@@ -65,7 +23,7 @@ export type ProgrammeDiscoveryProps = {
 };
 
 /**
- * Magazine programme index — paired media/type chapters, not a Home matrix clone.
+ * Category-led programme index — Concept B geometry, application copy and assets.
  */
 export function ProgrammeDiscovery({
   programmes,
@@ -73,81 +31,110 @@ export function ProgrammeDiscovery({
   trialLabel,
   corporateNote,
 }: ProgrammeDiscoveryProps) {
-  const ordered = [...programmes].sort(
-    (a, b) => PROGRAMME_ORDER.indexOf(a.slug as (typeof PROGRAMME_ORDER)[number]) -
-      PROGRAMME_ORDER.indexOf(b.slug as (typeof PROGRAMME_ORDER)[number]),
-  );
-
-  const pairs: Programme[][] = [];
-  for (let i = 0; i < ordered.length; i += 2) {
-    pairs.push(ordered.slice(i, i + 2));
-  }
+  const functional = bySlug(programmes, "functional-training");
+  const homePt = bySlug(programmes, "home-personal-training");
+  const online = bySlug(programmes, "online-training");
+  const zumba = bySlug(programmes, "zumba");
+  const yoga = bySlug(programmes, "yoga");
+  const dance = bySlug(programmes, "adult-dance");
+  const corporate = bySlug(programmes, "corporate-wellness");
+  const wedding = bySlug(programmes, "wedding-choreography");
 
   return (
     <>
-    <section
-      className={`${styles.field} ${styles.band}`}
-      data-discovery="programme-index"
-      aria-labelledby="programmes-index-title"
-    >
-      <HeroReveal>
-        <header className={styles.indexIntro}>
-          <h1 id="programmes-index-title" className={styles.bandTitle}>
-            Choose how you want to move
-          </h1>
-          <p className={styles.bandLede}>
-            Choose from fitness, movement and training options. Machine-free, coach-led sessions —
-            choose the format that fits your goals and routine. Ask which batch fits when you book a free
-            trial.
-          </p>
-        </header>
-      </HeroReveal>
+      <section
+        className={styles.discovery}
+        data-discovery="programme-index"
+        aria-labelledby="programmes-index-title"
+      >
+        <HeroReveal>
+          <header className={styles.hero}>
+            <div className={styles.heroInner}>
+              <h1 id="programmes-index-title" className={styles.heroTitle}>
+                <span className={styles.heroLine}>Choose how you</span>
+                <span className={styles.heroAccent}>Want to move</span>
+              </h1>
+              <p className={styles.heroLede}>
+                Choose from fitness, movement and training options. Machine-free, coach-led sessions —
+                choose the format that fits your goals and routine. Ask which batch fits when you book a free
+                trial.
+              </p>
+            </div>
+          </header>
+        </HeroReveal>
 
-      <div className={styles.pairSequence} data-programme-pairs>
-        {pairs.map((pair, pairIndex) => (
-          <div
-            key={pair.map((item) => item.slug).join("-")}
-            className={styles.pairBand}
-          >
-            {pair.map((programme, itemIndex) => {
-              const globalIndex = pairIndex * 2 + itemIndex;
-              const cluster = programme.serviceCluster ?? "train";
-              const copy = CLUSTER_COPY[cluster];
-              const slot = programmeHeroSlotKey(programme.slug);
-              const media = slot ? resolveSlotMedia(slot) : null;
-              const meta = deliveryMeta(programme);
+        <div className={styles.chapters} data-programme-pairs>
+          {functional ? (
+            <section className={styles.chapter} data-chapter="train" aria-labelledby="chapter-train">
+              <p className={styles.spine}>Train</p>
+              <div className={styles.chapterBody}>
+                <div className={styles.splitTrain}>
+                  <FeaturedProgramme
+                    programme={functional}
+                    categoryId="chapter-train"
+                    categoryTitle="Train"
+                    ratio="wide"
+                  />
+                  <CompactIndex
+                    label="Train programmes"
+                    items={[homePt, online].filter((item): item is Programme => Boolean(item))}
+                  />
+                </div>
+              </div>
+            </section>
+          ) : null}
 
-              return (
-                <article
-                  key={programme.slug}
-                  className={styles.pairModule}
-                  data-cluster={cluster}
-                >
-                  <p className={styles.pairChapter}>
-                    {String(globalIndex + 1).padStart(2, "0")} / {copy.title}
-                  </p>
-                  <p className={styles.pairClusterLede}>{copy.lede}</p>
-                  {media ? (
-                    <div
-                      className={`${styles.pairMedia} ${keepColour(programme.slug) ? "" : "editorial-mono"}`}
-                    >
-                      <PulseMedia item={media} sizes="(max-width: 900px) 100vw, 50vw" />
-                    </div>
-                  ) : (
-                    <div className={styles.pairMedia} aria-hidden="true" />
-                  )}
-                  <h2 className={styles.pairName}>
-                    <Link href={`/programs/${programme.slug}`}>{programme.name}</Link>
-                  </h2>
-                  <p className={styles.pairDescription}>{programme.shortDescription}</p>
-                  <p className={styles.pairMeta}>{meta}</p>
-                </article>
-              );
-            })}
-          </div>
-        ))}
-      </div>
-    </section>
+          {zumba ? (
+            <section className={styles.chapter} data-chapter="move" aria-labelledby="chapter-move">
+              <p className={styles.spine}>Move</p>
+              <div className={styles.chapterBody}>
+                <div className={styles.splitMove}>
+                  <FeaturedProgramme
+                    programme={zumba}
+                    categoryId="chapter-move"
+                    categoryTitle="Move"
+                    ratio="wide"
+                  />
+                  <CompactIndex
+                    label="Move programmes"
+                    items={[yoga, dance].filter((item): item is Programme => Boolean(item))}
+                  />
+                </div>
+              </div>
+            </section>
+          ) : null}
+
+          {corporate || wedding ? (
+            <section
+              className={styles.chapter}
+              data-chapter="teams-celebrate"
+              aria-labelledby="chapter-teams"
+            >
+              <p className={styles.spine}>For Teams / Celebrate</p>
+              <div className={styles.chapterBody}>
+                <div className={styles.closingPair}>
+                  {corporate ? (
+                    <FeaturedProgramme
+                      programme={corporate}
+                      categoryId="chapter-teams"
+                      categoryTitle="For Teams"
+                      ratio="square"
+                    />
+                  ) : null}
+                  {wedding ? (
+                    <FeaturedProgramme
+                      programme={wedding}
+                      categoryId="chapter-celebrate"
+                      categoryTitle="Celebrate"
+                      ratio="square"
+                    />
+                  ) : null}
+                </div>
+              </div>
+            </section>
+          ) : null}
+        </div>
+      </section>
 
       <FreeTrialCta
         id="programmes-trial"
@@ -172,5 +159,60 @@ export function ProgrammeDiscovery({
         </p>
       ) : null}
     </>
+  );
+}
+
+function FeaturedProgramme({
+  programme,
+  categoryId,
+  categoryTitle,
+  ratio,
+}: {
+  programme: Programme;
+  categoryId: string;
+  categoryTitle: string;
+  ratio: "wide" | "square";
+}) {
+  const slot = programmeHeroSlotKey(programme.slug);
+  const media = slot ? resolveSlotMedia(slot) : null;
+
+  return (
+    <div className={styles.feature}>
+      <h2 id={categoryId} className={styles.chapterTitle}>
+        <Link href={`/programs/${programme.slug}`}>
+          {categoryTitle}
+          <span className={styles.chapterArrow} aria-hidden="true">
+            →
+          </span>
+        </Link>
+      </h2>
+      <Link
+        href={`/programs/${programme.slug}`}
+        className={`${styles.featureHit} ${keepColour(programme.slug) ? "" : "editorial-mono"}`}
+        data-ratio={ratio}
+      >
+        {media ? (
+          <PulseMedia item={media} sizes="(max-width: 1023px) 100vw, 50vw" />
+        ) : null}
+        <span className={styles.featureLabel}>{programme.name}</span>
+      </Link>
+    </div>
+  );
+}
+
+function CompactIndex({ items, label }: { items: Programme[]; label: string }) {
+  if (items.length === 0) return null;
+
+  return (
+    <nav className={styles.compactIndex} aria-label={label}>
+      {items.map((item) => (
+        <Link key={item.slug} href={`/programs/${item.slug}`} className={styles.compactRow}>
+          <span className={styles.compactName}>{item.name}</span>
+          <span className={styles.compactArrow} aria-hidden="true">
+            ↗
+          </span>
+        </Link>
+      ))}
+    </nav>
   );
 }
