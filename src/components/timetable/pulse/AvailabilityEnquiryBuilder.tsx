@@ -123,101 +123,105 @@ export function AvailabilityEnquiryBuilder({
       }}
       aria-describedby={`${baseId}-note`}
     >
-      <div className={styles.field}>
-        <label htmlFor={`${baseId}-service`}>Interested service</label>
-        <select
-          id={`${baseId}-service`}
-          className={styles.control}
-          value={serviceSlug}
-          onChange={(event) => onServiceChange(event.target.value)}
-        >
-          {services.map((service) => (
-            <option key={service.slug} value={service.slug}>
-              {service.name}
-            </option>
-          ))}
-        </select>
-        {deliveryMode === "home" ? (
-          <p className={styles.deliveryNote}>
-            Training is delivered at your location — share your locality instead of a studio branch.
-          </p>
-        ) : null}
-        {deliveryMode === "online" ? (
-          <p className={styles.deliveryNote}>
-            Remote sessions via Zoom — enquire for timing and format.
-          </p>
-        ) : null}
-      </div>
-
-      {deliveryMode === "in-studio" ? (
+      <div className={styles.formRow}>
         <div className={styles.field}>
-          <label htmlFor={`${baseId}-branch`}>Preferred branch</label>
+          <label htmlFor={`${baseId}-service`}>Interested service</label>
           <select
-            id={`${baseId}-branch`}
+            id={`${baseId}-service`}
             className={styles.control}
-            value={branchSlug}
-            aria-required="true"
-            aria-invalid={showBranchHint || undefined}
-            aria-describedby={showBranchHint ? `${baseId}-branch-hint` : `${baseId}-branch-help`}
-            onChange={(event) => {
-              setBranchSlug(event.target.value);
-              if (event.target.value) setShowBranchHint(false);
-            }}
+            value={serviceSlug}
+            onChange={(event) => onServiceChange(event.target.value)}
           >
-            <option value="">Select a branch</option>
-            {branches.map((branch) => (
-              <option key={branch.slug} value={branch.slug}>
-                {branch.locality}
+            {services.map((service) => (
+              <option key={service.slug} value={service.slug}>
+                {service.name}
               </option>
             ))}
           </select>
-          <p id={`${baseId}-branch-help`} className={styles.hint}>
-            Strongly recommended for studio services — you can still open WhatsApp without one.
-          </p>
-          {showBranchHint ? (
-            <p id={`${baseId}-branch-hint`} className={styles.warn} role="status">
-              Choosing a branch helps us confirm the right batches. You can still continue without one.
+          {deliveryMode === "home" ? (
+            <p className={styles.deliveryNote}>
+              Training is delivered at your location — share your locality instead of a studio branch.
+            </p>
+          ) : null}
+          {deliveryMode === "online" ? (
+            <p className={styles.deliveryNote}>
+              Remote sessions via Zoom — enquire for timing and format.
             </p>
           ) : null}
         </div>
-      ) : null}
 
-      {deliveryMode === "home" ? (
-        <div className={styles.field}>
-          <label htmlFor={`${baseId}-locality`}>Locality / area</label>
-          <input
-            id={`${baseId}-locality`}
-            className={styles.control}
-            value={locality}
-            onChange={(event) => setLocality(event.target.value)}
-            autoComplete="address-level2"
-            placeholder="e.g. Airoli, Ghansoli"
-          />
-          <p className={styles.hint}>We do not publish a fixed coverage map — confirm on WhatsApp.</p>
-        </div>
-      ) : null}
+        {deliveryMode === "in-studio" ? (
+          <div className={styles.field}>
+            <label htmlFor={`${baseId}-branch`}>Preferred branch</label>
+            <select
+              id={`${baseId}-branch`}
+              className={styles.control}
+              value={branchSlug}
+              aria-required="true"
+              aria-invalid={showBranchHint || undefined}
+              aria-describedby={showBranchHint ? `${baseId}-branch-hint` : `${baseId}-branch-help`}
+              onChange={(event) => {
+                setBranchSlug(event.target.value);
+                if (event.target.value) setShowBranchHint(false);
+              }}
+            >
+              <option value="">Select a branch</option>
+              {branches.map((branch) => (
+                <option key={branch.slug} value={branch.slug}>
+                  {branch.locality}
+                </option>
+              ))}
+            </select>
+            <p id={`${baseId}-branch-help`} className={styles.hint}>
+              Strongly recommended for studio services — you can still open WhatsApp without one.
+            </p>
+            {showBranchHint ? (
+              <p id={`${baseId}-branch-hint`} className={styles.warn} role="status">
+                Choosing a branch helps us confirm the right batches. You can still continue without one.
+              </p>
+            ) : null}
+          </div>
+        ) : null}
 
-      <div className={styles.field}>
-        <label htmlFor={`${baseId}-name`}>Name</label>
-        <input
-          id={`${baseId}-name`}
-          className={styles.control}
-          value={name}
-          onChange={(event) => setName(event.target.value)}
-          autoComplete="name"
-        />
+        {deliveryMode === "home" ? (
+          <div className={styles.field}>
+            <label htmlFor={`${baseId}-locality`}>Locality / area</label>
+            <input
+              id={`${baseId}-locality`}
+              className={styles.control}
+              value={locality}
+              onChange={(event) => setLocality(event.target.value)}
+              autoComplete="address-level2"
+              placeholder="e.g. Airoli, Ghansoli"
+            />
+            <p className={styles.hint}>We do not publish a fixed coverage map — confirm on WhatsApp.</p>
+          </div>
+        ) : null}
       </div>
 
-      <div className={styles.field}>
-        <label htmlFor={`${baseId}-time`}>Preferred day / time</label>
-        <input
-          id={`${baseId}-time`}
-          className={styles.control}
-          value={preferredDayTime}
-          onChange={(event) => setPreferredDayTime(event.target.value)}
-          placeholder="e.g. Weekday evenings"
-        />
-        <p className={styles.hint}>Optional — we confirm what is available when you enquire.</p>
+      <div className={styles.formRow}>
+        <div className={styles.field}>
+          <label htmlFor={`${baseId}-name`}>Name</label>
+          <input
+            id={`${baseId}-name`}
+            className={styles.control}
+            value={name}
+            onChange={(event) => setName(event.target.value)}
+            autoComplete="name"
+          />
+        </div>
+
+        <div className={styles.field}>
+          <label htmlFor={`${baseId}-time`}>Preferred day / time</label>
+          <input
+            id={`${baseId}-time`}
+            className={styles.control}
+            value={preferredDayTime}
+            onChange={(event) => setPreferredDayTime(event.target.value)}
+            placeholder="e.g. Weekday evenings"
+          />
+          <p className={styles.hint}>Optional — we confirm what is available when you enquire.</p>
+        </div>
       </div>
 
       {deliveryMode === "in-studio" ? (

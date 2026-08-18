@@ -53,7 +53,7 @@ const FAQ = [
 ] as const;
 
 /**
- * Batch Availability — calm utility page centred on the enquiry builder.
+ * Batch Availability — Concept B fact matrix + Concept A lower editorial split.
  */
 export default function TimetablePage() {
   const branches = getPubliclyListedBranches();
@@ -81,6 +81,11 @@ export default function TimetablePage() {
     path: PATH,
   });
 
+  const audienceSupport =
+    commercial.ladiesOnlyBatchesAvailable || commercial.kidsOnlyBatchesAvailable
+      ? "Available as options — exact branch and programme fit is confirmed when you enquire."
+      : "Ask on WhatsApp about audience options for your preferred programme.";
+
   return (
     <PageWithFooter>
     <main className={`${styles.page} flex flex-col`}>
@@ -97,90 +102,95 @@ export default function TimetablePage() {
         <PageBreadcrumb items={breadcrumbTrail} />
       </div>
 
-      <section
-        className={`${styles.band} ${styles.bandWide} ${styles.splitBand}`}
-        aria-labelledby="batch-availability-title"
-      >
-        <div>
-          <RouteOpening>
-            <p className={styles.kicker}>Batch availability</p>
-            <h1 id="batch-availability-title" className={styles.title}>
-              Check current batches
-            </h1>
-            <p className={styles.lede}>
-              Batch times vary by branch and programme. Choose your preferences and we’ll confirm the
-              current options on WhatsApp.
-            </p>
-          </RouteOpening>
-
-          <h2 id="operating-hours-title" className={styles.sectionTitle} style={{ marginTop: "2rem" }}>
-            Studio operating hours
-          </h2>
-          <div className={styles.hoursBox}>
-            <p className={styles.hoursValue}>6:00 AM to 10:00 PM · every day</p>
-            <p className={styles.lede}>
-              These are studio hours; individual batches vary.
-            </p>
+      <div className={styles.wrap}>
+        <header className={styles.hero} aria-labelledby="batch-availability-title">
+          <div className={styles.heroInner}>
+            <RouteOpening>
+              <p className={styles.kicker}>Batch availability</p>
+              <h1 id="batch-availability-title" className={styles.title}>
+                Check current batches
+              </h1>
+              <p className={styles.heroLede}>
+                Batch times vary by branch and programme. Choose your preferences and we’ll confirm the
+                current options on WhatsApp.
+              </p>
+            </RouteOpening>
           </div>
+        </header>
+
+        <div className={styles.matrix} role="list">
+          <div className={styles.matrixCell} role="listitem">
+            <h2 id="operating-hours-title" className={styles.factLabel}>
+              Studio operating hours
+            </h2>
+            <p className={styles.factValueLarge}>6:00 AM to 10:00 PM · every day</p>
+            <p className={styles.factSupport}>These are studio hours; individual batches vary.</p>
+          </div>
+          <div className={styles.matrixCell} role="listitem">
+            <h2 id="audience-notes-title" className={styles.factLabel}>
+              Audience &amp; group size
+            </h2>
+            <p className={styles.factValue}>Ladies-only and kids-only</p>
+            <p className={styles.factSupport}>{audienceSupport}</p>
+          </div>
+          {commercial.maxGroupBatchSize != null ? (
+            <div className={styles.matrixCell} role="listitem">
+              <h2 className={styles.factLabel}>Maximum group batch size</h2>
+              <p className={styles.factValue}>
+                Up to {commercial.maxGroupBatchSize} people in a typical group batch.
+              </p>
+            </div>
+          ) : null}
         </div>
 
         <section
           id="availability-enquiry"
-          className={styles.enquiryPanel}
+          className={styles.enquiry}
           aria-labelledby="enquiry-builder-title"
         >
-          <h2 id="enquiry-builder-title" className={styles.sectionTitle}>
-            Availability enquiry
-          </h2>
-          <p className={styles.lede}>
-            Prepare a WhatsApp message for the service you want. You do not need every field filled in
-            before you open the chat.
-          </p>
+          <div className={styles.enquiryIntro}>
+            <h2 id="enquiry-builder-title" className={styles.enquiryTitle}>
+              Availability enquiry
+            </h2>
+            <p className={styles.enquiryLede}>
+              Prepare a WhatsApp message for the service you want. You do not need every field filled in
+              before you open the chat.
+            </p>
+          </div>
           <AvailabilityEnquiryBuilder
             services={services}
             branches={branchOptions}
             fallbackHref={fallbackHref}
           />
         </section>
-      </section>
 
-      <section className={styles.band} aria-labelledby="audience-notes-title">
-        <h2 id="audience-notes-title" className={styles.sectionTitle}>
-          Audience &amp; group size
-        </h2>
-        <ul className={styles.facts}>
-          <li className={styles.fact}>
-            <strong>Ladies-only and kids-only</strong>
-            {commercial.ladiesOnlyBatchesAvailable || commercial.kidsOnlyBatchesAvailable
-              ? "Available as options — exact branch and programme fit is confirmed when you enquire."
-              : "Ask on WhatsApp about audience options for your preferred programme."}
-          </li>
-          {commercial.maxGroupBatchSize != null ? (
-            <li className={styles.fact}>
-              <strong>Maximum group batch size</strong>
-              Up to {commercial.maxGroupBatchSize} people in a typical group batch.
-            </li>
-          ) : null}
-        </ul>
-      </section>
-
-      <section className={styles.band}>
-        <FaqBlock items={[...FAQ]} titleId="batch-faq-title" />
-      </section>
-
-      <section className={styles.band} aria-labelledby="batch-next-title">
-        <h2 id="batch-next-title" className={styles.sectionTitle}>
-          Next steps
-        </h2>
-        <div className={styles.ctaRow}>
-          <Link className={styles.ctaSecondary} href="/programs">
-            Explore programmes
-          </Link>
-          <Link className={styles.ctaSecondary} href="/locations">
-            Find a studio
-          </Link>
+        <div className={styles.know}>
+          <FaqBlock items={[...FAQ]} titleId="batch-faq-title" />
         </div>
-      </section>
+
+        <nav className={styles.next} aria-labelledby="batch-next-title">
+          <h2 id="batch-next-title" className={styles.nextLabel}>
+            Next steps
+          </h2>
+          <div className={styles.nextLinks}>
+            <Link className={styles.nextLink} href="/programs">
+              Explore programmes
+              <span className={styles.nextArrow} aria-hidden="true">
+                →
+              </span>
+            </Link>
+            <span className={styles.nextSlash} aria-hidden="true">
+              /
+            </span>
+            <Link className={styles.nextLink} href="/locations">
+              Find a studio
+              <span className={styles.nextArrow} aria-hidden="true">
+                →
+              </span>
+            </Link>
+          </div>
+        </nav>
+      </div>
     </main>
     </PageWithFooter>
   );
