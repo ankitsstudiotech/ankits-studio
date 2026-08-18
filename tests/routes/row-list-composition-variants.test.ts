@@ -78,7 +78,7 @@ describe("row-list composition variants — Batch 04", () => {
     expect(detail).not.toMatch(/pulse-related-pair/);
     const css = read("src/components/locations/pulse/location-pulse.module.css");
     expect(css).toMatch(/\.serviceIndex \{/);
-    expect(css).toMatch(/grid-template-columns:\s*1fr 1fr 1fr/);
+    expect(css).toMatch(/font-size:\s*clamp\(2\.75rem,\s*1rem \+ 4\.5vw,\s*5rem\)/);
   });
 
   it("programme related + locations share one discovery composition", () => {

@@ -15,7 +15,7 @@ export type BranchDetailViewProps = {
 };
 
 /**
- * Confirmed branch detail — opening, hours, address, services, batch, CTA.
+ * Confirmed branch detail — Concept A editorial profile + Concept B fact matrix.
  */
 export function BranchDetailView({
   branch,
@@ -29,6 +29,8 @@ export function BranchDetailView({
     branch.openingHours[0] != null
       ? `${formatClock(branch.openingHours[0].opensAt)}–${formatClock(branch.openingHours[0].closesAt)}`
       : "6:00 AM–10:00 PM";
+  const hoursValue =
+    branch.openingStatus === "open" ? `Open daily · ${hoursLabel}` : hoursLabel;
 
   const addressLine = [branch.address, branch.pinCode ? `PIN ${branch.pinCode}` : null]
     .filter(Boolean)
@@ -47,6 +49,42 @@ export function BranchDetailView({
 
   const directoryNumeral = getBranchDirectoryNumeral(branch.slug);
   const neighbourhood = `Coach-led sessions in ${branch.locality}. Ask on WhatsApp which batch fits you.`;
+  const titleLines = splitLocality(branch.locality);
+
+  const hereFacts: Array<{ label: string; body: string }> = [];
+  if (branch.landmarks) {
+    hereFacts.push({ label: "On arrival", body: branch.landmarks });
+  }
+  for (const note of branch.nearbyTransport ?? []) {
+    hereFacts.push({ label: "Travel", body: note });
+  }
+  if (branch.parking) {
+    hereFacts.push({ label: "Parking", body: branch.parking });
+  }
+  if (branch.facilities && branch.facilities.length > 0) {
+    hereFacts.push({ label: "Available", body: branch.facilities.join(" · ") });
+  }
+  hereFacts.push({ label: "Not available", body: "Lift" });
+
+  const batchFacts: Array<{ label: string; body: string }> = [];
+  if (branch.ladiesOnlyBatchesAvailable) {
+    batchFacts.push({
+      label: "Ladies-only",
+      body: "Available as a batch option — ask WhatsApp for current fit.",
+    });
+  }
+  if (branch.kidsOnlyBatchesAvailable) {
+    batchFacts.push({
+      label: "Kids-only",
+      body: "Available as a batch option — ask WhatsApp for current fit.",
+    });
+  }
+  if (branch.maxGroupBatchSize != null) {
+    batchFacts.push({
+      label: "Group size",
+      body: `Group batches are typically up to ${branch.maxGroupBatchSize} people`,
+    });
+  }
 
   return (
     <div className={styles.field}>
@@ -55,226 +93,200 @@ export function BranchDetailView({
         aria-labelledby="branch-title"
         data-compose="branch-opening"
       >
-        <HeroReveal className={styles.detailHeroGrid}>
-          <div className={styles.detailOpening}>
-            <p className={styles.detailKicker}>Ankit’s Studio</p>
-            <h1 id="branch-title">{branch.locality}</h1>
-            {addressLine ? <p className={styles.detailAddress}>{addressLine}</p> : null}
-            <p>{neighbourhood}</p>
-            <div className={styles.ctaRow}>
-              <LocationPulseCta href={whatsappHref}>{whatsappLabel}</LocationPulseCta>
-            </div>
-          </div>
-          <aside className={styles.detailRail} aria-label={`${branch.locality} locality`}>
-            {directoryNumeral ? (
-              <p className={styles.detailNum} aria-hidden="true">
-                {directoryNumeral}
-              </p>
-            ) : null}
-            <dl className={styles.detailFacts}>
+        <div className={styles.detailWrap}>
+          <div className={styles.detailHeroGrid}>
+            <HeroReveal className={styles.detailOpening}>
+              <p className={styles.detailKicker}>Ankit’s Studio</p>
+              <h1 id="branch-title" className={styles.detailTitle}>
+                {titleLines.map((line) => (
+                  <span key={line} className={styles.detailTitleLine}>
+                    {line}
+                  </span>
+                ))}
+              </h1>
               {branch.openingYear ? (
-                <div>
-                  <dt>Since</dt>
-                  <dd>{branch.openingYear}</dd>
-                </div>
+                <dl className={styles.heroSince}>
+                  <div>
+                    <dt>Since</dt>
+                    <dd>{branch.openingYear}</dd>
+                  </div>
+                </dl>
               ) : null}
-              {branch.openingStatus === "open" ? (
-                <div>
-                  <dt>Hours</dt>
-                  <dd>Open daily · {hoursLabel}</dd>
-                </div>
+              <p className={styles.heroLede}>{neighbourhood}</p>
+              <div className={styles.ctaRow}>
+                <LocationPulseCta href={whatsappHref}>{whatsappLabel}</LocationPulseCta>
+              </div>
+            </HeroReveal>
+            <aside className={styles.detailRail} aria-label={`${branch.locality} directory number`}>
+              {directoryNumeral ? (
+                <p className={styles.detailNum}>{directoryNumeral}</p>
               ) : null}
-              {branch.landmarks ? (
-                <div>
-                  <dt>Landmark</dt>
-                  <dd>{branch.landmarks}</dd>
-                </div>
-              ) : null}
-              {branch.nearestStation ? (
-                <div>
-                  <dt>Station</dt>
-                  <dd>{branch.nearestStation}</dd>
-                </div>
-              ) : null}
-            </dl>
+            </aside>
+          </div>
+        </div>
+      </section>
+
+      {hoursValue || branch.landmarks || branch.nearestStation || branch.phone ? (
+        <div className={styles.detailWrap}>
+          <dl className={styles.factStrip}>
+            {hoursValue ? (
+              <div className={styles.factCell}>
+                <dt>Hours</dt>
+                <dd>{hoursValue}</dd>
+              </div>
+            ) : null}
+            {branch.landmarks ? (
+              <div className={styles.factCell}>
+                <dt>Landmark</dt>
+                <dd>{branch.landmarks}</dd>
+              </div>
+            ) : null}
+            {branch.nearestStation ? (
+              <div className={styles.factCell}>
+                <dt>Station</dt>
+                <dd>{branch.nearestStation}</dd>
+              </div>
+            ) : null}
+            {branch.phone ? (
+              <div className={styles.factCell}>
+                <dt>Phone / WhatsApp</dt>
+                <dd>
+                  <a href={`tel:${branch.phone.replace(/\s+/g, "")}`} className={styles.factLink}>
+                    {branch.phone}
+                  </a>
+                </dd>
+                {branch.inheritsCentralEnquiry ? (
+                  <p className={styles.placeMeta}>Shared enquiry number across all branches</p>
+                ) : null}
+              </div>
+            ) : null}
+          </dl>
+        </div>
+      ) : null}
+
+      <section className={styles.mapsStrip} aria-labelledby="branch-address">
+        <div className={styles.detailWrap}>
+          <div className={styles.mapsGrid}>
+            <div className={styles.mapsAddress}>
+              <h2 id="branch-address" className="sr-only">
+                Address
+              </h2>
+              <p className={styles.detailAddress}>
+                {addressLine || "Message us on WhatsApp for the address."}
+              </p>
+            </div>
             {mapsUrl ? (
               <a
                 href={mapsUrl}
-                className={styles.actionLink}
+                className={styles.mapsAction}
                 target="_blank"
                 rel="noopener noreferrer"
               >
                 Open in Google Maps
-              </a>
-            ) : null}
-          </aside>
-        </HeroReveal>
-      </section>
-
-      <section className={styles.band} aria-labelledby="branch-address">
-        <SectionReveal>
-          <h2 id="branch-address" className={styles.sectionTitle}>
-            Address &amp; contact
-          </h2>
-        </SectionReveal>
-        <ul className="pulse-info-grid">
-          <li>
-            <strong>Address</strong>
-            {addressLine || "Message us on WhatsApp for the address."}
-          </li>
-          <li>
-            <strong>Maps</strong>
-            {mapsUrl ? (
-              <a href={mapsUrl} target="_blank" rel="noopener noreferrer" className={styles.actionLink}>
-                Open in Google Maps
+                <span className={styles.mapsArrow} aria-hidden="true">
+                  →
+                </span>
               </a>
             ) : (
-              "Message WhatsApp for directions to this studio."
+              <p className={styles.mapsFallback}>Message WhatsApp for directions to this studio.</p>
             )}
-          </li>
-          {branch.phone ? (
-            <li>
-              <strong>Phone &amp; WhatsApp</strong>
-              <a href={`tel:${branch.phone.replace(/\s+/g, "")}`} className={styles.actionLink}>
-                {branch.phone}
-              </a>
-              {branch.inheritsCentralEnquiry ? (
-                <span className={styles.placeMeta}>
-                  {" "}
-                  Shared enquiry number across all branches
-                </span>
-              ) : null}
-            </li>
-          ) : null}
-        </ul>
+          </div>
+        </div>
       </section>
 
-      {(branch.landmarks ||
-        branch.parking ||
-        (branch.nearbyTransport && branch.nearbyTransport.length > 0) ||
-        (branch.facilities && branch.facilities.length > 0)) && (
-        <section className={styles.band} aria-labelledby="branch-getting-here">
-          <SectionReveal>
-            <h2 id="branch-getting-here" className={styles.sectionTitle}>
-              Getting here
-            </h2>
-          </SectionReveal>
-          <ul className="pulse-info-grid">
-            {branch.landmarks ? (
-              <li>
-                <strong>On arrival</strong>
-                {branch.landmarks}
-              </li>
-            ) : null}
-            {branch.nearbyTransport?.map((note) => (
-              <li key={note}>
-                <strong>Travel</strong>
-                {note}
-              </li>
-            ))}
-            {branch.parking ? (
-              <li>
-                <strong>Parking</strong>
-                {branch.parking}
-              </li>
-            ) : null}
-            {branch.facilities && branch.facilities.length > 0 ? (
-              <li>
-                <strong>Available</strong>
-                {branch.facilities.join(" · ")}
-              </li>
-            ) : null}
-            <li>
-              <strong>Not available</strong>
-              Lift
-            </li>
-          </ul>
+      {hereFacts.length > 0 ? (
+        <section className={styles.hereSection} aria-labelledby="branch-getting-here">
+          <div className={styles.detailWrap}>
+            <SectionReveal>
+              <h2 id="branch-getting-here" className={styles.sectionTitle}>
+                Getting here
+              </h2>
+            </SectionReveal>
+            <ol className={styles.hereGrid}>
+              {hereFacts.map((fact, index) => (
+                <li key={`${fact.label}-${fact.body}`} className={styles.hereItem}>
+                  <span className={styles.hereNum} aria-hidden="true">
+                    {String(index + 1).padStart(2, "0")}
+                  </span>
+                  <div>
+                    <p className={styles.hereLabel}>{fact.label}</p>
+                    <p className={styles.hereBody}>{fact.body}</p>
+                  </div>
+                </li>
+              ))}
+            </ol>
+          </div>
         </section>
-      )}
+      ) : null}
 
       <section
-        className={styles.band}
+        className={styles.progSection}
         data-discovery="service-index"
         aria-labelledby="branch-services"
       >
-        <SectionReveal>
-          <h2 id="branch-services" className={styles.sectionTitle}>
-            Available at this branch
-          </h2>
-        </SectionReveal>
-        <ul className={styles.serviceIndex}>
-          {orderedPhysical.map((programme) => (
-            <li key={programme.slug}>
-              <Link
-                href={`/programs/${programme.slug}`}
-                className={styles.serviceIndexLink}
-                data-emphasis={programme.slug === "functional-training" ? "primary" : undefined}
-              >
-                <span className={styles.serviceName}>{programme.name}</span>
-              </Link>
-            </li>
-          ))}
-        </ul>
-      </section>
-
-      <section className={styles.band} aria-labelledby="branch-batches">
-        <SectionReveal>
-          <h2 id="branch-batches" className={styles.sectionTitle}>
-            Batch guidance
-          </h2>
-        </SectionReveal>
-        <p className={styles.bandLede}>
-          Message WhatsApp with your preferred service and time — we confirm current batches when you
-          enquire. Studios open {hoursLabel} every day.
-        </p>
-        {(branch.ladiesOnlyBatchesAvailable ||
-          branch.kidsOnlyBatchesAvailable ||
-          branch.maxGroupBatchSize != null) && (
-          <ul className="pulse-info-grid" style={{ marginTop: "1rem" }}>
-            {branch.ladiesOnlyBatchesAvailable ? (
-              <li>
-                <strong>Ladies-only</strong>
-                Available as a batch option — ask WhatsApp for current fit.
-              </li>
-            ) : null}
-            {branch.kidsOnlyBatchesAvailable ? (
-              <li>
-                <strong>Kids-only</strong>
-                Available as a batch option — ask WhatsApp for current fit.
-              </li>
-            ) : null}
-            {branch.maxGroupBatchSize != null ? (
-              <li>
-                <strong>Group size</strong>
-                Group batches are typically up to {branch.maxGroupBatchSize} people
-              </li>
-            ) : null}
-          </ul>
-        )}
-      </section>
-
-      {otherProgrammes.length > 0 ? (
-        <section
-          className={styles.band}
-          data-discovery="service-index"
-          aria-labelledby="branch-other-ways"
-        >
+        <div className={styles.detailWrap}>
           <SectionReveal>
-            <h2 id="branch-other-ways" className={styles.sectionTitle}>
-              Home, online &amp; corporate
+            <h2 id="branch-services" className={styles.progKicker}>
+              Available at this branch
             </h2>
           </SectionReveal>
           <ul className={styles.serviceIndex}>
-            {otherProgrammes.map((programme) => (
+            {orderedPhysical.map((programme) => (
               <li key={programme.slug}>
-                <Link href={`/programs/${programme.slug}`} className={styles.serviceIndexLink}>
-                  <span className={styles.serviceName}>{programme.name}</span>
+                <Link
+                  href={`/programs/${programme.slug}`}
+                  className={styles.serviceIndexLink}
+                  data-emphasis={programme.slug === "functional-training" ? "primary" : undefined}
+                >
+                  {programme.name}
                 </Link>
               </li>
             ))}
           </ul>
-        </section>
-      ) : null}
+        </div>
+      </section>
+
+      <section className={styles.lowerSplit} aria-labelledby="branch-batches">
+        <div className={styles.detailWrap}>
+          <div className={styles.lowerGrid}>
+            <div className={styles.lowerPane}>
+              <h2 id="branch-batches" className={styles.sectionTitle}>
+                Batch guidance
+              </h2>
+              <p className={styles.lowerLede}>
+                Message WhatsApp with your preferred service and time — we confirm current batches when you
+                enquire. Studios open {hoursLabel} every day.
+              </p>
+              {batchFacts.length > 0 ? (
+                <dl className={styles.batchFacts}>
+                  {batchFacts.map((fact) => (
+                    <div key={fact.label}>
+                      <dt>{fact.label}</dt>
+                      <dd>{fact.body}</dd>
+                    </div>
+                  ))}
+                </dl>
+              ) : null}
+            </div>
+            {otherProgrammes.length > 0 ? (
+              <section className={styles.lowerPane} aria-labelledby="branch-other-ways">
+                <h2 id="branch-other-ways" className={styles.sectionTitle}>
+                  Home, online &amp; corporate
+                </h2>
+                <ul className={styles.extendedLinks}>
+                  {otherProgrammes.map((programme) => (
+                    <li key={programme.slug}>
+                      <Link href={`/programs/${programme.slug}`} className={styles.extendedLink}>
+                        {programme.name}
+                      </Link>
+                    </li>
+                  ))}
+                </ul>
+              </section>
+            ) : null}
+          </div>
+        </div>
+      </section>
 
       <FreeTrialCta
         id="branch-final-cta"
@@ -285,6 +297,14 @@ export function BranchDetailView({
       />
     </div>
   );
+}
+
+function splitLocality(locality: string): string[] {
+  const match = locality.match(/^(.*?)\s+(Sector\s+\d+)$/i);
+  if (match?.[1] && match[2]) {
+    return [match[1], match[2]];
+  }
+  return [locality];
 }
 
 function formatClock(value: string): string {

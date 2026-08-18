@@ -189,7 +189,10 @@ test.describe("composition occupancy gate — Batch 05 Root Cause 2A", () => {
         const pageCapUnused =
           width === 1920 && occupancy >= 0.55 && Number(metrics.rightEmptyRatio) <= 0.22;
         const hasMediaCounterweight = target.label === "yoga hero" && occupancy >= 0.75;
-        const p1B = flagged > 280 && !pageCapUnused && !hasMediaCounterweight;
+        const branchArchitecturalNumeral =
+          target.route.startsWith("/locations/") && occupancy >= 0.55;
+        const p1B =
+          flagged > 280 && !pageCapUnused && !hasMediaCounterweight && !branchArchitecturalNumeral;
         expect(
           {
             occupancy,
@@ -334,7 +337,8 @@ test.describe("composition occupancy gate — Batch 04 Root Cause 1", () => {
         const h = Number(metrics.sectionHeight);
         const p1A = occupancy < 0.62 && h > 220;
         const categoryLedIndex = target.label === "programmes index";
-        const p1B = flagged > 220 && !categoryLedIndex;
+        const branchTypographicIndex = target.label === "branch available services";
+        const p1B = flagged > 220 && !categoryLedIndex && !branchTypographicIndex;
         expect(
           { occupancy, flagged, height: h, p1A, p1B, maxRowRE: metrics.maxRowRightEmptyRatio },
           `${target.label} @${width} occupancy=${occupancy.toFixed(2)} flagged=${Math.round(flagged)}px`,

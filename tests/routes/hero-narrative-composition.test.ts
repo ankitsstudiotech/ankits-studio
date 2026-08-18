@@ -61,7 +61,7 @@ describe("hero narrative composition — Batch 05", () => {
     expect(detail).not.toMatch(/PulseMedia/);
     expect(detail).not.toMatch(/branch-floor|interior photo/i);
     const css = read("src/components/locations/pulse/location-pulse.module.css");
-    expect(css).toMatch(/grid-template-columns:\s*minmax\(0,\s*38rem\)\s+minmax\(16rem,\s*1fr\)/);
+    expect(css).toMatch(/grid-template-columns:\s*minmax\(0,\s*8fr\)\s+minmax\(0,\s*4fr\)/);
   });
 
   it("programme detail heroes share one unified three-column grid", () => {
