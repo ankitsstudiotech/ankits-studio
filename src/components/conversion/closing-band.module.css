@@ -146,7 +146,19 @@
     align-items: end;
   }
 
-  .freeTrialProcess,
+  .freeTrialProposition {
+    padding-inline-end: var(--spacing-rule-content);
+  }
+
+  .freeTrialProcess {
+    border-inline-start: var(--rule-structural-width) solid var(--rule-structural);
+    padding-inline: var(--spacing-rule-content);
+  }
+
+  .freeTrialTrialFact {
+    padding-inline-end: var(--spacing-rule-content);
+  }
+
   .freeTrialAction {
     border-inline-start: var(--rule-structural-width) solid var(--rule-structural);
     padding-inline-start: var(--spacing-rule-content);
@@ -171,8 +183,6 @@
   }
 
   .freeTrialAction {
-    border-inline-start: var(--rule-structural-width) solid var(--rule-structural);
-    padding-inline-start: var(--spacing-rule-content);
     padding-inline-end: var(--spacing-rule-content);
   }
 }
