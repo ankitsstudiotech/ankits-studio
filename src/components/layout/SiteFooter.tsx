@@ -32,12 +32,6 @@ export function SiteFooter({
 }: SiteFooterProps) {
   return (
     <footer className="relative overflow-hidden border-t border-white/10 bg-field text-ink-inverse">
-      <p
-        aria-hidden
-        className="pointer-events-none absolute inset-x-0 -bottom-6 select-none text-center font-[family-name:var(--font-display)] text-[clamp(4rem,14vw,12rem)] uppercase leading-none tracking-[0.04em] text-white/[0.04]"
-      >
-        {brandName}
-      </p>
       <Container full className="relative py-[var(--spacing-section)] max-[640px]:py-10">
         <div className="grid gap-10 max-[640px]:grid-cols-2 max-[640px]:gap-8 md:grid-cols-2 xl:grid-cols-4 xl:gap-0">
           {groups.map((group) => (
