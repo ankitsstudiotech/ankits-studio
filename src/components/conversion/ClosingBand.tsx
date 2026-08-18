@@ -76,6 +76,24 @@ export function ClosingBand({
             {secondary ? <div className={styles.actionSecondary}>{secondary}</div> : null}
           </div>
         </div>
+      ) : variant === "compact" ? (
+        <div className={`${styles.inner} ${styles.compactInner}`}>
+          <div className={styles.compactProposition}>
+            <SectionReveal>
+              <h2 id={titleId} className={styles.title}>
+                {title}
+              </h2>
+            </SectionReveal>
+          </div>
+          <div className={styles.compactContext}>
+            <p className={styles.body}>{body}</p>
+            {note ? <p className={styles.note}>{note}</p> : null}
+            <div className={styles.action}>
+              <div className={styles.actionPrimary}>{children}</div>
+              {secondary ? <div className={styles.actionSecondary}>{secondary}</div> : null}
+            </div>
+          </div>
+        </div>
       ) : (
         <div className={styles.inner}>
           <div className={styles.copy}>

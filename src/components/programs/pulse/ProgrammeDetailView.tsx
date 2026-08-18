@@ -382,7 +382,7 @@ export function ProgrammeDetailView({
       >
         <div className={styles.availabilityStrip}>
           <SectionReveal>
-            <h2 id="programme-availability" className={styles.sectionTitle}>
+            <h2 id="programme-availability" className={styles.availabilityLabel}>
               {serviceEnquiry ? "Planning & availability" : "Availability"}
             </h2>
           </SectionReveal>
@@ -422,34 +422,56 @@ export function ProgrammeDetailView({
                     Related services
                   </h2>
                 </SectionReveal>
-                <ul className={styles.relatedIndex} data-count={relatedItems.length}>
-                  {relatedItems.map((item, index) => (
-                    <li key={item.slug}>
-                      <Link
-                        href={`/programs/${item.slug}`}
-                        className={styles.relatedIndexLink}
-                      >
-                        <span className={styles.editorialIndex} aria-hidden="true">
-                          {padIndex(index)}
-                        </span>
-                        <span className={styles.relatedIndexName}>{item.name}</span>
-                        <span className={styles.relatedIndexArrow} aria-hidden="true">
-                          →
-                        </span>
-                      </Link>
-                    </li>
-                  ))}
-                </ul>
+                <div className={styles.relatedFrame}>
+                  <ul className={styles.relatedIndex} data-count={relatedItems.length}>
+                    {relatedItems.map((item, index) => (
+                      <li key={item.slug}>
+                        <Link
+                          href={`/programs/${item.slug}`}
+                          className={styles.relatedIndexLink}
+                        >
+                          <span className={styles.editorialIndex} aria-hidden="true">
+                            {padIndex(index)}
+                          </span>
+                          <span className={styles.relatedIndexName}>{item.name}</span>
+                          <span className={styles.relatedIndexArrow} aria-hidden="true">
+                            →
+                          </span>
+                        </Link>
+                      </li>
+                    ))}
+                  </ul>
+                  {showStudioLocations ? (
+                    <Link
+                      href="/locations"
+                      className={styles.relatedStudio}
+                      aria-labelledby="programme-locations"
+                    >
+                      <span id="programme-locations" className={styles.relatedFindLabel}>
+                        Train near you
+                      </span>
+                      <span className={styles.relatedFind}>Find a studio</span>
+                      <span className={styles.relatedIndexArrow} aria-hidden="true">
+                        →
+                      </span>
+                    </Link>
+                  ) : null}
+                </div>
               </>
-            ) : null}
-            {showStudioLocations ? (
-              <div className={styles.relatedStudio}>
-                <p id="programme-locations" className={styles.relatedFindLabel}>
-                  Train near you
-                </p>
-                <Link href="/locations" className={styles.relatedFind}>
-                  Find a studio
-                  <span aria-hidden="true"> →</span>
+            ) : showStudioLocations ? (
+              <div className={styles.relatedFrame}>
+                <Link
+                  href="/locations"
+                  className={styles.relatedStudio}
+                  aria-labelledby="programme-locations"
+                >
+                  <span id="programme-locations" className={styles.relatedFindLabel}>
+                    Train near you
+                  </span>
+                  <span className={styles.relatedFind}>Find a studio</span>
+                  <span className={styles.relatedIndexArrow} aria-hidden="true">
+                    →
+                  </span>
                 </Link>
               </div>
             ) : null}

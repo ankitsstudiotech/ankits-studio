@@ -72,11 +72,12 @@ describe("row-list composition variants — Batch 04", () => {
     const view = read("src/components/programs/pulse/ProgrammeDetailView.tsx");
     expect(view).toMatch(/relatedDiscovery/);
     expect(view).toMatch(/relatedStudio/);
-    expect(view).toMatch(/data-has-studio/);
+    expect(view).toMatch(/relatedFrame/);
     expect(view).toMatch(/Find a studio/);
     const css = read("src/components/programs/pulse/programme-pulse.module.css");
+    expect(css).toMatch(/\.relatedFrame \{/);
     expect(css).toMatch(/\.relatedStudio \{/);
-    expect(css).toMatch(/grid-template-columns:\s*max-content minmax\(0,\s*1fr\)/);
+    expect(css).toMatch(/grid-template-columns:\s*max-content minmax\(0,\s*1fr\) auto/);
   });
 
   it("about programme list is a compact numbered index supporting the narrative", () => {
