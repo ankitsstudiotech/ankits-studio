@@ -29,6 +29,9 @@ export type { FounderStoryPlaceholderProps } from "./FounderStoryPlaceholder";
 export { TransformationStories } from "./TransformationStories";
 export type { TransformationStoriesProps, TransformationStoryItem } from "./TransformationStories";
 
+export { PulseTrustRail } from "./PulseTrustRail";
+export type { PulseTrustRailProps, TrustFact } from "./PulseTrustRail";
+
 export { BranchExplorer } from "./BranchExplorer";
 export type { BranchExplorerProps } from "./BranchExplorer";
 
@@ -37,6 +40,12 @@ export type { CommunityTestimonialsProps } from "./CommunityTestimonials";
 
 export { FreeTrialCta } from "./FreeTrialCta";
 export type { FreeTrialCtaProps } from "./FreeTrialCta";
+
+export { FounderHomeMoment } from "./FounderHomeMoment";
+export type { FounderHomeMomentProps, FounderChronologyItem } from "./FounderHomeMoment";
+
+export { GoogleReviewProof } from "./GoogleReviewProof";
+export type { GoogleReviewProofProps } from "./GoogleReviewProof";
 
 export { FaqSection } from "./FaqSection";
 export type { FaqSectionProps, FaqItem } from "./FaqSection";

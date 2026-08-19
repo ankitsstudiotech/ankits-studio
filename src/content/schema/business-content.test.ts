@@ -80,8 +80,21 @@ describe("contactDetailsSchema", () => {
       mockDisclaimer: "placeholder",
       generalEmail: "hello@example.test",
       generalPhone: "+91 00000 00000",
-      preferredContactOrder: ["trial-form", "whatsapp"],
+      preferredContactOrder: ["whatsapp", "trial-form"],
       introText: "x",
+    });
+    expect(result.success).toBe(true);
+  });
+
+  it("accepts verified contact with WhatsApp-first order", () => {
+    const result = contactDetailsSchema.safeParse({
+      dataStatus: "verified",
+      generalEmail: "hello@example.test",
+      generalPhone: "+91 93724 02074",
+      generalWhatsapp: "+91 93724 02074",
+      preferredContactOrder: ["whatsapp", "phone", "trial-form", "email"],
+      introText: "x",
+      branchesInheritCentralEnquiry: true,
     });
     expect(result.success).toBe(true);
   });

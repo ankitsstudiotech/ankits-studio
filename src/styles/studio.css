@@ -1,32 +1,419 @@
 /**
- * Base surface styles for the design system.
- * Imported by the design-lab layout (root globals.css stays untouched —
- * wiring these into the root layout is a shared hotspot for a later pass).
+ * Base surface styles — Studio Pulse production shell.
+ * No atmosphere gradient. Sticky CTA clearance retained.
  */
 
 @import "./tokens.css";
 @import "./motion.css";
 
 .studio-shell {
-  background: var(--atmosphere-gradient);
-  background-color: var(--color-surface);
-  color: var(--color-ink);
+  /* Production canvas is Pulse field; light utility islands set their own surface. */
+  background-color: var(--color-field);
+  color: var(--color-ink-inverse);
   font-family: var(--font-sans);
-  min-height: 100%;
+  min-height: 100dvh;
 }
 
 .studio-shell ::selection {
-  background: var(--color-accent-soft);
-  color: var(--color-ink);
+  background: color-mix(in srgb, var(--color-accent) 35%, transparent);
+  color: var(--color-ink-inverse);
 }
 
-/* Sticky mobile CTA clearance */
-.studio-shell.has-sticky-cta {
+.studio-shell.has-sticky-cta,
+.studio-shell:has([data-sticky-cta-eligible]) {
   padding-bottom: calc(var(--sticky-cta-height) + env(safe-area-inset-bottom, 0px));
 }
 
 @media (min-width: 1024px) {
-  .studio-shell.has-sticky-cta {
+  .studio-shell.has-sticky-cta,
+  .studio-shell:has([data-sticky-cta-eligible]) {
     padding-bottom: 0;
+  }
+}
+
+/* Pulse field band — homepage / dark chrome regions */
+.pulse-field {
+  background-color: var(--surface-field);
+  color: var(--ink-on-dark);
+}
+
+/* Paper — keep token for utility/readability islands; not a marketing band. */
+.pulse-paper {
+  background-color: var(--surface-paper);
+  color: var(--ink-on-paper);
+}
+
+.pulse-paper ::selection {
+  background: color-mix(in srgb, var(--color-accent) 22%, transparent);
+  color: var(--ink-on-paper);
+}
+
+/* Purple conversion chapter */
+.pulse-accent-band {
+  background: color-mix(in srgb, var(--color-accent) 92%, #0b0b0c);
+  color: var(--color-accent-foreground);
+}
+
+.pulse-field ::selection {
+  background: color-mix(in srgb, var(--color-volt) 40%, transparent);
+  color: var(--color-field);
+}
+
+/* Shared production pulse page shell (V1 visual convergence) */
+.pulse-page {
+  background: var(--color-field);
+  color: var(--color-ink-inverse);
+}
+
+.pulse-band {
+  /* Full-bleed background; inner content uses .pulse-wrap */
+  padding: var(--spacing-section) var(--layout-gutter);
+  border-top: var(--rule-structural-width) solid var(--rule-structural);
+  width: 100%;
+  box-sizing: border-box;
+}
+
+.pulse-wrap {
+  width: 100%;
+  max-width: var(--layout-content);
+  margin-inline: 0;
+}
+
+/* Related identity + short meta stay adjacent (Batch 01 / 03).
+   Width is auto so sparse pairs cannot claim the full page track.
+   Discovery lists use contextual variants, not this helper. */
+.pulse-related-pair {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: flex-start;
+  gap: 0.65rem 1.75rem;
+  width: auto;
+  max-width: 100%;
+}
+
+/* Programme accent cue — one shared primitive (Production Bug Batch 02).
+   Short solid purple. Not a structural divider. Decorative; aria-hidden in markup. */
+.programme-cue {
+  display: block;
+  width: var(--cue-length);
+  height: var(--cue-thickness);
+  background: var(--color-accent);
+  transform-origin: left center;
+  transform: scaleX(1);
+  pointer-events: none;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .programme-cue {
+    transform: none;
+    transition: none;
+  }
+}
+
+.pulse-heading-stack {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  width: 100%;
+  max-width: var(--layout-content);
+}
+
+.pulse-band-narrow {
+  max-width: var(--width-container-narrow);
+}
+
+.pulse-kicker {
+  margin: 0 0 0.4rem;
+  font-family: var(--font-sans);
+  font-size: var(--text-overline);
+  font-weight: 600;
+  letter-spacing: var(--text-overline--letter-spacing);
+  line-height: var(--text-overline--line-height);
+  text-transform: uppercase;
+  color: var(--color-muted-on-field);
+}
+
+.pulse-title {
+  font-family: var(--font-display);
+  font-size: clamp(2.5rem, 5vw, 4.5rem);
+  letter-spacing: var(--text-hero--letter-spacing);
+  line-height: var(--text-hero--line-height);
+  margin: 0 0 0.85rem;
+  max-width: 16ch;
+  text-transform: uppercase;
+}
+
+.pulse-section-title {
+  font-family: var(--font-display);
+  font-size: var(--text-title);
+  letter-spacing: var(--text-title--letter-spacing);
+  line-height: var(--text-title--line-height);
+  margin: 0 0 0.75rem;
+  max-width: 22ch;
+  text-transform: uppercase;
+}
+
+.pulse-lede {
+  margin: 0;
+  max-width: 65ch;
+  font-size: var(--text-body-lg);
+  line-height: var(--text-body-lg--line-height);
+  color: var(--color-muted-on-field);
+}
+
+.pulse-body {
+  margin: 0;
+  max-width: 65ch;
+  font-size: var(--text-body);
+  line-height: var(--text-body--line-height);
+  color: var(--color-muted-on-field);
+}
+
+.pulse-cta {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: var(--spacing-control-lg);
+  padding: 0.65rem 1.25rem;
+  background: var(--color-accent);
+  color: var(--color-accent-foreground);
+  font-family: var(--font-sans);
+  font-size: 0.75rem;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  text-decoration: none;
+  border-radius: 0;
+  transition:
+    transform var(--motion-instant) var(--ease-exit),
+    background-color var(--motion-fast) var(--ease-standard);
+}
+
+.pulse-cta:hover {
+  background: var(--color-accent-hover);
+}
+
+.pulse-cta:active {
+  transform: scale(0.98);
+}
+
+.pulse-cta:focus-visible {
+  outline: 2px solid var(--color-volt);
+  outline-offset: 3px;
+}
+
+.pulse-cta-secondary {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: var(--spacing-control-lg);
+  padding: 0.65rem 1.25rem;
+  border: 1px solid rgb(255 255 255 / 0.28);
+  background: transparent;
+  color: var(--color-ink-inverse);
+  font-family: var(--font-sans);
+  font-size: 0.75rem;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  text-decoration: none;
+  transition:
+    border-color var(--motion-fast) var(--ease-standard),
+    color var(--motion-fast) var(--ease-standard),
+    transform var(--motion-instant) var(--ease-exit);
+}
+
+.pulse-cta-secondary:hover {
+  border-color: var(--color-volt);
+  color: var(--color-volt);
+}
+
+.pulse-cta-secondary:active {
+  transform: scale(0.99);
+}
+
+.pulse-cta-secondary:focus-visible {
+  outline: 2px solid var(--color-volt);
+  outline-offset: 3px;
+}
+
+/* Selected editorial frames — 1px rules that bound real modules, not graph paper. */
+.editorial-frame {
+  border: var(--rule-structural-width) solid var(--rule-structural);
+}
+
+.editorial-guides {
+  position: relative;
+}
+
+.editorial-guides::before,
+.editorial-guides::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  width: 1px;
+  background: var(--guide-line, rgb(244 241 234 / 0.12));
+  pointer-events: none;
+  z-index: 2;
+}
+
+.editorial-guides::before {
+  left: var(--layout-gutter);
+}
+
+.editorial-guides::after {
+  right: var(--layout-gutter);
+}
+
+.editorial-mono :is(img, video) {
+  filter: grayscale(1) contrast(1.08) !important;
+  transition: filter var(--duration-normal) var(--ease-standard);
+}
+
+.editorial-mono:hover :is(img, video),
+.editorial-mono:focus-within :is(img, video) {
+  filter: grayscale(0.15) contrast(1.04) !important;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .editorial-mono :is(img, video),
+  .editorial-mono:hover :is(img, video),
+  .editorial-mono:focus-within :is(img, video) {
+    filter: grayscale(1) contrast(1.08);
+    transition: none;
+  }
+}
+
+/* Dark editorial crumb strip — parent of PageBreadcrumb on Pulse routes */
+.pulse-crumb-bar {
+  background: var(--color-field);
+  color: var(--color-ink-inverse);
+  border-bottom: 1px solid var(--color-border-on-field);
+}
+
+/* Dark editorial info cells (practical facts, etc.) */
+.pulse-info-grid {
+  margin: 1rem 0 0;
+  padding: 0;
+  list-style: none;
+  display: grid;
+  gap: 0.65rem;
+}
+
+@media (min-width: 640px) {
+  .pulse-info-grid {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+
+.pulse-info-grid > li,
+.pulse-info-cell {
+  padding: 0.9rem 1rem;
+  background: var(--color-field-raised);
+  border: 1px solid var(--color-border-on-field);
+  font-size: var(--text-body);
+  line-height: var(--text-body--line-height);
+  color: var(--color-muted-on-field);
+}
+
+.pulse-info-grid strong,
+.pulse-info-cell strong {
+  display: block;
+  margin-bottom: 0.25rem;
+  font-size: var(--text-overline);
+  letter-spacing: var(--text-overline--letter-spacing);
+  text-transform: uppercase;
+  color: var(--color-ink-inverse);
+}
+
+/* Dark form panel — field-raised interior; inputs may stay light as controls */
+.pulse-form-panel {
+  background: var(--color-field-raised);
+  color: var(--color-ink-inverse);
+  border: 1px solid var(--color-border-on-field);
+  padding: 1.25rem 1.35rem;
+}
+
+.pulse-form-panel label {
+  color: var(--color-ink-inverse);
+}
+
+.pulse-form-panel :where(p, .hint, .ctaNote, .deliveryNote, .feeMeta) {
+  color: var(--color-muted-on-field);
+}
+
+.pulse-form-panel :where(h1, h2, h3) {
+  color: var(--color-ink-inverse);
+}
+
+/* Keep shared Field controls readable on the dark panel */
+.pulse-form-panel :is(input, select, textarea):not([type="radio"]):not([type="checkbox"]) {
+  color: var(--color-ink);
+}
+
+/* Desktop two-column split */
+.pulse-split {
+  display: grid;
+  gap: 1.75rem;
+}
+
+@media (min-width: 900px) {
+  .pulse-split {
+    grid-template-columns: minmax(0, 0.95fr) minmax(0, 1.15fr);
+    gap: 2.5rem;
+    align-items: start;
+  }
+}
+
+/* Dark FAQ accordion */
+.pulse-accordion {
+  display: flex;
+  flex-direction: column;
+  gap: 0.65rem;
+}
+
+.pulse-accordion-item {
+  border: none;
+  border-bottom: 1px solid var(--color-border-on-field);
+  background: transparent;
+}
+
+.pulse-accordion-item summary {
+  cursor: pointer;
+  list-style: none;
+  padding: 0.85rem 0;
+  font-family: var(--font-sans);
+  font-size: var(--text-heading);
+  font-weight: 600;
+  color: var(--color-ink-inverse);
+  marker: none;
+}
+
+.pulse-accordion-item summary::-webkit-details-marker {
+  display: none;
+}
+
+.pulse-accordion-item summary:focus-visible {
+  outline: 2px solid var(--color-volt);
+  outline-offset: 3px;
+}
+
+.pulse-accordion-panel {
+  border-top: 1px solid var(--color-border-on-field);
+  padding: 0.85rem 0 1.1rem;
+  color: var(--color-muted-on-field);
+  font-size: var(--text-body);
+  line-height: var(--text-body--line-height);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .pulse-cta,
+  .pulse-cta-secondary {
+    transition: none;
+  }
+  .pulse-cta:active {
+    transform: none;
   }
 }

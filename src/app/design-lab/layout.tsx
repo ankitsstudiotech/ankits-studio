@@ -1,29 +1,17 @@
 import type { Metadata } from "next";
-import { Figtree, Syne } from "next/font/google";
-import "@/styles/studio.css";
+import "@/components/design-lab/isolation.css";
+import { designLabRobots } from "./design-lab-robots";
 
-const syne = Syne({
-  subsets: ["latin"],
-  variable: "--font-syne",
-  display: "swap",
-  weight: ["500", "600", "700"],
-});
-
-const figtree = Figtree({
-  subsets: ["latin"],
-  variable: "--font-figtree",
-  display: "swap",
-  weight: ["400", "500", "600", "700"],
-});
-
+/**
+ * Design-lab shell: route-level SEO protection for every /design-lab/** URL.
+ * Prototypes own fonts/colour via nested layouts + frozen CSS modules.
+ * Incumbent component review lives at /design-lab/components.
+ */
 export const metadata: Metadata = {
   title: "Design lab · Ankit's Studio",
   description:
-    "Internal design and motion system review surface. Not a public marketing page.",
-  robots: {
-    index: false,
-    follow: false,
-  },
+    "Internal visual concept prototypes and design review. Not a public marketing page.",
+  robots: designLabRobots,
 };
 
 export default function DesignLabLayout({
@@ -32,14 +20,7 @@ export default function DesignLabLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <div
-      className={[
-        syne.variable,
-        figtree.variable,
-        "studio-shell has-sticky-cta",
-        "flex min-h-full flex-col",
-      ].join(" ")}
-    >
+    <div data-design-lab-shell="true" data-noindex="true">
       {children}
     </div>
   );

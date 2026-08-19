@@ -1,0 +1,334 @@
+{
+  "generatedAt": "2026-08-04T14:33:01.492Z",
+  "records": [
+    {
+      "filename": "390-about.png",
+      "expectedWidth": 390,
+      "actualWidth": 390,
+      "actualHeight": 5469,
+      "result": "pass"
+    },
+    {
+      "filename": "1440-about.png",
+      "expectedWidth": 1440,
+      "actualWidth": 1440,
+      "actualHeight": 3857,
+      "result": "pass"
+    },
+    {
+      "filename": "390-programs.png",
+      "expectedWidth": 390,
+      "actualWidth": 390,
+      "actualHeight": 3235,
+      "result": "pass"
+    },
+    {
+      "filename": "1440-programs.png",
+      "expectedWidth": 1440,
+      "actualWidth": 1440,
+      "actualHeight": 2660,
+      "result": "pass"
+    },
+    {
+      "filename": "390-program-functional-training.png",
+      "expectedWidth": 390,
+      "actualWidth": 390,
+      "actualHeight": 4811,
+      "result": "pass"
+    },
+    {
+      "filename": "1440-program-functional-training.png",
+      "expectedWidth": 1440,
+      "actualWidth": 1440,
+      "actualHeight": 3591,
+      "result": "pass"
+    },
+    {
+      "filename": "390-program-home-personal-training.png",
+      "expectedWidth": 390,
+      "actualWidth": 390,
+      "actualHeight": 3911,
+      "result": "pass"
+    },
+    {
+      "filename": "1440-program-home-personal-training.png",
+      "expectedWidth": 1440,
+      "actualWidth": 1440,
+      "actualHeight": 3235,
+      "result": "pass"
+    },
+    {
+      "filename": "390-program-online-training.png",
+      "expectedWidth": 390,
+      "actualWidth": 390,
+      "actualHeight": 3739,
+      "result": "pass"
+    },
+    {
+      "filename": "1440-program-online-training.png",
+      "expectedWidth": 1440,
+      "actualWidth": 1440,
+      "actualHeight": 2999,
+      "result": "pass"
+    },
+    {
+      "filename": "390-program-zumba.png",
+      "expectedWidth": 390,
+      "actualWidth": 390,
+      "actualHeight": 4128,
+      "result": "pass"
+    },
+    {
+      "filename": "1440-program-zumba.png",
+      "expectedWidth": 1440,
+      "actualWidth": 1440,
+      "actualHeight": 3153,
+      "result": "pass"
+    },
+    {
+      "filename": "390-program-yoga.png",
+      "expectedWidth": 390,
+      "actualWidth": 390,
+      "actualHeight": 4211,
+      "result": "pass"
+    },
+    {
+      "filename": "1440-program-yoga.png",
+      "expectedWidth": 1440,
+      "actualWidth": 1440,
+      "actualHeight": 3257,
+      "result": "pass"
+    },
+    {
+      "filename": "390-program-dance.png",
+      "expectedWidth": 390,
+      "actualWidth": 390,
+      "actualHeight": 4404,
+      "result": "pass"
+    },
+    {
+      "filename": "1440-program-dance.png",
+      "expectedWidth": 1440,
+      "actualWidth": 1440,
+      "actualHeight": 3307,
+      "result": "pass"
+    },
+    {
+      "filename": "390-program-wedding-choreography.png",
+      "expectedWidth": 390,
+      "actualWidth": 390,
+      "actualHeight": 4022,
+      "result": "pass"
+    },
+    {
+      "filename": "1440-program-wedding-choreography.png",
+      "expectedWidth": 1440,
+      "actualWidth": 1440,
+      "actualHeight": 3167,
+      "result": "pass"
+    },
+    {
+      "filename": "390-locations.png",
+      "expectedWidth": 390,
+      "actualWidth": 390,
+      "actualHeight": 2543,
+      "result": "pass"
+    },
+    {
+      "filename": "1440-locations.png",
+      "expectedWidth": 1440,
+      "actualWidth": 1440,
+      "actualHeight": 1958,
+      "result": "pass"
+    },
+    {
+      "filename": "390-location-airoli-sector-19.png",
+      "expectedWidth": 390,
+      "actualWidth": 390,
+      "actualHeight": 4141,
+      "result": "pass"
+    },
+    {
+      "filename": "1440-location-airoli-sector-19.png",
+      "expectedWidth": 1440,
+      "actualWidth": 1440,
+      "actualHeight": 3456,
+      "result": "pass"
+    },
+    {
+      "filename": "390-location-airoli-sector-8.png",
+      "expectedWidth": 390,
+      "actualWidth": 390,
+      "actualHeight": 4141,
+      "result": "pass"
+    },
+    {
+      "filename": "1440-location-airoli-sector-8.png",
+      "expectedWidth": 1440,
+      "actualWidth": 1440,
+      "actualHeight": 3456,
+      "result": "pass"
+    },
+    {
+      "filename": "390-location-ghansoli.png",
+      "expectedWidth": 390,
+      "actualWidth": 390,
+      "actualHeight": 4090,
+      "result": "pass"
+    },
+    {
+      "filename": "1440-location-ghansoli.png",
+      "expectedWidth": 1440,
+      "actualWidth": 1440,
+      "actualHeight": 3456,
+      "result": "pass"
+    },
+    {
+      "filename": "390-location-thane.png",
+      "expectedWidth": 390,
+      "actualWidth": 390,
+      "actualHeight": 4090,
+      "result": "pass"
+    },
+    {
+      "filename": "1440-location-thane.png",
+      "expectedWidth": 1440,
+      "actualWidth": 1440,
+      "actualHeight": 3456,
+      "result": "pass"
+    },
+    {
+      "filename": "390-batch-availability.png",
+      "expectedWidth": 390,
+      "actualWidth": 390,
+      "actualHeight": 4642,
+      "result": "pass"
+    },
+    {
+      "filename": "1440-batch-availability.png",
+      "expectedWidth": 1440,
+      "actualWidth": 1440,
+      "actualHeight": 3244,
+      "result": "pass"
+    },
+    {
+      "filename": "390-pricing.png",
+      "expectedWidth": 390,
+      "actualWidth": 390,
+      "actualHeight": 5736,
+      "result": "pass"
+    },
+    {
+      "filename": "1440-pricing.png",
+      "expectedWidth": 1440,
+      "actualWidth": 1440,
+      "actualHeight": 3845,
+      "result": "pass"
+    },
+    {
+      "filename": "390-trial.png",
+      "expectedWidth": 390,
+      "actualWidth": 390,
+      "actualHeight": 3011,
+      "result": "pass"
+    },
+    {
+      "filename": "1440-trial.png",
+      "expectedWidth": 1440,
+      "actualWidth": 1440,
+      "actualHeight": 2031,
+      "result": "pass"
+    },
+    {
+      "filename": "390-contact.png",
+      "expectedWidth": 390,
+      "actualWidth": 390,
+      "actualHeight": 3367,
+      "result": "pass"
+    },
+    {
+      "filename": "1440-contact.png",
+      "expectedWidth": 1440,
+      "actualWidth": 1440,
+      "actualHeight": 2225,
+      "result": "pass"
+    },
+    {
+      "filename": "390-homepage-regression.png",
+      "expectedWidth": 390,
+      "actualWidth": 390,
+      "actualHeight": 6663,
+      "result": "pass"
+    },
+    {
+      "filename": "1440-homepage-regression.png",
+      "expectedWidth": 1440,
+      "actualWidth": 1440,
+      "actualHeight": 5224,
+      "result": "pass"
+    },
+    {
+      "filename": "768-about.png",
+      "expectedWidth": 768,
+      "actualWidth": 768,
+      "actualHeight": 4567,
+      "result": "pass"
+    },
+    {
+      "filename": "768-programs.png",
+      "expectedWidth": 768,
+      "actualWidth": 768,
+      "actualHeight": 2614,
+      "result": "pass"
+    },
+    {
+      "filename": "768-program-functional-training.png",
+      "expectedWidth": 768,
+      "actualWidth": 768,
+      "actualHeight": 3593,
+      "result": "pass"
+    },
+    {
+      "filename": "768-locations.png",
+      "expectedWidth": 768,
+      "actualWidth": 768,
+      "actualHeight": 1929,
+      "result": "pass"
+    },
+    {
+      "filename": "768-location-airoli-sector-19.png",
+      "expectedWidth": 768,
+      "actualWidth": 768,
+      "actualHeight": 3309,
+      "result": "pass"
+    },
+    {
+      "filename": "768-batch-availability.png",
+      "expectedWidth": 768,
+      "actualWidth": 768,
+      "actualHeight": 3519,
+      "result": "pass"
+    },
+    {
+      "filename": "768-pricing.png",
+      "expectedWidth": 768,
+      "actualWidth": 768,
+      "actualHeight": 4444,
+      "result": "pass"
+    },
+    {
+      "filename": "768-trial.png",
+      "expectedWidth": 768,
+      "actualWidth": 768,
+      "actualHeight": 2431,
+      "result": "pass"
+    },
+    {
+      "filename": "768-contact.png",
+      "expectedWidth": 768,
+      "actualWidth": 768,
+      "actualHeight": 2481,
+      "result": "pass"
+    }
+  ]
+}

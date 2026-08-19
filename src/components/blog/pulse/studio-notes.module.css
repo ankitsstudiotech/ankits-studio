@@ -1,0 +1,97 @@
+/* Studio Pulse — Studio Notes (/blog) hub. */
+
+.page {
+  background: var(--color-field);
+  color: var(--color-ink-inverse);
+  flex: 1;
+}
+
+.band {
+  box-sizing: border-box;
+  width: 100%;
+  max-width: none;
+  margin-inline: 0;
+  padding: var(--spacing-section) var(--layout-gutter);
+  border-top: var(--rule-structural-width) solid var(--rule-structural);
+}
+
+.band > * {
+  max-width: var(--layout-content);
+}
+
+.openMeasure {
+  max-width: 48rem;
+}
+
+.kicker {
+  margin: 0 0 0.4rem;
+  font-family: var(--font-sans);
+  font-size: var(--text-overline);
+  font-weight: 600;
+  letter-spacing: var(--text-overline--letter-spacing);
+  line-height: var(--text-overline--line-height);
+  text-transform: uppercase;
+  color: var(--color-muted-on-field);
+}
+
+.title {
+  font-family: var(--font-display);
+  font-size: clamp(2.5rem, 5vw, 4.25rem);
+  letter-spacing: var(--text-hero--letter-spacing);
+  line-height: var(--text-hero--line-height);
+  margin: 0 0 0.85rem;
+  max-width: 14ch;
+  text-transform: uppercase;
+}
+
+.lede {
+  margin: 0;
+  max-width: 48ch;
+  font-size: var(--text-body-lg);
+  line-height: var(--text-body-lg--line-height);
+  color: var(--color-muted-on-field);
+}
+
+.sectionTitle {
+  font-family: var(--font-display);
+  font-size: var(--text-title);
+  letter-spacing: var(--text-title--letter-spacing);
+  line-height: var(--text-title--line-height);
+  margin: 0 0 0.75rem;
+  max-width: 22ch;
+  text-transform: uppercase;
+}
+
+.body {
+  margin: 0;
+  max-width: 52ch;
+  font-size: var(--text-body);
+  line-height: var(--text-body--line-height);
+  color: var(--color-muted-on-field);
+}
+
+.linkList {
+  list-style: none;
+  margin: 0.85rem 0 0;
+  padding: 0;
+}
+
+.linkList a {
+  display: flex;
+  align-items: center;
+  min-height: 48px;
+  padding: 0.35rem 0;
+  border-bottom: var(--rule-structural-width) solid var(--rule-structural);
+  color: inherit;
+  text-decoration: none;
+  font-size: 1.05rem;
+}
+
+.linkList a:hover {
+  color: var(--color-accent-label);
+}
+
+.linkList a:focus-visible {
+  outline: 2px solid var(--color-accent);
+  outline-offset: 3px;
+}

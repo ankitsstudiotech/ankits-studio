@@ -1,0 +1,33 @@
+{
+  "capturedAt": "2026-08-13T04:32:00.000Z",
+  "checkpoint": "studio-pulse-before-cls-stability-fix",
+  "head": "66dd0bec30df029cb0970df0a399a99c3e4475a0",
+  "server": { "command": "npx next start -p 3006", "port": 3006, "pid": 26688 },
+  "env": {
+    "NODE_ENV": "production",
+    "NEXT_PUBLIC_SITE_URL": "https://ankits-studio.vercel.app",
+    "ALLOW_MOCK_PUBLISH": null,
+    "ANKITS_CONCEPT_PREVIEW": null
+  },
+  "classification": {
+    "preFixCls": "P1",
+    "note": "Lighthouse Home CLS median 0.710 from a single footer mt-auto flex shift of score 0.7095990279465371"
+  },
+  "homeMobileLighthouse": {
+    "runs": [
+      { "fcpMs": 2238.553, "lcpMs": 3571.114, "cls": 0.7095990279465371, "tbtMs": 1976.308 },
+      { "fcpMs": 2350.832, "lcpMs": 3483.456, "cls": 0.7095990279465371, "tbtMs": 1399.8 },
+      { "fcpMs": 4191.069, "lcpMs": 4340.896, "cls": 0, "tbtMs": 799.052 }
+    ],
+    "median": { "fcpMs": 2350.832, "lcpMs": 3571.114, "cls": 0.7095990279465371, "tbtMs": 1399.8 },
+    "lcpElement": "hero img.pulse-media-module__frameMedia",
+    "clsCulprit": "footer.mt-auto"
+  },
+  "homePlaywrightCls390": 0,
+  "functionalMobileLighthouse": {
+    "runs": [{ "fcpMs": 2715.521, "lcpMs": 2715.521, "cls": 0, "tbtMs": 670.254 }],
+    "priorCorrectionRunCls": 1.047
+  },
+  "functionalPlaywrightCls390": 0,
+  "homeDesktop1440": { "fcpMs": null, "note": "see AI-MEDIA-PERFORMANCE-RESULTS.json prior desktop run; this baseline reused lighthouse script desktop output in _lh-tmp/desktop-1786595529051.json" }
+}

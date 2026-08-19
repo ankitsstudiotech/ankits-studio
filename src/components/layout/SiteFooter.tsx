@@ -1,43 +1,53 @@
+import Image from "next/image";
 import Link from "next/link";
 import { Container } from "@/components/ui/Container";
-import { Body, Caption, Heading } from "@/components/ui/Typography";
 import type { FooterLinkGroup } from "./types";
 
 export type SiteFooterProps = {
   brandName?: string;
   tagline?: string;
+  phone?: string;
+  email?: string;
+  instagramHref?: string;
+  youtubeHref?: string;
   groups: FooterLinkGroup[];
-  disclaimer?: string;
+  copyright?: string;
 };
 
+const SYMBOL_SRC = "/brand/ankits-studio-symbol-transparent.png";
+
+/**
+ * Dark Pulse footer — four-column editorial directory.
+ * Explore / Programmes / Branches / Connect. Production links only.
+ */
 export function SiteFooter({
   brandName = "Ankit's Studio",
-  tagline = "Strength, yoga, dance — one studio community across Navi Mumbai.",
+  tagline = "Strength, yoga, dance — one neighbourhood studio across Navi Mumbai.",
+  phone,
+  email,
+  instagramHref,
+  youtubeHref,
   groups,
-  disclaimer = "Design-lab presentation only. Business facts shown here are illustrative placeholders, not verified studio details.",
+  copyright = `© ${new Date().getFullYear()} Ankit's Studio`,
 }: SiteFooterProps) {
   return (
-    <footer className="mt-auto border-t border-border bg-surface-sunken">
-      <Container className="py-12 sm:py-16">
-        <div className="grid gap-10 md:grid-cols-[minmax(0,1.2fr)_repeat(2,minmax(0,1fr))]">
-          <div className="max-w-sm">
-            <Heading as="p" className="mb-3">
-              {brandName}
-            </Heading>
-            <Body>{tagline}</Body>
-          </div>
-
+    <footer className="relative overflow-hidden border-t border-white/10 bg-field text-ink-inverse">
+      <Container full className="relative py-[var(--spacing-section)] max-[640px]:py-10">
+        <div className="grid gap-10 max-[640px]:grid-cols-2 max-[640px]:gap-8 md:grid-cols-2 xl:grid-cols-4 xl:gap-0">
           {groups.map((group) => (
-            <div key={group.title}>
-              <p className="mb-3 text-[length:var(--text-overline)] font-semibold uppercase tracking-[var(--text-overline--letter-spacing)] text-ink-subtle">
+            <div
+              key={group.title}
+              className="min-w-0 xl:border-r xl:border-white/10 xl:px-8 xl:first:pl-0 xl:last:border-r-0"
+            >
+              <p className="mb-3 text-[length:var(--text-overline)] font-semibold uppercase tracking-[var(--text-overline--letter-spacing)] text-[var(--color-accent-label)] max-[640px]:mb-2">
                 {group.title}
               </p>
-              <ul className="flex flex-col gap-2">
+              <ul className="flex flex-col gap-1 max-[640px]:gap-0">
                 {group.links.map((link) => (
                   <li key={link.id}>
                     <Link
                       href={link.href}
-                      className="-mx-2 inline-flex min-h-11 min-w-11 items-center px-2 text-sm text-ink-muted transition-colors hover:text-ink focus-visible:outline-2 focus-visible:outline-offset-3 focus-visible:outline-focus-ring"
+                      className="-mx-2 inline-flex min-h-11 min-w-11 items-center px-2 text-sm text-[var(--color-muted-on-field)] transition-colors hover:text-ink-inverse focus-visible:outline-2 focus-visible:outline-offset-3 focus-visible:outline-[var(--color-volt)]"
                     >
                       {link.label}
                     </Link>
@@ -46,9 +56,81 @@ export function SiteFooter({
               </ul>
             </div>
           ))}
+
+          <div className="min-w-0 xl:px-8 xl:pr-0">
+            <p className="mb-3 flex items-center gap-2.5 font-[family-name:var(--font-display)] text-[length:var(--text-section)] uppercase leading-[var(--text-section--line-height)] tracking-[var(--text-section--letter-spacing)] max-[640px]:mb-2">
+              <Image
+                src={SYMBOL_SRC}
+                alt=""
+                width={32}
+                height={32}
+                className="block h-8 w-8 shrink-0 object-contain"
+              />
+              {brandName}
+            </p>
+            <p className="mb-4 max-w-[36ch] text-[length:var(--text-body)] leading-[var(--text-body--line-height)] text-[var(--color-muted-on-field)] max-[640px]:mb-3">
+              {tagline}
+            </p>
+            {phone ? (
+              <p className="mb-1">
+                <a
+                  href={`tel:${phone.replace(/\s+/g, "")}`}
+                  className="inline-flex min-h-11 items-center text-sm text-ink-inverse underline-offset-4 hover:underline focus-visible:outline-2 focus-visible:outline-offset-3 focus-visible:outline-[var(--color-volt)]"
+                >
+                  {phone}
+                </a>
+              </p>
+            ) : null}
+            {email ? (
+              <p>
+                <a
+                  href={`mailto:${email}`}
+                  className="inline-flex min-h-11 items-center text-sm text-[var(--color-muted-on-field)] underline-offset-4 hover:text-ink-inverse hover:underline focus-visible:outline-2 focus-visible:outline-offset-3 focus-visible:outline-[var(--color-volt)]"
+                >
+                  {email}
+                </a>
+              </p>
+            ) : null}
+            {instagramHref || youtubeHref ? (
+              <p className="mt-3 flex flex-wrap gap-x-4 gap-y-1 text-sm">
+                {instagramHref ? (
+                  <a
+                    href={instagramHref}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="inline-flex min-h-11 items-center text-[var(--color-muted-on-field)] underline-offset-4 hover:text-ink-inverse hover:underline focus-visible:outline-2 focus-visible:outline-offset-3 focus-visible:outline-[var(--color-volt)]"
+                  >
+                    Instagram
+                  </a>
+                ) : null}
+                {youtubeHref ? (
+                  <a
+                    href={youtubeHref}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="inline-flex min-h-11 items-center text-[var(--color-muted-on-field)] underline-offset-4 hover:text-ink-inverse hover:underline focus-visible:outline-2 focus-visible:outline-offset-3 focus-visible:outline-[var(--color-volt)]"
+                  >
+                    YouTube
+                  </a>
+                ) : null}
+              </p>
+            ) : null}
+          </div>
         </div>
 
-        <Caption className="mt-10 max-w-3xl border-t border-border pt-6">{disclaimer}</Caption>
+        <div className="mt-10 border-t border-[var(--color-border-on-field)] pt-6 max-[640px]:mt-8 max-[640px]:pt-5">
+          <p className="text-xs leading-relaxed text-[var(--color-muted-on-field)]">
+            Selected website visuals are illustrative AI-generated imagery while new studio photography
+            is being produced.{" "}
+            <Link
+              href="/about#visuals"
+              className="underline underline-offset-2 hover:text-ink-inverse focus-visible:outline-2 focus-visible:outline-offset-3 focus-visible:outline-[var(--color-volt)]"
+            >
+              About our visuals
+            </Link>
+          </p>
+          <p className="mt-3 text-xs text-[var(--color-muted-on-field)]">{copyright}</p>
+        </div>
       </Container>
     </footer>
   );

@@ -16,6 +16,7 @@ export type TrialFormFieldErrors = Partial<
     | "programmeSlug"
     | "preferredTiming"
     | "ageGroup"
+    | "trialDate"
     | "message"
     | "consent",
     string
@@ -37,13 +38,16 @@ export async function submitTrialLead(
   _prevState: TrialFormState,
   formData: FormData
 ): Promise<TrialFormState> {
+  const ageRaw = readString(formData, "ageGroup");
+  const trialDateRaw = readString(formData, "trialDate");
   const parsed = trialLeadSchema.safeParse({
     name: readString(formData, "name"),
     phone: readString(formData, "phone"),
     branchSlug: readString(formData, "branchSlug"),
     programmeSlug: readString(formData, "programmeSlug"),
     preferredTiming: readString(formData, "preferredTiming"),
-    ageGroup: readString(formData, "ageGroup"),
+    ageGroup: ageRaw || undefined,
+    trialDate: trialDateRaw || undefined,
     message: readString(formData, "message") || undefined,
     consent: formData.get("consent") === "on" || formData.get("consent") === "true",
   });
@@ -59,8 +63,16 @@ export async function submitTrialLead(
     return { fieldErrors };
   }
 
+  const ageGroup = parsed.data.ageGroup || undefined;
+
   const result = await getLeadAdapter().submitTrialLead({
-    ...parsed.data,
+    name: parsed.data.name,
+    phone: parsed.data.phone,
+    branchSlug: parsed.data.branchSlug,
+    programmeSlug: parsed.data.programmeSlug,
+    preferredTiming: parsed.data.preferredTiming,
+    ageGroup,
+    trialDate: parsed.data.trialDate || undefined,
     message: parsed.data.message || undefined,
     consent: true,
   });

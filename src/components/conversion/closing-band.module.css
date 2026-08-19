@@ -1,0 +1,343 @@
+/* Editorial closing conversion — content left, action right. */
+
+.root {
+  box-sizing: border-box;
+  width: 100%;
+  padding: clamp(3rem, 6vw, 6rem) var(--layout-gutter);
+  border-top: var(--rule-structural-width) solid var(--rule-structural);
+}
+
+.field {
+  background: color-mix(in srgb, var(--color-field) 88%, var(--color-accent));
+}
+
+.accent {
+  /* Free-trial conversion band: keep the editorial base field, use purple only for emphasis. */
+  background: var(--color-field);
+  padding-block: clamp(1.6rem, 2.9vw, 2.35rem);
+}
+
+.inner {
+  display: grid;
+  gap: 1.1rem 2rem;
+  width: 100%;
+  max-width: var(--layout-content);
+  align-items: start;
+}
+
+@media (min-width: 768px) {
+  .inner {
+    grid-template-columns: minmax(0, 8fr) minmax(12rem, 4fr);
+    align-items: end;
+    column-gap: 2.75rem;
+  }
+}
+
+.copy {
+  min-width: 0;
+}
+
+.title {
+  font-family: var(--font-display);
+  font-size: clamp(3rem, 6vw, 6.5rem);
+  letter-spacing: 0.02em;
+  line-height: 0.9;
+  margin: 0 0 0.55rem;
+  max-width: 18ch;
+  text-transform: uppercase;
+  color: var(--color-ink-inverse);
+}
+
+.body {
+  margin: 0;
+  max-width: 46ch;
+  font-size: var(--text-body);
+  line-height: var(--text-body--line-height);
+  color: var(--color-muted-on-field);
+}
+
+.note {
+  margin: 0.55rem 0 0;
+  max-width: 42ch;
+  font-size: 0.8rem;
+  line-height: 1.4;
+  color: var(--color-muted-on-field);
+}
+
+.accent .note {
+  color: color-mix(in srgb, var(--color-accent-foreground) 82%, transparent);
+}
+
+.action {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 0.65rem;
+  min-width: 0;
+}
+
+@media (min-width: 768px) {
+  .action {
+    align-items: flex-end;
+    justify-self: end;
+    padding-top: 0.15rem;
+  }
+}
+
+.actionSecondary {
+  font-size: 0.82rem;
+}
+
+.actionPrimary {
+  min-width: 0;
+}
+
+/* Contract: accent ClosingBand keeps the primary CTA visually purple. */
+.accent .actionPrimary :global(a) {
+  background: var(--color-accent);
+  color: var(--color-accent-foreground);
+}
+
+.accent .actionPrimary :global(a:hover) {
+  background: var(--color-accent-hover);
+  color: var(--color-accent-foreground);
+}
+
+@media (max-width: 767px) {
+  .root {
+    padding-block: 1.85rem 2.1rem;
+  }
+
+  .title {
+    max-width: none;
+  }
+
+  .body {
+    max-width: none;
+  }
+}
+
+/* —— Free-trial editorial conversion strip —— */
+
+.freeTrialInner {
+  display: grid;
+  width: 100%;
+  max-width: var(--layout-content);
+  grid-template-columns: minmax(0, 1fr);
+  /* Mobile: explicit single-column named areas to avoid overlap. */
+  grid-template-areas:
+    "proposition"
+    "process"
+    "trial"
+    "action";
+  gap: 0.95rem 1.6rem;
+  align-items: start;
+}
+
+/* Mobile: single-column sequence (headline → process → trial fact → action). */
+@media (min-width: 768px) {
+  .freeTrialInner {
+    grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+    grid-template-areas:
+      "proposition process"
+      "trial action";
+    column-gap: 0;
+    row-gap: 1.05rem;
+    align-items: end;
+  }
+
+  .freeTrialProposition {
+    padding-inline-end: var(--spacing-rule-content);
+  }
+
+  .freeTrialProcess {
+    border-inline-start: var(--rule-structural-width) solid var(--rule-structural);
+    padding-inline: var(--spacing-rule-content);
+  }
+
+  .freeTrialTrialFact {
+    padding-inline-end: var(--spacing-rule-content);
+  }
+
+  .freeTrialAction {
+    border-inline-start: var(--rule-structural-width) solid var(--rule-structural);
+    padding-inline-start: var(--spacing-rule-content);
+  }
+}
+
+/* Desktop: proposition → process → trial fact → action in one row. */
+@media (min-width: 1024px) {
+  .freeTrialInner {
+    /* Balance proposition/process/trial/action across the full content width. */
+    grid-template-columns: minmax(0, 3fr) minmax(0, 2.7fr) minmax(0, 2.1fr) minmax(0, 2.2fr);
+    grid-template-areas: "proposition process trial action";
+    column-gap: 0;
+    row-gap: 0;
+    gap: 0;
+    align-items: start;
+  }
+
+  .freeTrialTrialFact {
+    border-inline-start: var(--rule-structural-width) solid var(--rule-structural);
+    padding-inline-start: var(--spacing-rule-content);
+  }
+
+  .freeTrialAction {
+    padding-inline-end: var(--spacing-rule-content);
+  }
+}
+
+/* Service-enquiry (no trial-fact): keep the same separators without an empty column. */
+@media (min-width: 768px) {
+  .freeTrialInner[data-has-note="false"] {
+    grid-template-columns: minmax(0, 1.2fr) minmax(0, 1.35fr) minmax(0, 0.95fr);
+    grid-template-areas: "proposition process action";
+    column-gap: 0;
+    row-gap: 0;
+    align-items: start;
+  }
+
+  .freeTrialInner[data-has-note="false"] .freeTrialAction {
+    border-inline-start: var(--rule-structural-width) solid var(--rule-structural);
+    padding-inline-start: var(--spacing-rule-content);
+  }
+}
+
+.freeTrialProposition {
+  grid-area: proposition;
+}
+
+.freeTrialProcess {
+  grid-area: process;
+}
+
+.freeTrialTrialFact {
+  grid-area: trial;
+}
+
+.freeTrialAction {
+  grid-area: action;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 0.65rem;
+  min-width: 0;
+}
+
+.freeTrialTitle {
+  font-family: var(--font-display);
+  font-size: clamp(2.35rem, 3.9vw, 3.9rem);
+  letter-spacing: 0.02em;
+  line-height: 0.9;
+  margin: 0;
+  max-width: 16ch;
+  text-transform: uppercase;
+  color: var(--color-ink-inverse);
+}
+
+.freeTrialTitleLine {
+  display: block;
+}
+
+/* Trial fact region owns its vertical rhythm; don't add top margin from the shared `.note` style. */
+.freeTrialTrialFact .note {
+  margin: 0;
+  /* Keep trial-fact in the same supporting typographic family as process copy. */
+  font-size: var(--text-body);
+  line-height: var(--text-body--line-height);
+  color: var(--color-muted-on-field);
+  max-width: none;
+}
+
+/* Match supporting body rhythm within the action area. */
+.freeTrialProcess .body,
+.freeTrialTrialFact .note {
+  max-width: none;
+}
+
+/* CTA should be strong UI type, not “tiny button”. */
+.freeTrialAction :global(a) {
+  font-size: var(--text-caption);
+  line-height: var(--text-caption--line-height);
+}
+
+/* Programme-detail compact conversion — proposition left, CTA right. */
+.compact {
+  background: var(--color-field);
+  padding-block: clamp(1.15rem, 2vw, 1.75rem);
+}
+
+.compactInner {
+  align-items: start;
+  gap: 0.85rem 1.75rem;
+}
+
+.compactProposition {
+  min-width: 0;
+}
+
+.compact .title {
+  font-size: clamp(2.5rem, 4.2vw, 4.25rem);
+  max-width: 12ch;
+  margin: 0 0 0.4rem;
+}
+
+.compact .body {
+  max-width: 42ch;
+  margin: 0;
+}
+
+.compact .note {
+  margin-top: 0.45rem;
+}
+
+.compact .action {
+  background: transparent;
+  align-items: flex-start;
+  justify-self: start;
+  padding: 0;
+}
+
+.compact .actionPrimary :global(a) {
+  width: auto;
+  min-height: 48px;
+}
+
+@media (min-width: 768px) {
+  .compact .compactInner {
+    grid-template-columns: minmax(0, 1fr) max-content;
+    align-items: center;
+    column-gap: 0;
+  }
+
+  .compactProposition {
+    padding-inline-end: var(--spacing-rule-content);
+    border-right: var(--rule-structural-width) solid var(--rule-structural);
+  }
+
+  .compact .action {
+    align-items: center;
+    justify-self: end;
+    padding-inline-start: var(--spacing-rule-content);
+  }
+}
+
+@media (max-width: 767px) {
+  .compactInner {
+    gap: 0.75rem;
+  }
+
+  .compact .body {
+    max-width: none;
+  }
+
+  .compact .action {
+    width: 100%;
+    padding-top: 0.15rem;
+  }
+
+  .compact .actionPrimary :global(a) {
+    width: 100%;
+    justify-content: center;
+  }
+}

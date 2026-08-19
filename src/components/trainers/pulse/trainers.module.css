@@ -1,0 +1,356 @@
+/* Studio Pulse — Trainers team page (full-width editorial bands). */
+
+.page {
+  background: var(--color-field);
+  color: var(--color-ink-inverse);
+  flex: 1;
+}
+
+.band {
+  box-sizing: border-box;
+  width: 100%;
+  max-width: none;
+  margin-inline: 0;
+  padding: var(--spacing-section) var(--layout-gutter);
+  border-top: var(--rule-structural-width) solid var(--rule-structural);
+}
+
+.band > * {
+  max-width: var(--layout-content);
+}
+
+.band + .band {
+  padding-top: calc(var(--spacing-section) + 0.65rem);
+}
+
+.openGrid {
+  display: grid;
+  gap: 1.75rem;
+  width: 100%;
+  align-items: start;
+}
+
+@media (min-width: 900px) {
+  .openGrid {
+    grid-template-columns: minmax(0, 1.55fr) minmax(0, 1fr);
+    gap: 2.5rem;
+  }
+}
+
+.openMeasure {
+  max-width: 48rem;
+}
+
+.openFacts {
+  display: grid;
+  gap: 0.85rem;
+  margin: 0;
+  padding: 1rem 0 0;
+  border-top: var(--rule-structural-width) solid var(--rule-structural);
+}
+
+@media (min-width: 900px) {
+  .openFacts {
+    padding: 0.15rem 0 0 1.25rem;
+    border-top: none;
+    border-left: var(--rule-structural-width) solid var(--rule-structural);
+  }
+}
+
+.openFacts p {
+  margin: 0;
+  display: grid;
+  gap: 0.2rem;
+}
+
+.openFactLabel {
+  font-size: var(--text-overline);
+  font-weight: 600;
+  letter-spacing: var(--text-overline--letter-spacing);
+  text-transform: uppercase;
+  color: var(--color-muted-on-field);
+}
+
+.openFactValue {
+  font-size: 1.02rem;
+  line-height: 1.35;
+  color: var(--color-ink-inverse);
+}
+
+.pairGrid {
+  display: grid;
+  gap: 1.75rem;
+  width: 100%;
+}
+
+@media (min-width: 900px) {
+  .pairGrid {
+    grid-template-columns: 1fr 1fr;
+    gap: 2.5rem;
+    align-items: start;
+  }
+}
+
+.kicker {
+  margin: 0 0 0.4rem;
+  font-family: var(--font-sans);
+  font-size: var(--text-overline);
+  font-weight: 600;
+  letter-spacing: var(--text-overline--letter-spacing);
+  line-height: var(--text-overline--line-height);
+  text-transform: uppercase;
+  color: var(--color-muted-on-field);
+}
+
+.title {
+  font-family: var(--font-display);
+  font-size: clamp(2.5rem, 5vw, 4.25rem);
+  letter-spacing: var(--text-hero--letter-spacing);
+  line-height: var(--text-hero--line-height);
+  margin: 0 0 0.85rem;
+  max-width: 14ch;
+  text-transform: uppercase;
+}
+
+.lede {
+  margin: 0;
+  max-width: 48ch;
+  font-size: var(--text-body-lg);
+  line-height: var(--text-body-lg--line-height);
+  color: var(--color-muted-on-field);
+}
+
+.sectionTitle {
+  font-family: var(--font-display);
+  font-size: var(--text-title);
+  letter-spacing: var(--text-title--letter-spacing);
+  line-height: var(--text-title--line-height);
+  margin: 0 0 0.75rem;
+  max-width: 22ch;
+  text-transform: uppercase;
+}
+
+.body {
+  margin: 0;
+  max-width: 52ch;
+  font-size: var(--text-body);
+  line-height: var(--text-body--line-height);
+  color: var(--color-muted-on-field);
+}
+
+.teamCount {
+  font-family: var(--font-display);
+  font-size: clamp(2rem, 4vw, 2.75rem);
+  letter-spacing: 0.04em;
+  margin: 0 0 0.55rem;
+}
+
+.linkList {
+  list-style: none;
+  margin: 0.85rem 0 0;
+  padding: 0;
+}
+
+.linkList a {
+  display: flex;
+  align-items: center;
+  min-height: 48px;
+  padding: 0.35rem 0;
+  border-bottom: var(--rule-structural-width) solid var(--rule-structural);
+  color: inherit;
+  text-decoration: none;
+  font-size: 1.05rem;
+}
+
+.linkList a:hover {
+  color: var(--color-accent-label);
+}
+
+.linkList a:focus-visible {
+  outline: 2px solid var(--color-accent);
+  outline-offset: 3px;
+}
+
+.linkMeta {
+  margin-left: auto;
+  font-size: 0.75rem;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--color-muted-on-field);
+}
+
+.branchList {
+  list-style: none;
+  margin: 0.85rem 0 0;
+  padding: 0;
+}
+
+.branchList a {
+  display: flex;
+  align-items: center;
+  min-height: 48px;
+  padding: 0.4rem 0;
+  border-bottom: var(--rule-structural-width) solid var(--rule-structural);
+  color: inherit;
+  font-family: var(--font-display);
+  font-size: clamp(1.15rem, 2.4vw, 1.45rem);
+  letter-spacing: 0.04em;
+  text-underline-offset: 0.18em;
+}
+
+.branchList a:focus-visible {
+  outline: 2px solid var(--color-accent);
+  outline-offset: 3px;
+}
+
+.moreLink {
+  margin: 0.5rem 0 0;
+  font-size: 0.9rem;
+}
+
+.moreLink a {
+  color: inherit;
+  text-underline-offset: 0.18em;
+}
+
+.ctaBand {
+  background: color-mix(in srgb, var(--color-field) 90%, var(--color-accent));
+  border-top: var(--rule-structural-width) solid var(--rule-structural);
+}
+
+.ctaRow {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.85rem 1.25rem;
+  align-items: center;
+  margin-top: 1.1rem;
+}
+
+.cta {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 48px;
+  min-width: 12rem;
+  padding: 0.75rem 1.35rem;
+  background: var(--color-accent);
+  color: var(--color-accent-foreground);
+  font-family: var(--font-sans);
+  font-weight: 700;
+  font-size: 0.8rem;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  text-decoration: none;
+  border: none;
+}
+
+.cta:hover {
+  background: var(--color-accent-hover);
+}
+
+.cta:focus-visible {
+  outline: 2px solid var(--color-volt);
+  outline-offset: 3px;
+}
+
+.ctaSecondary {
+  display: inline-flex;
+  align-items: center;
+  min-height: 44px;
+  color: inherit;
+  text-underline-offset: 0.18em;
+}
+
+.ctaNote {
+  margin: 0.85rem 0 0;
+  max-width: 40ch;
+  font-size: 0.88rem;
+  color: var(--color-muted-on-field);
+}
+
+.profileList {
+  list-style: none;
+  margin: 1rem 0 0;
+  padding: 0;
+  display: grid;
+  gap: 1.25rem;
+}
+
+.profileItem {
+  display: grid;
+  gap: 0.85rem;
+  padding: 0.85rem 0;
+  border-bottom: var(--rule-structural-width) solid var(--rule-structural);
+}
+
+@media (min-width: 720px) {
+  .profileItem {
+    grid-template-columns: 7.5rem 1fr;
+    align-items: start;
+  }
+}
+
+.profilePhoto {
+  width: 100%;
+  max-width: 7.5rem;
+  aspect-ratio: 4 / 5;
+  object-fit: cover;
+  display: block;
+}
+
+.profileName {
+  font-family: var(--font-display);
+  font-size: 1.25rem;
+  letter-spacing: 0.04em;
+  margin: 0 0 0.25rem;
+}
+
+.profileRole {
+  margin: 0 0 0.45rem;
+  font-size: 0.92rem;
+  color: var(--color-muted-on-field);
+}
+
+.profileBio {
+  margin: 0;
+  max-width: 48ch;
+  font-size: 0.95rem;
+  line-height: 1.5;
+  color: var(--color-muted-on-field);
+}
+
+.profileLink {
+  display: contents;
+  color: inherit;
+  text-decoration: none;
+}
+
+.profileLink:focus-visible .profileName {
+  outline: 2px solid var(--color-accent);
+  outline-offset: 3px;
+}
+
+@media (max-width: 719px) {
+  .openMeasure {
+    max-width: 100%;
+  }
+
+  .band {
+    padding-block: calc(var(--spacing-section) + 0.55rem);
+  }
+
+  .band + .band {
+    padding-top: calc(var(--spacing-section) + 1.35rem);
+  }
+
+  .body,
+  .lede {
+    max-width: none;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .cta {
+    transition: none !important;
+  }
+}

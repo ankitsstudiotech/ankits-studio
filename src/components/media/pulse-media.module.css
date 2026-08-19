@@ -1,0 +1,95 @@
+/* Pulse media presentation — Stage 4A architecture */
+
+.frame {
+  position: relative;
+  width: 100%;
+  overflow: hidden;
+  background: color-mix(in srgb, var(--color-field-raised) 88%, #1a1520);
+  isolation: isolate;
+  aspect-ratio: var(--media-aspect, 16 / 9);
+}
+
+.frameMedia {
+  object-fit: cover;
+  object-position: var(--media-object-position, 50% 50%);
+}
+
+@media (max-width: 1023px) and (min-width: 769px) {
+  .frameMedia {
+    object-position: var(--media-object-position-tablet, var(--media-object-position, 50% 50%));
+  }
+}
+
+@media (max-width: 768px) {
+  .frameMedia {
+    object-position: var(--media-object-position-mobile, var(--media-object-position, 50% 50%));
+  }
+
+  .frame {
+    aspect-ratio: var(--media-aspect-mobile, auto);
+  }
+}
+
+.geometry {
+  position: absolute;
+  inset: 0;
+  background:
+    linear-gradient(
+      145deg,
+      color-mix(in srgb, var(--color-accent) 18%, transparent) 0%,
+      transparent 42%
+    ),
+    linear-gradient(
+      180deg,
+      #141218 0%,
+      color-mix(in srgb, var(--color-field-raised) 90%, #0b0b0c) 100%
+    );
+}
+
+.geometry::after {
+  content: "";
+  position: absolute;
+  inset: 12% 18% 18% 38%;
+  border: 1px solid rgb(255 255 255 / 0.08);
+  pointer-events: none;
+}
+
+.overlay {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background: linear-gradient(
+    90deg,
+    rgb(11 11 12 / 0.55) 0%,
+    transparent 45%
+  );
+}
+
+.frame[data-media-status="illustrative-ai"] .frameMedia {
+  filter: saturate(0.94) contrast(1.02);
+}
+
+.previewLabel {
+  position: absolute;
+  right: 0.45rem;
+  bottom: 0.4rem;
+  z-index: 2;
+  margin: 0;
+  padding: 0.12rem 0.35rem;
+  font-family: var(--font-sans);
+  font-size: 0.6875rem; /* 11px — unobtrusive development marker */
+  font-weight: 600;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  color: rgb(255 255 255 / 0.7);
+  background: rgb(0 0 0 / 0.4);
+  border: 1px solid rgb(255 255 255 / 0.1);
+  pointer-events: none;
+}
+
+.reveal {
+  width: 100%;
+  height: 100%;
+  transform-origin: center center;
+  will-change: transform, opacity;
+}

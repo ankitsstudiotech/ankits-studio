@@ -1,0 +1,16 @@
+# Runtime app only — screenshot archives are not needed to serve the site.
+*.zip
+.next
+node_modules
+.playwright-mcp
+docs/new_prompt1
+docs/revamp/_lh-tmp
+docs/revamp/_concept-*
+docs/revamp/_parse-concept.mjs
+docs/revamp/_prod-check.mjs
+docs/revamp/_prod-home-after.html
+docs/revamp/_run-ai-media-performance.mjs
+docs/revamp/screenshots
+docs/revamp/traces
+docs/revamp/motion
+docs/performance

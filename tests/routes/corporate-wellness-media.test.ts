@@ -1,0 +1,60 @@
+import { existsSync, statSync } from "node:fs";
+import { join } from "node:path";
+import { describe, expect, it } from "vitest";
+import { getProgrammeBySlug } from "@/content";
+import { getPremiumSlot, resolveSlotMedia } from "@/content/media";
+import { composeFamilyFromSlug } from "@/components/programs/pulse/ProgrammeDetailView";
+import {
+  getProgrammeConversionLabel,
+  isServiceEnquiryProgramme,
+} from "@/lib/conversion";
+
+describe("Corporate Wellness programme media acceptance", () => {
+  it("catalogues an illustrative-ai hero with production source and crop metadata", () => {
+    const hero = resolveSlotMedia("programme.corporate-wellness.hero");
+    const slot = getPremiumSlot("programme.corporate-wellness.hero");
+    expect(hero?.status).toBe("illustrative-ai");
+    expect(hero?.source).toBe("ai-generated-illustration");
+    expect(hero?.consentStatus).toBe("not-applicable-ai");
+    expect(hero?.replacementStatus).toBe("replace-after-owner-photoshoot");
+    expect(hero?.replacementPriority).toBe("P1");
+    expect(hero?.width).toBe(1024);
+    expect(hero?.height).toBe(1024);
+    expect(hero?.aspectRatio).toBe("1/1");
+    expect(hero?.mobileAspectRatio).toBe("1/1");
+    expect(slot?.desktopAspect).toBe("1/1");
+    expect(slot?.mobileAspect).toBe("1/1");
+    expect(slot?.verifiedRealOnly).toBe(false);
+    expect(hero?.focalPoint).toEqual({ x: 50, y: 44 });
+    expect(hero?.tabletFocalPoint).toEqual({ x: 50, y: 44 });
+    expect(hero?.mobileFocalPoint).toEqual({ x: 50, y: 40 });
+  });
+
+  it("keeps truthful illustrative alt and does not claim a real client event", () => {
+    const hero = resolveSlotMedia("programme.corporate-wellness.hero");
+    expect(hero?.alt).toBe(
+      "Illustrative workplace wellness session with a coach guiding a small group",
+    );
+    expect(hero?.alt).not.toMatch(/Ankit’s Studio Corporate Wellness session/i);
+    expect(hero?.alt).not.toMatch(/client|Google|review/i);
+  });
+
+  it("serves an optimized v2 WebP", () => {
+    const production = join(
+      process.cwd(),
+      "public/media/synthetic-preview/programme-corporate-wellness-hero-v2-square.webp",
+    );
+    expect(existsSync(production)).toBe(true);
+    expect(statSync(production).size).toBeGreaterThan(100_000);
+    expect(statSync(production).size).toBeLessThan(400_000);
+  });
+
+  it("preserves B2B service-enquiry semantics", () => {
+    const programme = getProgrammeBySlug("corporate-wellness");
+    expect(programme).toBeTruthy();
+    expect(composeFamilyFromSlug("corporate-wellness")).toBe("service");
+    expect(isServiceEnquiryProgramme(programme!)).toBe(true);
+    expect(programme?.trialAvailable).toBe(false);
+    expect(getProgrammeConversionLabel(programme!)).toBe("Enquire about Corporate Wellness");
+  });
+});

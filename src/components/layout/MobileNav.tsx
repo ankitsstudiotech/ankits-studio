@@ -25,6 +25,11 @@ function getFocusable(container: HTMLElement) {
   ).filter((el) => !el.hasAttribute("disabled") && el.getAttribute("aria-hidden") !== "true");
 }
 
+/**
+ * Mobile navigation — CSS open/close (≤300ms), Escape, focus return, scroll lock.
+ * Intentionally free of `motion/react` so site chrome does not load the library
+ * until a below-fold section actually needs it (home LCP / TBT).
+ */
 export function MobileNav({ items, pathname = "" }: MobileNavProps) {
   const [open, setOpen] = useState(false);
   const panelId = useId();
@@ -96,9 +101,9 @@ export function MobileNav({ items, pathname = "" }: MobileNavProps) {
         ref={triggerRef}
         type="button"
         className={[
-          "inline-flex min-h-11 min-w-11 items-center justify-center rounded-[var(--radius-md)]",
-          "border border-border bg-surface-raised text-ink",
-          "focus-visible:outline-2 focus-visible:outline-offset-3 focus-visible:outline-focus-ring",
+          "inline-flex min-h-11 min-w-11 items-center justify-center",
+          "border border-white/25 bg-field-raised text-ink-inverse",
+          "focus-visible:outline-2 focus-visible:outline-offset-3 focus-visible:outline-[var(--color-volt)]",
           "touch-target",
         ].join(" ")}
         aria-expanded={open}
@@ -110,29 +115,33 @@ export function MobileNav({ items, pathname = "" }: MobileNavProps) {
         <span aria-hidden className="flex w-5 flex-col gap-1.5">
           <span
             className={[
-              "block h-0.5 w-full bg-current transition-transform duration-[var(--duration-fast)]",
+              "block h-0.5 w-full bg-current transition-transform duration-[var(--motion-menu-open)] motion-reduce:transition-none",
               open ? "translate-y-2 rotate-45" : "",
             ].join(" ")}
           />
           <span
             className={[
-              "block h-0.5 w-full bg-current transition-opacity duration-[var(--duration-fast)]",
+              "block h-0.5 w-full bg-current transition-opacity duration-[var(--motion-menu-open)] motion-reduce:transition-none",
               open ? "opacity-0" : "",
             ].join(" ")}
           />
           <span
             className={[
-              "block h-0.5 w-full bg-current transition-transform duration-[var(--duration-fast)]",
+              "block h-0.5 w-full bg-current transition-transform duration-[var(--motion-menu-open)] motion-reduce:transition-none",
               open ? "-translate-y-2 -rotate-45" : "",
             ].join(" ")}
           />
         </span>
       </button>
 
-      {open
+      {typeof document !== "undefined" && open
         ? createPortal(
             <>
-              <div className="fixed inset-0 z-40 bg-ink/35" aria-hidden onClick={close} />
+              <div
+                className="fixed inset-0 z-40 bg-black/70 transition-opacity duration-[var(--motion-menu-open)] motion-reduce:transition-none"
+                aria-hidden
+                onClick={close}
+              />
               <div
                 ref={panelRef}
                 id={panelId}
@@ -141,17 +150,17 @@ export function MobileNav({ items, pathname = "" }: MobileNavProps) {
                 aria-label="Mobile navigation"
                 className={[
                   "fixed inset-y-0 right-0 z-50 flex w-[min(100%,22rem)] flex-col",
-                  "border-l border-border bg-surface-raised shadow-[var(--shadow-lift)]",
-                  "translate-x-0",
+                  "border-l border-white/10 bg-field",
+                  "translate-x-0 transition-transform duration-[var(--motion-menu-open)] motion-reduce:transition-none",
                 ].join(" ")}
               >
-                <div className="flex items-center justify-between border-b border-border px-4 py-3">
-                  <p className="font-[family-name:var(--font-display)] text-lg font-semibold text-ink">
+                <div className="flex items-center justify-between border-b border-white/10 px-4 py-3">
+                  <p className="font-[family-name:var(--font-display)] text-xl tracking-[0.04em] text-ink-inverse">
                     Menu
                   </p>
                   <button
                     type="button"
-                    className="inline-flex min-h-11 min-w-11 items-center justify-center rounded-[var(--radius-md)] text-ink touch-target focus-visible:outline-2 focus-visible:outline-offset-3 focus-visible:outline-focus-ring"
+                    className="inline-flex min-h-11 min-w-11 items-center justify-center text-ink-inverse touch-target focus-visible:outline-2 focus-visible:outline-offset-3 focus-visible:outline-[var(--color-volt)]"
                     aria-label="Close menu"
                     onClick={close}
                   >
@@ -164,21 +173,26 @@ export function MobileNav({ items, pathname = "" }: MobileNavProps) {
                 <nav aria-label="Mobile primary" className="flex-1 overflow-y-auto px-3 py-4">
                   <ul className="flex flex-col gap-1">
                     {items.map((item) => {
-                      const active = pathname === item.href;
+                      const active =
+                        pathname === item.href ||
+                        (item.href !== "/" && pathname.startsWith(`${item.href}/`));
                       return (
                         <li key={item.id}>
                           <Link
                             href={item.href}
                             aria-current={active ? "page" : undefined}
                             onClick={close}
+                            {...(item.href.startsWith("http")
+                              ? { target: "_blank", rel: "noopener noreferrer" }
+                              : {})}
                             className={[
-                              "flex min-h-11 items-center rounded-[var(--radius-md)] px-3 text-base font-medium touch-target",
-                              "focus-visible:outline-2 focus-visible:outline-offset-3 focus-visible:outline-focus-ring",
+                              "flex min-h-11 items-center px-3 text-sm font-medium touch-target",
+                              "focus-visible:outline-2 focus-visible:outline-offset-3 focus-visible:outline-[var(--color-volt)]",
                               item.isPrimaryCta
-                                ? "bg-accent text-accent-foreground justify-center"
+                                ? "bg-accent text-accent-foreground justify-center font-bold uppercase tracking-[0.08em] text-xs"
                                 : active
-                                  ? "bg-accent-soft text-ink"
-                                  : "text-ink hover:bg-surface-sunken",
+                                  ? "bg-field-raised text-ink-inverse"
+                                  : "text-[var(--color-muted-on-field)] hover:bg-field-raised hover:text-ink-inverse",
                             ].join(" ")}
                           >
                             {item.label}
@@ -190,11 +204,11 @@ export function MobileNav({ items, pathname = "" }: MobileNavProps) {
                 </nav>
               </div>
             </>,
-            document.body
+            document.body,
           )
-        : (
-            <div id={panelId} hidden />
-          )}
+        : null}
+
+      {!open ? <div id={panelId} hidden /> : null}
     </div>
   );
 }

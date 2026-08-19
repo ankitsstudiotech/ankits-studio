@@ -1,8 +1,8 @@
 import type { Metadata } from "next";
-import { PageBreadcrumb } from "@/components/layout/PageBreadcrumb";
-import { Badge } from "@/components/ui/Badge";
-import { Section } from "@/components/ui/Section";
-import { Body, Heading } from "@/components/ui/Typography";
+import { PageWithFooter } from "@/components/layout/PageWithFooter";
+import { LegalPage } from "@/components/legal/pulse/LegalPage";
+import styles from "@/components/legal/pulse/legal.module.css";
+import { getStudioCommercial } from "@/content";
 import { buildPageMetadata } from "@/lib/seo/metadata";
 import { serializeJsonLd } from "@/lib/seo/serialize";
 import { buildBreadcrumbJsonLd } from "@/lib/seo/structured-data";
@@ -10,11 +10,10 @@ import { buildBreadcrumbJsonLd } from "@/lib/seo/structured-data";
 const PATH = "/terms";
 
 export const metadata: Metadata = buildPageMetadata({
-  title: "Terms",
+  title: "Terms of use",
   description:
-    "Draft terms of use placeholder for Ankit's Studio. Legal review is required before launch.",
+    "Terms for using the Ankit’s Studio website — general information, enquiries and third-party links.",
   path: PATH,
-  forceNoIndex: true,
 });
 
 const breadcrumbTrail = [
@@ -23,43 +22,89 @@ const breadcrumbTrail = [
 ];
 
 export default function TermsPage() {
+  const commercial = getStudioCommercial();
+  const policies = commercial.membershipPolicyCopy;
   const breadcrumbJsonLd = buildBreadcrumbJsonLd(breadcrumbTrail);
 
   return (
-    <main className="flex flex-1 flex-col">
+    <PageWithFooter>
+    <>
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: serializeJsonLd(breadcrumbJsonLd) }}
       />
+      <LegalPage title="Terms of use" breadcrumbTrail={breadcrumbTrail}>
+        <h2 className={styles.sectionTitle}>Website information</h2>
+        <p className={styles.body}>
+          Content on this website is general information about Ankit’s Studio programmes, branches
+          and how to enquire. Fees and batch availability should be confirmed directly with the
+          studio. Information may be updated without notice.
+        </p>
 
-      <PageBreadcrumb items={breadcrumbTrail} />
+        <h2 className={styles.sectionTitle}>Enquiries and trials</h2>
+        <p className={styles.body}>
+          Opening a WhatsApp link does not complete a booking by itself. You review and send any
+          message in WhatsApp. A free trial remains subject to current branch and batch availability.
+          Advance booking is optional; checking availability on WhatsApp is recommended.
+        </p>
 
-      <Section eyebrow="Legal" title="Terms of use" narrow>
-        <Badge accent="neutral" className="mb-4">
-          Draft placeholder
-        </Badge>
-        <Body className="mb-6 rounded-[var(--radius-md)] border border-border bg-accent-soft/60 px-4 py-3">
-          This is an explicit draft placeholder. Legal review is required before launch. Do not treat
-          this text as binding terms of service or membership terms.
-        </Body>
+        <h2 className={styles.sectionTitle}>Fitness and health</h2>
+        <p className={styles.body}>
+          Fitness participation is voluntary. This website does not provide medical diagnosis or
+          treatment. Choose activities that suit you, and seek appropriate professional advice where
+          necessary.
+        </p>
 
-        <Heading as="h2" className="mb-3">
-          Intended scope
-        </Heading>
-        <Body className="mb-4">
-          A future counsel-approved document will cover website use, trial class requests, membership
-          agreements, liability limits, and dispute processes appropriate for the studio&apos;s
-          jurisdiction.
-        </Body>
+        {policies ? (
+          <>
+            <h2 id="membership-policies" className={styles.sectionTitle}>
+              Membership policies
+            </h2>
+            <p className={styles.body}>
+              The following summaries apply to studio memberships. They are general information only
+              and are not legal advice. Terms communicated at enrolment prevail.
+            </p>
+            <h3 className={styles.sectionTitle}>Cancellation</h3>
+            <p className={styles.body}>{policies.cancellation}</p>
+            <h3 className={styles.sectionTitle}>Refunds</h3>
+            <p className={styles.body}>{policies.refund}</p>
+            <h3 className={styles.sectionTitle}>Transfer between branches</h3>
+            <p className={styles.body}>{policies.transfer}</p>
+            <h3 className={styles.sectionTitle}>Freeze or pause</h3>
+            <p className={styles.body}>{policies.freeze}</p>
+            <h3 className={styles.sectionTitle}>Membership expiry</h3>
+            <p className={styles.body}>{policies.expiry}</p>
+          </>
+        ) : null}
 
-        <Heading as="h2" className="mb-3">
-          Mock content notice
-        </Heading>
-        <Body>
-          Programme descriptions, schedules, pricing, and contact details on this website may still be
-          mock or provisional. They are labelled accordingly and are not contractual offers.
-        </Body>
-      </Section>
-    </main>
+        <h2 className={styles.sectionTitle}>Third-party services</h2>
+        <p className={styles.body}>
+          Links to WhatsApp, Google Maps, phone and email open third-party applications or services.
+          Those services have their own terms and privacy practices. When this website displays
+          Google Maps content such as public reviews, that content is provided by Google and is
+          subject to the{" "}
+          <a href="https://maps.google.com/help/terms_maps/" className={styles.link}>
+            Google Maps / Google Earth Additional Terms of Service
+          </a>
+          .
+        </p>
+
+        <h2 className={styles.sectionTitle}>Intellectual property</h2>
+        <p className={styles.body}>
+          Branding, logos and site content belonging to Ankit’s Studio may not be copied or reused
+          without permission, except where the law allows.
+        </p>
+
+        <h2 className={styles.sectionTitle}>Contact</h2>
+        <p className={styles.body}>
+          Questions about these terms:{" "}
+          <a href="mailto:ankitsstudio5@gmail.com" className={styles.link}>
+            ankitsstudio5@gmail.com
+          </a>
+          .
+        </p>
+      </LegalPage>
+    </>
+    </PageWithFooter>
   );
 }

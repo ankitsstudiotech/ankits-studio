@@ -1,0 +1,547 @@
+{
+  "mode": "production",
+  "base": "http://127.0.0.1:3808",
+  "generatedAt": "2026-08-09T13:55:19.758Z",
+  "files": [
+    {
+      "file": "full-390__home.png",
+      "route": "/",
+      "label": "full-390",
+      "fullPage": true
+    },
+    {
+      "file": "full-390__about.png",
+      "route": "/about",
+      "label": "full-390",
+      "fullPage": true
+    },
+    {
+      "file": "full-390__programs.png",
+      "route": "/programs",
+      "label": "full-390",
+      "fullPage": true
+    },
+    {
+      "file": "full-390__programs__functional-training.png",
+      "route": "/programs/functional-training",
+      "label": "full-390",
+      "fullPage": true
+    },
+    {
+      "file": "full-390__programs__home-personal-training.png",
+      "route": "/programs/home-personal-training",
+      "label": "full-390",
+      "fullPage": true
+    },
+    {
+      "file": "full-390__programs__online-training.png",
+      "route": "/programs/online-training",
+      "label": "full-390",
+      "fullPage": true
+    },
+    {
+      "file": "full-390__programs__zumba.png",
+      "route": "/programs/zumba",
+      "label": "full-390",
+      "fullPage": true
+    },
+    {
+      "file": "full-390__programs__yoga.png",
+      "route": "/programs/yoga",
+      "label": "full-390",
+      "fullPage": true
+    },
+    {
+      "file": "full-390__programs__adult-dance.png",
+      "route": "/programs/adult-dance",
+      "label": "full-390",
+      "fullPage": true
+    },
+    {
+      "file": "full-390__programs__wedding-choreography.png",
+      "route": "/programs/wedding-choreography",
+      "label": "full-390",
+      "fullPage": true
+    },
+    {
+      "file": "full-390__locations.png",
+      "route": "/locations",
+      "label": "full-390",
+      "fullPage": true
+    },
+    {
+      "file": "full-390__locations__airoli-sector-19.png",
+      "route": "/locations/airoli-sector-19",
+      "label": "full-390",
+      "fullPage": true
+    },
+    {
+      "file": "full-390__locations__airoli-sector-8.png",
+      "route": "/locations/airoli-sector-8",
+      "label": "full-390",
+      "fullPage": true
+    },
+    {
+      "file": "full-390__locations__ghansoli.png",
+      "route": "/locations/ghansoli",
+      "label": "full-390",
+      "fullPage": true
+    },
+    {
+      "file": "full-390__locations__thane.png",
+      "route": "/locations/thane",
+      "label": "full-390",
+      "fullPage": true
+    },
+    {
+      "file": "full-390__timetable.png",
+      "route": "/timetable",
+      "label": "full-390",
+      "fullPage": true
+    },
+    {
+      "file": "full-390__pricing.png",
+      "route": "/pricing",
+      "label": "full-390",
+      "fullPage": true
+    },
+    {
+      "file": "full-390__trial.png",
+      "route": "/trial",
+      "label": "full-390",
+      "fullPage": true
+    },
+    {
+      "file": "full-390__contact.png",
+      "route": "/contact",
+      "label": "full-390",
+      "fullPage": true
+    },
+    {
+      "file": "full-390__privacy-policy.png",
+      "route": "/privacy-policy",
+      "label": "full-390",
+      "fullPage": true
+    },
+    {
+      "file": "full-390__terms.png",
+      "route": "/terms",
+      "label": "full-390",
+      "fullPage": true
+    },
+    {
+      "file": "full-768__home.png",
+      "route": "/",
+      "label": "full-768",
+      "fullPage": true
+    },
+    {
+      "file": "full-768__about.png",
+      "route": "/about",
+      "label": "full-768",
+      "fullPage": true
+    },
+    {
+      "file": "full-768__programs.png",
+      "route": "/programs",
+      "label": "full-768",
+      "fullPage": true
+    },
+    {
+      "file": "full-768__programs__functional-training.png",
+      "route": "/programs/functional-training",
+      "label": "full-768",
+      "fullPage": true
+    },
+    {
+      "file": "full-768__programs__yoga.png",
+      "route": "/programs/yoga",
+      "label": "full-768",
+      "fullPage": true
+    },
+    {
+      "file": "full-768__locations.png",
+      "route": "/locations",
+      "label": "full-768",
+      "fullPage": true
+    },
+    {
+      "file": "full-768__locations__airoli-sector-19.png",
+      "route": "/locations/airoli-sector-19",
+      "label": "full-768",
+      "fullPage": true
+    },
+    {
+      "file": "full-768__pricing.png",
+      "route": "/pricing",
+      "label": "full-768",
+      "fullPage": true
+    },
+    {
+      "file": "full-768__timetable.png",
+      "route": "/timetable",
+      "label": "full-768",
+      "fullPage": true
+    },
+    {
+      "file": "full-768__trial.png",
+      "route": "/trial",
+      "label": "full-768",
+      "fullPage": true
+    },
+    {
+      "file": "full-768__contact.png",
+      "route": "/contact",
+      "label": "full-768",
+      "fullPage": true
+    },
+    {
+      "file": "full-1440__home.png",
+      "route": "/",
+      "label": "full-1440",
+      "fullPage": true
+    },
+    {
+      "file": "full-1440__about.png",
+      "route": "/about",
+      "label": "full-1440",
+      "fullPage": true
+    },
+    {
+      "file": "full-1440__programs.png",
+      "route": "/programs",
+      "label": "full-1440",
+      "fullPage": true
+    },
+    {
+      "file": "full-1440__programs__functional-training.png",
+      "route": "/programs/functional-training",
+      "label": "full-1440",
+      "fullPage": true
+    },
+    {
+      "file": "full-1440__programs__home-personal-training.png",
+      "route": "/programs/home-personal-training",
+      "label": "full-1440",
+      "fullPage": true
+    },
+    {
+      "file": "full-1440__programs__online-training.png",
+      "route": "/programs/online-training",
+      "label": "full-1440",
+      "fullPage": true
+    },
+    {
+      "file": "full-1440__programs__zumba.png",
+      "route": "/programs/zumba",
+      "label": "full-1440",
+      "fullPage": true
+    },
+    {
+      "file": "full-1440__programs__yoga.png",
+      "route": "/programs/yoga",
+      "label": "full-1440",
+      "fullPage": true
+    },
+    {
+      "file": "full-1440__programs__adult-dance.png",
+      "route": "/programs/adult-dance",
+      "label": "full-1440",
+      "fullPage": true
+    },
+    {
+      "file": "full-1440__programs__wedding-choreography.png",
+      "route": "/programs/wedding-choreography",
+      "label": "full-1440",
+      "fullPage": true
+    },
+    {
+      "file": "full-1440__locations.png",
+      "route": "/locations",
+      "label": "full-1440",
+      "fullPage": true
+    },
+    {
+      "file": "full-1440__locations__airoli-sector-19.png",
+      "route": "/locations/airoli-sector-19",
+      "label": "full-1440",
+      "fullPage": true
+    },
+    {
+      "file": "full-1440__locations__airoli-sector-8.png",
+      "route": "/locations/airoli-sector-8",
+      "label": "full-1440",
+      "fullPage": true
+    },
+    {
+      "file": "full-1440__locations__ghansoli.png",
+      "route": "/locations/ghansoli",
+      "label": "full-1440",
+      "fullPage": true
+    },
+    {
+      "file": "full-1440__locations__thane.png",
+      "route": "/locations/thane",
+      "label": "full-1440",
+      "fullPage": true
+    },
+    {
+      "file": "full-1440__timetable.png",
+      "route": "/timetable",
+      "label": "full-1440",
+      "fullPage": true
+    },
+    {
+      "file": "full-1440__pricing.png",
+      "route": "/pricing",
+      "label": "full-1440",
+      "fullPage": true
+    },
+    {
+      "file": "full-1440__trial.png",
+      "route": "/trial",
+      "label": "full-1440",
+      "fullPage": true
+    },
+    {
+      "file": "full-1440__contact.png",
+      "route": "/contact",
+      "label": "full-1440",
+      "fullPage": true
+    },
+    {
+      "file": "full-1440__privacy-policy.png",
+      "route": "/privacy-policy",
+      "label": "full-1440",
+      "fullPage": true
+    },
+    {
+      "file": "full-1440__terms.png",
+      "route": "/terms",
+      "label": "full-1440",
+      "fullPage": true
+    },
+    {
+      "file": "full-1920__home.png",
+      "route": "/",
+      "label": "full-1920",
+      "fullPage": true
+    },
+    {
+      "file": "full-1920__about.png",
+      "route": "/about",
+      "label": "full-1920",
+      "fullPage": true
+    },
+    {
+      "file": "full-1920__programs.png",
+      "route": "/programs",
+      "label": "full-1920",
+      "fullPage": true
+    },
+    {
+      "file": "full-1920__programs__functional-training.png",
+      "route": "/programs/functional-training",
+      "label": "full-1920",
+      "fullPage": true
+    },
+    {
+      "file": "full-1920__programs__yoga.png",
+      "route": "/programs/yoga",
+      "label": "full-1920",
+      "fullPage": true
+    },
+    {
+      "file": "full-1920__programs__adult-dance.png",
+      "route": "/programs/adult-dance",
+      "label": "full-1920",
+      "fullPage": true
+    },
+    {
+      "file": "full-1920__programs__wedding-choreography.png",
+      "route": "/programs/wedding-choreography",
+      "label": "full-1920",
+      "fullPage": true
+    },
+    {
+      "file": "full-1920__locations.png",
+      "route": "/locations",
+      "label": "full-1920",
+      "fullPage": true
+    },
+    {
+      "file": "full-1920__pricing.png",
+      "route": "/pricing",
+      "label": "full-1920",
+      "fullPage": true
+    },
+    {
+      "file": "full-1920__trial.png",
+      "route": "/trial",
+      "label": "full-1920",
+      "fullPage": true
+    },
+    {
+      "file": "vp-390x844__home.png",
+      "route": "/",
+      "label": "vp-390x844",
+      "fullPage": false
+    },
+    {
+      "file": "vp-390x844__about.png",
+      "route": "/about",
+      "label": "vp-390x844",
+      "fullPage": false
+    },
+    {
+      "file": "vp-390x844__programs.png",
+      "route": "/programs",
+      "label": "vp-390x844",
+      "fullPage": false
+    },
+    {
+      "file": "vp-390x844__programs__functional-training.png",
+      "route": "/programs/functional-training",
+      "label": "vp-390x844",
+      "fullPage": false
+    },
+    {
+      "file": "vp-390x844__programs__yoga.png",
+      "route": "/programs/yoga",
+      "label": "vp-390x844",
+      "fullPage": false
+    },
+    {
+      "file": "vp-390x844__locations.png",
+      "route": "/locations",
+      "label": "vp-390x844",
+      "fullPage": false
+    },
+    {
+      "file": "vp-390x844__locations__airoli-sector-19.png",
+      "route": "/locations/airoli-sector-19",
+      "label": "vp-390x844",
+      "fullPage": false
+    },
+    {
+      "file": "vp-390x844__pricing.png",
+      "route": "/pricing",
+      "label": "vp-390x844",
+      "fullPage": false
+    },
+    {
+      "file": "vp-390x844__trial.png",
+      "route": "/trial",
+      "label": "vp-390x844",
+      "fullPage": false
+    },
+    {
+      "file": "vp-390x844__contact.png",
+      "route": "/contact",
+      "label": "vp-390x844",
+      "fullPage": false
+    },
+    {
+      "file": "vp-1440x900__home.png",
+      "route": "/",
+      "label": "vp-1440x900",
+      "fullPage": false
+    },
+    {
+      "file": "vp-1440x900__about.png",
+      "route": "/about",
+      "label": "vp-1440x900",
+      "fullPage": false
+    },
+    {
+      "file": "vp-1440x900__programs.png",
+      "route": "/programs",
+      "label": "vp-1440x900",
+      "fullPage": false
+    },
+    {
+      "file": "vp-1440x900__programs__functional-training.png",
+      "route": "/programs/functional-training",
+      "label": "vp-1440x900",
+      "fullPage": false
+    },
+    {
+      "file": "vp-1440x900__programs__yoga.png",
+      "route": "/programs/yoga",
+      "label": "vp-1440x900",
+      "fullPage": false
+    },
+    {
+      "file": "vp-1440x900__locations.png",
+      "route": "/locations",
+      "label": "vp-1440x900",
+      "fullPage": false
+    },
+    {
+      "file": "vp-1440x900__locations__airoli-sector-19.png",
+      "route": "/locations/airoli-sector-19",
+      "label": "vp-1440x900",
+      "fullPage": false
+    },
+    {
+      "file": "vp-1440x900__pricing.png",
+      "route": "/pricing",
+      "label": "vp-1440x900",
+      "fullPage": false
+    },
+    {
+      "file": "vp-1440x900__trial.png",
+      "route": "/trial",
+      "label": "vp-1440x900",
+      "fullPage": false
+    },
+    {
+      "file": "vp-1440x900__contact.png",
+      "route": "/contact",
+      "label": "vp-1440x900",
+      "fullPage": false
+    },
+    {
+      "file": "family-1440-vp__programs__functional-training.png",
+      "route": "/programs/functional-training",
+      "label": "family-1440-vp",
+      "fullPage": false
+    },
+    {
+      "file": "family-1440-vp__programs__yoga.png",
+      "route": "/programs/yoga",
+      "label": "family-1440-vp",
+      "fullPage": false
+    },
+    {
+      "file": "family-1440-vp__programs__zumba.png",
+      "route": "/programs/zumba",
+      "label": "family-1440-vp",
+      "fullPage": false
+    },
+    {
+      "file": "family-1440-vp__programs__adult-dance.png",
+      "route": "/programs/adult-dance",
+      "label": "family-1440-vp",
+      "fullPage": false
+    },
+    {
+      "file": "family-1440-vp__programs__wedding-choreography.png",
+      "route": "/programs/wedding-choreography",
+      "label": "family-1440-vp",
+      "fullPage": false
+    },
+    {
+      "file": "family-1440-vp__programs__home-personal-training.png",
+      "route": "/programs/home-personal-training",
+      "label": "family-1440-vp",
+      "fullPage": false
+    },
+    {
+      "file": "family-1440-vp__programs__online-training.png",
+      "route": "/programs/online-training",
+      "label": "family-1440-vp",
+      "fullPage": false
+    }
+  ]
+}

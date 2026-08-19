@@ -1,5 +1,17 @@
+import type { Metadata } from "next";
 import Link from "next/link";
-import { SiteChrome } from "@/components/layout";
+import { SiteChrome, PageWithFooter } from "@/components/layout";
+import { RouteOpening } from "@/components/motion";
+import styles from "@/components/status/pulse/status.module.css";
+
+/**
+ * Explicit noindex. Root layout deliberately omits robots so Next’s automatic
+ * 404 `noindex` is not paired with a conflicting `index, follow` tag.
+ */
+export const metadata: Metadata = {
+  title: "Page not found",
+  robots: { index: false, follow: false },
+};
 
 /**
  * Wrapped in the same `SiteChrome` every real route uses, so a 404 doesn't
@@ -9,13 +21,33 @@ import { SiteChrome } from "@/components/layout";
 export default function NotFound() {
   return (
     <SiteChrome>
-      <main className="flex flex-1 flex-col items-center justify-center gap-4 px-6 py-24 text-center">
-        <h1 className="text-2xl font-semibold text-ink">Page not found</h1>
-        <p className="max-w-md text-ink-muted">The page you&apos;re looking for doesn&apos;t exist or may have moved.</p>
-        <Link href="/" className="rounded bg-accent px-4 py-2 font-medium text-white">
-          Return home
-        </Link>
+      <PageWithFooter>
+      <main className={styles.page}>
+        <RouteOpening>
+          <p className={styles.mark} aria-hidden="true" />
+          <h1 className={styles.title}>Page not found</h1>
+          <p className={styles.body}>
+            The page you&apos;re looking for doesn&apos;t exist or may have moved.
+          </p>
+        </RouteOpening>
+        <div className={styles.actions}>
+          <Link href="/" className={styles.primary}>
+            Home
+          </Link>
+        </div>
+        <div className={styles.secondaryRow}>
+          <Link href="/programs" className={styles.secondary}>
+            Programmes
+          </Link>
+          <Link href="/locations" className={styles.secondary}>
+            Find a Studio
+          </Link>
+          <Link href="/trial" className={styles.secondary}>
+            Book a Free Trial
+          </Link>
+        </div>
       </main>
+      </PageWithFooter>
     </SiteChrome>
   );
 }

@@ -1,0 +1,34 @@
+﻿/ -> serious/critical=0 contrast=0
+/about -> serious/critical=0 contrast=0
+/programs -> serious/critical=0 contrast=0
+/programs/functional-training -> serious/critical=0 contrast=0
+/programs/home-personal-training -> serious/critical=0 contrast=0
+/programs/online-training -> serious/critical=0 contrast=0
+/programs/zumba -> serious/critical=0 contrast=0
+/programs/yoga -> serious/critical=0 contrast=0
+/programs/adult-dance -> serious/critical=0 contrast=0
+/programs/wedding-choreography -> serious/critical=0 contrast=0
+/programs/corporate-wellness -> serious/critical=0 contrast=0
+/locations -> serious/critical=0 contrast=0
+/locations/airoli-sector-19 -> serious/critical=0 contrast=0
+/locations/airoli-sector-8 -> serious/critical=0 contrast=0
+/locations/ghansoli -> serious/critical=0 contrast=0
+/locations/thane -> serious/critical=0 contrast=0
+/pricing -> serious/critical=0 contrast=0
+/timetable -> serious/critical=0 contrast=0
+/trial -> serious/critical=0 contrast=0
+/contact -> serious/critical=0 contrast=0
+/privacy-policy -> serious/critical=0 contrast=0
+/terms -> serious/critical=0 contrast=0
+/trainers -> serious/critical=0 contrast=0
+/transformations -> serious/critical=0 contrast=0
+/blog -> serious/critical=0 contrast=0
+
+=== AXE SUMMARY ===
+{
+  "generatedAt": "2026-08-17T16:19:18.816Z",
+  "baseUrl": "https://ankits-studio.vercel.app",
+  "totalSeriousOrCritical": 0,
+  "routesWithSeriousOrCritical": [],
+  "routesWithContrastViolations": []
+}

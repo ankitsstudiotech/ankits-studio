@@ -4,7 +4,7 @@ import { contactInquirySchema, trialLeadSchema } from "./trial-schema";
 const validTrialLead = {
   name: "Aditi Rao",
   phone: "+91 90000 00001",
-  branchSlug: "airoli",
+  branchSlug: "airoli-sector-19",
   programmeSlug: "yoga",
   preferredTiming: "morning",
   ageGroup: "adults",
@@ -53,6 +53,15 @@ describe("trialLeadSchema", () => {
   it("rejects an unknown ageGroup value", () => {
     const result = trialLeadSchema.safeParse({ ...validTrialLead, ageGroup: "toddlers" });
     expect(result.success).toBe(false);
+  });
+
+  it("accepts a submission without ageGroup or trialDate", () => {
+    const { ageGroup: _omit, ...withoutAge } = validTrialLead;
+    void _omit;
+    expect(trialLeadSchema.safeParse(withoutAge).success).toBe(true);
+    expect(
+      trialLeadSchema.safeParse({ ...validTrialLead, ageGroup: "", trialDate: "2026-08-10" }).success,
+    ).toBe(true);
   });
 
   it("rejects consent: false", () => {

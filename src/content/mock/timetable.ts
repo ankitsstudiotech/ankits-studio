@@ -1,11 +1,16 @@
 import type { TimetableSlot } from "../schema";
 
+/**
+ * Illustrative placeholder slots — kept for provenance / launch-gate detection.
+ * Public accessor `getTimetableSlots()` returns **verified slots only** and will
+ * not surface these rows on marketing routes.
+ */
 export const mockTimetableSlots: TimetableSlot[] = [
   {
     dataStatus: "mock",
     mockDisclaimer: "Placeholder schedule — not a real class time.",
     id: "airoli-strength-mon-am",
-    branchSlug: "airoli",
+    branchSlug: "airoli-sector-19",
     programmeSlug: "strength-training",
     dayOfWeek: 0,
     startTime: "06:30",
@@ -16,7 +21,7 @@ export const mockTimetableSlots: TimetableSlot[] = [
     dataStatus: "mock",
     mockDisclaimer: "Placeholder schedule — not a real class time.",
     id: "airoli-yoga-tue-am",
-    branchSlug: "airoli",
+    branchSlug: "airoli-sector-19",
     programmeSlug: "yoga",
     dayOfWeek: 1,
     startTime: "07:00",

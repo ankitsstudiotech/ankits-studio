@@ -1,0 +1,363 @@
+{
+  "generatedAt": "2026-08-08T05:19:14.886Z",
+  "dimensionFails": 0,
+  "stickyExclusionFails": 0,
+  "stickyChecks": [
+    {
+      "filename": "390-trainers.png",
+      "sticky": 0,
+      "hasPad": false,
+      "pass": true
+    },
+    {
+      "filename": "1440-trainers.png",
+      "sticky": 0,
+      "hasPad": false,
+      "pass": true
+    },
+    {
+      "filename": "390-transformations.png",
+      "sticky": 0,
+      "hasPad": false,
+      "pass": true
+    },
+    {
+      "filename": "1440-transformations.png",
+      "sticky": 0,
+      "hasPad": false,
+      "pass": true
+    },
+    {
+      "filename": "390-privacy-policy.png",
+      "sticky": 0,
+      "hasPad": false,
+      "pass": true
+    },
+    {
+      "filename": "1440-privacy-policy.png",
+      "sticky": 0,
+      "hasPad": false,
+      "pass": true
+    },
+    {
+      "filename": "390-terms.png",
+      "sticky": 0,
+      "hasPad": false,
+      "pass": true
+    },
+    {
+      "filename": "1440-terms.png",
+      "sticky": 0,
+      "hasPad": false,
+      "pass": true
+    },
+    {
+      "filename": "390-blog.png",
+      "sticky": 0,
+      "hasPad": false,
+      "pass": true
+    },
+    {
+      "filename": "1440-blog.png",
+      "sticky": 0,
+      "hasPad": false,
+      "pass": true
+    },
+    {
+      "filename": "390-not-found.png",
+      "sticky": 0,
+      "hasPad": false,
+      "pass": true
+    },
+    {
+      "filename": "1440-not-found.png",
+      "sticky": 0,
+      "hasPad": false,
+      "pass": true
+    },
+    {
+      "filename": "390-legacy-personal-training.png",
+      "sticky": 0,
+      "hasPad": false,
+      "pass": true
+    },
+    {
+      "filename": "1440-legacy-personal-training.png",
+      "sticky": 0,
+      "hasPad": false,
+      "pass": true
+    },
+    {
+      "filename": "viewport-390-trainers.png",
+      "sticky": 0,
+      "hasPad": false,
+      "pass": true
+    },
+    {
+      "filename": "viewport-390-transformations.png",
+      "sticky": 0,
+      "hasPad": false,
+      "pass": true
+    },
+    {
+      "filename": "viewport-390-privacy-policy.png",
+      "sticky": 0,
+      "hasPad": false,
+      "pass": true
+    },
+    {
+      "filename": "viewport-390-terms.png",
+      "sticky": 0,
+      "hasPad": false,
+      "pass": true
+    },
+    {
+      "filename": "viewport-390-not-found.png",
+      "sticky": 0,
+      "hasPad": false,
+      "pass": true
+    }
+  ],
+  "records": [
+    {
+      "filename": "390-trainers.png",
+      "route": "/trainers",
+      "expectedWidth": 390,
+      "actualWidth": 390,
+      "actualHeight": 4176,
+      "fullPage": true,
+      "result": "pass",
+      "stickyAbsent": true
+    },
+    {
+      "filename": "1440-trainers.png",
+      "route": "/trainers",
+      "expectedWidth": 1440,
+      "actualWidth": 1440,
+      "actualHeight": 3411,
+      "fullPage": true,
+      "result": "pass",
+      "stickyAbsent": true
+    },
+    {
+      "filename": "390-transformations.png",
+      "route": "/transformations",
+      "expectedWidth": 390,
+      "actualWidth": 390,
+      "actualHeight": 3056,
+      "fullPage": true,
+      "result": "pass",
+      "stickyAbsent": true
+    },
+    {
+      "filename": "1440-transformations.png",
+      "route": "/transformations",
+      "expectedWidth": 1440,
+      "actualWidth": 1440,
+      "actualHeight": 2388,
+      "fullPage": true,
+      "result": "pass",
+      "stickyAbsent": true
+    },
+    {
+      "filename": "390-privacy-policy.png",
+      "route": "/privacy-policy",
+      "expectedWidth": 390,
+      "actualWidth": 390,
+      "actualHeight": 2561,
+      "fullPage": true,
+      "result": "pass",
+      "stickyAbsent": true
+    },
+    {
+      "filename": "1440-privacy-policy.png",
+      "route": "/privacy-policy",
+      "expectedWidth": 1440,
+      "actualWidth": 1440,
+      "actualHeight": 1868,
+      "fullPage": true,
+      "result": "pass",
+      "stickyAbsent": true
+    },
+    {
+      "filename": "390-terms.png",
+      "route": "/terms",
+      "expectedWidth": 390,
+      "actualWidth": 390,
+      "actualHeight": 2429,
+      "fullPage": true,
+      "result": "pass",
+      "stickyAbsent": true
+    },
+    {
+      "filename": "1440-terms.png",
+      "route": "/terms",
+      "expectedWidth": 1440,
+      "actualWidth": 1440,
+      "actualHeight": 1775,
+      "fullPage": true,
+      "result": "pass",
+      "stickyAbsent": true
+    },
+    {
+      "filename": "390-blog.png",
+      "route": "/blog",
+      "expectedWidth": 390,
+      "actualWidth": 390,
+      "actualHeight": 1688,
+      "fullPage": true,
+      "result": "pass",
+      "stickyAbsent": true
+    },
+    {
+      "filename": "1440-blog.png",
+      "route": "/blog",
+      "expectedWidth": 1440,
+      "actualWidth": 1440,
+      "actualHeight": 1359,
+      "fullPage": true,
+      "result": "pass",
+      "stickyAbsent": true
+    },
+    {
+      "filename": "390-not-found.png",
+      "route": "/this-page-does-not-exist-prompt3-correction",
+      "expectedWidth": 390,
+      "actualWidth": 390,
+      "actualHeight": 1535,
+      "fullPage": true,
+      "result": "pass",
+      "stickyAbsent": true
+    },
+    {
+      "filename": "1440-not-found.png",
+      "route": "/this-page-does-not-exist-prompt3-correction",
+      "expectedWidth": 1440,
+      "actualWidth": 1440,
+      "actualHeight": 1086,
+      "fullPage": true,
+      "result": "pass",
+      "stickyAbsent": true
+    },
+    {
+      "filename": "390-legacy-personal-training.png",
+      "route": "/programs/personal-training",
+      "expectedWidth": 390,
+      "actualWidth": 390,
+      "actualHeight": 1558,
+      "fullPage": true,
+      "result": "pass",
+      "stickyAbsent": true
+    },
+    {
+      "filename": "1440-legacy-personal-training.png",
+      "route": "/programs/personal-training",
+      "expectedWidth": 1440,
+      "actualWidth": 1440,
+      "actualHeight": 1152,
+      "fullPage": true,
+      "result": "pass",
+      "stickyAbsent": true
+    },
+    {
+      "filename": "viewport-390-trainers.png",
+      "route": "/trainers",
+      "expectedWidth": 390,
+      "actualWidth": 390,
+      "actualHeight": 844,
+      "fullPage": false,
+      "result": "pass",
+      "stickyAbsent": true
+    },
+    {
+      "filename": "viewport-390-transformations.png",
+      "route": "/transformations",
+      "expectedWidth": 390,
+      "actualWidth": 390,
+      "actualHeight": 844,
+      "fullPage": false,
+      "result": "pass",
+      "stickyAbsent": true
+    },
+    {
+      "filename": "viewport-390-privacy-policy.png",
+      "route": "/privacy-policy",
+      "expectedWidth": 390,
+      "actualWidth": 390,
+      "actualHeight": 844,
+      "fullPage": false,
+      "result": "pass",
+      "stickyAbsent": true
+    },
+    {
+      "filename": "viewport-390-terms.png",
+      "route": "/terms",
+      "expectedWidth": 390,
+      "actualWidth": 390,
+      "actualHeight": 844,
+      "fullPage": false,
+      "result": "pass",
+      "stickyAbsent": true
+    },
+    {
+      "filename": "viewport-390-not-found.png",
+      "route": "/this-page-does-not-exist-prompt3-correction",
+      "expectedWidth": 390,
+      "actualWidth": 390,
+      "actualHeight": 844,
+      "fullPage": false,
+      "result": "pass",
+      "stickyAbsent": true
+    },
+    {
+      "filename": "regression-viewport-390-home.png",
+      "route": "/",
+      "expectedWidth": 390,
+      "actualWidth": 390,
+      "actualHeight": 844,
+      "fullPage": false,
+      "result": "pass",
+      "stickyPresent": true
+    },
+    {
+      "filename": "regression-viewport-390-programs.png",
+      "route": "/programs",
+      "expectedWidth": 390,
+      "actualWidth": 390,
+      "actualHeight": 844,
+      "fullPage": false,
+      "result": "pass",
+      "stickyPresent": true
+    },
+    {
+      "filename": "regression-viewport-390-locations.png",
+      "route": "/locations",
+      "expectedWidth": 390,
+      "actualWidth": 390,
+      "actualHeight": 844,
+      "fullPage": false,
+      "result": "pass",
+      "stickyPresent": true
+    },
+    {
+      "filename": "regression-viewport-390-pricing.png",
+      "route": "/pricing",
+      "expectedWidth": 390,
+      "actualWidth": 390,
+      "actualHeight": 844,
+      "fullPage": false,
+      "result": "pass",
+      "stickyPresent": true
+    },
+    {
+      "filename": "regression-viewport-390-trial.png",
+      "route": "/trial",
+      "expectedWidth": 390,
+      "actualWidth": 390,
+      "actualHeight": 844,
+      "fullPage": false,
+      "result": "pass",
+      "stickyPresent": true
+    }
+  ]
+}

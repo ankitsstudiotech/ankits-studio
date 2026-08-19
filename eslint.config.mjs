@@ -14,6 +14,7 @@ const eslintConfig = defineConfig([
     "next-env.d.ts",
     "playwright-report/**",
     "test-results/**",
+    "scripts/**",
   ]),
   // Content-domain leak guard (docs/CONTENT-MODEL.md, DECISIONS.md
   // ADR-011): consumers must go through the src/content accessor

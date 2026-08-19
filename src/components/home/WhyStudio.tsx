@@ -1,8 +1,9 @@
-import { ScrollReveal } from "@/components/motion/ScrollReveal";
-import { Card } from "@/components/ui/Card";
-import { Section } from "@/components/ui/Section";
-import { Body, Heading } from "@/components/ui/Typography";
-import { MockDisclaimer } from "./MockDisclaimer";
+"use client";
+
+import { PulseMedia } from "@/components/media";
+import { GroupReveal, SectionReveal } from "@/components/motion";
+import { resolveSlotMedia } from "@/content/media";
+import styles from "./pulse/pulse-home.module.css";
 
 export type WhyPoint = {
   id: string;
@@ -11,32 +12,58 @@ export type WhyPoint = {
 };
 
 export type WhyStudioProps = {
-  points: WhyPoint[];
-  disclaimer: string;
+  title: string;
+  body: string;
+  points?: WhyPoint[];
 };
 
-export function WhyStudio({ points, disclaimer }: WhyStudioProps) {
+/**
+ * Machine-free / coach-led — Pattern B paired reveal + principle group.
+ * Optional `home.community` strengthens the existing narrative (no new section).
+ */
+export function WhyStudio({ title, body, points = [] }: WhyStudioProps) {
+  const communityMedia = resolveSlotMedia("home.community");
+
   return (
-    <Section
-      id="why"
-      eyebrow="Why Ankit's Studio"
-      title="Built for the whole community"
-      description="A premium space that holds strength credibility and dance energy without looking like a generic gym template."
-      className="bg-surface-raised/50"
+    <section
+      id="studio"
+      className={`${styles.field} ${styles.band} ${styles.diffBand}`}
+      aria-labelledby="home-diff-title"
     >
-      <div className="grid gap-4 md:grid-cols-3">
-        {points.map((point, index) => (
-          <ScrollReveal key={point.id} delay={index * 0.05}>
-            <Card className="h-full">
-              <Heading as="h3" className="mb-3">
-                {point.title}
-              </Heading>
-              <Body>{point.body}</Body>
-            </Card>
-          </ScrollReveal>
-        ))}
+      <div
+        className={[
+          styles.diffGrid,
+          communityMedia ? styles.diffGridWithMedia : "",
+        ]
+          .filter(Boolean)
+          .join(" ")}
+      >
+        <SectionReveal pattern="B" side="left" className={styles.diffCopy}>
+          <span className="motion-accent-line" aria-hidden data-drawn="true" />
+          <h2 id="home-diff-title">{title}</h2>
+          <p>{body}</p>
+        </SectionReveal>
+        {communityMedia ? (
+          <div className={styles.diffMedia}>
+            <PulseMedia
+              item={communityMedia}
+              sizes="(max-width: 767px) 100vw, 42vw"
+            />
+          </div>
+        ) : null}
+        {points.length > 0 ? (
+          <GroupReveal withAccent className={styles.diffListWrap}>
+            <ul className={styles.diffList}>
+              {points.map((point) => (
+                <li key={point.id}>
+                  <strong>{point.title}</strong>
+                  <span>{point.body}</span>
+                </li>
+              ))}
+            </ul>
+          </GroupReveal>
+        ) : null}
       </div>
-      <MockDisclaimer className="mt-6">{disclaimer}</MockDisclaimer>
-    </Section>
+    </section>
   );
 }

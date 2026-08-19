@@ -36,9 +36,9 @@ export function Section({
     >
       <Container narrow={narrow} className={containerClassName}>
         {(eyebrow || title || description) && (
-          <header className="mb-8 max-w-2xl sm:mb-10">
+          <header className="mb-[var(--spacing-stack)] max-w-2xl sm:mb-8">
             {eyebrow ? (
-              <p className="mb-3 font-[family-name:var(--font-sans)] text-[length:var(--text-overline)] font-semibold uppercase tracking-[var(--text-overline--letter-spacing)] text-accent">
+              <p className="mb-2 font-[family-name:var(--font-sans)] text-[length:var(--text-overline)] font-semibold uppercase tracking-[var(--text-overline--letter-spacing)] text-accent">
                 {eyebrow}
               </p>
             ) : null}
@@ -48,7 +48,7 @@ export function Section({
               </TitleComp>
             ) : null}
             {description ? (
-              <p className="mt-3 text-[length:var(--text-body-lg)] leading-[var(--text-body-lg--line-height)] text-ink-muted">
+              <p className="mt-[var(--spacing-stack)] text-[length:var(--text-body-lg)] leading-[var(--text-body-lg--line-height)] text-ink-muted">
                 {description}
               </p>
             ) : null}

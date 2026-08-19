@@ -1,22 +1,24 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import { PageBreadcrumb } from "@/components/layout/PageBreadcrumb";
-import { Badge } from "@/components/ui/Badge";
-import { Card } from "@/components/ui/Card";
-import { Section } from "@/components/ui/Section";
-import { Body, Caption, Heading } from "@/components/ui/Typography";
-import { getContactDetails, getPubliclyListedBranches } from "@/content";
+import { PageWithFooter } from "@/components/layout/PageWithFooter";
+import { RouteOpening } from "@/components/motion";
+import { getContactDetails, getPubliclyListedBranches, getStudioContactLinks, getBranchMapsUrl } from "@/content";
+import {
+  getPrimaryConversionHref,
+  SECONDARY_TRIAL_FORM_HREF,
+} from "@/lib/conversion";
 import { buildPageMetadata } from "@/lib/seo/metadata";
 import { serializeJsonLd } from "@/lib/seo/serialize";
 import { buildBreadcrumbJsonLd } from "@/lib/seo/structured-data";
-import { ContactForm } from "./ContactForm";
+import { ContactWhatsAppBuilder } from "./ContactWhatsAppBuilder";
 
 const PATH = "/contact";
 
 export const metadata: Metadata = buildPageMetadata({
   title: "Contact",
   description:
-    "Contact Ankit's Studio — branch directory and a fallback inquiry form. Phone numbers stay non-clickable until verified.",
+    "Contact Ankit's Studio — WhatsApp, central phone, email, and four neighbourhood studios.",
   path: PATH,
 });
 
@@ -25,124 +27,163 @@ const breadcrumbTrail = [
   { name: "Contact", path: PATH },
 ];
 
-type ContactPageProps = {
-  searchParams: Promise<{ status?: string; mode?: string; ref?: string }>;
-};
-
-export default async function ContactPage({ searchParams }: ContactPageProps) {
-  const params = await searchParams;
+/**
+ * Contact prioritises WhatsApp, phone, email and branches.
+ * No server contact form — production has no live lead-delivery provider.
+ */
+export default function ContactPage() {
   const contact = getContactDetails();
+  const studioLinks = getStudioContactLinks();
+  const whatsappTrialHref = getPrimaryConversionHref();
   const branches = getPubliclyListedBranches();
   const breadcrumbJsonLd = buildBreadcrumbJsonLd(breadcrumbTrail);
-  const disclaimer =
-    contact.dataStatus === "verified" ? undefined : contact.mockDisclaimer;
-
-  const status = params.status;
-  const statusMessage =
-    status === "received"
-      ? params.mode === "mock"
-        ? `Inquiry accepted locally for development (reference ${params.ref ?? "n/a"}). Not delivered to a live inbox.`
-        : `Inquiry accepted (reference ${params.ref ?? "n/a"}).`
-      : status === "not-configured"
-        ? "Your message was not delivered. No live lead provider is configured."
-        : status === "provider-error"
-          ? "Your message was not delivered. The lead provider is not ready."
-          : null;
+  const branchOptions = branches.map((branch) => ({
+    slug: branch.slug,
+    locality: branch.locality,
+  }));
 
   return (
-    <main className="flex flex-1 flex-col">
+    <PageWithFooter>
+    <main className="pulse-page flex flex-col">
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: serializeJsonLd(breadcrumbJsonLd) }}
       />
 
-      <PageBreadcrumb items={breadcrumbTrail} />
+      <div className="pulse-crumb-bar">
+        <PageBreadcrumb items={breadcrumbTrail} />
+      </div>
 
-      <Section
-        eyebrow="Contact"
-        title="Get in touch"
-        titleAs="h1"
-        description={contact.introText}
-      >
-        <Badge accent="neutral" className="mb-4">
-          Safe mock contact states
-        </Badge>
-        <Body className="mb-4 max-w-3xl">
-          Prefer a trial class?{" "}
-          <Link href="/trial" className="text-accent underline-offset-4 hover:underline">
-            Book a free trial
-          </Link>{" "}
-          first — that is the primary conversion path.
-        </Body>
-        {disclaimer ? <Caption className="mb-6 text-ink-subtle">{disclaimer}</Caption> : null}
+      <div className="grid w-full max-w-[var(--layout-content)] gap-10 px-[var(--layout-gutter)] py-[var(--spacing-section)] lg:grid-cols-[minmax(0,0.95fr)_minmax(0,1.15fr)] lg:items-start lg:gap-12">
+        <section aria-labelledby="contact-title">
+          <RouteOpening>
+            <p className="pulse-kicker">Contact</p>
+            <h1 id="contact-title" className="pulse-title">
+              Get in touch
+            </h1>
+            <p className="pulse-lede">{contact.introText}</p>
+            <div className="mt-6 flex flex-col gap-3">
+              <Link
+                href={whatsappTrialHref}
+                className="pulse-cta self-start"
+                {...(whatsappTrialHref.startsWith("http")
+                  ? { target: "_blank", rel: "noopener noreferrer" }
+                  : {})}
+              >
+                Book a free trial on WhatsApp
+              </Link>
+              <p className="pulse-body">
+                Or use the{" "}
+                <Link
+                  href={SECONDARY_TRIAL_FORM_HREF}
+                  className="font-semibold text-ink-inverse underline underline-offset-4"
+                >
+                  free trial message builder
+                </Link>
+                .
+              </p>
+            </div>
+          </RouteOpening>
 
-        <dl className="mb-10 grid gap-4 sm:grid-cols-2">
-          <div className="rounded-[var(--radius-lg)] border border-border bg-surface-raised p-5">
-            <dt className="text-sm font-semibold text-ink">General phone</dt>
-            <dd className="mt-2">
-              {/* Plain text only — never tel: for unverified mock numbers (ADR-011). */}
-              <Body as="span">{contact.generalPhone}</Body>
-              <Caption className="mt-2 block">
-                Shown as text only until the number is verified for dialling.
-              </Caption>
-            </dd>
-          </div>
-          <div className="rounded-[var(--radius-lg)] border border-border bg-surface-raised p-5">
-            <dt className="text-sm font-semibold text-ink">General email</dt>
-            <dd className="mt-2">
-              <Body as="span" className="break-all">
-                {contact.generalEmail}
-              </Body>
-              <Caption className="mt-2 block">
-                Placeholder address — not a confirmed studio inbox.
-              </Caption>
-            </dd>
-          </div>
-        </dl>
-      </Section>
-
-      <Section
-        eyebrow="Branches"
-        title="Listed locations"
-        description="Branch phone and WhatsApp actions stay disabled until each branch record is verified."
-      >
-        <ul className="grid gap-4 sm:grid-cols-2">
-          {branches.map((branch) => (
-            <li key={branch.slug}>
-              <Card href={`/locations/${branch.slug}`} interactive className="h-full">
-                <Heading as="h3" className="mb-2 break-words">
-                  {branch.name}
-                </Heading>
-                <Body className="mb-3 break-words">{branch.address}</Body>
-                <Caption>
-                  {branch.dataStatus === "verified"
-                    ? "Verified branch details."
-                    : branch.mockDisclaimer}
-                </Caption>
-              </Card>
-            </li>
-          ))}
-        </ul>
-      </Section>
-
-      <Section
-        eyebrow="Inquiry"
-        title="Send a non-trial message"
-        description="Fallback form for general questions. Live delivery requires a configured lead provider."
-        narrow
-      >
-        {statusMessage ? (
-          <p
-            role="status"
-            aria-live="polite"
-            className="mb-6 rounded-[var(--radius-md)] border border-border bg-surface-raised px-4 py-3 text-sm"
+          <section
+            id="contact-enquiry"
+            className="mt-10 pulse-form-panel sm:p-6"
+            aria-labelledby="contact-enquiry-title"
           >
-            {statusMessage}
-          </p>
-        ) : null}
+            <h2
+              id="contact-enquiry-title"
+              className="mb-2 font-[family-name:var(--font-display)] text-[length:var(--text-heading)]"
+            >
+              Send a message on WhatsApp
+            </h2>
+            <p className="mb-6 text-sm text-[var(--color-muted-on-field)]">
+              Prepare a general enquiry. For the fastest reply about batches and trials, WhatsApp is
+              best.
+            </p>
+            <ContactWhatsAppBuilder
+              branches={branchOptions}
+              fallbackHref={SECONDARY_TRIAL_FORM_HREF}
+            />
+          </section>
+        </section>
 
-        <ContactForm />
-      </Section>
+        <section aria-labelledby="contact-channels" className="space-y-4">
+          <h2 id="contact-channels" className="pulse-section-title">
+            Phone, email &amp; studios
+          </h2>
+          <div className="border border-[var(--color-border-on-field)] bg-field-raised p-5">
+            <p className="text-sm font-semibold text-ink-inverse">Phone &amp; WhatsApp</p>
+            {studioLinks.phoneHref ? (
+              <a
+                href={studioLinks.phoneHref}
+                className="mt-2 block text-lg font-semibold text-ink-inverse underline underline-offset-4"
+              >
+                {contact.generalPhone}
+              </a>
+            ) : (
+              <p className="mt-2 text-lg font-semibold text-ink-inverse">{contact.generalPhone}</p>
+            )}
+            <p className="mt-2 text-sm text-[var(--color-muted-on-field)]">
+              Shared across all branches. Messages are answered during studio operating hours.
+            </p>
+          </div>
+          <div className="border border-[var(--color-border-on-field)] bg-field-raised p-5">
+            <p className="text-sm font-semibold text-ink-inverse">Email</p>
+            {studioLinks.emailHref ? (
+              <a
+                href={studioLinks.emailHref}
+                className="mt-2 block break-all font-semibold text-ink-inverse underline underline-offset-4"
+              >
+                {contact.generalEmail}
+              </a>
+            ) : (
+              <p className="mt-2 break-all font-semibold text-ink-inverse">{contact.generalEmail}</p>
+            )}
+          </div>
+          <ul className="grid gap-3 sm:grid-cols-2">
+            {branches.map((branch) => {
+              const mapsUrl = getBranchMapsUrl(branch);
+              return (
+                <li
+                  key={branch.slug}
+                  className="border border-[var(--color-border-on-field)] bg-field-raised p-4 text-ink-inverse"
+                >
+                  <Link
+                    href={`/locations/${branch.slug}`}
+                    className="block text-ink-inverse no-underline transition-colors hover:text-white"
+                  >
+                    <span className="font-[family-name:var(--font-display)] text-lg tracking-wide uppercase">
+                      {branch.locality}
+                    </span>
+                    <span className="mt-1 block text-sm text-[var(--color-muted-on-field)]">
+                      {branch.address ?? "See the branch page for details"}
+                    </span>
+                  </Link>
+                  <div className="mt-3 flex flex-wrap gap-x-4 gap-y-2">
+                    <Link
+                      href={`/locations/${branch.slug}`}
+                      className="text-sm font-semibold text-ink-inverse underline underline-offset-4"
+                    >
+                      Studio page
+                    </Link>
+                    {mapsUrl ? (
+                      <a
+                        href={mapsUrl}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="text-sm font-semibold text-ink-inverse underline underline-offset-4"
+                      >
+                        Open in Google Maps
+                      </a>
+                    ) : null}
+                  </div>
+                </li>
+              );
+            })}
+          </ul>
+        </section>
+      </div>
     </main>
+    </PageWithFooter>
   );
 }

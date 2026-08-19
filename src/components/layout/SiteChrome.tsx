@@ -1,68 +1,39 @@
+import { getBusinessIdentity, getNavigationItems } from "@/content";
 import {
-  getBusinessIdentity,
-  getNavigationItems,
-  getPubliclyListedBranches,
-} from "@/content";
-import { SiteFooter } from "./SiteFooter";
+  getPrimaryConversionHref,
+  getPrimaryConversionLabel,
+} from "@/lib/conversion";
+import { MotionReady } from "@/components/motion";
 import { SiteHeader } from "./SiteHeader";
 import { StickyCtaBar } from "./StickyCtaBar";
-import type { FooterLinkGroup, NavItem } from "./types";
+import type { NavItem } from "./types";
 
 function toNavItems(): NavItem[] {
+  const primaryHref = getPrimaryConversionHref();
   return getNavigationItems("primary").map((item) => ({
     id: item.id,
-    label: item.label,
-    href: item.path,
+    label: item.isPrimaryCta ? getPrimaryConversionLabel() : item.label,
+    // Primary CTA uses WhatsApp when central contact is verified; nav path
+    // stays `/trial` in content for schema constraints (path must start with `/`).
+    href: item.isPrimaryCta ? primaryHref : item.path,
     isPrimaryCta: item.isPrimaryCta,
   }));
 }
 
-function toFooterGroups(): FooterLinkGroup[] {
-  const footerLinks = getNavigationItems("footer").map((item) => ({
-    id: item.id,
-    label: item.label,
-    href: item.path,
-  }));
-  const branches = getPubliclyListedBranches().map((branch) => ({
-    id: `footer-branch-${branch.slug}`,
-    label: branch.slug.charAt(0).toUpperCase() + branch.slug.slice(1),
-    href: `/locations/${branch.slug}`,
-  }));
-
-  return [
-    { title: "Explore", links: footerLinks },
-    { title: "Branches", links: branches },
-  ];
-}
-
 /**
- * Server component. `SiteHeader` and `StickyCtaBar` are each independently
- * "use client" (they read `usePathname()` themselves) — there is no shared
- * client wrapper around them, so `SiteFooter` (no interactivity) stays a
- * pure server-rendered leaf, never entering the client bundle graph. See
- * docs/DECISIONS.md ADR-013 (ARCH-001) — this replaces the previous
- * `PathAwareShell` client wrapper, which pulled the footer into the client
- * graph for no reason.
+ * Header + sticky CTA only. The footer is rendered by `PageWithFooter` inside
+ * each page payload so it cannot paint in the layout shell (ADR-013 ARCH-001
+ * still holds: SiteFooter stays a server leaf, never imported by client chrome).
  */
 export function SiteChrome({ children }: { children: React.ReactNode }) {
   const identity = getBusinessIdentity();
-  const identityDisclaimer =
-    identity.dataStatus === "verified" ? undefined : identity.mockDisclaimer;
 
   return (
     <>
+      <MotionReady />
       <SiteHeader brandName={identity.displayName} items={toNavItems()} />
-      <div className="flex flex-1 flex-col">{children}</div>
-      <SiteFooter
-        brandName={identity.displayName}
-        tagline={identity.tagline}
-        groups={toFooterGroups()}
-        disclaimer={
-          identityDisclaimer ??
-          "Branch contact actions remain disabled until records are verified."
-        }
-      />
-      <StickyCtaBar href="/trial" hideOnPaths={["/trial", "/book-a-free-trial"]} />
+      {children}
+      <StickyCtaBar hideOnPaths={["/book-a-free-trial"]} />
     </>
   );
 }

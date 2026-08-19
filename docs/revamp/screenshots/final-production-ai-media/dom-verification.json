@@ -1,0 +1,401 @@
+[
+  {
+    "path": "/",
+    "viewport": "390x2400",
+    "hasDevelopmentPreviewBanner": false,
+    "hasPerImageConceptLabel": false,
+    "hasFooterDisclosure": true
+  },
+  {
+    "path": "/about",
+    "viewport": "390x2400",
+    "hasDevelopmentPreviewBanner": false,
+    "hasPerImageConceptLabel": false,
+    "hasFooterDisclosure": true
+  },
+  {
+    "path": "/programs",
+    "viewport": "390x2400",
+    "hasDevelopmentPreviewBanner": false,
+    "hasPerImageConceptLabel": false,
+    "hasFooterDisclosure": true
+  },
+  {
+    "path": "/programs/functional-training",
+    "viewport": "390x2400",
+    "hasDevelopmentPreviewBanner": false,
+    "hasPerImageConceptLabel": false,
+    "hasFooterDisclosure": true
+  },
+  {
+    "path": "/programs/zumba",
+    "viewport": "390x2400",
+    "hasDevelopmentPreviewBanner": false,
+    "hasPerImageConceptLabel": false,
+    "hasFooterDisclosure": true
+  },
+  {
+    "path": "/programs/yoga",
+    "viewport": "390x2400",
+    "hasDevelopmentPreviewBanner": false,
+    "hasPerImageConceptLabel": false,
+    "hasFooterDisclosure": true
+  },
+  {
+    "path": "/programs/adult-dance",
+    "viewport": "390x2400",
+    "hasDevelopmentPreviewBanner": false,
+    "hasPerImageConceptLabel": false,
+    "hasFooterDisclosure": true
+  },
+  {
+    "path": "/programs/wedding-choreography",
+    "viewport": "390x2400",
+    "hasDevelopmentPreviewBanner": false,
+    "hasPerImageConceptLabel": false,
+    "hasFooterDisclosure": true
+  },
+  {
+    "path": "/programs/home-personal-training",
+    "viewport": "390x2400",
+    "hasDevelopmentPreviewBanner": false,
+    "hasPerImageConceptLabel": false,
+    "hasFooterDisclosure": true
+  },
+  {
+    "path": "/programs/online-training",
+    "viewport": "390x2400",
+    "hasDevelopmentPreviewBanner": false,
+    "hasPerImageConceptLabel": false,
+    "hasFooterDisclosure": true
+  },
+  {
+    "path": "/programs/corporate-wellness",
+    "viewport": "390x2400",
+    "hasDevelopmentPreviewBanner": false,
+    "hasPerImageConceptLabel": false,
+    "hasFooterDisclosure": true
+  },
+  {
+    "path": "/locations",
+    "viewport": "390x2400",
+    "hasDevelopmentPreviewBanner": false,
+    "hasPerImageConceptLabel": false,
+    "hasFooterDisclosure": true
+  },
+  {
+    "path": "/locations/airoli-sector-19",
+    "viewport": "390x2400",
+    "hasDevelopmentPreviewBanner": false,
+    "hasPerImageConceptLabel": false,
+    "hasFooterDisclosure": true
+  },
+  {
+    "path": "/pricing",
+    "viewport": "390x2400",
+    "hasDevelopmentPreviewBanner": false,
+    "hasPerImageConceptLabel": false,
+    "hasFooterDisclosure": true
+  },
+  {
+    "path": "/timetable",
+    "viewport": "390x2400",
+    "hasDevelopmentPreviewBanner": false,
+    "hasPerImageConceptLabel": false,
+    "hasFooterDisclosure": true
+  },
+  {
+    "path": "/trial",
+    "viewport": "390x2400",
+    "hasDevelopmentPreviewBanner": false,
+    "hasPerImageConceptLabel": false,
+    "hasFooterDisclosure": true
+  },
+  {
+    "path": "/contact",
+    "viewport": "390x2400",
+    "hasDevelopmentPreviewBanner": false,
+    "hasPerImageConceptLabel": false,
+    "hasFooterDisclosure": true
+  },
+  {
+    "path": "/",
+    "viewport": "768x2400",
+    "hasDevelopmentPreviewBanner": false,
+    "hasPerImageConceptLabel": false,
+    "hasFooterDisclosure": true
+  },
+  {
+    "path": "/programs",
+    "viewport": "768x2400",
+    "hasDevelopmentPreviewBanner": false,
+    "hasPerImageConceptLabel": false,
+    "hasFooterDisclosure": true
+  },
+  {
+    "path": "/about",
+    "viewport": "768x2400",
+    "hasDevelopmentPreviewBanner": false,
+    "hasPerImageConceptLabel": false,
+    "hasFooterDisclosure": true
+  },
+  {
+    "path": "/locations",
+    "viewport": "768x2400",
+    "hasDevelopmentPreviewBanner": false,
+    "hasPerImageConceptLabel": false,
+    "hasFooterDisclosure": true
+  },
+  {
+    "path": "/programs/functional-training",
+    "viewport": "768x2400",
+    "hasDevelopmentPreviewBanner": false,
+    "hasPerImageConceptLabel": false,
+    "hasFooterDisclosure": true
+  },
+  {
+    "path": "/programs/corporate-wellness",
+    "viewport": "768x2400",
+    "hasDevelopmentPreviewBanner": false,
+    "hasPerImageConceptLabel": false,
+    "hasFooterDisclosure": true
+  },
+  {
+    "path": "/",
+    "viewport": "1440x2400",
+    "hasDevelopmentPreviewBanner": false,
+    "hasPerImageConceptLabel": false,
+    "hasFooterDisclosure": true
+  },
+  {
+    "path": "/about",
+    "viewport": "1440x2400",
+    "hasDevelopmentPreviewBanner": false,
+    "hasPerImageConceptLabel": false,
+    "hasFooterDisclosure": true
+  },
+  {
+    "path": "/programs",
+    "viewport": "1440x2400",
+    "hasDevelopmentPreviewBanner": false,
+    "hasPerImageConceptLabel": false,
+    "hasFooterDisclosure": true
+  },
+  {
+    "path": "/programs/functional-training",
+    "viewport": "1440x2400",
+    "hasDevelopmentPreviewBanner": false,
+    "hasPerImageConceptLabel": false,
+    "hasFooterDisclosure": true
+  },
+  {
+    "path": "/programs/zumba",
+    "viewport": "1440x2400",
+    "hasDevelopmentPreviewBanner": false,
+    "hasPerImageConceptLabel": false,
+    "hasFooterDisclosure": true
+  },
+  {
+    "path": "/programs/yoga",
+    "viewport": "1440x2400",
+    "hasDevelopmentPreviewBanner": false,
+    "hasPerImageConceptLabel": false,
+    "hasFooterDisclosure": true
+  },
+  {
+    "path": "/programs/adult-dance",
+    "viewport": "1440x2400",
+    "hasDevelopmentPreviewBanner": false,
+    "hasPerImageConceptLabel": false,
+    "hasFooterDisclosure": true
+  },
+  {
+    "path": "/programs/wedding-choreography",
+    "viewport": "1440x2400",
+    "hasDevelopmentPreviewBanner": false,
+    "hasPerImageConceptLabel": false,
+    "hasFooterDisclosure": true
+  },
+  {
+    "path": "/programs/home-personal-training",
+    "viewport": "1440x2400",
+    "hasDevelopmentPreviewBanner": false,
+    "hasPerImageConceptLabel": false,
+    "hasFooterDisclosure": true
+  },
+  {
+    "path": "/programs/online-training",
+    "viewport": "1440x2400",
+    "hasDevelopmentPreviewBanner": false,
+    "hasPerImageConceptLabel": false,
+    "hasFooterDisclosure": true
+  },
+  {
+    "path": "/programs/corporate-wellness",
+    "viewport": "1440x2400",
+    "hasDevelopmentPreviewBanner": false,
+    "hasPerImageConceptLabel": false,
+    "hasFooterDisclosure": true
+  },
+  {
+    "path": "/locations",
+    "viewport": "1440x2400",
+    "hasDevelopmentPreviewBanner": false,
+    "hasPerImageConceptLabel": false,
+    "hasFooterDisclosure": true
+  },
+  {
+    "path": "/locations/airoli-sector-19",
+    "viewport": "1440x2400",
+    "hasDevelopmentPreviewBanner": false,
+    "hasPerImageConceptLabel": false,
+    "hasFooterDisclosure": true
+  },
+  {
+    "path": "/pricing",
+    "viewport": "1440x2400",
+    "hasDevelopmentPreviewBanner": false,
+    "hasPerImageConceptLabel": false,
+    "hasFooterDisclosure": true
+  },
+  {
+    "path": "/timetable",
+    "viewport": "1440x2400",
+    "hasDevelopmentPreviewBanner": false,
+    "hasPerImageConceptLabel": false,
+    "hasFooterDisclosure": true
+  },
+  {
+    "path": "/trial",
+    "viewport": "1440x2400",
+    "hasDevelopmentPreviewBanner": false,
+    "hasPerImageConceptLabel": false,
+    "hasFooterDisclosure": true
+  },
+  {
+    "path": "/contact",
+    "viewport": "1440x2400",
+    "hasDevelopmentPreviewBanner": false,
+    "hasPerImageConceptLabel": false,
+    "hasFooterDisclosure": true
+  },
+  {
+    "path": "/",
+    "viewport": "1920x2400",
+    "hasDevelopmentPreviewBanner": false,
+    "hasPerImageConceptLabel": false,
+    "hasFooterDisclosure": true
+  },
+  {
+    "path": "/programs",
+    "viewport": "1920x2400",
+    "hasDevelopmentPreviewBanner": false,
+    "hasPerImageConceptLabel": false,
+    "hasFooterDisclosure": true
+  },
+  {
+    "path": "/about",
+    "viewport": "1920x2400",
+    "hasDevelopmentPreviewBanner": false,
+    "hasPerImageConceptLabel": false,
+    "hasFooterDisclosure": true
+  },
+  {
+    "path": "/locations",
+    "viewport": "1920x2400",
+    "hasDevelopmentPreviewBanner": false,
+    "hasPerImageConceptLabel": false,
+    "hasFooterDisclosure": true
+  },
+  {
+    "path": "/programs/functional-training",
+    "viewport": "1920x2400",
+    "hasDevelopmentPreviewBanner": false,
+    "hasPerImageConceptLabel": false,
+    "hasFooterDisclosure": true
+  },
+  {
+    "path": "/programs/yoga",
+    "viewport": "1920x2400",
+    "hasDevelopmentPreviewBanner": false,
+    "hasPerImageConceptLabel": false,
+    "hasFooterDisclosure": true
+  },
+  {
+    "path": "/programs/corporate-wellness",
+    "viewport": "1920x2400",
+    "hasDevelopmentPreviewBanner": false,
+    "hasPerImageConceptLabel": false,
+    "hasFooterDisclosure": true
+  },
+  {
+    "path": "/",
+    "viewport": "390x844",
+    "hasDevelopmentPreviewBanner": false,
+    "hasPerImageConceptLabel": false,
+    "hasFooterDisclosure": true
+  },
+  {
+    "path": "/",
+    "viewport": "1440x900",
+    "hasDevelopmentPreviewBanner": false,
+    "hasPerImageConceptLabel": false,
+    "hasFooterDisclosure": true
+  },
+  {
+    "path": "/programs/functional-training",
+    "viewport": "390x844",
+    "hasDevelopmentPreviewBanner": false,
+    "hasPerImageConceptLabel": false,
+    "hasFooterDisclosure": true
+  },
+  {
+    "path": "/programs/functional-training",
+    "viewport": "1440x900",
+    "hasDevelopmentPreviewBanner": false,
+    "hasPerImageConceptLabel": false,
+    "hasFooterDisclosure": true
+  },
+  {
+    "path": "/programs/yoga",
+    "viewport": "390x844",
+    "hasDevelopmentPreviewBanner": false,
+    "hasPerImageConceptLabel": false,
+    "hasFooterDisclosure": true
+  },
+  {
+    "path": "/programs/yoga",
+    "viewport": "1440x900",
+    "hasDevelopmentPreviewBanner": false,
+    "hasPerImageConceptLabel": false,
+    "hasFooterDisclosure": true
+  },
+  {
+    "path": "/programs/corporate-wellness",
+    "viewport": "390x844",
+    "hasDevelopmentPreviewBanner": false,
+    "hasPerImageConceptLabel": false,
+    "hasFooterDisclosure": true
+  },
+  {
+    "path": "/programs/corporate-wellness",
+    "viewport": "1440x900",
+    "hasDevelopmentPreviewBanner": false,
+    "hasPerImageConceptLabel": false,
+    "hasFooterDisclosure": true
+  },
+  {
+    "path": "/locations",
+    "viewport": "390x844",
+    "hasDevelopmentPreviewBanner": false,
+    "hasPerImageConceptLabel": false,
+    "hasFooterDisclosure": true
+  },
+  {
+    "path": "/locations",
+    "viewport": "1440x900",
+    "hasDevelopmentPreviewBanner": false,
+    "hasPerImageConceptLabel": false,
+    "hasFooterDisclosure": true
+  }
+]

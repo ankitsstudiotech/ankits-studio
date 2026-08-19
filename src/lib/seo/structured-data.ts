@@ -1,13 +1,15 @@
-import type { Branch, BlogPost, BusinessIdentity, Faq, Programme } from "@/content";
+import { getBranchMapsUrl, type Branch, type BlogPost, type BusinessIdentity, type Faq, type Programme } from "@/content";
 import { siteConfig } from "@/lib/metadata";
 import { buildCanonicalUrl } from "./canonical";
 import type {
   ArticleJsonLd,
   BreadcrumbListJsonLd,
+  CollectionPageJsonLd,
   CourseJsonLd,
   FaqPageJsonLd,
   LocalBusinessJsonLd,
   OrganizationJsonLd,
+  WebPageJsonLd,
 } from "./types";
 
 /**
@@ -42,6 +44,7 @@ export function buildOrganizationJsonLd(identity: BusinessIdentity): Organizatio
     name: identity.displayName,
     url: siteConfig.url,
     description: identity.description,
+    logo: `${siteConfig.url.replace(/\/$/, "")}/brand/ankits-studio-symbol-transparent.png`,
   };
 }
 
@@ -51,42 +54,122 @@ export function buildOrganizationJsonLd(identity: BusinessIdentity): Organizatio
  * `branch.phone`/`branch.address` directly, but only ever reach that code
  * path when `dataStatus === "verified"`, so there's no duplicated safety
  * gap, just two different consumers of the same verified data.
+ *
+ * Eligible properties must also be visible on the branch page (ADR-018).
+ * Do not emit geo, ratings, reviews, priceRange, amenities, or class schedules.
  */
+const SCHEMA_DAYS = [
+  "Monday",
+  "Tuesday",
+  "Wednesday",
+  "Thursday",
+  "Friday",
+  "Saturday",
+  "Sunday",
+] as const;
+
 export function buildLocalBusinessJsonLd(branch: Branch): LocalBusinessJsonLd | null {
   if (branch.dataStatus !== "verified") return null;
-  return {
+  // Require a verified printable address before claiming PostalAddress (ADR-018).
+  if (!branch.address || branch.fieldProvenance.address !== "owner_confirmed") return null;
+
+  const address: LocalBusinessJsonLd["address"] = {
+    "@type": "PostalAddress",
+    streetAddress: branch.address,
+    addressLocality: branch.locality,
+  };
+
+  if (branch.pinCode && branch.fieldProvenance.pinCode === "owner_confirmed") {
+    address.postalCode = branch.pinCode;
+  }
+
+  // Region appears in the owner-confirmed printable address string.
+  if (/\bMaharashtra\b/i.test(branch.address)) {
+    address.addressRegion = "Maharashtra";
+  }
+
+  // All publicly listed branches are in India.
+  address.addressCountry = "IN";
+
+  const jsonLd: LocalBusinessJsonLd = {
     "@context": "https://schema.org",
     "@type": "ExerciseGym",
     name: branch.name,
     url: buildCanonicalUrl(`/locations/${branch.slug}`),
-    telephone: branch.phone,
-    address: {
-      "@type": "PostalAddress",
-      streetAddress: branch.address,
+    address,
+    parentOrganization: {
+      "@type": "Organization",
+      name: "Ankit's Studio",
+      url: siteConfig.url,
     },
   };
+
+  // Central enquiry number is shown on the branch page when present.
+  if (branch.phone && branch.fieldProvenance.phone === "owner_confirmed") {
+    jsonLd.telephone = branch.phone;
+  }
+
+  if (
+    branch.fieldProvenance.operatingHours === "owner_confirmed" &&
+    branch.openingHours.length > 0
+  ) {
+    jsonLd.openingHoursSpecification = branch.openingHours.map((entry) => ({
+      "@type": "OpeningHoursSpecification",
+      dayOfWeek: SCHEMA_DAYS[entry.dayOfWeek] ?? "Monday",
+      opens: entry.opensAt,
+      closes: entry.closesAt,
+    }));
+  }
+
+  const maps = getBranchMapsUrl(branch);
+  if (maps) {
+    jsonLd.hasMap = maps;
+  }
+
+  return jsonLd;
 }
 
 /**
- * Programme records are `dataStatus: "verified"` (see
- * docs/BUSINESS-DATA-STATUS.md — the programme list itself is owner-
- * confirmed), so this actually emits, unlike the branch/article/FAQ
- * builders while the site has no verified data of those kinds yet.
- * `provider.name` uses `siteConfig.name` — already treated as a safe
- * constant sitewide (title template, OG siteName, manifest name), not
- * gated on `BusinessIdentity`'s record-level mock status, which reflects
- * *other* invented fields (tagline/description), not the business name
- * itself. See docs/HANDOFF-ROUTES.md.
+ * Always returns `null`. Confirmed programmes are enquiry-based fitness /
+ * movement / choreography services, not educational Courses under Google
+ * Search Course guidelines. Do not re-enable without ADR approval and a
+ * verified curriculum content model — see docs/DECISIONS.md ADR-017 and
+ * docs/audits/PROGRAMME-STRUCTURED-DATA-AUDIT.md.
  */
-export function buildCourseJsonLd(programme: Programme): CourseJsonLd | null {
-  if (programme.dataStatus !== "verified") return null;
+export function buildCourseJsonLd(_programme: Programme): CourseJsonLd | null {
+  return null;
+}
+
+/**
+ * Visible page title + description + canonical URL only. No Offer, Event,
+ * instructor, schedule, rating, or location invention (ADR-017).
+ */
+export function buildWebPageJsonLd(input: {
+  name: string;
+  description: string;
+  path: string;
+}): WebPageJsonLd {
   return {
     "@context": "https://schema.org",
-    "@type": "Course",
-    name: programme.name,
-    description: programme.shortDescription,
-    url: buildCanonicalUrl(`/programs/${programme.slug}`),
-    provider: { "@type": "Organization", name: siteConfig.name },
+    "@type": "WebPage",
+    name: input.name,
+    description: input.description,
+    url: buildCanonicalUrl(input.path),
+  };
+}
+
+/** Programme index — CollectionPage without a Course ItemList (ADR-017). */
+export function buildCollectionPageJsonLd(input: {
+  name: string;
+  description: string;
+  path: string;
+}): CollectionPageJsonLd {
+  return {
+    "@context": "https://schema.org",
+    "@type": "CollectionPage",
+    name: input.name,
+    description: input.description,
+    url: buildCanonicalUrl(input.path),
   };
 }
 

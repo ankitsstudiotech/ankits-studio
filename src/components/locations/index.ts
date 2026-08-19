@@ -10,6 +10,9 @@ export type {
   TrainerItemProps,
 } from "./types";
 
+export { BranchRow } from "./BranchRow";
+export type { BranchRowProps } from "./BranchRow";
+
 export { LocationHero } from "./LocationHero";
 export type { LocationHeroProps } from "./LocationHero";
 

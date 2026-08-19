@@ -1,0 +1,46 @@
+{
+  "capturedAt": "2026-08-13T10:55:11.938Z",
+  "items": [
+    {
+      "file": "corporate-wellness-ai-final/full-390.png",
+      "viewport": "390x2400",
+      "fullPage": true
+    },
+    {
+      "file": "corporate-wellness-ai-final/full-768.png",
+      "viewport": "768x2400",
+      "fullPage": true
+    },
+    {
+      "file": "corporate-wellness-ai-final/full-1024.png",
+      "viewport": "1024x2400",
+      "fullPage": true
+    },
+    {
+      "file": "corporate-wellness-ai-final/full-1440.png",
+      "viewport": "1440x2400",
+      "fullPage": true
+    },
+    {
+      "file": "corporate-wellness-ai-final/full-1920.png",
+      "viewport": "1920x2400",
+      "fullPage": true
+    },
+    {
+      "file": "corporate-wellness-ai-final/viewport-390x844.png",
+      "viewport": "390x844",
+      "fullPage": false
+    },
+    {
+      "file": "corporate-wellness-ai-final/viewport-768x1024.png",
+      "viewport": "768x1024",
+      "fullPage": false
+    },
+    {
+      "file": "corporate-wellness-ai-final/viewport-1440x900.png",
+      "viewport": "1440x900",
+      "fullPage": false
+    }
+  ],
+  "failedImages": []
+}

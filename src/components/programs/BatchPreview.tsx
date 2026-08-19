@@ -1,3 +1,4 @@
+import Link from "next/link";
 import { Badge } from "@/components/ui/Badge";
 import { Section } from "@/components/ui/Section";
 import { Body, Caption } from "@/components/ui/Typography";
@@ -5,26 +6,58 @@ import { FieldDisclaimer } from "./PendingValue";
 import type { BatchSlotProps } from "./types";
 
 export type BatchPreviewProps = {
+  /** Verified slots only — never pass mock/illustrative times. */
   slots: BatchSlotProps[];
   title?: string;
   description?: string;
   emptyLabel?: string;
+  whatsappHref?: string;
+  whatsappLabel?: string;
 };
 
 /**
- * Lightweight batch/schedule preview for a programme page.
- * Full filterable timetable belongs on /timetable.
+ * Batch availability for a programme page.
+ * Exact class rows render only when verified; otherwise honest pending + WhatsApp.
  */
 export function BatchPreview({
   slots,
-  title = "Upcoming batches",
-  description = "Illustrative slot preview — not a live booking grid.",
-  emptyLabel = "Batch times for this programme are to be confirmed.",
+  title = "Batch availability",
+  description = "Exact class times vary by branch and have not been published yet. Studio operating hours are separate from batch start times.",
+  emptyLabel = "Exact batch times for this programme are not published yet. Message us on WhatsApp for current availability.",
+  whatsappHref,
+  whatsappLabel = "Ask about batches on WhatsApp",
 }: BatchPreviewProps) {
   return (
-    <Section id="batches" eyebrow="Schedule" title={title} description={description}>
+    <Section id="batches" eyebrow="Batch availability" title={title} description={description}>
       {slots.length === 0 ? (
-        <Body>{emptyLabel}</Body>
+        <div className="flex flex-col gap-4">
+          <Body>{emptyLabel}</Body>
+          {whatsappHref ? (
+            <p>
+              <a
+                href={whatsappHref}
+                className="inline-flex min-h-11 items-center justify-center bg-accent px-5 text-sm font-bold uppercase tracking-[0.06em] text-accent-foreground touch-target hover:bg-accent-hover focus-visible:outline-2 focus-visible:outline-offset-3 focus-visible:outline-focus-ring"
+                {...(whatsappHref.startsWith("http")
+                  ? { target: "_blank", rel: "noopener noreferrer" }
+                  : {})}
+              >
+                {whatsappLabel}
+              </a>
+            </p>
+          ) : (
+            <p>
+              <Link
+                href="/timetable"
+                className="font-medium text-ink underline underline-offset-2 hover:text-accent focus-visible:outline-2 focus-visible:outline-offset-3 focus-visible:outline-focus-ring"
+              >
+                See batch availability →
+              </Link>
+            </p>
+          )}
+          <Caption>
+            Opening WhatsApp starts a chat — it does not mean a message was already delivered.
+          </Caption>
+        </div>
       ) : (
         <div className="overflow-hidden rounded-[var(--radius-lg)] border border-border bg-surface-raised shadow-[var(--shadow-soft)]">
           <ul className="divide-y divide-border md:hidden">

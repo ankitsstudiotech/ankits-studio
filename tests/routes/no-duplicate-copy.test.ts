@@ -26,13 +26,18 @@ describe("no duplicate copy across programmes", () => {
 describe("no duplicate copy across locations", () => {
   const branches = getBranches();
 
-  it("every branch has a unique address", () => {
-    const addresses = branches.map((b) => b.address);
-    expect(new Set(addresses).size).toBe(addresses.length);
+  it("every branch has a unique locality", () => {
+    const localities = branches.map((b) => b.locality);
+    expect(new Set(localities).size).toBe(localities.length);
   });
 
   it("every branch has a unique name", () => {
     const names = branches.map((b) => b.name);
     expect(new Set(names).size).toBe(names.length);
+  });
+
+  it("every branch has a unique SEO description", () => {
+    const descriptions = branches.map((b) => b.seoDescription);
+    expect(new Set(descriptions).size).toBe(descriptions.length);
   });
 });

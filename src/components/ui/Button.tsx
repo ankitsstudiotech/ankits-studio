@@ -13,17 +13,17 @@ export type ButtonProps = ComponentPropsWithoutRef<"button"> & {
 
 const variantClass: Record<ButtonVariant, string> = {
   primary:
-    "bg-accent text-accent-foreground hover:bg-accent-hover shadow-[var(--shadow-soft)]",
+    "bg-accent text-accent-foreground hover:bg-accent-hover rounded-none font-bold uppercase tracking-[0.06em]",
   secondary:
-    "bg-surface-raised text-ink border border-border hover:border-border-strong hover:bg-surface",
-  ghost: "bg-transparent text-ink hover:bg-surface-sunken",
+    "bg-transparent text-ink border border-border-strong hover:border-ink rounded-none font-semibold uppercase tracking-[0.06em]",
+  ghost: "bg-transparent text-ink hover:bg-surface-sunken rounded-none font-medium",
   inverse:
-    "bg-surface-raised text-ink hover:bg-surface shadow-[var(--shadow-soft)]",
+    "bg-ink-inverse text-field hover:bg-white rounded-none font-bold uppercase tracking-[0.06em]",
 };
 
 const sizeClass: Record<ButtonSize, string> = {
-  md: "min-h-11 px-5 text-sm gap-2",
-  lg: "min-h-12 px-6 text-base gap-2.5",
+  md: "min-h-11 px-5 text-xs gap-2",
+  lg: "min-h-12 px-6 text-xs gap-2.5",
 };
 
 export function Button({
@@ -39,8 +39,8 @@ export function Button({
     <button
       type={type}
       className={[
-        "inline-flex items-center justify-center rounded-[var(--radius-md)] font-medium",
-        "transition-[background-color,border-color,transform,box-shadow] duration-[var(--duration-fast)] ease-[var(--ease-standard)]",
+        "inline-flex items-center justify-center font-[family-name:var(--font-sans)]",
+        "transition-[background-color,border-color,transform,color] duration-[var(--duration-fast)] ease-[var(--ease-standard)]",
         "focus-visible:outline-2 focus-visible:outline-offset-3 focus-visible:outline-focus-ring",
         "disabled:pointer-events-none disabled:opacity-45",
         "active:scale-[0.98] motion-reduce:active:scale-100",

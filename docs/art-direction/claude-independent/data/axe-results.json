@@ -1,0 +1,186 @@
+{
+  "summary": {
+    "generatedAt": "2026-08-17T16:48:15.338Z",
+    "baseUrl": "https://ankits-studio.vercel.app",
+    "totalSeriousOrCritical": 0,
+    "routesWithSeriousOrCritical": [],
+    "routesWithContrastViolations": []
+  },
+  "results": [
+    {
+      "route": "/",
+      "violationCount": 0,
+      "seriousOrCriticalCount": 0,
+      "seriousOrCritical": [],
+      "contrastViolations": []
+    },
+    {
+      "route": "/about",
+      "violationCount": 0,
+      "seriousOrCriticalCount": 0,
+      "seriousOrCritical": [],
+      "contrastViolations": []
+    },
+    {
+      "route": "/programs",
+      "violationCount": 0,
+      "seriousOrCriticalCount": 0,
+      "seriousOrCritical": [],
+      "contrastViolations": []
+    },
+    {
+      "route": "/programs/functional-training",
+      "violationCount": 0,
+      "seriousOrCriticalCount": 0,
+      "seriousOrCritical": [],
+      "contrastViolations": []
+    },
+    {
+      "route": "/programs/home-personal-training",
+      "violationCount": 0,
+      "seriousOrCriticalCount": 0,
+      "seriousOrCritical": [],
+      "contrastViolations": []
+    },
+    {
+      "route": "/programs/online-training",
+      "violationCount": 0,
+      "seriousOrCriticalCount": 0,
+      "seriousOrCritical": [],
+      "contrastViolations": []
+    },
+    {
+      "route": "/programs/zumba",
+      "violationCount": 0,
+      "seriousOrCriticalCount": 0,
+      "seriousOrCritical": [],
+      "contrastViolations": []
+    },
+    {
+      "route": "/programs/yoga",
+      "violationCount": 0,
+      "seriousOrCriticalCount": 0,
+      "seriousOrCritical": [],
+      "contrastViolations": []
+    },
+    {
+      "route": "/programs/adult-dance",
+      "violationCount": 0,
+      "seriousOrCriticalCount": 0,
+      "seriousOrCritical": [],
+      "contrastViolations": []
+    },
+    {
+      "route": "/programs/wedding-choreography",
+      "violationCount": 0,
+      "seriousOrCriticalCount": 0,
+      "seriousOrCritical": [],
+      "contrastViolations": []
+    },
+    {
+      "route": "/programs/corporate-wellness",
+      "violationCount": 0,
+      "seriousOrCriticalCount": 0,
+      "seriousOrCritical": [],
+      "contrastViolations": []
+    },
+    {
+      "route": "/locations",
+      "violationCount": 0,
+      "seriousOrCriticalCount": 0,
+      "seriousOrCritical": [],
+      "contrastViolations": []
+    },
+    {
+      "route": "/locations/airoli-sector-19",
+      "violationCount": 0,
+      "seriousOrCriticalCount": 0,
+      "seriousOrCritical": [],
+      "contrastViolations": []
+    },
+    {
+      "route": "/locations/airoli-sector-8",
+      "violationCount": 0,
+      "seriousOrCriticalCount": 0,
+      "seriousOrCritical": [],
+      "contrastViolations": []
+    },
+    {
+      "route": "/locations/ghansoli",
+      "violationCount": 0,
+      "seriousOrCriticalCount": 0,
+      "seriousOrCritical": [],
+      "contrastViolations": []
+    },
+    {
+      "route": "/locations/thane",
+      "violationCount": 0,
+      "seriousOrCriticalCount": 0,
+      "seriousOrCritical": [],
+      "contrastViolations": []
+    },
+    {
+      "route": "/pricing",
+      "violationCount": 0,
+      "seriousOrCriticalCount": 0,
+      "seriousOrCritical": [],
+      "contrastViolations": []
+    },
+    {
+      "route": "/timetable",
+      "violationCount": 0,
+      "seriousOrCriticalCount": 0,
+      "seriousOrCritical": [],
+      "contrastViolations": []
+    },
+    {
+      "route": "/trial",
+      "violationCount": 0,
+      "seriousOrCriticalCount": 0,
+      "seriousOrCritical": [],
+      "contrastViolations": []
+    },
+    {
+      "route": "/contact",
+      "violationCount": 0,
+      "seriousOrCriticalCount": 0,
+      "seriousOrCritical": [],
+      "contrastViolations": []
+    },
+    {
+      "route": "/privacy-policy",
+      "violationCount": 0,
+      "seriousOrCriticalCount": 0,
+      "seriousOrCritical": [],
+      "contrastViolations": []
+    },
+    {
+      "route": "/terms",
+      "violationCount": 0,
+      "seriousOrCriticalCount": 0,
+      "seriousOrCritical": [],
+      "contrastViolations": []
+    },
+    {
+      "route": "/trainers",
+      "violationCount": 0,
+      "seriousOrCriticalCount": 0,
+      "seriousOrCritical": [],
+      "contrastViolations": []
+    },
+    {
+      "route": "/transformations",
+      "violationCount": 0,
+      "seriousOrCriticalCount": 0,
+      "seriousOrCritical": [],
+      "contrastViolations": []
+    },
+    {
+      "route": "/blog",
+      "violationCount": 0,
+      "seriousOrCriticalCount": 0,
+      "seriousOrCritical": [],
+      "contrastViolations": []
+    }
+  ]
+}

@@ -44,19 +44,11 @@ export const labFooterGroups: FooterLinkGroup[] = [
 ];
 
 export const labHero: HeroProps = {
-  eyebrow: "Ankit's Studio · Design lab",
-  title: "Move with strength, rhythm, and community.",
+  title: "Machine-free fitness. Yoga, Zumba and dance.",
   description:
-    "A premium fitness and dance studio system for strength, yoga, Zumba, and dance — built to feel human, not like a generic gym template.",
-  primaryCta: { label: "Book a trial", href: "/design-lab#trial" },
-  secondaryCta: { label: "Browse programmes", href: "/design-lab#programmes" },
-  media: {
-    src: "/mock-media/hero-atmosphere.svg",
-    alt: "Abstract warm studio atmosphere placeholder — not real photography",
-    width: 1600,
-    height: 1200,
-    placeholderLabel: "Mock media",
-  },
+    "Four neighbourhood studios. Coach-led sessions adapted to your needs — book a free trial on WhatsApp.",
+  primaryCta: { label: "Book a Free Trial on WhatsApp", href: "/design-lab#trial" },
+  secondaryCta: { label: "Find Your Nearest Studio", href: "/design-lab#locations" },
 };
 
 export const labProgrammes: ProgrammeCardProps[] = [

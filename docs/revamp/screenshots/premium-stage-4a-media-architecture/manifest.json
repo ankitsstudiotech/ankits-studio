@@ -1,0 +1,23 @@
+{
+  "generatedAt": "2026-08-08T13:47:24.730Z",
+  "note": "geometry-flag-true-* require NEXT_PUBLIC_ENABLE_SYNTHETIC_MEDIA=true at build time",
+  "files": [
+    "flag-false-1440-about.png",
+    "flag-false-1440-functional.png",
+    "flag-false-1440-home.png",
+    "flag-false-1440-locations.png",
+    "flag-false-390-about.png",
+    "flag-false-390-functional.png",
+    "flag-false-390-home.png",
+    "flag-false-390-locations.png",
+    "geometry-flag-true-1440-about.png",
+    "geometry-flag-true-1440-functional.png",
+    "geometry-flag-true-1440-home.png",
+    "geometry-flag-true-1440-locations.png",
+    "geometry-flag-true-390-about.png",
+    "geometry-flag-true-390-functional.png",
+    "geometry-flag-true-390-home.png",
+    "geometry-flag-true-390-locations.png",
+    "manifest.json"
+  ]
+}

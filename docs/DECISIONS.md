@@ -379,7 +379,7 @@ is accepted just because an audit raised it.
 | SEO-002 | Programme×location pair routes (`/locations/[branch]/[programme]`) missing | **Reject** | This is net-new feature scope (unique per-pair copy, a new route tree, new content-model fields), not a "fix" to something broken — it's already correctly tracked as Phase 2 Track H via ADR-008 and `docs/IMPLEMENTATION-PLAN.md`. Implementing a whole route family under a production-readiness audit-fix pass would be exactly the "unsolicited redesign"/scope-creep this task was told to avoid. Stays on the backlog. |
 | SEO-003 | Docs/tests still encode `/programmes`; live routes are `/programs` | **Accept** | Direct follow-up to `docs/HANDOFF-ROUTES.md`'s own flagged gap. Normalized `tests/seo/**`, `docs/INFORMATION-ARCHITECTURE.md`, `docs/PERFORMANCE-BUDGET.md`, `docs/IMPLEMENTATION-PLAN.md`, `docs/TASKS.md`, `docs/HANDOFF-ROUTES.md`, `docs/HANDOFF-ROUTE-UI.md` to `/programs` where they describe the *live* route. Left `docs/DECISIONS.md` ADR-008's and `docs/CURSOR-ARCHITECTURE-REVIEW.md`'s historical text alone — both describe a not-yet-built route pattern / a frozen past review, not the current live IA. |
 | SEO-004 | `Organization` JSON-LD built but never emitted | **Accept** | Wired into the root layout, gated the same as every other builder (`dataStatus === "verified"`) — inert today (identity is mock), correct once verified. Cheap, low-risk, closes a real gap. |
-| SEO-005 | FAQ/LocalBusiness correctly omitted; Course emits for verified programmes | **No action** | Positive finding. |
+| SEO-005 | FAQ/LocalBusiness correctly omitted; Course emits for verified programmes | **Superseded for programmes by ADR-017** | Course emission was later judged inaccurate for enquiry-based services — see ADR-017. |
 | SEO-006 | Canonical/OG host depends on `NEXT_PUBLIC_SITE_URL`; recommend failing production builds when unset | **Partial accept** | Accepted: documented clearly in `.env.example`/`docs/HANDOFF.md` as a pre-launch requirement. Rejected: a hard build-time failure when unset, because "production" in this codebase already means "`NODE_ENV=production`", which includes legitimate `ALLOW_MOCK_PUBLISH=true` preview deploys that may not yet have a final domain — hard-failing those would break the preview pipeline ADR-002 depends on. Indexability is already independently gated by `shouldNoIndex()`; a wrong-host canonical on a `noindex` preview is not a live-leak. |
 | A11Y-001 | Narrow automated axe coverage (`/` and 404 only) | **Accept** | Expanded `e2e/accessibility.spec.ts` to `/trial`, `/contact`, `/timetable`, `/programs/yoga`, `/locations/airoli`. |
 | A11Y-002 | Timetable filters work without JS | **No action** | Positive finding — explicitly preserved (see ARCH-002 rejection below). |
@@ -403,6 +403,239 @@ for a "fix" pass (SEO-002, VIS-008). Every rejection above is a considered
 judgment against the approved architecture and existing ADRs, not a default.
 
 **Status**: Active.
+
+## ADR-014: Owner selects Studio Pulse for production (overrides agent Kinetic Editorial pick)
+
+**Decision**: Production visual redesign implements **Studio Pulse** (`/design-lab/revamp-b`), as personally selected by the owner. This **overrides** the agent-recommended Kinetic Editorial winner documented in `docs/revamp/04-prototype-evaluation.md`. Historical evaluation scores and critiques must **not** be rewritten to pretend Studio Pulse originally won.
+
+**Why**: Owner prefers rhythm-led energy, layered media for Zumba/dance/active training, stronger emotional engagement, and wants to present this complete direction to Ankit first. Production work must still mitigate the documented boutique-HIIT / nightlife skew via tempo zones (high-energy / strength / calm / community / utility) so yoga, kids dance, families, and booking utility remain coherent — see `docs/revamp/06-owner-direction-decision.md`.
+
+**Preservation**: Directions A and C remain frozen design-lab artefacts; do not delete or silently restyle them. Kinetic Editorial system snapshot lives at `docs/revamp/KINETIC-EDITORIAL-DESIGN-SYSTEM.md`. Root `DESIGN.md` becomes the Studio Pulse production proposal.
+
+**Status**: Active.
+
+## ADR-015: Owner interview 2026-08-01 — business data + WhatsApp-primary conversion
+
+**Decision**: Promote owner-interview facts dated 2026-08-01 into the content model with explicit provenance (`owner_interview` / `owner_confirmed`). Key outcomes:
+
+- Four open branches (Airoli Sector 19 via slug `airoli`, new `airoli-sector-8`, Ghansoli, Thane publicly listed).
+- Central phone/WhatsApp `+91 93724 02074` verified on `ContactDetails`; branches inherit the same number and stay non-dialable via `getBranchContactLinks` until each branch record is fully verified (addresses pending).
+- Operating window 06:00–22:00 on all branches — never used as batch timetable rows.
+- Free trial + INR 300 registration fee on `StudioCommercial`; programme plan prices pending (illustrative plans removed).
+- New programmes added for Functional Training, Wedding Choreography, Home Personal Training, Online Training; legacy Strength / PT / Kids Dance / Weight-loss routes kept with `taxonomyStatus: "migration-pending"` — no silent deletes or redirects.
+- Primary conversion is WhatsApp (`src/lib/conversion/whatsapp.ts`); `/trial` remains secondary. Opening WhatsApp must never be described as message delivery.
+- Maps short URLs associated after browser resolution as `mapsShortUrl` only; `mapEmbedUrl` remains unset until branch verification (ADR-011 intact).
+- Mock-publication protections (`ALLOW_MOCK_PUBLISH`, `noindex`, launch gate) remain in force while addresses, timetable, trainers, media, and taxonomy remain incomplete.
+
+**Why**: Owner supplied operable business facts; the site must stop advertising invented phones/hours/branch posture without weakening honesty gates for still-pending fields.
+
+**Status**: Active.
+
+## ADR-016: Primary nav label — Batch Availability (route stays `/timetable`)
+
+**Decision**: Rename the primary-navigation item formerly labelled “Timetable” to **Batch Availability**. The public URL remains `/timetable` to avoid unnecessary SEO and sitemap churn. The page no longer renders illustrative or invented class time rows. It states that slots vary by branch and programme, shows the verified **6:00 AM–10:00 PM operating window separately** (never as a continuous class), and directs visitors to WhatsApp for current batch availability.
+
+**Why**: Exact schedules are still `MOCK / PENDING` (BUSINESS-DATA-STATUS). Labelling the nav “Timetable” while the homepage honestly says schedules are unpublished created trust friction (Impeccable critique P3). “Batch Availability” matches owner and FAQ language already on the site better than a generic “Class Availability” label next to Programmes / Locations.
+
+**Status**: Active.
+
+## ADR-017: Programme pages use WebPage/CollectionPage + BreadcrumbList — not Course
+
+**Decision**: Confirmed programme detail pages and `/programs` must **not** emit `schema.org/Course` JSON-LD (or Course ItemList carousels). The safe programme structured-data model is:
+
+| Route | Allowed JSON-LD |
+|---|---|
+| `/programs` | `CollectionPage` (name, description, url) + `BreadcrumbList` |
+| Confirmed `/programs/[slug]` | `WebPage` (name, description, url) + `BreadcrumbList` |
+| Legacy `migration-pending` programme routes | `BreadcrumbList` only; remain `noindex`; stay out of the sitemap |
+
+`buildCourseJsonLd` always returns `null` until an explicit future ADR approves a genuine educational Course content model (curriculum, outcomes, instructors, instances). Do **not** emit Service, Offer, Event, AggregateRating, Review, instructor, schedule, duration, CourseInstance, or price properties for programmes while those facts are pending, enquiry-only, or inventable from mock timetable/trainer data. Home Personal Training and Online Training must never be marked up as physical-branch class instances.
+
+**Why**: Official Google Search Course list guidelines require educational curriculum with modules/lectures, an educational outcome, and instructor-led students. Ankit’s Studio’s confirmed programmes are enquiry-based fitness, movement, and choreography **services** without verified curricula, modules, outcomes, published schedules, assigned instructors, durations, course instances, or complete pricing. Emitting `Course` misrepresents the page and does not qualify for Google’s Course list rich result (Course Info rich results were also retired). Accuracy and Hard Rule honesty outweigh schema volume. Full audit: `docs/audits/PROGRAMME-STRUCTURED-DATA-AUDIT.md`.
+
+**Status**: Active. Supersedes the positive SEO-005 note in ADR-013 (“Course emits for verified programmes”) for programme routes.
+
+## ADR-018: Branch pages use ExerciseGym when printable address is owner-confirmed
+
+**Decision**: Location structured data follows the programme honesty pattern (ADR-017), with ExerciseGym enabled only for verified printable addresses:
+
+| Route | Allowed JSON-LD |
+|---|---|
+| `/locations` | `CollectionPage` (name, description, url) + `BreadcrumbList` |
+| Confirmed `/locations/[slug]` | `WebPage` + `BreadcrumbList` |
+| `ExerciseGym` / `LocalBusiness` | When `dataStatus === "verified"` **and** `address` is non-null with `fieldProvenance.address === "owner_confirmed"` |
+
+Eligible ExerciseGym properties (must also be visibly rendered on the branch page):
+
+- `name`, `url`
+- `PostalAddress` (`streetAddress`, `addressLocality`, optional `postalCode` / `addressRegion` when confirmed and visible)
+- `telephone` — central enquiry number when `fieldProvenance.phone === "owner_confirmed"` and shown on-page
+- `openingHoursSpecification` — operating window only when hours provenance is owner-confirmed (not batch schedules)
+- `hasMap` — owner-confirmed Maps URL when linked on-page
+- `parentOrganization` — Ankit’s Studio when the brand relationship is visible
+
+Do **not** emit: geo coordinates, ratings, reviews, priceRange, amenities, class schedules, trainer assignments, or Google Business Profile URLs until supplied.
+
+Owner-confirmed Maps short URLs may also appear as visible links via `getBranchMapsUrl` independently of ExerciseGym.
+
+Legacy `/locations/airoli` permanently redirects to `/locations/airoli-sector-19` (see `docs/migrations/LOCATION-ROUTE-MIGRATION.md`).
+
+**Update (2026-08-03)**: Owner supplied printable addresses and Maps URLs for all four branches. ExerciseGym is therefore eligible for every publicly listed branch. Operating hours (6:00 AM–10:00 PM every day) may appear in JSON-LD because they are visible as an operating window on each branch page.
+
+**Why**: Google Local Business / ExerciseGym markup that includes incomplete or invented addresses creates local-SEO risk. Plain WebPage + BreadcrumbList remains the fallback when address provenance is incomplete. Full audit: `docs/audits/LOCATION-STRUCTURED-DATA-AUDIT.md`.
+
+**Status**: Active.
+
+## ADR-019: Trainers route indexing and profile publishability
+
+**Decision**: Individual trainer profiles and the `/trainers` marketing route follow a strict readiness gate.
+
+### Publishability (per profile)
+
+A trainer record must **not** become publicly visible merely because an owner supplied a name. Public rendering (`getPublishableTrainers` / profile routes) requires **all** of:
+
+1. `dataStatus === "verified"`
+2. `profilePublicationStatus === "published"`
+3. `profileVerificationStatus` is `verified` or `publishable`
+4. `publicationConsentStatus === "granted"`
+5. Public name
+6. Real photograph with `photoPublicationPermission === true`
+7. Role
+8. At least one confirmed programme **or** branch relationship
+9. At least one safely described qualification line, structured certification, or years-of-experience value that the owner has approved for publication
+
+Mock or draft records may exist for internal tooling but must never render on marketing routes.
+
+### Indexing of `/trainers`
+
+Until the threshold below is met:
+
+- Keep `/trainers` reachable
+- Mark `/trainers` `noindex` (`forceNoIndex`)
+- Exclude `/trainers` from the sitemap
+- Do not emit `Person`, `Employee`, `EducationalOccupationalCredential`, or trainer `ItemList` JSON-LD
+- Do not generate public `/trainers/[slug]` pages for non-publishable profiles (`notFound`)
+- Keep Trainers in **footer** navigation only (not a primary-nav promise of a complete roster)
+- Do **not** redirect `/trainers` → `/about` (About already carries the 15+ team statement; Trainers remains the future home for verified profiles)
+
+### Activation threshold
+
+`/trainers` may become indexable and enter the sitemap only when:
+
+**`getPublishableTrainers().length >= 3`** (`TRAINERS_ROUTE_INDEX_THRESHOLD`)
+
+**Rationale:** Three complete publishable profiles make a crawlable team directory useful rather than a single-person stub. Team-level copy alone (15+ count) is already covered honestly on `/about` and on the noindexed Trainers page; indexing requires enough verified people that search visitors are not sent to an empty roster. A single “lead” profile is **not** sufficient for indexing under this ADR (it may still render on the page once publishable, behind noindex, if product later enables one-card previews — today zero profiles render).
+
+Implementation: `shouldIndexTrainersRoute()` in `src/content/index.ts`.
+
+### Team-size claim
+
+Public copy may state the owner-provided **15+** team size with explicit provenance. Do not publish “highly qualified”, “government-approved”, “expert”, or ambiguous “2+ years” until evidence and subject clarification exist.
+
+**Why**: Mock illustrative trainers were publicly rendered as a card grid; sitemap and indexing would have promised a completed directory once the sitewide mock gate lifted. Accuracy and Hard Rule honesty require a publishability gate independent of “owner mentioned a name”.
+
+**Status**: Active.
+
+## ADR-020: Corporate Fitness Sessions — enquiry-only until content is useful
+
+**Decision:** Corporate Fitness Sessions are an owner-confirmed offering (2026-08-03) but remain **enquiry-only**. Do **not** create an indexable `/programs/corporate-fitness` page (or sitemap entry) until there is enough verified body content for a useful programme page.
+
+Public treatment:
+
+- Mention on `/programs` as an enquiry-only note with WhatsApp CTA
+- May appear in WhatsApp service pickers where appropriate
+- `StudioCommercial.corporateFitnessStatus: "enquiry-only"`
+
+**Why:** A thin indexable page would over-promise an incomplete offering. ADR-017 already requires programmes to avoid invented Course/Offer semantics; the same honesty applies to incomplete catalogue entries.
+
+**Status**: Superseded by ADR-024 (Corporate Wellness full programme page, 2026-08-12).
+
+## ADR-021: No self-serving Review or AggregateRating structured data for Ankit’s Studio
+
+**Decision:** The website is controlled by the business being reviewed. Therefore:
+
+1. **Do not emit** `Review`, `AggregateRating`, or nested `review` / `aggregateRating` / star-rating properties on:
+   - `Organization`
+   - `LocalBusiness` / `ExerciseGym`
+   - Any other page JSON-LD that marks up Ankit’s Studio as the reviewed entity
+2. **Do not** add review or aggregate-rating properties inside branch ExerciseGym markup (ADR-018 remains address/hours/telephone/`hasMap` only).
+3. Visible Google reviews (when a future Places-backed UI ships) may appear **to users** with required Maps attribution and selection disclosure, but **must not** be mirrored into self-serving review rich-result markup.
+4. Embedded third-party review widgets about this business remain self-serving for rich-result purposes under Google Search Central review snippet guidelines and do not justify adding Review/AggregateRating JSON-LD.
+5. First-party member testimonials and transformation stories likewise **must not** be wrapped in Review/AggregateRating JSON-LD about the studio.
+
+**Regression requirements:**
+
+- Keep and extend unit tests that fail if Organization / LocalBusiness / ExerciseGym / programme / about / trainers JSON-LD contains `Review`, `AggregateRating`, `aggregateRating`, `reviewRating`, or fabricated star fields.
+- Any proposal to add review structured data requires a **new ADR** citing current Google Search Central eligibility for the specific schema type and a legal/product review — default remains **omit**.
+
+**Why:** Google Search Central states that when the entity being reviewed controls the reviews about itself, pages using `LocalBusiness` or `Organization` structured data are ineligible for the star review feature (including reviews placed directly or via third-party widgets). Emitting self-serving markup creates false SEO expectations and policy risk without benefit. See [Review snippet structured data](https://developers.google.com/search/docs/appearance/structured-data/review-snippet) (“Self-serving reviews aren't allowed for LocalBusiness and Organization…”).
+
+**Status**: Active.
+
+## ADR-024: Corporate Wellness — full public programme page (supersedes ADR-020)
+
+**Decision:** The 12-Aug-2026 owner requirements form provides substantive Corporate Wellness content and names it a top growth priority. Therefore:
+
+1. **Create** indexable route `/programs/corporate-wellness` with full programme body content, metadata, canonical, sitemap entry, and discovery on `/programs` (Celebrate & serve cluster).
+2. **Remove** the enquiry-only corporate footnote from `/programs`.
+3. Set `StudioCommercial.corporateFitnessStatus: "published"` (legacy field name retained).
+4. Structured data remains conservative: **WebPage + BreadcrumbList** only — no Course, Offer, Event, or invented pricing.
+
+**Why:** ADR-020 blocked a thin indexable page. The final owner form now supplies enough verified programme detail for a useful public page without inventing commercial semantics.
+
+**Status**: Active. Supersedes ADR-020.
+
+## ADR-022: Member Stories route indexing and evidence publishability
+
+**Decision:** First-party Member Stories and Transformations are separate from Google reviews (ADR-021). The public route remains `/transformations` with the heading **Member Stories**.
+
+### Publishability
+
+- `getPublishableMemberStories()` / `isMemberStoryPublishable` — real/approved display name, publication consent, approved text, programme or branch relationship, provenance, safe health-claim risk; mock records never pass.
+- `getPublishableTransformations()` / `isTransformationPublishable` — Member Story gates plus timeframe, member-described outcome, measurement source when measurable claims are shown, before/after permissions and image-date verification when media is shown.
+
+### Indexing of `/transformations`
+
+Until the threshold below is met:
+
+- Keep `/transformations` reachable
+- Mark `noindex` / `nofollow` (`forceNoIndex`)
+- Exclude `/transformations` from the sitemap
+- Do not emit Review, AggregateRating, Person, MedicalEntity, ClaimReview, or fake ItemList JSON-LD
+- Do not render mock or fixture evidence under `ALLOW_MOCK_PUBLISH=true`
+
+### Activation threshold
+
+`/transformations` may become indexable and enter the sitemap only when **either**:
+
+- `getPublishableMemberStories().length >= MEMBER_STORIES_INDEX_STORY_THRESHOLD` (**3**), **or**
+- `getPublishableTransformations().length >= MEMBER_STORIES_INDEX_TRANSFORMATION_THRESHOLD` (**2**)
+
+**Rationale:** Three consented stories make a directory useful; two complete transformations with stronger evidence also justify indexing. Empty readiness pages must not imply published outcomes.
+
+Implementation: `shouldIndexMemberStoriesRoute()` in `src/content/index.ts`.
+
+**Why:** Mock illustrative journeys previously rendered on `/transformations` under mock-preview. Honesty requires an evidence gate independent of `ALLOW_MOCK_PUBLISH`.
+
+**Status**: Active.
+
+## ADR-023: Blog remains a noindex Studio Notes hub; mock posts 404
+
+**Decision**: Keep `/blog` as a concise noindex “Studio Notes” hub without sample article cards. Sample/mock article slugs return `notFound()` in production (and when `ALLOW_MOCK_PUBLISH` is not true). Fixtures remain in content for tests only. No header/footer nav. No Article JSON-LD for non-verified posts.
+
+### Implementation notes
+
+- Index page: customer-facing Studio Notes copy and discovery links only — never list mock fixtures as cards.
+- `[slug]` route: `dataStatus !== "verified"` → `notFound()`; `generateStaticParams` returns only verified posts (empty until editorial is approved).
+- Metadata: `forceNoIndex: true` on `/blog` and `/blog/[slug]` until product explicitly opts into indexing.
+- Sitemap: only verified posts; `/blog` hub itself stays out of the static sitemap list.
+- Footer/header: `/blog` remains in `FOOTER_EXCLUDE_PATHS` and is not promoted in primary nav.
+
+**Why:** Sample articles previously looked publishable on a light card index while remaining crawlable HTML. A hub that does not render fiction, plus 404 for mock slugs, closes that honesty gap without inventing editorial content.
+
+**Status**: Active.
+
+Schema note (same change): removed unused optional `readinessBodyMockPreview` from `studioTrainersPageSchema` — development notes must not ship in page content types.
 
 ## Log format for future entries
 

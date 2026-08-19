@@ -1,0 +1,93 @@
+{
+  "headSha": "63bd835",
+  "base": "http://127.0.0.1:3729",
+  "generatedAt": "2026-08-09T12:08:45.392Z",
+  "env": {
+    "NEXT_PUBLIC_ENABLE_SYNTHETIC_MEDIA": "false",
+    "NEXT_PUBLIC_SITE_URL": "https://ankits-studio.vercel.app",
+    "ALLOW_MOCK_PUBLISH": "unset"
+  },
+  "home": {
+    "runs": [
+      {
+        "lcpMs": 5759.555100000001,
+        "lcpDisplay": "5.8 s",
+        "fcpDisplay": "2.0 s",
+        "clsDisplay": "0",
+        "clsScore": 0,
+        "tbtDisplay": "420 ms",
+        "siDisplay": "4.2 s",
+        "element": null
+      },
+      {
+        "lcpMs": 3757.72745,
+        "lcpDisplay": "3.8 s",
+        "fcpDisplay": "1.5 s",
+        "clsDisplay": "0",
+        "clsScore": 0,
+        "tbtDisplay": "280 ms",
+        "siDisplay": "1.8 s",
+        "element": null
+      },
+      {
+        "lcpMs": 3745.2975999999994,
+        "lcpDisplay": "3.7 s",
+        "fcpDisplay": "1.5 s",
+        "clsDisplay": "0",
+        "clsScore": 0,
+        "tbtDisplay": "200 ms",
+        "siDisplay": "1.5 s",
+        "element": null
+      }
+    ],
+    "medianLcpMs": 3757.72745,
+    "medianLcpDisplay": "3.8 s"
+  },
+  "functional": {
+    "runs": [
+      {
+        "lcpMs": 4674.289500000001,
+        "lcpDisplay": "4.7 s",
+        "fcpDisplay": "1.4 s",
+        "clsDisplay": "0",
+        "clsScore": 0,
+        "tbtDisplay": "100 ms",
+        "siDisplay": "2.7 s",
+        "element": null
+      },
+      {
+        "lcpMs": 5505.6709500000015,
+        "lcpDisplay": "5.5 s",
+        "fcpDisplay": "1.9 s",
+        "clsDisplay": "0",
+        "clsScore": 0,
+        "tbtDisplay": "220 ms",
+        "siDisplay": "4.3 s",
+        "element": null
+      },
+      {
+        "lcpMs": 3638.842375,
+        "lcpDisplay": "3.6 s",
+        "fcpDisplay": "1.5 s",
+        "clsDisplay": "0",
+        "clsScore": 0,
+        "tbtDisplay": "190 ms",
+        "siDisplay": "1.5 s",
+        "element": null
+      }
+    ],
+    "medianLcpMs": 4674.289500000001,
+    "medianLcpDisplay": "4.7 s"
+  },
+  "pricingDesktop": {
+    "lcpMs": 669.9666,
+    "lcpDisplay": "0.7 s",
+    "fcpDisplay": "0.3 s",
+    "clsDisplay": "0",
+    "clsScore": 0,
+    "tbtDisplay": "0 ms",
+    "siDisplay": "0.3 s",
+    "element": null
+  },
+  "note": "Lighthouse captured on build containing soft-rise + inline motion script; HEAD advanced to 63bd835 for the same code."
+}

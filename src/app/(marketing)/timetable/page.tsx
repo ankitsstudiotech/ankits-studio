@@ -1,237 +1,199 @@
 import type { Metadata } from "next";
 import Link from "next/link";
+import { FaqBlock } from "@/components/content/FaqBlock";
 import { PageBreadcrumb } from "@/components/layout/PageBreadcrumb";
-import { Badge } from "@/components/ui/Badge";
-import { Button } from "@/components/ui/Button";
-import { Section } from "@/components/ui/Section";
-import { Body, Caption, Heading } from "@/components/ui/Typography";
+import { PageWithFooter } from "@/components/layout/PageWithFooter";
+import { RouteOpening } from "@/components/motion";
+import { AvailabilityEnquiryBuilder } from "@/components/timetable/pulse/AvailabilityEnquiryBuilder";
+import styles from "@/components/timetable/pulse/batch-availability.module.css";
 import {
-  branchSlugSchema,
-  getProgrammeBySlug,
-  getProgrammes,
+  getConfirmedProgrammes,
   getPubliclyListedBranches,
-  getTimetableSlots,
-  programmeSlugSchema,
-  type BranchSlug,
-  type ProgrammeSlug,
+  getStudioCommercial,
 } from "@/content";
+import { getPrimaryConversionHref } from "@/lib/conversion";
+import type { AvailabilityDeliveryMode } from "@/lib/conversion";
 import { buildPageMetadata } from "@/lib/seo/metadata";
 import { serializeJsonLd } from "@/lib/seo/serialize";
-import { buildBreadcrumbJsonLd } from "@/lib/seo/structured-data";
+import {
+  buildBreadcrumbJsonLd,
+  buildWebPageJsonLd,
+} from "@/lib/seo/structured-data";
 
 const PATH = "/timetable";
-const DAY_LABELS = ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"] as const;
+
+const PAGE_DESCRIPTION =
+  "Check current class availability across Ankit’s Studio branches and enquire about a free trial through WhatsApp. Studios operate 6:00 AM–10:00 PM — that window is not a class timetable.";
 
 export const metadata: Metadata = buildPageMetadata({
-  title: "Timetable",
-  description:
-    "Illustrative weekly class timetable for Ankit's Studio — filter by branch and programme. Times stay provisional until verified.",
+  title: "Batch Availability",
+  description: PAGE_DESCRIPTION,
   path: PATH,
 });
 
 const breadcrumbTrail = [
   { name: "Home", path: "/" },
-  { name: "Timetable", path: PATH },
+  { name: "Batch Availability", path: PATH },
 ];
 
-type TimetableSearchParams = {
-  searchParams: Promise<{ branch?: string; programme?: string }>;
-};
+/** Secondary questions only — hours + “batches vary” already visible above. */
+const FAQ = [
+  {
+    id: "faq-walk-in",
+    question: "Do I need to book in advance for a trial?",
+    answer:
+      "Advance booking is optional; checking availability on WhatsApp is recommended.",
+  },
+  {
+    id: "faq-trial",
+    question: "Can I book a free trial while asking about batches?",
+    answer:
+      "Yes. The WhatsApp enquiry can cover both current availability and a free trial.",
+  },
+] as const;
 
-function parseBranch(value: string | undefined): BranchSlug | undefined {
-  if (!value) return undefined;
-  const parsed = branchSlugSchema.safeParse(value);
-  return parsed.success ? parsed.data : undefined;
-}
-
-function parseProgramme(value: string | undefined): ProgrammeSlug | undefined {
-  if (!value) return undefined;
-  const parsed = programmeSlugSchema.safeParse(value);
-  return parsed.success ? parsed.data : undefined;
-}
-
-export default async function TimetablePage({ searchParams }: TimetableSearchParams) {
-  const params = await searchParams;
-  const branchSlug = parseBranch(params.branch);
-  const programmeSlug = parseProgramme(params.programme);
-
+/**
+ * Batch Availability — Concept B fact matrix + Concept A lower editorial split.
+ */
+export default function TimetablePage() {
   const branches = getPubliclyListedBranches();
-  const programmes = getProgrammes();
-  const slots = getTimetableSlots({
-    branchSlug,
-    programmeSlug,
-  }).filter((slot) => {
-    // Never surface Thane slots on the public timetable while unlisted.
-    return branches.some((branch) => branch.slug === slot.branchSlug);
-  });
+  const programmes = getConfirmedProgrammes();
+  const commercial = getStudioCommercial();
+  const fallbackHref = getPrimaryConversionHref();
+
+  const services = programmes.map((programme) => ({
+    slug: programme.slug,
+    name: programme.name,
+    deliveryMode: (programme.deliveryMode === "home" || programme.deliveryMode === "online"
+      ? programme.deliveryMode
+      : "in-studio") as AvailabilityDeliveryMode,
+  }));
+
+  const branchOptions = branches.map((branch) => ({
+    slug: branch.slug,
+    locality: branch.locality,
+  }));
 
   const breadcrumbJsonLd = buildBreadcrumbJsonLd(breadcrumbTrail);
-  const resultLabel =
-    slots.length === 1 ? "1 provisional class listed" : `${slots.length} provisional classes listed`;
+  const pageJsonLd = buildWebPageJsonLd({
+    name: "Batch Availability",
+    description: PAGE_DESCRIPTION,
+    path: PATH,
+  });
 
-  const slotsByDay = DAY_LABELS.map((label, dayOfWeek) => ({
-    label,
-    dayOfWeek,
-    slots: slots.filter((slot) => slot.dayOfWeek === dayOfWeek),
-  })).filter((group) => group.slots.length > 0);
+  const audienceSupport =
+    commercial.ladiesOnlyBatchesAvailable || commercial.kidsOnlyBatchesAvailable
+      ? "Available as options — exact branch and programme fit is confirmed when you enquire."
+      : "Ask on WhatsApp about audience options for your preferred programme.";
 
   return (
-    <main className="flex flex-1 flex-col">
+    <PageWithFooter>
+    <main className={`${styles.page} flex flex-col`}>
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: serializeJsonLd(breadcrumbJsonLd) }}
       />
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: serializeJsonLd(pageJsonLd) }}
+      />
 
-      <PageBreadcrumb items={breadcrumbTrail} />
+      <div className="pulse-crumb-bar">
+        <PageBreadcrumb items={breadcrumbTrail} />
+      </div>
 
-      <Section
-        eyebrow="Timetable"
-        title="Weekly class schedule"
-        titleAs="h1"
-        description="Provisional illustrative timings only. Filters work with a normal form submit — no JavaScript required."
-      >
-        <Badge accent="neutral" className="mb-6">
-          Provisional schedule
-        </Badge>
+      <div className={styles.wrap}>
+        <header className={styles.hero} aria-labelledby="batch-availability-title">
+          <div className={styles.heroInner}>
+            <RouteOpening>
+              <p className={styles.kicker}>Batch availability</p>
+              <h1 id="batch-availability-title" className={styles.title}>
+                Check current batches
+              </h1>
+              <p className={styles.heroLede}>
+                Batch times vary by branch and programme. Choose your preferences and we’ll confirm the
+                current options on WhatsApp.
+              </p>
+            </RouteOpening>
+          </div>
+        </header>
 
-        <form
-          method="get"
-          action={PATH}
-          className="mb-8 grid gap-4 rounded-[var(--radius-lg)] border border-border bg-surface-raised p-4 sm:grid-cols-[1fr_1fr_auto_auto] sm:items-end sm:p-5"
+        <div className={styles.matrix} role="list">
+          <div className={styles.matrixCell} role="listitem">
+            <h2 id="operating-hours-title" className={styles.factLabel}>
+              Studio operating hours
+            </h2>
+            <p className={styles.factValueLarge}>6:00 AM to 10:00 PM · every day</p>
+            <p className={styles.factSupport}>These are studio hours; individual batches vary.</p>
+          </div>
+          <div className={styles.matrixCell} role="listitem">
+            <h2 id="audience-notes-title" className={styles.factLabel}>
+              Audience &amp; group size
+            </h2>
+            <p className={styles.factValue}>Ladies-only and kids-only</p>
+            <p className={styles.factSupport}>{audienceSupport}</p>
+          </div>
+          {commercial.maxGroupBatchSize != null ? (
+            <div className={styles.matrixCell} role="listitem">
+              <h2 className={styles.factLabel}>Maximum group batch size</h2>
+              <p className={styles.factValue}>
+                Up to {commercial.maxGroupBatchSize} people in a typical group batch.
+              </p>
+            </div>
+          ) : null}
+        </div>
+
+        <section
+          id="availability-enquiry"
+          className={styles.enquiry}
+          aria-labelledby="enquiry-builder-title"
         >
-          <div>
-            <label htmlFor="branch" className="block text-sm font-medium text-ink">
-              Branch
-            </label>
-            <select
-              id="branch"
-              name="branch"
-              defaultValue={branchSlug ?? ""}
-              className="mt-1.5 min-h-11 w-full rounded-[var(--radius-md)] border border-border bg-surface px-3 text-ink focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-focus-ring"
-            >
-              <option value="">All listed branches</option>
-              {branches.map((branch) => (
-                <option key={branch.slug} value={branch.slug}>
-                  {branch.name}
-                </option>
-              ))}
-            </select>
+          <div className={styles.enquiryIntro}>
+            <h2 id="enquiry-builder-title" className={styles.enquiryTitle}>
+              Availability enquiry
+            </h2>
+            <p className={styles.enquiryLede}>
+              Prepare a WhatsApp message for the service you want. You do not need every field filled in
+              before you open the chat.
+            </p>
           </div>
-          <div>
-            <label htmlFor="programme" className="block text-sm font-medium text-ink">
-              Programme
-            </label>
-            <select
-              id="programme"
-              name="programme"
-              defaultValue={programmeSlug ?? ""}
-              className="mt-1.5 min-h-11 w-full rounded-[var(--radius-md)] border border-border bg-surface px-3 text-ink focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-focus-ring"
-            >
-              <option value="">All programmes</option>
-              {programmes.map((programme) => (
-                <option key={programme.slug} value={programme.slug}>
-                  {programme.name}
-                </option>
-              ))}
-            </select>
+          <div className={styles.enquiryPanel}>
+            <AvailabilityEnquiryBuilder
+              services={services}
+              branches={branchOptions}
+              fallbackHref={fallbackHref}
+            />
           </div>
-          <Button type="submit" className="w-full sm:w-auto">
-            Apply filters
-          </Button>
-          <Link
-            href={PATH}
-            className="inline-flex min-h-11 items-center justify-center rounded-[var(--radius-md)] border border-border px-5 text-sm font-medium text-ink touch-target hover:border-border-strong focus-visible:outline-2 focus-visible:outline-offset-3 focus-visible:outline-focus-ring"
-          >
-            Clear
-          </Link>
-        </form>
+        </section>
 
-        <p className="mb-6 text-sm font-medium text-ink" aria-live="polite">
-          {resultLabel}
-          {branchSlug || programmeSlug ? " for the selected filters." : "."}
-        </p>
+        <div className={styles.know}>
+          <FaqBlock items={[...FAQ]} titleId="batch-faq-title" />
+        </div>
 
-        {slots.length === 0 ? (
-          <Body>No provisional classes match these filters yet.</Body>
-        ) : (
-          <>
-            {/* Mobile / SR-friendly stacked list */}
-            <div className="flex flex-col gap-8 md:hidden">
-              {slotsByDay.map((group) => (
-                <section key={group.label} aria-labelledby={`day-${group.dayOfWeek}`}>
-                  <Heading as="h2" className="mb-3">
-                    <span id={`day-${group.dayOfWeek}`}>{group.label}</span>
-                  </Heading>
-                  <ul className="divide-y divide-border rounded-[var(--radius-lg)] border border-border bg-surface-raised">
-                    {group.slots.map((slot) => (
-                      <li key={slot.id} className="flex flex-col gap-2 px-4 py-4">
-                        <p className="font-semibold text-ink">
-                          {slot.startTime}–{slot.endTime}
-                        </p>
-                        <p className="break-words text-ink">
-                          {getProgrammeBySlug(slot.programmeSlug)?.name ?? slot.programmeSlug}
-                        </p>
-                        <Caption>
-                          {branches.find((branch) => branch.slug === slot.branchSlug)?.name ??
-                            slot.branchSlug}
-                        </Caption>
-                        {slot.dataStatus !== "verified" && slot.mockDisclaimer ? (
-                          <Caption className="text-ink-subtle">{slot.mockDisclaimer}</Caption>
-                        ) : null}
-                      </li>
-                    ))}
-                  </ul>
-                </section>
-              ))}
-            </div>
-
-            {/* Desktop table */}
-            <div className="hidden overflow-x-auto md:block">
-              <table className="w-full min-w-[40rem] border-collapse text-left">
-                <caption className="sr-only">Provisional weekly timetable</caption>
-                <thead className="bg-surface-sunken text-[length:var(--text-overline)] uppercase tracking-[var(--text-overline--letter-spacing)] text-ink-muted">
-                  <tr>
-                    <th scope="col" className="px-4 py-3 font-semibold">
-                      Day
-                    </th>
-                    <th scope="col" className="px-4 py-3 font-semibold">
-                      Time
-                    </th>
-                    <th scope="col" className="px-4 py-3 font-semibold">
-                      Programme
-                    </th>
-                    <th scope="col" className="px-4 py-3 font-semibold">
-                      Branch
-                    </th>
-                  </tr>
-                </thead>
-                <tbody>
-                  {slots.map((slot) => (
-                    <tr key={slot.id} className="border-t border-border">
-                      <th scope="row" className="px-4 py-3 font-medium text-ink">
-                        {DAY_LABELS[slot.dayOfWeek] ?? "—"}
-                      </th>
-                      <td className="px-4 py-3 text-ink-muted">
-                        {slot.startTime}–{slot.endTime}
-                      </td>
-                      <td className="px-4 py-3 break-words text-ink">
-                        {getProgrammeBySlug(slot.programmeSlug)?.name ?? slot.programmeSlug}
-                        {slot.dataStatus !== "verified" && slot.mockDisclaimer ? (
-                          <Caption className="mt-1 block text-ink-subtle">{slot.mockDisclaimer}</Caption>
-                        ) : null}
-                      </td>
-                      <td className="px-4 py-3 text-ink-muted">
-                        {branches.find((branch) => branch.slug === slot.branchSlug)?.name ??
-                          slot.branchSlug}
-                      </td>
-                    </tr>
-                  ))}
-                </tbody>
-              </table>
-            </div>
-          </>
-        )}
-      </Section>
+        <nav className={styles.next} aria-labelledby="batch-next-title">
+          <h2 id="batch-next-title" className={styles.nextLabel}>
+            Next steps
+          </h2>
+          <div className={styles.nextLinks}>
+            <Link className={styles.nextLink} href="/programs">
+              Explore programmes
+              <span className={styles.nextArrow} aria-hidden="true">
+                →
+              </span>
+            </Link>
+            <span className={styles.nextSlash} aria-hidden="true">
+              /
+            </span>
+            <Link className={styles.nextLink} href="/locations">
+              Find a studio
+              <span className={styles.nextArrow} aria-hidden="true">
+                →
+              </span>
+            </Link>
+          </div>
+        </nav>
+      </div>
     </main>
+    </PageWithFooter>
   );
 }

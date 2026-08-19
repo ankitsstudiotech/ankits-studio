@@ -18,7 +18,8 @@ export type TrialLeadInput = {
   branchSlug: BranchSlug;
   programmeSlug: ProgrammeSlug;
   preferredTiming: PreferredTiming;
-  ageGroup: AgeGroup;
+  ageGroup?: AgeGroup;
+  trialDate?: string;
   message?: string;
   consent: boolean;
 };

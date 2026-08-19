@@ -1,0 +1,117 @@
+{
+  "capturedAt": "2026-08-13T05:09:13.114Z",
+  "baseUrl": "http://localhost:3008",
+  "homeMobileRuns": [
+    {
+      "fcpMs": 2160.826,
+      "lcpMs": 2827.087,
+      "cls": 0.7095990279465371,
+      "tbtMs": 1100.1989999847424,
+      "lcpSelector": "section.pulse-home-module__O0A-GG__field > div.pulse-home-module__O0A-GG__heroMedia > figure.pulse-media-module__3a7RCW__frame > img.pulse-media-module__3a7RCW__frameMedia",
+      "clsCulprit": "body.studio-shell > div#main-content > footer.border-t",
+      "reportFile": "C:\\Personal data\\Aniket\\Personal_Code\\ankits-studio\\docs\\revamp\\_lh-tmp\\after-perf-1786597457330.json"
+    },
+    {
+      "fcpMs": 2170.437,
+      "lcpMs": 2603.478,
+      "cls": 0,
+      "tbtMs": 536.0739999847406,
+      "lcpSelector": "section.pulse-home-module__O0A-GG__field > div.pulse-home-module__O0A-GG__heroMedia > figure.pulse-media-module__3a7RCW__frame > img.pulse-media-module__3a7RCW__frameMedia",
+      "clsCulprit": null,
+      "reportFile": "C:\\Personal data\\Aniket\\Personal_Code\\ankits-studio\\docs\\revamp\\_lh-tmp\\after-perf-1786597493621.json"
+    },
+    {
+      "fcpMs": 7704.517,
+      "lcpMs": 7754.429,
+      "cls": 0,
+      "tbtMs": 288.8720000000012,
+      "lcpSelector": "section.pulse-home-module__O0A-GG__field > div.pulse-home-module__O0A-GG__heroMedia > figure.pulse-media-module__3a7RCW__frame > img.pulse-media-module__3a7RCW__frameMedia",
+      "clsCulprit": null,
+      "reportFile": "C:\\Personal data\\Aniket\\Personal_Code\\ankits-studio\\docs\\revamp\\_lh-tmp\\after-perf-1786597528116.json"
+    },
+    {
+      "fcpMs": 2218.448,
+      "lcpMs": 2767.967,
+      "cls": 0,
+      "tbtMs": 769.6479999999997,
+      "lcpSelector": "section.pulse-home-module__O0A-GG__field > div.pulse-home-module__O0A-GG__heroMedia > figure.pulse-media-module__3a7RCW__frame > img.pulse-media-module__3a7RCW__frameMedia",
+      "clsCulprit": null,
+      "reportFile": "C:\\Personal data\\Aniket\\Personal_Code\\ankits-studio\\docs\\revamp\\_lh-tmp\\after-perf-1786597576198.json"
+    },
+    {
+      "fcpMs": 2276.706,
+      "lcpMs": 2776.371,
+      "cls": 0,
+      "tbtMs": 826.3759999999993,
+      "lcpSelector": "section.pulse-home-module__O0A-GG__field > div.pulse-home-module__O0A-GG__heroMedia > figure.pulse-media-module__3a7RCW__frame > img.pulse-media-module__3a7RCW__frameMedia",
+      "clsCulprit": null,
+      "reportFile": "C:\\Personal data\\Aniket\\Personal_Code\\ankits-studio\\docs\\revamp\\_lh-tmp\\after-perf-1786597610182.json"
+    }
+  ],
+  "homeMobileMedian": {
+    "fcpMs": 2218.448,
+    "lcpMs": 2776.371,
+    "cls": 0,
+    "tbtMs": 769.6479999999997
+  },
+  "functionalMobileRuns": [
+    {
+      "fcpMs": 2300.75,
+      "lcpMs": 2633.837,
+      "cls": 0,
+      "tbtMs": 634.1639999999989,
+      "lcpSelector": "div.programme-pulse-module__GKqufG__composeHero > div.programme-pulse-module__GKqufG__detailMedia > figure.pulse-media-module__3a7RCW__frame > img.pulse-media-module__3a7RCW__frameMedia",
+      "clsCulprit": null,
+      "reportFile": "C:\\Personal data\\Aniket\\Personal_Code\\ankits-studio\\docs\\revamp\\_lh-tmp\\after-perf-1786597639269.json"
+    },
+    {
+      "fcpMs": 2416.793,
+      "lcpMs": 2483.482,
+      "cls": 0,
+      "tbtMs": 378.25199999999995,
+      "lcpSelector": "div.programme-pulse-module__GKqufG__composeHero > div.programme-pulse-module__GKqufG__detailMedia > figure.pulse-media-module__3a7RCW__frame > img.pulse-media-module__3a7RCW__frameMedia",
+      "clsCulprit": null,
+      "reportFile": "C:\\Personal data\\Aniket\\Personal_Code\\ankits-studio\\docs\\revamp\\_lh-tmp\\after-perf-1786597669284.json"
+    },
+    {
+      "fcpMs": 2483.131,
+      "lcpMs": 2732.926,
+      "cls": 0,
+      "tbtMs": 691.1440000000007,
+      "lcpSelector": "div.programme-pulse-module__GKqufG__composeHero > div.programme-pulse-module__GKqufG__detailMedia > figure.pulse-media-module__3a7RCW__frame > img.pulse-media-module__3a7RCW__frameMedia",
+      "clsCulprit": null,
+      "reportFile": "C:\\Personal data\\Aniket\\Personal_Code\\ankits-studio\\docs\\revamp\\_lh-tmp\\after-perf-1786597698255.json"
+    }
+  ],
+  "functionalMobileMedian": {
+    "fcpMs": 2416.793,
+    "lcpMs": 2633.837,
+    "cls": 0,
+    "tbtMs": 634.1639999999989
+  },
+  "homeDesktop1440": {
+    "fcpMs": 341.75135,
+    "lcpMs": 834.0018,
+    "cls": 0,
+    "tbtMs": 1,
+    "lcpSelector": "section.pulse-home-module__O0A-GG__field > div.pulse-home-module__O0A-GG__heroMedia > figure.pulse-media-module__3a7RCW__frame > img.pulse-media-module__3a7RCW__frameMedia",
+    "clsCulprit": null,
+    "reportFile": "C:\\Personal data\\Aniket\\Personal_Code\\ankits-studio\\docs\\revamp\\_lh-tmp\\after-desktop-1786597727282.json"
+  },
+  "homePlaywrightCls": {
+    "total": 0,
+    "h1": {
+      "text": "Coach-led fitness,yoga, Zumba and dance.",
+      "opacity": "1",
+      "visibility": "visible"
+    }
+  },
+  "functionalPlaywrightCls": {
+    "total": 0,
+    "h1": {
+      "text": "Functionaltraining",
+      "opacity": "1",
+      "visibility": "visible"
+    }
+  }
+}

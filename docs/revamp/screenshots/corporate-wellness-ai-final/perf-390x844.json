@@ -1,0 +1,33 @@
+{
+  "capturedAt": "2026-08-13T10:55:11.949Z",
+  "cls": 0,
+  "overflow": 0,
+  "h1Visible": true,
+  "lcp": {
+    "startTime": 72,
+    "size": 81533,
+    "url": "http://127.0.0.1:3011/_next/image?url=%2Fmedia%2Fsynthetic-preview%2Fprogramme-corporate-wellness-hero-ai-concept.webp&w=828&q=75",
+    "tag": "IMG",
+    "className": "pulse-media-module__3a7RCW__frameMedia"
+  },
+  "heroSrc": "http://127.0.0.1:3011/_next/image?url=%2Fmedia%2Fsynthetic-preview%2Fprogramme-corporate-wellness-hero-ai-concept.webp&w=828&q=75",
+  "servedImageBytes": 29060,
+  "imageResources": [
+    {
+      "name": "http://127.0.0.1:3011/_next/image?url=%2Fbrand%2Fankits-studio-symbol-transparent.png&w=32&q=75",
+      "transferSize": 0,
+      "encodedBodySize": 908
+    },
+    {
+      "name": "http://127.0.0.1:3011/_next/image?url=%2Fmedia%2Fsynthetic-preview%2Fprogramme-corporate-wellness-hero-ai-concept.webp&w=640&q=75",
+      "transferSize": 0,
+      "encodedBodySize": 19438
+    },
+    {
+      "name": "http://127.0.0.1:3011/_next/image?url=%2Fmedia%2Fsynthetic-preview%2Fprogramme-corporate-wellness-hero-ai-concept.webp&w=828&q=75",
+      "transferSize": 0,
+      "encodedBodySize": 29060
+    }
+  ],
+  "failedImages": []
+}

@@ -1,9 +1,9 @@
-import { redirect } from "next/navigation";
+import { permanentRedirect } from "next/navigation";
 
 /**
- * Alias for the canonical trial booking route (`/trial` per IA).
- * Keeps the user-requested `/book-a-free-trial` path working.
+ * Alias for the canonical trial booking route (`/trial`).
+ * Prefer the permanent redirect in next.config.ts; this page is a fallback.
  */
 export default function BookAFreeTrialAliasPage() {
-  redirect("/trial");
+  permanentRedirect("/trial");
 }

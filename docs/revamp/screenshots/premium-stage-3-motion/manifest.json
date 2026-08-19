@@ -1,0 +1,189 @@
+{
+  "generatedAt": "2026-08-08T10:03:15.521Z",
+  "base": "http://127.0.0.1:3493",
+  "fails": 0,
+  "records": [
+    {
+      "name": "full-390-home.png",
+      "width": 390,
+      "height": 5131,
+      "expected": 390,
+      "pass": true
+    },
+    {
+      "name": "full-1440-home.png",
+      "width": 1440,
+      "height": 4426,
+      "expected": 1440,
+      "pass": true
+    },
+    {
+      "name": "full-390-about.png",
+      "width": 390,
+      "height": 4024,
+      "expected": 390,
+      "pass": true
+    },
+    {
+      "name": "full-1440-about.png",
+      "width": 1440,
+      "height": 3246,
+      "expected": 1440,
+      "pass": true
+    },
+    {
+      "name": "full-390-programs.png",
+      "width": 390,
+      "height": 2935,
+      "expected": 390,
+      "pass": true
+    },
+    {
+      "name": "full-1440-programs.png",
+      "width": 1440,
+      "height": 2660,
+      "expected": 1440,
+      "pass": true
+    },
+    {
+      "name": "full-390-functional-training.png",
+      "width": 390,
+      "height": 3688,
+      "expected": 390,
+      "pass": true
+    },
+    {
+      "name": "full-1440-functional-training.png",
+      "width": 1440,
+      "height": 3084,
+      "expected": 1440,
+      "pass": true
+    },
+    {
+      "name": "full-390-yoga.png",
+      "width": 390,
+      "height": 3222,
+      "expected": 390,
+      "pass": true
+    },
+    {
+      "name": "full-1440-yoga.png",
+      "width": 1440,
+      "height": 2863,
+      "expected": 1440,
+      "pass": true
+    },
+    {
+      "name": "full-390-wedding.png",
+      "width": 390,
+      "height": 3080,
+      "expected": 390,
+      "pass": true
+    },
+    {
+      "name": "full-1440-wedding.png",
+      "width": 1440,
+      "height": 2716,
+      "expected": 1440,
+      "pass": true
+    },
+    {
+      "name": "full-390-locations.png",
+      "width": 390,
+      "height": 2188,
+      "expected": 390,
+      "pass": true
+    },
+    {
+      "name": "full-1440-locations.png",
+      "width": 1440,
+      "height": 1958,
+      "expected": 1440,
+      "pass": true
+    },
+    {
+      "name": "full-390-pricing.png",
+      "width": 390,
+      "height": 3206,
+      "expected": 390,
+      "pass": true
+    },
+    {
+      "name": "full-1440-pricing.png",
+      "width": 1440,
+      "height": 2254,
+      "expected": 1440,
+      "pass": true
+    },
+    {
+      "name": "full-390-timetable.png",
+      "width": 390,
+      "height": 3220,
+      "expected": 390,
+      "pass": true
+    },
+    {
+      "name": "full-1440-timetable.png",
+      "width": 1440,
+      "height": 2588,
+      "expected": 1440,
+      "pass": true
+    },
+    {
+      "name": "full-390-trial.png",
+      "width": 390,
+      "height": 2552,
+      "expected": 390,
+      "pass": true
+    },
+    {
+      "name": "full-1440-trial.png",
+      "width": 1440,
+      "height": 2031,
+      "expected": 1440,
+      "pass": true
+    },
+    {
+      "name": "full-390-contact.png",
+      "width": 390,
+      "height": 2951,
+      "expected": 390,
+      "pass": true
+    },
+    {
+      "name": "full-1440-contact.png",
+      "width": 1440,
+      "height": 1814,
+      "expected": 1440,
+      "pass": true
+    },
+    {
+      "name": "full-768-home.png",
+      "width": 768,
+      "height": 4144,
+      "expected": 768,
+      "pass": true
+    },
+    {
+      "name": "full-768-programs.png",
+      "width": 768,
+      "height": 2614,
+      "expected": 768,
+      "pass": true
+    },
+    {
+      "name": "full-768-functional-training.png",
+      "width": 768,
+      "height": 3070,
+      "expected": 768,
+      "pass": true
+    },
+    {
+      "name": "full-768-pricing.png",
+      "width": 768,
+      "height": 2804,
+      "expected": 768,
+      "pass": true
+    }
+  ]
+}

@@ -1,0 +1,85 @@
+{
+  "mode": "flag-true",
+  "base": "http://127.0.0.1:3456",
+  "generatedAt": "2026-08-08T15:00:49.039Z",
+  "results": [
+    {
+      "route": "home",
+      "path": "/",
+      "imageBytes": 56842,
+      "imageCount": 4,
+      "topImages": [
+        {
+          "url": "http://127.0.0.1:3456/_next/image?url=%2Fmedia%2Fsynthetic-preview%2Fhome-hero-ai-concept.webp&w=828&q=75",
+          "bytes": 34592
+        },
+        {
+          "url": "http://127.0.0.1:3456/_next/image?url=%2Fmedia%2Fsynthetic-preview%2Fhome-community-ai-concept.webp&w=640&q=75",
+          "bytes": 19942
+        },
+        {
+          "url": "http://127.0.0.1:3456/_next/image?url=%2Fbrand%2Fankits-studio-symbol-transparent.png&w=48&q=75",
+          "bytes": 1400
+        },
+        {
+          "url": "http://127.0.0.1:3456/_next/image?url=%2Fbrand%2Fankits-studio-symbol-transparent.png&w=32&q=75",
+          "bytes": 908
+        }
+      ],
+      "fcp": 180,
+      "lcp": 180,
+      "cls": 0,
+      "transferSize": 14437,
+      "encodedBodySize": 14137,
+      "lcpElement": null
+    },
+    {
+      "route": "functional",
+      "path": "/programs/functional-training",
+      "imageBytes": 28824,
+      "imageCount": 3,
+      "topImages": [
+        {
+          "url": "http://127.0.0.1:3456/_next/image?url=%2Fmedia%2Fsynthetic-preview%2Fprogramme-functional-action-ai-concept.webp&w=640&q",
+          "bytes": 14064
+        },
+        {
+          "url": "http://127.0.0.1:3456/_next/image?url=%2Fmedia%2Fsynthetic-preview%2Fprogramme-functional-hero-ai-concept.webp&w=640&q=7",
+          "bytes": 13852
+        },
+        {
+          "url": "http://127.0.0.1:3456/_next/image?url=%2Fbrand%2Fankits-studio-symbol-transparent.png&w=32&q=75",
+          "bytes": 908
+        }
+      ],
+      "fcp": 132,
+      "lcp": 132,
+      "cls": 0,
+      "transferSize": 13358,
+      "encodedBodySize": 13058,
+      "lcpElement": null
+    },
+    {
+      "route": "yoga",
+      "path": "/programs/yoga",
+      "imageBytes": 17574,
+      "imageCount": 2,
+      "topImages": [
+        {
+          "url": "http://127.0.0.1:3456/_next/image?url=%2Fmedia%2Fsynthetic-preview%2Fprogramme-yoga-hero-ai-concept.webp&w=640&q=75",
+          "bytes": 16666
+        },
+        {
+          "url": "http://127.0.0.1:3456/_next/image?url=%2Fbrand%2Fankits-studio-symbol-transparent.png&w=32&q=75",
+          "bytes": 908
+        }
+      ],
+      "fcp": 144,
+      "lcp": 144,
+      "cls": 0,
+      "transferSize": 12139,
+      "encodedBodySize": 11839,
+      "lcpElement": null
+    }
+  ]
+}

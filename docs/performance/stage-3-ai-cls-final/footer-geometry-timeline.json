@@ -1,0 +1,45 @@
+{
+  "capturedAt": "2026-08-13T07:16:30.499Z",
+  "home": [
+    {
+      "label": "first-h1",
+      "elapsedMs": 736,
+      "viewportHeight": 844,
+      "footerTop": 4806.453125,
+      "footerHeight": 901.296875,
+      "h1Visible": true,
+      "h1Opacity": "1",
+      "h1Top": 82.59375
+    },
+    {
+      "label": "500ms",
+      "elapsedMs": 1245,
+      "viewportHeight": 844,
+      "footerTop": 4806.453125,
+      "footerHeight": 901.296875,
+      "h1Visible": true,
+      "h1Opacity": "1",
+      "h1Top": 82.59375
+    },
+    {
+      "label": "1000ms",
+      "elapsedMs": 1840,
+      "viewportHeight": 844,
+      "footerTop": 4806.453125,
+      "footerHeight": 901.296875,
+      "h1Visible": true,
+      "h1Opacity": "1",
+      "h1Top": 82.59375
+    },
+    {
+      "label": "final",
+      "elapsedMs": 5849,
+      "viewportHeight": 844,
+      "footerTop": 4806.453125,
+      "footerHeight": 901.296875,
+      "h1Visible": true,
+      "h1Opacity": "1",
+      "h1Top": 82.59375
+    }
+  ]
+}

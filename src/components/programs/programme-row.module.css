@@ -1,0 +1,304 @@
+/* Shared programme discovery row — one cue grammar, layout-specific composition. */
+
+.row {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 0.35rem 1.5rem;
+  text-decoration: none;
+  color: inherit;
+  padding: 0.95rem 0.15rem 1rem;
+  border: none;
+  border-bottom: var(--rule-structural-width) solid var(--rule-structural);
+  background: transparent;
+  min-height: 44px;
+  position: relative;
+  width: 100%;
+  max-width: none;
+  --title-nudge: 3px;
+  transition:
+    border-color var(--cue-duration) var(--ease-emphasis),
+    background-color var(--cue-duration) var(--ease-emphasis),
+    box-shadow var(--cue-duration) var(--ease-emphasis),
+    padding var(--cue-duration) var(--ease-emphasis),
+    transform var(--cue-duration) var(--ease-emphasis);
+}
+
+.copy,
+.support {
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 0.35rem;
+}
+
+.row:active {
+  transform: scale(0.99);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .row:active {
+    transform: none;
+  }
+}
+
+.row:hover,
+.row:focus-visible {
+  border-color: rgb(255 255 255 / 0.22);
+  background: transparent;
+  box-shadow: inset 3px 0 0 color-mix(in srgb, var(--color-accent) 55%, transparent);
+  padding-left: 0.75rem;
+}
+
+.row[data-emphasis="primary"] {
+  background: transparent;
+  padding-block: 1.15rem 1.25rem;
+}
+
+.row[data-emphasis="primary"]:hover,
+.row[data-emphasis="primary"]:focus-visible {
+  background: color-mix(in srgb, var(--color-field-raised) 55%, transparent);
+  padding-left: 0.85rem;
+}
+
+.row:focus-visible {
+  outline: 2px solid var(--color-volt);
+  outline-offset: 3px;
+}
+
+.name {
+  font-family: var(--font-display);
+  font-size: clamp(1.55rem, 3.5vw, 1.85rem);
+  letter-spacing: 0.03em;
+  margin: 0;
+  line-height: 1;
+  text-transform: uppercase;
+  color: var(--color-ink-inverse);
+  transition: transform var(--cue-duration) var(--ease-emphasis);
+}
+
+.row:hover .name,
+.row:focus-visible .name {
+  transform: translate3d(var(--title-nudge), 0, 0);
+}
+
+.row[data-emphasis="primary"] .name,
+.row[data-layout="featured"] .name {
+  font-size: clamp(1.75rem, 4vw, 2.35rem);
+}
+
+.description {
+  margin: 0;
+  color: var(--color-muted-on-field);
+  font-size: var(--text-body);
+  line-height: var(--text-body--line-height);
+  max-width: 52ch;
+}
+
+.meta {
+  margin: 0.15rem 0 0;
+  font-size: var(--text-caption);
+  line-height: var(--text-caption--line-height);
+  color: #c2bdb4;
+}
+
+.cueTrack {
+  display: flex;
+  align-items: center;
+  margin-top: 0.55rem;
+  min-height: var(--cue-thickness);
+}
+
+.cue {
+  transition: transform var(--cue-duration) var(--ease-emphasis);
+}
+
+.row:hover .cue,
+.row:focus-visible .cue {
+  transform: scaleX(var(--cue-hover-scale));
+}
+
+/* Featured — name/cue | description/meta sharing the available field. */
+@media (min-width: 900px) {
+  .row[data-layout="featured"] {
+    grid-template-columns: max-content minmax(12rem, 1fr);
+    column-gap: 2.5rem;
+    align-items: start;
+    padding-block: 1.35rem 1.5rem;
+  }
+
+  .row[data-layout="featured"] .description {
+    max-width: none;
+    font-size: var(--text-body-lg);
+    line-height: var(--text-body-lg--line-height);
+  }
+}
+
+/* Dense index — programme name column + descriptor/delivery column. */
+@media (min-width: 768px) {
+  .row[data-layout="index"] {
+    grid-template-columns: minmax(12rem, 0.78fr) minmax(0, 1.22fr);
+    column-gap: 1.75rem;
+    align-items: start;
+  }
+
+  .row[data-layout="index"] .description {
+    max-width: none;
+  }
+
+  .row[data-layout="index"] .meta {
+    margin-top: 0.25rem;
+  }
+}
+
+@media (min-width: 1100px) {
+  .row[data-layout="index"] {
+    grid-template-columns: minmax(16rem, 0.72fr) minmax(0, 1.28fr);
+    column-gap: 2.25rem;
+    padding-block: 1.1rem 1.2rem;
+  }
+}
+
+/* Matrix cell — fills the parent track; no empty 1fr page column. */
+.row[data-layout="cell"] {
+  height: 100%;
+  align-content: start;
+  padding-block: 0.95rem 1.05rem;
+}
+
+.row[data-layout="cell"] .name {
+  font-size: clamp(1.28rem, 2.4vw, 1.55rem);
+}
+
+.row[data-layout="cell"] .description {
+  max-width: none;
+}
+
+.row[data-layout="cell"]:hover,
+.row[data-layout="cell"]:focus-visible {
+  padding-left: 0.55rem;
+}
+
+/* Numbered editorial module — one cell of a framed field, not a SaaS card. */
+.row[data-layout="module"] {
+  display: grid;
+  grid-template-rows: auto 1fr auto;
+  gap: 0.85rem;
+  height: 100%;
+  min-height: 11.5rem;
+  padding: 1.1rem 1.15rem 1.2rem;
+  border: 0;
+  border-right: var(--rule-structural-width) solid var(--rule-structural);
+  border-bottom: var(--rule-structural-width) solid var(--rule-structural);
+  background: transparent;
+  --title-nudge: 0px;
+}
+
+.row[data-layout="module"]:hover,
+.row[data-layout="module"]:focus-visible {
+  background: var(--color-accent);
+  border-color: var(--color-accent);
+  box-shadow: none;
+  padding-left: 1.15rem;
+  transform: none;
+}
+
+.row[data-layout="module"]:hover .name,
+.row[data-layout="module"]:focus-visible .name,
+.row[data-layout="module"]:hover .description,
+.row[data-layout="module"]:focus-visible .description,
+.row[data-layout="module"]:hover .meta,
+.row[data-layout="module"]:focus-visible .meta,
+.row[data-layout="module"]:hover .moduleIndex,
+.row[data-layout="module"]:focus-visible .moduleIndex,
+.row[data-layout="module"]:hover .moduleTaxonomy,
+.row[data-layout="module"]:focus-visible .moduleTaxonomy {
+  color: var(--color-accent-foreground);
+  transform: none;
+}
+
+.moduleMeta {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 0.75rem;
+}
+
+.moduleIndex {
+  font-family: var(--font-display);
+  font-size: 0.95rem;
+  letter-spacing: 0.08em;
+  color: var(--color-accent-label);
+}
+
+.moduleTaxonomy {
+  font-size: var(--text-overline);
+  font-weight: 600;
+  letter-spacing: var(--text-overline--letter-spacing);
+  text-transform: uppercase;
+  color: var(--color-muted-on-field);
+}
+
+.row[data-layout="module"] .name {
+  font-size: clamp(2rem, 3.2vw, 3.75rem);
+  max-width: 12ch;
+  align-self: end;
+}
+
+.moduleFoot {
+  display: grid;
+  gap: 0.3rem;
+}
+
+.row[data-layout="module"] .description {
+  max-width: none;
+  font-size: 0.92rem;
+}
+
+@media (min-width: 1200px) {
+  .row[data-layout="module"] {
+    min-height: 20rem;
+    padding: 1.35rem 1.35rem 1.45rem;
+  }
+}
+
+@media (max-width: 767px) {
+  .row[data-layout="module"] {
+    min-height: 0;
+    grid-template-rows: auto auto auto;
+    padding-block: 0.95rem 1.05rem;
+  }
+
+  .row[data-layout="module"] .name {
+    font-size: clamp(1.85rem, 8vw, 2.4rem);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .row[data-layout="module"]:hover,
+  .row[data-layout="module"]:focus-visible {
+    transform: none;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .row,
+  .name,
+  .cue {
+    transition: none;
+  }
+
+  .row:hover .name,
+  .row:focus-visible .name {
+    transform: none;
+  }
+
+  .row:hover .cue,
+  .row:focus-visible .cue {
+    transform: none;
+  }
+
+  .row:hover,
+  .row:focus-visible {
+    box-shadow: inset 3px 0 0 color-mix(in srgb, var(--color-accent) 45%, transparent);
+  }
+}

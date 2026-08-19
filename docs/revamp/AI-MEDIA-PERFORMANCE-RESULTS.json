@@ -1,0 +1,179 @@
+{
+  "capturedAt": "2026-08-12T14:17:37.635Z",
+  "baseUrl": "http://localhost:3005",
+  "method": "lighthouse-cli npx --yes lighthouse preset perf/desktop",
+  "homeMobileMedian": {
+    "fcpMs": 2218.352,
+    "lcpMs": 3217.779,
+    "cls": 0.7095990279465371,
+    "tbtMs": 1054.8209999999995,
+    "runs": [
+      {
+        "fcpMs": 2218.352,
+        "lcpMs": 3217.779,
+        "cls": 0.7095990279465371,
+        "tbtMs": 1054.8209999999995,
+        "lcpElement": "3,220 ms"
+      },
+      {
+        "fcpMs": 2087.844,
+        "lcpMs": 3187.152,
+        "cls": 0.7095990279465371,
+        "tbtMs": 1311.3160000000003,
+        "lcpElement": "3,190 ms"
+      },
+      {
+        "fcpMs": 3721.611,
+        "lcpMs": 3821.577,
+        "cls": 0,
+        "tbtMs": 410.9209999999998,
+        "lcpElement": "3,820 ms"
+      }
+    ]
+  },
+  "homeDesktop1440": {
+    "fcpMs": 388.1389499999999,
+    "lcpMs": 826.8982499999998,
+    "cls": 0,
+    "tbtMs": 0,
+    "lcpElement": "830 ms"
+  },
+  "functionalMobile": {
+    "fcpMs": 1867.088,
+    "lcpMs": 2766.459,
+    "cls": 1.0471004489694078,
+    "tbtMs": 1191.9340000000002,
+    "lcpElement": "2,770 ms"
+  },
+  "lcpDetail": {
+    "lcpInfo": {
+      "tag": "IMG",
+      "id": "",
+      "className": "pulse-media-module__3a7RCW__frameMedia",
+      "text": "",
+      "size": 77610,
+      "url": "http://localhost:3005/_next/image?url=%2Fmedia%2Fsynthetic-preview%2Fhome-hero-ai-concept.webp&w=1200&q=75"
+    },
+    "h1FirstPaint": {
+      "text": "Coach-led fitness,yoga, Zumba and dance.",
+      "opacity": "1",
+      "visibility": "visible",
+      "width": 320.78125,
+      "height": 156.34375
+    }
+  },
+  "heroDelivery": {
+    "sourceAssetBytes": 305088,
+    "homeMobile": [
+      {
+        "url": "http://localhost:3005/_next/image?url=%2Fmedia%2Fsynthetic-preview%2Fhome-hero-ai-concept.webp&w=640&q=75",
+        "status": 200,
+        "contentType": "image/webp",
+        "bytes": 22624
+      },
+      {
+        "url": "http://localhost:3005/_next/image?url=%2Fbrand%2Fankits-studio-symbol-transparent.png&w=32&q=75",
+        "status": 200,
+        "contentType": "image/webp",
+        "bytes": 908
+      },
+      {
+        "url": "http://localhost:3005/_next/image?url=%2Fbrand%2Fankits-studio-symbol-transparent.png&w=48&q=75",
+        "status": 200,
+        "contentType": "image/webp",
+        "bytes": 1400
+      }
+    ],
+    "homeDesktop": [
+      {
+        "url": "http://localhost:3005/_next/image?url=%2Fbrand%2Fankits-studio-symbol-transparent.png&w=32&q=75",
+        "status": 200,
+        "contentType": "image/webp",
+        "bytes": 908
+      },
+      {
+        "url": "http://localhost:3005/_next/image?url=%2Fmedia%2Fsynthetic-preview%2Fhome-hero-ai-concept.webp&w=828&q=75",
+        "status": 200,
+        "contentType": "image/webp",
+        "bytes": 34592
+      },
+      {
+        "url": "http://localhost:3005/_next/image?url=%2Fbrand%2Fankits-studio-symbol-transparent.png&w=48&q=75",
+        "status": 200,
+        "contentType": "image/webp",
+        "bytes": 1400
+      }
+    ],
+    "functionalMobile": [
+      {
+        "url": "http://localhost:3005/_next/image?url=%2Fmedia%2Fsynthetic-preview%2Fprogramme-functional-hero-ai-concept.webp&w=640&q=75",
+        "status": 200,
+        "contentType": "image/webp",
+        "bytes": 13852
+      },
+      {
+        "url": "http://localhost:3005/_next/image?url=%2Fbrand%2Fankits-studio-symbol-transparent.png&w=32&q=75",
+        "status": 200,
+        "contentType": "image/webp",
+        "bytes": 908
+      },
+      {
+        "url": "http://localhost:3005/_next/image?url=%2Fmedia%2Fsynthetic-preview%2Fprogramme-functional-action-ai-concept.webp&w=640&q=75",
+        "status": 200,
+        "contentType": "image/webp",
+        "bytes": 14064
+      }
+    ],
+    "yogaMobile": [
+      {
+        "url": "http://localhost:3005/_next/image?url=%2Fmedia%2Fsynthetic-preview%2Fprogramme-yoga-hero-ai-concept.webp&w=640&q=75",
+        "status": 200,
+        "contentType": "image/webp",
+        "bytes": 16666
+      },
+      {
+        "url": "http://localhost:3005/_next/image?url=%2Fbrand%2Fankits-studio-symbol-transparent.png&w=32&q=75",
+        "status": 200,
+        "contentType": "image/webp",
+        "bytes": 908
+      }
+    ]
+  },
+  "network": [
+    {
+      "path": "/",
+      "failedImages": [],
+      "brokenDom": [],
+      "consoleErrors": []
+    },
+    {
+      "path": "/programs/functional-training",
+      "failedImages": [],
+      "brokenDom": [],
+      "consoleErrors": []
+    },
+    {
+      "path": "/programs/yoga",
+      "failedImages": [],
+      "brokenDom": [],
+      "consoleErrors": []
+    },
+    {
+      "path": "/about",
+      "failedImages": [],
+      "brokenDom": [],
+      "consoleErrors": []
+    },
+    {
+      "path": "/locations",
+      "failedImages": [],
+      "brokenDom": [],
+      "consoleErrors": []
+    }
+  ],
+  "acceptance": {
+    "clsPass": false,
+    "h1Readable": true,
+    "zeroFailedImages": true
+  }
+}

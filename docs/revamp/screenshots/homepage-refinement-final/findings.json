@@ -1,0 +1,314 @@
+{
+  "base": "http://localhost:3000",
+  "capturedAt": "2026-08-02T05:38:00.292Z",
+  "viewports": [
+    {
+      "name": "360x800",
+      "width": 360,
+      "height": 800,
+      "overflowX": false,
+      "scrollWidth": 360,
+      "clientWidth": 360,
+      "heroBrandDisplay": "none",
+      "heroCtaVisible": true,
+      "stickyReveal": "false",
+      "stickyVisibleLg": true,
+      "clusters": [
+        "train",
+        "move",
+        "celebrate"
+      ],
+      "serviceCount": 7,
+      "serviceNames": [
+        "Functional Training",
+        "Home Personal Training",
+        "Online Training",
+        "Zumba",
+        "Yoga",
+        "Dance",
+        "Wedding Choreography"
+      ],
+      "functionalPrimary": true,
+      "bannerText": "Development preview — some details still pending confirmation · noindexNot every address, timetable, or fee on this preview is final. This banner stays until re",
+      "h1": "Machine-free fitness. Yoga, Zumba and dance."
+    },
+    {
+      "name": "390x844",
+      "width": 390,
+      "height": 844,
+      "overflowX": false,
+      "scrollWidth": 390,
+      "clientWidth": 390,
+      "heroBrandDisplay": "none",
+      "heroCtaVisible": true,
+      "stickyReveal": "false",
+      "stickyVisibleLg": true,
+      "clusters": [
+        "train",
+        "move",
+        "celebrate"
+      ],
+      "serviceCount": 7,
+      "serviceNames": [
+        "Functional Training",
+        "Home Personal Training",
+        "Online Training",
+        "Zumba",
+        "Yoga",
+        "Dance",
+        "Wedding Choreography"
+      ],
+      "functionalPrimary": true,
+      "bannerText": "Development preview — some details still pending confirmation · noindexNot every address, timetable, or fee on this preview is final. This banner stays until re",
+      "h1": "Machine-free fitness. Yoga, Zumba and dance."
+    },
+    {
+      "name": "430x932",
+      "width": 430,
+      "height": 932,
+      "overflowX": false,
+      "scrollWidth": 430,
+      "clientWidth": 430,
+      "heroBrandDisplay": "none",
+      "heroCtaVisible": true,
+      "stickyReveal": "false",
+      "stickyVisibleLg": true,
+      "clusters": [
+        "train",
+        "move",
+        "celebrate"
+      ],
+      "serviceCount": 7,
+      "serviceNames": [
+        "Functional Training",
+        "Home Personal Training",
+        "Online Training",
+        "Zumba",
+        "Yoga",
+        "Dance",
+        "Wedding Choreography"
+      ],
+      "functionalPrimary": true,
+      "bannerText": "Development preview — some details still pending confirmation · noindexNot every address, timetable, or fee on this preview is final. This banner stays until re",
+      "h1": "Machine-free fitness. Yoga, Zumba and dance."
+    },
+    {
+      "name": "768x1024",
+      "width": 768,
+      "height": 1024,
+      "overflowX": false,
+      "scrollWidth": 768,
+      "clientWidth": 768,
+      "heroBrandDisplay": "none",
+      "heroCtaVisible": true,
+      "stickyReveal": "false",
+      "stickyVisibleLg": true,
+      "clusters": [
+        "train",
+        "move",
+        "celebrate"
+      ],
+      "serviceCount": 7,
+      "serviceNames": [
+        "Functional Training",
+        "Home Personal Training",
+        "Online Training",
+        "Zumba",
+        "Yoga",
+        "Dance",
+        "Wedding Choreography"
+      ],
+      "functionalPrimary": true,
+      "bannerText": "Development preview — some details still pending confirmation · noindexNot every address, timetable, or fee on this preview is final. This banner stays until re",
+      "h1": "Machine-free fitness. Yoga, Zumba and dance."
+    },
+    {
+      "name": "1024x768",
+      "width": 1024,
+      "height": 768,
+      "overflowX": false,
+      "scrollWidth": 1024,
+      "clientWidth": 1024,
+      "heroBrandDisplay": "flex",
+      "heroCtaVisible": true,
+      "stickyReveal": "false",
+      "stickyVisibleLg": false,
+      "clusters": [
+        "train",
+        "move",
+        "celebrate"
+      ],
+      "serviceCount": 7,
+      "serviceNames": [
+        "Functional Training",
+        "Home Personal Training",
+        "Online Training",
+        "Zumba",
+        "Yoga",
+        "Dance",
+        "Wedding Choreography"
+      ],
+      "functionalPrimary": true,
+      "bannerText": "Development preview — some details still pending confirmation · noindexNot every address, timetable, or fee on this preview is final. This banner stays until re",
+      "h1": "Machine-free fitness. Yoga, Zumba and dance."
+    },
+    {
+      "name": "1440x900",
+      "width": 1440,
+      "height": 900,
+      "overflowX": false,
+      "scrollWidth": 1440,
+      "clientWidth": 1440,
+      "heroBrandDisplay": "flex",
+      "heroCtaVisible": true,
+      "stickyReveal": "false",
+      "stickyVisibleLg": false,
+      "clusters": [
+        "train",
+        "move",
+        "celebrate"
+      ],
+      "serviceCount": 7,
+      "serviceNames": [
+        "Functional Training",
+        "Home Personal Training",
+        "Online Training",
+        "Zumba",
+        "Yoga",
+        "Dance",
+        "Wedding Choreography"
+      ],
+      "functionalPrimary": true,
+      "bannerText": "Development preview — some details still pending confirmation · noindexNot every address, timetable, or fee on this preview is final. This banner stays until re",
+      "h1": "Machine-free fitness. Yoga, Zumba and dance."
+    },
+    {
+      "name": "1920x1080",
+      "width": 1920,
+      "height": 1080,
+      "overflowX": false,
+      "scrollWidth": 1920,
+      "clientWidth": 1920,
+      "heroBrandDisplay": "flex",
+      "heroCtaVisible": true,
+      "stickyReveal": "false",
+      "stickyVisibleLg": false,
+      "clusters": [
+        "train",
+        "move",
+        "celebrate"
+      ],
+      "serviceCount": 7,
+      "serviceNames": [
+        "Functional Training",
+        "Home Personal Training",
+        "Online Training",
+        "Zumba",
+        "Yoga",
+        "Dance",
+        "Wedding Choreography"
+      ],
+      "functionalPrimary": true,
+      "bannerText": "Development preview — some details still pending confirmation · noindexNot every address, timetable, or fee on this preview is final. This banner stays until re",
+      "h1": "Machine-free fitness. Yoga, Zumba and dance."
+    }
+  ],
+  "sticky": {
+    "viewport": "390x844",
+    "atTop": "false",
+    "midPage": "true",
+    "atTrial": "false",
+    "afterFastTop": "false",
+    "afterReloadMid": "true",
+    "bodyPaddingBottom": "72px",
+    "expect": {
+      "atTop": "false",
+      "midPage": "true",
+      "atTrial": "false",
+      "afterFastTop": "false",
+      "afterReloadMid": "true"
+    },
+    "reducedMotionZoom200OverflowX": true
+  },
+  "services": {},
+  "media": {
+    "plates": [
+      {
+        "status": "fallback",
+        "slot": "home.hero",
+        "mock": "true",
+        "label": "Studio atmosphere placeholder — real photography pending"
+      },
+      {
+        "status": "fallback",
+        "slot": "home.differentiator",
+        "mock": "true",
+        "label": "Coach-led session atmosphere placeholder — real photography pending"
+      }
+    ],
+    "brokenImgs": 0
+  },
+  "frozen": {
+    "a": {
+      "rootPresent": true,
+      "robots": "noindex, nofollow"
+    },
+    "b": {
+      "rootPresent": true,
+      "robots": "noindex, nofollow"
+    },
+    "c": {
+      "rootPresent": true,
+      "robots": "noindex, nofollow"
+    }
+  },
+  "batchLeaks": {
+    "routes": [
+      {
+        "route": "/",
+        "hasPlaceholderSchedule": false,
+        "hasIllustrativeClasses": false,
+        "hasProvisionalClassListed": false,
+        "hasSampleSchedule": false,
+        "hasAskWhatsApp": true,
+        "hasOperatingWindow": true
+      },
+      {
+        "route": "/timetable",
+        "hasPlaceholderSchedule": false,
+        "hasIllustrativeClasses": false,
+        "hasProvisionalClassListed": false,
+        "hasSampleSchedule": false,
+        "hasAskWhatsApp": true,
+        "hasOperatingWindow": true
+      },
+      {
+        "route": "/programs/yoga",
+        "hasPlaceholderSchedule": false,
+        "hasIllustrativeClasses": false,
+        "hasProvisionalClassListed": false,
+        "hasSampleSchedule": false,
+        "hasAskWhatsApp": true,
+        "hasOperatingWindow": true
+      },
+      {
+        "route": "/programs/functional-training",
+        "hasPlaceholderSchedule": false,
+        "hasIllustrativeClasses": false,
+        "hasProvisionalClassListed": false,
+        "hasSampleSchedule": false,
+        "hasAskWhatsApp": true,
+        "hasOperatingWindow": true
+      },
+      {
+        "route": "/locations/airoli",
+        "hasPlaceholderSchedule": false,
+        "hasIllustrativeClasses": false,
+        "hasProvisionalClassListed": false,
+        "hasSampleSchedule": false,
+        "hasAskWhatsApp": true,
+        "hasOperatingWindow": false
+      }
+    ]
+  }
+}

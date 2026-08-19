@@ -1,27 +1,31 @@
-import { ScrollReveal } from "@/components/motion/ScrollReveal";
-import { Section } from "@/components/ui/Section";
 import { TestimonialCard, type TestimonialCardProps } from "./TestimonialCard";
+import styles from "./pulse/pulse-home.module.css";
 
 export type CommunityTestimonialsProps = {
   testimonials: TestimonialCardProps[];
 };
 
 export function CommunityTestimonials({ testimonials }: CommunityTestimonialsProps) {
+  if (testimonials.length === 0) return null;
+
   return (
-    <Section
-      id="community"
-      eyebrow="Community"
-      title="Voices from the floor"
-      description="Illustrative quotes only — never attributed to a real, identifiable person until verified with consent."
-      className="bg-surface-raised/60"
+    <section
+      id="community-voices"
+      className={styles.communityBand}
+      aria-labelledby="home-voices-title"
     >
+      <h2 id="home-voices-title" className={styles.bandTitle}>
+        VOICES
+      </h2>
+      <p className={styles.disclaimer} style={{ marginBottom: "1.25rem", maxWidth: "48ch" }}>
+        Illustrative quotes only — never attributed to a real, identifiable person until
+        verified with consent.
+      </p>
       <div className="grid gap-4 md:grid-cols-2">
-        {testimonials.map((item, index) => (
-          <ScrollReveal key={`${item.attributedName}-${index}`} delay={index * 0.05}>
-            <TestimonialCard {...item} />
-          </ScrollReveal>
+        {testimonials.slice(0, 4).map((item, index) => (
+          <TestimonialCard key={`${item.attributedName}-${index}`} {...item} />
         ))}
       </div>
-    </Section>
+    </section>
   );
 }

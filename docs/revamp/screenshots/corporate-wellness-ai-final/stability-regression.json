@@ -1,0 +1,21 @@
+{
+  "capturedAt": "2026-08-13T10:56:09.587Z",
+  "pass": true,
+  "results": {
+    "home": {
+      "cls": 0,
+      "overflow": 0,
+      "h1": true
+    },
+    "functional": {
+      "cls": 0,
+      "overflow": 0,
+      "h1": true
+    },
+    "corporate": {
+      "cls": 0,
+      "overflow": 0,
+      "h1": true
+    }
+  }
+}

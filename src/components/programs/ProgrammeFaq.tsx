@@ -13,7 +13,7 @@ export type ProgrammeFaqProps = {
 export function ProgrammeFaq({
   items,
   title = "Programme FAQ",
-  description = "Answers specific to this programme. Policy copy stays labelled until owner-confirmed.",
+  description = "Answers specific to this programme.",
   emptyLabel = "FAQ for this programme is to be confirmed.",
 }: ProgrammeFaqProps) {
   return (

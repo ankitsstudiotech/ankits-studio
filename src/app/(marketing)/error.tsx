@@ -2,6 +2,7 @@
 
 import Link from "next/link";
 import { useEffect } from "react";
+import styles from "@/components/status/pulse/status.module.css";
 
 /**
  * Scoped to the `(marketing)` route group only (not `programs/` or
@@ -22,21 +23,20 @@ export default function MarketingErrorPage({
   }, [error]);
 
   return (
-    <main className="flex flex-1 flex-col items-center justify-center gap-4 px-6 py-24 text-center">
-      <h1 className="text-2xl font-semibold text-ink">Something went wrong</h1>
-      <p className="max-w-md text-ink-muted">
-        We hit an unexpected error loading this page. You can try again, or head back home.
+    <main className={styles.page}>
+      <h1 className={styles.title}>Something went wrong.</h1>
+      <p className={styles.body}>
+        We couldn&apos;t load this page. Try again, or contact Ankit&apos;s Studio if you need help.
       </p>
-      <div className="flex gap-3">
-        <button
-          type="button"
-          onClick={() => unstable_retry()}
-          className="rounded bg-accent px-4 py-2 font-medium text-white"
-        >
+      <div className={styles.actions}>
+        <button type="button" onClick={() => unstable_retry()} className={styles.primary}>
           Try again
         </button>
-        <Link href="/" className="rounded border border-ink/20 px-4 py-2 font-medium text-ink">
-          Return home
+        <Link href="/" className={styles.secondary}>
+          Home
+        </Link>
+        <Link href="/contact" className={styles.secondary}>
+          Contact
         </Link>
       </div>
     </main>

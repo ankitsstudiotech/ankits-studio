@@ -8,23 +8,51 @@ import { beforeEach, describe, expect, it, vi } from "vitest";
  * once at module-load time.
  */
 describe("sitemap/robots mock-mode behavior", () => {
+  // Module reset + dynamic import is slower under full-suite load on Windows.
   beforeEach(() => {
     vi.resetModules();
     vi.unstubAllEnvs();
   });
 
-  it("sitemap is empty while unverified content exists, even in an explicitly-allowed production build", async () => {
-    vi.stubEnv("NODE_ENV", "production");
-    vi.stubEnv("ALLOW_MOCK_PUBLISH", "true");
-    const { buildSitemapEntries } = await import("@/lib/seo/sitemap");
-    expect(buildSitemapEntries()).toEqual([]);
-  });
+  it(
+    "sitemap stays empty on ALLOW_MOCK_PUBLISH preview builds",
+    async () => {
+      vi.stubEnv("NODE_ENV", "production");
+      vi.stubEnv("ALLOW_MOCK_PUBLISH", "true");
+      const { buildSitemapEntries } = await import("@/lib/seo/sitemap");
+      expect(buildSitemapEntries()).toEqual([]);
+    },
+    15_000,
+  );
 
-  it("sitemap is empty in development", async () => {
-    vi.stubEnv("NODE_ENV", "development");
-    const { buildSitemapEntries } = await import("@/lib/seo/sitemap");
-    expect(buildSitemapEntries()).toEqual([]);
-  });
+  it(
+    "sitemap includes launch routes in real production when launch-critical content is verified",
+    async () => {
+      vi.stubEnv("NODE_ENV", "production");
+      vi.stubEnv("ALLOW_MOCK_PUBLISH", "false");
+      const { buildSitemapEntries } = await import("@/lib/seo/sitemap");
+      const { buildCanonicalUrl } = await import("@/lib/seo/canonical");
+      const urls = buildSitemapEntries().map((e) => e.url);
+      expect(urls).toContain(buildCanonicalUrl("/"));
+      expect(urls).toContain(buildCanonicalUrl("/programs"));
+      expect(urls).toContain(buildCanonicalUrl("/locations"));
+      expect(urls).toContain(buildCanonicalUrl("/trial"));
+      expect(urls).not.toContain(buildCanonicalUrl("/blog"));
+      expect(urls).not.toContain(buildCanonicalUrl("/trainers"));
+      expect(urls).not.toContain(buildCanonicalUrl("/transformations"));
+    },
+    15_000,
+  );
+
+  it(
+    "sitemap is empty in development",
+    async () => {
+      vi.stubEnv("NODE_ENV", "development");
+      const { buildSitemapEntries } = await import("@/lib/seo/sitemap");
+      expect(buildSitemapEntries()).toEqual([]);
+    },
+    15_000,
+  );
 
   it("robots disallows everything while unverified content exists, even in an explicitly-allowed production build", async () => {
     vi.stubEnv("NODE_ENV", "production");
@@ -58,6 +86,15 @@ describe("sitemap/robots mock-mode behavior", () => {
     expect(rules.sitemap).toContain("/sitemap.xml");
     vi.doUnmock("@/content/content-mode");
   });
+
+  it("robots permanently disallows /design-lab when the site is otherwise indexable", async () => {
+    vi.doMock("@/content/content-mode", () => ({ shouldNoIndex: () => false }));
+    const { buildRobotsRules, DESIGN_LAB_DISALLOW_PATHS } = await import("@/lib/seo/robots");
+    const rules = buildRobotsRules();
+    const ruleSet = Array.isArray(rules.rules) ? rules.rules[0] : rules.rules;
+    expect(ruleSet?.disallow).toEqual(expect.arrayContaining([...DESIGN_LAB_DISALLOW_PATHS]));
+    vi.doUnmock("@/content/content-mode");
+  });
 });
 /**
  * Covers the populated branch of `buildSitemapEntries()`, added for SEO-001
@@ -77,11 +114,14 @@ describe("buildSitemapEntries once the site is indexable", () => {
     vi.doMock("@/content/content-mode", () => ({ shouldNoIndex: () => false }));
     vi.doMock("@/content", () => ({
       getProgrammes: () => [
-        { slug: "yoga", dataStatus: "verified" },
+        { slug: "yoga", dataStatus: "verified", taxonomyStatus: "confirmed" },
+        { slug: "strength-training", dataStatus: "verified", taxonomyStatus: "migration-pending" },
         { slug: "unverified-programme", dataStatus: "mock", mockDisclaimer: "x" },
       ],
-      getPubliclyListedBranches: () => [{ slug: "airoli", dataStatus: "verified" }],
-      getTrainers: () => [{ slug: "unverified-trainer", dataStatus: "mock", mockDisclaimer: "x" }],
+      getPubliclyListedBranches: () => [{ slug: "airoli-sector-19", dataStatus: "verified" }],
+      getPublishableTrainers: () => [],
+      shouldIndexTrainersRoute: () => false,
+      shouldIndexMemberStoriesRoute: () => false,
       getBlogPosts: () => [{ slug: "real-post", dataStatus: "verified" }],
     }));
 
@@ -92,10 +132,42 @@ describe("buildSitemapEntries once the site is indexable", () => {
 
     expect(urls).toContain(buildCanonicalUrl("/"));
     expect(urls).toContain(buildCanonicalUrl("/programs/yoga"));
-    expect(urls).toContain(buildCanonicalUrl("/locations/airoli"));
+    expect(urls).not.toContain(buildCanonicalUrl("/programs/strength-training"));
+    expect(urls).toContain(buildCanonicalUrl("/locations/airoli-sector-19"));
     expect(urls).toContain(buildCanonicalUrl("/blog/real-post"));
     expect(urls).not.toContain(buildCanonicalUrl("/programs/unverified-programme"));
+    expect(urls).not.toContain(buildCanonicalUrl("/trainers"));
     expect(urls).not.toContain(buildCanonicalUrl("/trainers/unverified-trainer"));
+    expect(urls).not.toContain(buildCanonicalUrl("/transformations"));
+    expect(urls.every((url) => !url.includes("/design-lab"))).toBe(true);
+
+    vi.doUnmock("@/content/content-mode");
+    vi.doUnmock("@/content");
+  });
+
+  it("includes /trainers and publishable trainer slugs only when indexing threshold is met", async () => {
+    vi.doMock("@/content/content-mode", () => ({ shouldNoIndex: () => false }));
+    vi.doMock("@/content", () => ({
+      getProgrammes: () => [],
+      getPubliclyListedBranches: () => [],
+      getPublishableTrainers: () => [
+        { slug: "coach-a" },
+        { slug: "coach-b" },
+        { slug: "coach-c" },
+      ],
+      shouldIndexTrainersRoute: () => true,
+      shouldIndexMemberStoriesRoute: () => true,
+      getBlogPosts: () => [],
+    }));
+
+    const { buildSitemapEntries } = await import("@/lib/seo/sitemap");
+    const { buildCanonicalUrl } = await import("@/lib/seo/canonical");
+    const urls = buildSitemapEntries().map((entry) => entry.url);
+
+    expect(urls).toContain(buildCanonicalUrl("/trainers"));
+    expect(urls).toContain(buildCanonicalUrl("/trainers/coach-a"));
+    expect(urls).toContain(buildCanonicalUrl("/trainers/coach-c"));
+    expect(urls).toContain(buildCanonicalUrl("/transformations"));
 
     vi.doUnmock("@/content/content-mode");
     vi.doUnmock("@/content");

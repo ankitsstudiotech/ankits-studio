@@ -1,0 +1,87 @@
+{
+  "capturedAt": "2026-08-13T07:25:35.963Z",
+  "baseUrl": "http://localhost:3010",
+  "pass": true,
+  "runs": [
+    {
+      "fcpMs": 2099.504,
+      "lcpMs": 2649.186,
+      "cls": 0,
+      "tbtMs": 834.3289999999993,
+      "lcpSelector": "section.pulse-home-module__O0A-GG__field > div.pulse-home-module__O0A-GG__heroMedia > figure.pulse-media-module__3a7RCW__frame > img.pulse-media-module__3a7RCW__frameMedia",
+      "clsCulprit": null,
+      "clsAfterRect": null,
+      "reportFile": "C:\\Personal data\\Aniket\\Personal_Code\\ankits-studio\\docs\\revamp\\_lh-tmp\\final-perf-1786605457530.json"
+    },
+    {
+      "fcpMs": 2240.284,
+      "lcpMs": 2789.891,
+      "cls": 0,
+      "tbtMs": 1151.8470000000016,
+      "lcpSelector": "section.pulse-home-module__O0A-GG__field > div.pulse-home-module__O0A-GG__heroMedia > figure.pulse-media-module__3a7RCW__frame > img.pulse-media-module__3a7RCW__frameMedia",
+      "clsCulprit": null,
+      "clsAfterRect": null,
+      "reportFile": "C:\\Personal data\\Aniket\\Personal_Code\\ankits-studio\\docs\\revamp\\_lh-tmp\\final-perf-1786605522233.json"
+    },
+    {
+      "fcpMs": 2205.287,
+      "lcpMs": 2821.566,
+      "cls": 0,
+      "tbtMs": 1622.987,
+      "lcpSelector": "section.pulse-home-module__O0A-GG__field > div.pulse-home-module__O0A-GG__heroMedia > figure.pulse-media-module__3a7RCW__frame > img.pulse-media-module__3a7RCW__frameMedia",
+      "clsCulprit": null,
+      "clsAfterRect": null,
+      "reportFile": "C:\\Personal data\\Aniket\\Personal_Code\\ankits-studio\\docs\\revamp\\_lh-tmp\\final-perf-1786605579815.json"
+    },
+    {
+      "fcpMs": 2118.24,
+      "lcpMs": 2751.24,
+      "cls": 0,
+      "tbtMs": 881.300999999999,
+      "lcpSelector": "section.pulse-home-module__O0A-GG__field > div.pulse-home-module__O0A-GG__heroMedia > figure.pulse-media-module__3a7RCW__frame > img.pulse-media-module__3a7RCW__frameMedia",
+      "clsCulprit": null,
+      "clsAfterRect": null,
+      "reportFile": "C:\\Personal data\\Aniket\\Personal_Code\\ankits-studio\\docs\\revamp\\_lh-tmp\\final-perf-1786605612590.json"
+    },
+    {
+      "fcpMs": 2148.629,
+      "lcpMs": 2748.242,
+      "cls": 0,
+      "tbtMs": 973.7489999999998,
+      "lcpSelector": "section.pulse-home-module__O0A-GG__field > div.pulse-home-module__O0A-GG__heroMedia > figure.pulse-media-module__3a7RCW__frame > img.pulse-media-module__3a7RCW__frameMedia",
+      "clsCulprit": null,
+      "clsAfterRect": null,
+      "reportFile": "C:\\Personal data\\Aniket\\Personal_Code\\ankits-studio\\docs\\revamp\\_lh-tmp\\final-perf-1786605645442.json"
+    },
+    {
+      "fcpMs": 2366.868,
+      "lcpMs": 4199.044,
+      "cls": 0,
+      "tbtMs": 3314.7780000000002,
+      "lcpSelector": "section.pulse-home-module__O0A-GG__field > div.pulse-home-module__O0A-GG__heroMedia > figure.pulse-media-module__3a7RCW__frame > img.pulse-media-module__3a7RCW__frameMedia",
+      "clsCulprit": null,
+      "clsAfterRect": null,
+      "reportFile": "C:\\Personal data\\Aniket\\Personal_Code\\ankits-studio\\docs\\revamp\\_lh-tmp\\final-perf-1786605679119.json"
+    },
+    {
+      "fcpMs": 2122.579,
+      "lcpMs": 2855.428,
+      "cls": 0,
+      "tbtMs": 1101.0260000000003,
+      "lcpSelector": "section.pulse-home-module__O0A-GG__field > div.pulse-home-module__O0A-GG__heroMedia > figure.pulse-media-module__3a7RCW__frame > img.pulse-media-module__3a7RCW__frameMedia",
+      "clsCulprit": null,
+      "clsAfterRect": null,
+      "reportFile": "C:\\Personal data\\Aniket\\Personal_Code\\ankits-studio\\docs\\revamp\\_lh-tmp\\final-perf-1786605736656.json"
+    },
+    {
+      "fcpMs": 2418.307,
+      "lcpMs": 2967.988,
+      "cls": 0,
+      "tbtMs": 813.6929999999998,
+      "lcpSelector": "section.pulse-home-module__O0A-GG__field > div.pulse-home-module__O0A-GG__heroMedia > figure.pulse-media-module__3a7RCW__frame > img.pulse-media-module__3a7RCW__frameMedia",
+      "clsCulprit": null,
+      "clsAfterRect": null,
+      "reportFile": "C:\\Personal data\\Aniket\\Personal_Code\\ankits-studio\\docs\\revamp\\_lh-tmp\\final-perf-1786605774096.json"
+    }
+  ]
+}

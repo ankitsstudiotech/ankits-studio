@@ -1,0 +1,328 @@
+{
+  "capturedAt": "2026-08-12T10:05:02.828Z",
+  "synthetic": false,
+  "items": [
+    {
+      "file": "final-owner-visual-stage-2/full-390/home.png",
+      "path": "/",
+      "viewport": "390x2000",
+      "fullPage": true,
+      "synthetic": false
+    },
+    {
+      "file": "final-owner-visual-stage-2/full-390/about.png",
+      "path": "/about",
+      "viewport": "390x2000",
+      "fullPage": true,
+      "synthetic": false
+    },
+    {
+      "file": "final-owner-visual-stage-2/full-390/programs.png",
+      "path": "/programs",
+      "viewport": "390x2000",
+      "fullPage": true,
+      "synthetic": false
+    },
+    {
+      "file": "final-owner-visual-stage-2/full-390/programs-corporate-wellness.png",
+      "path": "/programs/corporate-wellness",
+      "viewport": "390x2000",
+      "fullPage": true,
+      "synthetic": false
+    },
+    {
+      "file": "final-owner-visual-stage-2/full-390/programs-functional-training.png",
+      "path": "/programs/functional-training",
+      "viewport": "390x2000",
+      "fullPage": true,
+      "synthetic": false
+    },
+    {
+      "file": "final-owner-visual-stage-2/full-390/programs-yoga.png",
+      "path": "/programs/yoga",
+      "viewport": "390x2000",
+      "fullPage": true,
+      "synthetic": false
+    },
+    {
+      "file": "final-owner-visual-stage-2/full-390/locations.png",
+      "path": "/locations",
+      "viewport": "390x2000",
+      "fullPage": true,
+      "synthetic": false
+    },
+    {
+      "file": "final-owner-visual-stage-2/full-390/locations-airoli-sector-19.png",
+      "path": "/locations/airoli-sector-19",
+      "viewport": "390x2000",
+      "fullPage": true,
+      "synthetic": false
+    },
+    {
+      "file": "final-owner-visual-stage-2/full-390/pricing.png",
+      "path": "/pricing",
+      "viewport": "390x2000",
+      "fullPage": true,
+      "synthetic": false
+    },
+    {
+      "file": "final-owner-visual-stage-2/full-390/timetable.png",
+      "path": "/timetable",
+      "viewport": "390x2000",
+      "fullPage": true,
+      "synthetic": false
+    },
+    {
+      "file": "final-owner-visual-stage-2/full-390/trial.png",
+      "path": "/trial",
+      "viewport": "390x2000",
+      "fullPage": true,
+      "synthetic": false
+    },
+    {
+      "file": "final-owner-visual-stage-2/full-390/contact.png",
+      "path": "/contact",
+      "viewport": "390x2000",
+      "fullPage": true,
+      "synthetic": false
+    },
+    {
+      "file": "final-owner-visual-stage-2/full-768/home.png",
+      "path": "/",
+      "viewport": "768x2000",
+      "fullPage": true,
+      "synthetic": false
+    },
+    {
+      "file": "final-owner-visual-stage-2/full-768/programs.png",
+      "path": "/programs",
+      "viewport": "768x2000",
+      "fullPage": true,
+      "synthetic": false
+    },
+    {
+      "file": "final-owner-visual-stage-2/full-768/programs-corporate-wellness.png",
+      "path": "/programs/corporate-wellness",
+      "viewport": "768x2000",
+      "fullPage": true,
+      "synthetic": false
+    },
+    {
+      "file": "final-owner-visual-stage-2/full-768/about.png",
+      "path": "/about",
+      "viewport": "768x2000",
+      "fullPage": true,
+      "synthetic": false
+    },
+    {
+      "file": "final-owner-visual-stage-2/full-768/locations.png",
+      "path": "/locations",
+      "viewport": "768x2000",
+      "fullPage": true,
+      "synthetic": false
+    },
+    {
+      "file": "final-owner-visual-stage-2/full-768/pricing.png",
+      "path": "/pricing",
+      "viewport": "768x2000",
+      "fullPage": true,
+      "synthetic": false
+    },
+    {
+      "file": "final-owner-visual-stage-2/full-1440/home.png",
+      "path": "/",
+      "viewport": "1440x2000",
+      "fullPage": true,
+      "synthetic": false
+    },
+    {
+      "file": "final-owner-visual-stage-2/full-1440/about.png",
+      "path": "/about",
+      "viewport": "1440x2000",
+      "fullPage": true,
+      "synthetic": false
+    },
+    {
+      "file": "final-owner-visual-stage-2/full-1440/programs.png",
+      "path": "/programs",
+      "viewport": "1440x2000",
+      "fullPage": true,
+      "synthetic": false
+    },
+    {
+      "file": "final-owner-visual-stage-2/full-1440/programs-corporate-wellness.png",
+      "path": "/programs/corporate-wellness",
+      "viewport": "1440x2000",
+      "fullPage": true,
+      "synthetic": false
+    },
+    {
+      "file": "final-owner-visual-stage-2/full-1440/programs-functional-training.png",
+      "path": "/programs/functional-training",
+      "viewport": "1440x2000",
+      "fullPage": true,
+      "synthetic": false
+    },
+    {
+      "file": "final-owner-visual-stage-2/full-1440/programs-yoga.png",
+      "path": "/programs/yoga",
+      "viewport": "1440x2000",
+      "fullPage": true,
+      "synthetic": false
+    },
+    {
+      "file": "final-owner-visual-stage-2/full-1440/locations.png",
+      "path": "/locations",
+      "viewport": "1440x2000",
+      "fullPage": true,
+      "synthetic": false
+    },
+    {
+      "file": "final-owner-visual-stage-2/full-1440/locations-airoli-sector-19.png",
+      "path": "/locations/airoli-sector-19",
+      "viewport": "1440x2000",
+      "fullPage": true,
+      "synthetic": false
+    },
+    {
+      "file": "final-owner-visual-stage-2/full-1440/pricing.png",
+      "path": "/pricing",
+      "viewport": "1440x2000",
+      "fullPage": true,
+      "synthetic": false
+    },
+    {
+      "file": "final-owner-visual-stage-2/full-1440/timetable.png",
+      "path": "/timetable",
+      "viewport": "1440x2000",
+      "fullPage": true,
+      "synthetic": false
+    },
+    {
+      "file": "final-owner-visual-stage-2/full-1440/trial.png",
+      "path": "/trial",
+      "viewport": "1440x2000",
+      "fullPage": true,
+      "synthetic": false
+    },
+    {
+      "file": "final-owner-visual-stage-2/full-1440/contact.png",
+      "path": "/contact",
+      "viewport": "1440x2000",
+      "fullPage": true,
+      "synthetic": false
+    },
+    {
+      "file": "final-owner-visual-stage-2/full-1920/home.png",
+      "path": "/",
+      "viewport": "1920x2000",
+      "fullPage": true,
+      "synthetic": false
+    },
+    {
+      "file": "final-owner-visual-stage-2/full-1920/programs.png",
+      "path": "/programs",
+      "viewport": "1920x2000",
+      "fullPage": true,
+      "synthetic": false
+    },
+    {
+      "file": "final-owner-visual-stage-2/full-1920/programs-corporate-wellness.png",
+      "path": "/programs/corporate-wellness",
+      "viewport": "1920x2000",
+      "fullPage": true,
+      "synthetic": false
+    },
+    {
+      "file": "final-owner-visual-stage-2/full-1920/about.png",
+      "path": "/about",
+      "viewport": "1920x2000",
+      "fullPage": true,
+      "synthetic": false
+    },
+    {
+      "file": "final-owner-visual-stage-2/full-1920/locations.png",
+      "path": "/locations",
+      "viewport": "1920x2000",
+      "fullPage": true,
+      "synthetic": false
+    },
+    {
+      "file": "final-owner-visual-stage-2/full-1920/pricing.png",
+      "path": "/pricing",
+      "viewport": "1920x2000",
+      "fullPage": true,
+      "synthetic": false
+    },
+    {
+      "file": "final-owner-visual-stage-2/viewport-390x844/home-home.png",
+      "path": "/",
+      "viewport": "390x844",
+      "fullPage": false,
+      "synthetic": false
+    },
+    {
+      "file": "final-owner-visual-stage-2/viewport-390x844/programs-programs.png",
+      "path": "/programs",
+      "viewport": "390x844",
+      "fullPage": false,
+      "synthetic": false
+    },
+    {
+      "file": "final-owner-visual-stage-2/viewport-390x844/programs-corporate-wellness-corporate-wellness.png",
+      "path": "/programs/corporate-wellness",
+      "viewport": "390x844",
+      "fullPage": false,
+      "synthetic": false
+    },
+    {
+      "file": "final-owner-visual-stage-2/viewport-390x844/about-about.png",
+      "path": "/about",
+      "viewport": "390x844",
+      "fullPage": false,
+      "synthetic": false
+    },
+    {
+      "file": "final-owner-visual-stage-2/viewport-390x844/locations-airoli-sector-19-airoli-sector-19.png",
+      "path": "/locations/airoli-sector-19",
+      "viewport": "390x844",
+      "fullPage": false,
+      "synthetic": false
+    },
+    {
+      "file": "final-owner-visual-stage-2/viewport-1440x900/home-home.png",
+      "path": "/",
+      "viewport": "1440x900",
+      "fullPage": false,
+      "synthetic": false
+    },
+    {
+      "file": "final-owner-visual-stage-2/viewport-1440x900/programs-programs.png",
+      "path": "/programs",
+      "viewport": "1440x900",
+      "fullPage": false,
+      "synthetic": false
+    },
+    {
+      "file": "final-owner-visual-stage-2/viewport-1440x900/programs-corporate-wellness-corporate-wellness.png",
+      "path": "/programs/corporate-wellness",
+      "viewport": "1440x900",
+      "fullPage": false,
+      "synthetic": false
+    },
+    {
+      "file": "final-owner-visual-stage-2/viewport-1440x900/about-about.png",
+      "path": "/about",
+      "viewport": "1440x900",
+      "fullPage": false,
+      "synthetic": false
+    },
+    {
+      "file": "final-owner-visual-stage-2/viewport-1440x900/locations-airoli-sector-19-airoli-sector-19.png",
+      "path": "/locations/airoli-sector-19",
+      "viewport": "1440x900",
+      "fullPage": false,
+      "synthetic": false
+    }
+  ]
+}

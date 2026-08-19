@@ -1,0 +1,89 @@
+{
+  "generatedAt": "2026-08-08T05:54:24.383Z",
+  "sha": "010e2170c6f94ba2b6d637ef31b738aa694122fe",
+  "productionUrl": "https://ankits-studio.vercel.app",
+  "recordCount": 50,
+  "notFoundRecords": [
+    {
+      "filename": "full-390-not-found.png",
+      "sha": "010e2170c6f94ba2b6d637ef31b738aa694122fe",
+      "productionUrl": "https://ankits-studio.vercel.app",
+      "route": "/this-page-does-not-exist",
+      "httpStatus": 404,
+      "viewportWidth": 390,
+      "pngWidth": 390,
+      "pngHeight": 1535,
+      "deviceScaleFactor": 1,
+      "timestamp": "2026-08-08T05:54:15.095Z",
+      "sha256": "5f7f119e95fec1f7ee20f714b81d6a7cad2aa538d406ffbb93fe96d0d2885ebc",
+      "sticky": 0,
+      "hasPad": false,
+      "robots": "noindex | noindex, nofollow",
+      "conflictingIndex": false,
+      "widthPass": true
+    },
+    {
+      "filename": "full-1440-not-found.png",
+      "sha": "010e2170c6f94ba2b6d637ef31b738aa694122fe",
+      "productionUrl": "https://ankits-studio.vercel.app",
+      "route": "/this-page-does-not-exist",
+      "httpStatus": 404,
+      "viewportWidth": 1440,
+      "pngWidth": 1440,
+      "pngHeight": 1086,
+      "deviceScaleFactor": 1,
+      "timestamp": "2026-08-08T05:54:17.510Z",
+      "sha256": "3eebd14207c7e84e1c168e9d7f1062510931577f6f72b0ad739578e47be54cbf",
+      "sticky": 0,
+      "hasPad": false,
+      "robots": "noindex | noindex, nofollow",
+      "conflictingIndex": false,
+      "widthPass": true
+    }
+  ],
+  "smoke": {
+    "samples404": [
+      {
+        "slug": "sample-starting-with-strength",
+        "status": 404,
+        "pass": true
+      },
+      {
+        "slug": "sample-finding-your-first-class",
+        "status": 404,
+        "pass": true
+      }
+    ],
+    "redirects": [
+      {
+        "from": "/book-a-free-trial",
+        "final": "https://ankits-studio.vercel.app/trial",
+        "pass": true
+      },
+      {
+        "from": "/locations/airoli",
+        "final": "https://ankits-studio.vercel.app/locations/airoli-sector-19",
+        "pass": true
+      }
+    ],
+    "sitemap": {
+      "robotsStatus": 200,
+      "sitemapStatus": 200,
+      "robotsHasLocalhost": false,
+      "sitemapHasLocalhost": false,
+      "sitemapHasTrainers": false,
+      "sitemapHasBlog": false
+    },
+    "conversion": {
+      "whatsapp": "https://wa.me/919372402074?text=Hello%20Ankit%E2%80%99s%20Studio%2C%0AI%20would%20like%20to%20book%20a%20free%20trial.%0A%0AName%3A%0APhone%3A%0APreferred%20branch%3A%0AInterested%20programme%3A%0APreferred%20time%3A%0APreferred%20trial%20date%3A%0AAge%3A%0AQuestion%3A",
+      "tel": "tel:+919372402074",
+      "mail": "mailto:ankitsstudio5@gmail.com",
+      "phoneOk": true,
+      "telOk": true,
+      "mailOk": true
+    }
+  },
+  "dimensionFails": 0,
+  "stickyExclusionFails": 0,
+  "conflictingIndexFails": 0
+}

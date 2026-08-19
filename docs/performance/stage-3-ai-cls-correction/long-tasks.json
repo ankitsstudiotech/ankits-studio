@@ -1,0 +1,37 @@
+{
+  "before": {
+    "source": "docs/revamp/_lh-tmp/perf-1786595405684.json",
+    "route": "/",
+    "note": "Pre-fix Home mobile Lighthouse. Chunk 25h0fewzl2kbn.js is Motion. 1upe53 includes ProgrammeRow motion.a islands.",
+    "top5": [
+      { "durationMs": 944.713, "startTimeMs": 2557.699, "url": "http://localhost:3006/" },
+      { "durationMs": 520.056, "startTimeMs": 4791.819, "url": "http://localhost:3006/_next/static/chunks/1upe53-127sm4.js" },
+      { "durationMs": 462.515, "startTimeMs": 1744.825, "url": "http://localhost:3006/" },
+      { "durationMs": 376.877, "startTimeMs": 3696.99, "url": "http://localhost:3006/_next/static/chunks/1upe53-127sm4.js" },
+      { "durationMs": 142.244, "startTimeMs": 2236.381, "url": "http://localhost:3006/" }
+    ],
+    "bootupTime": [
+      { "url": "http://localhost:3006/", "totalMs": 1919.655, "scriptingMs": 42.933, "parseCompileMs": 40.048 },
+      { "url": "http://localhost:3006/_next/static/chunks/1upe53-127sm4.js", "totalMs": 1563.878, "scriptingMs": 1424.146, "parseCompileMs": 44.673 },
+      { "url": "Unattributable", "totalMs": 685.861, "scriptingMs": 22.792, "parseCompileMs": 0 },
+      { "url": "http://localhost:3006/_next/static/chunks/25h0fewzl2kbn.js", "totalMs": 278.542, "scriptingMs": 128.965, "parseCompileMs": 25.168, "identity": "motion/react" }
+    ]
+  },
+  "after": {
+    "source": "docs/revamp/_lh-tmp/after-perf-1786597610182.json",
+    "route": "/",
+    "note": "Motion bootup chunk gone after ProgrammeRow became a server <a>. Remaining 1upe53 is Next/runtime plus header, sticky CTA, and homepage SectionReveal islands. Further TBT to ≤500 needs those chrome islands deferred — not done here.",
+    "top5": [
+      { "durationMs": 354.02, "startTimeMs": 3478.677, "url": "http://localhost:3008/_next/static/chunks/1upe53-127sm4.js" },
+      { "durationMs": 322.743, "startTimeMs": 2390.782, "url": "http://localhost:3008/" },
+      { "durationMs": 286.876, "startTimeMs": 4336.462, "url": "http://localhost:3008/_next/static/chunks/1upe53-127sm4.js" },
+      { "durationMs": 248.822, "startTimeMs": 2011.368, "url": "http://localhost:3008/" },
+      { "durationMs": 96.489, "startTimeMs": 599.764, "url": "Unattributable" }
+    ],
+    "bootupTime": [
+      { "url": "http://localhost:3008/_next/static/chunks/1upe53-127sm4.js", "totalMs": 1265.729, "scriptingMs": 1128.878, "parseCompileMs": 60.878 },
+      { "url": "http://localhost:3008/", "totalMs": 904.854, "scriptingMs": 35.618, "parseCompileMs": 36.713 },
+      { "url": "Unattributable", "totalMs": 770.001, "scriptingMs": 27.59, "parseCompileMs": 0 }
+    ]
+  }
+}

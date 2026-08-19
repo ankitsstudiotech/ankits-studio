@@ -42,3 +42,11 @@ export type { ProgrammeFaqProps } from "./ProgrammeFaq";
 
 export { ProgrammeTrialCta } from "./ProgrammeTrialCta";
 export type { ProgrammeTrialCtaProps } from "./ProgrammeTrialCta";
+
+export { ProgrammeRow } from "./ProgrammeRow";
+export type {
+  ProgrammeRowProps,
+  ProgrammeCluster,
+  ProgrammeEnergy,
+  ProgrammeRowLayout,
+} from "./ProgrammeRow";

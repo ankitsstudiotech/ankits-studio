@@ -1,19 +1,27 @@
-import Link from "next/link";
 import type { Metadata } from "next";
-import { LocationTeaserCard } from "@/components/home";
-import { Container } from "@/components/ui/Container";
-import { Section } from "@/components/ui/Section";
-import { Body, TextLink } from "@/components/ui";
+import { PageBreadcrumb } from "@/components/layout/PageBreadcrumb";
+import { PageWithFooter } from "@/components/layout/PageWithFooter";
+import { LocationDiscovery } from "@/components/locations/pulse/LocationDiscovery";
 import { getPubliclyListedBranches } from "@/content";
+import {
+  getPrimaryConversionHref,
+  getPrimaryConversionLabel,
+} from "@/lib/conversion";
 import { buildPageMetadata } from "@/lib/seo/metadata";
 import { serializeJsonLd } from "@/lib/seo/serialize";
-import { buildBreadcrumbJsonLd } from "@/lib/seo/structured-data";
+import {
+  buildBreadcrumbJsonLd,
+  buildCollectionPageJsonLd,
+} from "@/lib/seo/structured-data";
 
 const PATH = "/locations";
 
+const PAGE_DESCRIPTION =
+  "Four Ankit’s Studio branches in Airoli Sector 19, Airoli Sector 8, Ghansoli, and Thane. Enquire on WhatsApp for a free trial and current batch availability.";
+
 export const metadata: Metadata = buildPageMetadata({
   title: "Locations",
-  description: "Find an Ankit's Studio branch near you — programmes, timings, and contact details for each location.",
+  description: PAGE_DESCRIPTION,
   path: PATH,
 });
 
@@ -22,60 +30,39 @@ const breadcrumbTrail = [
   { name: "Locations", path: PATH },
 ];
 
-/** Only publicly-listed branches — Thane stays unlinked here until
- *  confirmed (docs/DECISIONS.md ADR-007 finding I2). */
 export default function LocationsIndexPage() {
   const branches = getPubliclyListedBranches();
   const breadcrumbJsonLd = buildBreadcrumbJsonLd(breadcrumbTrail);
+  const collectionJsonLd = buildCollectionPageJsonLd({
+    name: "Locations",
+    description: PAGE_DESCRIPTION,
+    path: PATH,
+  });
+  const trialHref = getPrimaryConversionHref();
+  const trialLabel = getPrimaryConversionLabel();
 
   return (
-    <main id="locations-index" className="flex flex-1 flex-col">
+    <PageWithFooter>
+    <main id="locations-index" className="flex flex-col">
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: serializeJsonLd(breadcrumbJsonLd) }}
       />
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: serializeJsonLd(collectionJsonLd) }}
+      />
 
-      <Container className="pt-8">
-        <nav aria-label="Breadcrumb">
-          <ol className="flex flex-wrap items-center gap-2 text-sm text-ink-muted">
-            <li>
-              <Link href="/" className="hover:text-ink">
-                Home
-              </Link>
-            </li>
-            <li aria-hidden>/</li>
-            <li aria-current="page" className="text-ink">
-              Locations
-            </li>
-          </ol>
-        </nav>
-      </Container>
+      <div className="pulse-crumb-bar">
+        <PageBreadcrumb items={breadcrumbTrail} />
+      </div>
 
-      <Section
-        eyebrow="Locations"
-        title="Find a branch"
-        description="Each location page covers address, opening hours, programmes offered, timetable, trainers, and contact details."
-      >
-        <ul className="grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
-          {branches.map((branch) => (
-            <li key={branch.slug}>
-              <LocationTeaserCard
-                name={branch.name}
-                href={`/locations/${branch.slug}`}
-                areaLabel={branch.slug}
-                programmeCountLabel={`${branch.programmeSlugs.length} programmes offered`}
-                mockDisclaimer={branch.dataStatus === "verified" ? "" : branch.mockDisclaimer}
-              />
-            </li>
-          ))}
-        </ul>
-      </Section>
-
-      <Section eyebrow="Programmes" title="Looking for a specific programme instead?">
-        <Body>
-          <TextLink href="/programs">Browse all programmes</TextLink>.
-        </Body>
-      </Section>
+      <LocationDiscovery
+        branches={branches}
+        trialHref={trialHref}
+        trialLabel={trialLabel}
+      />
     </main>
+    </PageWithFooter>
   );
 }

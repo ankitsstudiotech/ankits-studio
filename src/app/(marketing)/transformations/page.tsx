@@ -1,74 +1,192 @@
 import type { Metadata } from "next";
 import Link from "next/link";
-import { TransformationStories } from "@/components/home";
 import { PageBreadcrumb } from "@/components/layout/PageBreadcrumb";
-import { Badge } from "@/components/ui/Badge";
-import { Section } from "@/components/ui/Section";
-import { Body } from "@/components/ui/Typography";
-import { getProgrammeBySlug, getTransformations } from "@/content";
+import { PageWithFooter } from "@/components/layout/PageWithFooter";
+import { ConsentDisclosure } from "@/components/member-stories/pulse/ConsentDisclosure";
+import { MemberStoryEditorial } from "@/components/member-stories/pulse/MemberStoryEditorial";
+import { TransformationCaseStudy } from "@/components/member-stories/pulse/TransformationCaseStudy";
+import styles from "@/components/member-stories/pulse/member-stories.module.css";
+import { FreeTrialCta } from "@/components/home/FreeTrialCta";
+import { RouteOpening, SectionReveal } from "@/components/motion";
+import {
+  getConfirmedProgrammes,
+  getPublishableMemberStories,
+  getPublishableTransformations,
+  getPubliclyListedBranches,
+  getStudioMemberStoriesPage,
+  shouldIndexMemberStoriesRoute,
+} from "@/content";
+import {
+  getPrimaryConversionHref,
+  getPrimaryConversionLabel,
+  SECONDARY_TRIAL_FORM_HREF,
+} from "@/lib/conversion";
 import { buildPageMetadata } from "@/lib/seo/metadata";
 import { serializeJsonLd } from "@/lib/seo/serialize";
-import { buildBreadcrumbJsonLd } from "@/lib/seo/structured-data";
+import {
+  buildBreadcrumbJsonLd,
+  buildWebPageJsonLd,
+} from "@/lib/seo/structured-data";
 
 const PATH = "/transformations";
 
-export const metadata: Metadata = buildPageMetadata({
-  title: "Transformations",
-  description:
-    "Editorial placeholder for the kind of progress Ankit's Studio coaches toward — no fabricated before-and-after outcomes.",
-  path: PATH,
-});
+export function generateMetadata(): Metadata {
+  const page = getStudioMemberStoriesPage();
+  return buildPageMetadata({
+    title: page.pageTitle,
+    description: page.seoDescription,
+    path: PATH,
+    forceNoIndex: !shouldIndexMemberStoriesRoute(),
+  });
+}
 
 const breadcrumbTrail = [
   { name: "Home", path: "/" },
-  { name: "Transformations", path: PATH },
+  { name: "Member Stories", path: PATH },
 ];
 
-export default function TransformationsPage() {
-  const transformations = getTransformations();
+function deliveryLabel(mode: string | undefined): string {
+  if (mode === "home") return "Home";
+  if (mode === "online") return "Online";
+  return "In studio";
+}
+
+/**
+ * Honest Member Stories route — URL remains /transformations.
+ * Renders publishable evidence only; never mock fixtures (ADR-022).
+ */
+export default function MemberStoriesPage() {
+  const page = getStudioMemberStoriesPage();
+  const stories = getPublishableMemberStories();
+  const transformations = getPublishableTransformations();
+  const programmes = getConfirmedProgrammes();
+  const branches = getPubliclyListedBranches();
+  const trialHref = getPrimaryConversionHref();
+  const trialLabel = getPrimaryConversionLabel();
+
   const breadcrumbJsonLd = buildBreadcrumbJsonLd(breadcrumbTrail);
+  const pageJsonLd = buildWebPageJsonLd({
+    name: page.seoTitle,
+    description: page.seoDescription,
+    path: PATH,
+  });
+
+  const hasPublishable = stories.length > 0 || transformations.length > 0;
 
   return (
-    <main className="flex flex-1 flex-col">
+    <PageWithFooter>
+    <main className={`${styles.page} flex flex-col`}>
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: serializeJsonLd(breadcrumbJsonLd) }}
       />
-
-      <PageBreadcrumb items={breadcrumbTrail} />
-
-      <Section
-        eyebrow="Transformations"
-        title="Editorial placeholder"
-        description="This page reserves space for future owner-approved stories. It does not fabricate before-and-after photography, weight changes, or percentage claims."
-      >
-        <Badge accent="neutral" className="mb-4">
-          No fabricated outcomes
-        </Badge>
-        <Body className="max-w-3xl">
-          Until verified member stories exist, we only show qualitative examples of the kind of
-          progress a programme is designed to support — never invented identities or measured results.
-        </Body>
-      </Section>
-
-      <TransformationStories
-        items={transformations.map((item) => ({
-          slug: item.slug,
-          summary: item.summary,
-          programmeLabel: getProgrammeBySlug(item.programmeSlug)?.name ?? item.programmeSlug,
-          mockDisclaimer:
-            item.dataStatus === "verified" ? "Verified transformation story." : item.mockDisclaimer,
-        }))}
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: serializeJsonLd(pageJsonLd) }}
       />
 
-      <Section title="Prefer a visit over a story?">
-        <Body>
-          <Link href="/trial" className="text-accent underline-offset-4 hover:underline">
-            Book a free trial
-          </Link>{" "}
-          to experience coaching in person.
-        </Body>
-      </Section>
+      <div className="pulse-crumb-bar">
+        <PageBreadcrumb items={breadcrumbTrail} />
+      </div>
+
+      <section className={styles.band} aria-labelledby="stories-title">
+        <RouteOpening>
+          <div className={styles.openGrid}>
+            <div className={styles.openMeasure}>
+              <p className={styles.kicker}>Member Stories</p>
+              <h1 id="stories-title" className={styles.title}>
+                {page.headline}
+              </h1>
+              <p className={styles.lede}>{page.lede}</p>
+            </div>
+          </div>
+        </RouteOpening>
+      </section>
+
+      <section className={styles.band} aria-labelledby="consent-title">
+        <SectionReveal>
+          <h2 id="consent-title" className={styles.sectionTitle}>
+            {page.consentTitle}
+          </h2>
+          <p className={styles.body}>{page.consentBody}</p>
+          <ConsentDisclosure>
+            Individual experiences vary. We do not promise specific results.
+          </ConsentDisclosure>
+        </SectionReveal>
+      </section>
+
+      {hasPublishable ? (
+        <section className={styles.band} aria-labelledby="published-stories-title">
+          <SectionReveal>
+            <h2 id="published-stories-title" className={styles.sectionTitle}>
+              Published stories
+            </h2>
+            <ul className={styles.storyList}>
+              {stories.map((story) => (
+                <li key={story.id}>
+                  <MemberStoryEditorial story={story} />
+                </li>
+              ))}
+              {transformations.map((item) => (
+                <li key={item.id}>
+                  <TransformationCaseStudy item={item} />
+                </li>
+              ))}
+            </ul>
+          </SectionReveal>
+        </section>
+      ) : (
+        <section className={styles.band} aria-label="Stories update">
+          <p className={styles.readinessNote}>{page.readinessBody}</p>
+        </section>
+      )}
+
+      <section className={styles.band} aria-labelledby="stories-discover-title">
+        <SectionReveal>
+          <h2 id="stories-discover-title" className={styles.sectionTitle}>
+            What you can explore today
+          </h2>
+          <div className={styles.pairGrid}>
+            <div>
+              <h3 className={styles.kicker}>{page.programmesTitle}</h3>
+              <p className={styles.body}>{page.programmesBody}</p>
+              <ul className={styles.linkList}>
+                {programmes.map((programme) => (
+                  <li key={programme.slug}>
+                    <Link href={`/programs/${programme.slug}`}>
+                      <span>{programme.name}</span>
+                      <span className={styles.linkMeta}>{deliveryLabel(programme.deliveryMode)}</span>
+                    </Link>
+                  </li>
+                ))}
+              </ul>
+            </div>
+            <div>
+              <h3 className={styles.kicker}>{page.branchesTitle}</h3>
+              <p className={styles.body}>{page.branchesBody}</p>
+              <ul className={styles.linkList}>
+                {branches.map((branch) => (
+                  <li key={branch.slug}>
+                    <Link href={`/locations/${branch.slug}`}>{branch.locality}</Link>
+                  </li>
+                ))}
+              </ul>
+            </div>
+          </div>
+        </SectionReveal>
+      </section>
+
+      <FreeTrialCta
+        id="stories-cta"
+        titleId="stories-cta-title"
+        title={page.ctaTitle}
+        body={page.ctaBody}
+        href={trialHref}
+        label={trialLabel}
+        secondaryHref={SECONDARY_TRIAL_FORM_HREF}
+        secondaryLabel="Prefer the trial form"
+      />
     </main>
+    </PageWithFooter>
   );
 }

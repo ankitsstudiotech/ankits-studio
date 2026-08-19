@@ -1,38 +1,34 @@
 import { siteHasUnverifiedContent } from "@/content/content-mode";
+import { shouldShowMockPreviewBanner } from "@/content/content-mode";
 
 /**
- * Non-dismissable visual indicator that mock/reference-only content is in
- * use — see docs/BUSINESS-DATA-STATUS.md and ADR-002 layer-2.
+ * Compact preview notice for development / explicit mock-publish builds.
+ * Never renders in real production — see shouldShowMockPreviewBanner().
  *
- * Shows whenever unverified content exists AND either `NODE_ENV ===
- * "development"` OR `ALLOW_MOCK_PUBLISH === "true"` (stakeholder mock
- * preview). There is no dismiss control: the banner disappears only when
- * `siteHasUnverifiedContent` becomes false (verified content mode).
- *
- * See docs/MOCK-PREVIEW-DEPLOYMENT.md.
+ * Warning amber (not brand action purple) so status never collides with CTAs.
  */
 export function MockModeIndicator() {
-  const isDevelopment = process.env.NODE_ENV === "development";
-  const isMockPreviewBuild = process.env.ALLOW_MOCK_PUBLISH === "true";
-
-  if ((!isDevelopment && !isMockPreviewBuild) || !siteHasUnverifiedContent) {
+  if (!shouldShowMockPreviewBanner()) {
     return null;
   }
 
+  const isDevelopment = process.env.NODE_ENV === "development";
   const contextLabel = isDevelopment ? "Development preview" : "Mock preview";
 
   return (
     <div
       role="status"
-      className="w-full bg-accent-strength px-4 py-2.5 text-center text-sm font-medium text-white"
+      className="w-full bg-[var(--color-warning)] px-3 py-1.5 text-center text-[var(--color-warning-foreground)] sm:px-4 sm:py-2"
     >
-      <p className="font-semibold tracking-wide">
-        {contextLabel} — mock / unverified content · noindex
+      <p className="text-xs font-semibold tracking-wide sm:text-sm">
+        {contextLabel} — some details still pending confirmation · noindex
       </p>
-      <p className="mt-0.5 text-xs font-normal text-white/90">
-        Not live studio data. This banner cannot be dismissed; it is removed only when content
-        is verified. See docs/BUSINESS-DATA-STATUS.md.
-      </p>
+      {siteHasUnverifiedContent ? (
+        <p className="mt-0.5 hidden text-xs font-normal opacity-90 sm:block">
+          Soft unpublished domains may still be mock. This banner does not appear on a real
+          production deploy.
+        </p>
+      ) : null}
     </div>
   );
 }

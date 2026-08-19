@@ -1,0 +1,180 @@
+/* Shared Pulse dark status surfaces — 404 / error / loading. */
+
+.page {
+  background: var(--color-field);
+  color: var(--color-ink-inverse);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding: var(--spacing-section) var(--spacing-gutter);
+  gap: 1rem;
+}
+
+.mark {
+  margin: 0;
+  font-family: var(--font-display);
+  font-size: clamp(3rem, 8vw, 5rem);
+  letter-spacing: 0.08em;
+  line-height: 1;
+  color: rgb(255 255 255 / 0.12);
+  text-transform: uppercase;
+  user-select: none;
+  pointer-events: none;
+}
+
+.mark::before {
+  content: "404";
+}
+
+.title {
+  margin: 0;
+  font-family: var(--font-display);
+  font-size: var(--text-title);
+  letter-spacing: var(--text-title--letter-spacing);
+  line-height: var(--text-title--line-height);
+  text-transform: uppercase;
+  max-width: 18ch;
+}
+
+.body {
+  margin: 0;
+  max-width: 42ch;
+  font-family: var(--font-sans);
+  font-size: var(--text-body);
+  line-height: var(--text-body--line-height);
+  color: var(--color-muted-on-field);
+}
+
+.actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.75rem 1.1rem;
+  justify-content: center;
+  align-items: center;
+  margin-top: 0.5rem;
+}
+
+.primary {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 48px;
+  min-width: 10rem;
+  padding: 0.75rem 1.35rem;
+  background: var(--color-accent);
+  color: var(--color-accent-foreground);
+  font-family: var(--font-sans);
+  font-weight: 700;
+  font-size: 0.8rem;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  text-decoration: none;
+  border: none;
+  cursor: pointer;
+}
+
+.primary:hover {
+  background: var(--color-accent-hover);
+}
+
+.primary:focus-visible {
+  outline: 2px solid var(--color-volt);
+  outline-offset: 3px;
+}
+
+.secondary {
+  display: inline-flex;
+  align-items: center;
+  min-height: 44px;
+  color: inherit;
+  text-underline-offset: 0.18em;
+  font-size: 0.95rem;
+}
+
+.secondary:focus-visible {
+  outline: 2px solid var(--color-accent);
+  outline-offset: 3px;
+}
+
+.secondaryRow {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.35rem;
+  margin-top: 0.35rem;
+  width: 100%;
+  max-width: 22rem;
+}
+
+.secondaryRow .secondary {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 44px;
+  width: 100%;
+  text-align: center;
+}
+
+@media (min-width: 481px) {
+  .secondaryRow {
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 0.65rem 1.25rem;
+    max-width: none;
+  }
+
+  .secondaryRow .secondary {
+    width: auto;
+  }
+}
+
+.skeleton {
+  width: min(100%, 42rem);
+  display: grid;
+  gap: 0.85rem;
+  padding: var(--spacing-section) var(--spacing-gutter);
+}
+
+.skelBar {
+  height: 0.85rem;
+  border-radius: 2px;
+  background: rgb(255 255 255 / 0.08);
+}
+
+.skelBarWide {
+  width: 70%;
+  height: 1.75rem;
+}
+
+.skelBarMid {
+  width: 55%;
+}
+
+.skelBarShort {
+  width: 40%;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .skelBar {
+    animation: none !important;
+  }
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .skelBar {
+    animation: pulseSoft 1.4s ease-in-out infinite;
+  }
+}
+
+@keyframes pulseSoft {
+  0%,
+  100% {
+    opacity: 0.55;
+  }
+  50% {
+    opacity: 1;
+  }
+}

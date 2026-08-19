@@ -1,0 +1,14 @@
+/**
+ * Isolates frozen design-lab prototypes from production shell chrome.
+ * Prototypes own backgrounds/type via scoped CSS modules; this cancels
+ * marketing sticky-CTA body padding that would otherwise alter layout.
+ */
+body.studio-shell.has-sticky-cta:has([data-frozen-prototype="true"]) {
+  padding-bottom: 0;
+}
+
+body.studio-shell:has([data-frozen-prototype="true"]) {
+  /* Atmosphere gradient must not tint frozen prototype roots underneath. */
+  background-image: none;
+  background-color: transparent;
+}

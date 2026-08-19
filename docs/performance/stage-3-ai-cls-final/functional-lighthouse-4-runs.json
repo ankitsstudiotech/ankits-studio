@@ -1,0 +1,47 @@
+{
+  "capturedAt": "2026-08-13T07:25:36.007Z",
+  "baseUrl": "http://localhost:3010",
+  "pass": true,
+  "runs": [
+    {
+      "fcpMs": 2227.086,
+      "lcpMs": 2643.48,
+      "cls": 0,
+      "tbtMs": 1350.4070000000002,
+      "lcpSelector": "div.programme-pulse-module__GKqufG__composeHero > div.programme-pulse-module__GKqufG__detailMedia > figure.pulse-media-module__3a7RCW__frame > img.pulse-media-module__3a7RCW__frameMedia",
+      "clsCulprit": null,
+      "clsAfterRect": null,
+      "reportFile": "C:\\Personal data\\Aniket\\Personal_Code\\ankits-studio\\docs\\revamp\\_lh-tmp\\final-perf-1786605806444.json"
+    },
+    {
+      "fcpMs": 2200.558,
+      "lcpMs": 2716.864,
+      "cls": 0,
+      "tbtMs": 751.9020000000014,
+      "lcpSelector": "div.programme-pulse-module__GKqufG__composeHero > div.programme-pulse-module__GKqufG__detailMedia > figure.pulse-media-module__3a7RCW__frame > img.pulse-media-module__3a7RCW__frameMedia",
+      "clsCulprit": null,
+      "clsAfterRect": null,
+      "reportFile": "C:\\Personal data\\Aniket\\Personal_Code\\ankits-studio\\docs\\revamp\\_lh-tmp\\final-perf-1786605839074.json"
+    },
+    {
+      "fcpMs": 2157.417,
+      "lcpMs": 2773.703,
+      "cls": 0,
+      "tbtMs": 1226.6290000000004,
+      "lcpSelector": "div.programme-pulse-module__GKqufG__composeHero > div.programme-pulse-module__GKqufG__detailMedia > figure.pulse-media-module__3a7RCW__frame > img.pulse-media-module__3a7RCW__frameMedia",
+      "clsCulprit": null,
+      "clsAfterRect": null,
+      "reportFile": "C:\\Personal data\\Aniket\\Personal_Code\\ankits-studio\\docs\\revamp\\_lh-tmp\\final-perf-1786605871632.json"
+    },
+    {
+      "fcpMs": 2120.194,
+      "lcpMs": 2586.533,
+      "cls": 0,
+      "tbtMs": 719.7069999999999,
+      "lcpSelector": "div.programme-pulse-module__GKqufG__composeHero > div.programme-pulse-module__GKqufG__detailMedia > figure.pulse-media-module__3a7RCW__frame > img.pulse-media-module__3a7RCW__frameMedia",
+      "clsCulprit": null,
+      "clsAfterRect": null,
+      "reportFile": "C:\\Personal data\\Aniket\\Personal_Code\\ankits-studio\\docs\\revamp\\_lh-tmp\\final-perf-1786605903307.json"
+    }
+  ]
+}

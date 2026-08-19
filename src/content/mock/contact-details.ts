@@ -1,11 +1,18 @@
 import type { ContactDetails } from "../schema";
+import { OWNER_INTERVIEW_2026_08_03 } from "../schema/owner-source";
 
+/**
+ * Central enquiry contact — owner interview 2026-08-03.
+ * Admin answers during studio operating hours (not a one-minute guarantee).
+ */
 export const mockContactDetails: ContactDetails = {
-  dataStatus: "mock",
-  mockDisclaimer:
-    "Placeholder general contact details — not confirmed by the owner. Branch-specific phone/WhatsApp numbers live on each Branch record, not here.",
-  generalEmail: "hello@example-placeholder.test",
-  generalPhone: "+91 00000 00000",
-  preferredContactOrder: ["trial-form", "whatsapp", "phone", "email"],
-  introText: "Reach out with any questions about programmes, timings, or booking a trial class.",
+  dataStatus: "verified",
+  generalEmail: "ankitsstudio5@gmail.com",
+  generalPhone: "+91 93724 02074",
+  generalWhatsapp: "+91 93724 02074",
+  preferredContactOrder: ["whatsapp", "phone", "trial-form", "email"],
+  introText:
+    "Message Ankit’s Studio on WhatsApp to book a free trial, or call the central studio enquiry number. Messages are answered during studio operating hours.",
+  branchesInheritCentralEnquiry: true,
+  ownerSource: OWNER_INTERVIEW_2026_08_03,
 };

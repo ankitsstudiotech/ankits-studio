@@ -24,6 +24,11 @@ describe("programs 404 handling", () => {
     expect(() => getProgrammeOrNotFound("not-a-real-programme")).toThrow();
   });
 
+  it("disables dynamic params so unknown slugs hard-404", async () => {
+    const mod = await import("@/app/programs/[slug]/page");
+    expect(mod.dynamicParams).toBe(false);
+  });
+
   it("throws (404s) for an empty slug", () => {
     expect(() => getProgrammeOrNotFound("")).toThrow();
   });

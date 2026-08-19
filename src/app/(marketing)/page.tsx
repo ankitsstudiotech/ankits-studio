@@ -1,201 +1,229 @@
 import {
   BranchExplorer,
-  CommunityTestimonials,
   FaqSection,
-  FounderStoryPlaceholder,
+  FounderHomeMoment,
   FreeTrialCta,
+  GoogleReviewProof,
   Hero,
   ProgrammeShowcase,
-  TransformationStories,
-  TrustStrip,
-  TimetablePreview,
-  WhyStudio,
-  type ProgrammeAccent,
 } from "@/components/home";
-import { ScrollReveal } from "@/components/motion/ScrollReveal";
-import { Section } from "@/components/ui/Section";
 import {
-  getBusinessIdentity,
-  getFaqs,
-  getProgrammes,
   getPubliclyListedBranches,
-  getTestimonials,
-  getTimetableSlots,
-  getTransformations,
+  getBranchMapsUrl,
   type ProgrammeSlug,
 } from "@/content";
+import {
+  getPrimaryConversionHref,
+  getPrimaryConversionLabel,
+} from "@/lib/conversion";
+import { getGoogleSocialProof } from "@/lib/google-reviews";
+import { PageWithFooter } from "@/components/layout/PageWithFooter";
+import { connection } from "next/server";
 import { buildPageMetadata } from "@/lib/seo";
+import type { ServiceTempo } from "@/components/home/pulse/PulseMotion";
 
 export const metadata = buildPageMetadata({
-  title: "Fitness & dance studio in Navi Mumbai",
+  title: "Coach-led dance & fitness in Navi Mumbai",
   description:
-    "Ankit's Studio offers strength training, personal training, yoga, Zumba, and dance programmes across publicly listed neighbourhoods in Navi Mumbai.",
+    "Ankit’s Studio offers coach-led functional training, yoga, Zumba and dance across four neighbourhood studios in Airoli, Ghansoli and Thane. Book a free trial on WhatsApp.",
   path: "/",
 });
 
-const DAY_LABELS = ["Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Sun"] as const;
-
-const PROGRAMME_LABELS: Record<ProgrammeSlug, string> = {
-  "strength-training": "Strength Training",
-  "personal-training": "Personal Training",
-  yoga: "Yoga",
-  zumba: "Zumba",
-  "adult-dance": "Adult Dance",
-  "kids-dance": "Kids Dance",
-  "weight-loss-fitness": "Weight-Loss & General Fitness",
+type HomepageService = {
+  slug: ProgrammeSlug;
+  tempo: ServiceTempo;
+  name: string;
+  shortDescription: string;
+  meta?: string;
+  emphasis?: "primary";
 };
 
-export default function HomePage() {
-  const identity = getBusinessIdentity();
-  const programmes = getProgrammes();
-  const branches = getPubliclyListedBranches();
-  const slots = getTimetableSlots();
-  const testimonials = getTestimonials();
-  const transformations = getTransformations();
-  const faqs = getFaqs();
+const SERVICE_BY_SLUG = {
+  "functional-training": {
+    slug: "functional-training" as const,
+    tempo: "functional" as const,
+    name: "Functional Training",
+    shortDescription:
+      "Coach-led, machine-free sessions — strength, mobility and everyday fitness.",
+    meta: "All branches",
+    emphasis: "primary" as const,
+  },
+  "home-personal-training": {
+    slug: "home-personal-training" as const,
+    tempo: "home" as const,
+    name: "Home Personal Training",
+    shortDescription: "One-to-one coaching at your location in Navi Mumbai and Thane.",
+    meta: "Per session · share your locality",
+  },
+  "online-training": {
+    slug: "online-training" as const,
+    tempo: "online" as const,
+    name: "Online Training",
+    shortDescription: "Live coach-led sessions on Zoom.",
+    meta: "One-to-one and group",
+  },
+  zumba: {
+    slug: "zumba" as const,
+    tempo: "zumba" as const,
+    name: "Zumba",
+    shortDescription: "High-energy dance fitness — beginner-friendly.",
+    meta: "All branches",
+  },
+  yoga: {
+    slug: "yoga" as const,
+    tempo: "yoga" as const,
+    name: "Yoga",
+    shortDescription: "Structured breath-led movement with mindful guidance.",
+    meta: "Ladies-only batches on request",
+  },
+  "adult-dance": {
+    slug: "adult-dance" as const,
+    tempo: "dance" as const,
+    name: "Dance",
+    shortDescription: "Energetic choreography in a welcoming studio room.",
+    meta: "Kids-only batches on request",
+  },
+  "wedding-choreography": {
+    slug: "wedding-choreography" as const,
+    tempo: "wedding" as const,
+    name: "Wedding Choreography",
+    shortDescription: "Easy-to-learn routines for your wedding moment.",
+    meta: "Arranged after you enquire",
+  },
+  "corporate-wellness": {
+    slug: "corporate-wellness" as const,
+    tempo: "home" as const,
+    name: "Corporate Wellness",
+    shortDescription: "Employee fitness and wellness at your workplace or online.",
+    meta: "Custom programmes · enquire for scope",
+  },
+} satisfies Record<string, HomepageService>;
 
-  const identityDisclaimer =
-    identity.dataStatus === "verified" ? undefined : identity.mockDisclaimer;
+function toShowcaseProgramme(service: HomepageService) {
+  return {
+    name: service.name,
+    href: `/programs/${service.slug}`,
+    shortDescription: service.shortDescription,
+    tempo: service.tempo,
+    meta: service.meta,
+    emphasis: service.emphasis,
+    slug: service.slug,
+  };
+}
+
+const HOMEPAGE_CLUSTERS = [
+  {
+    id: "train" as const,
+    title: "Train",
+    lede: "Coach-led fitness — in studio, at home, or online.",
+    programmes: [
+      toShowcaseProgramme(SERVICE_BY_SLUG["functional-training"]),
+      toShowcaseProgramme(SERVICE_BY_SLUG["home-personal-training"]),
+      toShowcaseProgramme(SERVICE_BY_SLUG["online-training"]),
+    ],
+  },
+  {
+    id: "move" as const,
+    title: "Move",
+    lede: "Group energy, breath work, and studio dance.",
+    programmes: [
+      toShowcaseProgramme(SERVICE_BY_SLUG.zumba),
+      toShowcaseProgramme(SERVICE_BY_SLUG.yoga),
+      toShowcaseProgramme(SERVICE_BY_SLUG["adult-dance"]),
+    ],
+  },
+  {
+    id: "celebrate" as const,
+    title: "Celebrate",
+    lede: "Personal choreography for wedding moments.",
+    programmes: [toShowcaseProgramme(SERVICE_BY_SLUG["wedding-choreography"])],
+  },
+  {
+    id: "teams" as const,
+    title: "For Teams",
+    lede: "Workplace and online fitness and wellness programmes for organisations.",
+    programmes: [toShowcaseProgramme(SERVICE_BY_SLUG["corporate-wellness"])],
+  },
+];
+
+export default async function HomePage() {
+  await connection();
+  const trialHref = getPrimaryConversionHref();
+  const trialLabel = getPrimaryConversionLabel();
+  const googleProof = await getGoogleSocialProof();
+  const branchCards = getPubliclyListedBranches().map((branch) => ({
+    name: branch.locality,
+    href: `/locations/${branch.slug}`,
+    locality: branch.locality,
+    openingYear: branch.openingYear,
+    landmarkHint: branch.landmarks ?? undefined,
+    hoursLabel: "Open daily · 6:00 AM–10:00 PM",
+    mapsUrl: getBranchMapsUrl(branch) ?? undefined,
+  }));
+
+  const homepageFaqs = [
+    {
+      id: "faq-trial-free",
+      question: "Is the trial really free?",
+      answer:
+        "Yes — the trial class is free once per person. A one-time ₹300 registration fee applies only after you join, not for the trial.",
+    },
+    {
+      id: "faq-start-programme",
+      question: "Which programme should I start with?",
+      answer:
+        "Most people begin with Functional Training, Zumba, Yoga or Dance in studio. Home and Online training suit personalised schedules. Message us on WhatsApp and we’ll help match a batch.",
+    },
+    {
+      id: "faq-batches",
+      question: "Do you offer ladies-only or kids-only batches?",
+      answer:
+        "Yes — ladies-only and kids-only batches are available as options. Ask which programmes and branches fit when you book a trial.",
+    },
+    {
+      id: "faq-batch-times",
+      question: "How do I check current batch timings?",
+      answer:
+        "Batch times vary by programme and branch. Studios are open 6:00 AM–10:00 PM daily — message us on WhatsApp with your preferred service and branch for current availability.",
+    },
+  ];
 
   return (
+    <PageWithFooter>
     <main>
       <Hero
-        cinematic
-        eyebrow={identity.displayName}
-        title="Move with strength, rhythm, and community."
-        description={identity.description}
-        mockDisclaimer={identityDisclaimer}
-        primaryCta={{ label: "Book a trial", href: "/trial" }}
-        secondaryCta={{ label: "Browse programmes", href: "/programs" }}
-        media={{
-          src: "/mock-media/hero-atmosphere.svg",
-          alt: "Replaceable abstract studio atmosphere placeholder — not real photography",
-          width: 1600,
-          height: 1200,
-          placeholderLabel: "Mock media",
-        }}
+        title="Coach-led fitness, yoga, Zumba and dance."
+        titleLines={["Coach-led fitness,", "yoga, Zumba and", "dance."]}
+        description="Four neighbourhood studios across Airoli, Ghansoli and Thane. Approachable, energetic sessions with coach guidance — work toward your goals at your pace. Book a free trial on WhatsApp."
+        primaryCta={{ label: trialLabel, href: trialHref }}
+        secondaryCta={{ label: "Find Your Nearest Studio", href: "/#locations" }}
       />
 
-      <TrustStrip
-        items={[
-          { id: "strength", label: "Strength & personal training" },
-          { id: "yoga", label: "Yoga" },
-          { id: "dance", label: "Zumba & dance" },
-          {
-            id: "locations",
-            label: branches.map((b) => b.slug.charAt(0).toUpperCase() + b.slug.slice(1)).join(" · "),
-          },
-        ]}
-        disclaimer="Programme names and listed locations are confirmed; no member counts, ratings, or outcome statistics are shown."
+      <ProgrammeShowcase clusters={HOMEPAGE_CLUSTERS} />
+
+      <BranchExplorer locations={branchCards} />
+
+      <GoogleReviewProof proof={googleProof} />
+
+      <FounderHomeMoment
+        copy="Ankit’s Studio began in Airoli in 2019 with the idea that fitness should feel approachable, enjoyable and sustainable. It has since grown to four studios across Navi Mumbai and Thane."
+        chronology={branchCards
+          .filter((branch) => typeof branch.openingYear === "number")
+          .map((branch) => ({
+            year: branch.openingYear as number,
+            place: branch.locality,
+          }))}
       />
 
-      <ProgrammeShowcase
-        programmes={programmes.map((programme) => ({
-          name: programme.name,
-          href: `/programs/${programme.slug}`,
-          shortDescription: programme.shortDescription,
-          accent: programme.heroAccent as ProgrammeAccent,
-          tags: programme.audienceTags.slice(0, 2),
-        }))}
+      <FreeTrialCta
+        href={trialHref}
+        label={trialLabel}
+        body="Tell us your preferred programme and branch on WhatsApp — we’ll share the current trial option and batch fit."
+        variant="accent"
       />
 
-      <WhyStudio
-        points={[
-          {
-            id: "range",
-            title: "One studio, full range",
-            body: "Strength, yoga, Zumba, and dance share one premium system — so the brand stays coherent while each programme still feels distinct.",
-          },
-          {
-            id: "local",
-            title: "Neighbourhood-first",
-            body: "Built for local discovery across listed branches, with clear paths from programme interest to a trial visit.",
-          },
-          {
-            id: "human",
-            title: "Human, not hype",
-            body: "No fabricated member counts or miracle claims — coaching culture and community come first.",
-          },
-        ]}
-        disclaimer="Positioning copy above is illustrative studio narrative pending owner review — not verified biography or performance claims."
-      />
-
-      <FounderStoryPlaceholder
-        title="Founder story coming soon"
-        body="This section is reserved for an owner-approved founder narrative and photography. Until then it stays clearly labelled as a placeholder so nothing is mistaken for a verified biography."
-        disclaimer="No founder biography, portrait, or timeline has been verified for publication."
-        mediaSrc="/mock-media/programme-placeholder.svg"
-      />
-
-      <TransformationStories
-        items={transformations.map((item) => ({
-          slug: item.slug,
-          summary: item.summary,
-          programmeLabel: PROGRAMME_LABELS[item.programmeSlug],
-          mockDisclaimer:
-            item.dataStatus === "verified" ? "Verified transformation story." : item.mockDisclaimer,
-        }))}
-      />
-
-      <BranchExplorer
-        locations={branches.map((branch) => ({
-          name: branch.name,
-          href: `/locations/${branch.slug}`,
-          areaLabel: branch.slug.charAt(0).toUpperCase() + branch.slug.slice(1),
-          programmeCountLabel: `${branch.programmeSlugs.length} programmes listed (illustrative availability)`,
-          addressPreview:
-            branch.dataStatus === "verified"
-              ? branch.address
-              : "Address shown as placeholder until the owner confirms the printable string.",
-          mockDisclaimer:
-            branch.dataStatus === "verified" ? "Verified branch details." : branch.mockDisclaimer,
-        }))}
-      />
-
-      <Section
-        id="timetable"
-        eyebrow="Timetable"
-        title="A peek at the week"
-        description="Illustrative class slots only — the full filterable timetable lives on /timetable."
-      >
-        <ScrollReveal>
-          <TimetablePreview
-            slots={slots.map((slot) => ({
-              id: slot.id,
-              dayLabel: DAY_LABELS[slot.dayOfWeek] ?? "—",
-              timeLabel: `${slot.startTime}–${slot.endTime}`,
-              programmeLabel: PROGRAMME_LABELS[slot.programmeSlug],
-              branchLabel: slot.branchSlug.charAt(0).toUpperCase() + slot.branchSlug.slice(1),
-              mockDisclaimer:
-                slot.dataStatus === "verified" ? "Verified class time." : slot.mockDisclaimer,
-            }))}
-          />
-        </ScrollReveal>
-      </Section>
-
-      <CommunityTestimonials
-        testimonials={testimonials.map((item) => ({
-          quote: item.quote,
-          attributedName: item.attributedName,
-          programmeLabel: item.programmeSlug ? PROGRAMME_LABELS[item.programmeSlug] : undefined,
-          branchLabel: item.branchSlug
-            ? `${item.branchSlug.charAt(0).toUpperCase()}${item.branchSlug.slice(1)} (placeholder)`
-            : undefined,
-          mockDisclaimer:
-            item.dataStatus === "verified" ? "Verified member testimonial." : item.mockDisclaimer,
-        }))}
-      />
-
-      <FreeTrialCta />
-
-      <FaqSection
-        items={faqs.map((faq) => ({
-          id: faq.id,
-          question: faq.question,
-          answer: faq.answer,
-          mockDisclaimer: faq.dataStatus === "verified" ? undefined : faq.mockDisclaimer,
-        }))}
-      />
+      <FaqSection items={homepageFaqs} description="Quick answers before you message us." />
     </main>
+    </PageWithFooter>
   );
 }

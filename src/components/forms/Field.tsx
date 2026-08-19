@@ -3,7 +3,7 @@
 import type { ComponentPropsWithoutRef, ReactNode } from "react";
 
 const fieldClass =
-  "mt-1.5 w-full min-h-11 rounded-[var(--radius-md)] border border-border bg-surface-raised px-3 py-2 text-ink shadow-[var(--shadow-soft)] focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-focus-ring";
+  "mt-1.5 w-full min-h-12 rounded-none border border-border bg-surface-raised px-3 py-2.5 text-ink font-[family-name:var(--font-sans)] text-[length:var(--text-body)] shadow-none focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-focus-ring";
 
 export function Field({
   id,
@@ -22,19 +22,19 @@ export function Field({
   const errorId = error ? `${id}-error` : undefined;
   return (
     <div className="min-w-0">
-      <label htmlFor={id} className="block text-sm font-medium text-ink">
+      <label htmlFor={id} className="block text-sm font-medium font-[family-name:var(--font-sans)] text-current">
         {label}
       </label>
       {hint ? (
-        <p id={hintId} className="mt-1 text-[length:var(--text-caption)] text-ink-muted">
+        <p id={hintId} className="mt-1 text-[length:var(--text-caption)] text-current opacity-75">
           {hint}
         </p>
       ) : null}
-      <div className="[&_input]:aria-[invalid=true]:border-accent-strength [&_select]:aria-[invalid=true]:border-accent-strength [&_textarea]:aria-[invalid=true]:border-accent-strength">
+      <div className="[&_input]:aria-[invalid=true]:border-danger [&_select]:aria-[invalid=true]:border-danger [&_textarea]:aria-[invalid=true]:border-danger">
         {children}
       </div>
       {error ? (
-        <p id={errorId} role="alert" className="mt-1.5 text-sm text-accent-strength">
+        <p id={errorId} role="alert" className="mt-1.5 text-sm text-danger">
           {error}
         </p>
       ) : null}

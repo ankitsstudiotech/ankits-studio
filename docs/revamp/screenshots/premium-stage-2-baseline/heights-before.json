@@ -1,0 +1,98 @@
+[
+  {
+    "slug": "home",
+    "route": "/",
+    "h": 6611,
+    "screens": 7.8
+  },
+  {
+    "slug": "about",
+    "route": "/about",
+    "h": 5413,
+    "screens": 6.4
+  },
+  {
+    "slug": "programs",
+    "route": "/programs",
+    "h": 3235,
+    "screens": 3.8
+  },
+  {
+    "slug": "ft",
+    "route": "/programs/functional-training",
+    "h": 4730,
+    "screens": 5.6
+  },
+  {
+    "slug": "hpt",
+    "route": "/programs/home-personal-training",
+    "h": 3810,
+    "screens": 4.5
+  },
+  {
+    "slug": "ot",
+    "route": "/programs/online-training",
+    "h": 3660,
+    "screens": 4.3
+  },
+  {
+    "slug": "zumba",
+    "route": "/programs/zumba",
+    "h": 4027,
+    "screens": 4.8
+  },
+  {
+    "slug": "yoga",
+    "route": "/programs/yoga",
+    "h": 4130,
+    "screens": 4.9
+  },
+  {
+    "slug": "dance",
+    "route": "/programs/adult-dance",
+    "h": 4303,
+    "screens": 5.1
+  },
+  {
+    "slug": "wedding",
+    "route": "/programs/wedding-choreography",
+    "h": 3921,
+    "screens": 4.6
+  },
+  {
+    "slug": "locations",
+    "route": "/locations",
+    "h": 2489,
+    "screens": 2.9
+  },
+  {
+    "slug": "branch",
+    "route": "/locations/airoli-sector-19",
+    "h": 4061,
+    "screens": 4.8
+  },
+  {
+    "slug": "timetable",
+    "route": "/timetable",
+    "h": 4594,
+    "screens": 5.4
+  },
+  {
+    "slug": "pricing",
+    "route": "/pricing",
+    "h": 4794,
+    "screens": 5.7
+  },
+  {
+    "slug": "trial",
+    "route": "/trial",
+    "h": 2939,
+    "screens": 3.5
+  },
+  {
+    "slug": "contact",
+    "route": "/contact",
+    "h": 3252,
+    "screens": 3.9
+  }
+]

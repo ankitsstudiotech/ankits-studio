@@ -1,0 +1,483 @@
+{
+  "local": "docs/revamp/screenshots/final-production-candidate-7bc0e9c",
+  "live": "docs\\revamp\\screenshots\\live-v1-visual-verification-010e217",
+  "fails": 0,
+  "results": [
+    {
+      "name": "full-390-home.png",
+      "local": {
+        "width": 390,
+        "height": 6663,
+        "len": 429233
+      },
+      "live": {
+        "width": 390,
+        "height": 6663,
+        "len": 429233
+      },
+      "widthMatch": true,
+      "heightRatio": 1,
+      "sameSampleHash": true,
+      "pass": true
+    },
+    {
+      "name": "full-1440-home.png",
+      "local": {
+        "width": 1440,
+        "height": 5224,
+        "len": 506749
+      },
+      "live": {
+        "width": 1440,
+        "height": 5224,
+        "len": 506749
+      },
+      "widthMatch": true,
+      "heightRatio": 1,
+      "sameSampleHash": true,
+      "pass": true
+    },
+    {
+      "name": "full-390-about.png",
+      "local": {
+        "width": 390,
+        "height": 5469,
+        "len": 301795
+      },
+      "live": {
+        "width": 390,
+        "height": 5469,
+        "len": 301795
+      },
+      "widthMatch": true,
+      "heightRatio": 1,
+      "sameSampleHash": true,
+      "pass": true
+    },
+    {
+      "name": "full-1440-about.png",
+      "local": {
+        "width": 1440,
+        "height": 3857,
+        "len": 376902
+      },
+      "live": {
+        "width": 1440,
+        "height": 3857,
+        "len": 376902
+      },
+      "widthMatch": true,
+      "heightRatio": 1,
+      "sameSampleHash": true,
+      "pass": true
+    },
+    {
+      "name": "full-390-programs.png",
+      "local": {
+        "width": 390,
+        "height": 3235,
+        "len": 195574
+      },
+      "live": {
+        "width": 390,
+        "height": 3235,
+        "len": 195574
+      },
+      "widthMatch": true,
+      "heightRatio": 1,
+      "sameSampleHash": true,
+      "pass": true
+    },
+    {
+      "name": "full-1440-programs.png",
+      "local": {
+        "width": 1440,
+        "height": 2660,
+        "len": 254507
+      },
+      "live": {
+        "width": 1440,
+        "height": 2660,
+        "len": 254507
+      },
+      "widthMatch": true,
+      "heightRatio": 1,
+      "sameSampleHash": true,
+      "pass": true
+    },
+    {
+      "name": "full-390-programs-functional-training.png",
+      "local": {
+        "width": 390,
+        "height": 4811,
+        "len": 237830
+      },
+      "live": {
+        "width": 390,
+        "height": 4811,
+        "len": 237830
+      },
+      "widthMatch": true,
+      "heightRatio": 1,
+      "sameSampleHash": true,
+      "pass": true
+    },
+    {
+      "name": "full-1440-programs-functional-training.png",
+      "local": {
+        "width": 1440,
+        "height": 3591,
+        "len": 280116
+      },
+      "live": {
+        "width": 1440,
+        "height": 3591,
+        "len": 280116
+      },
+      "widthMatch": true,
+      "heightRatio": 1,
+      "sameSampleHash": true,
+      "pass": true
+    },
+    {
+      "name": "full-390-locations.png",
+      "local": {
+        "width": 390,
+        "height": 2543,
+        "len": 125797
+      },
+      "live": {
+        "width": 390,
+        "height": 2543,
+        "len": 125797
+      },
+      "widthMatch": true,
+      "heightRatio": 1,
+      "sameSampleHash": true,
+      "pass": true
+    },
+    {
+      "name": "full-1440-locations.png",
+      "local": {
+        "width": 1440,
+        "height": 1958,
+        "len": 153271
+      },
+      "live": {
+        "width": 1440,
+        "height": 1958,
+        "len": 153271
+      },
+      "widthMatch": true,
+      "heightRatio": 1,
+      "sameSampleHash": true,
+      "pass": true
+    },
+    {
+      "name": "full-390-locations-airoli-sector-19.png",
+      "local": {
+        "width": 390,
+        "height": 4141,
+        "len": 191952
+      },
+      "live": {
+        "width": 390,
+        "height": 4141,
+        "len": 191952
+      },
+      "widthMatch": true,
+      "heightRatio": 1,
+      "sameSampleHash": true,
+      "pass": true
+    },
+    {
+      "name": "full-1440-locations-airoli-sector-19.png",
+      "local": {
+        "width": 1440,
+        "height": 3456,
+        "len": 225069
+      },
+      "live": {
+        "width": 1440,
+        "height": 3456,
+        "len": 225069
+      },
+      "widthMatch": true,
+      "heightRatio": 1,
+      "sameSampleHash": true,
+      "pass": true
+    },
+    {
+      "name": "full-390-timetable.png",
+      "local": {
+        "width": 390,
+        "height": 4642,
+        "len": 257883
+      },
+      "live": {
+        "width": 390,
+        "height": 4642,
+        "len": 257883
+      },
+      "widthMatch": true,
+      "heightRatio": 1,
+      "sameSampleHash": true,
+      "pass": true
+    },
+    {
+      "name": "full-1440-timetable.png",
+      "local": {
+        "width": 1440,
+        "height": 3244,
+        "len": 308462
+      },
+      "live": {
+        "width": 1440,
+        "height": 3244,
+        "len": 308462
+      },
+      "widthMatch": true,
+      "heightRatio": 1,
+      "sameSampleHash": true,
+      "pass": true
+    },
+    {
+      "name": "full-390-pricing.png",
+      "local": {
+        "width": 390,
+        "height": 5736,
+        "len": 343574
+      },
+      "live": {
+        "width": 390,
+        "height": 5736,
+        "len": 343574
+      },
+      "widthMatch": true,
+      "heightRatio": 1,
+      "sameSampleHash": true,
+      "pass": true
+    },
+    {
+      "name": "full-1440-pricing.png",
+      "local": {
+        "width": 1440,
+        "height": 3845,
+        "len": 411439
+      },
+      "live": {
+        "width": 1440,
+        "height": 3845,
+        "len": 411439
+      },
+      "widthMatch": true,
+      "heightRatio": 1,
+      "sameSampleHash": true,
+      "pass": true
+    },
+    {
+      "name": "full-390-trial.png",
+      "local": {
+        "width": 390,
+        "height": 3011,
+        "len": 129238
+      },
+      "live": {
+        "width": 390,
+        "height": 3011,
+        "len": 129238
+      },
+      "widthMatch": true,
+      "heightRatio": 1,
+      "sameSampleHash": true,
+      "pass": true
+    },
+    {
+      "name": "full-1440-trial.png",
+      "local": {
+        "width": 1440,
+        "height": 2031,
+        "len": 150017
+      },
+      "live": {
+        "width": 1440,
+        "height": 2031,
+        "len": 150017
+      },
+      "widthMatch": true,
+      "heightRatio": 1,
+      "sameSampleHash": true,
+      "pass": true
+    },
+    {
+      "name": "full-390-contact.png",
+      "local": {
+        "width": 390,
+        "height": 3367,
+        "len": 150084
+      },
+      "live": {
+        "width": 390,
+        "height": 3367,
+        "len": 150084
+      },
+      "widthMatch": true,
+      "heightRatio": 1,
+      "sameSampleHash": true,
+      "pass": true
+    },
+    {
+      "name": "full-1440-contact.png",
+      "local": {
+        "width": 1440,
+        "height": 2225,
+        "len": 176387
+      },
+      "live": {
+        "width": 1440,
+        "height": 2225,
+        "len": 176387
+      },
+      "widthMatch": true,
+      "heightRatio": 1,
+      "sameSampleHash": true,
+      "pass": true
+    },
+    {
+      "name": "full-390-privacy-policy.png",
+      "local": {
+        "width": 390,
+        "height": 2561,
+        "len": 159082
+      },
+      "live": {
+        "width": 390,
+        "height": 2561,
+        "len": 159082
+      },
+      "widthMatch": true,
+      "heightRatio": 1,
+      "sameSampleHash": true,
+      "pass": true
+    },
+    {
+      "name": "full-1440-privacy-policy.png",
+      "local": {
+        "width": 1440,
+        "height": 1868,
+        "len": 191309
+      },
+      "live": {
+        "width": 1440,
+        "height": 1868,
+        "len": 191309
+      },
+      "widthMatch": true,
+      "heightRatio": 1,
+      "sameSampleHash": true,
+      "pass": true
+    },
+    {
+      "name": "full-390-trainers.png",
+      "local": {
+        "width": 390,
+        "height": 4176,
+        "len": 183969
+      },
+      "live": {
+        "width": 390,
+        "height": 4176,
+        "len": 183969
+      },
+      "widthMatch": true,
+      "heightRatio": 1,
+      "sameSampleHash": true,
+      "pass": true
+    },
+    {
+      "name": "full-1440-trainers.png",
+      "local": {
+        "width": 1440,
+        "height": 3411,
+        "len": 229770
+      },
+      "live": {
+        "width": 1440,
+        "height": 3411,
+        "len": 229770
+      },
+      "widthMatch": true,
+      "heightRatio": 1,
+      "sameSampleHash": true,
+      "pass": true
+    },
+    {
+      "name": "full-390-transformations.png",
+      "local": {
+        "width": 390,
+        "height": 3056,
+        "len": 141613
+      },
+      "live": {
+        "width": 390,
+        "height": 3056,
+        "len": 141613
+      },
+      "widthMatch": true,
+      "heightRatio": 1,
+      "sameSampleHash": true,
+      "pass": true
+    },
+    {
+      "name": "full-1440-transformations.png",
+      "local": {
+        "width": 1440,
+        "height": 2388,
+        "len": 169021
+      },
+      "live": {
+        "width": 1440,
+        "height": 2388,
+        "len": 169021
+      },
+      "widthMatch": true,
+      "heightRatio": 1,
+      "sameSampleHash": true,
+      "pass": true
+    },
+    {
+      "name": "full-390-not-found.png",
+      "local": {
+        "width": 390,
+        "height": 1535,
+        "len": 51650
+      },
+      "live": {
+        "width": 390,
+        "height": 1535,
+        "len": 51650
+      },
+      "widthMatch": true,
+      "heightRatio": 1,
+      "sameSampleHash": true,
+      "pass": true
+    },
+    {
+      "name": "full-1440-not-found.png",
+      "local": {
+        "width": 1440,
+        "height": 1086,
+        "len": 65086
+      },
+      "live": {
+        "width": 1440,
+        "height": 1086,
+        "len": 65086
+      },
+      "widthMatch": true,
+      "heightRatio": 1,
+      "sameSampleHash": true,
+      "pass": true
+    }
+  ]
+}

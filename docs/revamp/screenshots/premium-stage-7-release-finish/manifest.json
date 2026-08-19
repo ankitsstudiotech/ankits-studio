@@ -1,0 +1,355 @@
+{
+  "stage": "premium-stage-7-release-finish",
+  "syntheticFlag": false,
+  "base": "http://127.0.0.1:3708",
+  "generatedAt": "2026-08-09T09:04:58.400Z",
+  "counts": {
+    "total": 57
+  },
+  "screenshots": [
+    "full-1440-404.png",
+    "full-1440-about.png",
+    "full-1440-airoli-sector-19.png",
+    "full-1440-contact.png",
+    "full-1440-functional.png",
+    "full-1440-home.png",
+    "full-1440-locations.png",
+    "full-1440-pricing.png",
+    "full-1440-privacy.png",
+    "full-1440-programs.png",
+    "full-1440-terms.png",
+    "full-1440-timetable.png",
+    "full-1440-trial.png",
+    "full-1440-wedding.png",
+    "full-1440-yoga.png",
+    "full-1920-about.png",
+    "full-1920-functional.png",
+    "full-1920-home.png",
+    "full-1920-locations.png",
+    "full-1920-pricing.png",
+    "full-1920-programs.png",
+    "full-1920-trial.png",
+    "full-1920-yoga.png",
+    "full-390-404.png",
+    "full-390-about.png",
+    "full-390-airoli-sector-19.png",
+    "full-390-contact.png",
+    "full-390-functional.png",
+    "full-390-home.png",
+    "full-390-locations.png",
+    "full-390-pricing.png",
+    "full-390-privacy.png",
+    "full-390-programs.png",
+    "full-390-terms.png",
+    "full-390-timetable.png",
+    "full-390-trial.png",
+    "full-390-wedding.png",
+    "full-390-yoga.png",
+    "full-768-contact.png",
+    "full-768-functional.png",
+    "full-768-home.png",
+    "full-768-locations.png",
+    "full-768-pricing.png",
+    "full-768-programs.png",
+    "full-768-trial.png",
+    "normal-1440x900-branch.png",
+    "normal-1440x900-contact.png",
+    "normal-1440x900-functional.png",
+    "normal-1440x900-home.png",
+    "normal-1440x900-pricing.png",
+    "normal-1440x900-trial.png",
+    "normal-390x844-branch.png",
+    "normal-390x844-contact.png",
+    "normal-390x844-functional.png",
+    "normal-390x844-home.png",
+    "normal-390x844-pricing.png",
+    "normal-390x844-trial.png"
+  ],
+  "dimensions": [
+    {
+      "file": "full-390-home.png",
+      "width": 390,
+      "height": 844
+    },
+    {
+      "file": "full-390-about.png",
+      "width": 390,
+      "height": 844
+    },
+    {
+      "file": "full-390-programs.png",
+      "width": 390,
+      "height": 844
+    },
+    {
+      "file": "full-390-functional.png",
+      "width": 390,
+      "height": 844
+    },
+    {
+      "file": "full-390-yoga.png",
+      "width": 390,
+      "height": 844
+    },
+    {
+      "file": "full-390-wedding.png",
+      "width": 390,
+      "height": 844
+    },
+    {
+      "file": "full-390-locations.png",
+      "width": 390,
+      "height": 844
+    },
+    {
+      "file": "full-390-airoli-sector-19.png",
+      "width": 390,
+      "height": 844
+    },
+    {
+      "file": "full-390-pricing.png",
+      "width": 390,
+      "height": 844
+    },
+    {
+      "file": "full-390-timetable.png",
+      "width": 390,
+      "height": 844
+    },
+    {
+      "file": "full-390-trial.png",
+      "width": 390,
+      "height": 844
+    },
+    {
+      "file": "full-390-contact.png",
+      "width": 390,
+      "height": 844
+    },
+    {
+      "file": "full-390-privacy.png",
+      "width": 390,
+      "height": 844
+    },
+    {
+      "file": "full-390-terms.png",
+      "width": 390,
+      "height": 844
+    },
+    {
+      "file": "full-390-404.png",
+      "width": 390,
+      "height": 844
+    },
+    {
+      "file": "full-1440-home.png",
+      "width": 1440,
+      "height": 900
+    },
+    {
+      "file": "full-1440-about.png",
+      "width": 1440,
+      "height": 900
+    },
+    {
+      "file": "full-1440-programs.png",
+      "width": 1440,
+      "height": 900
+    },
+    {
+      "file": "full-1440-functional.png",
+      "width": 1440,
+      "height": 900
+    },
+    {
+      "file": "full-1440-yoga.png",
+      "width": 1440,
+      "height": 900
+    },
+    {
+      "file": "full-1440-wedding.png",
+      "width": 1440,
+      "height": 900
+    },
+    {
+      "file": "full-1440-locations.png",
+      "width": 1440,
+      "height": 900
+    },
+    {
+      "file": "full-1440-airoli-sector-19.png",
+      "width": 1440,
+      "height": 900
+    },
+    {
+      "file": "full-1440-pricing.png",
+      "width": 1440,
+      "height": 900
+    },
+    {
+      "file": "full-1440-timetable.png",
+      "width": 1440,
+      "height": 900
+    },
+    {
+      "file": "full-1440-trial.png",
+      "width": 1440,
+      "height": 900
+    },
+    {
+      "file": "full-1440-contact.png",
+      "width": 1440,
+      "height": 900
+    },
+    {
+      "file": "full-1440-privacy.png",
+      "width": 1440,
+      "height": 900
+    },
+    {
+      "file": "full-1440-terms.png",
+      "width": 1440,
+      "height": 900
+    },
+    {
+      "file": "full-1440-404.png",
+      "width": 1440,
+      "height": 900
+    },
+    {
+      "file": "full-768-home.png",
+      "width": 768,
+      "height": 1024
+    },
+    {
+      "file": "full-768-programs.png",
+      "width": 768,
+      "height": 1024
+    },
+    {
+      "file": "full-768-functional.png",
+      "width": 768,
+      "height": 1024
+    },
+    {
+      "file": "full-768-locations.png",
+      "width": 768,
+      "height": 1024
+    },
+    {
+      "file": "full-768-pricing.png",
+      "width": 768,
+      "height": 1024
+    },
+    {
+      "file": "full-768-trial.png",
+      "width": 768,
+      "height": 1024
+    },
+    {
+      "file": "full-768-contact.png",
+      "width": 768,
+      "height": 1024
+    },
+    {
+      "file": "full-1920-home.png",
+      "width": 1920,
+      "height": 1080
+    },
+    {
+      "file": "full-1920-about.png",
+      "width": 1920,
+      "height": 1080
+    },
+    {
+      "file": "full-1920-programs.png",
+      "width": 1920,
+      "height": 1080
+    },
+    {
+      "file": "full-1920-functional.png",
+      "width": 1920,
+      "height": 1080
+    },
+    {
+      "file": "full-1920-yoga.png",
+      "width": 1920,
+      "height": 1080
+    },
+    {
+      "file": "full-1920-locations.png",
+      "width": 1920,
+      "height": 1080
+    },
+    {
+      "file": "full-1920-pricing.png",
+      "width": 1920,
+      "height": 1080
+    },
+    {
+      "file": "full-1920-trial.png",
+      "width": 1920,
+      "height": 1080
+    },
+    {
+      "file": "normal-390x844-home.png",
+      "width": 390,
+      "height": 844
+    },
+    {
+      "file": "normal-390x844-functional.png",
+      "width": 390,
+      "height": 844
+    },
+    {
+      "file": "normal-390x844-branch.png",
+      "width": 390,
+      "height": 844
+    },
+    {
+      "file": "normal-390x844-pricing.png",
+      "width": 390,
+      "height": 844
+    },
+    {
+      "file": "normal-390x844-trial.png",
+      "width": 390,
+      "height": 844
+    },
+    {
+      "file": "normal-390x844-contact.png",
+      "width": 390,
+      "height": 844
+    },
+    {
+      "file": "normal-1440x900-home.png",
+      "width": 1440,
+      "height": 900
+    },
+    {
+      "file": "normal-1440x900-functional.png",
+      "width": 1440,
+      "height": 900
+    },
+    {
+      "file": "normal-1440x900-branch.png",
+      "width": 1440,
+      "height": 900
+    },
+    {
+      "file": "normal-1440x900-pricing.png",
+      "width": 1440,
+      "height": 900
+    },
+    {
+      "file": "normal-1440x900-trial.png",
+      "width": 1440,
+      "height": 900
+    },
+    {
+      "file": "normal-1440x900-contact.png",
+      "width": 1440,
+      "height": 900
+    }
+  ]
+}

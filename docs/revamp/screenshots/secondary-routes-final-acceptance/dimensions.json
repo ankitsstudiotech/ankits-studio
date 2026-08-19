@@ -1,0 +1,336 @@
+{
+  "generatedAt": "2026-08-08T04:54:20.027Z",
+  "failed": 0,
+  "records": [
+    {
+      "filename": "390-trainers.png",
+      "route": "/trainers",
+      "expectedWidth": 390,
+      "actualWidth": 390,
+      "actualHeight": 4511,
+      "fullPage": true,
+      "result": "pass",
+      "sha256": "bfaea1267c6aa09548ebf7699390ba11c6946b2aacf67638c731e9a394ba0bfc"
+    },
+    {
+      "filename": "1440-trainers.png",
+      "route": "/trainers",
+      "expectedWidth": 1440,
+      "actualWidth": 1440,
+      "actualHeight": 3709,
+      "fullPage": true,
+      "result": "pass",
+      "sha256": "dde7e28b665384001088294c7692a2a494928ee217a6e5ceafef3a105ea6d923"
+    },
+    {
+      "filename": "390-transformations.png",
+      "route": "/transformations",
+      "expectedWidth": 390,
+      "actualWidth": 390,
+      "actualHeight": 3193,
+      "fullPage": true,
+      "result": "pass",
+      "sha256": "34e44e360adfc0f9d942857a642d17333a60b8fa5353852208c0073541c59564"
+    },
+    {
+      "filename": "1440-transformations.png",
+      "route": "/transformations",
+      "expectedWidth": 1440,
+      "actualWidth": 1440,
+      "actualHeight": 2481,
+      "fullPage": true,
+      "result": "pass",
+      "sha256": "b435cfe145afc94533fc586837e6ff8db7128c0bba49f0fd9f48e611fd9cd2ce"
+    },
+    {
+      "filename": "390-privacy-policy.png",
+      "route": "/privacy-policy",
+      "expectedWidth": 390,
+      "actualWidth": 390,
+      "actualHeight": 2727,
+      "fullPage": true,
+      "result": "pass",
+      "sha256": "f303d505f7b99c7cd911a4f9b0b6a98a382561baf442984ba4e84915546b624d"
+    },
+    {
+      "filename": "1440-privacy-policy.png",
+      "route": "/privacy-policy",
+      "expectedWidth": 1440,
+      "actualWidth": 1440,
+      "actualHeight": 1940,
+      "fullPage": true,
+      "result": "pass",
+      "sha256": "fb5f18db49de6c996eb0c25be5c06ea103eb299a1f70245587bf4d042d3b3716"
+    },
+    {
+      "filename": "390-terms.png",
+      "route": "/terms",
+      "expectedWidth": 390,
+      "actualWidth": 390,
+      "actualHeight": 2735,
+      "fullPage": true,
+      "result": "pass",
+      "sha256": "f84038663832e00a6ea54941d21adf5854a47719649ee277b81ec23788fa8196"
+    },
+    {
+      "filename": "1440-terms.png",
+      "route": "/terms",
+      "expectedWidth": 1440,
+      "actualWidth": 1440,
+      "actualHeight": 1948,
+      "fullPage": true,
+      "result": "pass",
+      "sha256": "667092f4b0956c5e3757f53ac9f5ef0a0b700b3de358e527d8e555f644fc8950"
+    },
+    {
+      "filename": "390-blog.png",
+      "route": "/blog",
+      "expectedWidth": 390,
+      "actualWidth": 390,
+      "actualHeight": 1760,
+      "fullPage": true,
+      "result": "pass",
+      "sha256": "c700fbb07ed1b5783abfcf6f2b3a9d43b56f70c682a01821ec1363e3233813c5"
+    },
+    {
+      "filename": "1440-blog.png",
+      "route": "/blog",
+      "expectedWidth": 1440,
+      "actualWidth": 1440,
+      "actualHeight": 1359,
+      "fullPage": true,
+      "result": "pass",
+      "sha256": "600c527f2ce09f622e8873439b293cfc51dd946889775847b356be69b3f3494e"
+    },
+    {
+      "filename": "390-legacy-strength-training.png",
+      "route": "/programs/strength-training",
+      "expectedWidth": 390,
+      "actualWidth": 390,
+      "actualHeight": 1654,
+      "fullPage": true,
+      "result": "pass",
+      "sha256": "e0bf688c5a6d81ca07b614f513294d5fb5361f82e64f7d342df05a8523b8887c"
+    },
+    {
+      "filename": "1440-legacy-strength-training.png",
+      "route": "/programs/strength-training",
+      "expectedWidth": 1440,
+      "actualWidth": 1440,
+      "actualHeight": 1152,
+      "fullPage": true,
+      "result": "pass",
+      "sha256": "9cf9e96e02b9478402fb3d7b29bad2826e167abc6e8630f624b5369976dc8dc7"
+    },
+    {
+      "filename": "390-legacy-personal-training.png",
+      "route": "/programs/personal-training",
+      "expectedWidth": 390,
+      "actualWidth": 390,
+      "actualHeight": 1630,
+      "fullPage": true,
+      "result": "pass",
+      "sha256": "08e29bbbd3e2503733454a0fb1ec5ea6397be9052d6ce45216bb2a2ec2270659"
+    },
+    {
+      "filename": "1440-legacy-personal-training.png",
+      "route": "/programs/personal-training",
+      "expectedWidth": 1440,
+      "actualWidth": 1440,
+      "actualHeight": 1152,
+      "fullPage": true,
+      "result": "pass",
+      "sha256": "20fd6c2cc5d425fe0920253fac75e2cc4ec92d41a83a517bade6e87f6114451f"
+    },
+    {
+      "filename": "390-legacy-kids-dance.png",
+      "route": "/programs/kids-dance",
+      "expectedWidth": 390,
+      "actualWidth": 390,
+      "actualHeight": 1654,
+      "fullPage": true,
+      "result": "pass",
+      "sha256": "8169d706852435de116d980a0e68e41c9a3d2161a8df9048fe370db2c6c1a7a1"
+    },
+    {
+      "filename": "1440-legacy-kids-dance.png",
+      "route": "/programs/kids-dance",
+      "expectedWidth": 1440,
+      "actualWidth": 1440,
+      "actualHeight": 1152,
+      "fullPage": true,
+      "result": "pass",
+      "sha256": "5bfe23de7027b0a60826e8da63b82ebffa60405bc4e7c3f7529aed60ecb2d402"
+    },
+    {
+      "filename": "390-legacy-weight-loss-fitness.png",
+      "route": "/programs/weight-loss-fitness",
+      "expectedWidth": 390,
+      "actualWidth": 390,
+      "actualHeight": 1709,
+      "fullPage": true,
+      "result": "pass",
+      "sha256": "3a3c391cf737c37a7881d60cb6c29e70f49acc8e2fb9043d7c30df8229283ce9"
+    },
+    {
+      "filename": "1440-legacy-weight-loss-fitness.png",
+      "route": "/programs/weight-loss-fitness",
+      "expectedWidth": 1440,
+      "actualWidth": 1440,
+      "actualHeight": 1192,
+      "fullPage": true,
+      "result": "pass",
+      "sha256": "797cb1e4905e8b55eb7959bba29c8f4ef20d79902cb57428f9a61d06a5b4470e"
+    },
+    {
+      "filename": "390-not-found.png",
+      "route": "/this-page-does-not-exist-prompt3",
+      "expectedWidth": 390,
+      "actualWidth": 390,
+      "actualHeight": 1506,
+      "fullPage": true,
+      "result": "pass",
+      "sha256": "10699985789472275f1cb9e26d3543d765abf170ab7e2e4aa7771ef32fc64d0b"
+    },
+    {
+      "filename": "1440-not-found.png",
+      "route": "/this-page-does-not-exist-prompt3",
+      "expectedWidth": 1440,
+      "actualWidth": 1440,
+      "actualHeight": 1084,
+      "fullPage": true,
+      "result": "pass",
+      "sha256": "b834991f8fc47bed7505d8c237310175edb70482cc70ed87babf6bd8a070053e"
+    },
+    {
+      "filename": "768-trainers.png",
+      "route": "/trainers",
+      "expectedWidth": 768,
+      "actualWidth": 768,
+      "actualHeight": 3828,
+      "fullPage": true,
+      "result": "pass",
+      "sha256": "c4deca0c4396c857f042c0781b658afd756f3f42751be65ccba0e3a135e4e35b"
+    },
+    {
+      "filename": "768-transformations.png",
+      "route": "/transformations",
+      "expectedWidth": 768,
+      "actualWidth": 768,
+      "actualHeight": 2533,
+      "fullPage": true,
+      "result": "pass",
+      "sha256": "5cb741142eb7acfd36e9b5b26110348196735b58a2af8884ff35b9c829592ebc"
+    },
+    {
+      "filename": "768-privacy-policy.png",
+      "route": "/privacy-policy",
+      "expectedWidth": 768,
+      "actualWidth": 768,
+      "actualHeight": 1880,
+      "fullPage": true,
+      "result": "pass",
+      "sha256": "d145ce265dd90cfb300ca01e6baa0dc457521337d7673b6743c0aae46d56bada"
+    },
+    {
+      "filename": "768-terms.png",
+      "route": "/terms",
+      "expectedWidth": 768,
+      "actualWidth": 768,
+      "actualHeight": 1862,
+      "fullPage": true,
+      "result": "pass",
+      "sha256": "da6d6c2b1bac7bcdb569f83f423fbd899e978f236487418a060d2e3c1a81e48f"
+    },
+    {
+      "filename": "768-not-found.png",
+      "route": "/this-page-does-not-exist-prompt3",
+      "expectedWidth": 768,
+      "actualWidth": 768,
+      "actualHeight": 1057,
+      "fullPage": true,
+      "result": "pass",
+      "sha256": "66c276536e0c55f10d1f08020a6cb0d93211249f86c56c99e6ef2b23803f4971"
+    },
+    {
+      "filename": "regression-390-home.png",
+      "route": "/",
+      "expectedWidth": 390,
+      "actualWidth": 390,
+      "actualHeight": 844,
+      "fullPage": false,
+      "result": "pass",
+      "sha256": "ed22597e408894a2836c477c84443d3143168fcc56aff9ccf69f67b98d1fae86"
+    },
+    {
+      "filename": "regression-1440-home.png",
+      "route": "/",
+      "expectedWidth": 1440,
+      "actualWidth": 1440,
+      "actualHeight": 900,
+      "fullPage": false,
+      "result": "pass",
+      "sha256": "9ea8f813a07fc464a5d17e612a7979fd0b011cd2a3738e26a9b5cfb235716de8"
+    },
+    {
+      "filename": "regression-390-programs.png",
+      "route": "/programs",
+      "expectedWidth": 390,
+      "actualWidth": 390,
+      "actualHeight": 844,
+      "fullPage": false,
+      "result": "pass",
+      "sha256": "9e6b50df73f6c19e6c51ca4dfb0e73872fb124de7971be0a156d90cd4aea354d"
+    },
+    {
+      "filename": "regression-1440-programs.png",
+      "route": "/programs",
+      "expectedWidth": 1440,
+      "actualWidth": 1440,
+      "actualHeight": 900,
+      "fullPage": false,
+      "result": "pass",
+      "sha256": "928b27a76042cabbd11c9a1d2d096a039648051fc3e1610aec2070b3f1257ed1"
+    },
+    {
+      "filename": "regression-390-locations.png",
+      "route": "/locations",
+      "expectedWidth": 390,
+      "actualWidth": 390,
+      "actualHeight": 844,
+      "fullPage": false,
+      "result": "pass",
+      "sha256": "97a5d1511a63e5e76aa450f768cf5cb25694b276ee4705ed6ae2d9f25984618c"
+    },
+    {
+      "filename": "regression-1440-locations.png",
+      "route": "/locations",
+      "expectedWidth": 1440,
+      "actualWidth": 1440,
+      "actualHeight": 900,
+      "fullPage": false,
+      "result": "pass",
+      "sha256": "1f3c28a5ff50634ab86d79f33f7d4972a4e99cfb2e7e39a63cd601e423409080"
+    },
+    {
+      "filename": "regression-390-trial.png",
+      "route": "/trial",
+      "expectedWidth": 390,
+      "actualWidth": 390,
+      "actualHeight": 844,
+      "fullPage": false,
+      "result": "pass",
+      "sha256": "6e9328fe2a54c32d4bf67605267c6be94fa00c3c5c239696a13cf2a8351ff23c"
+    },
+    {
+      "filename": "regression-1440-trial.png",
+      "route": "/trial",
+      "expectedWidth": 1440,
+      "actualWidth": 1440,
+      "actualHeight": 900,
+      "fullPage": false,
+      "result": "pass",
+      "sha256": "6cef8ee226d01aff17b9c8c13de763aacb2ead54d27d474328bfc9fa7a58e0cc"
+    }
+  ]
+}

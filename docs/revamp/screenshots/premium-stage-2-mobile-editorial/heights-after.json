@@ -1,0 +1,130 @@
+[
+  {
+    "slug": "home",
+    "route": "/",
+    "before": 6611,
+    "after": 5038,
+    "reductionPct": 23.8,
+    "pngHeight": 5038
+  },
+  {
+    "slug": "about",
+    "route": "/about",
+    "before": 5413,
+    "after": 4024,
+    "reductionPct": 25.7,
+    "pngHeight": 4024
+  },
+  {
+    "slug": "pricing",
+    "route": "/pricing",
+    "before": 4794,
+    "after": 3206,
+    "reductionPct": 33.1,
+    "pngHeight": 3206
+  },
+  {
+    "slug": "timetable",
+    "route": "/timetable",
+    "before": 4594,
+    "after": 3220,
+    "reductionPct": 29.9,
+    "pngHeight": 3220
+  },
+  {
+    "slug": "programs",
+    "route": "/programs",
+    "before": 3235,
+    "after": 2935,
+    "reductionPct": 9.3,
+    "pngHeight": 2935
+  },
+  {
+    "slug": "functional-training",
+    "route": "/programs/functional-training",
+    "before": 4730,
+    "after": 3688,
+    "reductionPct": 22,
+    "pngHeight": 3688
+  },
+  {
+    "slug": "home-personal-training",
+    "route": "/programs/home-personal-training",
+    "before": 3810,
+    "after": 3035,
+    "reductionPct": 20.3,
+    "pngHeight": 3035
+  },
+  {
+    "slug": "online-training",
+    "route": "/programs/online-training",
+    "before": 3660,
+    "after": 2885,
+    "reductionPct": 21.2,
+    "pngHeight": 2885
+  },
+  {
+    "slug": "zumba",
+    "route": "/programs/zumba",
+    "before": 4027,
+    "after": 3164,
+    "reductionPct": 21.4,
+    "pngHeight": 3164
+  },
+  {
+    "slug": "yoga",
+    "route": "/programs/yoga",
+    "before": 4130,
+    "after": 3222,
+    "reductionPct": 22,
+    "pngHeight": 3222
+  },
+  {
+    "slug": "dance",
+    "route": "/programs/adult-dance",
+    "before": 4303,
+    "after": 3418,
+    "reductionPct": 20.6,
+    "pngHeight": 3418
+  },
+  {
+    "slug": "wedding-choreography",
+    "route": "/programs/wedding-choreography",
+    "before": 3921,
+    "after": 3080,
+    "reductionPct": 21.4,
+    "pngHeight": 3080
+  },
+  {
+    "slug": "locations",
+    "route": "/locations",
+    "before": 2489,
+    "after": 2188,
+    "reductionPct": 12.1,
+    "pngHeight": 2188
+  },
+  {
+    "slug": "branch-airoli-sector-19",
+    "route": "/locations/airoli-sector-19",
+    "before": 4061,
+    "after": 3476,
+    "reductionPct": 14.4,
+    "pngHeight": 3476
+  },
+  {
+    "slug": "trial",
+    "route": "/trial",
+    "before": 2939,
+    "after": 2552,
+    "reductionPct": 13.2,
+    "pngHeight": 2552
+  },
+  {
+    "slug": "contact",
+    "route": "/contact",
+    "before": 3252,
+    "after": 2951,
+    "reductionPct": 9.3,
+    "pngHeight": 2951
+  }
+]

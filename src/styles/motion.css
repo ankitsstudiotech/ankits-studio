@@ -1,13 +1,65 @@
 /**
- * Reduced-motion + shared motion utilities.
- * See docs/MOTION-SYSTEM.md and ADR-009.
+ * Studio Pulse premium motion language — Stage 3 correction.
+ * Progressive enhancement: content visible without JS; motion opts in via
+ * html.motion-pending → html.motion-ready (early script + MotionReady).
  */
+
+:root {
+  --motion-instant: 120ms;
+  --motion-fast: 180ms;
+  --motion-base: 260ms;
+  --motion-slow: 420ms;
+  --motion-hero: 720ms;
+  --motion-hero-line: 520ms;
+  --motion-hero-support-delay: 480ms;
+  --motion-section: 440ms;
+  --motion-sticky: 200ms;
+  --motion-menu-open: 280ms;
+  --motion-menu-close: 180ms;
+
+  --duration-fast: var(--motion-instant);
+  --duration-normal: var(--motion-fast);
+  --duration-slow: var(--motion-slow);
+  --duration-reveal: var(--motion-section);
+  --duration-hover: var(--motion-fast);
+  --duration-tap: var(--motion-instant);
+
+  --ease-exit: cubic-bezier(0.4, 0, 1, 1);
+  --ease-enter: cubic-bezier(0.23, 1, 0.32, 1);
+  --ease-emphasis: cubic-bezier(0.16, 1, 0.3, 1);
+  --ease-standard: cubic-bezier(0.2, 0.8, 0.2, 1);
+  --ease-out-strong: var(--ease-enter);
+  --ease-out-soft: cubic-bezier(0.25, 1, 0.5, 1);
+}
+
+@media (max-width: 640px) {
+  :root {
+    --motion-hero-line: 400ms;
+    --motion-hero-support-delay: 360ms;
+    --motion-section: 360ms;
+    --motion-menu-open: 240ms;
+  }
+}
 
 @media (prefers-reduced-motion: reduce) {
   :root {
+    --motion-instant: 0ms;
+    --motion-fast: 0ms;
+    --motion-base: 0ms;
+    --motion-slow: 0ms;
+    --motion-hero: 0ms;
+    --motion-hero-line: 0ms;
+    --motion-hero-support-delay: 0ms;
+    --motion-section: 0ms;
+    --motion-sticky: 0ms;
+    --motion-menu-open: 0ms;
+    --motion-menu-close: 0ms;
     --duration-fast: 0ms;
     --duration-normal: 0ms;
     --duration-slow: 0ms;
+    --duration-reveal: 0ms;
+    --duration-hover: 0ms;
+    --duration-tap: 0ms;
   }
 
   *,
@@ -18,29 +70,246 @@
     transition-duration: 0.01ms !important;
     scroll-behavior: auto !important;
   }
-}
 
-/**
- * Progressive enhancement class toggled by ScrollReveal / TextReveal.
- * Content is always in the DOM at readable opacity — we never start at
- * opacity: 0 (SEO / LCP / a11y). Motion only adds a short translate.
- */
-@media (prefers-reduced-motion: no-preference) {
-  .motion-reveal {
-    transform: translate3d(0, 0.75rem, 0);
-    transition:
-      transform var(--duration-slow) var(--ease-out-expo),
-      opacity var(--duration-normal) var(--ease-out-quart);
-    opacity: 0.96;
-  }
-
-  .motion-reveal.is-revealed {
-    transform: translate3d(0, 0, 0);
-    opacity: 1;
+  [data-motion-cue] {
+    transform: none !important;
   }
 }
 
 .touch-target {
   min-width: 44px;
   min-height: 44px;
+}
+
+/* —— Masked headlines: editorial rise from below clipping window —— */
+.motion-mask-line {
+  display: block;
+  overflow: hidden;
+  /* Bebas caps need extra room — 0.1em clipped descenders/baselines on mobile. */
+  padding-bottom: 0.18em;
+  margin-bottom: -0.06em;
+}
+
+.motion-mask-inner {
+  display: block;
+  transform: translate3d(0, 0, 0);
+}
+
+/**
+ * Motion-pending (set by blocking script when motion is allowed):
+ * park lines below the clip BEFORE first paint so we never flash final→hidden.
+ * prm / reduce / no-JS: stay at final visible state.
+ */
+@media (prefers-reduced-motion: no-preference) {
+  /*
+   * All headline lines stay visible during motion-pending.
+   * Parking later lines at translateY(108%) made the second display line
+   * (often larger than the support paragraph) become LCP only after the
+   * rise finished — a multi-second lab gap after FCP.
+   * Soft enhance on ready preserves Stage 3 choreography without hiding copy.
+   */
+  html.motion-pending .hero-masked-title .motion-mask-inner {
+    transform: translate3d(0, 0, 0);
+  }
+
+  html.motion-ready .hero-masked-title .motion-mask-line:first-child .motion-mask-inner {
+    transform: translate3d(0, 0, 0);
+    animation: none;
+  }
+
+  html.motion-ready .hero-masked-title .motion-mask-line:not(:first-child) .motion-mask-inner {
+    animation: pulse-mask-rise-soft 280ms var(--ease-enter) both;
+    animation-delay: calc(40ms + (var(--line-index, 0) * 45ms));
+  }
+
+  html.motion-pending .hero-brand-motion {
+    opacity: 1;
+    transform: none;
+  }
+
+  /* Brand polish without fill-mode hiding — avoid LCP regression on the mark. */
+  html.motion-ready .hero-brand-motion {
+    animation: pulse-hero-brand 320ms var(--ease-enter) forwards;
+  }
+
+  /*
+   * Hero support must remain paintable for LCP — it is often the largest
+   * contentful element on mobile. No entrance animation: transforms/delays
+   * can postpone the LCP paint under CPU throttle even when opacity stays 1.
+   * Headline mask rise + accent still carry Stage 3 choreography.
+   */
+  html.motion-pending .hero-support,
+  html.motion-ready .hero-support {
+    opacity: 1;
+    transform: none;
+    animation: none;
+  }
+
+  html.motion-pending .hero-accent-motion {
+    transform: scaleX(0.2);
+  }
+
+  html.motion-ready .hero-accent-motion {
+    animation: pulse-accent-draw 320ms var(--ease-emphasis) both;
+    animation-delay: calc(var(--motion-hero-support-delay) + 120ms);
+  }
+}
+
+html.prm .motion-mask-inner,
+html.prm .hero-brand-motion,
+html.prm .hero-support,
+html.prm .hero-accent-motion {
+  opacity: 1 !important;
+  transform: none !important;
+  animation: none !important;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .motion-mask-inner,
+  .hero-brand-motion,
+  .hero-support,
+  .hero-accent-motion {
+    opacity: 1 !important;
+    transform: none !important;
+    animation: none !important;
+  }
+}
+
+@keyframes pulse-mask-rise {
+  from {
+    transform: translate3d(0, 108%, 0);
+  }
+  to {
+    transform: translate3d(0, 0, 0);
+  }
+}
+
+/* Visible soft rise — never parks LCP-sized headline copy off-screen. */
+@keyframes pulse-mask-rise-soft {
+  from {
+    transform: translate3d(0, 0.55em, 0);
+  }
+  to {
+    transform: translate3d(0, 0, 0);
+  }
+}
+
+@keyframes pulse-hero-brand {
+  from {
+    opacity: 0.92;
+    transform: translate3d(0, 6px, 0);
+  }
+  to {
+    opacity: 1;
+    transform: translate3d(0, 0, 0);
+  }
+}
+
+@keyframes pulse-hero-support {
+  from {
+    opacity: 0;
+    transform: translate3d(0, 12px, 0);
+  }
+  to {
+    opacity: 1;
+    transform: translate3d(0, 0, 0);
+  }
+}
+
+/* Home hero support — opacity stays 1 so LCP can paint immediately. */
+@keyframes pulse-hero-support-enhance {
+  from {
+    opacity: 1;
+    transform: translate3d(0, 8px, 0);
+  }
+  to {
+    opacity: 1;
+    transform: translate3d(0, 0, 0);
+  }
+}
+
+@keyframes pulse-accent-draw {
+  from {
+    transform: scaleX(0.2);
+  }
+  to {
+    transform: scaleX(1);
+  }
+}
+
+/* Pattern C — accent line */
+.motion-accent-line {
+  display: block;
+  height: var(--cue-thickness);
+  width: var(--cue-length);
+  background: var(--color-accent);
+  transform-origin: left center;
+  transform: scaleX(0.35);
+  transition: transform var(--motion-base) var(--ease-enter);
+}
+
+.motion-accent-line[data-drawn="true"],
+.motion-ready .motion-accent-line.is-inview {
+  transform: scaleX(1);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .motion-accent-line {
+    transform: scaleX(1);
+  }
+}
+
+/* FAQ */
+.pulse-accordion-item summary {
+  transition: background-color var(--motion-fast) var(--ease-standard);
+}
+
+.pulse-accordion-item[open] {
+  border-color: color-mix(in srgb, var(--color-accent) 35%, var(--color-border-on-field));
+}
+
+.pulse-accordion-panel {
+  animation: pulse-faq-in var(--motion-base) var(--ease-enter) both;
+}
+
+@keyframes pulse-faq-in {
+  from {
+    opacity: 0.35;
+    transform: translate3d(0, 6px, 0);
+  }
+  to {
+    opacity: 1;
+    transform: translate3d(0, 0, 0);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .pulse-accordion-panel {
+    animation: none;
+  }
+}
+
+.pulse-form-panel :where(input, select, textarea) {
+  transition:
+    border-color var(--motion-fast) var(--ease-standard),
+    box-shadow var(--motion-fast) var(--ease-standard);
+}
+
+.pulse-form-panel :where(input, select, textarea):focus-visible {
+  outline: 2px solid var(--color-volt);
+  outline-offset: 2px;
+  border-color: color-mix(in srgb, var(--color-accent) 55%, transparent);
+}
+
+/* Section reveal helpers — more perceptible travel, still restrained */
+[data-section-reveal] {
+  --reveal-y: 18px;
+  --reveal-x: 0px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  [data-section-reveal] {
+    opacity: 1 !important;
+    transform: none !important;
+  }
 }

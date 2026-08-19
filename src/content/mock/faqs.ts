@@ -51,6 +51,6 @@ export const mockFaqs: Faq[] = [
     id: "faq-airoli-parking",
     question: "Is parking available at the Airoli branch?",
     answer: "Illustrative answer: parking availability at this branch is not yet confirmed — check with the studio directly.",
-    branchSlug: "airoli",
+    branchSlug: "airoli-sector-19",
   },
 ];

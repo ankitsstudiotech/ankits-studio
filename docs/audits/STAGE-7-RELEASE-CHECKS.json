@@ -1,0 +1,68 @@
+{
+  "generatedAt": "2026-08-09T08:55:29.622Z",
+  "base": "http://127.0.0.1:3707",
+  "linkIssues": [],
+  "consoleErrors": [],
+  "networkFails": [],
+  "overflow": [],
+  "redirects": {
+    "/locations/airoli": {
+      "finalUrl": "http://127.0.0.1:3707/locations/airoli-sector-19",
+      "status": 200,
+      "ok": true
+    },
+    "/book-a-free-trial": {
+      "finalUrl": "http://127.0.0.1:3707/trial",
+      "status": 200,
+      "ok": true
+    }
+  },
+  "headers": {
+    "nosniff": "nosniff",
+    "referrer": "strict-origin-when-cross-origin",
+    "frame": "SAMEORIGIN"
+  },
+  "robotsHasSitemap": true,
+  "robotsDisallowsDesignLab": true,
+  "sitemapHasTrainers": false,
+  "sitemapHasTransformations": false,
+  "sitemapHasLocalhost": false,
+  "metadataDump": {
+    "/": {
+      "title": "Machine-free fitness, yoga, Zumba & dance in Navi Mumbai | Ankit's Studio",
+      "description": "Ankit’s Studio offers machine-free, coach-led fitness, yoga, Zumba and dance across four neighbourhood studios in Airoli, Ghansoli and Thane. Book a free trial on WhatsApp.",
+      "robots": "index, follow",
+      "canonical": "https://ankits-studio.vercel.app",
+      "ogTitle": "Machine-free fitness, yoga, Zumba & dance in Navi Mumbai",
+      "ogImage": "https://ankits-studio.vercel.app/opengraph-image",
+      "twitterCard": "summary_large_image"
+    },
+    "/programs/functional-training": {
+      "title": "Functional Training | Ankit's Studio",
+      "description": "Machine-free, coach-led Functional Training at Ankit’s Studio across Airoli, Ghansoli and Thane. Typical sessions about one hour. Free trial on WhatsApp.",
+      "robots": "index, follow",
+      "canonical": "https://ankits-studio.vercel.app/programs/functional-training",
+      "ogTitle": "Functional Training",
+      "ogImage": "https://ankits-studio.vercel.app/opengraph-image",
+      "twitterCard": "summary_large_image"
+    },
+    "/locations/airoli-sector-19": {
+      "title": "Airoli Sector 19 — Fitness, Yoga, Zumba & Dance | Ankit's Studio",
+      "description": "Train at Ankit’s Studio in Airoli Sector 19 — Functional Training, Yoga, Zumba, Dance and Wedding Choreography. Open 6:00 AM–10:00 PM daily. Free trial on WhatsApp.",
+      "robots": "index, follow",
+      "canonical": "https://ankits-studio.vercel.app/locations/airoli-sector-19",
+      "ogTitle": "Airoli Sector 19 — Fitness, Yoga, Zumba & Dance",
+      "ogImage": "https://ankits-studio.vercel.app/opengraph-image",
+      "twitterCard": "summary_large_image"
+    },
+    "/pricing": {
+      "title": "Pricing & Free Trial | Ankit's Studio",
+      "description": "Free trial once per person, ₹300 one-time registration, and programme fees that vary by service and branch. Ask Ankit’s Studio for the current fee on WhatsApp.",
+      "robots": "index, follow",
+      "canonical": "https://ankits-studio.vercel.app/pricing",
+      "ogTitle": "Pricing & Free Trial",
+      "ogImage": "https://ankits-studio.vercel.app/opengraph-image",
+      "twitterCard": "summary_large_image"
+    }
+  }
+}

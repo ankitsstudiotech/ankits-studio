@@ -1,0 +1,624 @@
+{
+  "base": "http://127.0.0.1:3485",
+  "generatedAt": "2026-08-08T05:29:54.817Z",
+  "leaks": [],
+  "seo": [
+    {
+      "route": "/",
+      "status": 200,
+      "robots": "index, follow",
+      "canonical": "https://ankits-studio.vercel.app",
+      "title": "Machine-free fitness, yoga, Zumba & dance in Navi Mumbai | Ankit's Studio",
+      "description": "Ankit’s Studio offers machine-free, coach-led fitness, yoga, Zumba and dance across four neighbourhood studios in Airoli, Ghansoli and Thane. Book a free trial on WhatsApp.",
+      "jsonLd": [
+        "{\"@context\":\"https://schema.org\",\"@type\":\"Organization\",\"name\":\"Ankit's Studio\",\"url\":\"https://ankits-studio.vercel.app\",\"description\":\"Ankit’s Studio is a fitness studio founded in 2019 with four neighbourhood branches in Navi Mumbai and Thane. Coach-led sessions cover functional training, Zumba, yoga, dance and wedding choreography, with home personal training and online training as delivery options. Group sessions are coach-led; personalised programming is available through personal training.\"}"
+      ],
+      "sticky": 1,
+      "hasPad": true
+    },
+    {
+      "route": "/about",
+      "status": 200,
+      "robots": "index, follow",
+      "canonical": "https://ankits-studio.vercel.app/about",
+      "title": "About · Fitness, Yoga and Dance | Ankit's Studio",
+      "description": "Learn about Ankit’s Studio, founded in 2019 by Ankit Nalawade — machine-free coach-led programmes and four neighbourhood branches in Navi Mumbai and Thane.",
+      "jsonLd": [
+        "{\"@context\":\"https://schema.org\",\"@type\":\"Organization\",\"name\":\"Ankit's Studio\",\"url\":\"https://ankits-studio.vercel.app\",\"description\":\"Ankit’s Studio is a fitness studio founded in 2019 with four neighbourhood branches in Navi Mumbai and Thane. Coach-led sessions cover functional training, Zumba, yoga, dance and wedding choreography, with home personal training and online training as delivery options. Group sessions are coach-led; personalised programming is available through personal training.\"}",
+        "{\"@context\":\"https://schema.org\",\"@type\":\"BreadcrumbList\",\"itemListElement\":[{\"@type\":\"ListItem\",\"position\":1,\"name\":\"Home\",\"item\":\"https://ankits-studio.vercel.app/\"},{\"@type\":\"ListItem\",\"position\":2,\"name\":\"About\",\"item\":\"https://ankits-studio.vercel.app/about\"}]}",
+        "{\"@context\":\"https://schema.org\",\"@type\":\"WebPage\",\"name\":\"About Ankit’s Studio | Fitness, Yoga and Dance\",\"description\":\"Learn about Ankit’s Studio, founded in 2019 by Ankit Nalawade — machine-free coach-led programmes and four neighbourhood branches in Navi Mumbai and Thane.\",\"url\":\"https://ankits-studio.vercel.app/about\"}"
+      ],
+      "sticky": 1,
+      "hasPad": true
+    },
+    {
+      "route": "/programs",
+      "status": 200,
+      "robots": "index, follow",
+      "canonical": "https://ankits-studio.vercel.app/programs",
+      "title": "Programmes | Ankit's Studio",
+      "description": "Functional Training, Yoga, Zumba, Dance, Wedding Choreography, Home Personal Training and Online Training at Ankit’s Studio — enquire for a free trial on WhatsApp.",
+      "jsonLd": [
+        "{\"@context\":\"https://schema.org\",\"@type\":\"Organization\",\"name\":\"Ankit's Studio\",\"url\":\"https://ankits-studio.vercel.app\",\"description\":\"Ankit’s Studio is a fitness studio founded in 2019 with four neighbourhood branches in Navi Mumbai and Thane. Coach-led sessions cover functional training, Zumba, yoga, dance and wedding choreography, with home personal training and online training as delivery options. Group sessions are coach-led; personalised programming is available through personal training.\"}",
+        "{\"@context\":\"https://schema.org\",\"@type\":\"BreadcrumbList\",\"itemListElement\":[{\"@type\":\"ListItem\",\"position\":1,\"name\":\"Home\",\"item\":\"https://ankits-studio.vercel.app/\"},{\"@type\":\"ListItem\",\"position\":2,\"name\":\"Programmes\",\"item\":\"https://ankits-studio.vercel.app/programs\"}]}",
+        "{\"@context\":\"https://schema.org\",\"@type\":\"CollectionPage\",\"name\":\"Programmes\",\"description\":\"Functional Training, Yoga, Zumba, Dance, Wedding Choreography, Home Personal Training and Online Training at Ankit’s Studio — enquire for a free trial on WhatsApp.\",\"url\":\"https://ankits-studio.vercel.app/programs\"}"
+      ],
+      "sticky": 1,
+      "hasPad": true
+    },
+    {
+      "route": "/programs/functional-training",
+      "status": 200,
+      "robots": "index, follow",
+      "canonical": "https://ankits-studio.vercel.app/programs/functional-training",
+      "title": "Functional Training | Ankit's Studio",
+      "description": "Machine-free, coach-led Functional Training at Ankit’s Studio across Airoli, Ghansoli and Thane. Typical sessions about one hour. Free trial on WhatsApp.",
+      "jsonLd": [
+        "{\"@context\":\"https://schema.org\",\"@type\":\"Organization\",\"name\":\"Ankit's Studio\",\"url\":\"https://ankits-studio.vercel.app\",\"description\":\"Ankit’s Studio is a fitness studio founded in 2019 with four neighbourhood branches in Navi Mumbai and Thane. Coach-led sessions cover functional training, Zumba, yoga, dance and wedding choreography, with home personal training and online training as delivery options. Group sessions are coach-led; personalised programming is available through personal training.\"}",
+        "{\"@context\":\"https://schema.org\",\"@type\":\"BreadcrumbList\",\"itemListElement\":[{\"@type\":\"ListItem\",\"position\":1,\"name\":\"Home\",\"item\":\"https://ankits-studio.vercel.app/\"},{\"@type\":\"ListItem\",\"position\":2,\"name\":\"Programmes\",\"item\":\"https://ankits-studio.vercel.app/programs\"},{\"@type\":\"ListItem\",\"position\":3,\"name\":\"Functional Training\",\"item\":\"https://ankits-studio.vercel.app/programs/functional-training\"}]}",
+        "{\"@context\":\"https://schema.org\",\"@type\":\"WebPage\",\"name\":\"Functional Training\",\"description\":\"Machine-free Functional Training using bodyweight movement and portable equipment.\",\"url\":\"https://ankits-studio.vercel.app/programs/functional-training\"}"
+      ],
+      "sticky": 1,
+      "hasPad": true
+    },
+    {
+      "route": "/programs/home-personal-training",
+      "status": 200,
+      "robots": "index, follow",
+      "canonical": "https://ankits-studio.vercel.app/programs/home-personal-training",
+      "title": "Home Personal Training | Ankit's Studio",
+      "description": "Home Personal Training with Ankit’s Studio — per-session pricing. Coverage and rates confirmed on WhatsApp enquiry.",
+      "jsonLd": [
+        "{\"@context\":\"https://schema.org\",\"@type\":\"Organization\",\"name\":\"Ankit's Studio\",\"url\":\"https://ankits-studio.vercel.app\",\"description\":\"Ankit’s Studio is a fitness studio founded in 2019 with four neighbourhood branches in Navi Mumbai and Thane. Coach-led sessions cover functional training, Zumba, yoga, dance and wedding choreography, with home personal training and online training as delivery options. Group sessions are coach-led; personalised programming is available through personal training.\"}",
+        "{\"@context\":\"https://schema.org\",\"@type\":\"BreadcrumbList\",\"itemListElement\":[{\"@type\":\"ListItem\",\"position\":1,\"name\":\"Home\",\"item\":\"https://ankits-studio.vercel.app/\"},{\"@type\":\"ListItem\",\"position\":2,\"name\":\"Programmes\",\"item\":\"https://ankits-studio.vercel.app/programs\"},{\"@type\":\"ListItem\",\"position\":3,\"name\":\"Home Personal Training\",\"item\":\"https://ankits-studio.vercel.app/programs/home-personal-training\"}]}",
+        "{\"@context\":\"https://schema.org\",\"@type\":\"WebPage\",\"name\":\"Home Personal Training\",\"description\":\"Coach-led sessions at your location — priced per session.\",\"url\":\"https://ankits-studio.vercel.app/programs/home-personal-training\"}"
+      ],
+      "sticky": 1,
+      "hasPad": true
+    },
+    {
+      "route": "/programs/online-training",
+      "status": 200,
+      "robots": "index, follow",
+      "canonical": "https://ankits-studio.vercel.app/programs/online-training",
+      "title": "Online Training | Ankit's Studio",
+      "description": "Online Training with Ankit’s Studio on Zoom — one-to-one and group. Timing and fees confirmed when you enquire on WhatsApp.",
+      "jsonLd": [
+        "{\"@context\":\"https://schema.org\",\"@type\":\"Organization\",\"name\":\"Ankit's Studio\",\"url\":\"https://ankits-studio.vercel.app\",\"description\":\"Ankit’s Studio is a fitness studio founded in 2019 with four neighbourhood branches in Navi Mumbai and Thane. Coach-led sessions cover functional training, Zumba, yoga, dance and wedding choreography, with home personal training and online training as delivery options. Group sessions are coach-led; personalised programming is available through personal training.\"}",
+        "{\"@context\":\"https://schema.org\",\"@type\":\"BreadcrumbList\",\"itemListElement\":[{\"@type\":\"ListItem\",\"position\":1,\"name\":\"Home\",\"item\":\"https://ankits-studio.vercel.app/\"},{\"@type\":\"ListItem\",\"position\":2,\"name\":\"Programmes\",\"item\":\"https://ankits-studio.vercel.app/programs\"},{\"@type\":\"ListItem\",\"position\":3,\"name\":\"Online Training\",\"item\":\"https://ankits-studio.vercel.app/programs/online-training\"}]}",
+        "{\"@context\":\"https://schema.org\",\"@type\":\"WebPage\",\"name\":\"Online Training\",\"description\":\"Remote coach-led sessions on Zoom — one-to-one and group formats.\",\"url\":\"https://ankits-studio.vercel.app/programs/online-training\"}"
+      ],
+      "sticky": 1,
+      "hasPad": true
+    },
+    {
+      "route": "/programs/zumba",
+      "status": 200,
+      "robots": "index, follow",
+      "canonical": "https://ankits-studio.vercel.app/programs/zumba",
+      "title": "Zumba | Ankit's Studio",
+      "description": "Zumba at Ankit’s Studio across Navi Mumbai and Thane. Music-led group sessions; free trial on WhatsApp.",
+      "jsonLd": [
+        "{\"@context\":\"https://schema.org\",\"@type\":\"Organization\",\"name\":\"Ankit's Studio\",\"url\":\"https://ankits-studio.vercel.app\",\"description\":\"Ankit’s Studio is a fitness studio founded in 2019 with four neighbourhood branches in Navi Mumbai and Thane. Coach-led sessions cover functional training, Zumba, yoga, dance and wedding choreography, with home personal training and online training as delivery options. Group sessions are coach-led; personalised programming is available through personal training.\"}",
+        "{\"@context\":\"https://schema.org\",\"@type\":\"BreadcrumbList\",\"itemListElement\":[{\"@type\":\"ListItem\",\"position\":1,\"name\":\"Home\",\"item\":\"https://ankits-studio.vercel.app/\"},{\"@type\":\"ListItem\",\"position\":2,\"name\":\"Programmes\",\"item\":\"https://ankits-studio.vercel.app/programs\"},{\"@type\":\"ListItem\",\"position\":3,\"name\":\"Zumba\",\"item\":\"https://ankits-studio.vercel.app/programs/zumba\"}]}",
+        "{\"@context\":\"https://schema.org\",\"@type\":\"WebPage\",\"name\":\"Zumba\",\"description\":\"Music-led group energy. No dance background required to enquire.\",\"url\":\"https://ankits-studio.vercel.app/programs/zumba\"}"
+      ],
+      "sticky": 1,
+      "hasPad": true
+    },
+    {
+      "route": "/programs/yoga",
+      "status": 200,
+      "robots": "index, follow",
+      "canonical": "https://ankits-studio.vercel.app/programs/yoga",
+      "title": "Yoga | Ankit's Studio",
+      "description": "Yoga at Ankit’s Studio in Airoli, Ghansoli and Thane. Breath-led sessions; free trial on WhatsApp. Batch times confirmed on enquiry.",
+      "jsonLd": [
+        "{\"@context\":\"https://schema.org\",\"@type\":\"Organization\",\"name\":\"Ankit's Studio\",\"url\":\"https://ankits-studio.vercel.app\",\"description\":\"Ankit’s Studio is a fitness studio founded in 2019 with four neighbourhood branches in Navi Mumbai and Thane. Coach-led sessions cover functional training, Zumba, yoga, dance and wedding choreography, with home personal training and online training as delivery options. Group sessions are coach-led; personalised programming is available through personal training.\"}",
+        "{\"@context\":\"https://schema.org\",\"@type\":\"BreadcrumbList\",\"itemListElement\":[{\"@type\":\"ListItem\",\"position\":1,\"name\":\"Home\",\"item\":\"https://ankits-studio.vercel.app/\"},{\"@type\":\"ListItem\",\"position\":2,\"name\":\"Programmes\",\"item\":\"https://ankits-studio.vercel.app/programs\"},{\"@type\":\"ListItem\",\"position\":3,\"name\":\"Yoga\",\"item\":\"https://ankits-studio.vercel.app/programs/yoga\"}]}",
+        "{\"@context\":\"https://schema.org\",\"@type\":\"WebPage\",\"name\":\"Yoga\",\"description\":\"Breath-led movement with space to settle — ask which batch suits you.\",\"url\":\"https://ankits-studio.vercel.app/programs/yoga\"}"
+      ],
+      "sticky": 1,
+      "hasPad": true
+    },
+    {
+      "route": "/programs/adult-dance",
+      "status": 200,
+      "robots": "index, follow",
+      "canonical": "https://ankits-studio.vercel.app/programs/adult-dance",
+      "title": "Dance | Ankit's Studio",
+      "description": "Dance classes at Ankit’s Studio. Kids-only (3–8 and 8–12) and ladies-only Dance batches available to ask about. Free trial on WhatsApp.",
+      "jsonLd": [
+        "{\"@context\":\"https://schema.org\",\"@type\":\"Organization\",\"name\":\"Ankit's Studio\",\"url\":\"https://ankits-studio.vercel.app\",\"description\":\"Ankit’s Studio is a fitness studio founded in 2019 with four neighbourhood branches in Navi Mumbai and Thane. Coach-led sessions cover functional training, Zumba, yoga, dance and wedding choreography, with home personal training and online training as delivery options. Group sessions are coach-led; personalised programming is available through personal training.\"}",
+        "{\"@context\":\"https://schema.org\",\"@type\":\"BreadcrumbList\",\"itemListElement\":[{\"@type\":\"ListItem\",\"position\":1,\"name\":\"Home\",\"item\":\"https://ankits-studio.vercel.app/\"},{\"@type\":\"ListItem\",\"position\":2,\"name\":\"Programmes\",\"item\":\"https://ankits-studio.vercel.app/programs\"},{\"@type\":\"ListItem\",\"position\":3,\"name\":\"Dance\",\"item\":\"https://ankits-studio.vercel.app/programs/adult-dance\"}]}",
+        "{\"@context\":\"https://schema.org\",\"@type\":\"WebPage\",\"name\":\"Dance\",\"description\":\"Studio dance for adults — technique and choreography in a welcoming room.\",\"url\":\"https://ankits-studio.vercel.app/programs/adult-dance\"}"
+      ],
+      "sticky": 1,
+      "hasPad": true
+    },
+    {
+      "route": "/programs/wedding-choreography",
+      "status": 200,
+      "robots": "index, follow",
+      "canonical": "https://ankits-studio.vercel.app/programs/wedding-choreography",
+      "title": "Wedding Choreography | Ankit's Studio",
+      "description": "Wedding choreography at Ankit’s Studio. Per-couple pricing — enquire on WhatsApp for current details.",
+      "jsonLd": [
+        "{\"@context\":\"https://schema.org\",\"@type\":\"Organization\",\"name\":\"Ankit's Studio\",\"url\":\"https://ankits-studio.vercel.app\",\"description\":\"Ankit’s Studio is a fitness studio founded in 2019 with four neighbourhood branches in Navi Mumbai and Thane. Coach-led sessions cover functional training, Zumba, yoga, dance and wedding choreography, with home personal training and online training as delivery options. Group sessions are coach-led; personalised programming is available through personal training.\"}",
+        "{\"@context\":\"https://schema.org\",\"@type\":\"BreadcrumbList\",\"itemListElement\":[{\"@type\":\"ListItem\",\"position\":1,\"name\":\"Home\",\"item\":\"https://ankits-studio.vercel.app/\"},{\"@type\":\"ListItem\",\"position\":2,\"name\":\"Programmes\",\"item\":\"https://ankits-studio.vercel.app/programs\"},{\"@type\":\"ListItem\",\"position\":3,\"name\":\"Wedding Choreography\",\"item\":\"https://ankits-studio.vercel.app/programs/wedding-choreography\"}]}",
+        "{\"@context\":\"https://schema.org\",\"@type\":\"WebPage\",\"name\":\"Wedding Choreography\",\"description\":\"Personal choreography support for wedding routines and performances.\",\"url\":\"https://ankits-studio.vercel.app/programs/wedding-choreography\"}"
+      ],
+      "sticky": 1,
+      "hasPad": true
+    },
+    {
+      "route": "/locations",
+      "status": 200,
+      "robots": "index, follow",
+      "canonical": "https://ankits-studio.vercel.app/locations",
+      "title": "Locations | Ankit's Studio",
+      "description": "Four Ankit’s Studio branches in Airoli Sector 19, Airoli Sector 8, Ghansoli, and Thane. Enquire on WhatsApp for a free trial and current batch availability.",
+      "jsonLd": [
+        "{\"@context\":\"https://schema.org\",\"@type\":\"Organization\",\"name\":\"Ankit's Studio\",\"url\":\"https://ankits-studio.vercel.app\",\"description\":\"Ankit’s Studio is a fitness studio founded in 2019 with four neighbourhood branches in Navi Mumbai and Thane. Coach-led sessions cover functional training, Zumba, yoga, dance and wedding choreography, with home personal training and online training as delivery options. Group sessions are coach-led; personalised programming is available through personal training.\"}",
+        "{\"@context\":\"https://schema.org\",\"@type\":\"BreadcrumbList\",\"itemListElement\":[{\"@type\":\"ListItem\",\"position\":1,\"name\":\"Home\",\"item\":\"https://ankits-studio.vercel.app/\"},{\"@type\":\"ListItem\",\"position\":2,\"name\":\"Locations\",\"item\":\"https://ankits-studio.vercel.app/locations\"}]}",
+        "{\"@context\":\"https://schema.org\",\"@type\":\"CollectionPage\",\"name\":\"Locations\",\"description\":\"Four Ankit’s Studio branches in Airoli Sector 19, Airoli Sector 8, Ghansoli, and Thane. Enquire on WhatsApp for a free trial and current batch availability.\",\"url\":\"https://ankits-studio.vercel.app/locations\"}"
+      ],
+      "sticky": 1,
+      "hasPad": true
+    },
+    {
+      "route": "/locations/airoli-sector-19",
+      "status": 200,
+      "robots": "index, follow",
+      "canonical": "https://ankits-studio.vercel.app/locations/airoli-sector-19",
+      "title": "Airoli Sector 19 Fitness Studio | Ankit's Studio",
+      "description": "Ankit’s Studio at Shop No. 05, Sector 19, Airoli — Functional Training, Yoga, Zumba, Dance and Wedding Choreography. Open 6:00 AM–10:00 PM daily. Free trial on WhatsApp.",
+      "jsonLd": [
+        "{\"@context\":\"https://schema.org\",\"@type\":\"Organization\",\"name\":\"Ankit's Studio\",\"url\":\"https://ankits-studio.vercel.app\",\"description\":\"Ankit’s Studio is a fitness studio founded in 2019 with four neighbourhood branches in Navi Mumbai and Thane. Coach-led sessions cover functional training, Zumba, yoga, dance and wedding choreography, with home personal training and online training as delivery options. Group sessions are coach-led; personalised programming is available through personal training.\"}",
+        "{\"@context\":\"https://schema.org\",\"@type\":\"BreadcrumbList\",\"itemListElement\":[{\"@type\":\"ListItem\",\"position\":1,\"name\":\"Home\",\"item\":\"https://ankits-studio.vercel.app/\"},{\"@type\":\"ListItem\",\"position\":2,\"name\":\"Locations\",\"item\":\"https://ankits-studio.vercel.app/locations\"},{\"@type\":\"ListItem\",\"position\":3,\"name\":\"Airoli Sector 19\",\"item\":\"https://ankits-studio.vercel.app/locations/airoli-sector-19\"}]}",
+        "{\"@context\":\"https://schema.org\",\"@type\":\"WebPage\",\"name\":\"Ankit's Studio — Airoli Sector 19\",\"description\":\"Ankit’s Studio at Shop No. 05, Sector 19, Airoli — Functional Training, Yoga, Zumba, Dance and Wedding Choreography. Open 6:00 AM–10:00 PM daily. Free trial on WhatsApp.\",\"url\":\"https://ankits-studio.vercel.app/locations/airoli-sector-19\"}",
+        "{\"@context\":\"https://schema.org\",\"@type\":\"ExerciseGym\",\"name\":\"Ankit's Studio — Airoli Sector 19\",\"url\":\"https://ankits-studio.vercel.app/locations/airoli-sector-19\",\"address\":{\"@type\":\"PostalAddress\",\"streetAddress\":\"Shop No. 05, Beside Bank of Maharashtra, Sector 19, Airoli, Navi Mumbai, Maharashtra 400708\",\"addressLocality\":\"Airoli Sector 19\",\"postalCode\":\"400708\",\"addressRegion\":\"Maharashtra\"},\"parentOrganization\":{\"@type\":\"Organization\",\"name\":\"Ankit's Studio\",\"url\":\"https://ankits-studio.vercel.app\"},\"telephone\":\"+91 93724 02074\",\"openingHoursSpecification\":[{\"@type\":\"OpeningHoursSpecification\",\"dayOfWeek\":\"Monday\",\"opens\":\"06:00\",\"closes\":\"22:00\"},{\"@type\":\"OpeningHoursSpecification\",\"dayOfWeek\":\"Tuesday\",\"opens\":\"06:00\",\"closes\":\"22:00\"},{\"@type\":\"OpeningHoursSpecification\",\"dayOfWeek\":\"Wednesday\",\"opens\":\"06:00\",\"closes\":\"22:00\"},{\"@type\":\"OpeningHoursSpecification\",\"dayOfWeek\":\"Thursday\",\"opens\":\"06:00\",\"closes\":\"22:00\"},{\"@type\":\"OpeningHoursSpecification\",\"dayOfWeek\":\"Friday\",\"opens\":\"06:00\",\"closes\":\"22:00\"},{\"@type\":\"OpeningHoursSpecification\",\"dayOfWeek\":\"Saturday\",\"opens\":\"06:00\",\"closes\":\"22:00\"},{\"@type\":\"OpeningHoursSpecification\",\"dayOfWeek\":\"Sunday\",\"opens\":\"06:00\",\"closes\":\"22:00\"}],\"hasMap\":\"https://maps.app.goo.gl/JowoDwXZUVqiFfWC6?g_st=ic\"}"
+      ],
+      "sticky": 1,
+      "hasPad": true
+    },
+    {
+      "route": "/locations/airoli-sector-8",
+      "status": 200,
+      "robots": "index, follow",
+      "canonical": "https://ankits-studio.vercel.app/locations/airoli-sector-8",
+      "title": "Airoli Sector 8 Fitness Studio | Ankit's Studio",
+      "description": "Ankit’s Studio at Swaraj Daffodils, Sector 8A, Airoli — Functional Training, Yoga, Zumba, Dance and Wedding Choreography. Open 6:00 AM–10:00 PM daily. Free trial on WhatsApp.",
+      "jsonLd": [
+        "{\"@context\":\"https://schema.org\",\"@type\":\"Organization\",\"name\":\"Ankit's Studio\",\"url\":\"https://ankits-studio.vercel.app\",\"description\":\"Ankit’s Studio is a fitness studio founded in 2019 with four neighbourhood branches in Navi Mumbai and Thane. Coach-led sessions cover functional training, Zumba, yoga, dance and wedding choreography, with home personal training and online training as delivery options. Group sessions are coach-led; personalised programming is available through personal training.\"}",
+        "{\"@context\":\"https://schema.org\",\"@type\":\"BreadcrumbList\",\"itemListElement\":[{\"@type\":\"ListItem\",\"position\":1,\"name\":\"Home\",\"item\":\"https://ankits-studio.vercel.app/\"},{\"@type\":\"ListItem\",\"position\":2,\"name\":\"Locations\",\"item\":\"https://ankits-studio.vercel.app/locations\"},{\"@type\":\"ListItem\",\"position\":3,\"name\":\"Airoli Sector 8\",\"item\":\"https://ankits-studio.vercel.app/locations/airoli-sector-8\"}]}",
+        "{\"@context\":\"https://schema.org\",\"@type\":\"WebPage\",\"name\":\"Ankit's Studio — Airoli Sector 8\",\"description\":\"Ankit’s Studio at Swaraj Daffodils, Sector 8A, Airoli — Functional Training, Yoga, Zumba, Dance and Wedding Choreography. Open 6:00 AM–10:00 PM daily. Free trial on WhatsApp.\",\"url\":\"https://ankits-studio.vercel.app/locations/airoli-sector-8\"}",
+        "{\"@context\":\"https://schema.org\",\"@type\":\"ExerciseGym\",\"name\":\"Ankit's Studio — Airoli Sector 8\",\"url\":\"https://ankits-studio.vercel.app/locations/airoli-sector-8\",\"address\":{\"@type\":\"PostalAddress\",\"streetAddress\":\"Swaraj Daffodils, Beside Airoli Sports Association, Sector 8A, Airoli, Navi Mumbai, Maharashtra 400701\",\"addressLocality\":\"Airoli Sector 8\",\"postalCode\":\"400701\",\"addressRegion\":\"Maharashtra\"},\"parentOrganization\":{\"@type\":\"Organization\",\"name\":\"Ankit's Studio\",\"url\":\"https://ankits-studio.vercel.app\"},\"telephone\":\"+91 93724 02074\",\"openingHoursSpecification\":[{\"@type\":\"OpeningHoursSpecification\",\"dayOfWeek\":\"Monday\",\"opens\":\"06:00\",\"closes\":\"22:00\"},{\"@type\":\"OpeningHoursSpecification\",\"dayOfWeek\":\"Tuesday\",\"opens\":\"06:00\",\"closes\":\"22:00\"},{\"@type\":\"OpeningHoursSpecification\",\"dayOfWeek\":\"Wednesday\",\"opens\":\"06:00\",\"closes\":\"22:00\"},{\"@type\":\"OpeningHoursSpecification\",\"dayOfWeek\":\"Thursday\",\"opens\":\"06:00\",\"closes\":\"22:00\"},{\"@type\":\"OpeningHoursSpecification\",\"dayOfWeek\":\"Friday\",\"opens\":\"06:00\",\"closes\":\"22:00\"},{\"@type\":\"OpeningHoursSpecification\",\"dayOfWeek\":\"Saturday\",\"opens\":\"06:00\",\"closes\":\"22:00\"},{\"@type\":\"OpeningHoursSpecification\",\"dayOfWeek\":\"Sunday\",\"opens\":\"06:00\",\"closes\":\"22:00\"}],\"hasMap\":\"https://maps.app.goo.gl/7zLudwn1c6RUZZWUA?g_st=ic\"}"
+      ],
+      "sticky": 1,
+      "hasPad": true
+    },
+    {
+      "route": "/locations/ghansoli",
+      "status": 200,
+      "robots": "index, follow",
+      "canonical": "https://ankits-studio.vercel.app/locations/ghansoli",
+      "title": "Ghansoli Fitness Studio | Ankit's Studio",
+      "description": "Ankit’s Studio at Satyam Imperial, Sector 11, Ghansoli — Functional Training, Yoga, Zumba, Dance and Wedding Choreography. Open 6:00 AM–10:00 PM daily. Free trial on WhatsApp.",
+      "jsonLd": [
+        "{\"@context\":\"https://schema.org\",\"@type\":\"Organization\",\"name\":\"Ankit's Studio\",\"url\":\"https://ankits-studio.vercel.app\",\"description\":\"Ankit’s Studio is a fitness studio founded in 2019 with four neighbourhood branches in Navi Mumbai and Thane. Coach-led sessions cover functional training, Zumba, yoga, dance and wedding choreography, with home personal training and online training as delivery options. Group sessions are coach-led; personalised programming is available through personal training.\"}",
+        "{\"@context\":\"https://schema.org\",\"@type\":\"BreadcrumbList\",\"itemListElement\":[{\"@type\":\"ListItem\",\"position\":1,\"name\":\"Home\",\"item\":\"https://ankits-studio.vercel.app/\"},{\"@type\":\"ListItem\",\"position\":2,\"name\":\"Locations\",\"item\":\"https://ankits-studio.vercel.app/locations\"},{\"@type\":\"ListItem\",\"position\":3,\"name\":\"Ghansoli\",\"item\":\"https://ankits-studio.vercel.app/locations/ghansoli\"}]}",
+        "{\"@context\":\"https://schema.org\",\"@type\":\"WebPage\",\"name\":\"Ankit's Studio — Ghansoli\",\"description\":\"Ankit’s Studio at Satyam Imperial, Sector 11, Ghansoli — Functional Training, Yoga, Zumba, Dance and Wedding Choreography. Open 6:00 AM–10:00 PM daily. Free trial on WhatsApp.\",\"url\":\"https://ankits-studio.vercel.app/locations/ghansoli\"}",
+        "{\"@context\":\"https://schema.org\",\"@type\":\"ExerciseGym\",\"name\":\"Ankit's Studio — Ghansoli\",\"url\":\"https://ankits-studio.vercel.app/locations/ghansoli\",\"address\":{\"@type\":\"PostalAddress\",\"streetAddress\":\"Satyam Imperial, Opposite Sai Baba Mandir, Sector 11, Ghansoli, Navi Mumbai, Maharashtra 400701\",\"addressLocality\":\"Ghansoli\",\"postalCode\":\"400701\",\"addressRegion\":\"Maharashtra\"},\"parentOrganization\":{\"@type\":\"Organization\",\"name\":\"Ankit's Studio\",\"url\":\"https://ankits-studio.vercel.app\"},\"telephone\":\"+91 93724 02074\",\"openingHoursSpecification\":[{\"@type\":\"OpeningHoursSpecification\",\"dayOfWeek\":\"Monday\",\"opens\":\"06:00\",\"closes\":\"22:00\"},{\"@type\":\"OpeningHoursSpecification\",\"dayOfWeek\":\"Tuesday\",\"opens\":\"06:00\",\"closes\":\"22:00\"},{\"@type\":\"OpeningHoursSpecification\",\"dayOfWeek\":\"Wednesday\",\"opens\":\"06:00\",\"closes\":\"22:00\"},{\"@type\":\"OpeningHoursSpecification\",\"dayOfWeek\":\"Thursday\",\"opens\":\"06:00\",\"closes\":\"22:00\"},{\"@type\":\"OpeningHoursSpecification\",\"dayOfWeek\":\"Friday\",\"opens\":\"06:00\",\"closes\":\"22:00\"},{\"@type\":\"OpeningHoursSpecification\",\"dayOfWeek\":\"Saturday\",\"opens\":\"06:00\",\"closes\":\"22:00\"},{\"@type\":\"OpeningHoursSpecification\",\"dayOfWeek\":\"Sunday\",\"opens\":\"06:00\",\"closes\":\"22:00\"}],\"hasMap\":\"https://maps.app.goo.gl/fvGjyZ51AtHBBQAT7?g_st=ic\"}"
+      ],
+      "sticky": 1,
+      "hasPad": true
+    },
+    {
+      "route": "/locations/thane",
+      "status": 200,
+      "robots": "index, follow",
+      "canonical": "https://ankits-studio.vercel.app/locations/thane",
+      "title": "Thane Fitness Studio | Ankit's Studio",
+      "description": "Ankit’s Studio on Edulji Road, Dhobi Ali, Charai, Thane — Functional Training, Yoga, Zumba, Dance and Wedding Choreography. Open 6:00 AM–10:00 PM daily. Free trial on WhatsApp.",
+      "jsonLd": [
+        "{\"@context\":\"https://schema.org\",\"@type\":\"Organization\",\"name\":\"Ankit's Studio\",\"url\":\"https://ankits-studio.vercel.app\",\"description\":\"Ankit’s Studio is a fitness studio founded in 2019 with four neighbourhood branches in Navi Mumbai and Thane. Coach-led sessions cover functional training, Zumba, yoga, dance and wedding choreography, with home personal training and online training as delivery options. Group sessions are coach-led; personalised programming is available through personal training.\"}",
+        "{\"@context\":\"https://schema.org\",\"@type\":\"BreadcrumbList\",\"itemListElement\":[{\"@type\":\"ListItem\",\"position\":1,\"name\":\"Home\",\"item\":\"https://ankits-studio.vercel.app/\"},{\"@type\":\"ListItem\",\"position\":2,\"name\":\"Locations\",\"item\":\"https://ankits-studio.vercel.app/locations\"},{\"@type\":\"ListItem\",\"position\":3,\"name\":\"Thane\",\"item\":\"https://ankits-studio.vercel.app/locations/thane\"}]}",
+        "{\"@context\":\"https://schema.org\",\"@type\":\"WebPage\",\"name\":\"Ankit's Studio — Thane\",\"description\":\"Ankit’s Studio on Edulji Road, Dhobi Ali, Charai, Thane — Functional Training, Yoga, Zumba, Dance and Wedding Choreography. Open 6:00 AM–10:00 PM daily. Free trial on WhatsApp.\",\"url\":\"https://ankits-studio.vercel.app/locations/thane\"}",
+        "{\"@context\":\"https://schema.org\",\"@type\":\"ExerciseGym\",\"name\":\"Ankit's Studio — Thane\",\"url\":\"https://ankits-studio.vercel.app/locations/thane\",\"address\":{\"@type\":\"PostalAddress\",\"streetAddress\":\"Edulji Road, Dhobi Ali, Charai, Opposite Awaaj Radio, Thane, Maharashtra 400601\",\"addressLocality\":\"Thane\",\"postalCode\":\"400601\",\"addressRegion\":\"Maharashtra\"},\"parentOrganization\":{\"@type\":\"Organization\",\"name\":\"Ankit's Studio\",\"url\":\"https://ankits-studio.vercel.app\"},\"telephone\":\"+91 93724 02074\",\"openingHoursSpecification\":[{\"@type\":\"OpeningHoursSpecification\",\"dayOfWeek\":\"Monday\",\"opens\":\"06:00\",\"closes\":\"22:00\"},{\"@type\":\"OpeningHoursSpecification\",\"dayOfWeek\":\"Tuesday\",\"opens\":\"06:00\",\"closes\":\"22:00\"},{\"@type\":\"OpeningHoursSpecification\",\"dayOfWeek\":\"Wednesday\",\"opens\":\"06:00\",\"closes\":\"22:00\"},{\"@type\":\"OpeningHoursSpecification\",\"dayOfWeek\":\"Thursday\",\"opens\":\"06:00\",\"closes\":\"22:00\"},{\"@type\":\"OpeningHoursSpecification\",\"dayOfWeek\":\"Friday\",\"opens\":\"06:00\",\"closes\":\"22:00\"},{\"@type\":\"OpeningHoursSpecification\",\"dayOfWeek\":\"Saturday\",\"opens\":\"06:00\",\"closes\":\"22:00\"},{\"@type\":\"OpeningHoursSpecification\",\"dayOfWeek\":\"Sunday\",\"opens\":\"06:00\",\"closes\":\"22:00\"}],\"hasMap\":\"https://maps.app.goo.gl/bzzHhBbu5qg5J1pHA?g_st=ic\"}"
+      ],
+      "sticky": 1,
+      "hasPad": true
+    },
+    {
+      "route": "/timetable",
+      "status": 200,
+      "robots": "index, follow",
+      "canonical": "https://ankits-studio.vercel.app/timetable",
+      "title": "Batch Availability | Ankit's Studio",
+      "description": "Check current class availability across Ankit’s Studio branches and enquire about a free trial through WhatsApp. Studios operate 6:00 AM–10:00 PM — that window is not a class timetable.",
+      "jsonLd": [
+        "{\"@context\":\"https://schema.org\",\"@type\":\"Organization\",\"name\":\"Ankit's Studio\",\"url\":\"https://ankits-studio.vercel.app\",\"description\":\"Ankit’s Studio is a fitness studio founded in 2019 with four neighbourhood branches in Navi Mumbai and Thane. Coach-led sessions cover functional training, Zumba, yoga, dance and wedding choreography, with home personal training and online training as delivery options. Group sessions are coach-led; personalised programming is available through personal training.\"}",
+        "{\"@context\":\"https://schema.org\",\"@type\":\"BreadcrumbList\",\"itemListElement\":[{\"@type\":\"ListItem\",\"position\":1,\"name\":\"Home\",\"item\":\"https://ankits-studio.vercel.app/\"},{\"@type\":\"ListItem\",\"position\":2,\"name\":\"Batch Availability\",\"item\":\"https://ankits-studio.vercel.app/timetable\"}]}",
+        "{\"@context\":\"https://schema.org\",\"@type\":\"WebPage\",\"name\":\"Batch Availability\",\"description\":\"Check current class availability across Ankit’s Studio branches and enquire about a free trial through WhatsApp. Studios operate 6:00 AM–10:00 PM — that window is not a class timetable.\",\"url\":\"https://ankits-studio.vercel.app/timetable\"}"
+      ],
+      "sticky": 1,
+      "hasPad": true
+    },
+    {
+      "route": "/pricing",
+      "status": 200,
+      "robots": "index, follow",
+      "canonical": "https://ankits-studio.vercel.app/pricing",
+      "title": "Pricing & Free Trial | Ankit's Studio",
+      "description": "Free trial once per person, ₹300 one-time registration, and programme fees that vary by service and branch. Request current pricing from Ankit’s Studio on WhatsApp.",
+      "jsonLd": [
+        "{\"@context\":\"https://schema.org\",\"@type\":\"Organization\",\"name\":\"Ankit's Studio\",\"url\":\"https://ankits-studio.vercel.app\",\"description\":\"Ankit’s Studio is a fitness studio founded in 2019 with four neighbourhood branches in Navi Mumbai and Thane. Coach-led sessions cover functional training, Zumba, yoga, dance and wedding choreography, with home personal training and online training as delivery options. Group sessions are coach-led; personalised programming is available through personal training.\"}",
+        "{\"@context\":\"https://schema.org\",\"@type\":\"BreadcrumbList\",\"itemListElement\":[{\"@type\":\"ListItem\",\"position\":1,\"name\":\"Home\",\"item\":\"https://ankits-studio.vercel.app/\"},{\"@type\":\"ListItem\",\"position\":2,\"name\":\"Pricing\",\"item\":\"https://ankits-studio.vercel.app/pricing\"}]}",
+        "{\"@context\":\"https://schema.org\",\"@type\":\"WebPage\",\"name\":\"Pricing \\u0026 Free Trial\",\"description\":\"Free trial once per person, ₹300 one-time registration, and programme fees that vary by service and branch. Request current pricing from Ankit’s Studio on WhatsApp.\",\"url\":\"https://ankits-studio.vercel.app/pricing\"}"
+      ],
+      "sticky": 1,
+      "hasPad": true
+    },
+    {
+      "route": "/trial",
+      "status": 200,
+      "robots": "index, follow",
+      "canonical": "https://ankits-studio.vercel.app/trial",
+      "title": "Book a free trial | Ankit's Studio",
+      "description": "Book a free trial at Ankit’s Studio. Tell us your preferences and continue on WhatsApp to message the studio.",
+      "jsonLd": [
+        "{\"@context\":\"https://schema.org\",\"@type\":\"Organization\",\"name\":\"Ankit's Studio\",\"url\":\"https://ankits-studio.vercel.app\",\"description\":\"Ankit’s Studio is a fitness studio founded in 2019 with four neighbourhood branches in Navi Mumbai and Thane. Coach-led sessions cover functional training, Zumba, yoga, dance and wedding choreography, with home personal training and online training as delivery options. Group sessions are coach-led; personalised programming is available through personal training.\"}",
+        "{\"@context\":\"https://schema.org\",\"@type\":\"BreadcrumbList\",\"itemListElement\":[{\"@type\":\"ListItem\",\"position\":1,\"name\":\"Home\",\"item\":\"https://ankits-studio.vercel.app/\"},{\"@type\":\"ListItem\",\"position\":2,\"name\":\"Book a free trial\",\"item\":\"https://ankits-studio.vercel.app/trial\"}]}"
+      ],
+      "sticky": 1,
+      "hasPad": true
+    },
+    {
+      "route": "/contact",
+      "status": 200,
+      "robots": "index, follow",
+      "canonical": "https://ankits-studio.vercel.app/contact",
+      "title": "Contact | Ankit's Studio",
+      "description": "Contact Ankit's Studio — WhatsApp for a free trial, central phone, email, and branch directory.",
+      "jsonLd": [
+        "{\"@context\":\"https://schema.org\",\"@type\":\"Organization\",\"name\":\"Ankit's Studio\",\"url\":\"https://ankits-studio.vercel.app\",\"description\":\"Ankit’s Studio is a fitness studio founded in 2019 with four neighbourhood branches in Navi Mumbai and Thane. Coach-led sessions cover functional training, Zumba, yoga, dance and wedding choreography, with home personal training and online training as delivery options. Group sessions are coach-led; personalised programming is available through personal training.\"}",
+        "{\"@context\":\"https://schema.org\",\"@type\":\"BreadcrumbList\",\"itemListElement\":[{\"@type\":\"ListItem\",\"position\":1,\"name\":\"Home\",\"item\":\"https://ankits-studio.vercel.app/\"},{\"@type\":\"ListItem\",\"position\":2,\"name\":\"Contact\",\"item\":\"https://ankits-studio.vercel.app/contact\"}]}"
+      ],
+      "sticky": 1,
+      "hasPad": true
+    },
+    {
+      "route": "/privacy-policy",
+      "status": 200,
+      "robots": "index, follow",
+      "canonical": "https://ankits-studio.vercel.app/privacy-policy",
+      "title": "Privacy policy | Ankit's Studio",
+      "description": "How Ankit’s Studio handles information on this website — WhatsApp enquiries, contact links, and hosting.",
+      "jsonLd": [
+        "{\"@context\":\"https://schema.org\",\"@type\":\"Organization\",\"name\":\"Ankit's Studio\",\"url\":\"https://ankits-studio.vercel.app\",\"description\":\"Ankit’s Studio is a fitness studio founded in 2019 with four neighbourhood branches in Navi Mumbai and Thane. Coach-led sessions cover functional training, Zumba, yoga, dance and wedding choreography, with home personal training and online training as delivery options. Group sessions are coach-led; personalised programming is available through personal training.\"}",
+        "{\"@context\":\"https://schema.org\",\"@type\":\"BreadcrumbList\",\"itemListElement\":[{\"@type\":\"ListItem\",\"position\":1,\"name\":\"Home\",\"item\":\"https://ankits-studio.vercel.app/\"},{\"@type\":\"ListItem\",\"position\":2,\"name\":\"Privacy policy\",\"item\":\"https://ankits-studio.vercel.app/privacy-policy\"}]}"
+      ],
+      "sticky": 0,
+      "hasPad": false
+    },
+    {
+      "route": "/terms",
+      "status": 200,
+      "robots": "index, follow",
+      "canonical": "https://ankits-studio.vercel.app/terms",
+      "title": "Terms of use | Ankit's Studio",
+      "description": "Terms for using the Ankit’s Studio website — general information, enquiries and third-party links.",
+      "jsonLd": [
+        "{\"@context\":\"https://schema.org\",\"@type\":\"Organization\",\"name\":\"Ankit's Studio\",\"url\":\"https://ankits-studio.vercel.app\",\"description\":\"Ankit’s Studio is a fitness studio founded in 2019 with four neighbourhood branches in Navi Mumbai and Thane. Coach-led sessions cover functional training, Zumba, yoga, dance and wedding choreography, with home personal training and online training as delivery options. Group sessions are coach-led; personalised programming is available through personal training.\"}",
+        "{\"@context\":\"https://schema.org\",\"@type\":\"BreadcrumbList\",\"itemListElement\":[{\"@type\":\"ListItem\",\"position\":1,\"name\":\"Home\",\"item\":\"https://ankits-studio.vercel.app/\"},{\"@type\":\"ListItem\",\"position\":2,\"name\":\"Terms\",\"item\":\"https://ankits-studio.vercel.app/terms\"}]}"
+      ],
+      "sticky": 0,
+      "hasPad": false
+    },
+    {
+      "route": "/trainers",
+      "status": 200,
+      "robots": "noindex, nofollow",
+      "canonical": "https://ankits-studio.vercel.app/trainers",
+      "title": "Training Team | Ankit's Studio",
+      "description": "Learn about the Ankit’s Studio coaching team and enquire about trainer, programme and branch availability.",
+      "jsonLd": [
+        "{\"@context\":\"https://schema.org\",\"@type\":\"Organization\",\"name\":\"Ankit's Studio\",\"url\":\"https://ankits-studio.vercel.app\",\"description\":\"Ankit’s Studio is a fitness studio founded in 2019 with four neighbourhood branches in Navi Mumbai and Thane. Coach-led sessions cover functional training, Zumba, yoga, dance and wedding choreography, with home personal training and online training as delivery options. Group sessions are coach-led; personalised programming is available through personal training.\"}",
+        "{\"@context\":\"https://schema.org\",\"@type\":\"BreadcrumbList\",\"itemListElement\":[{\"@type\":\"ListItem\",\"position\":1,\"name\":\"Home\",\"item\":\"https://ankits-studio.vercel.app/\"},{\"@type\":\"ListItem\",\"position\":2,\"name\":\"Trainers\",\"item\":\"https://ankits-studio.vercel.app/trainers\"}]}",
+        "{\"@context\":\"https://schema.org\",\"@type\":\"WebPage\",\"name\":\"Training Team | Ankit’s Studio\",\"description\":\"Learn about the Ankit’s Studio coaching team and enquire about trainer, programme and branch availability.\",\"url\":\"https://ankits-studio.vercel.app/trainers\"}"
+      ],
+      "sticky": 0,
+      "hasPad": false
+    },
+    {
+      "route": "/transformations",
+      "status": 200,
+      "robots": "noindex, nofollow",
+      "canonical": "https://ankits-studio.vercel.app/transformations",
+      "title": "Member Stories | Ankit's Studio",
+      "description": "Member stories from Ankit’s Studio are published with permission. Explore programmes and neighbourhood studios, or book a free trial.",
+      "jsonLd": [
+        "{\"@context\":\"https://schema.org\",\"@type\":\"Organization\",\"name\":\"Ankit's Studio\",\"url\":\"https://ankits-studio.vercel.app\",\"description\":\"Ankit’s Studio is a fitness studio founded in 2019 with four neighbourhood branches in Navi Mumbai and Thane. Coach-led sessions cover functional training, Zumba, yoga, dance and wedding choreography, with home personal training and online training as delivery options. Group sessions are coach-led; personalised programming is available through personal training.\"}",
+        "{\"@context\":\"https://schema.org\",\"@type\":\"BreadcrumbList\",\"itemListElement\":[{\"@type\":\"ListItem\",\"position\":1,\"name\":\"Home\",\"item\":\"https://ankits-studio.vercel.app/\"},{\"@type\":\"ListItem\",\"position\":2,\"name\":\"Member Stories\",\"item\":\"https://ankits-studio.vercel.app/transformations\"}]}",
+        "{\"@context\":\"https://schema.org\",\"@type\":\"WebPage\",\"name\":\"Member Stories | Ankit’s Studio\",\"description\":\"Member stories from Ankit’s Studio are published with permission. Explore programmes and neighbourhood studios, or book a free trial.\",\"url\":\"https://ankits-studio.vercel.app/transformations\"}"
+      ],
+      "sticky": 0,
+      "hasPad": false
+    },
+    {
+      "route": "/blog",
+      "status": 200,
+      "robots": "noindex, nofollow",
+      "canonical": "https://ankits-studio.vercel.app/blog",
+      "title": "Studio Notes | Ankit's Studio",
+      "description": "Studio Notes from Ankit’s Studio. Explore programmes, neighbourhood studios and batch availability.",
+      "jsonLd": [
+        "{\"@context\":\"https://schema.org\",\"@type\":\"Organization\",\"name\":\"Ankit's Studio\",\"url\":\"https://ankits-studio.vercel.app\",\"description\":\"Ankit’s Studio is a fitness studio founded in 2019 with four neighbourhood branches in Navi Mumbai and Thane. Coach-led sessions cover functional training, Zumba, yoga, dance and wedding choreography, with home personal training and online training as delivery options. Group sessions are coach-led; personalised programming is available through personal training.\"}",
+        "{\"@context\":\"https://schema.org\",\"@type\":\"BreadcrumbList\",\"itemListElement\":[{\"@type\":\"ListItem\",\"position\":1,\"name\":\"Home\",\"item\":\"https://ankits-studio.vercel.app/\"},{\"@type\":\"ListItem\",\"position\":2,\"name\":\"Studio Notes\",\"item\":\"https://ankits-studio.vercel.app/blog\"}]}",
+        "{\"@context\":\"https://schema.org\",\"@type\":\"WebPage\",\"name\":\"Studio Notes | Ankit’s Studio\",\"description\":\"Studio Notes from Ankit’s Studio. Explore programmes, neighbourhood studios and batch availability.\",\"url\":\"https://ankits-studio.vercel.app/blog\"}"
+      ],
+      "sticky": 0,
+      "hasPad": false
+    },
+    {
+      "route": "/programs/strength-training",
+      "status": 200,
+      "robots": "noindex, nofollow",
+      "canonical": "https://ankits-studio.vercel.app/programs/strength-training",
+      "title": "Strength Training | Ankit's Studio",
+      "description": "This older Strength Training page is kept for reference at Ankit’s Studio. See current programmes for available services.",
+      "jsonLd": [
+        "{\"@context\":\"https://schema.org\",\"@type\":\"Organization\",\"name\":\"Ankit's Studio\",\"url\":\"https://ankits-studio.vercel.app\",\"description\":\"Ankit’s Studio is a fitness studio founded in 2019 with four neighbourhood branches in Navi Mumbai and Thane. Coach-led sessions cover functional training, Zumba, yoga, dance and wedding choreography, with home personal training and online training as delivery options. Group sessions are coach-led; personalised programming is available through personal training.\"}",
+        "{\"@context\":\"https://schema.org\",\"@type\":\"BreadcrumbList\",\"itemListElement\":[{\"@type\":\"ListItem\",\"position\":1,\"name\":\"Home\",\"item\":\"https://ankits-studio.vercel.app/\"},{\"@type\":\"ListItem\",\"position\":2,\"name\":\"Programmes\",\"item\":\"https://ankits-studio.vercel.app/programs\"},{\"@type\":\"ListItem\",\"position\":3,\"name\":\"Strength Training\",\"item\":\"https://ankits-studio.vercel.app/programs/strength-training\"}]}"
+      ],
+      "sticky": 0,
+      "hasPad": false
+    },
+    {
+      "route": "/programs/personal-training",
+      "status": 200,
+      "robots": "noindex, nofollow",
+      "canonical": "https://ankits-studio.vercel.app/programs/personal-training",
+      "title": "Personal Training | Ankit's Studio",
+      "description": "This older Personal Training page is kept for reference. Home Personal Training is available as a home delivery option.",
+      "jsonLd": [
+        "{\"@context\":\"https://schema.org\",\"@type\":\"Organization\",\"name\":\"Ankit's Studio\",\"url\":\"https://ankits-studio.vercel.app\",\"description\":\"Ankit’s Studio is a fitness studio founded in 2019 with four neighbourhood branches in Navi Mumbai and Thane. Coach-led sessions cover functional training, Zumba, yoga, dance and wedding choreography, with home personal training and online training as delivery options. Group sessions are coach-led; personalised programming is available through personal training.\"}",
+        "{\"@context\":\"https://schema.org\",\"@type\":\"BreadcrumbList\",\"itemListElement\":[{\"@type\":\"ListItem\",\"position\":1,\"name\":\"Home\",\"item\":\"https://ankits-studio.vercel.app/\"},{\"@type\":\"ListItem\",\"position\":2,\"name\":\"Programmes\",\"item\":\"https://ankits-studio.vercel.app/programs\"},{\"@type\":\"ListItem\",\"position\":3,\"name\":\"Personal Training\",\"item\":\"https://ankits-studio.vercel.app/programs/personal-training\"}]}"
+      ],
+      "sticky": 0,
+      "hasPad": false
+    },
+    {
+      "route": "/programs/kids-dance",
+      "status": 200,
+      "robots": "noindex, nofollow",
+      "canonical": "https://ankits-studio.vercel.app/programs/kids-dance",
+      "title": "Kids Dance | Ankit's Studio",
+      "description": "This older Kids Dance page is kept for reference. Ask Ankit’s Studio about kids-only batches under Dance.",
+      "jsonLd": [
+        "{\"@context\":\"https://schema.org\",\"@type\":\"Organization\",\"name\":\"Ankit's Studio\",\"url\":\"https://ankits-studio.vercel.app\",\"description\":\"Ankit’s Studio is a fitness studio founded in 2019 with four neighbourhood branches in Navi Mumbai and Thane. Coach-led sessions cover functional training, Zumba, yoga, dance and wedding choreography, with home personal training and online training as delivery options. Group sessions are coach-led; personalised programming is available through personal training.\"}",
+        "{\"@context\":\"https://schema.org\",\"@type\":\"BreadcrumbList\",\"itemListElement\":[{\"@type\":\"ListItem\",\"position\":1,\"name\":\"Home\",\"item\":\"https://ankits-studio.vercel.app/\"},{\"@type\":\"ListItem\",\"position\":2,\"name\":\"Programmes\",\"item\":\"https://ankits-studio.vercel.app/programs\"},{\"@type\":\"ListItem\",\"position\":3,\"name\":\"Kids Dance\",\"item\":\"https://ankits-studio.vercel.app/programs/kids-dance\"}]}"
+      ],
+      "sticky": 0,
+      "hasPad": false
+    },
+    {
+      "route": "/programs/weight-loss-fitness",
+      "status": 200,
+      "robots": "noindex, nofollow",
+      "canonical": "https://ankits-studio.vercel.app/programs/weight-loss-fitness",
+      "title": "Weight-Loss & General Fitness | Ankit's Studio",
+      "description": "This older page is kept for reference. See Functional Training for machine-free fitness at Ankit’s Studio.",
+      "jsonLd": [
+        "{\"@context\":\"https://schema.org\",\"@type\":\"Organization\",\"name\":\"Ankit's Studio\",\"url\":\"https://ankits-studio.vercel.app\",\"description\":\"Ankit’s Studio is a fitness studio founded in 2019 with four neighbourhood branches in Navi Mumbai and Thane. Coach-led sessions cover functional training, Zumba, yoga, dance and wedding choreography, with home personal training and online training as delivery options. Group sessions are coach-led; personalised programming is available through personal training.\"}",
+        "{\"@context\":\"https://schema.org\",\"@type\":\"BreadcrumbList\",\"itemListElement\":[{\"@type\":\"ListItem\",\"position\":1,\"name\":\"Home\",\"item\":\"https://ankits-studio.vercel.app/\"},{\"@type\":\"ListItem\",\"position\":2,\"name\":\"Programmes\",\"item\":\"https://ankits-studio.vercel.app/programs\"},{\"@type\":\"ListItem\",\"position\":3,\"name\":\"Weight-Loss \\u0026 General Fitness\",\"item\":\"https://ankits-studio.vercel.app/programs/weight-loss-fitness\"}]}"
+      ],
+      "sticky": 0,
+      "hasPad": false
+    },
+    {
+      "route": "/this-page-does-not-exist",
+      "status": 404,
+      "robots": "noindex",
+      "canonical": "",
+      "title": "Ankit's Studio",
+      "description": "Strength training, personal training, yoga, Zumba, and dance programmes across multiple locations.",
+      "jsonLd": [
+        "{\"@context\":\"https://schema.org\",\"@type\":\"Organization\",\"name\":\"Ankit's Studio\",\"url\":\"https://ankits-studio.vercel.app\",\"description\":\"Ankit’s Studio is a fitness studio founded in 2019 with four neighbourhood branches in Navi Mumbai and Thane. Coach-led sessions cover functional training, Zumba, yoga, dance and wedding choreography, with home personal training and online training as delivery options. Group sessions are coach-led; personalised programming is available through personal training.\"}"
+      ],
+      "sticky": 0,
+      "hasPad": false
+    }
+  ],
+  "sticky": {
+    "eligible": [
+      {
+        "route": "/",
+        "sticky": 1,
+        "hasPad": true,
+        "pass": true
+      },
+      {
+        "route": "/about",
+        "sticky": 1,
+        "hasPad": true,
+        "pass": true
+      },
+      {
+        "route": "/programs",
+        "sticky": 1,
+        "hasPad": true,
+        "pass": true
+      },
+      {
+        "route": "/programs/functional-training",
+        "sticky": 1,
+        "hasPad": true,
+        "pass": true
+      },
+      {
+        "route": "/locations",
+        "sticky": 1,
+        "hasPad": true,
+        "pass": true
+      },
+      {
+        "route": "/locations/airoli-sector-19",
+        "sticky": 1,
+        "hasPad": true,
+        "pass": true
+      },
+      {
+        "route": "/timetable",
+        "sticky": 1,
+        "hasPad": true,
+        "pass": true
+      },
+      {
+        "route": "/pricing",
+        "sticky": 1,
+        "hasPad": true,
+        "pass": true
+      },
+      {
+        "route": "/contact",
+        "sticky": 1,
+        "hasPad": true,
+        "pass": true
+      },
+      {
+        "route": "/trial",
+        "sticky": 1,
+        "hasPad": true,
+        "pass": true
+      }
+    ],
+    "excluded": [
+      {
+        "route": "/privacy-policy",
+        "sticky": 0,
+        "hasPad": false,
+        "pass": true
+      },
+      {
+        "route": "/terms",
+        "sticky": 0,
+        "hasPad": false,
+        "pass": true
+      },
+      {
+        "route": "/trainers",
+        "sticky": 0,
+        "hasPad": false,
+        "pass": true
+      },
+      {
+        "route": "/transformations",
+        "sticky": 0,
+        "hasPad": false,
+        "pass": true
+      },
+      {
+        "route": "/blog",
+        "sticky": 0,
+        "hasPad": false,
+        "pass": true
+      },
+      {
+        "route": "/programs/personal-training",
+        "sticky": 0,
+        "hasPad": false,
+        "pass": true
+      },
+      {
+        "route": "/this-page-does-not-exist",
+        "sticky": 0,
+        "hasPad": false,
+        "pass": true
+      }
+    ]
+  },
+  "redirects": [
+    {
+      "from": "/book-a-free-trial",
+      "finalUrl": "http://127.0.0.1:3485/trial",
+      "status": 200,
+      "pass": true
+    },
+    {
+      "from": "/locations/airoli",
+      "finalUrl": "http://127.0.0.1:3485/locations/airoli-sector-19",
+      "status": 200,
+      "pass": true
+    }
+  ],
+  "samples404": [
+    {
+      "route": "/blog/sample-starting-with-strength",
+      "status": 404,
+      "pass": true
+    },
+    {
+      "route": "/blog/sample-finding-your-first-class",
+      "status": 404,
+      "pass": true
+    }
+  ],
+  "conversion": {
+    "homeWhatsApp": "https://wa.me/919372402074?text=Hello%20Ankit%E2%80%99s%20Studio%2C%0AI%20would%20like%20to%20book%20a%20free%20trial.%0A%0AName%3A%0APhone%3A%0APreferred%20branch%3A%0AInterested%20programme%3A%0APreferred%20time%3A%0APreferred%20trial%20date%3A%0AAge%3A%0AQuestion%3A",
+    "trialWhatsApp": "https://wa.me/919372402074?text=Hello%20Ankit%E2%80%99s%20Studio%2C%0AI%20would%20like%20to%20book%20a%20free%20trial.%0A%0AName%3A%0APhone%3A%0APreferred%20branch%3A%0AInterested%20programme%3A%0APreferred%20time%3A%0APreferred%20trial%20date%3A%0AAge%3A%0AQuestion%3A",
+    "tel": "tel:+919372402074",
+    "mail": "mailto:ankitsstudio5@gmail.com",
+    "maps": [
+      "https://maps.app.goo.gl/JowoDwXZUVqiFfWC6?g_st=ic",
+      "https://maps.app.goo.gl/JowoDwXZUVqiFfWC6?g_st=ic"
+    ],
+    "phoneOk": true,
+    "telOk": true,
+    "mailOk": true,
+    "branchMaps": [
+      {
+        "slug": "airoli-sector-19",
+        "hrefs": [
+          "https://maps.app.goo.gl/JowoDwXZUVqiFfWC6?g_st=ic",
+          "https://maps.app.goo.gl/JowoDwXZUVqiFfWC6?g_st=ic"
+        ],
+        "pass": true
+      },
+      {
+        "slug": "airoli-sector-8",
+        "hrefs": [
+          "https://maps.app.goo.gl/7zLudwn1c6RUZZWUA?g_st=ic",
+          "https://maps.app.goo.gl/7zLudwn1c6RUZZWUA?g_st=ic"
+        ],
+        "pass": true
+      },
+      {
+        "slug": "ghansoli",
+        "hrefs": [
+          "https://maps.app.goo.gl/fvGjyZ51AtHBBQAT7?g_st=ic",
+          "https://maps.app.goo.gl/fvGjyZ51AtHBBQAT7?g_st=ic"
+        ],
+        "pass": true
+      },
+      {
+        "slug": "thane",
+        "hrefs": [
+          "https://maps.app.goo.gl/bzzHhBbu5qg5J1pHA?g_st=ic",
+          "https://maps.app.goo.gl/bzzHhBbu5qg5J1pHA?g_st=ic"
+        ],
+        "pass": true
+      }
+    ]
+  },
+  "issues": [],
+  "seoMeta": {
+    "robotsStatus": 200,
+    "sitemapStatus": 200,
+    "sitemapHasTrainers": false,
+    "sitemapHasBlog": false,
+    "sitemapHasTransformations": false,
+    "robotsText": "User-Agent: *\nAllow: /\nDisallow: /design-lab/\nDisallow: /design-lab\n\nSitemap: https://ankits-studio.vercel.app/sitemap.xml\n"
+  }
+}

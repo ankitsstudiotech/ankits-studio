@@ -1,0 +1,87 @@
+{
+  "rootCause": {
+    "issue": "Chromium page.setContent could not load file:/// Windows paths; before filenames also mismatched (functional.png vs programs-functional-training.png)",
+    "fix": "Embed PNGs as data URLs and wait for img.complete before screenshot"
+  },
+  "r390": {
+    "width": 828,
+    "height": 22974,
+    "bytes": 5097051,
+    "beforeSources": [
+      {
+        "route": "Home",
+        "source": "stage-2-correction"
+      },
+      {
+        "route": "Functional Training",
+        "source": "stage-2-correction"
+      },
+      {
+        "route": "Yoga",
+        "source": "stage-2-fallback"
+      },
+      {
+        "route": "About",
+        "source": "stage-2-correction"
+      },
+      {
+        "route": "Locations",
+        "source": "stage-2-correction"
+      }
+    ]
+  },
+  "r1440": {
+    "width": 2928,
+    "height": 19313,
+    "bytes": 6808294,
+    "beforeSources": [
+      {
+        "route": "Home",
+        "source": "stage-2-correction"
+      },
+      {
+        "route": "Functional Training",
+        "source": "stage-2-correction"
+      },
+      {
+        "route": "Yoga",
+        "source": "stage-2-fallback"
+      },
+      {
+        "route": "About",
+        "source": "stage-2-correction"
+      },
+      {
+        "route": "Locations",
+        "source": "stage-2-correction"
+      }
+    ]
+  },
+  "rFamily": {
+    "width": 1440,
+    "height": 990,
+    "bytes": 433702
+  },
+  "zip": {
+    "zipPath": "C:\\Personal data\\Aniket\\Personal_Code\\ankits-studio\\docs\\revamp\\screenshots\\final-production-ai-media-correction.zip",
+    "fileCount": 15,
+    "files": [
+      "about-1440.png",
+      "about-390.png",
+      "comparison-1440-fixed.png",
+      "comparison-390-fixed.png",
+      "corporate-wellness-1440.png",
+      "corporate-wellness-390.png",
+      "functional-1440.png",
+      "functional-390.png",
+      "home-1440.png",
+      "home-390.png",
+      "locations-1440.png",
+      "locations-390.png",
+      "programme-family-comparison-fixed.png",
+      "yoga-1440.png",
+      "yoga-390.png"
+    ]
+  },
+  "createdAt": "2026-08-12T14:10:51.806Z"
+}
