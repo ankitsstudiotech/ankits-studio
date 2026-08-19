@@ -16,7 +16,7 @@ describe("interim illustrative-ai production gates", () => {
     expect(hero?.source).toBe("ai-generated-illustration");
     expect(hero?.consentStatus).toBe("not-applicable-ai");
     expect(hero?.replacementStatus).toBe("replace-after-owner-photoshoot");
-    expect(hero?.src).toBe("/media/synthetic-preview/programme-corporate-wellness-hero-ai-concept.webp");
+    expect(hero?.src).toBe("/media/synthetic-preview/programme-corporate-wellness-hero-v2-square.webp");
     expect(hero?.alt).toMatch(/Illustrative workplace wellness session/i);
     expect(hero?.alt).not.toMatch(/Ankit’s Studio Corporate Wellness session/i);
   });

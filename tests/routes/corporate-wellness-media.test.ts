@@ -18,40 +18,34 @@ describe("Corporate Wellness programme media acceptance", () => {
     expect(hero?.consentStatus).toBe("not-applicable-ai");
     expect(hero?.replacementStatus).toBe("replace-after-owner-photoshoot");
     expect(hero?.replacementPriority).toBe("P1");
-    expect(hero?.width).toBe(1672);
-    expect(hero?.height).toBe(941);
-    expect(hero?.aspectRatio).toBe("3/2");
-    expect(hero?.mobileAspectRatio).toBe("4/3");
-    expect(slot?.desktopAspect).toBe("3/2");
-    expect(slot?.mobileAspect).toBe("4/3");
+    expect(hero?.width).toBe(1024);
+    expect(hero?.height).toBe(1024);
+    expect(hero?.aspectRatio).toBe("1/1");
+    expect(hero?.mobileAspectRatio).toBe("1/1");
+    expect(slot?.desktopAspect).toBe("1/1");
+    expect(slot?.mobileAspect).toBe("1/1");
     expect(slot?.verifiedRealOnly).toBe(false);
-    expect(hero?.focalPoint).toEqual({ x: 64, y: 48 });
-    expect(hero?.tabletFocalPoint).toEqual({ x: 66, y: 46 });
-    expect(hero?.mobileFocalPoint).toEqual({ x: 70, y: 42 });
+    expect(hero?.focalPoint).toEqual({ x: 50, y: 44 });
+    expect(hero?.tabletFocalPoint).toEqual({ x: 50, y: 44 });
+    expect(hero?.mobileFocalPoint).toEqual({ x: 50, y: 40 });
   });
 
   it("keeps truthful illustrative alt and does not claim a real client event", () => {
     const hero = resolveSlotMedia("programme.corporate-wellness.hero");
     expect(hero?.alt).toBe(
-      "Illustrative workplace wellness session with a coach guiding a small group.",
+      "Illustrative workplace wellness session with a coach guiding a small group",
     );
     expect(hero?.alt).not.toMatch(/Ankit’s Studio Corporate Wellness session/i);
     expect(hero?.alt).not.toMatch(/client|Google|review/i);
   });
 
-  it("archives the owner PNG and serves an optimized WebP", () => {
-    const original = join(
-      process.cwd(),
-      "public/media/illustrative-ai/corporate-wellness-hero.png",
-    );
+  it("serves an optimized v2 WebP", () => {
     const production = join(
       process.cwd(),
-      "public/media/synthetic-preview/programme-corporate-wellness-hero-ai-concept.webp",
+      "public/media/synthetic-preview/programme-corporate-wellness-hero-v2-square.webp",
     );
-    expect(existsSync(original)).toBe(true);
     expect(existsSync(production)).toBe(true);
-    expect(statSync(original).size).toBe(2_077_700);
-    expect(statSync(production).size).toBeGreaterThan(180_000);
+    expect(statSync(production).size).toBeGreaterThan(100_000);
     expect(statSync(production).size).toBeLessThan(400_000);
   });
 

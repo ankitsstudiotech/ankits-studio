@@ -268,13 +268,13 @@
 }
 
 .editorial-mono :is(img, video) {
-  filter: grayscale(1) contrast(1.08);
+  filter: grayscale(1) contrast(1.08) !important;
   transition: filter var(--duration-normal) var(--ease-standard);
 }
 
 .editorial-mono:hover :is(img, video),
 .editorial-mono:focus-within :is(img, video) {
-  filter: grayscale(0.15) contrast(1.04);
+  filter: grayscale(0.15) contrast(1.04) !important;
 }
 
 @media (prefers-reduced-motion: reduce) {

@@ -44,9 +44,9 @@ describe("Corporate Wellness illustrative media", () => {
     expect(hero).not.toBeNull();
     expect(hero?.status).toBe("illustrative-ai");
     expect(hero?.verifiedRealOnly).toBeUndefined();
-    expect(hero?.focalPoint).toEqual({ x: 64, y: 48 });
-    expect(hero?.mobileFocalPoint).toEqual({ x: 70, y: 42 });
-    expect(hero?.tabletFocalPoint).toEqual({ x: 66, y: 46 });
+    expect(hero?.focalPoint).toEqual({ x: 50, y: 44 });
+    expect(hero?.mobileFocalPoint).toEqual({ x: 50, y: 40 });
+    expect(hero?.tabletFocalPoint).toEqual({ x: 50, y: 44 });
   });
 });
 

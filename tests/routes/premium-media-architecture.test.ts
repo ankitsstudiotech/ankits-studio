@@ -59,7 +59,7 @@ describe("resolveSlotMedia status gates", () => {
     const hero = resolveSlotMedia("home.hero");
     expect(hero?.status).toBe("illustrative-ai");
     expect(hero?.source).toBe("ai-generated-illustration");
-    expect(hero?.src).toBe("/media/synthetic-preview/home-hero-ai-concept.webp");
+    expect(hero?.src).toBe("/media/synthetic-preview/home-hero-v2.webp");
     expect(hero?.consentStatus).toBe("not-applicable-ai");
     expect(hero?.replacementStatus).toBe("replace-after-owner-photoshoot");
     expect(hero?.focalPoint).toBeDefined();
@@ -70,7 +70,7 @@ describe("resolveSlotMedia status gates", () => {
     expect(resolveSlotMedia("about.founder")).toBeNull();
   });
 
-  it("registers all thirteen approved illustrative slots with file sources", () => {
+  it("registers all twelve approved illustrative slots with file sources", () => {
     vi.stubEnv("NEXT_PUBLIC_ENABLE_SYNTHETIC_MEDIA", "false");
     const slots = [
       "home.hero",
@@ -84,7 +84,6 @@ describe("resolveSlotMedia status gates", () => {
       "programme.home-pt.hero",
       "programme.online.hero",
       "programme.corporate-wellness.hero",
-      "about.community",
       "locations.atmosphere",
     ] as const;
     for (const slot of slots) {
@@ -92,6 +91,11 @@ describe("resolveSlotMedia status gates", () => {
       expect(item?.src, slot).toMatch(/^\/media\/synthetic-preview\//);
       expect(item?.status).toBe("illustrative-ai");
     }
+  });
+
+  it("about.community slot returns null after AI coaching-team image removal", () => {
+    vi.stubEnv("NEXT_PUBLIC_ENABLE_SYNTHETIC_MEDIA", "false");
+    expect(resolveSlotMedia("about.community")).toBeNull();
   });
 
   it("never returns illustrative or synthetic media for founder or branch location heroes", () => {
