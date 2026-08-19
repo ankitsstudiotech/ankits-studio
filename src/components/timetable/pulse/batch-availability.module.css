@@ -155,6 +155,7 @@
 .formRow {
   display: grid;
   gap: 2rem;
+  align-items: start;
 }
 
 .field {
@@ -317,7 +318,6 @@
 .know {
   margin-top: var(--spacing-section);
   padding-top: var(--spacing-section);
-  border-top: var(--rule-structural-width) solid var(--rule-structural);
 }
 
 .know :global(section) {
