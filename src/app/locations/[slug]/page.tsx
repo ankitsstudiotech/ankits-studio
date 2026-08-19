@@ -21,6 +21,7 @@ import {
   buildLocalBusinessJsonLd,
   buildWebPageJsonLd,
 } from "@/lib/seo/structured-data";
+import { BranchViewTracker } from "@/components/analytics/AnalyticsPageTracker";
 import { getBranchOrNotFound } from "../_lib/lookup";
 
 type LocationPageParams = { params: Promise<{ slug: string }> };
@@ -94,6 +95,7 @@ export default async function LocationDetailPage({ params }: LocationPageParams)
         />
       ) : null}
 
+      <BranchViewTracker name={branch.locality} />
       <div className="pulse-crumb-bar">
         <PageBreadcrumb items={breadcrumbTrail} />
       </div>

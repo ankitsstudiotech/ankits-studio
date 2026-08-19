@@ -2,6 +2,9 @@ import type { Metadata } from "next";
 import { Bebas_Neue, Space_Grotesk } from "next/font/google";
 import { ConceptPreviewIndicator } from "@/components/ConceptPreviewIndicator";
 import { MockModeIndicator } from "@/components/MockModeIndicator";
+import { GoogleAnalyticsProvider } from "@/components/analytics/GoogleAnalyticsProvider";
+import { AnalyticsConsent } from "@/components/analytics/AnalyticsConsent";
+import { AnalyticsClickTracker } from "@/components/analytics/AnalyticsClickTracker";
 import { getBusinessIdentity } from "@/content";
 import { baseMetadata } from "@/lib/metadata";
 import { buildOrganizationJsonLd } from "@/lib/seo/structured-data";
@@ -51,6 +54,7 @@ export default function RootLayout({
       className={`${bebas.variable} ${spaceGrotesk.variable} antialiased`}
     >
       <body className="studio-shell has-sticky-cta bg-field text-ink-inverse">
+        <GoogleAnalyticsProvider />
         <script
           id="motion-preference"
           dangerouslySetInnerHTML={{ __html: MOTION_PREFERENCE_SCRIPT }}
@@ -82,6 +86,8 @@ export default function RootLayout({
         <div id="main-content">
           {children}
         </div>
+        <AnalyticsClickTracker />
+        <AnalyticsConsent />
       </body>
     </html>
   );

@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { ProgrammeViewTracker } from "@/components/analytics/AnalyticsPageTracker";
 import { PageBreadcrumb } from "@/components/layout/PageBreadcrumb";
 import { PageWithFooter } from "@/components/layout/PageWithFooter";
 import {
@@ -111,6 +112,7 @@ export default async function ProgrammeDetailPage({ params }: ProgrammePageParam
         dangerouslySetInnerHTML={{ __html: serializeJsonLd(pageJsonLd) }}
       />
 
+      <ProgrammeViewTracker name={programme.name} />
       <div className="pulse-crumb-bar">
         <PageBreadcrumb items={breadcrumbTrail} />
       </div>
