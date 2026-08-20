@@ -20,7 +20,7 @@ import {
 } from "@/lib/conversion";
 import { buildPageMetadata } from "@/lib/seo/metadata";
 import { serializeJsonLd } from "@/lib/seo/serialize";
-import { buildBreadcrumbJsonLd, buildWebPageJsonLd } from "@/lib/seo/structured-data";
+import { buildBreadcrumbJsonLd, buildWebPageJsonLd, buildServiceJsonLd } from "@/lib/seo/structured-data";
 import { getProgrammeOrNotFound } from "../_lib/lookup";
 
 type ProgrammePageParams = { params: Promise<{ slug: string }> };
@@ -87,6 +87,7 @@ export default async function ProgrammeDetailPage({ params }: ProgrammePageParam
     description: programme.shortDescription,
     path: `/programs/${programme.slug}`,
   });
+  const serviceJsonLd = buildServiceJsonLd(programme);
   const locations = getPubliclyListedBranches()
     .filter((branch) => programme.branchSlugs.includes(branch.slug))
     .map((branch) => ({
@@ -111,6 +112,12 @@ export default async function ProgrammeDetailPage({ params }: ProgrammePageParam
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: serializeJsonLd(pageJsonLd) }}
       />
+      {serviceJsonLd ? (
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: serializeJsonLd(serviceJsonLd) }}
+        />
+      ) : null}
 
       <ProgrammeViewTracker name={programme.name} />
       <div className="pulse-crumb-bar">

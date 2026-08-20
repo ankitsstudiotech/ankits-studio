@@ -98,6 +98,20 @@ describe("mock status propagation — structured data omits unverified records",
     expect(buildOrganizationJsonLd(verifiedIdentity)).not.toBeNull();
   });
 
+  it("Organization sameAs includes Instagram and YouTube from verified identity", () => {
+    const jsonLd = buildOrganizationJsonLd(getBusinessIdentity());
+    expect(jsonLd?.["@id"]).toMatch(/#organization$/);
+    expect(jsonLd?.sameAs).toEqual(
+      expect.arrayContaining([
+        "https://www.instagram.com/ankitsstudio",
+        "https://youtube.com/@ankitsstudio",
+      ]),
+    );
+    expect(jsonLd?.sameAs?.some((url) => /facebook|linkedin|twitter|x\.com|wikipedia|reddit/i.test(url))).toBe(
+      false,
+    );
+  });
+
   it("buildLocalBusinessJsonLd emits for owner-confirmed addresses on live branches", () => {
     for (const branch of getBranches()) {
       expect(branch.dataStatus).toBe("verified");

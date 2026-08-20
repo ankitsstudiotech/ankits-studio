@@ -30,6 +30,14 @@ describe("confirmed programme taxonomy", () => {
     );
   });
 
+  it("does not create kids or ladies programme routes", () => {
+    const confirmed = getConfirmedProgrammes();
+    expect(confirmed.some((p) => /kids|ladies/i.test(p.slug))).toBe(false);
+    expect(confirmed.map((p) => p.slug)).not.toContain("kids-dance");
+    const ladies = getProgrammes().filter((p) => /ladies/i.test(p.slug));
+    expect(ladies).toHaveLength(0);
+  });
+
   it("keeps legacy migration-pending routes reachable but marked pending", () => {
     const pending = getProgrammes().filter(isMigrationPendingProgramme);
     expect(pending.map((p) => p.slug).sort()).toEqual(

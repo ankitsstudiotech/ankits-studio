@@ -1,12 +1,23 @@
 import type { Metadata } from "next";
 import { shouldNoIndex } from "@/content/content-mode";
 import { env } from "./env";
+import { resolveSiteOrigin } from "./seo/site-origin";
 
 /**
  * Central metadata configuration — see docs/SEO-STRATEGY.md.
  * Every route's metadata should build on `baseMetadata` / `siteConfig`.
+ *
+ * Site origin comes ONLY from NEXT_PUBLIC_SITE_URL (via resolveSiteOrigin).
+ * Production builds refuse empty / localhost origins so SEO never ships
+ * http://localhost:3000 into canonicals, sitemap, robots, or JSON-LD.
  */
-const siteUrl = env.NEXT_PUBLIC_SITE_URL ?? "http://localhost:3000";
+const siteUrl = resolveSiteOrigin({
+  configured: env.NEXT_PUBLIC_SITE_URL,
+  nodeEnv: env.NODE_ENV,
+  isVitest: process.env.VITEST === "true",
+  vercelEnv: process.env.VERCEL_ENV,
+  vercelUrl: process.env.VERCEL_URL,
+});
 
 export const siteConfig = {
   name: "Ankit's Studio",

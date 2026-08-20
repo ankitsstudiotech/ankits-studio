@@ -7,7 +7,7 @@ import { AnalyticsConsent } from "@/components/analytics/AnalyticsConsent";
 import { AnalyticsClickTracker } from "@/components/analytics/AnalyticsClickTracker";
 import { getBusinessIdentity } from "@/content";
 import { baseMetadata } from "@/lib/metadata";
-import { buildOrganizationJsonLd } from "@/lib/seo/structured-data";
+import { buildOrganizationJsonLd, buildWebSiteJsonLd } from "@/lib/seo/structured-data";
 import { serializeJsonLd } from "@/lib/seo/serialize";
 import "./globals.css";
 
@@ -46,7 +46,9 @@ export default function RootLayout({
 }: Readonly<{
   children: React.ReactNode;
 }>) {
-  const organizationJsonLd = buildOrganizationJsonLd(getBusinessIdentity());
+  const identity = getBusinessIdentity();
+  const organizationJsonLd = buildOrganizationJsonLd(identity);
+  const websiteJsonLd = buildWebSiteJsonLd(identity);
 
   return (
     <html
@@ -73,6 +75,12 @@ export default function RootLayout({
           <script
             type="application/ld+json"
             dangerouslySetInnerHTML={{ __html: serializeJsonLd(organizationJsonLd) }}
+          />
+        ) : null}
+        {websiteJsonLd ? (
+          <script
+            type="application/ld+json"
+            dangerouslySetInnerHTML={{ __html: serializeJsonLd(websiteJsonLd) }}
           />
         ) : null}
         <a

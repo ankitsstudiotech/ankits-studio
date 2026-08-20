@@ -1,6 +1,22 @@
-import { getBranchMapsUrl, type Branch, type BlogPost, type BusinessIdentity, type Faq, type Programme } from "@/content";
+import {
+  getBranchMapsUrl,
+  getPubliclyListedBranches,
+  isConfirmedProgramme,
+  type Branch,
+  type BlogPost,
+  type BusinessIdentity,
+  type Faq,
+  type Programme,
+} from "@/content";
 import { siteConfig } from "@/lib/metadata";
 import { buildCanonicalUrl } from "./canonical";
+import {
+  branchBusinessId,
+  cleanProfileUrl,
+  organizationId,
+  programmeServiceId,
+  websiteId,
+} from "./site-origin";
 import type {
   ArticleJsonLd,
   BreadcrumbListJsonLd,
@@ -9,7 +25,9 @@ import type {
   FaqPageJsonLd,
   LocalBusinessJsonLd,
   OrganizationJsonLd,
+  ServiceJsonLd,
   WebPageJsonLd,
+  WebSiteJsonLd,
 } from "./types";
 
 /**
@@ -21,6 +39,12 @@ import type {
  * phone number, or FAQ answer into its output. None of these builders ever
  * emit a rating, review count, or award — those fields don't exist in any
  * type here, by construction, per this task's mock-data rules.
+ *
+ * Entity graph:
+ * - Organization @id: <origin>/#organization
+ * - Branch ExerciseGym @id: <origin>/locations/<slug>/#business
+ * - Programme Service @id: <origin>/programs/<slug>/#service
+ * - WebSite @id: <origin>/#website
  */
 
 export function buildBreadcrumbJsonLd(items: Array<{ name: string; path: string }>): BreadcrumbListJsonLd {
@@ -38,13 +62,46 @@ export function buildBreadcrumbJsonLd(items: Array<{ name: string; path: string 
 
 export function buildOrganizationJsonLd(identity: BusinessIdentity): OrganizationJsonLd | null {
   if (identity.dataStatus !== "verified") return null;
-  return {
+
+  const origin = siteConfig.url.replace(/\/$/, "");
+  const sameAs: string[] = [];
+  if (identity.socialLinks?.instagram) {
+    sameAs.push(cleanProfileUrl(identity.socialLinks.instagram));
+  }
+  if (identity.socialLinks?.youtube) {
+    sameAs.push(cleanProfileUrl(identity.socialLinks.youtube));
+  }
+
+  const jsonLd: OrganizationJsonLd = {
     "@context": "https://schema.org",
     "@type": "Organization",
+    "@id": organizationId(origin),
     name: identity.displayName,
-    url: siteConfig.url,
+    url: origin,
     description: identity.description,
-    logo: `${siteConfig.url.replace(/\/$/, "")}/brand/ankits-studio-symbol-transparent.png`,
+    logo: `${origin}/brand/ankits-studio-symbol-transparent.png`,
+  };
+
+  if (sameAs.length > 0) {
+    jsonLd.sameAs = sameAs;
+  }
+
+  return jsonLd;
+}
+
+export function buildWebSiteJsonLd(identity: BusinessIdentity): WebSiteJsonLd | null {
+  if (identity.dataStatus !== "verified") return null;
+  const origin = siteConfig.url.replace(/\/$/, "");
+  return {
+    "@context": "https://schema.org",
+    "@type": "WebSite",
+    "@id": websiteId(origin),
+    name: identity.displayName,
+    url: origin,
+    publisher: {
+      "@type": "Organization",
+      "@id": organizationId(origin),
+    },
   };
 }
 
@@ -73,6 +130,7 @@ export function buildLocalBusinessJsonLd(branch: Branch): LocalBusinessJsonLd | 
   // Require a verified printable address before claiming PostalAddress (ADR-018).
   if (!branch.address || branch.fieldProvenance.address !== "owner_confirmed") return null;
 
+  const origin = siteConfig.url.replace(/\/$/, "");
   const address: LocalBusinessJsonLd["address"] = {
     "@type": "PostalAddress",
     streetAddress: branch.address,
@@ -94,13 +152,15 @@ export function buildLocalBusinessJsonLd(branch: Branch): LocalBusinessJsonLd | 
   const jsonLd: LocalBusinessJsonLd = {
     "@context": "https://schema.org",
     "@type": "ExerciseGym",
+    "@id": branchBusinessId(origin, branch.slug),
     name: branch.name,
     url: buildCanonicalUrl(`/locations/${branch.slug}`),
     address,
     parentOrganization: {
       "@type": "Organization",
+      "@id": organizationId(origin),
       name: "Ankit's Studio",
-      url: siteConfig.url,
+      url: origin,
     },
   };
 
@@ -141,6 +201,54 @@ export function buildCourseJsonLd(_programme: Programme): CourseJsonLd | null {
 }
 
 /**
+ * Service JSON-LD for confirmed programmes only.
+ * No Offer, ratings, reviews, prices, or fake availability.
+ * areaServed is delivery-aware — not "all programmes at every branch".
+ */
+export function buildServiceJsonLd(programme: Programme): ServiceJsonLd | null {
+  if (!isConfirmedProgramme(programme)) return null;
+
+  const origin = siteConfig.url.replace(/\/$/, "");
+  const jsonLd: ServiceJsonLd = {
+    "@context": "https://schema.org",
+    "@type": "Service",
+    "@id": programmeServiceId(origin, programme.slug),
+    name: programme.name,
+    description: programme.shortDescription,
+    url: buildCanonicalUrl(`/programs/${programme.slug}`),
+    provider: {
+      "@type": "Organization",
+      "@id": organizationId(origin),
+    },
+    serviceType: programme.name,
+  };
+
+  const mode = programme.deliveryMode;
+
+  if (mode === "in-studio") {
+    const listed = getPubliclyListedBranches().filter((branch) =>
+      programme.branchSlugs.includes(branch.slug),
+    );
+    if (listed.length > 0) {
+      jsonLd.areaServed = listed.map((branch) => ({
+        "@type": "Place" as const,
+        name: branch.locality,
+      }));
+    }
+  } else if (mode === "home") {
+    // Home PT is Navi Mumbai / Thane — not a claim of every studio room.
+    jsonLd.areaServed = [
+      { "@type": "Place", name: "Navi Mumbai" },
+      { "@type": "Place", name: "Thane" },
+    ];
+  }
+  // online + corporate (no deliveryMode): omit areaServed —
+  // remote / B2B enquiry-scoped, not a per-studio room claim.
+
+  return jsonLd;
+}
+
+/**
  * Visible page title + description + canonical URL only. No Offer, Event,
  * instructor, schedule, rating, or location invention (ADR-017).
  */
@@ -163,14 +271,30 @@ export function buildCollectionPageJsonLd(input: {
   name: string;
   description: string;
   path: string;
+  itemList?: Array<{ name: string; path: string }>;
 }): CollectionPageJsonLd {
-  return {
+  const jsonLd: CollectionPageJsonLd = {
     "@context": "https://schema.org",
     "@type": "CollectionPage",
     name: input.name,
     description: input.description,
     url: buildCanonicalUrl(input.path),
   };
+
+  if (input.itemList && input.itemList.length > 0) {
+    jsonLd.mainEntity = {
+      "@type": "ItemList",
+      numberOfItems: input.itemList.length,
+      itemListElement: input.itemList.map((item, index) => ({
+        "@type": "ListItem",
+        position: index + 1,
+        name: item.name,
+        url: buildCanonicalUrl(item.path),
+      })),
+    };
+  }
+
+  return jsonLd;
 }
 
 export function buildArticleJsonLd(post: BlogPost): ArticleJsonLd | null {

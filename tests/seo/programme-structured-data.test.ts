@@ -10,6 +10,7 @@ import {
   buildBreadcrumbJsonLd,
   buildCollectionPageJsonLd,
   buildCourseJsonLd,
+  buildServiceJsonLd,
   buildWebPageJsonLd,
 } from "@/lib/seo/structured-data";
 import { buildSitemapEntries } from "@/lib/seo/sitemap";
@@ -34,13 +35,49 @@ describe("programme structured data — ADR-017", () => {
     }
   });
 
-  it("programme route modules do not call buildCourseJsonLd", () => {
+  it("emits Service JSON-LD for exactly the eight confirmed programmes", () => {
+    const confirmed = getConfirmedProgrammes();
+    expect(confirmed).toHaveLength(8);
+    for (const programme of confirmed) {
+      const service = buildServiceJsonLd(programme);
+      expect(service).not.toBeNull();
+      expect(service?.["@type"]).toBe("Service");
+      expect(service?.["@id"]).toContain(`/programs/${programme.slug}/#service`);
+      expect(service?.provider["@id"]).toMatch(/#organization$/);
+      expect(service?.name).toBe(programme.name);
+      const blob = serializeJsonLd(service!);
+      expect(blob).not.toMatch(FORBIDDEN_SCHEMA_KEYS);
+      expect(blob.toLowerCase()).not.toMatch(/"price"|aggregateRating|"review"/);
+    }
+    for (const slug of LEGACY_SLUGS) {
+      const legacy = getProgrammes().find((item) => item.slug === slug)!;
+      expect(buildServiceJsonLd(legacy)).toBeNull();
+    }
+  });
+
+  it("Service areaServed is delivery-aware — online/corporate omit branch lists", () => {
+    const online = getConfirmedProgrammes().find((p) => p.slug === "online-training")!;
+    const corporate = getConfirmedProgrammes().find((p) => p.slug === "corporate-wellness")!;
+    const home = getConfirmedProgrammes().find((p) => p.slug === "home-personal-training")!;
+    const yoga = getConfirmedProgrammes().find((p) => p.slug === "yoga")!;
+
+    expect(buildServiceJsonLd(online)?.areaServed).toBeUndefined();
+    expect(buildServiceJsonLd(corporate)?.areaServed).toBeUndefined();
+    expect(buildServiceJsonLd(home)?.areaServed).toEqual([
+      { "@type": "Place", name: "Navi Mumbai" },
+      { "@type": "Place", name: "Thane" },
+    ]);
+    expect(Array.isArray(buildServiceJsonLd(yoga)?.areaServed)).toBe(true);
+  });
+
+  it("programme route modules do not call buildCourseJsonLd and do call Service builder", () => {
     const root = join(process.cwd(), "src", "app", "programs");
     const indexSource = readFileSync(join(root, "page.tsx"), "utf8");
     const detailSource = readFileSync(join(root, "[slug]", "page.tsx"), "utf8");
     expect(indexSource).not.toMatch(/buildCourseJsonLd/);
     expect(detailSource).not.toMatch(/buildCourseJsonLd/);
     expect(detailSource).toMatch(/buildWebPageJsonLd/);
+    expect(detailSource).toMatch(/buildServiceJsonLd/);
     expect(indexSource).toMatch(/buildCollectionPageJsonLd/);
   });
 
@@ -113,17 +150,30 @@ describe("programme structured data — ADR-017", () => {
     }
   });
 
-  it("/programs CollectionPage stays minimal without Course ItemList", () => {
-    const collection = buildCollectionPageJsonLd({
+  it("/programs CollectionPage stays without Course and may list confirmed programmes", () => {
+    const minimal = buildCollectionPageJsonLd({
       name: "Programmes",
       description: "Confirmed programmes at Ankit's Studio",
       path: "/programs",
     });
-    expect(collection["@type"]).toBe("CollectionPage");
-    const serialized = serializeJsonLd(collection);
-    expect(serialized).not.toMatch(/"@type":"Course"/);
-    expect(serialized).not.toMatch(/ItemList/);
-    expect(serialized).not.toMatch(FORBIDDEN_SCHEMA_KEYS);
+    expect(minimal["@type"]).toBe("CollectionPage");
+    expect(serializeJsonLd(minimal)).not.toMatch(/"@type":"Course"/);
+    expect(serializeJsonLd(minimal)).not.toMatch(/ItemList/);
+    expect(serializeJsonLd(minimal)).not.toMatch(FORBIDDEN_SCHEMA_KEYS);
+
+    const withList = buildCollectionPageJsonLd({
+      name: "Programmes",
+      description: "Confirmed programmes at Ankit's Studio",
+      path: "/programs",
+      itemList: getConfirmedProgrammes().map((programme) => ({
+        name: programme.name,
+        path: `/programs/${programme.slug}`,
+      })),
+    });
+    expect(withList.mainEntity?.["@type"]).toBe("ItemList");
+    expect(withList.mainEntity?.numberOfItems).toBe(8);
+    expect(serializeJsonLd(withList)).not.toMatch(/"@type":"Course"/);
+    expect(serializeJsonLd(withList)).not.toMatch(FORBIDDEN_SCHEMA_KEYS);
   });
 
   it("legacy migration-pending programmes keep BreadcrumbList-only contract in builders", () => {

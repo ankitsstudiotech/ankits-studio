@@ -74,14 +74,36 @@ describe("location structured data — ADR-018", () => {
     }
   });
 
-  it("/locations CollectionPage stays minimal", () => {
-    const collection = buildCollectionPageJsonLd({
+  it("/locations CollectionPage may include an ItemList of real branches", () => {
+    const minimal = buildCollectionPageJsonLd({
       name: "Locations",
       description: "Four branches",
       path: "/locations",
     });
-    expect(collection["@type"]).toBe("CollectionPage");
-    expect(serializeJsonLd(collection)).not.toMatch(/ExerciseGym|LocalBusiness|ItemList/);
+    expect(minimal["@type"]).toBe("CollectionPage");
+    expect(serializeJsonLd(minimal)).not.toMatch(/ExerciseGym|LocalBusiness|ItemList/);
+
+    const withList = buildCollectionPageJsonLd({
+      name: "Locations",
+      description: "Four branches",
+      path: "/locations",
+      itemList: getPubliclyListedBranches().map((branch) => ({
+        name: branch.name,
+        path: `/locations/${branch.slug}`,
+      })),
+    });
+    expect(withList.mainEntity?.["@type"]).toBe("ItemList");
+    expect(withList.mainEntity?.numberOfItems).toBe(4);
+    expect(serializeJsonLd(withList)).not.toMatch(/ExerciseGym|LocalBusiness|AggregateRating/);
+  });
+
+  it("ExerciseGym references parent Organization by stable @id", () => {
+    for (const branch of getBranches()) {
+      const jsonLd = buildLocalBusinessJsonLd(branch);
+      expect(jsonLd?.["@id"]).toContain(`/locations/${branch.slug}/#business`);
+      expect(jsonLd?.parentOrganization?.["@id"]).toMatch(/#organization$/);
+      expect(jsonLd?.parentOrganization?.url).toBeTruthy();
+    }
   });
 
   it("breadcrumbs stay accurate for public branches", () => {

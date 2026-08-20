@@ -20,7 +20,7 @@ const PAGE_DESCRIPTION =
   "Four Ankit’s Studio branches in Airoli Sector 19, Airoli Sector 8, Ghansoli, and Thane. Enquire on WhatsApp for a free trial and current batch availability.";
 
 export const metadata: Metadata = buildPageMetadata({
-  title: "Locations",
+  title: "Studio locations in Airoli, Ghansoli & Thane",
   description: PAGE_DESCRIPTION,
   path: PATH,
 });
@@ -34,9 +34,13 @@ export default function LocationsIndexPage() {
   const branches = getPubliclyListedBranches();
   const breadcrumbJsonLd = buildBreadcrumbJsonLd(breadcrumbTrail);
   const collectionJsonLd = buildCollectionPageJsonLd({
-    name: "Locations",
+    name: "Studio locations",
     description: PAGE_DESCRIPTION,
     path: PATH,
+    itemList: branches.map((branch) => ({
+      name: branch.name,
+      path: `/locations/${branch.slug}`,
+    })),
   });
   const trialHref = getPrimaryConversionHref();
   const trialLabel = getPrimaryConversionLabel();

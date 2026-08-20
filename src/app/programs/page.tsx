@@ -20,7 +20,7 @@ const PAGE_DESCRIPTION =
   "Functional Training, Yoga, Zumba, Dance, Wedding Choreography, Corporate Wellness, Home Personal Training and Online Training at Ankit’s Studio — enquire for a free trial on WhatsApp.";
 
 export const metadata: Metadata = buildPageMetadata({
-  title: "Programmes",
+  title: "Programmes — fitness, yoga, Zumba & dance",
   description: PAGE_DESCRIPTION,
   path: PATH,
 });
@@ -37,6 +37,10 @@ export default function ProgrammesIndexPage() {
     name: "Programmes",
     description: PAGE_DESCRIPTION,
     path: PATH,
+    itemList: programmes.map((programme) => ({
+      name: programme.name,
+      path: `/programs/${programme.slug}`,
+    })),
   });
   const trialHref = getPrimaryConversionHref();
   const trialLabel = getPrimaryConversionLabel();

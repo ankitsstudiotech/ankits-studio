@@ -19,10 +19,12 @@ export interface BreadcrumbListJsonLd {
 export interface OrganizationJsonLd {
   "@context": "https://schema.org";
   "@type": "Organization";
+  "@id": string;
   name: string;
   url: string;
   description?: string;
   logo?: string;
+  sameAs?: string[];
 }
 
 export interface PostalAddressJsonLd {
@@ -45,6 +47,7 @@ export interface OpeningHoursSpecificationJsonLd {
 export interface LocalBusinessJsonLd {
   "@context": "https://schema.org";
   "@type": "ExerciseGym";
+  "@id": string;
   name: string;
   url: string;
   telephone?: string;
@@ -53,6 +56,7 @@ export interface LocalBusinessJsonLd {
   hasMap?: string;
   parentOrganization?: {
     "@type": "Organization";
+    "@id": string;
     name: string;
     url?: string;
   };
@@ -83,13 +87,53 @@ export interface WebPageJsonLd {
   url: string;
 }
 
-/** Index of programmes — not a Course ItemList carousel (ADR-017). */
+export interface ItemListJsonLd {
+  "@type": "ItemList";
+  numberOfItems?: number;
+  itemListElement: Array<{
+    "@type": "ListItem";
+    position: number;
+    name: string;
+    url: string;
+  }>;
+}
+
+/** Index of programmes or locations — optional ItemList for real entities. */
 export interface CollectionPageJsonLd {
   "@context": "https://schema.org";
   "@type": "CollectionPage";
   name: string;
   description: string;
   url: string;
+  mainEntity?: ItemListJsonLd;
+}
+
+/** Confirmed programme as a Service (not Course — ADR-017). */
+export interface ServiceJsonLd {
+  "@context": "https://schema.org";
+  "@type": "Service";
+  "@id": string;
+  name: string;
+  description: string;
+  url: string;
+  provider: {
+    "@type": "Organization";
+    "@id": string;
+  };
+  serviceType?: string;
+  areaServed?: Array<{ "@type": "Place"; name: string }> | { "@type": "Place"; name: string };
+}
+
+export interface WebSiteJsonLd {
+  "@context": "https://schema.org";
+  "@type": "WebSite";
+  "@id": string;
+  name: string;
+  url: string;
+  publisher?: {
+    "@type": "Organization";
+    "@id": string;
+  };
 }
 
 export interface ArticleJsonLd {

@@ -11,9 +11,12 @@ const envSchema = z.object({
   /** Must be exactly "true" to allow a production build with unverified
    *  content present (e.g. a preview deploy). Unset means not allowed. */
   ALLOW_MOCK_PUBLISH: z.enum(["true", "false"]).optional(),
-  /** Absolute site URL, used for metadataBase / OG image URLs. Falls back
-   *  to a localhost placeholder in src/lib/metadata.ts when unset — no
-   *  real domain is verified yet. */
+  /**
+   * Absolute public site origin for metadataBase / canonical / sitemap /
+   * robots / JSON-LD / OG. Required in production builds (see
+   * resolveSiteOrigin). Temporary Vercel host today; later switch to
+   * https://ankitsstudio.com by changing this one value.
+   */
   NEXT_PUBLIC_SITE_URL: z.string().url().optional(),
   /**
    * Stage 4A — synthetic art-direction media. Default absent/false keeps
