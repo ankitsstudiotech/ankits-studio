@@ -1,3 +1,4 @@
+import { unstable_cache } from "next/cache";
 import {
   getBranchMapsUrl,
   getPubliclyListedBranches,
@@ -20,6 +21,9 @@ import {
   MAX_PLACE_DETAILS_REQUESTS,
   MAX_REVIEWS_PER_BRANCH,
 } from "./types";
+
+/** Homepage reviews do not need second-by-second freshness. */
+export const GOOGLE_SOCIAL_PROOF_REVALIDATE_SECONDS = 60 * 60; // 1 hour
 
 function externalBranchLinks(): GoogleExternalBranchLink[] {
   const links: GoogleExternalBranchLink[] = [];
@@ -54,14 +58,16 @@ export type GoogleSocialProofOptions = {
   apiKey?: string | null;
   fetchImpl?: PlacesFetch;
   verifiedPlaces?: readonly VerifiedGooglePlace[];
+  /** Bypass Next.js Data Cache (tests / forced refresh). */
+  bypassCache?: boolean;
 };
 
 /**
- * Runtime Google social proof. Never persists review PII.
- * Missing credentials, unresolved Place IDs, or total API failure → external-links.
- * One failed branch does not drop reviews from the others.
+ * Live Places assembly — always uses cache:"no-store" at the HTTP layer so we
+ * do not rely on Google's HTTP caching semantics. Application caching is via
+ * unstable_cache in getGoogleSocialProof().
  */
-export async function getGoogleSocialProof(
+async function assembleGoogleSocialProof(
   options: GoogleSocialProofOptions = {},
 ): Promise<GoogleSocialProof> {
   const fallback = fallbackProof();
@@ -176,4 +182,35 @@ export async function getGoogleSocialProof(
     logGoogleReviewsDiagnostic("Live review assembly failed");
     return fallback;
   }
+}
+
+const getCachedGoogleSocialProof = unstable_cache(
+  async () => assembleGoogleSocialProof(),
+  ["google-social-proof", "v1"],
+  { revalidate: GOOGLE_SOCIAL_PROOF_REVALIDATE_SECONDS },
+);
+
+/**
+ * Runtime Google social proof. Never persists review PII.
+ * Missing credentials, unresolved Place IDs, or total API failure → external-links.
+ * One failed branch does not drop reviews from the others.
+ *
+ * Default path is cached for GOOGLE_SOCIAL_PROOF_REVALIDATE_SECONDS so homepage
+ * TTFB is not blocked by four Place Details round-trips on every request.
+ * Tests that inject fetchImpl / apiKey / verifiedPlaces bypass the cache.
+ */
+export async function getGoogleSocialProof(
+  options: GoogleSocialProofOptions = {},
+): Promise<GoogleSocialProof> {
+  const useBypass =
+    options.bypassCache === true ||
+    options.fetchImpl !== undefined ||
+    options.apiKey !== undefined ||
+    options.verifiedPlaces !== undefined;
+
+  if (useBypass) {
+    return assembleGoogleSocialProof(options);
+  }
+
+  return getCachedGoogleSocialProof();
 }

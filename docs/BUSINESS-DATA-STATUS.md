@@ -22,10 +22,10 @@ Full audit: [business/OWNER-DATA-MIGRATION-2026-08-01.md](./business/OWNER-DATA-
 | Business name (Ankit’s Studio) | VERIFIED | Owner-confirmed. Logo descriptor “Dance & Fitness” is **not** the legal name. |
 | Logo descriptor | VERIFIED | Lockup text only. |
 | Branch list (Sector 19, Sector 8, Ghansoli, Thane) | VERIFIED (existence / open) | Four branches currently open per owner. |
-| Branch printable addresses | MOCK / PENDING | Maps-observed strings recorded in the migration audit only — not published as verified addresses. Sector 8 address missing. |
-| Maps short URLs (Sector 19, Ghansoli, Thane) | REFERENCE-ONLY (associated) | Browser-resolved 2026-08-01 and labelled by owner. Stored as `mapsShortUrl`. Not embedded (`mapEmbedUrl` unset) until branch records are fully verified — ADR-011. Sector 8 Maps link missing. |
-| Central phone / WhatsApp (+91 93724 02074) | VERIFIED | Central studio enquiry number; branches inherit it — not unique per-branch lines. Dialable via `getStudioContactLinks()` / WhatsApp conversion helpers. Branch `getBranchContactLinks()` stays null until each branch record is verified. |
-| General enquiry email | MOCK | Still `hello@example-placeholder.test`. |
+| Branch printable addresses | VERIFIED | All four branches have owner-confirmed printable addresses in `src/content/mock/branches.ts` (`fieldProvenance.address = owner_confirmed`). Published on branch pages and ExerciseGym JSON-LD. |
+| Maps short URLs (all four branches) | VERIFIED | Owner-confirmed Maps short URLs + CID place listings for Sector 19, Sector 8, Ghansoli, Thane. |
+| Central phone / WhatsApp (+91 93724 02074) | VERIFIED | Central studio enquiry number; branches inherit it — not unique per-branch lines. Dialable via `getStudioContactLinks()` / WhatsApp conversion helpers. |
+| General enquiry email | VERIFIED | `ankitsstudio5@gmail.com` — owner-confirmed in `contact-details.ts`. |
 | Operating window (06:00–22:00 all branches) | VERIFIED | Operating window only — **not** a batch timetable. Maps hours disagree (documented in migration audit); prefer owner window until clarified. |
 | Batch / class timetables | MOCK / PENDING | Detailed slots remain placeholder; do not invent from the operating window. |
 | Trial class free | VERIFIED | Primary conversion: WhatsApp free-trial message. |
@@ -48,16 +48,27 @@ Full audit: [business/OWNER-DATA-MIGRATION-2026-08-01.md](./business/OWNER-DATA-
 | Primary/footer navigation structure | VERIFIED | IA structure. Primary CTA href overridden to WhatsApp at chrome layer when contact verified. |
 | Conversion preference order | VERIFIED | WhatsApp → phone → trial-form → email. |
 
-## Owner-supplied Maps links (labelled 2026-08-01)
+## Owner-confirmed branch addresses (source of truth: content records)
+
+| Branch | Address | Maps short URL |
+|---|---|---|
+| Airoli Sector 19 | Shop No. 05, Beside Bank of Maharashtra, Sector 19, Airoli, Navi Mumbai, Maharashtra 400708 | https://maps.app.goo.gl/75pmKFuezsCSd5JP8 |
+| Airoli Sector 8 | Swaraj Daffodils, Beside Airoli Sports Association, Sector 8A, Airoli, Navi Mumbai, Maharashtra 400701 | https://maps.app.goo.gl/1J1KpmeYWsoWkckr6 |
+| Ghansoli | Satyam Imperial, Opposite Sai Baba Mandir, Sector 11, Ghansoli, Navi Mumbai, Maharashtra 400701 | https://maps.app.goo.gl/PVDTDZKsM9iSHdjD9 |
+| Thane | Edulji Road, Dhobi Ali, Charai, Opposite Awaaz Radio, Thane, Maharashtra 400601 | https://maps.app.goo.gl/6tQTXnrur5iggfJ6A |
+
+Earlier “Maps-observed only / Sector 8 missing” notes below are **historical** (2026-08-01 intake) and superseded by the verified content records above.
+
+## Owner-supplied Maps links (labelled 2026-08-01 — historical intake)
 
 | Branch | Short link | Browser resolution |
 |---|---|---|
 | Airoli Sector 19 | https://maps.app.goo.gl/NWrGtXKKYwr5xXwbA?g_st=ac | Resolved to Ankit's Studio, Sector-19 Airoli |
 | Ghansoli | https://maps.app.goo.gl/WzhJUEhAvC67eMgR8?g_st=ac | Resolved to Ankit’s Studio, Sector 11 Ghansoli |
 | Thane | https://maps.app.goo.gl/bvzahC17HkciT6QQ6?g_st=ic | Resolved to Ankit’s Studio, Charai / Thane West |
-| Airoli Sector 8 | — | Missing |
+| Airoli Sector 8 | — (intake gap; later owner-confirmed — see table above) | — |
 
-Observed Maps address strings and hours are **not** printable verified facts — see migration audit.
+Observed Maps address strings from the 2026-08-01 intake were provisional; current printable facts live in verified branch records.
 
 ## Verification workflow
 
@@ -65,7 +76,7 @@ Observed Maps address strings and hours are **not** printable verified facts —
 2. The corresponding content record's `dataStatus` field is flipped / updated in the same change that updates this table.
 3. This table and the code must never disagree.
 4. Only when **every domain required for a given route** is verified may that route leave mock-preview protections (ADR-002).
-5. Full production launch still requires remaining mock domains (addresses, timetable, trainers, media, email, programme fees, taxonomy cleanup) to be resolved or intentionally omitted.
+5. Full production launch still requires remaining mock/pending domains (timetable slots, trainers, media, programme fees, taxonomy cleanup) to be resolved or intentionally omitted. Branch addresses and enquiry email are verified.
 
 ## Ownership of this document
 

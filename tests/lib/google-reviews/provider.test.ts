@@ -224,6 +224,21 @@ describe("Google social proof provider", () => {
     expect(getPlaceDetailsRequestCount()).toBe(4);
   });
 
+  it("keeps HTTP Places fetches as no-store while application cache is opt-in", async () => {
+    // Application caching uses unstable_cache around assemble; HTTP stays no-store.
+    // Injected fetchImpl always bypasses unstable_cache so unit tests stay deterministic.
+    const fetchImpl = vi.fn<PlacesFetch>(async (_input, init) => {
+      expect(init?.cache).toBe("no-store");
+      return new Response("no", { status: 403 });
+    });
+    await getGoogleSocialProof({
+      apiKey: "test-key",
+      verifiedPlaces: [FOUR_PLACES[0]!],
+      fetchImpl,
+    });
+    expect(fetchImpl).toHaveBeenCalled();
+  });
+
   it("does not average branch ratings into a fake studio score", async () => {
     const fetchImpl = vi.fn<PlacesFetch>(async (input) => {
       const thane = String(input).includes("thane");

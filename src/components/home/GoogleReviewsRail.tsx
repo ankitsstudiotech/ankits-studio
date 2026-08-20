@@ -72,6 +72,8 @@ export function GoogleReviewsRail({ reviews }: { reviews: readonly GoogleLiveRev
                   height={36}
                   className={styles.googleProofAvatar}
                   referrerPolicy="no-referrer"
+                  loading="lazy"
+                  decoding="async"
                 />
               ) : null}
               {review.author.profileUri ? (
