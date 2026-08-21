@@ -214,6 +214,12 @@ until Track H's branch/structured-data code exists.
 |---|---|---|---|
 | Compact Google review-order disclosure; review-cell separator inset; hide review-rail scrollbar; site-wide vertical-rule inset sweep. No redesign, no Places/fetch change. Then production deploy. | Cursor | **Done** | Checkpoint `studio-pulse-before-review-rule-spacing-fix` @ `021b286`. Shared `--spacing-rule-content`. Evidence `docs/bugs/VERTICAL-RULE-INSET-AUDIT.md`. Production deploy follows this commit. |
 
+## SEO Content Batch 1 — programme search-intent alignment (active)
+
+| Task | Owner | Status | Notes |
+|---|---|---|---|
+| Align `/programs/zumba`, `adult-dance`, `wedding-choreography`, `functional-training`, `corporate-wellness` copy + meta to research (no new routes, no inventing fees/schedules). Touch `src/content/mock/programmes.ts` + light availability copy in ProgrammeDetailView. Then test, commit, deploy ankitsstudio.com. | Cursor | **Done** | Search-intent copy + meta; typecheck/lint/tests/build green. Deploy to ankitsstudio.com follows. |
+
 ## Production bug — free-trial conversion band composition + CTA-band recurrence sweep (active)
 
 | Task | Owner | Status | Notes |

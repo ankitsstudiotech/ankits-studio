@@ -126,7 +126,10 @@ function hoursNote(programme: Programme): string {
 
 function availabilityCopy(programme: Programme): string {
   if (isServiceEnquiryProgramme(programme)) {
-    return "Programmes are arranged after enquiry. Plans depend on team size, objectives, duration, location, schedule, and workplace or online delivery — availability is confirmed with the studio when you enquire.";
+    return "Corporate fitness programmes are arranged after enquiry. Plans depend on team size, objectives, duration, location, schedule, and workplace or online delivery — availability is confirmed with the studio when you enquire.";
+  }
+  if (programme.slug === "wedding-choreography") {
+    return "Wedding and sangeet choreography is arranged after enquiry for couples and groups across Navi Mumbai and Thane. Practice details are confirmed with the studio — not published as fixed public batches.";
   }
   if (programme.deliveryMode === "home" || programme.deliveryMode === "online") {
     return "Session times are arranged when you enquire.";
@@ -134,7 +137,7 @@ function availabilityCopy(programme: Programme): string {
   if (programme.batchScheduleStatus === "published") {
     return "See batch availability for current options.";
   }
-  return "Batch times vary by branch. Message us for current options — studios open 6:00 AM–10:00 PM every day.";
+  return "Available across selected Ankit’s Studio locations in Airoli, Ghansoli and Thane. Batch times vary by branch — message us or check the relevant studio page for current options. Studios open 6:00 AM–10:00 PM every day.";
 }
 
 function buildMetaFacts(programme: Programme): MetaFact[] {
@@ -481,8 +484,8 @@ export function ProgrammeDetailView({
           id="programme-closing"
           titleId="programme-closing-cta"
           variant="service-enquiry"
-          title="Planning wellness for your team?"
-          body="Customised workplace and online programmes are arranged around your organisation’s requirements."
+          title="Planning fitness sessions for your team?"
+          body="Customised corporate yoga, Zumba and workplace movement programmes are arranged around your organisation’s requirements."
         >
           <ProgrammePulseCta href={whatsappHref}>{whatsappLabel}</ProgrammePulseCta>
         </ClosingBand>

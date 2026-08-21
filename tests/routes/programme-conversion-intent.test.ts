@@ -64,7 +64,7 @@ describe("Corporate Wellness detail semantics", () => {
 
   it("uses planning and availability copy for service-enquiry programmes", () => {
     expect(detailView).toMatch(/Planning & availability/);
-    expect(detailView).toMatch(/Planning wellness for your team\?/);
+    expect(detailView).toMatch(/Planning fitness sessions for your team\?/);
     expect(detailView).toMatch(/isServiceEnquiryProgramme/);
   });
 

@@ -35,7 +35,7 @@ describe("Batch 06 — closing conversion family", () => {
     const detail = read("src/components/programs/pulse/ProgrammeDetailView.tsx");
     expect(detail).toMatch(/serviceEnquiry\s*\?\s*\(/);
     expect(detail).toMatch(/variant="service-enquiry"/);
-    expect(detail).toMatch(/Planning wellness for your team\?/);
+    expect(detail).toMatch(/Planning fitness sessions for your team\?/);
     expect(detail).toMatch(/FreeTrialCta/);
     expect(detail).not.toMatch(/Enquire about a free trial/);
     expect(detail).toMatch(/isServiceEnquiryProgramme/);

@@ -16,23 +16,23 @@ export const mockProgrammes: Programme[] = [
     slug: "functional-training",
     name: "Functional Training",
     shortDescription:
-      "Coach-led, machine-free sessions for strength, mobility and everyday fitness.",
+      "Coach-led strength, mobility and conditioning — machine-free training, not a conventional gym floor.",
     longDescription:
-      "Functional Training at Ankit’s Studio is energetic, coach-led and built around real-life movement — not rows of gym machines. Sessions use bodyweight work, resistance bands, dumbbells, kettlebells and mats, with strength circuits, HIIT and mobility adapted to your fitness level. Many members join to work towards goals such as fat loss, strength or stamina; coaches focus on approachable, consistent progress rather than promises.",
+      "Functional Training at Ankit’s Studio is energetic, coach-led and built around real-life movement — not rows of gym machines. If you are searching for strength training or coach-led fitness rather than a machine-based gym membership, this is the studio format: bodyweight work, resistance bands, dumbbells, kettlebells and mats, with strength circuits, HIIT and mobility adapted to your level. Many members join to work towards goals such as fat loss, strength or stamina; coaches focus on approachable, consistent progress rather than promises.",
     audienceTags: ["adults", "fitness", "working-professionals"],
     branchSlugs: [...ALL_BRANCHES],
     heroAccent: "strength",
     whoItsFor:
-      "Adults who want coach-led, machine-free fitness with personal attention in a motivating community — including beginners and working professionals.",
+      "Adults who want coach-led strength and conditioning with personal attention — including beginners and working professionals looking for machine-free training instead of a conventional gym.",
     classStructure:
       "Structured coach-led sessions typically last about one hour. Exercises are adapted to fitness level; batch times are confirmed on WhatsApp.",
     benefits: [
       "Coach-led strength and conditioning",
-      "Bodyweight and functional equipment",
+      "Mobility and everyday movement focus",
+      "Bodyweight and portable equipment",
       "Resistance bands, dumbbells and kettlebells",
       "Strength circuits and HIIT",
-      "Mobility and balance work",
-      "Machine-free — not conventional gym machines",
+      "Machine-free — not a conventional machine gym",
       "Personal attention within group sessions",
       "Motivating community atmosphere",
       "Beginner-friendly enquiries welcome",
@@ -47,9 +47,9 @@ export const mockProgrammes: Programme[] = [
     pricingStatus: PENDING_PRICING,
     batchScheduleStatus: PENDING_BATCHES,
     mediaSlotKey: "service.functional-training",
-    seoTitle: "Functional Training",
+    seoTitle: "Functional Training — Strength & Conditioning",
     seoDescription:
-      "Machine-free, coach-led Functional Training at Ankit’s Studio across Airoli, Ghansoli and Thane. Typical sessions about one hour. Free trial on WhatsApp.",
+      "Coach-led Functional Training for strength, mobility and conditioning at Ankit’s Studio in Airoli, Ghansoli and Thane. Machine-free — not a conventional gym. Free trial on WhatsApp.",
     relatedProgrammeSlugs: ["home-personal-training", "online-training", "yoga"],
     ladiesOnlyBatchesAvailable: true,
     kidsOnlyBatchesAvailable: true,
@@ -61,9 +61,9 @@ export const mockProgrammes: Programme[] = [
       },
       {
         id: "ft-machines",
-        question: "Is this machine-based gym training?",
+        question: "Is this the same as a conventional gym?",
         answer:
-          "No. Machine-free means no reliance on conventional gym machines. Coaches may still use portable equipment such as bands, dumbbells and kettlebells.",
+          "No. Functional Training is coach-led and machine-free — focused on strength, mobility and conditioning with portable equipment, not rows of gym machines. Coaches may use bands, dumbbells and kettlebells.",
       },
       {
         id: "ft-duration",
@@ -183,17 +183,19 @@ export const mockProgrammes: Programme[] = [
     dataStatus: "verified",
     slug: "zumba",
     name: "Zumba",
-    shortDescription: "High-energy, beginner-friendly dance fitness with simple choreography.",
+    shortDescription:
+      "Beginner-friendly Zumba classes — high-energy dance fitness and group cardio, easy to follow.",
     longDescription:
-      "Zumba at Ankit’s Studio is high-energy, fun and easy to follow — a cardio and full-body workout through dance movement. Sessions support stamina and coordination in a friendly, non-judgmental room, especially popular among women, homemakers and working professionals. No dance background is required to enquire.",
+      "Zumba at Ankit’s Studio is high-energy dance fitness — a group cardio and full-body workout through simple, music-led movement. Sessions support stamina and coordination in a friendly, non-judgmental room, and are especially popular among women, homemakers and working professionals. No dance background is required to enquire. Ladies-only or kids-only batches may be available as audience options on request — ask when you enquire; availability varies by branch.",
     audienceTags: ["adults", "group-class"],
     branchSlugs: [...ALL_BRANCHES],
     heroAccent: "high-energy",
     whoItsFor:
-      "Anyone who enjoys music-led group movement — especially popular among women, homemakers and working professionals. Beginners welcome.",
+      "Anyone looking for Zumba classes or dance-based group fitness — especially popular among women, homemakers and working professionals. Beginners welcome; no dance background required.",
     classStructure:
-      "High-energy group sessions with simple choreography. Batch times are confirmed on WhatsApp.",
+      "High-energy group dance-fitness sessions with simple choreography. Batch times are confirmed on WhatsApp.",
     benefits: [
+      "Zumba classes as dance-based group fitness",
       "High-energy, fun group sessions",
       "Easy-to-follow dance movement",
       "Cardio and full-body activity",
@@ -201,6 +203,7 @@ export const mockProgrammes: Programme[] = [
       "Friendly, motivating coaches",
       "Non-judgmental community",
       "No dance background required to enquire",
+      "Ladies-only or kids-only batches on request where available",
     ],
     difficulty: "all-levels",
     requiredEquipment: [],
@@ -211,9 +214,9 @@ export const mockProgrammes: Programme[] = [
     pricingStatus: PENDING_PRICING,
     batchScheduleStatus: PENDING_BATCHES,
     mediaSlotKey: "service.zumba",
-    seoTitle: "Zumba",
+    seoTitle: "Zumba Classes in Airoli, Ghansoli & Thane",
     seoDescription:
-      "Zumba at Ankit’s Studio across Navi Mumbai and Thane. Music-led group sessions; free trial on WhatsApp.",
+      "Zumba classes and dance fitness at Ankit’s Studio — beginner-friendly group sessions in Airoli, Ghansoli and Thane. Free trial on WhatsApp.",
     relatedProgrammeSlugs: ["adult-dance", "yoga", "functional-training"],
     ladiesOnlyBatchesAvailable: true,
     kidsOnlyBatchesAvailable: true,
@@ -221,7 +224,14 @@ export const mockProgrammes: Programme[] = [
       {
         id: "zumba-experience",
         question: "Do I need dance experience?",
-        answer: "No. You can enquire without a dance background. The studio will help match a suitable batch.",
+        answer:
+          "No. Zumba is dance fitness — you can enquire without a dance background. The studio will help match a suitable batch.",
+      },
+      {
+        id: "zumba-vs-dance",
+        question: "How is Zumba different from Dance classes?",
+        answer:
+          "Zumba is dance-based group fitness and cardio. Dance focuses on learning choreography and movement styles. Both are available as separate programmes — ask which fits your goal.",
       },
     ],
   },
@@ -229,23 +239,27 @@ export const mockProgrammes: Programme[] = [
     dataStatus: "verified",
     slug: "adult-dance",
     name: "Dance",
-    shortDescription: "Fun, energetic studio dance — adult, ladies-only and kids-only batches.",
+    shortDescription:
+      "Adult dance classes focused on choreography and movement — including Bollywood-style sessions where available.",
     longDescription:
-      "Dance at Ankit’s Studio covers fun, energetic, choreography-focused sessions in a relaxed, non-judgmental room. Adult Dance is open to all adults; Ladies Dance is a ladies-only batch for a comfortable group environment; Kids Dance is a kids-only batch with age-appropriate choreography supporting confidence, coordination, rhythm and stage presence (age groups 3–8 and 8–12 years). Wedding choreography is listed separately. Branch and timing availability is confirmed when you enquire.",
+      "Dance at Ankit’s Studio is for learning choreography and movement — fun, energetic studio dance classes in a relaxed, non-judgmental room. Adult Dance is open to all adults; styles (including Bollywood and other choreography focuses) and batch times are confirmed when you enquire. Ladies Dance is a ladies-only batch option; Kids Dance is a kids-only batch with age-appropriate choreography supporting confidence, coordination, rhythm and stage presence (age groups 3–8 and 8–12 years). This is not Zumba dance fitness — for workout-led sessions, see Zumba. Wedding and sangeet choreography is listed separately. Branch and timing availability is confirmed when you enquire.",
     audienceTags: ["adults", "group-class", "kids", "women"],
     branchSlugs: [...ALL_BRANCHES],
     heroAccent: "high-energy",
     whoItsFor:
-      "Adults who want energetic choreography-focused dance; women interested in ladies-only batches; families asking about kids-only Dance batches.",
+      "Adults looking for dance classes or adult dance with a choreography focus — including Bollywood-style movement where offered; women interested in ladies-only batches; families asking about kids-only Dance batches.",
     classStructure:
-      "Choreography-focused studio sessions, typically about one hour. Styles and batch times are confirmed on WhatsApp.",
+      "Choreography-focused studio dance classes, typically about one hour. Styles and batch times are confirmed on WhatsApp.",
     benefits: [
-      "Fun, energetic choreography-focused sessions",
+      "Adult dance classes with a choreography focus",
+      "Bollywood and other styles confirmed per batch",
+      "Fun, energetic movement learning",
       "Relaxed, non-judgmental environment",
       "Adult Dance for all adults",
       "Ladies-only Dance batches available",
       "Kids-only Dance batches (3–8 and 8–12 years)",
       "Confidence, coordination and rhythm",
+      "Distinct from Zumba dance-fitness classes",
       "Wedding choreography is a separate service",
     ],
     difficulty: "all-levels",
@@ -257,9 +271,9 @@ export const mockProgrammes: Programme[] = [
     pricingStatus: PENDING_PRICING,
     batchScheduleStatus: PENDING_BATCHES,
     mediaSlotKey: "service.dance",
-    seoTitle: "Dance",
+    seoTitle: "Dance Classes — Adult, Ladies & Kids Batches",
     seoDescription:
-      "Dance classes at Ankit’s Studio. Kids-only (3–8 and 8–12) and ladies-only Dance batches available to ask about. Free trial on WhatsApp.",
+      "Adult dance classes and choreography at Ankit’s Studio in Airoli, Ghansoli and Thane. Bollywood-style sessions where available; kids-only and ladies-only Dance batches on request. Free trial on WhatsApp.",
     relatedProgrammeSlugs: ["zumba", "wedding-choreography", "yoga"],
     ladiesOnlyBatchesAvailable: true,
     kidsOnlyBatchesAvailable: true,
@@ -275,6 +289,12 @@ export const mockProgrammes: Programme[] = [
         question: "Do you offer ladies-only dance batches?",
         answer:
           "Yes. Ladies Dance is a ladies-only Dance batch, not a separate general programme. Ask when you enquire.",
+      },
+      {
+        id: "dance-vs-zumba",
+        question: "How is Dance different from Zumba?",
+        answer:
+          "Dance is about learning choreography and movement styles. Zumba is dance-based fitness and cardio. Choose Dance to learn routines; choose Zumba for a group workout.",
       },
     ],
   },
@@ -332,20 +352,25 @@ export const mockProgrammes: Programme[] = [
     dataStatus: "verified",
     slug: "wedding-choreography",
     name: "Wedding Choreography",
-    shortDescription: "Wedding choreography planned around your event, songs and comfort level.",
+    shortDescription:
+      "Wedding and sangeet choreography planned around your event, songs and comfort level.",
     longDescription:
-      "Wedding Choreography at Ankit’s Studio starts by understanding your event, participants, song preferences, dance experience and performance needs. Coaches plan suitable songs and easy-to-learn choreography with planned practice sessions for couple, family or group performances — adapted to participant comfort so the goal is a confident, coordinated, enjoyable performance. Pricing is arranged per couple; exact amounts are confirmed when you enquire.",
+      "Wedding Choreography at Ankit’s Studio covers wedding dance choreography and sangeet routines for couples, families and groups. We start by understanding your event, participants, song preferences, dance experience and performance needs. Coaches plan suitable songs and easy-to-learn choreography with planned practice sessions — adapted to participant comfort so the goal is a confident, coordinated, enjoyable performance. Pricing is arranged per couple; exact amounts are confirmed when you enquire on WhatsApp. This is a custom service, not a fixed public batch timetable.",
     audienceTags: ["adults", "event"],
     branchSlugs: [...ALL_BRANCHES],
     heroAccent: "high-energy",
-    whoItsFor: "Individuals or groups preparing wedding dance routines.",
-    classStructure: "Custom choreography arranged with the studio after enquiry.",
+    whoItsFor:
+      "Couples, families and groups looking for a wedding choreographer or sangeet choreography for wedding dance performances.",
+    classStructure:
+      "Custom wedding and sangeet choreography arranged after WhatsApp enquiry — practice sessions planned around your event, not published as open studio batches.",
     benefits: [
+      "Wedding dance and sangeet choreography",
       "Understands your event, participants and song preferences",
-      "Easy-to-learn choreography with planned practice sessions",
+      "Easy-to-learn routines with planned practice sessions",
       "Couple, family and group performances",
       "Adapted to participant comfort and experience",
       "Priced per couple — ask for current details",
+      "Start with a WhatsApp enquiry — no fixed public timetable",
     ],
     difficulty: "all-levels",
     requiredEquipment: [],
@@ -356,9 +381,9 @@ export const mockProgrammes: Programme[] = [
     pricingStatus: PENDING_PRICING,
     batchScheduleStatus: PENDING_BATCHES,
     mediaSlotKey: "service.wedding-choreography",
-    seoTitle: "Wedding Choreography",
+    seoTitle: "Wedding & Sangeet Choreography",
     seoDescription:
-      "Wedding choreography at Ankit’s Studio. Per-couple pricing — enquire on WhatsApp for current details.",
+      "Wedding choreography and sangeet dance routines with Ankit’s Studio across Navi Mumbai and Thane. Per-couple pricing — enquire on WhatsApp.",
     relatedProgrammeSlugs: ["adult-dance", "zumba"],
     faqEntries: [
       {
@@ -366,6 +391,18 @@ export const mockProgrammes: Programme[] = [
         question: "How is wedding choreography priced?",
         answer:
           "Pricing is per couple. Exact amounts and packages are confirmed when you enquire. Registration after joining is ₹300 one-time per person where membership applies.",
+      },
+      {
+        id: "wedding-start",
+        question: "How do I start a wedding or sangeet enquiry?",
+        answer:
+          "Message us on WhatsApp with your event date, number of participants and any song preferences. The studio confirms suitability, practice planning and pricing after that conversation.",
+      },
+      {
+        id: "wedding-sangeet",
+        question: "Do you cover sangeet choreography as well as wedding dances?",
+        answer:
+          "Yes. Wedding Choreography includes wedding dance and sangeet-style routines for couples, families and groups — planned around your event needs.",
       },
     ],
   },
@@ -464,21 +501,22 @@ export const mockProgrammes: Programme[] = [
     slug: "corporate-wellness",
     name: "Corporate Wellness",
     shortDescription:
-      "Customised employee fitness and wellness programmes — at your workplace or online.",
+      "Corporate fitness for teams — employee yoga, Zumba and movement sessions at your workplace or online.",
     longDescription:
-      "Corporate Wellness at Ankit’s Studio helps companies invest in employee health through customised fitness and wellness programmes. Sessions can include yoga, Zumba, functional fitness, mobility, mindfulness and team-wellness activities — delivered at your workplace or online. Programmes can support employee engagement, corporate events and wellness initiatives, with coordination alongside HR, admin and facility teams. Plans depend on team size, objectives, duration, location and schedule; pricing is supplied on enquiry.",
+      "Corporate Wellness at Ankit’s Studio is a B2B fitness service for companies investing in employee fitness — not medical screenings or diagnostic health camps. Customised programmes can include corporate yoga, corporate Zumba, functional fitness, mobility, mindfulness and team movement sessions, delivered at your workplace or online. Programmes can support employee engagement, corporate events and workplace wellness activities, with coordination alongside HR, admin and facility teams. Plans depend on team size, objectives, duration, location and schedule; pricing is supplied on enquiry.",
     audienceTags: ["corporate", "workplace", "wellness"],
     branchSlugs: [...ALL_BRANCHES],
     heroAccent: "calm",
     whoItsFor:
-      "Companies and HR teams looking for structured employee fitness and wellness sessions — on-site or online.",
+      "Companies and HR teams looking for corporate fitness, employee fitness sessions or workplace movement programmes — on-site or online.",
     classStructure:
-      "Programme scope, format and schedule are planned after enquiry with your HR or admin contact.",
+      "Programme scope, format and schedule are planned after enquiry with your HR or admin contact — this is a service enquiry, not a consumer free-trial class.",
     benefits: [
-      "Customised employee fitness and wellness programmes",
+      "Corporate fitness and employee movement sessions",
       "Workplace or online delivery",
-      "Yoga, Zumba, functional fitness and mobility",
-      "Mindfulness and team-wellness activities",
+      "Corporate yoga and corporate Zumba options",
+      "Functional fitness and mobility for teams",
+      "Mindfulness and team movement sessions",
       "Employee-engagement and corporate event support",
       "Coordination with HR, admin and facility teams",
       "Plans tailored to team size, goals and schedule",
@@ -493,9 +531,9 @@ export const mockProgrammes: Programme[] = [
     pricingStatus: PENDING_PRICING,
     batchScheduleStatus: PENDING_BATCHES,
     mediaSlotKey: "service.corporate-wellness",
-    seoTitle: "Corporate Wellness",
+    seoTitle: "Corporate Fitness & Employee Wellness Sessions",
     seoDescription:
-      "Corporate wellness programmes for employee fitness — yoga, Zumba, functional training and team activities at your workplace or online. Enquire on WhatsApp.",
+      "Corporate fitness for teams — yoga, Zumba, functional training and workplace movement sessions with Ankit’s Studio, on-site or online. B2B enquiry on WhatsApp.",
     relatedProgrammeSlugs: ["functional-training", "yoga", "zumba", "online-training"],
     faqEntries: [
       {
@@ -514,7 +552,7 @@ export const mockProgrammes: Programme[] = [
         id: "corporate-content",
         question: "What can programmes include?",
         answer:
-          "Programmes may include yoga, Zumba, functional fitness, mobility, mindfulness and team-wellness activities — planned around your objectives.",
+          "Programmes may include corporate yoga, Zumba, functional fitness, mobility, mindfulness and team movement sessions — planned around your objectives. This is fitness programming, not medical screening or diagnostic camps.",
       },
     ],
   },
