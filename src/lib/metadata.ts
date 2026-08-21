@@ -48,6 +48,13 @@ export function buildRobotsMeta(): NonNullable<Metadata["robots"]> {
   return {
     index: true,
     follow: true,
+    googleBot: {
+      index: true,
+      follow: true,
+      "max-image-preview": "large",
+      "max-snippet": -1,
+      "max-video-preview": -1,
+    },
   };
 }
 
@@ -64,12 +71,18 @@ export const baseMetadata: Metadata = {
     template: siteConfig.titleTemplate,
   },
   description: siteConfig.description,
+  /**
+   * Google Search favicon: declare a clear ≥48px square first.
+   * Avoid leading with 16/32 (undersized for SERP) or the oversized
+   * transparent symbol (no sizes attr — ambiguous candidate).
+   * `public/favicon.ico` (48px PNG-in-ICO) covers crawlers that hit /favicon.ico.
+   */
   icons: {
     icon: [
-      { url: "/brand/favicon-32.png", sizes: "32x32", type: "image/png" },
-      { url: "/brand/favicon-16.png", sizes: "16x16", type: "image/png" },
       { url: "/brand/favicon-48.png", sizes: "48x48", type: "image/png" },
-      { url: "/brand/ankits-studio-symbol-transparent.png", type: "image/png" },
+      { url: "/brand/favicon-192.png", sizes: "192x192", type: "image/png" },
+      { url: "/brand/favicon-32.png", sizes: "32x32", type: "image/png" },
+      { url: "/favicon.ico", sizes: "48x48", type: "image/x-icon" },
     ],
     apple: [{ url: "/brand/favicon-180.png", sizes: "180x180", type: "image/png" }],
   },

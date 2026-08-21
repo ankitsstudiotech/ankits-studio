@@ -1,4 +1,4 @@
-import { readFileSync } from "node:fs";
+import { readFileSync, statSync } from "node:fs";
 import { join } from "node:path";
 import { describe, expect, it } from "vitest";
 import {
@@ -13,20 +13,27 @@ import { getBusinessIdentity } from "@/content";
 import { buildWhatsAppTrialUrl, getPrimaryConversionHref } from "@/lib/conversion";
 
 const read = (...parts: string[]) => readFileSync(join(process.cwd(), ...parts), "utf8");
+const fileSize = (...parts: string[]) => statSync(join(process.cwd(), ...parts)).size;
 
 describe("Stage 7 — production metadata and brand wiring", () => {
   it("wires brand icons and Studio Pulse theme in root metadata + manifest", () => {
     const meta = read("src", "lib", "metadata.ts");
     expect(meta).toMatch(/applicationName/);
-    expect(meta).toMatch(/favicon-32\.png/);
+    // Google Search: ≥48px square must lead the icon list (not 16/32 first).
+    expect(meta).toMatch(/favicon-48\.png/);
+    expect(meta).toMatch(/favicon-192\.png/);
     expect(meta).toMatch(/favicon-180\.png/);
+    expect(meta).toMatch(/max-image-preview/);
+    expect(meta).toMatch(/\/favicon\.ico/);
     expect(siteConfig.description).toMatch(/four neighbourhood studios/i);
     expect(siteConfig.description).not.toMatch(/localhost/i);
 
     const manifest = read("src", "app", "manifest.ts");
     expect(manifest).toMatch(/#0e0e10/);
     expect(manifest).toMatch(/favicon-192\.png/);
-    expect(manifest).not.toMatch(/\/favicon\.ico/);
+
+    // Stable static favicon for Googlebot /favicon.ico requests.
+    expect(fileSize("public", "favicon.ico")).toBeGreaterThan(100);
   });
 
   it("ships a brand-only Open Graph card without synthetic photography", () => {
