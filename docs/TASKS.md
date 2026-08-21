@@ -218,7 +218,7 @@ until Track H's branch/structured-data code exists.
 
 | Task | Owner | Status | Notes |
 |---|---|---|---|
-| Align `/programs/zumba`, `adult-dance`, `wedding-choreography`, `functional-training`, `corporate-wellness` copy + meta to research (no new routes, no inventing fees/schedules). Touch `src/content/mock/programmes.ts` + light availability copy in ProgrammeDetailView. Then test, commit, deploy ankitsstudio.com. | Cursor | **Done** | Search-intent copy + meta; typecheck/lint/tests/build green. Deploy to ankitsstudio.com follows. |
+| Align `/programs/zumba`, `adult-dance`, `wedding-choreography`, `functional-training`, `corporate-wellness` copy + meta to research (no new routes, no inventing fees/schedules). Touch `src/content/mock/programmes.ts` + light availability copy in ProgrammeDetailView. Then test, commit, deploy ankitsstudio.com. | Cursor | **Done** | `8c32ca1` · Vercel `dpl_BuyDqwMnrevpsUGhQMtEnScYZMHs` READY → https://ankitsstudio.com. Git push blocked (no GitHub credentials on this machine). |
 
 ## Production bug — free-trial conversion band composition + CTA-band recurrence sweep (active)
 
