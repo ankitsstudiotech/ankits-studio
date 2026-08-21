@@ -174,7 +174,7 @@ design-token set, and the Vitest/Playwright/axe-core testing foundation
 
 | Task | Owner | Status | Notes |
 |---|---|---|---|
-| Implement `/guides` hub + 5 Batch 1 guides, Article schema, sitemap, programme Helpful guides links. Website SEO only. ADR-024. | Cursor | In progress | Cross-zone: content + routes + visual. Research: `research/seo-market/site-growth/`. |
+| Implement `/guides` hub + 5 Batch 1 guides, Article schema, sitemap, programme Helpful guides links. Website SEO only. ADR-024. | Cursor | **Done** | `c54c6ca`. `/guides` + 5 guides live after push/deploy. |
 
 ## Prompt 5 — Google Reviews + Corporate Wellness sticky CTA
 
