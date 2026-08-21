@@ -637,6 +637,21 @@ Implementation: `shouldIndexMemberStoriesRoute()` in `src/content/index.ts`.
 
 Schema note (same change): removed unused optional `readinessBodyMockPreview` from `studioTrainersPageSchema` — development notes must not ship in page content types.
 
+## ADR-024: Indexable `/guides` evergreen SEO architecture (separate from `/blog`)
+
+**Decision**: Add an indexable `/guides` hub and verified guide articles for search-intent education that feeds commercial programme pages. Keep `/blog` (Studio Notes) noindex per ADR-023. Guides use `Article` + `BreadcrumbList` JSON-LD with author “Ankit’s Studio Team” → `/about`. No FAQPage / HowTo / Review schema. No programme×location doorway pages. No invented fees, medical claims, or unverified operational numbers in guide copy.
+
+### Implementation notes
+
+- Content type: `Guide` in `src/content/schema/guide.ts`; Batch 1 fixtures in `src/content/mock/guides.ts` with `dataStatus: "verified"` (studio-authored educational content).
+- Routes: `(marketing)/guides` + `(marketing)/guides/[slug]`; sitemap includes `/guides` + verified guide URLs on `https://ankitsstudio.com`.
+- Internal links: guide → programme CTA; programme → compact “Helpful guides” (same primary programme only).
+- CTAs: free-trial WhatsApp for consumer class guides; wedding/Home PT enquiry templates without free-trial wording.
+
+**Why:** Organic growth needs informational/comparison entry points without turning Studio Notes into an SEO blog or inventing business facts.
+
+**Status**: Active.
+
 ## Log format for future entries
 
 ```

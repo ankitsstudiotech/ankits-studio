@@ -7,6 +7,7 @@ import {
 } from "@/components/programs/pulse/ProgrammeDetailView";
 import { LegacyProgrammeNotice } from "@/components/programs/pulse/LegacyProgrammeNotice";
 import {
+  getGuidesForProgramme,
   getProgrammeBySlug,
   getProgrammes,
   getPubliclyListedBranches,
@@ -101,6 +102,11 @@ export default async function ProgrammeDetailPage({ params }: ProgrammePageParam
     .filter((item): item is NonNullable<typeof item> => Boolean(item && isConfirmedProgramme(item)))
     .map((item) => ({ slug: item.slug, name: item.name }));
 
+  const helpfulGuides = getGuidesForProgramme(programme.slug).map((guide) => ({
+    slug: guide.slug,
+    title: guide.title,
+  }));
+
   return (
     <PageWithFooter>
     <main className="flex flex-col">
@@ -128,6 +134,7 @@ export default async function ProgrammeDetailPage({ params }: ProgrammePageParam
         programme={programme}
         locations={locations}
         related={related}
+        helpfulGuides={helpfulGuides}
         whatsappHref={whatsappHref}
         whatsappLabel={whatsappLabel}
       />

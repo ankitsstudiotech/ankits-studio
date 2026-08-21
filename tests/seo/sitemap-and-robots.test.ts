@@ -37,6 +37,8 @@ describe("sitemap/robots mock-mode behavior", () => {
       expect(urls).toContain(buildCanonicalUrl("/programs"));
       expect(urls).toContain(buildCanonicalUrl("/locations"));
       expect(urls).toContain(buildCanonicalUrl("/trial"));
+      expect(urls).toContain(buildCanonicalUrl("/guides"));
+      expect(urls).toContain(buildCanonicalUrl("/guides/zumba-for-beginners"));
       expect(urls).not.toContain(buildCanonicalUrl("/blog"));
       expect(urls).not.toContain(buildCanonicalUrl("/trainers"));
       expect(urls).not.toContain(buildCanonicalUrl("/transformations"));
@@ -123,6 +125,7 @@ describe("buildSitemapEntries once the site is indexable", () => {
       shouldIndexTrainersRoute: () => false,
       shouldIndexMemberStoriesRoute: () => false,
       getBlogPosts: () => [{ slug: "real-post", dataStatus: "verified" }],
+      getGuides: () => [{ slug: "zumba-for-beginners", dataStatus: "verified" }],
     }));
 
     const { buildSitemapEntries } = await import("@/lib/seo/sitemap");
@@ -131,6 +134,8 @@ describe("buildSitemapEntries once the site is indexable", () => {
     const urls = entries.map((entry) => entry.url);
 
     expect(urls).toContain(buildCanonicalUrl("/"));
+    expect(urls).toContain(buildCanonicalUrl("/guides"));
+    expect(urls).toContain(buildCanonicalUrl("/guides/zumba-for-beginners"));
     expect(urls).toContain(buildCanonicalUrl("/programs/yoga"));
     expect(urls).not.toContain(buildCanonicalUrl("/programs/strength-training"));
     expect(urls).toContain(buildCanonicalUrl("/locations/airoli-sector-19"));
@@ -158,6 +163,7 @@ describe("buildSitemapEntries once the site is indexable", () => {
       shouldIndexTrainersRoute: () => true,
       shouldIndexMemberStoriesRoute: () => true,
       getBlogPosts: () => [],
+      getGuides: () => [],
     }));
 
     const { buildSitemapEntries } = await import("@/lib/seo/sitemap");

@@ -164,11 +164,17 @@ design-token set, and the Vitest/Playwright/axe-core testing foundation
 |---|---|---|---|
 | Homepage hero: remove duplicate brand lockup, blend media/content seam, align H1 to Studio Pulse `--text-hero`. No redesign, no Reviews, no new AI media, no other-route refactor. Then production deploy. | Cursor | **Done** | `f3f7d58`. Checkpoint `studio-pulse-before-live-bugfix-01-home-hero` @ `ab0646f`. Production `dpl_Gmpzqmvw19tfKZRABHhcrUQDoxM8` READY → https://ankits-studio.vercel.app |
 
-## Prompt 6 — Final production audit, last fixes, deploy (active)
+## Prompt 6 — Final production audit, launch, deploy (active)
 
 | Task | Owner | Status | Notes |
 |---|---|---|---|
 | Production audit, launch-blocking fixes, clean production build without ALLOW_MOCK_PUBLISH, Vercel Production deploy, live verification. No redesign, no new AI media, no Places scrape. | Cursor | **Done** | Tag `studio-pulse-v1.2.0-owner-final` @ `1ec03db`. Production `dpl_43vfWXFAxxGAAjZK9ghVedmnLXQW` → https://ankits-studio.vercel.app |
+
+## SEO Growth Content Batch 1 — /guides (active)
+
+| Task | Owner | Status | Notes |
+|---|---|---|---|
+| Implement `/guides` hub + 5 Batch 1 guides, Article schema, sitemap, programme Helpful guides links. Website SEO only. ADR-024. | Cursor | In progress | Cross-zone: content + routes + visual. Research: `research/seo-market/site-growth/`. |
 
 ## Prompt 5 — Google Reviews + Corporate Wellness sticky CTA
 

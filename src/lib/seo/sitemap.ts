@@ -1,6 +1,7 @@
 import type { MetadataRoute } from "next";
 import {
   getBlogPosts,
+  getGuides,
   getProgrammes,
   getPubliclyListedBranches,
   getPublishableTrainers,
@@ -20,6 +21,7 @@ const STATIC_ROUTES: readonly string[] = [
   "/trial",
   "/programs",
   "/locations",
+  "/guides",
   "/privacy-policy",
   "/terms",
 ];
@@ -65,5 +67,16 @@ export function buildSitemapEntries(): MetadataRoute.Sitemap {
     .filter((post) => post.dataStatus === "verified")
     .map((post) => ({ url: buildCanonicalUrl(`/blog/${post.slug}`) }));
 
-  return [...staticEntries, ...programmeEntries, ...branchEntries, ...trainerEntries, ...blogEntries];
+  const guideEntries: MetadataRoute.Sitemap = getGuides()
+    .filter((guide) => guide.dataStatus === "verified")
+    .map((guide) => ({ url: buildCanonicalUrl(`/guides/${guide.slug}`) }));
+
+  return [
+    ...staticEntries,
+    ...programmeEntries,
+    ...branchEntries,
+    ...trainerEntries,
+    ...blogEntries,
+    ...guideEntries,
+  ];
 }

@@ -162,6 +162,7 @@ export type ProgrammeDetailViewProps = {
   programme: Programme;
   locations: Array<{ slug: string; name: string; href: string }>;
   related: Array<{ slug: ProgrammeSlug; name: string }>;
+  helpfulGuides?: Array<{ slug: string; title: string }>;
   whatsappHref: string;
   whatsappLabel: string;
 };
@@ -176,6 +177,7 @@ export function ProgrammeDetailView({
   programme,
   locations,
   related,
+  helpfulGuides = [],
   whatsappHref,
   whatsappLabel,
 }: ProgrammeDetailViewProps) {
@@ -214,6 +216,8 @@ export function ProgrammeDetailView({
     !serviceEnquiry && locations.length > 0 && programme.deliveryMode === "in-studio";
   const relatedItems = related.slice(0, 3);
   const showRelated = relatedItems.length > 0;
+  const guideItems = helpfulGuides.slice(0, 4);
+  const showGuides = guideItems.length > 0;
 
   const faqs = (programme.faqEntries ?? [])
     .filter((faq) => !GENERIC_FAQ_IDS.has(faq.id))
@@ -413,12 +417,16 @@ export function ProgrammeDetailView({
         </div>
       </section>
 
-      {showRelated || showStudioLocations ? (
+      {showRelated || showStudioLocations || showGuides ? (
         <section
           className={styles.band}
           data-discovery="related-close"
           aria-labelledby={
-            showRelated ? "programme-related" : "programme-locations"
+            showRelated
+              ? "programme-related"
+              : showGuides
+                ? "programme-guides"
+                : "programme-locations"
           }
         >
           <div
@@ -444,6 +452,32 @@ export function ProgrammeDetailView({
                             {padIndex(index)}
                           </span>
                           <span className={styles.relatedIndexName}>{item.name}</span>
+                          <span className={styles.relatedIndexArrow} aria-hidden="true">
+                            →
+                          </span>
+                        </Link>
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+              </>
+            ) : null}
+            {showGuides ? (
+              <>
+                <SectionReveal>
+                  <h2 id="programme-guides" className={styles.sectionTitle}>
+                    Helpful guides
+                  </h2>
+                </SectionReveal>
+                <div className={styles.relatedFrame}>
+                  <ul className={styles.relatedIndex} data-count={guideItems.length}>
+                    {guideItems.map((item, index) => (
+                      <li key={item.slug}>
+                        <Link href={`/guides/${item.slug}`} className={styles.relatedIndexLink}>
+                          <span className={styles.editorialIndex} aria-hidden="true">
+                            {padIndex(index)}
+                          </span>
+                          <span className={styles.relatedIndexName}>{item.title}</span>
                           <span className={styles.relatedIndexArrow} aria-hidden="true">
                             →
                           </span>

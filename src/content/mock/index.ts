@@ -7,6 +7,7 @@ export * from "./transformations";
 export * from "./testimonials";
 export * from "./member-stories";
 export * from "./blog";
+export * from "./guides";
 export * from "./business-identity";
 export * from "./faqs";
 export * from "./contact-details";

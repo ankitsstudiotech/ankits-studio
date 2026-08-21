@@ -19,6 +19,8 @@ export {
   buildWhatsAppMessage,
   buildWhatsAppProgrammeEnquiryMessage,
   buildWhatsAppProgrammeEnquiryUrl,
+  buildWhatsAppGuideEnquiryMessage,
+  buildWhatsAppGuideEnquiryUrl,
   buildWhatsAppTrialUrl,
   getCentralWhatsAppDigits,
   getPrimaryConversionHref,

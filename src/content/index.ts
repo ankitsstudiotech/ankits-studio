@@ -4,6 +4,7 @@ import type {
   Branch,
   BranchSlug,
   BlogPost,
+  Guide,
   BusinessIdentity,
   ContactDetails,
   Faq,
@@ -68,6 +69,7 @@ const memberStories = mergeByKey(mock.mockMemberStories, verified.verifiedMember
 const transformations = mergeByKey(mock.mockTransformations, verified.verifiedTransformations, bySlug);
 const testimonials = mergeByKey(mock.mockTestimonials, verified.verifiedTestimonials, byId);
 const blogPosts = mergeByKey(mock.mockBlogPosts, verified.verifiedBlogPosts, bySlug);
+const guides = mergeByKey(mock.mockGuides, verified.verifiedGuides, bySlug);
 const businessIdentity = mergeSingular(mock.mockBusinessIdentity, verified.verifiedBusinessIdentity);
 const contactDetails = mergeSingular(mock.mockContactDetails, verified.verifiedContactDetails);
 const studioCommercial = mergeSingular(mock.mockStudioCommercial, verified.verifiedStudioCommercial);
@@ -237,6 +239,32 @@ export function getBlogPosts(): BlogPost[] {
 
 export function getBlogPostBySlug(slug: string): BlogPost | undefined {
   return blogPosts.find((post) => post.slug === slug);
+}
+
+/** All guide records (verified Batch 1 editorial + any future mocks). */
+export function getGuides(): Guide[] {
+  return guides;
+}
+
+/** Indexable / statically generated guides only. */
+export function getPublishedGuides(): Guide[] {
+  return guides.filter((guide) => guide.dataStatus === "verified");
+}
+
+export function getGuideBySlug(slug: string): Guide | undefined {
+  return guides.find((guide) => guide.slug === slug);
+}
+
+export function getPublishedGuideBySlug(slug: string): Guide | undefined {
+  const guide = getGuideBySlug(slug);
+  return guide?.dataStatus === "verified" ? guide : undefined;
+}
+
+/** Helpful guides for a programme detail page — same-cluster, max 4. */
+export function getGuidesForProgramme(programmeSlug: string): Guide[] {
+  return getPublishedGuides()
+    .filter((guide) => guide.primaryProgrammeSlug === programmeSlug)
+    .slice(0, 4);
 }
 
 /**

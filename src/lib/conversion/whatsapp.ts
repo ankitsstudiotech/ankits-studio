@@ -115,6 +115,42 @@ export function buildWhatsAppProgrammeEnquiryUrl(programmeName: string): string 
   return `https://wa.me/${digits}?text=${encodeURIComponent(text)}`;
 }
 
+/** Guide CTAs that must not use free-trial wording (wedding / Home PT). */
+export function buildWhatsAppGuideEnquiryMessage(
+  kind: "wedding-enquiry" | "home-pt-enquiry",
+): string {
+  if (kind === "wedding-enquiry") {
+    return [
+      "Hello Ankit’s Studio,",
+      "I would like to enquire about wedding / sangeet choreography.",
+      "",
+      "Name:",
+      "Event date (if known):",
+      "Preferred area:",
+      "Who will dance (couple / family / group):",
+      "Question:",
+    ].join("\n");
+  }
+  return [
+    "Hello Ankit’s Studio,",
+    "I would like to enquire about Home Personal Training.",
+    "",
+    "Name:",
+    "Locality:",
+    "Preferred time:",
+    "Question:",
+  ].join("\n");
+}
+
+export function buildWhatsAppGuideEnquiryUrl(
+  kind: "wedding-enquiry" | "home-pt-enquiry",
+): string | null {
+  const digits = getCentralWhatsAppDigits();
+  if (!digits) return null;
+  const text = buildWhatsAppGuideEnquiryMessage(kind);
+  return `https://wa.me/${digits}?text=${encodeURIComponent(text)}`;
+}
+
 /** Primary conversion href: WhatsApp when available, else trial form. */
 export function getPrimaryConversionHref(): string {
   return buildWhatsAppTrialUrl() ?? "/trial";

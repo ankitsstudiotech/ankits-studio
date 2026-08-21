@@ -47,6 +47,9 @@ const softContentDomainRecords: readonly ProvenanceLike[] = [
   mockStudioMemberStoriesPage,
 ];
 
+// Guides are launch-soft: verified Batch 1 editorial does not gate indexing;
+// any future mock draft guides must stay out of launch-critical lists.
+
 /**
  * Launch-critical marketing facts — must be verified for an indexable
  * production build without ALLOW_MOCK_PUBLISH.

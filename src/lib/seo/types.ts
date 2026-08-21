@@ -142,7 +142,22 @@ export interface ArticleJsonLd {
   headline: string;
   description: string;
   datePublished: string;
+  dateModified?: string;
   url: string;
+  mainEntityOfPage?: {
+    "@type": "WebPage";
+    "@id": string;
+  };
+  author?: {
+    "@type": "Organization";
+    name: string;
+    url?: string;
+  };
+  publisher?: {
+    "@type": "Organization";
+    "@id": string;
+    name: string;
+  };
 }
 
 export interface FaqQuestionJsonLd {

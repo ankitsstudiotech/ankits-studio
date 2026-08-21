@@ -12,6 +12,7 @@ export * from "./transformation";
 export * from "./testimonial";
 export * from "./google-review-runtime";
 export * from "./blog-post";
+export * from "./guide";
 export * from "./business-identity";
 export * from "./faq";
 export * from "./contact-details";

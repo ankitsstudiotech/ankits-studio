@@ -4,6 +4,7 @@ import {
   isConfirmedProgramme,
   type Branch,
   type BlogPost,
+  type Guide,
   type BusinessIdentity,
   type Faq,
   type Programme,
@@ -306,6 +307,36 @@ export function buildArticleJsonLd(post: BlogPost): ArticleJsonLd | null {
     description: post.excerpt,
     datePublished: post.publishedAt,
     url: buildCanonicalUrl(`/blog/${post.slug}`),
+  };
+}
+
+/** Indexable SEO guides — Article + truthful studio authorship (ADR-024). */
+export function buildGuideArticleJsonLd(guide: Guide): ArticleJsonLd | null {
+  if (guide.dataStatus !== "verified") return null;
+  const origin = siteConfig.url.replace(/\/$/, "");
+  const url = buildCanonicalUrl(`/guides/${guide.slug}`);
+  return {
+    "@context": "https://schema.org",
+    "@type": "Article",
+    headline: guide.title,
+    description: guide.description,
+    datePublished: guide.publishedAt,
+    dateModified: guide.modifiedAt,
+    url,
+    mainEntityOfPage: {
+      "@type": "WebPage",
+      "@id": url,
+    },
+    author: {
+      "@type": "Organization",
+      name: "Ankit's Studio Team",
+      url: buildCanonicalUrl("/about"),
+    },
+    publisher: {
+      "@type": "Organization",
+      "@id": organizationId(origin),
+      name: siteConfig.name,
+    },
   };
 }
 

@@ -1,6 +1,7 @@
 import type {
   Branch,
   BlogPost,
+  Guide,
   BusinessIdentity,
   ContactDetails,
   Faq,
@@ -30,6 +31,8 @@ export const verifiedTransformations: Transformation[] = [];
 export const verifiedMemberStories: MemberStory[] = [];
 export const verifiedTestimonials: Testimonial[] = [];
 export const verifiedBlogPosts: BlogPost[] = [];
+/** Guides ship as verified editorial in mock/guides.ts (ADR-024); no override layer yet. */
+export const verifiedGuides: Guide[] = [];
 
 /** Singular records: `null` means "no verified override yet, fall back to mock." */
 export const verifiedBusinessIdentity: BusinessIdentity | null = null;
