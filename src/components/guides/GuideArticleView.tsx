@@ -96,63 +96,71 @@ export function GuideArticleView({
   return (
     <>
       <section className={styles.band} aria-labelledby="guide-title">
-        <div className={styles.openMeasure}>
-          <p className={styles.kicker}>{guide.clusterLabel}</p>
-          <h1 id="guide-title" className={styles.title}>
-            {guide.h1}
-          </h1>
-          <p className={styles.lede}>{guide.excerpt}</p>
+        <div className={styles.shell}>
+          <div className={styles.openMeasure}>
+            <p className={styles.kicker}>{guide.clusterLabel}</p>
+            <h1 id="guide-title" className={styles.title}>
+              {guide.h1}
+            </h1>
+            <p className={styles.lede}>{guide.excerpt}</p>
+          </div>
         </div>
       </section>
 
       <section className={styles.band} aria-label="Guide">
-        <SectionReveal>
-          <GuideBlocks blocks={guide.blocks} />
-        </SectionReveal>
+        <div className={styles.shell}>
+          <SectionReveal>
+            <GuideBlocks blocks={guide.blocks} />
+          </SectionReveal>
+        </div>
       </section>
 
       <section className={styles.band} aria-labelledby="guide-next">
-        <SectionReveal>
-          <h2 id="guide-next" className={styles.sectionTitle}>
-            Next step
-          </h2>
-          <p className={styles.body}>
-            Explore{" "}
-            <Link href={programmeHref}>{programmeName}</Link> at Ankit’s Studio, or message us
-            directly.
-          </p>
-          <div className={styles.ctaRow}>
-            <a className={styles.ctaPrimary} href={ctaHref}>
-              {guide.ctaLabel}
-            </a>
-            <Link className={styles.ctaSecondary} href={programmeHref}>
-              View {programmeName}
-            </Link>
-          </div>
-          <p className={styles.author}>
-            Written by{" "}
-            <Link href="/about">Ankit’s Studio Team</Link>
-          </p>
-        </SectionReveal>
+        <div className={styles.shell}>
+          <SectionReveal>
+            <h2 id="guide-next" className={styles.sectionTitle}>
+              Next step
+            </h2>
+            <p className={styles.body}>
+              Explore{" "}
+              <Link href={programmeHref}>{programmeName}</Link> at Ankit’s Studio, or message us
+              directly.
+            </p>
+            <div className={styles.ctaRow}>
+              <a className={styles.ctaPrimary} href={ctaHref}>
+                {guide.ctaLabel}
+              </a>
+              <Link className={styles.ctaSecondary} href={programmeHref}>
+                View {programmeName}
+              </Link>
+            </div>
+            <p className={styles.author}>
+              Written by{" "}
+              <Link href="/about">Ankit’s Studio Team</Link>
+            </p>
+          </SectionReveal>
+        </div>
       </section>
 
       {related.length > 0 ? (
         <section className={styles.band} aria-labelledby="guide-related">
-          <SectionReveal>
-            <h2 id="guide-related" className={styles.sectionTitle}>
-              Related guides
-            </h2>
-            <ul className={styles.linkList}>
-              {related.map((item) => (
-                <li key={item.slug}>
-                  <Link href={`/guides/${item.slug}`}>
-                    <span className={styles.linkTitle}>{item.title}</span>
-                    <span className={styles.linkMeta}>{item.excerpt}</span>
-                  </Link>
-                </li>
-              ))}
-            </ul>
-          </SectionReveal>
+          <div className={styles.shell}>
+            <SectionReveal>
+              <h2 id="guide-related" className={styles.sectionTitle}>
+                Related guides
+              </h2>
+              <ul className={styles.linkList}>
+                {related.map((item) => (
+                  <li key={item.slug}>
+                    <Link href={`/guides/${item.slug}`}>
+                      <span className={styles.linkTitle}>{item.title}</span>
+                      <span className={styles.linkMeta}>{item.excerpt}</span>
+                    </Link>
+                  </li>
+                ))}
+              </ul>
+            </SectionReveal>
+          </div>
         </section>
       ) : null}
     </>
