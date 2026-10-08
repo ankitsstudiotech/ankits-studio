@@ -47,6 +47,7 @@ Full audit: [business/OWNER-DATA-MIGRATION-2026-08-01.md](./business/OWNER-DATA-
 | FAQs | MOCK | Still placeholder Q&A. |
 | Primary/footer navigation structure | VERIFIED | IA structure. Primary CTA href overridden to WhatsApp at chrome layer when contact verified. |
 | Conversion preference order | VERIFIED | WhatsApp → phone → trial-form → email. |
+| Garba Night 2026 (seasonal event) | VERIFIED | Owner/operator brief 2026-10-07: date/time, VIBGYOR High Airoli address, ₹599/₹699, 500 registrations, WhatsApp +91 93724 02074, attractions list. Not a programme. Payment gateway PARKED. |
 
 ## Owner-confirmed branch addresses (source of truth: content records)
 

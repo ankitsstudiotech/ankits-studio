@@ -91,6 +91,12 @@ design-token set, and the Vitest/Playwright/axe-core testing foundation
 |---|---|---|---|
 | Resolve `docs/audits/CLAUDE-TECHNICAL-SEO-AUDIT.md` + `docs/audits/CURSOR-VISUAL-BROWSER-AUDIT.md` findings, priority-ordered (critical correctness → mock-data risk → SEO → a11y → responsive → forms → performance → visual polish → optional) | Claude | Done | `fix: resolve production readiness audit findings` — full triage and per-finding resolution in `docs/DECISIONS.md` ADR-013 and both audit docs' new "Resolution status" sections; summary in `docs/HANDOFF.md`. |
 
+## Garba Night 2026 — seasonal event (active)
+
+| Task | Owner | Status | Notes |
+|---|---|---|---|
+| Cross-zone: `/events/garba-night-2026`, booking abstraction, homepage + Dance/Airoli promos, Event JSON-LD, sitemap, media optimize pipeline, tests. Payment gateway PARKED. | Cursor | In progress | Checkpoint tag `studio-pulse-before-garba-night-2026` @ `c219ec0`. Branch `feat/garba-night-2026`. ADR-025. Awaiting owner poster + two source videos in `public/media/events/garba-night-2026/source/`. |
+
 ## Prompt 1 — Visual system repair (active)
 
 | Task | Owner | Status | Notes |

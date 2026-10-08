@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { ProgrammeViewTracker } from "@/components/analytics/AnalyticsPageTracker";
+import { GarbaInternalPromo } from "@/components/events";
 import { PageBreadcrumb } from "@/components/layout/PageBreadcrumb";
 import { PageWithFooter } from "@/components/layout/PageWithFooter";
 import {
@@ -129,6 +130,12 @@ export default async function ProgrammeDetailPage({ params }: ProgrammePageParam
       <div className="pulse-crumb-bar">
         <PageBreadcrumb items={breadcrumbTrail} />
       </div>
+
+      {programme.slug === "adult-dance" ? (
+        <div className="pulse-wrap" style={{ width: "min(100% - 2.5rem, 72rem)", marginInline: "auto" }}>
+          <GarbaInternalPromo context="dance" />
+        </div>
+      ) : null}
 
       <ProgrammeDetailView
         programme={programme}

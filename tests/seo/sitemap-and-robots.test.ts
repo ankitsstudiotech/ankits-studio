@@ -126,6 +126,9 @@ describe("buildSitemapEntries once the site is indexable", () => {
       shouldIndexMemberStoriesRoute: () => false,
       getBlogPosts: () => [{ slug: "real-post", dataStatus: "verified" }],
       getGuides: () => [{ slug: "zumba-for-beginners", dataStatus: "verified" }],
+      getSeasonalEvents: () => [
+        { slug: "garba-night-2026", path: "/events/garba-night-2026", dataStatus: "verified" },
+      ],
     }));
 
     const { buildSitemapEntries } = await import("@/lib/seo/sitemap");
@@ -136,6 +139,7 @@ describe("buildSitemapEntries once the site is indexable", () => {
     expect(urls).toContain(buildCanonicalUrl("/"));
     expect(urls).toContain(buildCanonicalUrl("/guides"));
     expect(urls).toContain(buildCanonicalUrl("/guides/zumba-for-beginners"));
+    expect(urls).toContain(buildCanonicalUrl("/events/garba-night-2026"));
     expect(urls).toContain(buildCanonicalUrl("/programs/yoga"));
     expect(urls).not.toContain(buildCanonicalUrl("/programs/strength-training"));
     expect(urls).toContain(buildCanonicalUrl("/locations/airoli-sector-19"));
@@ -164,6 +168,7 @@ describe("buildSitemapEntries once the site is indexable", () => {
       shouldIndexMemberStoriesRoute: () => true,
       getBlogPosts: () => [],
       getGuides: () => [],
+      getSeasonalEvents: () => [],
     }));
 
     const { buildSitemapEntries } = await import("@/lib/seo/sitemap");

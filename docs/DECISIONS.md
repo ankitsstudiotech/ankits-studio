@@ -652,6 +652,23 @@ Schema note (same change): removed unused optional `readinessBodyMockPreview` fr
 
 **Status**: Active.
 
+## ADR-025: Garba Night 2026 seasonal event page (WhatsApp booking, payment-ready seam)
+
+**Decision**: Ship a dedicated indexable seasonal event route at `/events/garba-night-2026` for Ankit's Studio Garba Night — 5th Edition (17 Oct 2026, VIBGYOR High School, Airoli). This is an **event**, not a ninth permanent programme. Primary booking is WhatsApp reservation via a small `bookingMode` abstraction (`whatsapp` today; `payment` later) so hero/pricing/closing CTAs can switch without redesign. Do **not** implement a payment gateway, fake checkout, or invent online purchase availability. Event facts are owner-confirmed (operator brief 2026-10-07). Preserve the URL after the event as an archive asset (`lifecycle: "upcoming" | "concluded"`).
+
+### Implementation notes
+
+- Content: `src/content/events/garba-night-2026.ts` (+ accessors). Not launch-critical for ADR-002 mock gate.
+- Booking: `src/lib/events/booking.ts` + `<EventBookingCTA source=… />`. Future payment: set `bookingMode: "payment"` + `paymentCheckoutUrl`; analytics names `garba_checkout_started` / `garba_payment_success` are documented but not fired.
+- SEO: unique metadata, route `opengraph-image`, Event JSON-LD with Member ₹599 / Guest ₹699 offers pointing at the event page URL (not checkout), sitemap entry.
+- Media: owner poster + optimized promo teaser + previous-edition (Garba Night 4.0) footage under `public/media/events/garba-night-2026/`; optimize via `scripts/optimize-garba-media.mjs`. Previous footage must never be labelled as 2026.
+- Promotion: homepage seasonal module + contextual links from Dance + Airoli Sector 8/19 only.
+- Accents: scoped gold/burgundy CSS variables on the event module only — do not mutate global brand tokens.
+
+**Why:** Capitalize on existing Garba search interest with an honest event page, convert via WhatsApp now, and leave a clean seam for the owner's in-progress payment gateway without blocking this release.
+
+**Status**: Active.
+
 ## Log format for future entries
 
 ```

@@ -223,6 +223,30 @@ interface BlogPost extends DataProvenance {
 }
 ```
 
+### SeasonalEvent (Garba Night 2026 — ADR-025)
+
+Not a programme. Lives under `src/content/events/`. Booking is abstracted
+(`bookingMode: "whatsapp" | "payment"`) so the page CTAs can switch without
+redesign. Payment fields stay null until the owner confirms a gateway.
+
+```ts
+interface SeasonalEvent extends DataProvenance {
+  slug: string;
+  path: string;
+  lifecycle: "upcoming" | "concluded";
+  bookingMode: "whatsapp" | "payment";
+  paymentCheckoutUrl: string | null;
+  name: string;
+  startDateIso: string;
+  endDateIso: string;
+  venueName: string;
+  memberPriceInr: number;
+  guestPriceInr: number;
+  whatsappDigits: string;
+  // …venue address, highlights, FAQs, media paths — see garba-night-2026.ts
+}
+```
+
 ## Mock data location (planned)
 
 Mock content lives under `src/content/mock/<domain>/*.ts`, one exported const array

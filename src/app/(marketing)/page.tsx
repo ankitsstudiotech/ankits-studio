@@ -1,3 +1,4 @@
+import { GarbaHomePromo } from "@/components/events";
 import {
   BranchExplorer,
   FaqSection,
@@ -199,6 +200,8 @@ export default async function HomePage() {
         primaryCta={{ label: trialLabel, href: trialHref }}
         secondaryCta={{ label: "Find Your Nearest Studio", href: "/#locations" }}
       />
+
+      <GarbaHomePromo />
 
       <ProgrammeShowcase clusters={HOMEPAGE_CLUSTERS} />
 

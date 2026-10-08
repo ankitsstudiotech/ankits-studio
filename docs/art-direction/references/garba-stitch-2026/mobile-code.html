@@ -1,0 +1,433 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Airoli Sector 8 - Concept A Mobile</title>
+<!-- Material Symbols -->
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<!-- Google Fonts: Bebas Neue & Space Grotesk -->
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&amp;family=Space+Grotesk:wght@400;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<!-- Tailwind CSS -->
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<!-- Theme Configuration -->
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "on-secondary-container": "#b8b9b4",
+                        "error-container": "#93000a",
+                        "on-secondary-fixed": "#1a1c19",
+                        "primary-fixed-dim": "#f3aeff",
+                        "surface-container-highest": "#353534",
+                        "on-primary-fixed": "#340042",
+                        "surface-container": "#201f1f",
+                        "inverse-surface": "#e5e2e1",
+                        "on-error": "#690005",
+                        "on-surface-variant": "#d1c2cf",
+                        "surface-container-low": "#1c1b1b",
+                        "inverse-on-surface": "#313030",
+                        "tertiary-fixed-dim": "#c8c6c5",
+                        "surface-variant": "#353534",
+                        "secondary-fixed": "#e3e3de",
+                        "on-primary-fixed-variant": "#692d78",
+                        "on-primary-container": "#e59ef2",
+                        "on-secondary": "#2f312e",
+                        "on-primary": "#501360",
+                        "surface": "#131313",
+                        "tertiary-container": "#494848",
+                        "on-secondary-fixed-variant": "#454744",
+                        "on-tertiary-fixed": "#1b1c1c",
+                        "background": "#131313",
+                        "primary-fixed": "#fcd6ff",
+                        "secondary-fixed-dim": "#c6c7c2",
+                        "on-surface": "#e5e2e1",
+                        "outline": "#9a8d99",
+                        "on-error-container": "#ffdad6",
+                        "primary": "#f3aeff",
+                        "on-background": "#e5e2e1",
+                        "secondary-container": "#484a46",
+                        "tertiary": "#c8c6c5",
+                        "secondary": "#c6c7c2",
+                        "surface-bright": "#3a3939",
+                        "primary-container": "#6b2f7a",
+                        "surface-dim": "#131313",
+                        "error": "#ffb4ab",
+                        "on-tertiary": "#303030",
+                        "surface-container-lowest": "#0e0e0e",
+                        "tertiary-fixed": "#e4e2e1",
+                        "surface-tint": "#f3aeff",
+                        "surface-container-high": "#2a2a2a",
+                        "inverse-primary": "#834692",
+                        "on-tertiary-container": "#b9b7b6",
+                        "on-tertiary-fixed-variant": "#474746",
+                        "outline-variant": "#4e434e"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "full": "9999px"
+                    },
+                    "spacing": {
+                        "section-gap": "120px",
+                        "margin-mobile": "20px",
+                        "margin-desktop": "64px",
+                        "gutter": "24px",
+                        "unit": "4px"
+                    },
+                    "fontFamily": {
+                        "body-lg": ["Space Grotesk"],
+                        "headline-lg": ["Bebas Neue"],
+                        "display-xl": ["Bebas Neue"],
+                        "headline-md": ["Bebas Neue"],
+                        "headline-lg-mobile": ["Bebas Neue"],
+                        "body-md": ["Space Grotesk"],
+                        "label-caps": ["Space Grotesk"],
+                        "display-lg": ["Bebas Neue"]
+                    },
+                    "fontSize": {
+                        "body-lg": ["18px", {"lineHeight": "28px", "fontWeight": "400"}],
+                        "headline-lg": ["48px", {"lineHeight": "44px", "fontWeight": "400"}],
+                        "display-xl": ["120px", {"lineHeight": "100px", "fontWeight": "400"}],
+                        "headline-md": ["24px", {"lineHeight": "24px", "fontWeight": "400"}],
+                        "headline-lg-mobile": ["32px", {"lineHeight": "30px", "fontWeight": "400"}],
+                        "body-md": ["16px", {"lineHeight": "24px", "fontWeight": "400"}],
+                        "label-caps": ["12px", {"lineHeight": "16px", "letterSpacing": "0.1em", "fontWeight": "600"}],
+                        "display-lg": ["80px", {"lineHeight": "72px", "fontWeight": "400"}]
+                    }
+                }
+            }
+        }
+    </script>
+<style>
+        /* Kinetic specific resets for buttons */
+        .btn-kinetic {
+            position: relative;
+            overflow: hidden;
+            transition: all 0s; /* Immediate inversion per guidelines */
+        }
+        .btn-kinetic:hover {
+            filter: invert(1);
+        }
+        /* Rotated text helper */
+        .rotate-text-90 {
+            writing-mode: vertical-rl;
+            transform: rotate(180deg);
+        }
+    </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+<meta content="web_standard" name="shell-type"/></head>
+<body class="bg-background text-on-background font-body-md antialiased overflow-x-hidden selection:bg-primary-container selection:text-on-primary-container">
+<!-- TopNavBar Shared Component -->
+<nav class="flex justify-between items-center w-full px-margin-mobile md:px-margin-desktop py-4 sticky top-0 z-50 bg-background bg-background dark:bg-background border-b border-outline-variant flat no shadows">
+<a class="font-display-lg text-headline-md tracking-tighter text-on-background dark:text-on-background uppercase" href="#">ANKIT'S STUDIO</a>
+<!-- Desktop Links (Hidden on Mobile) -->
+<div class="hidden md:flex gap-8 items-center">
+<a class="text-on-background font-label-caps hover:text-primary transition-colors uppercase" href="#">Programmes</a>
+<a class="text-primary font-bold border-b-2 border-primary pb-1 uppercase" href="#">Locations</a>
+<a class="text-on-background font-label-caps hover:text-primary transition-colors uppercase" href="#">Story</a>
+</div>
+<button class="bg-primary-container text-on-primary-container font-label-caps text-label-caps px-6 py-3 rounded-none uppercase btn-kinetic tracking-widest">
+            Free Trial
+        </button>
+</nav>
+<main class="w-full max-w-full"><div class="flex flex-col w-full text-on-background bg-background">
+<!-- 1. MOBILE CAMPAIGN TICKER -->
+<div class="w-full bg-primary-container text-on-primary-container px-margin-mobile py-2.5 overflow-hidden flex items-center justify-between">
+<div class="flex items-center gap-2">
+<span class="w-2 h-2 bg-primary inline-block"></span>
+<p class="font-label-caps text-label-caps tracking-widest uppercase text-on-primary-container">
+        GARBA NIGHT · 17 OCT · VIBGYOR AIROLI · ₹599 / ₹699
+      </p>
+</div>
+<span class="font-label-caps text-label-caps text-primary uppercase">500 MAX</span>
+</div>
+<!-- 2. MOBILE HERO & 2026 TEASER -->
+<section class="w-full px-margin-mobile pt-8 pb-10 flex flex-col gap-6">
+<div class="flex flex-col gap-2">
+<div class="flex items-center gap-2">
+<span class="w-1.5 h-1.5 bg-primary"></span>
+<span class="font-label-caps text-label-caps text-on-surface-variant uppercase tracking-widest">
+          ANKIT'S STUDIO PRESENTS
+        </span>
+</div>
+<h1 class="font-headline-lg-mobile text-headline-lg-mobile text-on-background uppercase tracking-tight">
+        GARBA NIGHT <br/>
+<span class="text-primary">5TH EDITION</span>
+</h1>
+<p class="font-label-caps text-label-caps text-secondary uppercase tracking-widest">
+        SAT 17 OCT · 7 PM TO MIDNIGHT · AIROLI SECTOR 8
+      </p>
+</div>
+<!-- Teaser Media Card (Image 82 placeholder) -->
+<div class="relative w-full aspect-[4/5] bg-surface-container-high overflow-hidden">
+<img alt="Garba Night 5th Edition teaser poster featuring dancers with dandiya sticks in traditional attire" class="w-full h-full object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBFm2KPI8BpgTfmOD5sCn-OF9ylIJ8L8vx8qGBDNZRUwWK8N-eYdvp7HU2YgrIidnHdTU71h9K6FIx7tA2QFpqC9leNPKCKfaW2t3kiBYaNpQavq2pfzkLyeCXsU6pBZAR31XOrtL04o3UyepyQIIZu6SDqfGJNMA1s2T1oUm6Zsnt50Omtf72R-kC4GUwu5eYNvoZbiohDnu6dZ7ff3SIROZtNW1xbS99QhYOLxuk"/>
+<!-- Gradient scrim -->
+<div class="absolute inset-0 bg-gradient-to-t from-surface-container-lowest via-transparent to-transparent opacity-90"></div>
+<!-- Live Stamp & Video Badge -->
+<div class="absolute top-3 left-3 bg-surface-container-lowest text-on-surface px-2.5 py-1 flex items-center gap-2">
+<span class="w-2 h-2 bg-primary inline-block"></span>
+<span class="font-label-caps text-label-caps uppercase text-primary">OFFICIAL TEASER</span>
+</div>
+<div class="absolute bottom-3 left-3 right-3 flex items-center justify-between">
+<button class="bg-surface-container-lowest text-on-surface hover:text-primary px-3 py-2 flex items-center gap-2 btn-kinetic" type="button">
+<span class="material-symbols-outlined text-sm text-primary" style="font-variation-settings: 'FILL' 1;">play_arrow</span>
+<span class="font-label-caps text-label-caps uppercase tracking-wider">TEASER 0:45</span>
+</button>
+<span class="bg-primary-container text-on-primary-container font-label-caps text-label-caps px-2 py-1 uppercase">
+          LIMITED RUN
+        </span>
+</div>
+</div>
+<!-- Key Facts Strip (2x2 Grid) -->
+<div class="grid grid-cols-2 gap-2 w-full">
+<div class="bg-surface-container-low p-4 flex flex-col justify-between min-h-[96px]">
+<span class="font-label-caps text-label-caps text-on-surface-variant uppercase">VENUE</span>
+<p class="font-body-md text-body-md text-on-surface font-semibold leading-tight">
+          VIBGYOR High, Airoli
+        </p>
+</div>
+<div class="bg-surface-container-low p-4 flex flex-col justify-between min-h-[96px]">
+<span class="font-label-caps text-label-caps text-on-surface-variant uppercase">CAPACITY</span>
+<p class="font-body-md text-body-md text-primary font-semibold leading-tight">
+          Capped at 500
+        </p>
+</div>
+<div class="bg-surface-container-low p-4 flex flex-col justify-between min-h-[96px]">
+<span class="font-label-caps text-label-caps text-on-surface-variant uppercase">ENTRY RATES</span>
+<p class="font-body-md text-body-md text-on-surface font-semibold leading-tight">
+          ₹599 <span class="text-on-surface-variant text-xs">MEM</span> / ₹699 <span class="text-on-surface-variant text-xs">GST</span>
+</p>
+</div>
+<div class="bg-surface-container-low p-4 flex flex-col justify-between min-h-[96px]">
+<span class="font-label-caps text-label-caps text-on-surface-variant uppercase">ELIGIBILITY</span>
+<p class="font-body-md text-body-md text-on-surface font-semibold leading-tight">
+          Open To All Ages
+        </p>
+</div>
+</div>
+<!-- Primary Mobile CTA -->
+<a class="w-full bg-primary-container text-on-primary-container py-4 flex items-center justify-center gap-2 btn-kinetic tracking-widest font-label-caps text-label-caps uppercase" href="https://wa.me/?text=Hi%20Ankit's%20Studio,%20I%20want%20to%20book%20passes%20for%20Garba%20Night%205th%20Edition" rel="noopener noreferrer" target="_blank">
+<span>RESERVE ON WHATSAPP</span>
+<span class="material-symbols-outlined text-base">arrow_forward</span>
+</a>
+</section>
+<!-- 3. THE NIGHT (MOBILE ASYMMETRIC STACK) -->
+<section class="w-full px-margin-mobile py-10 bg-surface-container-lowest flex flex-col gap-6">
+<div class="flex flex-col gap-1">
+<div class="flex items-center gap-2">
+<span class="font-label-caps text-label-caps text-primary uppercase tracking-widest">SCHEDULE &amp; EXPERIENCES</span>
+</div>
+<h2 class="font-headline-lg-mobile text-headline-lg-mobile text-on-background uppercase">
+        THE NIGHT PROGRAMME
+      </h2>
+</div>
+<div class="flex flex-col gap-3">
+<!-- 01 // LIVE DJ & PERCUSSION -->
+<div class="bg-surface-container-low p-5 flex flex-col gap-3">
+<div class="flex items-center justify-between">
+<span class="font-headline-md text-headline-md text-primary">01</span>
+<span class="bg-surface-container-high text-on-surface-variant px-2 py-0.5 font-label-caps text-label-caps uppercase">7:00 PM TILL LATE</span>
+</div>
+<h3 class="font-headline-md text-headline-md text-on-surface uppercase tracking-wide">
+          LIVE DJ &amp; FOLK PERCUSSION
+        </h3>
+<p class="font-body-md text-body-md text-on-surface-variant">
+          Heavy bass meets classical Dholak. Curated high-octane 3-step Gujarati rhythm drops crafted specifically for dancers.
+        </p>
+</div>
+<!-- 02 // PRIZES & GIVEAWAYS -->
+<div class="bg-surface-container-low p-5 flex flex-col gap-3">
+<div class="flex items-center justify-between">
+<span class="font-headline-md text-headline-md text-primary">02</span>
+<span class="bg-surface-container-high text-on-surface-variant px-2 py-0.5 font-label-caps text-label-caps uppercase">AWARDS 10:30 PM</span>
+</div>
+<h3 class="font-headline-md text-headline-md text-on-surface uppercase tracking-wide">
+          PRIZES &amp; SPOT REWARDS
+        </h3>
+<p class="font-body-md text-body-md text-on-surface-variant">
+          Recognizing the dedication to movement culture. Evaluated live by guest choreographers.
+        </p>
+<div class="flex flex-wrap gap-2 pt-1">
+<span class="bg-surface-container-high text-on-surface font-label-caps text-label-caps px-2.5 py-1 uppercase">
+            BEST DRESS
+          </span>
+<span class="bg-surface-container-high text-on-surface font-label-caps text-label-caps px-2.5 py-1 uppercase">
+            BEST COUPLE
+          </span>
+<span class="bg-surface-container-high text-on-surface font-label-caps text-label-caps px-2.5 py-1 uppercase">
+            BEST GROUP SYNC
+          </span>
+</div>
+</div>
+<!-- 03 // GARBA STREET -->
+<div class="bg-surface-container-low p-5 flex flex-col gap-3">
+<div class="flex items-center justify-between">
+<span class="font-headline-md text-headline-md text-primary">03</span>
+<span class="bg-surface-container-high text-on-surface-variant px-2 py-0.5 font-label-caps text-label-caps uppercase">ALL NIGHT PROMENADE</span>
+</div>
+<h3 class="font-headline-md text-headline-md text-on-surface uppercase tracking-wide">
+          GARBA STREET FLEA &amp; EATS
+        </h3>
+<p class="font-body-md text-body-md text-on-surface-variant">
+          Authentic Kathiyawadi bites, cold refreshments, and curated local styling pop-ups right inside the arena.
+        </p>
+<div class="flex flex-wrap gap-2 pt-1">
+<span class="bg-surface-container-high text-primary font-label-caps text-label-caps px-2.5 py-1 uppercase">
+            FOOD COUNTERS
+          </span>
+<span class="bg-surface-container-high text-primary font-label-caps text-label-caps px-2.5 py-1 uppercase">
+            ETHNIC FASHION
+          </span>
+<span class="bg-surface-container-high text-primary font-label-caps text-label-caps px-2.5 py-1 uppercase">
+            OXIDISED JEWELLERY
+          </span>
+</div>
+</div>
+<!-- 04 // PHOTO ZONES & REFRESHMENTS -->
+<div class="bg-surface-container-low p-5 flex flex-col gap-3">
+<div class="flex items-center justify-between">
+<span class="font-headline-md text-headline-md text-primary">04</span>
+<span class="bg-surface-container-high text-on-surface-variant px-2 py-0.5 font-label-caps text-label-caps uppercase">INTERACTIVE INSTALLATIONS</span>
+</div>
+<h3 class="font-headline-md text-headline-md text-on-surface uppercase tracking-wide">
+          CINEMATIC PHOTO FRAMES
+        </h3>
+<p class="font-body-md text-body-md text-on-surface-variant">
+          High-contrast editorial photo sets with on-site professional photographers. High-res event stills delivered straight to WhatsApp.
+        </p>
+</div>
+</div>
+</section>
+<!-- 4. PREVIOUS EDITION (CINEMATIC MOBILE SOCIAL PROOF) -->
+<section class="w-full px-margin-mobile py-10 flex flex-col gap-5">
+<div class="flex flex-col gap-1">
+<span class="font-label-caps text-label-caps text-primary uppercase tracking-widest">
+        HISTORICAL PROOF
+      </span>
+<h2 class="font-headline-lg-mobile text-headline-lg-mobile text-on-background uppercase">
+        ARCHIVE // GARBA NIGHT 4.0
+      </h2>
+<p class="font-body-md text-body-md text-on-surface-variant">
+        400+ dancers packed the floor last year. High-voltage energy, uncompromised choreography.
+      </p>
+</div>
+<!-- Video Card (Image 83 placeholder) -->
+<div class="relative w-full aspect-video bg-surface-container-high overflow-hidden">
+<img alt="Audience dancing energetically during Garba Night 4.0 at Ankit's Studio" class="w-full h-full object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBpGELRUZN-z1oo7pn22EQYv1OsNm3J6bKY1pWwatd49ozeps5sVfbszoLginP_bm0fhK5r71N1VQat84mpNbL2P8Yhx7Mox5nqfbNYEdPnuY7-N4lZgFYu7eEadeShC0BYWKte5eM2Z2LBB-JEs49bhe5rMTHtPRgsOSix_UdgN2RUgjJ3kaYygym85VA6e4XDjpt9KrrQeF93mOQrTcXRLoTn5ziaaOiHFlOCjRs"/>
+<!-- Gradient scrim -->
+<div class="absolute inset-0 bg-surface-container-lowest/50 flex flex-col items-center justify-center p-4">
+<button aria-label="Play previous edition recap video" class="w-14 h-14 bg-primary-container text-on-primary-container flex items-center justify-center btn-kinetic mb-2" type="button">
+<span class="material-symbols-outlined text-2xl" style="font-variation-settings: 'FILL' 1;">play_arrow</span>
+</button>
+<span class="font-label-caps text-label-caps text-on-surface uppercase tracking-widest">
+          WATCH RECAP · 02:40 MIN
+        </span>
+</div>
+<div class="absolute bottom-2 left-3">
+<span class="bg-surface-container-lowest text-primary font-label-caps text-label-caps px-2 py-0.5 uppercase">
+          400+ PARTICIPANTS
+        </span>
+</div>
+</div>
+</section>
+<!-- 5. FAST MOBILE BOOKING BAR & STEP GUIDE -->
+<section class="w-full px-margin-mobile py-10 bg-surface-container-low flex flex-col gap-6">
+<div class="flex flex-col gap-2">
+<span class="font-label-caps text-label-caps text-primary uppercase tracking-widest">RESERVATION PIPELINE</span>
+<h2 class="font-headline-lg-mobile text-headline-lg-mobile text-on-background uppercase">
+        HOW TO SECURE PASSES
+      </h2>
+</div>
+<!-- 3-step Guide -->
+<div class="flex flex-col gap-3">
+<div class="flex items-start gap-4 p-3 bg-surface-container">
+<span class="font-headline-md text-headline-md text-primary">01</span>
+<div class="flex flex-col">
+<h4 class="font-label-caps text-label-caps text-on-surface uppercase">CLICK WHATSAPP DESK</h4>
+<p class="font-body-md text-body-md text-on-surface-variant">Connect directly with studio management to pick slot count.</p>
+</div>
+</div>
+<div class="flex items-start gap-4 p-3 bg-surface-container">
+<span class="font-headline-md text-headline-md text-primary">02</span>
+<div class="flex flex-col">
+<h4 class="font-label-caps text-label-caps text-on-surface uppercase">CONFIRM ENTRY DETAILS</h4>
+<p class="font-body-md text-body-md text-on-surface-variant">Send member ID or guest names. UPI payment link shared instantly.</p>
+</div>
+</div>
+<div class="flex items-start gap-4 p-3 bg-surface-container">
+<span class="font-headline-md text-headline-md text-primary">03</span>
+<div class="flex flex-col">
+<h4 class="font-label-caps text-label-caps text-on-surface uppercase">GET QR WRISTBAND PASS</h4>
+<p class="font-body-md text-body-md text-on-surface-variant">Collect physical security band at Sector 8 Studio or at the venue gate.</p>
+</div>
+</div>
+</div>
+<!-- Pass Tier Box -->
+<div class="bg-surface-container p-4 flex flex-col gap-3">
+<div class="flex justify-between items-center">
+<div>
+<p class="font-headline-md text-headline-md text-on-surface">STUDIO MEMBER</p>
+<p class="font-label-caps text-label-caps text-on-surface-variant uppercase">ACTIVE SESSION PASS HOLDERS</p>
+</div>
+<p class="font-headline-md text-headline-md text-primary">₹599</p>
+</div>
+<div class="flex justify-between items-center">
+<div>
+<p class="font-headline-md text-headline-md text-on-surface">GUEST PASS</p>
+<p class="font-label-caps text-label-caps text-on-surface-variant uppercase">NON-MEMBERS &amp; FRIENDS</p>
+</div>
+<p class="font-headline-md text-headline-md text-on-surface">₹699</p>
+</div>
+</div>
+<!-- Primary Conversion Trigger -->
+<a class="w-full bg-primary-container text-on-primary-container py-4 flex items-center justify-center gap-2 btn-kinetic tracking-widest font-label-caps text-label-caps uppercase" href="https://wa.me/?text=Hi%20Ankit's%20Studio,%20I%20want%20to%20reserve%20passes%20for%20Garba%20Night%205th%20Edition" rel="noopener noreferrer" target="_blank">
+<span>RESERVE ON WHATSAPP →</span>
+</a>
+<div class="flex items-center justify-center gap-2">
+<span class="material-symbols-outlined text-sm text-primary">verified</span>
+<p class="font-label-caps text-label-caps text-on-surface-variant uppercase">
+        STRICTLY 500 CAPACITY CAP · NO SPOT WALK-INS
+      </p>
+</div>
+</section>
+</div></main>
+<!-- Footer Shared Component -->
+<footer class="bg-surface-container-lowest dark:bg-surface-container-lowest text-primary dark:text-primary grid grid-cols-1 md:grid-cols-12 gap-gutter w-full px-margin-mobile md:px-margin-desktop py-12 md:py-section-gap border-t border-outline-variant flat no shadows relative overflow-hidden">
+<!-- Watermark Logo -->
+<div class="absolute inset-0 flex items-center justify-center pointer-events-none z-0">
+<span class="font-display-xl text-[120px] md:text-display-lg text-on-surface-variant opacity-10 uppercase whitespace-nowrap tracking-tighter">ANKIT'S STUDIO</span>
+</div>
+<div class="col-span-1 md:col-span-12 flex flex-col md:flex-row justify-between items-start md:items-end relative z-10 gap-12">
+<div class="flex flex-col gap-4 w-full md:w-auto">
+<h4 class="font-label-caps text-label-caps text-on-surface-variant mb-2 uppercase tracking-widest">Locations</h4>
+<ul class="flex flex-col gap-2">
+<li><a class="font-body-md text-body-md text-on-surface-variant hover:text-primary transition-colors" href="#">Airoli Sector 19</a></li>
+<li><a class="font-body-md text-body-md text-primary" href="#">Airoli Sector 8</a></li>
+<li><a class="font-body-md text-body-md text-on-surface-variant hover:text-primary transition-colors" href="#">Ghansoli</a></li>
+<li><a class="font-body-md text-body-md text-on-surface-variant hover:text-primary transition-colors" href="#">Thane</a></li>
+</ul>
+</div>
+<div class="flex flex-col gap-4 w-full md:w-auto">
+<h4 class="font-label-caps text-label-caps text-on-surface-variant mb-2 uppercase tracking-widest">Connect</h4>
+<ul class="flex flex-col gap-2">
+<li><a class="font-body-md text-body-md text-on-surface-variant hover:text-primary transition-colors" href="#">WhatsApp Contact</a></li>
+</ul>
+</div>
+<div class="w-full md:w-auto pt-8 border-t border-surface-variant md:border-none md:pt-0 mt-8 md:mt-0">
+<p class="font-label-caps text-label-caps text-on-surface-variant uppercase tracking-widest">© 2024 ANKIT'S STUDIO. MOVEMENT CULTURE.</p>
+</div>
+</div>
+</footer>
+</body></html>

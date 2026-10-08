@@ -1,0 +1,74 @@
+{
+  "generatedAt": "2026-10-07T19:00:00.000Z",
+  "sources": {
+    "poster": {
+      "path": "media-source/garba-night-2026/garba-night-2026-poster.jpg",
+      "bytes": 377281,
+      "dimensions": "1024x1536"
+    },
+    "teaser": {
+      "path": "media-source/garba-night-2026/garba-night-2026-teaser.mov",
+      "bytes": 27239171,
+      "dimensions": "1080x1920",
+      "fps": 60,
+      "durationSec": 11.67
+    },
+    "previous": {
+      "path": "media-source/garba-night-2026/garba-night-4-highlights.mp4",
+      "bytes": 9620569,
+      "dimensions": "464x832",
+      "fps": 60,
+      "durationSec": 55.48,
+      "orientationNote": "Portrait container with sideways landscape content — requires transpose=2 (90° CCW)",
+      "note": "Garba Night 4.0 — previous edition"
+    }
+  },
+  "outputs": [
+    {
+      "role": "poster",
+      "to": "poster.webp",
+      "bytes": 282552,
+      "codec": "webp",
+      "dimensions": "1024x1536",
+      "loading": "priority LCP candidate on event hero"
+    },
+    {
+      "role": "promo-teaser",
+      "to": "teaser.mp4",
+      "bytes": 1193229,
+      "originalBytes": 27239171,
+      "reduction": "27.2 MB → 1.16 MB",
+      "codec": "h264/mp4",
+      "dimensions": "720x1280",
+      "fps": 30,
+      "audio": "none",
+      "loading": "user-activated inside hero campaign panel; muted + playsInline; poster remains default"
+    },
+    {
+      "role": "promo-teaser-poster",
+      "to": "teaser-poster.webp",
+      "bytes": 32204
+    },
+    {
+      "role": "previous-edition",
+      "to": "previous-edition.mp4",
+      "bytes": 7047677,
+      "originalBytes": 9620569,
+      "reduction": "9.2 MB → 6.7 MB",
+      "codec": "h264/mp4",
+      "dimensions": "832x464",
+      "fps": 30,
+      "audio": "none",
+      "transform": "transpose=2 (90° counter-clockwise)",
+      "orientation": "upright landscape (visually verified)",
+      "loading": "lazy + user-initiated; preload=none",
+      "note": "Not labelled as 2026 footage"
+    },
+    {
+      "role": "previous-edition-poster",
+      "to": "previous-edition-poster.webp",
+      "bytes": 17380,
+      "dimensions": "832x464"
+    }
+  ]
+}

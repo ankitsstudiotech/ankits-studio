@@ -174,3 +174,37 @@ export interface FaqPageJsonLd {
   "@type": "FAQPage";
   mainEntity: FaqQuestionJsonLd[];
 }
+
+/** Seasonal event (Garba Night) — Offer urls point at the public event page, not checkout. */
+export interface EventOfferJsonLd {
+  "@type": "Offer";
+  name: string;
+  price: string;
+  priceCurrency: "INR";
+  url: string;
+  availability: "https://schema.org/InStock" | "https://schema.org/SoldOut";
+}
+
+export interface EventJsonLd {
+  "@context": "https://schema.org";
+  "@type": "Event";
+  name: string;
+  description?: string;
+  startDate: string;
+  endDate: string;
+  eventAttendanceMode: "https://schema.org/OfflineEventAttendanceMode";
+  eventStatus: "https://schema.org/EventScheduled" | "https://schema.org/EventCancelled" | "https://schema.org/EventPostponed";
+  image?: string[];
+  location: {
+    "@type": "Place";
+    name: string;
+    address: PostalAddressJsonLd;
+  };
+  organizer: {
+    "@type": "Organization";
+    name: string;
+    url: string;
+  };
+  offers: EventOfferJsonLd[];
+  url: string;
+}

@@ -168,3 +168,28 @@ export function trackBatchPreference(params: {
 }) {
   trackEvent("batch_preference_select", params);
 }
+
+/* ─── Garba Night 2026 (seasonal event) ─── */
+
+export function trackGarbaWhatsAppReserve(source: string) {
+  trackEvent("garba_whatsapp_reserve_click", { source });
+}
+
+export function trackGarbaDirections(source = "venue") {
+  trackEvent("garba_directions_click", { source });
+}
+
+export function trackGarbaPromoVideoPlay() {
+  trackEvent("garba_promo_video_play");
+}
+
+export function trackGarbaPreviousEventVideoPlay() {
+  trackEvent("garba_previous_event_video_play");
+}
+
+/**
+ * Future payment-gateway events — DO NOT fire until bookingMode is payment
+ * and the owner-confirmed checkout is live:
+ * - garba_checkout_started
+ * - garba_payment_success
+ */

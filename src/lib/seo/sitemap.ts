@@ -5,6 +5,7 @@ import {
   getProgrammes,
   getPubliclyListedBranches,
   getPublishableTrainers,
+  getSeasonalEvents,
   shouldIndexMemberStoriesRoute,
   shouldIndexTrainersRoute,
 } from "@/content";
@@ -71,6 +72,10 @@ export function buildSitemapEntries(): MetadataRoute.Sitemap {
     .filter((guide) => guide.dataStatus === "verified")
     .map((guide) => ({ url: buildCanonicalUrl(`/guides/${guide.slug}`) }));
 
+  const eventEntries: MetadataRoute.Sitemap = getSeasonalEvents()
+    .filter((event) => event.dataStatus === "verified")
+    .map((event) => ({ url: buildCanonicalUrl(event.path) }));
+
   return [
     ...staticEntries,
     ...programmeEntries,
@@ -78,5 +83,6 @@ export function buildSitemapEntries(): MetadataRoute.Sitemap {
     ...trainerEntries,
     ...blogEntries,
     ...guideEntries,
+    ...eventEntries,
   ];
 }

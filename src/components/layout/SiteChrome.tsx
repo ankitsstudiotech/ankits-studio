@@ -1,4 +1,9 @@
-import { getBusinessIdentity, getNavigationItems } from "@/content";
+import { GarbaCampaignRibbon } from "@/components/events/GarbaCampaignRibbon";
+import {
+  getActiveSeasonalPromos,
+  getBusinessIdentity,
+  getNavigationItems,
+} from "@/content";
 import {
   getPrimaryConversionHref,
   getPrimaryConversionLabel,
@@ -27,11 +32,19 @@ function toNavItems(): NavItem[] {
  */
 export function SiteChrome({ children }: { children: React.ReactNode }) {
   const identity = getBusinessIdentity();
+  const [garbaPromo] = getActiveSeasonalPromos();
 
   return (
     <>
       <MotionReady />
       <SiteHeader brandName={identity.displayName} items={toNavItems()} />
+      {garbaPromo ? (
+        <GarbaCampaignRibbon
+          eventPath={garbaPromo.path}
+          memberPriceLabel={garbaPromo.memberPriceLabel}
+          guestPriceLabel={garbaPromo.guestPriceLabel}
+        />
+      ) : null}
       {children}
       <StickyCtaBar hideOnPaths={["/book-a-free-trial"]} />
     </>

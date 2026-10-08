@@ -8,6 +8,7 @@ import {
   type BusinessIdentity,
   type Faq,
   type Programme,
+  type GarbaNight2026,
 } from "@/content";
 import { siteConfig } from "@/lib/metadata";
 import { buildCanonicalUrl } from "./canonical";
@@ -23,6 +24,7 @@ import type {
   BreadcrumbListJsonLd,
   CollectionPageJsonLd,
   CourseJsonLd,
+  EventJsonLd,
   FaqPageJsonLd,
   LocalBusinessJsonLd,
   OrganizationJsonLd,
@@ -357,5 +359,68 @@ export function buildFaqPageJsonLd(faqs: Faq[]): FaqPageJsonLd | null {
       name: faq.question,
       acceptedAnswer: { "@type": "Answer", text: faq.answer },
     })),
+  };
+}
+
+/**
+ * Garba Night Event JSON-LD (ADR-025). Offers describe confirmed prices;
+ * offer URL is the event page (no online checkout while bookingMode is WhatsApp).
+ */
+export function buildGarbaNightEventJsonLd(event: GarbaNight2026): EventJsonLd | null {
+  if (event.dataStatus !== "verified") return null;
+
+  const origin = siteConfig.url.replace(/\/$/, "");
+  const url = buildCanonicalUrl(event.path);
+  const ogPath = event.media.ogImage.startsWith("http")
+    ? event.media.ogImage
+    : `${origin}${event.media.ogImage.startsWith("/") ? event.media.ogImage : `/${event.media.ogImage}`}`;
+  const posterPath = `${origin}${event.media.poster}`;
+
+  return {
+    "@context": "https://schema.org",
+    "@type": "Event",
+    name: event.name,
+    description: event.seoDescription,
+    startDate: event.startDateIso,
+    endDate: event.endDateIso,
+    eventAttendanceMode: "https://schema.org/OfflineEventAttendanceMode",
+    eventStatus: "https://schema.org/EventScheduled",
+    image: [ogPath, posterPath],
+    location: {
+      "@type": "Place",
+      name: event.venueName,
+      address: {
+        "@type": "PostalAddress",
+        streetAddress: event.streetAddress,
+        addressLocality: "Airoli",
+        addressRegion: event.addressRegion,
+        postalCode: event.postalCode,
+        addressCountry: event.addressCountry,
+      },
+    },
+    organizer: {
+      "@type": "Organization",
+      name: siteConfig.name,
+      url: origin,
+    },
+    offers: [
+      {
+        "@type": "Offer",
+        name: "Ankit's Studio Member Pass",
+        price: String(event.memberPriceInr),
+        priceCurrency: "INR",
+        url,
+        availability: "https://schema.org/InStock",
+      },
+      {
+        "@type": "Offer",
+        name: "Guest Pass",
+        price: String(event.guestPriceInr),
+        priceCurrency: "INR",
+        url,
+        availability: "https://schema.org/InStock",
+      },
+    ],
+    url,
   };
 }

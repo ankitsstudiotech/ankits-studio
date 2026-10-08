@@ -394,4 +394,16 @@ export {
   OWNER_MAPS_PLACE_LISTING_HREFS,
   toMapsPlaceListingHref,
 } from "./maps-place-listing";
+export {
+  GARBA_NIGHT_2026,
+  GARBA_WHATSAPP_PREFILL,
+  getActiveSeasonalPromos,
+  getEventBySlug,
+  getGarbaNight2026,
+  getSeasonalEvents,
+  type EventBookingMode,
+  type EventLifecycle,
+  type GarbaMediaAvailability,
+  type GarbaNight2026,
+} from "./events";
 export * from "./schema";
