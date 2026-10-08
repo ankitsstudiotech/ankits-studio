@@ -76,9 +76,6 @@ export function GarbaHomePromo() {
               View event details
             </Link>
           </div>
-          <p className={styles.homeBillboardBookingNote}>
-            Booking handled by Kaizen Events
-          </p>
         </div>
 
         {media.poster ? (

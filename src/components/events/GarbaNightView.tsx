@@ -130,15 +130,10 @@ export function GarbaNightView({ event, media }: GarbaNightViewProps) {
               </ul>
 
               {!concluded ? (
-                <>
-                  <div className={styles.actions}>
-                    <EventBookingCTA source="hero" className={styles.primaryCta} />
-                    <EventDirectionsLink className={styles.secondaryCta} />
-                  </div>
-                  <p className={styles.heroBookingNote}>
-                    Booking handled by Kaizen Events
-                  </p>
-                </>
+                <div className={styles.actions}>
+                  <EventBookingCTA source="hero" className={styles.primaryCta} />
+                  <EventDirectionsLink className={styles.secondaryCta} />
+                </div>
               ) : (
                 <div className={styles.actions}>
                   <EventBookingCTA source="hero" className={styles.primaryCta} />
@@ -341,9 +336,6 @@ export function GarbaNightView({ event, media }: GarbaNightViewProps) {
               {event.secondaryPricingLine}
             </p>
             <EventBookingCTA source="closing-cta" className={styles.closingCta} />
-            <p className={styles.closingBookingNote}>
-              Booking handled by Kaizen Events
-            </p>
           </div>
         </section>
       ) : (

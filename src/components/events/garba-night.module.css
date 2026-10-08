@@ -338,13 +338,6 @@
   margin-top: 1.75rem;
 }
 
-.heroBookingNote {
-  margin: 0.55rem 0 0;
-  font-size: 0.75rem;
-  letter-spacing: 0.04em;
-  color: var(--color-muted-on-field);
-}
-
 .primaryCta {
   display: inline-flex;
   align-items: center;
@@ -911,13 +904,6 @@
   outline-offset: 3px;
 }
 
-.closingBookingNote {
-  margin: 0.65rem 0 0;
-  font-size: 0.75rem;
-  letter-spacing: 0.04em;
-  color: color-mix(in srgb, #f5f0e8 58%, transparent);
-}
-
 .supportLine {
   margin: 1.25rem 0 0;
   font-size: var(--text-body);
@@ -1075,10 +1061,6 @@
   .homeBillboardActions {
     order: 10;
   }
-
-  .homeBillboardBookingNote {
-    order: 11;
-  }
 }
 
 @media (min-width: 900px) {
@@ -1216,13 +1198,6 @@
   flex-wrap: wrap;
   gap: 0.75rem;
   margin-top: 1.25rem;
-}
-
-.homeBillboardBookingNote {
-  margin: 0.55rem 0 0;
-  font-size: 0.75rem;
-  letter-spacing: 0.04em;
-  color: color-mix(in srgb, #f5f0e8 55%, transparent);
 }
 
 .closingSecondaryPricing {
