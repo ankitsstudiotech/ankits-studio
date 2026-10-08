@@ -136,34 +136,35 @@ export function GarbaNightView({ event, media }: GarbaNightViewProps) {
         </section>
       </RouteOpening>
 
-      <section className={styles.band} aria-labelledby="garba-pricing-title">
-        <div className={styles.wrap}>
-          <SectionReveal>
-            <h2 id="garba-pricing-title" className={styles.sectionTitle}>
-              Passes
-            </h2>
-            <p className={styles.sectionLede}>
-              Reserve your place for Garba Night — 5th Edition. Refreshments are sold
-              separately at the venue.
-            </p>
-          </SectionReveal>
-          <div className={styles.pricingGrid}>
-            <article className={styles.pricingCard}>
-              <h3>Ankit&apos;s Studio Members</h3>
-              <p className={styles.pricingAmount}>{event.memberPriceLabel}</p>
-              <p className={styles.pricingNote}>Per person</p>
-            </article>
-            <article className={styles.pricingCard}>
-              <h3>Guests</h3>
-              <p className={styles.pricingAmount}>{event.guestPriceLabel}</p>
-              <p className={styles.pricingNote}>Per person</p>
-            </article>
-          </div>
-          {!concluded ? (
-            <div className={styles.pricingActions}>
-              <EventBookingCTA source="pricing" className={styles.primaryCta} />
+      <section
+        className={`${styles.band} ${styles.passesBand}`}
+        aria-labelledby="garba-pricing-title"
+      >
+        <div className={`${styles.wrap} ${styles.passesWrap}`}>
+          <h2 id="garba-pricing-title" className={styles.passesTitle}>
+            Passes
+          </h2>
+          <div className={styles.passesRow}>
+            <div className={styles.passesPrice}>
+              <p className={styles.passesLabel}>Ankit&apos;s Studio Members</p>
+              <p className={styles.passesAmount}>
+                {event.memberPriceLabel}
+                <span className={styles.passesUnit}> / person</span>
+              </p>
             </div>
-          ) : null}
+            <div className={styles.passesPrice}>
+              <p className={styles.passesLabel}>Guests</p>
+              <p className={styles.passesAmount}>
+                {event.guestPriceLabel}
+                <span className={styles.passesUnit}> / person</span>
+              </p>
+            </div>
+            {!concluded ? (
+              <div className={styles.passesAction}>
+                <EventBookingCTA source="pricing" className={styles.primaryCta} />
+              </div>
+            ) : null}
+          </div>
           <p className={styles.refreshmentsNote}>{event.refreshmentsNote}</p>
         </div>
       </section>
@@ -231,6 +232,7 @@ export function GarbaNightView({ event, media }: GarbaNightViewProps) {
 
       {media.previousEdition ? (
         <section
+          id="garba-previous"
           className={`${styles.band} ${styles.previousBand}`}
           aria-labelledby="garba-previous-title"
         >
@@ -255,17 +257,27 @@ export function GarbaNightView({ event, media }: GarbaNightViewProps) {
         </section>
       ) : null}
 
-      <section className={styles.band} aria-labelledby="garba-venue-title">
-        <div className={styles.wrap}>
-          <SectionReveal>
+      <section
+        className={`${styles.band} ${styles.venueBand}`}
+        aria-labelledby="garba-venue-title"
+      >
+        <div className={`${styles.wrap} ${styles.venueGrid}`}>
+          <div className={styles.venueCopy}>
             <h2 id="garba-venue-title" className={styles.sectionTitle}>
               Venue
             </h2>
-            <p className={styles.sectionLede}>{event.venueName}</p>
-          </SectionReveal>
-          <p className={styles.venueAddress}>{fullAddress}</p>
-          <div className={styles.actions}>
-            <EventDirectionsLink className={styles.primaryCta} />
+            <p className={styles.venueName}>{event.venueName}</p>
+            <p className={styles.venueAddress}>{fullAddress}</p>
+            <div className={styles.actions}>
+              <EventDirectionsLink className={styles.primaryCta} />
+            </div>
+          </div>
+          <div className={styles.venueDestination} aria-hidden="true">
+            <p className={styles.venueDestinationPlace}>Airoli</p>
+            <p className={styles.venueDestinationSchool}>VIBGYOR High School</p>
+            <p className={styles.venueDestinationMeta}>
+              17 Oct · 7 PM – Midnight
+            </p>
           </div>
         </div>
       </section>

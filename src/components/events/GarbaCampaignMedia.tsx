@@ -15,7 +15,7 @@ export type GarbaCampaignMediaProps = {
 
 /**
  * Hero campaign-media panel: poster is the LCP-safe default;
- * user activates the 2026 teaser inside the same frame.
+ * teaser control sits in a dedicated strip beneath the artwork (not over it).
  */
 export function GarbaCampaignMedia({
   posterSrc,
@@ -42,18 +42,18 @@ export function GarbaCampaignMedia({
 
   return (
     <div className={styles.campaignMedia} data-playing={playing ? "true" : "false"}>
-      <p className={styles.campaignMediaLabel}>Campaign visual</p>
-
       {!playing ? (
-        <div className={styles.campaignPoster}>
-          <Image
-            src={posterSrc}
-            alt={posterAlt}
-            fill
-            priority
-            sizes="(max-width: 959px) 100vw, 42vw"
-            className={styles.campaignPosterImage}
-          />
+        <>
+          <div className={styles.campaignPoster}>
+            <Image
+              src={posterSrc}
+              alt={posterAlt}
+              fill
+              priority
+              sizes="(max-width: 959px) 100vw, 42vw"
+              className={styles.campaignPosterImage}
+            />
+          </div>
           {teaserSrc ? (
             <button
               type="button"
@@ -61,9 +61,10 @@ export function GarbaCampaignMedia({
               onClick={startTeaser}
             >
               Play 2026 teaser
+              <span aria-hidden="true"> →</span>
             </button>
           ) : null}
-        </div>
+        </>
       ) : (
         <div className={styles.campaignTeaser}>
           <video

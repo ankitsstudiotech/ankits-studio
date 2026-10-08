@@ -1,0 +1,21 @@
+{
+  "metrics": {
+    "editionBottom": 570.15625,
+    "dateTop": 582.15625,
+    "gapPx": 12,
+    "posterHeight": 510,
+    "billboardHeight": 610
+  },
+  "teaser": {
+    "btnTop": 811.921875,
+    "imgBottom": 811.921875,
+    "overlaps": false,
+    "gapBelowPoster": 0
+  },
+  "venue": {
+    "sectionWidth": 1536,
+    "destLeft": 649,
+    "destWidth": 695,
+    "destOccupancy": "45%"
+  }
+}

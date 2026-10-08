@@ -35,56 +35,56 @@
 .campaignRibbonInner {
   width: min(100% - 1.5rem, 72rem);
   margin-inline: auto;
-  padding-block: 0.55rem;
-  display: flex;
-  flex-wrap: wrap;
+  padding-block: 0.7rem;
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto;
+  gap: 0.45rem 1.25rem;
   align-items: center;
-  justify-content: space-between;
-  gap: 0.5rem 1rem;
 }
 
-.campaignRibbonFacts {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 0.25rem 1rem;
+.campaignRibbonPrimary {
+  grid-column: 1;
   min-width: 0;
   color: inherit;
   text-decoration: none;
+  font-family: var(--font-body);
+  font-size: 0.8rem;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  line-height: 1.3;
 }
 
-.campaignRibbonFacts:hover {
+.campaignRibbonPrimary:hover {
   color: var(--garba-gold);
 }
 
-.campaignRibbonFacts:focus-visible {
+.campaignRibbonPrimary:focus-visible {
   outline: 2px solid var(--color-focus-ring);
   outline-offset: 3px;
 }
 
-.campaignRibbonPrimary {
-  font-family: var(--font-body);
-  font-size: var(--text-label);
-  font-weight: 600;
-  letter-spacing: 0.1em;
-  text-transform: uppercase;
-}
-
 .campaignRibbonPrices {
-  font-size: var(--text-label);
-  letter-spacing: 0.06em;
+  grid-column: 1;
+  margin: 0;
+  font-size: 0.75rem;
+  letter-spacing: 0.08em;
   text-transform: uppercase;
-  opacity: 0.9;
+  opacity: 0.92;
 }
 
 .campaignRibbonCta {
+  grid-column: 2;
+  grid-row: 1 / span 2;
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  min-height: 2.25rem;
-  padding: 0.4rem 0.9rem;
+  align-self: center;
+  min-height: 2.5rem;
+  padding: 0.5rem 1rem;
   background: var(--garba-gold);
   color: #1a1208;
-  font-size: var(--text-label);
+  font-size: 0.75rem;
   font-weight: 700;
   letter-spacing: 0.1em;
   text-transform: uppercase;
@@ -102,18 +102,44 @@
   outline-offset: 3px;
 }
 
-@media (max-width: 519px) {
+@media (min-width: 900px) {
   .campaignRibbonInner {
-    flex-direction: column;
-    align-items: stretch;
+    grid-template-columns: minmax(0, 1.2fr) minmax(0, 1fr) auto;
+    padding-block: 0.8rem;
+    gap: 1rem 1.5rem;
   }
 
-  .campaignRibbonFacts {
-    flex-direction: column;
-    gap: 0.15rem;
+  .campaignRibbonPrimary {
+    grid-column: 1;
+    grid-row: 1;
+    font-size: 0.9rem;
+    letter-spacing: 0.12em;
+  }
+
+  .campaignRibbonPrices {
+    grid-column: 2;
+    grid-row: 1;
+    font-size: 0.85rem;
+    letter-spacing: 0.1em;
+    justify-self: center;
   }
 
   .campaignRibbonCta {
+    grid-column: 3;
+    grid-row: 1;
+    min-height: 2.65rem;
+    font-size: 0.8rem;
+  }
+}
+
+@media (max-width: 519px) {
+  .campaignRibbonInner {
+    grid-template-columns: 1fr;
+  }
+
+  .campaignRibbonCta {
+    grid-column: 1;
+    grid-row: auto;
     width: 100%;
   }
 }
@@ -351,16 +377,6 @@
   min-height: 18rem;
 }
 
-.campaignMediaLabel {
-  margin: 0;
-  padding: 0.55rem 0.85rem;
-  border-bottom: 1px solid var(--color-border-on-field);
-  font-size: var(--text-label);
-  letter-spacing: 0.14em;
-  text-transform: uppercase;
-  color: var(--garba-gold);
-}
-
 .campaignPoster {
   position: relative;
   flex: 1 1 auto;
@@ -385,24 +401,27 @@
 
   .campaignPoster {
     flex: 1 1 auto;
-    min-height: 28rem;
+    min-height: 26rem;
     aspect-ratio: auto;
   }
 }
 
+/* Dedicated control strip under artwork — does not overlay poster content */
 .teaserTrigger {
-  position: absolute;
-  inset-inline: 0.85rem;
-  bottom: 0.85rem;
-  z-index: 2;
-  min-height: 2.75rem;
-  padding: 0.65rem 1rem;
-  border: 1px solid var(--garba-gold);
-  background: color-mix(in srgb, var(--garba-burgundy-deep) 88%, transparent);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  min-height: 2.85rem;
+  margin: 0;
+  padding: 0.7rem 1rem;
+  border: 0;
+  border-top: 1px solid color-mix(in srgb, var(--garba-gold) 45%, transparent);
+  background: color-mix(in srgb, var(--garba-burgundy) 42%, var(--color-field));
   color: var(--garba-gold);
   font-family: var(--font-body);
   font-size: var(--text-label);
-  font-weight: 600;
+  font-weight: 700;
   letter-spacing: 0.12em;
   text-transform: uppercase;
   cursor: pointer;
@@ -415,7 +434,7 @@
 
 .teaserTrigger:focus-visible {
   outline: 2px solid var(--color-focus-ring);
-  outline-offset: 3px;
+  outline-offset: -2px;
 }
 
 .campaignTeaser {
@@ -482,48 +501,70 @@
   font-size: var(--text-small);
 }
 
-.pricingGrid {
-  display: grid;
-  gap: 1px;
-  background: var(--color-border-on-field);
-  border: 1px solid var(--color-border-on-field);
+/* Compact Passes conversion band — avoids repeating a second giant pricing table */
+.passesBand {
+  background: color-mix(in srgb, var(--garba-burgundy) 12%, var(--color-field));
 }
 
-@media (min-width: 720px) {
-  .pricingGrid {
-    grid-template-columns: 1fr 1fr;
+.passesWrap {
+  padding-block: clamp(1.5rem, 3.5vw, 2.25rem);
+}
+
+.passesTitle {
+  margin: 0 0 1rem;
+  font-family: var(--font-display);
+  font-size: clamp(1.5rem, 3vw, 2rem);
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+}
+
+.passesRow {
+  display: grid;
+  gap: 1rem 1.5rem;
+  align-items: end;
+}
+
+@media (min-width: 800px) {
+  .passesRow {
+    grid-template-columns: minmax(0, 1fr) minmax(0, 1fr) auto;
+    gap: 1px;
+    background: var(--color-border-on-field);
+    border: 1px solid var(--color-border-on-field);
+  }
+
+  .passesPrice,
+  .passesAction {
+    background: var(--color-field-raised);
+    padding: 1rem 1.15rem;
+  }
+
+  .passesAction {
+    display: flex;
+    align-items: center;
   }
 }
 
-.pricingCard {
-  padding: clamp(1.25rem, 3vw, 2rem);
-  background: var(--color-field-raised);
-}
-
-.pricingCard h3 {
-  margin: 0 0 0.35rem;
-  font-family: var(--font-body);
+.passesLabel {
+  margin: 0 0 0.2rem;
   font-size: var(--text-label);
-  letter-spacing: 0.12em;
+  letter-spacing: 0.1em;
   text-transform: uppercase;
   color: var(--garba-gold);
 }
 
-.pricingAmount {
+.passesAmount {
   margin: 0;
   font-family: var(--font-display);
-  font-size: clamp(2.75rem, 8vw, 4rem);
-  line-height: 0.95;
+  font-size: clamp(2rem, 5vw, 2.75rem);
+  line-height: 1;
 }
 
-.pricingNote {
-  margin: 0.5rem 0 0;
-  color: var(--color-muted-on-field);
+.passesUnit {
+  font-family: var(--font-body);
   font-size: var(--text-small);
-}
-
-.pricingActions {
-  margin-top: 1.5rem;
+  letter-spacing: 0.04em;
+  color: var(--color-muted-on-field);
+  text-transform: lowercase;
 }
 
 /* ——— The Night — asymmetric 12-col editorial ——— */
@@ -613,9 +654,15 @@
 
 /* ——— Previous edition — wide landscape ——— */
 .previousBand {
+  /* Clear sticky header when section or its heading is scrolled into view */
+  scroll-margin-top: calc(var(--header-height) + 1.25rem);
   background:
     linear-gradient(180deg, transparent, var(--garba-burgundy-soft) 120%),
     var(--color-field);
+}
+
+.previousBand .sectionTitle {
+  scroll-margin-top: calc(var(--header-height) + 1.25rem);
 }
 
 .previousEditionLabel {
@@ -638,8 +685,43 @@
   width: 100%;
   height: auto;
   aspect-ratio: 832 / 464;
-  object-fit: cover;
+  /* contain: source has a bright/low-info right region — avoid cover crop cutoffs */
+  object-fit: contain;
   background: #000;
+}
+
+/* ——— Venue — 12-col destination composition ——— */
+.venueBand {
+  background:
+    radial-gradient(ellipse 50% 70% at 90% 40%, var(--garba-burgundy-soft), transparent 60%),
+    var(--color-field);
+}
+
+.venueGrid {
+  display: grid;
+  gap: 2rem;
+}
+
+@media (min-width: 900px) {
+  .venueGrid {
+    grid-template-columns: minmax(0, 4.5fr) minmax(0, 7.5fr);
+    gap: 2.5rem 2.5rem;
+    align-items: center;
+  }
+}
+
+.venueCopy {
+  min-width: 0;
+}
+
+.venueName {
+  margin: 0 0 1rem;
+  max-width: 28rem;
+  font-family: var(--font-display);
+  font-size: clamp(1.35rem, 3vw, 1.75rem);
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  line-height: 1.15;
 }
 
 .venueAddress {
@@ -647,6 +729,50 @@
   font-size: var(--text-body);
   line-height: 1.55;
   white-space: pre-line;
+  color: var(--color-muted-on-field);
+}
+
+.venueDestination {
+  min-width: 0;
+  padding-block: 0.5rem;
+  border-top: 1px solid color-mix(in srgb, var(--garba-gold) 35%, transparent);
+  border-bottom: 1px solid color-mix(in srgb, var(--garba-gold) 35%, transparent);
+}
+
+@media (min-width: 900px) {
+  .venueDestination {
+    padding-block: 1.25rem;
+    border-top: 0;
+    border-bottom: 0;
+    border-left: 1px solid color-mix(in srgb, var(--garba-gold) 35%, transparent);
+    padding-inline-start: 2rem;
+  }
+}
+
+.venueDestinationPlace {
+  margin: 0;
+  font-family: var(--font-display);
+  font-size: clamp(3.5rem, 12vw, 7.5rem);
+  line-height: 0.9;
+  letter-spacing: 0.02em;
+  text-transform: uppercase;
+  color: var(--garba-gold);
+}
+
+.venueDestinationSchool {
+  margin: 0.75rem 0 0;
+  font-family: var(--font-display);
+  font-size: clamp(1.25rem, 3vw, 1.85rem);
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+}
+
+.venueDestinationMeta {
+  margin: 0.5rem 0 0;
+  font-size: var(--text-label);
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--color-muted-on-field);
 }
 
 .archiveBanner {
@@ -786,68 +912,102 @@
   --garba-burgundy: #6b1d2a;
   --garba-burgundy-deep: #4a1220;
   --garba-burgundy-soft: color-mix(in srgb, #6b1d2a 40%, #0b0b0c);
-  border-top: 1px solid color-mix(in srgb, var(--garba-gold) 35%, transparent);
-  border-bottom: 1px solid color-mix(in srgb, var(--garba-gold) 35%, transparent);
+  border-top: 1px solid color-mix(in srgb, var(--garba-gold) 40%, transparent);
+  border-bottom: 1px solid color-mix(in srgb, var(--garba-gold) 40%, transparent);
   background:
-    radial-gradient(ellipse 70% 80% at 90% 20%, var(--garba-burgundy-soft), transparent 55%),
-    linear-gradient(180deg, #12080c, var(--color-field));
+    linear-gradient(
+      105deg,
+      var(--garba-burgundy-deep) 0%,
+      var(--garba-burgundy) 42%,
+      #1a0a10 68%,
+      #0b0b0c 100%
+    );
   color: var(--color-ink-inverse);
 }
 
 .homeBillboardInner {
   width: min(100% - 1.25rem, 72rem);
   margin-inline: auto;
-  padding-block: clamp(2rem, 5vw, 3.5rem);
+  padding-block: clamp(1.75rem, 4vw, 3rem);
   display: grid;
-  gap: 1.25rem 1.5rem;
+  gap: 1.25rem;
   align-items: start;
 }
 
-.homeBillboardLead {
+.homeBillboardCopy {
   min-width: 0;
-}
-
-.homeBillboardConvert {
-  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 0;
 }
 
 .homeBillboardPoster {
-  border: 1px solid color-mix(in srgb, var(--garba-gold) 40%, var(--color-border-on-field));
+  border: 1px solid color-mix(in srgb, var(--garba-gold) 45%, transparent);
   overflow: hidden;
   background: #000;
   aspect-ratio: 4 / 5;
-  max-height: 24rem;
+  max-height: 22rem;
   width: 100%;
+}
+
+/* Mobile: deliberate stack — title block → poster → facts/prices/CTAs */
+@media (max-width: 899px) {
+  .homeBillboardInner {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .homeBillboardCopy {
+    display: contents;
+  }
+
+  .homeBillboardKicker {
+    order: 1;
+  }
+
+  .homeBillboardTitle {
+    order: 2;
+  }
+
+  .homeBillboardEdition {
+    order: 3;
+  }
+
+  .homeBillboardPoster {
+    order: 4;
+    margin-block: 0.35rem;
+  }
+
+  .homeBillboardDateAnchor {
+    order: 5;
+  }
+
+  .homeBillboardSupport {
+    order: 6;
+  }
+
+  .homeBillboardPriceRow {
+    order: 7;
+  }
+
+  .homeBillboardActions {
+    order: 8;
+  }
 }
 
 @media (min-width: 900px) {
   .homeBillboardInner {
-    grid-template-columns: minmax(0, 7fr) minmax(0, 5fr);
-    grid-template-rows: auto auto;
-    gap: 1.1rem 2.5rem;
+    grid-template-columns: minmax(0, 6.5fr) minmax(0, 5.5fr);
+    gap: 1.5rem 2.75rem;
     width: min(100% - 2.5rem, 72rem);
+    /* start — not center: centering a short content stack beside a tall poster
+       reintroduces large empty burgundy bands above/below the left copy */
     align-items: start;
   }
 
-  .homeBillboardLead {
-    grid-column: 1;
-    grid-row: 1;
-  }
-
-  .homeBillboardConvert {
-    grid-column: 1;
-    grid-row: 2;
-    align-self: start;
-  }
-
   .homeBillboardPoster {
-    grid-column: 2;
-    grid-row: 1 / span 2;
-    max-height: none;
+    max-height: min(32rem, 68vh);
     aspect-ratio: 4 / 5;
-    min-height: 22rem;
-    align-self: stretch;
-    height: 100%;
   }
 }
 
@@ -855,11 +1015,12 @@
   width: 100%;
   height: 100%;
   object-fit: cover;
+  object-position: center top;
   display: block;
 }
 
 .homeBillboardKicker {
-  margin: 0 0 0.5rem;
+  margin: 0 0 0.45rem;
   font-size: var(--text-label);
   letter-spacing: 0.16em;
   text-transform: uppercase;
@@ -869,55 +1030,76 @@
 .homeBillboardTitle {
   margin: 0;
   font-family: var(--font-display);
-  font-size: clamp(3.5rem, 12vw, 6.5rem);
+  font-size: clamp(3.25rem, 11vw, 6rem);
   line-height: 0.9;
   letter-spacing: 0.02em;
   text-transform: uppercase;
 }
 
 .homeBillboardEdition {
-  margin: 0.4rem 0 0;
+  margin: 0.35rem 0 0;
   font-family: var(--font-display);
-  font-size: clamp(1.5rem, 4vw, 2.25rem);
+  font-size: clamp(1.35rem, 3.5vw, 2rem);
   letter-spacing: 0.08em;
   text-transform: uppercase;
-  color: color-mix(in srgb, #f5f0e8 70%, transparent);
+  color: color-mix(in srgb, #f5f0e8 72%, transparent);
 }
 
-.homeBillboardMeta {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 0.5rem 1.25rem;
-  margin: 1.25rem 0 0;
-  padding: 0;
-}
-
-.homeBillboardMeta dd {
-  margin: 0;
+.homeBillboardDateAnchor {
+  margin: 0.75rem 0 0;
   font-family: var(--font-display);
-  font-size: clamp(1.25rem, 3vw, 1.75rem);
-  letter-spacing: 0.04em;
+  font-size: clamp(2.5rem, 7vw, 4rem);
+  line-height: 0.95;
+  letter-spacing: 0.03em;
   text-transform: uppercase;
+  color: var(--garba-gold);
 }
 
-.homeBillboardPrices {
-  margin: 1rem 0 0;
-  font-size: var(--text-body);
-  letter-spacing: 0.04em;
+.homeBillboardSupport {
+  margin: 0.35rem 0 0;
+  font-family: var(--font-display);
+  font-size: clamp(1.1rem, 2.5vw, 1.45rem);
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: color-mix(in srgb, #f5f0e8 82%, transparent);
+}
+
+.homeBillboardPriceRow {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1px;
+  margin-top: 1.1rem;
+  max-width: 22rem;
+  background: color-mix(in srgb, var(--garba-gold) 35%, transparent);
+  border: 1px solid color-mix(in srgb, var(--garba-gold) 35%, transparent);
+}
+
+.homeBillboardPriceBlock {
+  display: flex;
+  flex-direction: column;
+  gap: 0.15rem;
+  padding: 0.7rem 0.85rem;
+  background: color-mix(in srgb, #0b0b0c 55%, transparent);
 }
 
 .homeBillboardPriceLabel {
   color: var(--garba-gold);
   letter-spacing: 0.1em;
   text-transform: uppercase;
-  font-size: var(--text-label);
+  font-size: 0.65rem;
+}
+
+.homeBillboardPriceValue {
+  font-family: var(--font-display);
+  font-size: clamp(1.75rem, 4vw, 2.25rem);
+  line-height: 1;
 }
 
 .homeBillboardActions {
   display: flex;
   flex-wrap: wrap;
   gap: 0.75rem;
-  margin-top: 1.5rem;
+  margin-top: 1.25rem;
 }
 
 .homeBillboardPrimary {

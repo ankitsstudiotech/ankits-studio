@@ -6,11 +6,13 @@ import { EventBookingCTA } from "./EventBookingCTA";
 import styles from "./garba-night.module.css";
 
 /**
- * Homepage seasonal campaign billboard — interrupts normal homepage rhythm
- * immediately after the main hero. Poster only (no teaser video on Home).
+ * Homepage seasonal campaign billboard — content-driven left stack beside poster.
  *
- * Mobile order: eyebrow → title → edition → poster → facts → prices → CTAs
- * Desktop: ~7/5 copy | poster
+ * Desktop whitespace root cause (polish-02): poster previously spanned two grid
+ * rows with aspect-ratio height, stretching `auto` row 1 so Lead sat at the top
+ * of that tall track and Convert began in row 2 — leaving a giant empty band
+ * between "5TH EDITION" and the event facts. Fix: one left content column
+ * (natural height) + poster beside it.
  */
 export function GarbaHomePromo() {
   const [event] = getActiveSeasonalPromos();
@@ -25,53 +27,34 @@ export function GarbaHomePromo() {
       data-campaign="garba-night-2026"
     >
       <div className={styles.homeBillboardInner}>
-        <div className={styles.homeBillboardLead}>
+        <div className={styles.homeBillboardCopy}>
           <p className={styles.homeBillboardKicker}>{event.presenterLine}</p>
           <p id="garba-home-promo-title" className={styles.homeBillboardTitle}>
             Garba Night
           </p>
           <p className={styles.homeBillboardEdition}>{event.editionLabel}</p>
-        </div>
 
-        {media.poster ? (
-          <div className={styles.homeBillboardPoster}>
-            <Image
-              src={event.media.poster}
-              alt={event.media.posterAlt}
-              width={1024}
-              height={1536}
-              sizes="(max-width: 899px) 100vw, 40vw"
-            />
-          </div>
-        ) : null}
-
-        <div className={styles.homeBillboardConvert}>
-          <dl className={styles.homeBillboardMeta}>
-            <div>
-              <dt className="sr-only">Date</dt>
-              <dd>17 Oct</dd>
-            </div>
-            <div>
-              <dt className="sr-only">Time</dt>
-              <dd>7 PM – Midnight</dd>
-            </div>
-            <div>
-              <dt className="sr-only">Venue</dt>
-              <dd>Airoli</dd>
-            </div>
-          </dl>
-
-          <p className={styles.homeBillboardPrices}>
-            <span>
-              <span className={styles.homeBillboardPriceLabel}>Members </span>
-              {event.memberPriceLabel}
-            </span>
+          <p className={styles.homeBillboardDateAnchor}>17 Oct</p>
+          <p className={styles.homeBillboardSupport}>
+            7 PM – Midnight
             <span aria-hidden="true"> · </span>
-            <span>
-              <span className={styles.homeBillboardPriceLabel}>Guests </span>
-              {event.guestPriceLabel}
-            </span>
+            Airoli
           </p>
+
+          <div className={styles.homeBillboardPriceRow} aria-label="Pass prices">
+            <div className={styles.homeBillboardPriceBlock}>
+              <span className={styles.homeBillboardPriceLabel}>Members</span>
+              <span className={styles.homeBillboardPriceValue}>
+                {event.memberPriceLabel}
+              </span>
+            </div>
+            <div className={styles.homeBillboardPriceBlock}>
+              <span className={styles.homeBillboardPriceLabel}>Guests</span>
+              <span className={styles.homeBillboardPriceValue}>
+                {event.guestPriceLabel}
+              </span>
+            </div>
+          </div>
 
           <div className={styles.homeBillboardActions}>
             <Link href={event.path} className={styles.homeBillboardSecondary}>
@@ -83,6 +66,18 @@ export function GarbaHomePromo() {
             />
           </div>
         </div>
+
+        {media.poster ? (
+          <div className={styles.homeBillboardPoster}>
+            <Image
+              src={event.media.poster}
+              alt={event.media.posterAlt}
+              width={1024}
+              height={1536}
+              sizes="(max-width: 899px) 100vw, 42vw"
+            />
+          </div>
+        ) : null}
       </div>
     </aside>
   );

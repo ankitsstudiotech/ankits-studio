@@ -28,14 +28,14 @@ export function GarbaCampaignRibbon({
   return (
     <aside className={styles.campaignRibbon} aria-label="Garba Night campaign">
       <div className={styles.campaignRibbonInner}>
-        <Link href={eventPath} className={styles.campaignRibbonFacts}>
-          <span className={styles.campaignRibbonPrimary}>
-            Garba Night · 17 Oct · Airoli
-          </span>
-          <span className={styles.campaignRibbonPrices}>
-            Members {memberPriceLabel} · Guests {guestPriceLabel}
-          </span>
+        <Link href={eventPath} className={styles.campaignRibbonPrimary}>
+          Garba Night · 17 Oct · Airoli
         </Link>
+        <p className={styles.campaignRibbonPrices}>
+          Members {memberPriceLabel}
+          <span aria-hidden="true"> · </span>
+          Guests {guestPriceLabel}
+        </p>
         <EventBookingCTA
           source="campaign-ribbon"
           className={styles.campaignRibbonCta}

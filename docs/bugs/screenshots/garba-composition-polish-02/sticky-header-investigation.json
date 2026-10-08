@@ -1,0 +1,24 @@
+{
+  "headerHeight": 65,
+  "scrollMargin": "80px",
+  "samples": [
+    {
+      "mode": "scrollIntoView-start",
+      "headingTop": -18.86341094970703,
+      "headerBottom": 65,
+      "obscured": true
+    },
+    {
+      "mode": "nudge-up",
+      "headingTop": 59.947975158691406,
+      "headerBottom": 65,
+      "obscured": true
+    },
+    {
+      "mode": "aligned-under-header",
+      "headingTop": 60.81395721435547,
+      "headerBottom": 65,
+      "obscured": true
+    }
+  ]
+}
