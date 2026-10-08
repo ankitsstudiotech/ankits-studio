@@ -363,14 +363,21 @@ export function buildFaqPageJsonLd(faqs: Faq[]): FaqPageJsonLd | null {
 }
 
 /**
- * Garba Night Event JSON-LD (ADR-025). Offers describe confirmed prices;
- * offer URL is the event page (no online checkout while bookingMode is WhatsApp).
+ * Garba Night Event JSON-LD (ADR-025 / ADR-026). Offers describe confirmed
+ * prices; offer URLs point at the live hosted booking destination when
+ * `bookingMode` is external. Event `url` / page canonical stay on ankitsstudio.com.
  */
 export function buildGarbaNightEventJsonLd(event: GarbaNight2026): EventJsonLd | null {
   if (event.dataStatus !== "verified") return null;
 
   const origin = siteConfig.url.replace(/\/$/, "");
   const url = buildCanonicalUrl(event.path);
+  const offerUrl =
+    event.bookingMode === "external" && event.bookingUrl
+      ? event.bookingUrl
+      : event.bookingMode === "payment" && event.paymentCheckoutUrl
+        ? event.paymentCheckoutUrl
+        : url;
   const ogPath = event.media.ogImage.startsWith("http")
     ? event.media.ogImage
     : `${origin}${event.media.ogImage.startsWith("/") ? event.media.ogImage : `/${event.media.ogImage}`}`;
@@ -409,7 +416,7 @@ export function buildGarbaNightEventJsonLd(event: GarbaNight2026): EventJsonLd |
         name: "Ankit's Studio Member Pass",
         price: String(event.memberPriceInr),
         priceCurrency: "INR",
-        url,
+        url: offerUrl,
         availability: "https://schema.org/InStock",
       },
       {
@@ -417,7 +424,7 @@ export function buildGarbaNightEventJsonLd(event: GarbaNight2026): EventJsonLd |
         name: "Guest Pass",
         price: String(event.guestPriceInr),
         priceCurrency: "INR",
-        url,
+        url: offerUrl,
         availability: "https://schema.org/InStock",
       },
     ],

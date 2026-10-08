@@ -171,8 +171,30 @@ export function trackBatchPreference(params: {
 
 /* ─── Garba Night 2026 (seasonal event) ─── */
 
+/**
+ * Primary Garba conversion (Kaizen / external booking).
+ * Replaces garba_whatsapp_reserve_click for ticket registration (ADR-026).
+ */
+export function trackGarbaBookingClick(params: {
+  source: string;
+  destination?: string;
+  booking_mode?: string;
+}) {
+  trackEvent("garba_booking_click", {
+    source: params.source,
+    destination: params.destination ?? "kaizen",
+    booking_mode: params.booking_mode ?? "external",
+  });
+}
+
+/** Historical WhatsApp-primary conversion — do not fire for Kaizen CTAs. */
 export function trackGarbaWhatsAppReserve(source: string) {
   trackEvent("garba_whatsapp_reserve_click", { source });
+}
+
+/** Support contact only — not ticket conversion. */
+export function trackGarbaWhatsAppSupport(source = "event-support") {
+  trackEvent("garba_whatsapp_support_click", { source });
 }
 
 export function trackGarbaDirections(source = "venue") {
@@ -188,8 +210,7 @@ export function trackGarbaPreviousEventVideoPlay() {
 }
 
 /**
- * Future payment-gateway events — DO NOT fire until bookingMode is payment
- * and the owner-confirmed checkout is live:
+ * In-app payment-gateway events — only if bookingMode becomes `payment`:
  * - garba_checkout_started
  * - garba_payment_success
  */

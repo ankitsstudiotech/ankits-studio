@@ -6,13 +6,11 @@ import { EventBookingCTA } from "./EventBookingCTA";
 import styles from "./garba-night.module.css";
 
 /**
- * Homepage seasonal campaign billboard — content-driven left stack beside poster.
+ * Homepage Garba campaign surface.
  *
- * Desktop whitespace root cause (polish-02): poster previously spanned two grid
- * rows with aspect-ratio height, stretching `auto` row 1 so Lead sat at the top
- * of that tall track and Convert began in row 2 — leaving a giant empty band
- * between "5TH EDITION" and the event facts. Fix: one left content column
- * (natural height) + poster beside it.
+ * When `HOME_SEASONAL_CAMPAIGN === "garba-night-2026"` this is the page hero
+ * (H1, first content after header/ribbon). Restore by setting that constant
+ * to `null` (ADR-026) — do not leave a second billboard lower on Home.
  */
 export function GarbaHomePromo() {
   const [event] = getActiveSeasonalPromos();
@@ -21,24 +19,27 @@ export function GarbaHomePromo() {
   const media = getGarbaMediaAvailability();
 
   return (
-    <aside
+    <section
       className={styles.homeBillboard}
-      aria-labelledby="garba-home-promo-title"
+      aria-labelledby="garba-home-hero-title"
       data-campaign="garba-night-2026"
+      data-home-surface="hero"
     >
       <div className={styles.homeBillboardInner}>
         <div className={styles.homeBillboardCopy}>
           <p className={styles.homeBillboardKicker}>{event.presenterLine}</p>
-          <p id="garba-home-promo-title" className={styles.homeBillboardTitle}>
+          <h1 id="garba-home-hero-title" className={styles.homeBillboardTitle}>
             Garba Night
-          </p>
+          </h1>
           <p className={styles.homeBillboardEdition}>{event.editionLabel}</p>
 
           <p className={styles.homeBillboardDateAnchor}>17 Oct</p>
           <p className={styles.homeBillboardSupport}>
-            7 PM – Midnight
+            <span>{event.dayLabel}</span>
             <span aria-hidden="true"> · </span>
-            Airoli
+            <span>7 PM – Midnight</span>
+            <span aria-hidden="true"> · </span>
+            <span>Airoli</span>
           </p>
 
           <div className={styles.homeBillboardPriceRow} aria-label="Pass prices">
@@ -56,15 +57,23 @@ export function GarbaHomePromo() {
             </div>
           </div>
 
+          <ul className={styles.homeBillboardMeta}>
+            <li>{event.audienceLabel}</li>
+            <li>{event.capacityLabel}</li>
+          </ul>
+
           <div className={styles.homeBillboardActions}>
-            <Link href={event.path} className={styles.homeBillboardSecondary}>
-              View event
-            </Link>
             <EventBookingCTA
-              source="homepage-billboard"
+              source="homepage-hero"
               className={styles.homeBillboardPrimary}
             />
+            <Link href={event.path} className={styles.homeBillboardSecondary}>
+              View event details
+            </Link>
           </div>
+          <p className={styles.homeBillboardBookingNote}>
+            Booking handled by Kaizen Events
+          </p>
         </div>
 
         {media.poster ? (
@@ -75,10 +84,11 @@ export function GarbaHomePromo() {
               width={1024}
               height={1536}
               sizes="(max-width: 899px) 100vw, 42vw"
+              priority
             />
           </div>
         ) : null}
       </div>
-    </aside>
+    </section>
   );
 }

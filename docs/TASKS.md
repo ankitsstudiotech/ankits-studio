@@ -95,7 +95,8 @@ design-token set, and the Vitest/Playwright/axe-core testing foundation
 
 | Task | Owner | Status | Notes |
 |---|---|---|---|
-| Cross-zone: `/events/garba-night-2026`, booking abstraction, homepage + Dance/Airoli promos, Event JSON-LD, sitemap, media optimize pipeline, tests. Payment gateway PARKED. | Cursor | In progress | Checkpoint tag `studio-pulse-before-garba-night-2026` @ `c219ec0`. Branch `feat/garba-night-2026`. ADR-025. Awaiting owner poster + two source videos in `public/media/events/garba-night-2026/source/`. |
+| Cross-zone: `/events/garba-night-2026`, booking abstraction, homepage + Dance/Airoli promos, Event JSON-LD, sitemap, media optimize pipeline, tests. Payment gateway PARKED. | Cursor | Done | Merged to main @ `c741fce`. ADR-025. |
+| Cross-zone: Garba homepage hero takeover + Kaizen external booking cutover (no Instamojo/API). | Cursor | In progress | Checkpoint `studio-pulse-before-garba-kaizen-cutover` @ `c741fce`. Branch `feat/garba-kaizen-hero-cutover`. ADR-026. |
 
 ## Prompt 1 — Visual system repair (active)
 

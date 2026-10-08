@@ -1,7 +1,6 @@
 /**
- * Event booking abstraction — switch WhatsApp ↔ payment without redesigning
- * event page sections. Payment mode is wired but inactive until the owner
- * confirms a gateway (do not invent checkout).
+ * Event booking abstraction — WhatsApp / external hosted registration / future
+ * in-app payment without redesigning event page sections (ADR-025 / ADR-026).
  */
 
 import {
@@ -18,8 +17,14 @@ export type EventBookingSource =
   | "closing-cta"
   | "home-promo"
   | "homepage-billboard"
+  | "homepage-hero"
   | "campaign-ribbon"
   | "internal-promo";
+
+export type EventBookingAnalyticsEvent =
+  | "garba_booking_click"
+  | "garba_whatsapp_reserve_click"
+  | "garba_checkout_started";
 
 export type EventBookingAction = {
   mode: EventBookingMode;
@@ -27,8 +32,10 @@ export type EventBookingAction = {
   label: string;
   external: boolean;
   /** Analytics event name for the primary conversion click. */
-  analyticsEvent: "garba_whatsapp_reserve_click" | "garba_checkout_started";
+  analyticsEvent: EventBookingAnalyticsEvent;
   source: EventBookingSource;
+  /** Provider slug for analytics (e.g. kaizen). */
+  destination: string | null;
 };
 
 function buildWhatsAppUrl(digits: string, prefill: string): string {
@@ -37,8 +44,7 @@ function buildWhatsAppUrl(digits: string, prefill: string): string {
 
 /**
  * Resolve the primary booking CTA for Garba Night 2026.
- * When `bookingMode` flips to `"payment"` and `paymentCheckoutUrl` is set,
- * sections using EventBookingCTA pick up the new label/href automatically.
+ * External (Kaizen) is the live conversion path; WhatsApp remains support-only.
  */
 export function getGarbaBookingAction(
   source: EventBookingSource,
@@ -50,8 +56,21 @@ export function getGarbaBookingAction(
       href: "/contact",
       label: "Contact for future events",
       external: false,
-      analyticsEvent: "garba_whatsapp_reserve_click",
+      analyticsEvent: "garba_booking_click",
       source,
+      destination: null,
+    };
+  }
+
+  if (event.bookingMode === "external" && event.bookingUrl) {
+    return {
+      mode: "external",
+      href: event.bookingUrl,
+      label: "Book Passes",
+      external: true,
+      analyticsEvent: "garba_booking_click",
+      source,
+      destination: event.bookingProvider ?? "external",
     };
   }
 
@@ -61,9 +80,9 @@ export function getGarbaBookingAction(
       href: event.paymentCheckoutUrl,
       label: "Book Passes",
       external: true,
-      // Documented for future gateway work — not fired while mode is whatsapp.
       analyticsEvent: "garba_checkout_started",
       source,
+      destination: "payment",
     };
   }
 
@@ -74,6 +93,20 @@ export function getGarbaBookingAction(
     external: true,
     analyticsEvent: "garba_whatsapp_reserve_click",
     source,
+    destination: "whatsapp",
+  };
+}
+
+/** Support-only WhatsApp contact for Garba questions (not ticket conversion). */
+export function getGarbaWhatsAppSupportAction(
+  event: GarbaNight2026 = GARBA_NIGHT_2026,
+): { href: string; label: string } {
+  return {
+    href: buildWhatsAppUrl(
+      event.whatsappDigits,
+      `Hi Ankit's Studio — I have a question about Garba Night — 5th Edition.`,
+    ),
+    label: "Questions? WhatsApp us",
   };
 }
 

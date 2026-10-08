@@ -223,18 +223,23 @@ interface BlogPost extends DataProvenance {
 }
 ```
 
-### SeasonalEvent (Garba Night 2026 — ADR-025)
+### SeasonalEvent (Garba Night 2026 — ADR-025 / ADR-026)
 
 Not a programme. Lives under `src/content/events/`. Booking is abstracted
-(`bookingMode: "whatsapp" | "payment"`) so the page CTAs can switch without
-redesign. Payment fields stay null until the owner confirms a gateway.
+(`bookingMode: "whatsapp" | "external" | "payment"`) so shared CTAs switch
+without redesign. Live mode is `external` via Kaizen Events (`bookingUrl` +
+`bookingProvider: "kaizen"`). WhatsApp remains support-only. Homepage temporary
+hero takeover is gated by `HOME_SEASONAL_CAMPAIGN` (set `null` to restore the
+coach-led Home H1).
 
 ```ts
 interface SeasonalEvent extends DataProvenance {
   slug: string;
   path: string;
   lifecycle: "upcoming" | "concluded";
-  bookingMode: "whatsapp" | "payment";
+  bookingMode: "whatsapp" | "external" | "payment";
+  bookingUrl: string | null;
+  bookingProvider: "whatsapp" | "kaizen" | null;
   paymentCheckoutUrl: string | null;
   name: string;
   startDateIso: string;

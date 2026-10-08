@@ -2,11 +2,18 @@ import { GARBA_NIGHT_2026, type GarbaNight2026 } from "./garba-night-2026";
 
 export type {
   EventBookingMode,
+  EventBookingProvider,
   EventLifecycle,
   GarbaMediaAvailability,
   GarbaNight2026,
+  HomeSeasonalCampaign,
 } from "./garba-night-2026";
-export { GARBA_NIGHT_2026, GARBA_WHATSAPP_PREFILL } from "./garba-night-2026";
+export {
+  GARBA_KAIZEN_BOOKING_URL,
+  GARBA_NIGHT_2026,
+  GARBA_WHATSAPP_PREFILL,
+  HOME_SEASONAL_CAMPAIGN,
+} from "./garba-night-2026";
 
 const EVENTS: readonly GarbaNight2026[] = [GARBA_NIGHT_2026];
 

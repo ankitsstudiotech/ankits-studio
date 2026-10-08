@@ -667,6 +667,20 @@ Schema note (same change): removed unused optional `readinessBodyMockPreview` fr
 
 **Why:** Capitalize on existing Garba search interest with an honest event page, convert via WhatsApp now, and leave a clean seam for the owner's in-progress payment gateway without blocking this release.
 
+**Status**: Partially superseded by ADR-026 for booking + Home hero; event route/media/SEO structure remains.
+
+## ADR-026: Garba Kaizen booking cutover + temporary Home hero takeover
+
+**Decision**: Primary Garba ticket registration moves to the owner-hosted Kaizen Events URL (`https://kaizenevents.live/register/ankits-studio-garba-night-the-5th-edition`) via `bookingMode: "external"` + `bookingUrl` / `bookingProvider: "kaizen"`. All primary CTAs say **Book Passes** and use that single URL. WhatsApp is support-only (`Questions? WhatsApp us` + FAQ). Analytics fire `garba_booking_click` (not `garba_whatsapp_reserve_click`) with `destination: kaizen`. Event Offer JSON-LD `offers.url` points at Kaizen; event page **canonical** stays `https://ankitsstudio.com/events/garba-night-2026`. Homepage temporarily places the accepted Garba campaign as the first content hero (H1); coach-led fitness remains immediately below as H2 with crawlable studio content. No Instamojo/API/webhook work in this repo.
+
+### Post-event Home restoration
+
+1. Set `HOME_SEASONAL_CAMPAIGN` to `null` in `src/content/events/garba-night-2026.ts`.
+2. Redeploy. Coach-led `Hero` returns to H1; Home Garba hero unmounts.
+3. Optionally set `lifecycle: "concluded"` when archiving booking CTAs; ribbon follows `getActiveSeasonalPromos()`.
+
+**Why:** Owner decided Garba must lead the homepage during the campaign and that registration/payment is handled externally on Kaizen Events.
+
 **Status**: Active.
 
 ## Log format for future entries

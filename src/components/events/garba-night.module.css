@@ -315,6 +315,13 @@
   margin-top: 1.75rem;
 }
 
+.heroBookingNote {
+  margin: 0.55rem 0 0;
+  font-size: 0.75rem;
+  letter-spacing: 0.04em;
+  color: var(--color-muted-on-field);
+}
+
 .primaryCta {
   display: inline-flex;
   align-items: center;
@@ -864,6 +871,33 @@
   outline-offset: 3px;
 }
 
+.closingBookingNote {
+  margin: 0.65rem 0 0;
+  font-size: 0.75rem;
+  letter-spacing: 0.04em;
+  color: color-mix(in srgb, #f5f0e8 58%, transparent);
+}
+
+.supportLine {
+  margin: 1.25rem 0 0;
+  font-size: var(--text-body);
+}
+
+.supportLink {
+  color: color-mix(in srgb, var(--color-ink-inverse) 72%, transparent);
+  text-decoration: underline;
+  text-underline-offset: 0.2em;
+}
+
+.supportLink:hover {
+  color: var(--color-ink-inverse);
+}
+
+.supportLink:focus-visible {
+  outline: 2px solid var(--color-focus-ring);
+  outline-offset: 3px;
+}
+
 .stickyBar {
   position: fixed;
   inset-inline: 0;
@@ -990,8 +1024,16 @@
     order: 7;
   }
 
-  .homeBillboardActions {
+  .homeBillboardMeta {
     order: 8;
+  }
+
+  .homeBillboardActions {
+    order: 9;
+  }
+
+  .homeBillboardBookingNote {
+    order: 10;
   }
 }
 
@@ -1031,6 +1073,7 @@
   margin: 0;
   font-family: var(--font-display);
   font-size: clamp(3.25rem, 11vw, 6rem);
+  font-weight: 400;
   line-height: 0.9;
   letter-spacing: 0.02em;
   text-transform: uppercase;
@@ -1095,11 +1138,31 @@
   line-height: 1;
 }
 
+.homeBillboardMeta {
+  list-style: none;
+  margin: 0.85rem 0 0;
+  padding: 0;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.35rem 1rem;
+  font-size: var(--text-label);
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: color-mix(in srgb, #f5f0e8 72%, transparent);
+}
+
 .homeBillboardActions {
   display: flex;
   flex-wrap: wrap;
   gap: 0.75rem;
   margin-top: 1.25rem;
+}
+
+.homeBillboardBookingNote {
+  margin: 0.55rem 0 0;
+  font-size: 0.75rem;
+  letter-spacing: 0.04em;
+  color: color-mix(in srgb, #f5f0e8 55%, transparent);
 }
 
 .homeBillboardPrimary {

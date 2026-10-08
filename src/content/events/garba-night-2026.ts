@@ -1,11 +1,14 @@
 /**
  * Garba Night 2026 — owner-confirmed seasonal event (operator brief 2026-10-07).
- * Not a programme. Booking mode is WhatsApp until payment gateway is confirmed.
+ * Not a programme. Primary booking is hosted on Kaizen Events (ADR-026).
  */
 
 export type EventLifecycle = "upcoming" | "concluded";
 
-export type EventBookingMode = "whatsapp" | "payment";
+/** Primary booking channel. `external` = hosted registration (Kaizen). */
+export type EventBookingMode = "whatsapp" | "external" | "payment";
+
+export type EventBookingProvider = "whatsapp" | "kaizen" | null;
 
 export type GarbaMediaAvailability = {
   poster: boolean;
@@ -15,13 +18,31 @@ export type GarbaMediaAvailability = {
   campaignComplete: boolean;
 };
 
+/**
+ * Homepage seasonal campaign switch (temporary).
+ * Set to `null` after Garba Night to restore the coach-led fitness block as H1
+ * and remove the Home Garba hero (ribbon still follows `lifecycle`).
+ */
+export type HomeSeasonalCampaign = "garba-night-2026" | null;
+
+export const HOME_SEASONAL_CAMPAIGN: HomeSeasonalCampaign = "garba-night-2026";
+
+export const GARBA_KAIZEN_BOOKING_URL =
+  "https://kaizenevents.live/register/ankits-studio-garba-night-the-5th-edition";
+
 export type GarbaNight2026 = {
   slug: "garba-night-2026";
   path: "/events/garba-night-2026";
   dataStatus: "verified";
   lifecycle: EventLifecycle;
   bookingMode: EventBookingMode;
-  /** Future payment checkout URL — unused while bookingMode is whatsapp. */
+  /**
+   * Hosted registration/payment URL when `bookingMode` is `"external"`.
+   * Single source of truth — do not hardcode Kaizen in components.
+   */
+  bookingUrl: string | null;
+  bookingProvider: EventBookingProvider;
+  /** Legacy gateway field — unused while bookingMode is external/whatsapp. */
   paymentCheckoutUrl: string | null;
   name: string;
   editionLabel: string;
@@ -89,7 +110,9 @@ export const GARBA_NIGHT_2026: GarbaNight2026 = {
   path: "/events/garba-night-2026",
   dataStatus: "verified",
   lifecycle: "upcoming",
-  bookingMode: "whatsapp",
+  bookingMode: "external",
+  bookingUrl: GARBA_KAIZEN_BOOKING_URL,
+  bookingProvider: "kaizen",
   paymentCheckoutUrl: null,
   name: "Ankit's Studio Garba Night — 5th Edition",
   editionLabel: "5th Edition",
@@ -178,9 +201,9 @@ export const GARBA_NIGHT_2026: GarbaNight2026 = {
     },
     {
       id: "reserve",
-      question: "How do I reserve passes?",
+      question: "How do I book passes?",
       answer:
-        "Reservations currently happen via WhatsApp. Use Reserve on WhatsApp on this page — you'll review the message before sending.",
+        "Use Book Passes on this page to register on Kaizen Events, where payment is completed. For other questions about the event, WhatsApp Ankit's Studio.",
     },
     {
       id: "refreshments",

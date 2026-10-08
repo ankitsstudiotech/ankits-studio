@@ -1,6 +1,7 @@
 import { FaqBlock } from "@/components/content/FaqBlock";
 import { RouteOpening, SectionReveal } from "@/components/motion";
 import type { GarbaMediaAvailability, GarbaNight2026 } from "@/content";
+import { GarbaWhatsAppSupportLink } from "./GarbaWhatsAppSupportLink";
 import { EventBookingCTA } from "./EventBookingCTA";
 import { EventDirectionsLink } from "./EventDirectionsLink";
 import { EventVideo } from "./EventVideo";
@@ -122,10 +123,15 @@ export function GarbaNightView({ event, media }: GarbaNightViewProps) {
               </ul>
 
               {!concluded ? (
-                <div className={styles.actions}>
-                  <EventBookingCTA source="hero" className={styles.primaryCta} />
-                  <EventDirectionsLink className={styles.secondaryCta} />
-                </div>
+                <>
+                  <div className={styles.actions}>
+                    <EventBookingCTA source="hero" className={styles.primaryCta} />
+                    <EventDirectionsLink className={styles.secondaryCta} />
+                  </div>
+                  <p className={styles.heroBookingNote}>
+                    Booking handled by Kaizen Events
+                  </p>
+                </>
               ) : (
                 <div className={styles.actions}>
                   <EventBookingCTA source="hero" className={styles.primaryCta} />
@@ -293,6 +299,11 @@ export function GarbaNightView({ event, media }: GarbaNightViewProps) {
               answer: faq.answer,
             }))}
           />
+          {!concluded ? (
+            <p className={styles.supportLine}>
+              <GarbaWhatsAppSupportLink className={styles.supportLink} />
+            </p>
+          ) : null}
         </div>
       </section>
 
@@ -304,7 +315,7 @@ export function GarbaNightView({ event, media }: GarbaNightViewProps) {
           <div className={styles.closingCampaignInner}>
             <p className={styles.closingCapacity}>{event.capacityLabel}</p>
             <h2 id="garba-closing-title" className={styles.closingTitle}>
-              Reserve your pass
+              Book your pass
             </h2>
             <p className={styles.closingMeta}>
               17 October 2026
@@ -321,6 +332,9 @@ export function GarbaNightView({ event, media }: GarbaNightViewProps) {
               </span>
             </p>
             <EventBookingCTA source="closing-cta" className={styles.closingCta} />
+            <p className={styles.closingBookingNote}>
+              Booking handled by Kaizen Events
+            </p>
           </div>
         </section>
       ) : (

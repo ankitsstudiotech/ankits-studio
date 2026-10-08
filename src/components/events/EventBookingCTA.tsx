@@ -14,8 +14,8 @@ export type EventBookingCTAProps = {
 };
 
 /**
- * Shared primary booking CTA. Today resolves to WhatsApp reservation;
- * when bookingMode flips to payment, label/href update from one config.
+ * Shared primary booking CTA. Resolves from event booking config
+ * (external Kaizen today; WhatsApp / in-app payment seams retained).
  */
 export function EventBookingCTA({
   source,
@@ -31,11 +31,21 @@ export function EventBookingCTA({
       data-booking-mode={action.mode}
       data-booking-source={source}
       data-cta-variant={variant}
-      {...(action.external
+      {...(action.external && action.mode === "whatsapp"
         ? { target: "_blank", rel: "noopener noreferrer" }
-        : {})}
+        : action.external
+          ? { rel: "noopener noreferrer" }
+          : {})}
       onClick={() => {
-        trackEvent(action.analyticsEvent, { source });
+        if (action.analyticsEvent === "garba_booking_click") {
+          trackEvent("garba_booking_click", {
+            source: action.source,
+            destination: action.destination ?? "external",
+            booking_mode: action.mode,
+          });
+          return;
+        }
+        trackEvent(action.analyticsEvent, { source: action.source });
       }}
     >
       {action.label}

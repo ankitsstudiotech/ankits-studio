@@ -13,6 +13,7 @@ import {
   getBranchMapsUrl,
   type ProgrammeSlug,
 } from "@/content";
+import { HOME_SEASONAL_CAMPAIGN } from "@/content/events";
 import {
   getPrimaryConversionHref,
   getPrimaryConversionLabel,
@@ -190,18 +191,27 @@ export default async function HomePage() {
     },
   ];
 
+  /**
+   * Temporary Garba Home hero takeover (ADR-026).
+   * Restore coach-led H1: set `HOME_SEASONAL_CAMPAIGN` to `null` in
+   * `src/content/events/garba-night-2026.ts`.
+   */
+  const garbaOwnsHomeHero = HOME_SEASONAL_CAMPAIGN === "garba-night-2026";
+
   return (
     <PageWithFooter>
     <main>
+      {garbaOwnsHomeHero ? <GarbaHomePromo /> : null}
+
       <Hero
         title="Coach-led fitness, yoga, Zumba and dance."
         titleLines={["Coach-led fitness,", "yoga, Zumba and", "dance."]}
         description="Four neighbourhood studios across Airoli, Ghansoli and Thane. Approachable, energetic sessions with coach guidance — work toward your goals at your pace. Book a free trial on WhatsApp."
         primaryCta={{ label: trialLabel, href: trialHref }}
         secondaryCta={{ label: "Find Your Nearest Studio", href: "/#locations" }}
+        titleAs={garbaOwnsHomeHero ? "h2" : "h1"}
+        mediaPriority={!garbaOwnsHomeHero}
       />
-
-      <GarbaHomePromo />
 
       <ProgrammeShowcase clusters={HOMEPAGE_CLUSTERS} />
 

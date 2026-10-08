@@ -11,10 +11,18 @@ export type HeroProps = {
   description: string;
   primaryCta: { label: string; href: string };
   secondaryCta?: { label: string; href: string };
+  /**
+   * Document heading level. Defaults to H1. When a seasonal campaign owns the
+   * page H1 (e.g. Garba Home hero), pass `"h2"` so hierarchy stays valid.
+   */
+  titleAs?: "h1" | "h2";
+  /** When false, skip LCP priority on hero media (seasonal campaign is LCP). */
+  mediaPriority?: boolean;
 };
 
 /**
- * Homepage hero — H1 leads; copy/CTA follow after headline is readable.
+ * Homepage coach-led fitness surface. Normally the page hero (H1); may demote
+ * to H2 while a temporary seasonal campaign owns the first viewport.
  * Header already carries brand; this surface does not repeat the lockup.
  * Optional editorial media when an owner-approved illustrative slot resolves.
  */
@@ -24,6 +32,8 @@ export function Hero({
   description,
   primaryCta,
   secondaryCta,
+  titleAs = "h1",
+  mediaPriority = true,
 }: HeroProps) {
   const lines = titleLines?.length ? titleLines : [title];
   const media = resolveSlotMedia("home.hero");
@@ -41,11 +51,12 @@ export function Hero({
         .join(" ")}
       aria-labelledby="home-hero-title"
       data-media-layout={withMedia ? "editorial-blend" : "text-led"}
+      data-home-surface={titleAs === "h1" ? "hero" : "secondary"}
     >
       <div className={styles.heroCopy}>
         <MaskedLines
           id="home-hero-title"
-          as="h1"
+          as={titleAs}
           lines={lines}
           className={styles.heroTitle}
         />
@@ -72,7 +83,7 @@ export function Hero({
           <PulseMedia
             item={media}
             overlay={false}
-            priority
+            priority={mediaPriority}
             reveal={false}
             sizes="(max-width: 1023px) 100vw, 55vw"
           />
