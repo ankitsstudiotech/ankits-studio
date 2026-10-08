@@ -6,11 +6,13 @@ export type {
   EventLifecycle,
   GarbaMediaAvailability,
   GarbaNight2026,
+  GarbaPassProduct,
   HomeSeasonalCampaign,
 } from "./garba-night-2026";
 export {
   GARBA_KAIZEN_BOOKING_URL,
   GARBA_NIGHT_2026,
+  GARBA_PASS_PRODUCTS,
   GARBA_WHATSAPP_PREFILL,
   HOME_SEASONAL_CAMPAIGN,
 } from "./garba-night-2026";

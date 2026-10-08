@@ -13,7 +13,7 @@ export type GarbaCampaignRibbonProps = {
 
 /**
  * Site-wide seasonal campaign band below the header.
- * Suppressed on the event page itself to avoid redundant messaging.
+ * Suppressed on Home (Garba already owns the hero) and on the event page.
  */
 export function GarbaCampaignRibbon({
   eventPath,
@@ -21,7 +21,12 @@ export function GarbaCampaignRibbon({
   guestPriceLabel,
 }: GarbaCampaignRibbonProps) {
   const pathname = usePathname();
-  if (pathname === eventPath || pathname?.startsWith(`${eventPath}/`)) {
+  const path = pathname?.split("?")[0]?.replace(/\/$/, "") || "/";
+  const isHome = path === "/" || path === "";
+  const isEvent =
+    path === eventPath || path.startsWith(`${eventPath}/`);
+
+  if (isHome || isEvent) {
     return null;
   }
 

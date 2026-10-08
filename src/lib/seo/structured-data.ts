@@ -410,24 +410,23 @@ export function buildGarbaNightEventJsonLd(event: GarbaNight2026): EventJsonLd |
       name: siteConfig.name,
       url: origin,
     },
-    offers: [
-      {
-        "@type": "Offer",
-        name: "Ankit's Studio Member Pass",
-        price: String(event.memberPriceInr),
+    offers: event.passProducts
+      .filter((pass) => pass.includeInSchema)
+      .map((pass) => ({
+        "@type": "Offer" as const,
+        name:
+          pass.id === "members"
+            ? "Ankit's Studio Member Pass"
+            : pass.id === "guests"
+              ? "Guest Pass"
+              : pass.id === "kids"
+                ? "Kids Pass (Age 3–10)"
+                : pass.name,
+        price: String(pass.priceInr),
         priceCurrency: "INR",
         url: offerUrl,
-        availability: "https://schema.org/InStock",
-      },
-      {
-        "@type": "Offer",
-        name: "Guest Pass",
-        price: String(event.guestPriceInr),
-        priceCurrency: "INR",
-        url: offerUrl,
-        availability: "https://schema.org/InStock",
-      },
-    ],
+        availability: "https://schema.org/InStock" as const,
+      })),
     url,
   };
 }

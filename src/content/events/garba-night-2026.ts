@@ -1,6 +1,7 @@
 /**
- * Garba Night 2026 — owner-confirmed seasonal event (operator brief 2026-10-07).
- * Not a programme. Primary booking is hosted on Kaizen Events (ADR-026).
+ * Garba Night 2026 — owner-confirmed seasonal event.
+ * Not a programme. Primary booking is hosted on Kaizen Events (ADR-026 / ADR-027).
+ * Pass prices + age bands follow Kaizen registration as source of truth.
  */
 
 export type EventLifecycle = "upcoming" | "concluded";
@@ -29,6 +30,17 @@ export const HOME_SEASONAL_CAMPAIGN: HomeSeasonalCampaign = "garba-night-2026";
 
 export const GARBA_KAIZEN_BOOKING_URL =
   "https://kaizenevents.live/register/ankits-studio-garba-night-the-5th-edition";
+
+export type GarbaPassProduct = {
+  id: "members" | "guests" | "kids" | "group-of-10";
+  name: string;
+  priceInr: number;
+  priceLabel: string;
+  unitLabel: string;
+  qualifierLabel: string;
+  /** Include in Event JSON-LD Offer list only when the price models a single pass truthfully. */
+  includeInSchema: boolean;
+};
 
 export type GarbaNight2026 = {
   slug: "garba-night-2026";
@@ -60,11 +72,22 @@ export type GarbaNight2026 = {
   postalCode: string;
   addressCountry: string;
   capacityLabel: string;
-  audienceLabel: string;
+  /** Compact secondary pricing for hero/closing/home — not full product cards. */
+  secondaryPricingLine: string;
+  /** Clarifies HTML pricing vs older artwork that may still show prior rates. */
+  pricingArtworkNote: string;
   memberPriceInr: number;
   guestPriceInr: number;
+  kidsPriceInr: number;
+  groupMemberPriceInr: number;
   memberPriceLabel: string;
   guestPriceLabel: string;
+  kidsPriceLabel: string;
+  groupMemberPriceLabel: string;
+  memberAgeLabel: string;
+  guestAgeLabel: string;
+  kidsAgeLabel: string;
+  passProducts: readonly GarbaPassProduct[];
   whatsappDigits: string;
   refreshmentsNote: string;
   seoTitle: string;
@@ -105,6 +128,46 @@ const WHATSAPP_DIGITS = "919372402074";
 const VENUE_QUERY =
   "VIBGYOR High School, Plot No. 114, Gothivali Village, Sector 8A, Airoli, Navi Mumbai, Maharashtra 400701";
 
+export const GARBA_PASS_PRODUCTS: readonly GarbaPassProduct[] = [
+  {
+    id: "members",
+    name: "Studio Members",
+    priceInr: 600,
+    priceLabel: "₹600",
+    unitLabel: "per pass",
+    qualifierLabel: "Age 11+",
+    includeInSchema: true,
+  },
+  {
+    id: "guests",
+    name: "Guests",
+    priceInr: 700,
+    priceLabel: "₹700",
+    unitLabel: "per pass",
+    qualifierLabel: "Age 11+",
+    includeInSchema: true,
+  },
+  {
+    id: "kids",
+    name: "Kids",
+    priceInr: 500,
+    priceLabel: "₹500",
+    unitLabel: "per pass",
+    qualifierLabel: "Age 3–10",
+    includeInSchema: true,
+  },
+  {
+    id: "group-of-10",
+    name: "Group of 10",
+    priceInr: 650,
+    priceLabel: "₹650",
+    unitLabel: "per member",
+    qualifierLabel: "Group of 10",
+    // Visible HTML only — schema would imply ₹650 buys the whole group.
+    includeInSchema: false,
+  },
+] as const;
+
 export const GARBA_NIGHT_2026: GarbaNight2026 = {
   slug: "garba-night-2026",
   path: "/events/garba-night-2026",
@@ -130,17 +193,26 @@ export const GARBA_NIGHT_2026: GarbaNight2026 = {
   postalCode: "400701",
   addressCountry: "IN",
   capacityLabel: "Limited to 500 registrations",
-  audienceLabel: "Open to all ages",
-  memberPriceInr: 599,
-  guestPriceInr: 699,
-  memberPriceLabel: "₹599",
-  guestPriceLabel: "₹699",
+  secondaryPricingLine: "Kids ₹500 · Group of 10 ₹650/member",
+  pricingArtworkNote: "See current pass pricing below.",
+  memberPriceInr: 600,
+  guestPriceInr: 700,
+  kidsPriceInr: 500,
+  groupMemberPriceInr: 650,
+  memberPriceLabel: "₹600",
+  guestPriceLabel: "₹700",
+  kidsPriceLabel: "₹500",
+  groupMemberPriceLabel: "₹650",
+  memberAgeLabel: "Age 11+",
+  guestAgeLabel: "Age 11+",
+  kidsAgeLabel: "Age 3–10",
+  passProducts: GARBA_PASS_PRODUCTS,
   whatsappDigits: WHATSAPP_DIGITS,
   refreshmentsNote:
     "Refreshments are available separately for purchase at the venue and are not included in the pass price.",
   seoTitle: "Garba Night 2026 in Airoli, Navi Mumbai",
   seoDescription:
-    "Join Ankit's Studio Garba Night — 5th Edition on 17 Oct at VIBGYOR High, Airoli. Live DJ, prizes and Garba Street. Passes ₹599/₹699.",
+    "Join Ankit's Studio Garba Night — 5th Edition on 17 Oct at VIBGYOR High, Airoli. Live DJ, prizes and Garba Street. Passes from ₹500.",
   highlights: [
     {
       id: "live-dj",
@@ -192,12 +264,13 @@ export const GARBA_NIGHT_2026: GarbaNight2026 = {
       id: "prices",
       question: "What are the pass prices?",
       answer:
-        "Ankit's Studio members: ₹599 per person. Guests: ₹699 per person.",
+        "Studio Members (age 11+) — ₹600 per pass. Guests (age 11+) — ₹700 per pass. Kids (age 3–10) — ₹500 per pass. Group of 10 — ₹650 per member.",
     },
     {
       id: "who",
-      question: "Who can attend?",
-      answer: "Open to all ages. Registrations are limited to 500.",
+      question: "Can children attend?",
+      answer:
+        "Kids passes are available for ages 3–10. Member and Guest passes are for ages 11+.",
     },
     {
       id: "reserve",
@@ -209,7 +282,7 @@ export const GARBA_NIGHT_2026: GarbaNight2026 = {
       id: "refreshments",
       question: "Are refreshments included?",
       answer:
-        "No. Refreshments are available separately for purchase at the venue and are not included in the ₹599 / ₹699 pass price.",
+        "No. Refreshments are available separately for purchase at the venue and are not included in the pass price.",
     },
     {
       id: "attractions",

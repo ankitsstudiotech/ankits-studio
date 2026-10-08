@@ -223,14 +223,14 @@ interface BlogPost extends DataProvenance {
 }
 ```
 
-### SeasonalEvent (Garba Night 2026 — ADR-025 / ADR-026)
+### SeasonalEvent (Garba Night 2026 — ADR-025 / ADR-026 / ADR-027)
 
 Not a programme. Lives under `src/content/events/`. Booking is abstracted
 (`bookingMode: "whatsapp" | "external" | "payment"`) so shared CTAs switch
-without redesign. Live mode is `external` via Kaizen Events (`bookingUrl` +
-`bookingProvider: "kaizen"`). WhatsApp remains support-only. Homepage temporary
-hero takeover is gated by `HOME_SEASONAL_CAMPAIGN` (set `null` to restore the
-coach-led Home H1).
+without redesign. Live mode is `external` via Kaizen Events. Pass products
+follow Kaizen registration (Members ₹600 / Guests ₹700 / Kids ₹500 /
+Group ₹650 per member) with age bands; Group offer is HTML-only in schema.
+Homepage temporary hero takeover is gated by `HOME_SEASONAL_CAMPAIGN`.
 
 ```ts
 interface SeasonalEvent extends DataProvenance {
@@ -247,6 +247,9 @@ interface SeasonalEvent extends DataProvenance {
   venueName: string;
   memberPriceInr: number;
   guestPriceInr: number;
+  kidsPriceInr: number;
+  groupMemberPriceInr: number;
+  passProducts: GarbaPassProduct[];
   whatsappDigits: string;
   // …venue address, highlights, FAQs, media paths — see garba-night-2026.ts
 }

@@ -6,11 +6,7 @@ import { EventBookingCTA } from "./EventBookingCTA";
 import styles from "./garba-night.module.css";
 
 /**
- * Homepage Garba campaign surface.
- *
- * When `HOME_SEASONAL_CAMPAIGN === "garba-night-2026"` this is the page hero
- * (H1, first content after header/ribbon). Restore by setting that constant
- * to `null` (ADR-026) — do not leave a second billboard lower on Home.
+ * Homepage Garba campaign surface (temporary H1 hero via HOME_SEASONAL_CAMPAIGN).
  */
 export function GarbaHomePromo() {
   const [event] = getActiveSeasonalPromos();
@@ -48,17 +44,26 @@ export function GarbaHomePromo() {
               <span className={styles.homeBillboardPriceValue}>
                 {event.memberPriceLabel}
               </span>
+              <span className={styles.homeBillboardPriceAge}>
+                {event.memberAgeLabel}
+              </span>
             </div>
             <div className={styles.homeBillboardPriceBlock}>
               <span className={styles.homeBillboardPriceLabel}>Guests</span>
               <span className={styles.homeBillboardPriceValue}>
                 {event.guestPriceLabel}
               </span>
+              <span className={styles.homeBillboardPriceAge}>
+                {event.guestAgeLabel}
+              </span>
             </div>
           </div>
 
+          <p className={styles.homeBillboardSecondaryPricing}>
+            {event.secondaryPricingLine}
+          </p>
+
           <ul className={styles.homeBillboardMeta}>
-            <li>{event.audienceLabel}</li>
             <li>{event.capacityLabel}</li>
           </ul>
 
@@ -86,6 +91,7 @@ export function GarbaHomePromo() {
               sizes="(max-width: 899px) 100vw, 42vw"
               priority
             />
+            <p className={styles.posterPricingNote}>{event.pricingArtworkNote}</p>
           </div>
         ) : null}
       </div>

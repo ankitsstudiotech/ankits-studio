@@ -85,15 +85,18 @@ export function GarbaNightView({ event, media }: GarbaNightViewProps) {
 
             <div className={styles.heroMedia}>
               {media.poster ? (
-                <GarbaCampaignMedia
-                  posterSrc={event.media.poster}
-                  posterAlt={event.media.posterAlt}
-                  teaserSrc={media.promoTeaser ? event.media.promoTeaser.src : undefined}
-                  teaserPoster={
-                    media.promoTeaser ? event.media.promoTeaser.poster : undefined
-                  }
-                  teaserLabel={event.media.promoTeaser.label}
-                />
+                <>
+                  <GarbaCampaignMedia
+                    posterSrc={event.media.poster}
+                    posterAlt={event.media.posterAlt}
+                    teaserSrc={media.promoTeaser ? event.media.promoTeaser.src : undefined}
+                    teaserPoster={
+                      media.promoTeaser ? event.media.promoTeaser.poster : undefined
+                    }
+                    teaserLabel={event.media.promoTeaser.label}
+                  />
+                  <p className={styles.posterPricingNote}>{event.pricingArtworkNote}</p>
+                </>
               ) : null}
             </div>
 
@@ -104,21 +107,25 @@ export function GarbaNightView({ event, media }: GarbaNightViewProps) {
                   <p className={styles.priceValue}>
                     <span className="sr-only">Ankit&apos;s Studio members </span>
                     {event.memberPriceLabel}
-                    <span className="sr-only"> per person</span>
+                    <span className="sr-only"> per pass</span>
                   </p>
+                  <p className={styles.priceAge}>{event.memberAgeLabel}</p>
                 </div>
                 <div className={styles.priceCell}>
                   <p className={styles.priceLabel}>Guests</p>
                   <p className={styles.priceValue}>
                     <span className="sr-only">Guests </span>
                     {event.guestPriceLabel}
-                    <span className="sr-only"> per person</span>
+                    <span className="sr-only"> per pass</span>
                   </p>
+                  <p className={styles.priceAge}>{event.guestAgeLabel}</p>
                 </div>
               </div>
+              <p className={styles.heroSecondaryPricing}>
+                Kids &amp; group passes available
+              </p>
 
               <ul className={styles.facts}>
-                <li>{event.audienceLabel}</li>
                 <li>{event.capacityLabel}</li>
               </ul>
 
@@ -150,28 +157,27 @@ export function GarbaNightView({ event, media }: GarbaNightViewProps) {
           <h2 id="garba-pricing-title" className={styles.passesTitle}>
             Passes
           </h2>
-          <div className={styles.passesRow}>
-            <div className={styles.passesPrice}>
-              <p className={styles.passesLabel}>Ankit&apos;s Studio Members</p>
-              <p className={styles.passesAmount}>
-                {event.memberPriceLabel}
-                <span className={styles.passesUnit}> / person</span>
-              </p>
-            </div>
-            <div className={styles.passesPrice}>
-              <p className={styles.passesLabel}>Guests</p>
-              <p className={styles.passesAmount}>
-                {event.guestPriceLabel}
-                <span className={styles.passesUnit}> / person</span>
-              </p>
-            </div>
-            {!concluded ? (
-              <div className={styles.passesAction}>
-                <EventBookingCTA source="pricing" className={styles.primaryCta} />
+          <div className={styles.passesGrid}>
+            {event.passProducts.map((pass) => (
+              <div key={pass.id} className={styles.passesPrice}>
+                <p className={styles.passesLabel}>{pass.name}</p>
+                <p className={styles.passesAmount}>
+                  {pass.priceLabel}
+                  <span className={styles.passesUnit}> {pass.unitLabel}</span>
+                </p>
+                <p className={styles.passesAge}>{pass.qualifierLabel}</p>
               </div>
-            ) : null}
+            ))}
           </div>
+          {!concluded ? (
+            <div className={styles.passesActionRow}>
+              <EventBookingCTA source="pricing" className={styles.primaryCta} />
+            </div>
+          ) : null}
           <p className={styles.refreshmentsNote}>{event.refreshmentsNote}</p>
+          <p className={styles.registrationFeeNote}>
+            Final payable amount is shown during registration on Kaizen Events.
+          </p>
         </div>
       </section>
 
@@ -330,6 +336,9 @@ export function GarbaNightView({ event, media }: GarbaNightViewProps) {
               <span>
                 Guests <strong>{event.guestPriceLabel}</strong>
               </span>
+            </p>
+            <p className={styles.closingSecondaryPricing}>
+              {event.secondaryPricingLine}
             </p>
             <EventBookingCTA source="closing-cta" className={styles.closingCta} />
             <p className={styles.closingBookingNote}>

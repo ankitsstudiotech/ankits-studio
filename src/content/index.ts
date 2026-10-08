@@ -397,6 +397,7 @@ export {
 export {
   GARBA_KAIZEN_BOOKING_URL,
   GARBA_NIGHT_2026,
+  GARBA_PASS_PRODUCTS,
   GARBA_WHATSAPP_PREFILL,
   HOME_SEASONAL_CAMPAIGN,
   getActiveSeasonalPromos,
@@ -408,6 +409,7 @@ export {
   type EventLifecycle,
   type GarbaMediaAvailability,
   type GarbaNight2026,
+  type GarbaPassProduct,
   type HomeSeasonalCampaign,
 } from "./events";
 export * from "./schema";

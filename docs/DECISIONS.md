@@ -681,6 +681,14 @@ Schema note (same change): removed unused optional `readinessBodyMockPreview` fr
 
 **Why:** Owner decided Garba must lead the homepage during the campaign and that registration/payment is handled externally on Kaizen Events.
 
+**Status**: Active; pricing/age bands refined by ADR-027.
+
+## ADR-027: Garba Kaizen final pass pricing + Home ribbon suppress
+
+**Decision**: Treat Kaizen’s published registration charges as website source of truth: Members ₹600 (11+), Guests ₹700 (11+), Kids ₹500 (3–10), Group of 10 ₹650/member. Remove “open to all ages” and legacy ₹599/₹699 from active HTML/metadata/schema. Event JSON-LD includes Member/Guest/Kids offers at Kaizen `offers.url`; Group of 10 stays HTML-only (₹650 is per-member, not a whole-group Offer). Suppress Garba campaign ribbon on `/` (hero already owns Home) and on the event route; keep ribbon elsewhere. Owner poster may still depict prior artwork prices — do not edit the image; HTML shows current rates with a short clarification.
+
+**Why:** Owner confirmed Kaizen registration structure as final; homepage ribbon became redundant above the Garba hero.
+
 **Status**: Active.
 
 ## Log format for future entries
