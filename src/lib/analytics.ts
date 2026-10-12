@@ -173,32 +173,39 @@ export function trackBatchPreference(params: {
 
 /**
  * Primary Garba conversion (Kaizen / external booking).
- * Replaces garba_whatsapp_reserve_click for ticket registration (ADR-026).
+ * Uses `cta_location` — never GA reserved `source`/`medium`/`campaign`
+ * (ADR-028). Beacon transport so the event can flush before external nav.
  */
 export function trackGarbaBookingClick(params: {
-  source: string;
-  destination?: string;
-  booking_mode?: string;
+  cta_location: string;
+  booking_provider?: string;
+  destination_host?: string;
+  destination_type?: string;
+  campaign_id?: string;
 }) {
   trackEvent("garba_booking_click", {
-    source: params.source,
-    destination: params.destination ?? "kaizen",
-    booking_mode: params.booking_mode ?? "external",
+    cta_location: params.cta_location,
+    booking_provider: params.booking_provider ?? "kaizen",
+    destination_host: params.destination_host ?? "kaizenevents.live",
+    destination_type: params.destination_type ?? "external-booking",
+    campaign_id: params.campaign_id ?? "garba-night-2026",
+    // gtag special: prefer beacon so outbound same-tab nav can deliver the hit
+    transport_type: "beacon",
   });
 }
 
 /** Historical WhatsApp-primary conversion — do not fire for Kaizen CTAs. */
-export function trackGarbaWhatsAppReserve(source: string) {
-  trackEvent("garba_whatsapp_reserve_click", { source });
+export function trackGarbaWhatsAppReserve(cta_location: string) {
+  trackEvent("garba_whatsapp_reserve_click", { cta_location });
 }
 
 /** Support contact only — not ticket conversion. */
-export function trackGarbaWhatsAppSupport(source = "event-support") {
-  trackEvent("garba_whatsapp_support_click", { source });
+export function trackGarbaWhatsAppSupport(cta_location = "event-support") {
+  trackEvent("garba_whatsapp_support_click", { cta_location });
 }
 
-export function trackGarbaDirections(source = "venue") {
-  trackEvent("garba_directions_click", { source });
+export function trackGarbaDirections(cta_location = "venue") {
+  trackEvent("garba_directions_click", { cta_location });
 }
 
 export function trackGarbaPromoVideoPlay() {

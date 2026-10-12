@@ -8,6 +8,7 @@ import {
 } from "@/content";
 import {
   getGarbaBookingAction,
+  getGarbaBookingUrl,
   getGarbaDirectionsUrl,
   getGarbaWhatsAppSupportAction,
 } from "@/lib/events";
@@ -61,22 +62,40 @@ describe("Garba Night 2026 event", () => {
     expect(event.bookingMode).toBe("external");
     expect(event.bookingProvider).toBe("kaizen");
     expect(event.bookingUrl).toBe(kaizen);
+    expect(event.bookingUrl).not.toContain("utm_");
 
     for (const source of [
-      "hero",
-      "pricing",
-      "sticky-mobile",
-      "closing-cta",
+      "event-hero",
+      "event-passes",
+      "event-sticky-mobile",
+      "event-closing",
       "homepage-hero",
       "campaign-ribbon",
     ] as const) {
       const action = getGarbaBookingAction(source);
       expect(action.mode).toBe("external");
       expect(action.label).toBe("Book Passes");
-      expect(action.href).toBe(kaizen);
+      expect(action.href).toBe(getGarbaBookingUrl(source));
+      expect(action.href).toContain("utm_source=ankitsstudio.com");
+      expect(action.href).toContain(`utm_content=${source}`);
       expect(action.analyticsEvent).toBe("garba_booking_click");
-      expect(action.destination).toBe("kaizen");
+      expect(action.ctaLocation).toBe(source);
+      expect(action.bookingProvider).toBe("kaizen");
+      expect(action).not.toHaveProperty("destination");
+      expect(action).not.toHaveProperty("source");
     }
+  });
+
+  it("keeps Event JSON-LD Offer URLs on the clean Kaizen base (no CTA UTMs)", () => {
+    const jsonLd = buildGarbaNightEventJsonLd(event);
+    expect(jsonLd?.offers.every((o) => o.url === kaizen)).toBe(true);
+    expect(jsonLd?.offers.every((o) => !o.url.includes("utm_"))).toBe(true);
+  });
+
+  it("does not decorate internal studio paths with UTMs", () => {
+    expect(event.path).toBe("/events/garba-night-2026");
+    expect(event.path).not.toContain("utm_");
+    expect(buildCanonicalUrl(event.path)).not.toContain("utm_");
   });
 
   it("keeps WhatsApp as support-only, not primary booking", () => {

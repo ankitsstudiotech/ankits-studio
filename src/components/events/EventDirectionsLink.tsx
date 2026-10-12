@@ -22,7 +22,7 @@ export function EventDirectionsLink({
       target="_blank"
       rel="noopener noreferrer"
       onClick={() => {
-        trackEvent("garba_directions_click", { source: "venue" });
+        trackEvent("garba_directions_click", { cta_location: "venue" });
       }}
     >
       {children}

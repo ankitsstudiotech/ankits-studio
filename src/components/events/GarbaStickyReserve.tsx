@@ -9,7 +9,7 @@ export function GarbaStickyReserve() {
     <div className={styles.stickyBar} data-sticky="garba-reserve">
       <div className={styles.stickyInner}>
         <EventBookingCTA
-          source="sticky-mobile"
+          source="event-sticky-mobile"
           variant="sticky"
           className={styles.stickyCta}
         />

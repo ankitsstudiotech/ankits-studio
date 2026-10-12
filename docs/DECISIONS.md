@@ -691,6 +691,14 @@ Schema note (same change): removed unused optional `readinessBodyMockPreview` fr
 
 **Status**: Active.
 
+## ADR-028: Garba booking analytics — cta_location + Kaizen UTMs
+
+**Decision**: Keep the custom event name `garba_booking_click` for historical continuity. Stop sending CTA placement as GA reserved `source` (and related acquisition-like fields `destination` / `booking_mode` as the CTA payload). Emit application parameters only: `cta_location`, `booking_provider`, `destination_host`, `destination_type`, `campaign_id`, with gtag `transport_type: "beacon"` for outbound delivery. Controlled `cta_location` values: `homepage-hero`, `campaign-ribbon`, `event-hero`, `event-passes`, `event-sticky-mobile`, `event-closing`. Shared helpers: `trackGarbaBookingClick` + `getGarbaBookingUrl(ctaLocation)`. External Kaizen booking hrefs may carry fixed UTMs (`utm_source=ankitsstudio.com`, `utm_medium=website`, `utm_campaign=garba_night_2026`, `utm_content=<cta_location>`) after HEAD/load verification; Event JSON-LD `offers.url` and content `bookingUrl` stay on the undecorated Kaizen base. Never add UTMs to internal `ankitsstudio.com` links. Do not suppress GA4 enhanced-measurement outbound `click`. Marking `garba_booking_click` as a GA4 Key Event and registering custom dimensions remain operator Admin steps (not code).
+
+**Why:** Direct GA4 inspection showed session source/medium rows like `homepage-hero / (not set)` because CTA placement was sent as the event parameter `source`, which collides with GA4 traffic-acquisition semantics.
+
+**Status**: Active.
+
 ## Log format for future entries
 
 ```

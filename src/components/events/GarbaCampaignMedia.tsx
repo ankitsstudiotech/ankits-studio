@@ -79,7 +79,9 @@ export function GarbaCampaignMedia({
             onPlay={() => {
               if (trackedRef.current) return;
               trackedRef.current = true;
-              trackEvent("garba_promo_video_play", { source: "hero-campaign" });
+              trackEvent("garba_promo_video_play", {
+                cta_location: "homepage-hero",
+              });
             }}
           >
             <source src={teaserSrc} type="video/mp4" />

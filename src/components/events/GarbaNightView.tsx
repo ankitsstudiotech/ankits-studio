@@ -131,12 +131,12 @@ export function GarbaNightView({ event, media }: GarbaNightViewProps) {
 
               {!concluded ? (
                 <div className={styles.actions}>
-                  <EventBookingCTA source="hero" className={styles.primaryCta} />
+                  <EventBookingCTA source="event-hero" className={styles.primaryCta} />
                   <EventDirectionsLink className={styles.secondaryCta} />
                 </div>
               ) : (
                 <div className={styles.actions}>
-                  <EventBookingCTA source="hero" className={styles.primaryCta} />
+                  <EventBookingCTA source="event-hero" className={styles.primaryCta} />
                 </div>
               )}
             </div>
@@ -166,7 +166,7 @@ export function GarbaNightView({ event, media }: GarbaNightViewProps) {
           </div>
           {!concluded ? (
             <div className={styles.passesActionRow}>
-              <EventBookingCTA source="pricing" className={styles.primaryCta} />
+              <EventBookingCTA source="event-passes" className={styles.primaryCta} />
             </div>
           ) : null}
           <p className={styles.refreshmentsNote}>{event.refreshmentsNote}</p>
@@ -335,7 +335,7 @@ export function GarbaNightView({ event, media }: GarbaNightViewProps) {
             <p className={styles.closingSecondaryPricing}>
               {event.secondaryPricingLine}
             </p>
-            <EventBookingCTA source="closing-cta" className={styles.closingCta} />
+            <EventBookingCTA source="event-closing" className={styles.closingCta} />
           </div>
         </section>
       ) : (
@@ -352,7 +352,7 @@ export function GarbaNightView({ event, media }: GarbaNightViewProps) {
               Garba Night 2026 has concluded. Follow Ankit&apos;s Studio for future
               community nights and studio programmes.
             </p>
-            <EventBookingCTA source="closing-cta" className={styles.closingCta} />
+            <EventBookingCTA source="event-closing" className={styles.closingCta} />
           </div>
         </section>
       )}

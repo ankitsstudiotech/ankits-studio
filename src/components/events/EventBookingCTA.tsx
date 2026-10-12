@@ -1,6 +1,6 @@
 "use client";
 
-import { trackEvent } from "@/lib/analytics";
+import { trackEvent, trackGarbaBookingClick } from "@/lib/analytics";
 import {
   getGarbaBookingAction,
   type EventBookingSource,
@@ -16,6 +16,9 @@ export type EventBookingCTAProps = {
 /**
  * Shared primary booking CTA. Resolves from event booking config
  * (external Kaizen today; WhatsApp / in-app payment seams retained).
+ *
+ * Emits exactly one custom analytics event per click via the shared helper.
+ * Automatic GA4 enhanced-measurement outbound `click` may also fire — keep it.
  */
 export function EventBookingCTA({
   source,
@@ -29,7 +32,7 @@ export function EventBookingCTA({
       href={action.href}
       className={className}
       data-booking-mode={action.mode}
-      data-booking-source={source}
+      data-cta-location={action.ctaLocation}
       data-cta-variant={variant}
       {...(action.external && action.mode === "whatsapp"
         ? { target: "_blank", rel: "noopener noreferrer" }
@@ -38,14 +41,15 @@ export function EventBookingCTA({
           : {})}
       onClick={() => {
         if (action.analyticsEvent === "garba_booking_click") {
-          trackEvent("garba_booking_click", {
-            source: action.source,
-            destination: action.destination ?? "external",
-            booking_mode: action.mode,
+          trackGarbaBookingClick({
+            cta_location: action.ctaLocation,
+            booking_provider: action.bookingProvider ?? "kaizen",
           });
           return;
         }
-        trackEvent(action.analyticsEvent, { source: action.source });
+        trackEvent(action.analyticsEvent, {
+          cta_location: action.ctaLocation,
+        });
       }}
     >
       {action.label}
