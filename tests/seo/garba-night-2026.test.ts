@@ -3,6 +3,7 @@ import {
   GARBA_KAIZEN_BOOKING_URL,
   GARBA_WHATSAPP_PREFILL,
   HOME_SEASONAL_CAMPAIGN,
+  getActiveSeasonalPromos,
   getGarbaNight2026,
   getSeasonalEvents,
 } from "@/content";
@@ -17,12 +18,10 @@ import { buildSitemapEntries } from "@/lib/seo/sitemap";
 import { buildGarbaNightEventJsonLd } from "@/lib/seo/structured-data";
 import { buildPageMetadata } from "@/lib/seo/metadata";
 
-describe("Garba Night 2026 event", () => {
+describe("Garba Night 2026 event archive", () => {
   const event = getGarbaNight2026();
-  const kaizen = GARBA_KAIZEN_BOOKING_URL;
   const activeCopy = JSON.stringify({
     ...event,
-    // Exclude binary/media paths from pricing string assertions.
     media: undefined,
   });
 
@@ -31,12 +30,26 @@ describe("Garba Night 2026 event", () => {
     expect(event.dataStatus).toBe("verified");
     expect(event.startDateIso).toBe("2026-10-17T19:00:00+05:30");
     expect(event.endDateIso).toBe("2026-10-18T00:00:00+05:30");
+    expect(event.dateLabel).toBe("17 October 2026");
     expect(event.venueName).toMatch(/VIBGYOR/i);
     expect(event.capacityLabel).toMatch(/500/);
     expect(event.refreshmentsNote).toMatch(/not included/i);
   });
 
-  it("uses Kaizen final pass prices and age bands", () => {
+  it("is concluded with no live booking destination", () => {
+    expect(event.lifecycle).toBe("concluded");
+    expect(event.bookingUrl).toBeNull();
+    expect(event.bookingProvider).toBeNull();
+    expect(HOME_SEASONAL_CAMPAIGN).toBeNull();
+    expect(getActiveSeasonalPromos()).toHaveLength(0);
+  });
+
+  it("keeps historical Kaizen base URL constant but unused for live booking", () => {
+    expect(GARBA_KAIZEN_BOOKING_URL).toContain("kaizenevents.live");
+    expect(event.bookingUrl).not.toBe(GARBA_KAIZEN_BOOKING_URL);
+  });
+
+  it("retains historical pass prices without Sold Out claims", () => {
     expect(event.memberPriceInr).toBe(600);
     expect(event.guestPriceInr).toBe(700);
     expect(event.kidsPriceInr).toBe(500);
@@ -48,22 +61,11 @@ describe("Garba Night 2026 event", () => {
     expect(event.memberAgeLabel).toBe("Age 11+");
     expect(event.guestAgeLabel).toBe("Age 11+");
     expect(event.kidsAgeLabel).toBe("Age 3–10");
-    expect(event.passProducts.map((p) => p.id)).toEqual([
-      "members",
-      "guests",
-      "kids",
-      "group-of-10",
-    ]);
-    expect(activeCopy).not.toMatch(/₹599|₹699|\b599\b|\b699\b/);
+    expect(activeCopy).not.toMatch(/sold out/i);
     expect(activeCopy).not.toMatch(/open to all ages|all ages/i);
   });
 
-  it("uses external Kaizen booking as the single primary destination", () => {
-    expect(event.bookingMode).toBe("external");
-    expect(event.bookingProvider).toBe("kaizen");
-    expect(event.bookingUrl).toBe(kaizen);
-    expect(event.bookingUrl).not.toContain("utm_");
-
+  it("booking helper does not return a Kaizen URL while concluded", () => {
     for (const source of [
       "event-hero",
       "event-passes",
@@ -73,50 +75,29 @@ describe("Garba Night 2026 event", () => {
       "campaign-ribbon",
     ] as const) {
       const action = getGarbaBookingAction(source);
-      expect(action.mode).toBe("external");
-      expect(action.label).toBe("Book Passes");
-      expect(action.href).toBe(getGarbaBookingUrl(source));
-      expect(action.href).toContain("utm_source=ankitsstudio.com");
-      expect(action.href).toContain(`utm_content=${source}`);
-      expect(action.analyticsEvent).toBe("garba_booking_click");
-      expect(action.ctaLocation).toBe(source);
-      expect(action.bookingProvider).toBe("kaizen");
-      expect(action).not.toHaveProperty("destination");
-      expect(action).not.toHaveProperty("source");
+      expect(action.href).not.toContain("kaizenevents.live");
+      expect(action.label).not.toMatch(/book passes|book now|register now/i);
+      expect(action.analyticsEvent).not.toBe("garba_booking_click");
     }
+    // URL builder still produces UTM URLs from the constant base, but UI must not use it.
+    expect(getGarbaBookingUrl("homepage-hero")).toContain("kaizenevents.live");
   });
 
-  it("keeps Event JSON-LD Offer URLs on the clean Kaizen base (no CTA UTMs)", () => {
-    const jsonLd = buildGarbaNightEventJsonLd(event);
-    expect(jsonLd?.offers.every((o) => o.url === kaizen)).toBe(true);
-    expect(jsonLd?.offers.every((o) => !o.url.includes("utm_"))).toBe(true);
-  });
-
-  it("does not decorate internal studio paths with UTMs", () => {
-    expect(event.path).toBe("/events/garba-night-2026");
-    expect(event.path).not.toContain("utm_");
-    expect(buildCanonicalUrl(event.path)).not.toContain("utm_");
-  });
-
-  it("keeps WhatsApp as support-only, not primary booking", () => {
+  it("keeps WhatsApp support helper available without implying live sales", () => {
     const support = getGarbaWhatsAppSupportAction();
-    expect(support.label).toMatch(/Questions\? WhatsApp/i);
     expect(support.href).toContain("wa.me/919372402074");
     expect(GARBA_WHATSAPP_PREFILL).toMatch(/Member passes:/);
   });
 
-  it("builds Event JSON-LD with Member/Guest/Kids offers and omits group schema", () => {
+  it("builds Event JSON-LD without active purchase offers", () => {
     const jsonLd = buildGarbaNightEventJsonLd(event);
     expect(jsonLd).toBeTruthy();
     expect(jsonLd?.["@type"]).toBe("Event");
-    expect(jsonLd?.offers).toHaveLength(3);
-    expect(jsonLd?.offers.map((o) => o.price).sort()).toEqual(["500", "600", "700"]);
-    expect(jsonLd?.offers.every((o) => o.url === kaizen)).toBe(true);
-    expect(jsonLd?.offers.some((o) => o.price === "650")).toBe(false);
-    expect(jsonLd?.offers.some((o) => o.price === "599" || o.price === "699")).toBe(
-      false,
-    );
+    expect(jsonLd?.eventStatus).toBe("https://schema.org/EventScheduled");
+    expect(jsonLd?.eventStatus).not.toMatch(/Cancelled|Postponed/);
+    expect(jsonLd?.offers).toBeUndefined();
     expect(jsonLd?.url).toBe(buildCanonicalUrl(event.path));
+    expect(jsonLd?.startDate).toBe("2026-10-17T19:00:00+05:30");
   });
 
   it("builds a Maps directions URL for VIBGYOR High", () => {
@@ -125,7 +106,7 @@ describe("Garba Night 2026 event", () => {
     expect(url).toMatch(/VIBGYOR|Airoli|400701/);
   });
 
-  it("includes the event in the sitemap when indexable", () => {
+  it("includes the event archive URL in the sitemap when indexable", () => {
     const urls = buildSitemapEntries().map((entry) => entry.url);
     if (urls.length === 0) {
       expect(urls).toEqual([]);
@@ -134,7 +115,7 @@ describe("Garba Night 2026 event", () => {
     expect(urls).toContain(buildCanonicalUrl("/events/garba-night-2026"));
   });
 
-  it("publishes unique metadata without legacy 599/699 pricing", () => {
+  it("publishes archive metadata without purchase urgency", () => {
     const meta = buildPageMetadata({
       title: event.seoTitle,
       description: event.seoDescription,
@@ -142,8 +123,8 @@ describe("Garba Night 2026 event", () => {
       ogImagePath: `${event.path}/opengraph-image`,
     });
     expect(meta.alternates?.canonical).toBe(buildCanonicalUrl(event.path));
-    expect(String(meta.description)).toMatch(/₹500/);
-    expect(String(meta.description)).not.toMatch(/₹599|₹699/);
+    expect(String(meta.description)).not.toMatch(/book passes now|register now/i);
+    expect(String(meta.description)).toMatch(/17 October 2026|17 Oct/);
   });
 
   it("keeps homepage metadata on the studio identity, not the event route", () => {
@@ -156,14 +137,19 @@ describe("Garba Night 2026 event", () => {
     expect(home.alternates?.canonical).toBe(buildCanonicalUrl("/"));
   });
 
-  it("enables temporary Home Garba hero via HOME_SEASONAL_CAMPAIGN", () => {
-    expect(HOME_SEASONAL_CAMPAIGN).toBe("garba-night-2026");
+  it("restores permanent Home hero by clearing HOME_SEASONAL_CAMPAIGN", () => {
+    expect(HOME_SEASONAL_CAMPAIGN).toBeNull();
   });
 
   it("labels previous-edition media as Garba Night 4.0, not 2026 footage", () => {
     expect(event.media.previousEdition.label).toMatch(/4\.0/);
     expect(event.media.promoTeaser.src).toBe("/events/garba-night-2026/teaser.mp4");
     expect(event.media.poster).toBe("/events/garba-night-2026/poster.webp");
+  });
+
+  it("does not invent a 2026 photo gallery in content", () => {
+    expect(activeCopy).not.toMatch(/photo gallery|event gallery|2026 photos/i);
+    expect(event.media).not.toHaveProperty("gallery");
   });
 
   it("rejects fabricated Stitch event claims in truth content", () => {
@@ -176,16 +162,17 @@ describe("Garba Night 2026 event", () => {
     expect(getSeasonalEvents().map((e) => e.slug)).toContain("garba-night-2026");
   });
 
-  it("FAQ matches Kaizen pricing and child age bands", () => {
+  it("FAQ matches historical pricing and closed registration", () => {
     const prices = event.faqs.find((f) => f.id === "prices");
     const who = event.faqs.find((f) => f.id === "who");
+    const reserve = event.faqs.find((f) => f.id === "reserve");
     expect(prices?.answer).toMatch(/₹600/);
     expect(prices?.answer).toMatch(/₹700/);
     expect(prices?.answer).toMatch(/₹500/);
     expect(prices?.answer).toMatch(/₹650/);
-    expect(who?.question).toMatch(/children/i);
     expect(who?.answer).toMatch(/3–10|3-10/);
     expect(who?.answer).toMatch(/11\+/);
-    expect(who?.answer).not.toMatch(/all ages/i);
+    expect(reserve?.answer).toMatch(/concluded|closed/i);
+    expect(reserve?.answer).not.toMatch(/Kaizen|Book Passes/i);
   });
 });

@@ -99,6 +99,7 @@ design-token set, and the Vitest/Playwright/axe-core testing foundation
 | Cross-zone: Garba homepage hero takeover + Kaizen external booking cutover (no Instamojo/API). | Cursor | Done | Merged @ `165f5ea`. ADR-026. |
 | Cross-zone: Garba final Kaizen pricing/age alignment + Home ribbon suppress. | Cursor | Done | Merged @ `12c8092`. ADR-027. Deploy `dpl_GqVQzgHjeZdngGo7878aWib3Dgwz`. |
 | Cross-zone: Garba analytics hotfix — `cta_location` payload, Kaizen UTMs, ADR-028. No visual/SEO/pricing changes. | Cursor | Done | `7330003` · Vercel `dpl_B2JHZjPchekXaGLReusZFyzBh1cg` READY → https://ankitsstudio.com. Checkpoint `studio-pulse-before-garba-analytics-hotfix` @ `4075b36`. |
+| Cross-zone: Garba post-event archive — remove booking CTAs/Kaizen links; keep event page SEO; no 2026 photos yet. ADR-029. | Cursor | In progress | Checkpoint `studio-pulse-before-garba-post-event-archive` @ `9db446f`. Branch `feat/garba-post-event-archive`. |
 
 ## Prompt 1 — Visual system repair (active)
 

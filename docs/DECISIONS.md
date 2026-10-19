@@ -697,6 +697,14 @@ Schema note (same change): removed unused optional `readinessBodyMockPreview` fr
 
 **Why:** Direct GA4 inspection showed session source/medium rows like `homepage-hero / (not set)` because CTA placement was sent as the event parameter `source`, which collides with GA4 traffic-acquisition semantics.
 
+**Status**: Active; booking surfaces retired for archive by ADR-029 (event name retained for history).
+
+## ADR-029: Garba Night 2026 post-event archive — retire booking CTAs
+
+**Decision**: After 17 October 2026, set `lifecycle: "concluded"`, `HOME_SEASONAL_CAMPAIGN: null`, and `bookingUrl` / `bookingProvider` to `null`. Remove all user-facing BOOK PASSES / Kaizen registration links (home hero, ribbon, sticky, event hero/passes/closing). Keep `/events/garba-night-2026` indexable with the same canonical as a permanent archive. Present pass prices as historical (“Pass Pricing — 5th Edition”) with no purchase CTA and no fabricated Sold Out claim. Event JSON-LD keeps name/dates/venue/`EventScheduled` and omits purchase `offers`. Do not add 2026 photo gallery in this change. Historical GA4 event name `garba_booking_click` is preserved but no active UI emits it for this concluded event.
+
+**Why:** Ticket sales ended when the event concluded; the URL retains Search equity as an archive while stale registration CTAs would mislead visitors.
+
 **Status**: Active.
 
 ## Log format for future entries

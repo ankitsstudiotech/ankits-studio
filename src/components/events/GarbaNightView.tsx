@@ -45,7 +45,15 @@ export function GarbaNightView({ event, media }: GarbaNightViewProps) {
           <div className={`${styles.wrap} ${styles.heroGrid}`}>
             <div className={styles.heroIntro}>
               {concluded ? (
-                <p className={styles.archiveBanner}>Garba Night 2026 has concluded</p>
+                <div className={styles.archiveStatus}>
+                  <p className={styles.archiveBanner}>
+                    Event concluded · 17 October 2026
+                  </p>
+                  <p className={styles.archiveLede}>
+                    Garba Night — 5th Edition has concluded. Event highlights and
+                    photos are coming soon.
+                  </p>
+                </div>
               ) : null}
               <p className={styles.kicker}>{event.presenterLine}</p>
               <div className={styles.titleBlock}>
@@ -122,23 +130,25 @@ export function GarbaNightView({ event, media }: GarbaNightViewProps) {
                 </div>
               </div>
               <p className={styles.heroSecondaryPricing}>
-                Kids &amp; group passes available
+                {concluded
+                  ? "Kids & group pass pricing below"
+                  : "Kids & group passes available"}
               </p>
 
               <ul className={styles.facts}>
                 <li>{event.capacityLabel}</li>
               </ul>
 
-              {!concluded ? (
-                <div className={styles.actions}>
+              <div className={styles.actions}>
+                {!concluded ? (
                   <EventBookingCTA source="event-hero" className={styles.primaryCta} />
-                  <EventDirectionsLink className={styles.secondaryCta} />
-                </div>
-              ) : (
-                <div className={styles.actions}>
-                  <EventBookingCTA source="event-hero" className={styles.primaryCta} />
-                </div>
-              )}
+                ) : null}
+                <EventDirectionsLink
+                  className={
+                    concluded ? styles.primaryCta : styles.secondaryCta
+                  }
+                />
+              </div>
             </div>
           </div>
         </section>
@@ -150,7 +160,7 @@ export function GarbaNightView({ event, media }: GarbaNightViewProps) {
       >
         <div className={`${styles.wrap} ${styles.passesWrap}`}>
           <h2 id="garba-pricing-title" className={styles.passesTitle}>
-            Passes
+            {concluded ? "Pass Pricing — 5th Edition" : "Passes"}
           </h2>
           <div className={styles.passesGrid}>
             {event.passProducts.map((pass) => (
@@ -170,9 +180,11 @@ export function GarbaNightView({ event, media }: GarbaNightViewProps) {
             </div>
           ) : null}
           <p className={styles.refreshmentsNote}>{event.refreshmentsNote}</p>
-          <p className={styles.registrationFeeNote}>
-            Final payable amount is shown during registration on Kaizen Events.
-          </p>
+          {!concluded ? (
+            <p className={styles.registrationFeeNote}>
+              Final payable amount is shown during registration on Kaizen Events.
+            </p>
+          ) : null}
         </div>
       </section>
 
@@ -349,10 +361,10 @@ export function GarbaNightView({ event, media }: GarbaNightViewProps) {
               Thanks for celebrating with us
             </h2>
             <p className={styles.closingMeta}>
-              Garba Night 2026 has concluded. Follow Ankit&apos;s Studio for future
-              community nights and studio programmes.
+              Garba Night 2026 has concluded. Event highlights and photos are
+              coming soon. Follow Ankit&apos;s Studio for future community nights
+              and studio programmes.
             </p>
-            <EventBookingCTA source="event-closing" className={styles.closingCta} />
           </div>
         </section>
       )}

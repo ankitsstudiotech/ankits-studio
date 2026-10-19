@@ -1,5 +1,6 @@
 "use client";
 
+import { GARBA_NIGHT_2026 } from "@/content/events/garba-night-2026";
 import { trackEvent, trackGarbaBookingClick } from "@/lib/analytics";
 import {
   getGarbaBookingAction,
@@ -14,17 +15,19 @@ export type EventBookingCTAProps = {
 };
 
 /**
- * Shared primary booking CTA. Resolves from event booking config
- * (external Kaizen today; WhatsApp / in-app payment seams retained).
- *
- * Emits exactly one custom analytics event per click via the shared helper.
- * Automatic GA4 enhanced-measurement outbound `click` may also fire — keep it.
+ * Shared primary booking CTA for live ticket sales.
+ * Returns null when Garba Night is concluded (ADR-029) so no Kaizen /
+ * BOOK PASSES surface remains in the DOM.
  */
 export function EventBookingCTA({
   source,
   className,
   variant = "primary",
 }: EventBookingCTAProps) {
+  if (GARBA_NIGHT_2026.lifecycle === "concluded") {
+    return null;
+  }
+
   const action = getGarbaBookingAction(source);
 
   return (

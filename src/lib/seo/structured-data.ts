@@ -363,9 +363,10 @@ export function buildFaqPageJsonLd(faqs: Faq[]): FaqPageJsonLd | null {
 }
 
 /**
- * Garba Night Event JSON-LD (ADR-025 / ADR-026). Offers describe confirmed
- * prices; offer URLs point at the live hosted booking destination when
- * `bookingMode` is external. Event `url` / page canonical stay on ankitsstudio.com.
+ * Garba Night Event JSON-LD (ADR-025 / ADR-026 / ADR-029).
+ * Live ticket Offers only while the event is upcoming and a booking URL exists.
+ * Concluded archive: no purchase Offers; eventStatus stays EventScheduled
+ * (event occurred as planned — not cancelled/postponed). Canonical stays on-site.
  */
 export function buildGarbaNightEventJsonLd(event: GarbaNight2026): EventJsonLd | null {
   if (event.dataStatus !== "verified") return null;
@@ -383,7 +384,7 @@ export function buildGarbaNightEventJsonLd(event: GarbaNight2026): EventJsonLd |
     : `${origin}${event.media.ogImage.startsWith("/") ? event.media.ogImage : `/${event.media.ogImage}`}`;
   const posterPath = `${origin}${event.media.poster}`;
 
-  return {
+  const jsonLd: EventJsonLd = {
     "@context": "https://schema.org",
     "@type": "Event",
     name: event.name,
@@ -410,7 +411,11 @@ export function buildGarbaNightEventJsonLd(event: GarbaNight2026): EventJsonLd |
       name: siteConfig.name,
       url: origin,
     },
-    offers: event.passProducts
+    url,
+  };
+
+  if (event.lifecycle === "upcoming" && event.bookingUrl) {
+    jsonLd.offers = event.passProducts
       .filter((pass) => pass.includeInSchema)
       .map((pass) => ({
         "@type": "Offer" as const,
@@ -426,7 +431,8 @@ export function buildGarbaNightEventJsonLd(event: GarbaNight2026): EventJsonLd |
         priceCurrency: "INR",
         url: offerUrl,
         availability: "https://schema.org/InStock" as const,
-      })),
-    url,
-  };
+      }));
+  }
+
+  return jsonLd;
 }

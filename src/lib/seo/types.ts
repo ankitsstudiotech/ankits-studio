@@ -205,6 +205,7 @@ export interface EventJsonLd {
     name: string;
     url: string;
   };
-  offers: EventOfferJsonLd[];
+  /** Omitted when the event is concluded and tickets are no longer purchasable. */
+  offers?: EventOfferJsonLd[];
   url: string;
 }

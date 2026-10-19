@@ -118,13 +118,15 @@ export function getGarbaBookingAction(
 ): EventBookingAction {
   const ctaLocation = resolveGarbaCtaLocation(source);
 
+  // Concluded: no sales CTA. Callers must not render EventBookingCTA.
+  // Keep a non-booking contact fallback for defensive use only — never Kaizen.
   if (event.lifecycle === "concluded") {
     return {
       mode: event.bookingMode,
       href: "/contact",
-      label: "Contact for future events",
+      label: "Contact Ankit's Studio",
       external: false,
-      analyticsEvent: "garba_booking_click",
+      analyticsEvent: "garba_whatsapp_reserve_click",
       ctaLocation,
       bookingProvider: null,
     };

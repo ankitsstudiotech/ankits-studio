@@ -815,14 +815,26 @@
   color: var(--color-muted-on-field);
 }
 
-.archiveBanner {
+.archiveStatus {
   margin: 0 0 1.25rem;
+}
+
+.archiveBanner {
+  margin: 0;
   padding: 0.85rem 1rem;
   border: 1px solid var(--garba-gold);
   color: var(--garba-gold);
   font-size: var(--text-label);
   letter-spacing: 0.1em;
   text-transform: uppercase;
+}
+
+.archiveLede {
+  margin: 0.75rem 0 0;
+  max-width: 36rem;
+  font-size: var(--text-body);
+  line-height: 1.5;
+  color: var(--color-muted-on-field, var(--color-muted));
 }
 
 /* ——— Closing campaign CTA ——— */

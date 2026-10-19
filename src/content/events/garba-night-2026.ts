@@ -26,7 +26,8 @@ export type GarbaMediaAvailability = {
  */
 export type HomeSeasonalCampaign = "garba-night-2026" | null;
 
-export const HOME_SEASONAL_CAMPAIGN: HomeSeasonalCampaign = "garba-night-2026";
+/** Restored coach-led Home H1 after Garba Night 2026 concluded (ADR-029). */
+export const HOME_SEASONAL_CAMPAIGN: HomeSeasonalCampaign = null;
 
 export const GARBA_KAIZEN_BOOKING_URL =
   "https://kaizenevents.live/register/ankits-studio-garba-night-the-5th-edition";
@@ -172,10 +173,11 @@ export const GARBA_NIGHT_2026: GarbaNight2026 = {
   slug: "garba-night-2026",
   path: "/events/garba-night-2026",
   dataStatus: "verified",
-  lifecycle: "upcoming",
+  lifecycle: "concluded",
   bookingMode: "external",
-  bookingUrl: GARBA_KAIZEN_BOOKING_URL,
-  bookingProvider: "kaizen",
+  /** Null after conclusion — no live registration destination (ADR-029). */
+  bookingUrl: null,
+  bookingProvider: null,
   paymentCheckoutUrl: null,
   name: "Ankit's Studio Garba Night — 5th Edition",
   editionLabel: "5th Edition",
@@ -194,7 +196,7 @@ export const GARBA_NIGHT_2026: GarbaNight2026 = {
   addressCountry: "IN",
   capacityLabel: "Limited to 500 registrations",
   secondaryPricingLine: "Kids ₹500 · Group of 10 ₹650/member",
-  pricingArtworkNote: "See current pass pricing below.",
+  pricingArtworkNote: "Historical pass pricing for the 5th Edition is listed below.",
   memberPriceInr: 600,
   guestPriceInr: 700,
   kidsPriceInr: 500,
@@ -212,7 +214,7 @@ export const GARBA_NIGHT_2026: GarbaNight2026 = {
     "Refreshments are available separately for purchase at the venue and are not included in the pass price.",
   seoTitle: "Garba Night 2026 in Airoli, Navi Mumbai",
   seoDescription:
-    "Join Ankit's Studio Garba Night — 5th Edition on 17 Oct at VIBGYOR High, Airoli. Live DJ, prizes and Garba Street. Passes from ₹500.",
+    "Ankit's Studio Garba Night — 5th Edition at VIBGYOR High School, Airoli on 17 October 2026. Live DJ, prizes, photo zones and Garba Street.",
   highlights: [
     {
       id: "live-dj",
@@ -274,9 +276,9 @@ export const GARBA_NIGHT_2026: GarbaNight2026 = {
     },
     {
       id: "reserve",
-      question: "How do I book passes?",
+      question: "Can I still book passes?",
       answer:
-        "Use Book Passes on this page to register on Kaizen Events, where payment is completed. For other questions about the event, WhatsApp Ankit's Studio.",
+        "Garba Night — 5th Edition has concluded. Pass registration is closed. Follow Ankit's Studio for future community nights and studio programmes.",
     },
     {
       id: "refreshments",
