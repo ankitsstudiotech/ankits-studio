@@ -216,6 +216,11 @@ export function trackGarbaPreviousEventVideoPlay() {
   trackEvent("garba_previous_event_video_play");
 }
 
+/** Real 5th Edition highlights reel — archive only (ADR-030). */
+export function trackGarba2026HighlightsVideoPlay() {
+  trackEvent("garba_2026_highlights_video_play");
+}
+
 /**
  * In-app payment-gateway events — only if bookingMode becomes `payment`:
  * - garba_checkout_started

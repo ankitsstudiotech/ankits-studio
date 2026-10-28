@@ -1,4 +1,5 @@
 export { EventBookingCTA } from "./EventBookingCTA";
+export { GarbaHighlightsGallery } from "./GarbaHighlightsGallery";
 export { EventDirectionsLink } from "./EventDirectionsLink";
 export { EventVideo } from "./EventVideo";
 export { GarbaCampaignMedia } from "./GarbaCampaignMedia";

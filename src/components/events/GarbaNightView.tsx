@@ -1,11 +1,19 @@
+import Image from "next/image";
+import Link from "next/link";
 import { FaqBlock } from "@/components/content/FaqBlock";
+import { ClosingBand } from "@/components/conversion/ClosingBand";
 import { RouteOpening, SectionReveal } from "@/components/motion";
 import type { GarbaMediaAvailability, GarbaNight2026 } from "@/content";
+import {
+  getPrimaryConversionHref,
+  getPrimaryConversionLabel,
+} from "@/lib/conversion";
 import { GarbaWhatsAppSupportLink } from "./GarbaWhatsAppSupportLink";
 import { EventBookingCTA } from "./EventBookingCTA";
 import { EventDirectionsLink } from "./EventDirectionsLink";
 import { EventVideo } from "./EventVideo";
 import { GarbaCampaignMedia } from "./GarbaCampaignMedia";
+import { GarbaHighlightsGallery } from "./GarbaHighlightsGallery";
 import { GarbaStickyReserve } from "./GarbaStickyReserve";
 import styles from "./garba-night.module.css";
 
@@ -18,8 +26,159 @@ function highlightById(event: GarbaNight2026, id: string) {
   return event.highlights.find((item) => item.id === id);
 }
 
+function NightAttractions({ event }: { event: GarbaNight2026 }) {
+  const liveDj = highlightById(event, "live-dj");
+  const prizes = highlightById(event, "prizes");
+  const garbaStreet = highlightById(event, "garba-street");
+  const photoZones = highlightById(event, "photo-zones");
+  const refreshments = highlightById(event, "refreshments");
+
+  return (
+    <section className={styles.band} aria-labelledby="garba-highlights-title">
+      <div className={styles.wrap}>
+        <SectionReveal>
+          <h2 id="garba-highlights-title" className={styles.sectionTitle}>
+            The Night
+          </h2>
+          <p className={styles.sectionLede}>
+            Confirmed attractions for Garba Night — 5th Edition.
+          </p>
+        </SectionReveal>
+
+        <div className={styles.nightGrid}>
+          {liveDj ? (
+            <article className={`${styles.nightModule} ${styles.nightLive}`}>
+              <h3>{liveDj.title}</h3>
+              <p>{liveDj.body}</p>
+            </article>
+          ) : null}
+
+          {prizes ? (
+            <article className={`${styles.nightModule} ${styles.nightPrizes}`}>
+              <h3>{prizes.title}</h3>
+              <p>{prizes.body}</p>
+              <ul className={styles.moduleChips} aria-label="Prize categories">
+                {event.prizeCategories.map((item) => (
+                  <li key={item}>{item}</li>
+                ))}
+              </ul>
+            </article>
+          ) : null}
+
+          {garbaStreet ? (
+            <article className={`${styles.nightModule} ${styles.nightStreet}`}>
+              <h3>{garbaStreet.title}</h3>
+              <p>{garbaStreet.body}</p>
+              <ul className={styles.moduleChips} aria-label="Garba Street stalls">
+                {event.stallKinds.map((item) => (
+                  <li key={item}>{item}</li>
+                ))}
+              </ul>
+            </article>
+          ) : null}
+
+          <div className={styles.nightStack}>
+            {photoZones ? (
+              <article className={styles.nightModule}>
+                <h3>{photoZones.title}</h3>
+                <p>{photoZones.body}</p>
+              </article>
+            ) : null}
+            {refreshments ? (
+              <article className={styles.nightModule}>
+                <h3>{refreshments.title}</h3>
+                <p>{refreshments.body}</p>
+              </article>
+            ) : null}
+          </div>
+        </div>
+      </div>
+    </section>
+  );
+}
+
+function VenueSection({
+  event,
+  fullAddress,
+}: {
+  event: GarbaNight2026;
+  fullAddress: string;
+}) {
+  return (
+    <section
+      className={`${styles.band} ${styles.venueBand}`}
+      aria-labelledby="garba-venue-title"
+    >
+      <div className={`${styles.wrap} ${styles.venueGrid}`}>
+        <div className={styles.venueCopy}>
+          <h2 id="garba-venue-title" className={styles.sectionTitle}>
+            Venue
+          </h2>
+          <p className={styles.venueName}>{event.venueName}</p>
+          <p className={styles.venueAddress}>{fullAddress}</p>
+          <div className={styles.actions}>
+            <EventDirectionsLink className={styles.primaryCta} />
+          </div>
+        </div>
+        <div className={styles.venueDestination} aria-hidden="true">
+          <p className={styles.venueDestinationPlace}>Airoli</p>
+          <p className={styles.venueDestinationSchool}>VIBGYOR High School</p>
+          <p className={styles.venueDestinationMeta}>
+            17 Oct · 7 PM – Midnight
+          </p>
+        </div>
+      </div>
+    </section>
+  );
+}
+
+function PassPricingSection({
+  event,
+  concluded,
+}: {
+  event: GarbaNight2026;
+  concluded: boolean;
+}) {
+  return (
+    <section
+      className={`${styles.band} ${styles.passesBand}`}
+      aria-labelledby="garba-pricing-title"
+    >
+      <div className={`${styles.wrap} ${styles.passesWrap}`}>
+        <h2 id="garba-pricing-title" className={styles.passesTitle}>
+          {concluded ? "Pass Pricing — 5th Edition" : "Passes"}
+        </h2>
+        <div className={styles.passesGrid}>
+          {event.passProducts.map((pass) => (
+            <div key={pass.id} className={styles.passesPrice}>
+              <p className={styles.passesLabel}>{pass.name}</p>
+              <p className={styles.passesAmount}>
+                {pass.priceLabel}
+                <span className={styles.passesUnit}> {pass.unitLabel}</span>
+              </p>
+              <p className={styles.passesAge}>{pass.qualifierLabel}</p>
+            </div>
+          ))}
+        </div>
+        {!concluded ? (
+          <div className={styles.passesActionRow}>
+            <EventBookingCTA source="event-passes" className={styles.primaryCta} />
+          </div>
+        ) : null}
+        <p className={styles.refreshmentsNote}>{event.refreshmentsNote}</p>
+        {!concluded ? (
+          <p className={styles.registrationFeeNote}>
+            Final payable amount is shown during registration on Kaizen Events.
+          </p>
+        ) : null}
+      </div>
+    </section>
+  );
+}
+
 export function GarbaNightView({ event, media }: GarbaNightViewProps) {
   const concluded = event.lifecycle === "concluded";
+  const current = event.media.currentEdition;
   const fullAddress = [
     event.venueName,
     event.streetAddress,
@@ -27,12 +186,8 @@ export function GarbaNightView({ event, media }: GarbaNightViewProps) {
     `${event.addressRegion} ${event.postalCode}`,
     "India",
   ].join("\n");
-
-  const liveDj = highlightById(event, "live-dj");
-  const prizes = highlightById(event, "prizes");
-  const garbaStreet = highlightById(event, "garba-street");
-  const photoZones = highlightById(event, "photo-zones");
-  const refreshments = highlightById(event, "refreshments");
+  const trialHref = getPrimaryConversionHref();
+  const trialLabel = getPrimaryConversionLabel();
 
   return (
     <div
@@ -50,8 +205,8 @@ export function GarbaNightView({ event, media }: GarbaNightViewProps) {
                     Event concluded · 17 October 2026
                   </p>
                   <p className={styles.archiveLede}>
-                    Garba Night — 5th Edition has concluded. Event highlights and
-                    photos are coming soon.
+                    Relive Ankit&apos;s Studio Garba Night — 5th Edition through
+                    highlights from 17 October 2026 in Airoli.
                   </p>
                 </div>
               ) : null}
@@ -92,18 +247,36 @@ export function GarbaNightView({ event, media }: GarbaNightViewProps) {
             </div>
 
             <div className={styles.heroMedia}>
-              {media.poster ? (
+              {concluded && media.currentEditionHero ? (
+                <div className={styles.archiveHeroMedia}>
+                  <Image
+                    src={current.hero}
+                    alt={current.heroAlt}
+                    width={current.heroWidth}
+                    height={current.heroHeight}
+                    sizes="(max-width: 959px) 100vw, 42vw"
+                    priority
+                    className={styles.archiveHeroImage}
+                  />
+                </div>
+              ) : media.poster ? (
                 <>
                   <GarbaCampaignMedia
                     posterSrc={event.media.poster}
                     posterAlt={event.media.posterAlt}
-                    teaserSrc={media.promoTeaser ? event.media.promoTeaser.src : undefined}
+                    teaserSrc={
+                      media.promoTeaser ? event.media.promoTeaser.src : undefined
+                    }
                     teaserPoster={
-                      media.promoTeaser ? event.media.promoTeaser.poster : undefined
+                      media.promoTeaser
+                        ? event.media.promoTeaser.poster
+                        : undefined
                     }
                     teaserLabel={event.media.promoTeaser.label}
                   />
-                  <p className={styles.posterPricingNote}>{event.pricingArtworkNote}</p>
+                  <p className={styles.posterPricingNote}>
+                    {event.pricingArtworkNote}
+                  </p>
                 </>
               ) : null}
             </div>
@@ -141,7 +314,10 @@ export function GarbaNightView({ event, media }: GarbaNightViewProps) {
 
               <div className={styles.actions}>
                 {!concluded ? (
-                  <EventBookingCTA source="event-hero" className={styles.primaryCta} />
+                  <EventBookingCTA
+                    source="event-hero"
+                    className={styles.primaryCta}
+                  />
                 ) : null}
                 <EventDirectionsLink
                   className={
@@ -154,100 +330,75 @@ export function GarbaNightView({ event, media }: GarbaNightViewProps) {
         </section>
       </RouteOpening>
 
-      <section
-        className={`${styles.band} ${styles.passesBand}`}
-        aria-labelledby="garba-pricing-title"
-      >
-        <div className={`${styles.wrap} ${styles.passesWrap}`}>
-          <h2 id="garba-pricing-title" className={styles.passesTitle}>
-            {concluded ? "Pass Pricing — 5th Edition" : "Passes"}
-          </h2>
-          <div className={styles.passesGrid}>
-            {event.passProducts.map((pass) => (
-              <div key={pass.id} className={styles.passesPrice}>
-                <p className={styles.passesLabel}>{pass.name}</p>
-                <p className={styles.passesAmount}>
-                  {pass.priceLabel}
-                  <span className={styles.passesUnit}> {pass.unitLabel}</span>
-                </p>
-                <p className={styles.passesAge}>{pass.qualifierLabel}</p>
-              </div>
-            ))}
+      {concluded && media.currentEditionHighlights ? (
+        <section
+          className={`${styles.band} ${styles.currentHighlightsBand}`}
+          aria-labelledby="garba-2026-highlights-title"
+          data-edition="2026"
+        >
+          <div className={styles.wrap}>
+            <SectionReveal>
+              <p className={styles.sectionEyebrow}>2026 Highlights</p>
+              <h2
+                id="garba-2026-highlights-title"
+                className={styles.sectionTitle}
+              >
+                The 5th Edition in motion
+              </h2>
+              <p className={styles.sectionLede}>
+                {current.highlightsVideo.caption}
+              </p>
+            </SectionReveal>
+            <EventVideo
+              className={styles.currentHighlightsVideo}
+              src={current.highlightsVideo.src}
+              poster={current.highlightsVideo.poster}
+              label={current.highlightsVideo.label}
+              playEvent="garba_2026_highlights_video_play"
+              mode="manual"
+              lazy
+            />
+            <GarbaHighlightsGallery images={current.gallery} />
           </div>
-          {!concluded ? (
-            <div className={styles.passesActionRow}>
-              <EventBookingCTA source="event-passes" className={styles.primaryCta} />
-            </div>
-          ) : null}
-          <p className={styles.refreshmentsNote}>{event.refreshmentsNote}</p>
-          {!concluded ? (
-            <p className={styles.registrationFeeNote}>
-              Final payable amount is shown during registration on Kaizen Events.
-            </p>
-          ) : null}
-        </div>
-      </section>
+        </section>
+      ) : null}
 
-      <section className={styles.band} aria-labelledby="garba-highlights-title">
-        <div className={styles.wrap}>
-          <SectionReveal>
-            <h2 id="garba-highlights-title" className={styles.sectionTitle}>
-              The Night
-            </h2>
-            <p className={styles.sectionLede}>
-              Confirmed attractions for Garba Night — 5th Edition.
-            </p>
-          </SectionReveal>
+      {!concluded ? <PassPricingSection event={event} concluded={false} /> : null}
 
-          <div className={styles.nightGrid}>
-            {liveDj ? (
-              <article className={`${styles.nightModule} ${styles.nightLive}`}>
-                <h3>{liveDj.title}</h3>
-                <p>{liveDj.body}</p>
-              </article>
-            ) : null}
+      <NightAttractions event={event} />
 
-            {prizes ? (
-              <article className={`${styles.nightModule} ${styles.nightPrizes}`}>
-                <h3>{prizes.title}</h3>
-                <p>{prizes.body}</p>
-                <ul className={styles.moduleChips} aria-label="Prize categories">
-                  {event.prizeCategories.map((item) => (
-                    <li key={item}>{item}</li>
-                  ))}
-                </ul>
-              </article>
-            ) : null}
+      <VenueSection event={event} fullAddress={fullAddress} />
 
-            {garbaStreet ? (
-              <article className={`${styles.nightModule} ${styles.nightStreet}`}>
-                <h3>{garbaStreet.title}</h3>
-                <p>{garbaStreet.body}</p>
-                <ul className={styles.moduleChips} aria-label="Garba Street stalls">
-                  {event.stallKinds.map((item) => (
-                    <li key={item}>{item}</li>
-                  ))}
-                </ul>
-              </article>
-            ) : null}
+      {concluded ? <PassPricingSection event={event} concluded /> : null}
 
-            <div className={styles.nightStack}>
-              {photoZones ? (
-                <article className={styles.nightModule}>
-                  <h3>{photoZones.title}</h3>
-                  <p>{photoZones.body}</p>
-                </article>
-              ) : null}
-              {refreshments ? (
-                <article className={styles.nightModule}>
-                  <h3>{refreshments.title}</h3>
-                  <p>{refreshments.body}</p>
-                </article>
-              ) : null}
+      {concluded && media.poster ? (
+        <section
+          className={`${styles.band} ${styles.historicalPosterBand}`}
+          aria-labelledby="garba-poster-title"
+        >
+          <div className={styles.wrap}>
+            <SectionReveal>
+              <h2 id="garba-poster-title" className={styles.sectionTitle}>
+                5th Edition event poster
+              </h2>
+              <p className={styles.sectionLede}>
+                The campaign poster used ahead of Garba Night — 5th Edition.
+              </p>
+            </SectionReveal>
+            <div className={styles.historicalPosterFrame}>
+              <Image
+                src={event.media.poster}
+                alt={event.media.posterAlt}
+                width={1024}
+                height={1536}
+                sizes="(max-width: 767px) 100vw, 28rem"
+                className={styles.historicalPosterImage}
+                loading="lazy"
+              />
             </div>
           </div>
-        </div>
-      </section>
+        </section>
+      ) : null}
 
       {media.previousEdition ? (
         <section
@@ -257,11 +408,14 @@ export function GarbaNightView({ event, media }: GarbaNightViewProps) {
         >
           <div className={styles.wrap}>
             <SectionReveal>
+              <p className={styles.sectionEyebrow}>Previous Edition</p>
               <h2 id="garba-previous-title" className={styles.sectionTitle}>
                 From the previous edition
               </h2>
               <p className={styles.previousEditionLabel}>Garba Night 4.0</p>
-              <p className={styles.sectionLede}>{event.media.previousEdition.caption}</p>
+              <p className={styles.sectionLede}>
+                {event.media.previousEdition.caption}
+              </p>
             </SectionReveal>
             <EventVideo
               className={styles.previousVideoShell}
@@ -275,31 +429,6 @@ export function GarbaNightView({ event, media }: GarbaNightViewProps) {
           </div>
         </section>
       ) : null}
-
-      <section
-        className={`${styles.band} ${styles.venueBand}`}
-        aria-labelledby="garba-venue-title"
-      >
-        <div className={`${styles.wrap} ${styles.venueGrid}`}>
-          <div className={styles.venueCopy}>
-            <h2 id="garba-venue-title" className={styles.sectionTitle}>
-              Venue
-            </h2>
-            <p className={styles.venueName}>{event.venueName}</p>
-            <p className={styles.venueAddress}>{fullAddress}</p>
-            <div className={styles.actions}>
-              <EventDirectionsLink className={styles.primaryCta} />
-            </div>
-          </div>
-          <div className={styles.venueDestination} aria-hidden="true">
-            <p className={styles.venueDestinationPlace}>Airoli</p>
-            <p className={styles.venueDestinationSchool}>VIBGYOR High School</p>
-            <p className={styles.venueDestinationMeta}>
-              17 Oct · 7 PM – Midnight
-            </p>
-          </div>
-        </div>
-      </section>
 
       <section className={styles.band} aria-labelledby="garba-faq-title">
         <div className={styles.wrap}>
@@ -347,26 +476,28 @@ export function GarbaNightView({ event, media }: GarbaNightViewProps) {
             <p className={styles.closingSecondaryPricing}>
               {event.secondaryPricingLine}
             </p>
-            <EventBookingCTA source="event-closing" className={styles.closingCta} />
+            <EventBookingCTA
+              source="event-closing"
+              className={styles.closingCta}
+            />
           </div>
         </section>
       ) : (
-        <section
-          className={styles.closingCampaign}
-          aria-labelledby="garba-closing-title"
-          data-concluded="true"
+        <ClosingBand
+          titleId="garba-closing-title"
+          title="Keep training with Ankit's Studio"
+          body="Garba Night — 5th Edition has concluded. Explore programmes across our Navi Mumbai studios, or book a free trial class."
+          variant="field"
+          secondary={
+            <Link href="/programs" className={styles.archiveSecondaryCta}>
+              Explore programmes
+            </Link>
+          }
         >
-          <div className={styles.closingCampaignInner}>
-            <h2 id="garba-closing-title" className={styles.closingTitle}>
-              Thanks for celebrating with us
-            </h2>
-            <p className={styles.closingMeta}>
-              Garba Night 2026 has concluded. Event highlights and photos are
-              coming soon. Follow Ankit&apos;s Studio for future community nights
-              and studio programmes.
-            </p>
-          </div>
-        </section>
+          <a href={trialHref} className={styles.archivePrimaryCta}>
+            {trialLabel}
+          </a>
+        </ClosingBand>
       )}
 
       {!concluded ? <GarbaStickyReserve /> : null}

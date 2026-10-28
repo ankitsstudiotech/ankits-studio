@@ -15,8 +15,34 @@ export type GarbaMediaAvailability = {
   poster: boolean;
   promoTeaser: boolean;
   previousEdition: boolean;
+  currentEditionHero: boolean;
+  currentEditionHighlights: boolean;
   /** True only when owner campaign poster + both optimized videos are present. */
   campaignComplete: boolean;
+};
+
+export type GarbaGalleryImage = {
+  id: string;
+  src: string;
+  alt: string;
+  width: number;
+  height: number;
+  /** Editorial span hint for the archive gallery grid. */
+  span?: "wide" | "tall" | "standard";
+};
+
+export type GarbaCurrentEditionMedia = {
+  hero: string;
+  heroAlt: string;
+  heroWidth: number;
+  heroHeight: number;
+  highlightsVideo: {
+    src: string;
+    poster: string;
+    label: string;
+    caption: string;
+  };
+  gallery: readonly GarbaGalleryImage[];
 };
 
 /**
@@ -120,9 +146,13 @@ export type GarbaNight2026 = {
       label: string;
       caption: string;
     };
+    /** Real 5th Edition event media (ADR-030). Present for concluded archive. */
+    currentEdition: GarbaCurrentEditionMedia;
   };
   mapsDirectionsUrl: string;
 };
+
+const HIGHLIGHTS_BASE = "/events/garba-night-2026/2026-highlights";
 
 const WHATSAPP_DIGITS = "919372402074";
 
@@ -214,7 +244,7 @@ export const GARBA_NIGHT_2026: GarbaNight2026 = {
     "Refreshments are available separately for purchase at the venue and are not included in the pass price.",
   seoTitle: "Garba Night 2026 in Airoli, Navi Mumbai",
   seoDescription:
-    "Ankit's Studio Garba Night — 5th Edition at VIBGYOR High School, Airoli on 17 October 2026. Live DJ, prizes, photo zones and Garba Street.",
+    "See highlights from Ankit's Studio Garba Night — 5th Edition, held at VIBGYOR High School, Airoli on 17 October 2026, with Garba, live DJ, photo zones and Garba Street.",
   highlights: [
     {
       id: "live-dj",
@@ -294,7 +324,7 @@ export const GARBA_NIGHT_2026: GarbaNight2026 = {
     },
   ],
   media: {
-    /** Optimized from media-source/ via scripts/optimize-garba-media.mjs — never serve raw MOV/source. */
+    /** Pre-event campaign artwork — retained historically; not the archive hero. */
     poster: "/events/garba-night-2026/poster.webp",
     posterAlt:
       "Ankit's Studio Garba Night 5th Edition poster — 17 October 2026 at VIBGYOR High School, Airoli",
@@ -309,6 +339,80 @@ export const GARBA_NIGHT_2026: GarbaNight2026 = {
       poster: "/events/garba-night-2026/previous-edition-poster.webp",
       label: "Garba Night 4.0 Highlights",
       caption: "A glimpse of the energy from our previous Garba Night.",
+    },
+    currentEdition: {
+      hero: `${HIGHLIGHTS_BASE}/garba-night-2026-hero.webp`,
+      heroAlt:
+        "Guests dancing at Ankit's Studio Garba Night 2026 in Airoli",
+      heroWidth: 1600,
+      heroHeight: 900,
+      highlightsVideo: {
+        src: `${HIGHLIGHTS_BASE}/garba-night-2026-highlights.mp4`,
+        poster: `${HIGHLIGHTS_BASE}/garba-night-2026-highlights-poster.webp`,
+        label: "Garba Night 2026 highlights",
+        caption:
+          "Highlights from Ankit's Studio Garba Night — 5th Edition on 17 October 2026 at VIBGYOR High School, Airoli.",
+      },
+      gallery: [
+        {
+          id: "crowd-wide",
+          src: `${HIGHLIGHTS_BASE}/gallery-crowd-wide.webp`,
+          alt: "Garba Night 2026 crowd dancing under colourful stage lights at VIBGYOR High School, Airoli",
+          width: 1400,
+          height: 788,
+          span: "wide",
+        },
+        {
+          id: "dance-close",
+          src: `${HIGHLIGHTS_BASE}/gallery-dance-close.webp`,
+          alt: "Guests performing Garba at Ankit's Studio Garba Night 2026",
+          width: 640,
+          height: 1138,
+          span: "tall",
+        },
+        {
+          id: "group-dance",
+          src: `${HIGHLIGHTS_BASE}/gallery-group-dance.webp`,
+          alt: "Group dancing together during Garba Night — 5th Edition",
+          width: 640,
+          height: 360,
+          // Landscape — full row avoids letterboxing beside portrait modules.
+          span: "wide",
+        },
+        {
+          id: "photo-zone-candid",
+          src: `${HIGHLIGHTS_BASE}/gallery-photo-zone-candid.webp`,
+          alt: "Guests at a decorated photo zone during Garba Night 2026",
+          width: 1050,
+          height: 1400,
+          span: "tall",
+        },
+        {
+          id: "photo-zone-group",
+          src: `${HIGHLIGHTS_BASE}/gallery-photo-zone-group.webp`,
+          alt: "Guests posing at the Garba Night 2026 photo zone",
+          width: 1050,
+          height: 1400,
+          span: "tall",
+        },
+        {
+          id: "prizes",
+          src: `${HIGHLIGHTS_BASE}/gallery-prizes.webp`,
+          alt: "Prizes and trophies displayed at Ankit's Studio Garba Night 2026",
+          width: 640,
+          height: 1138,
+          span: "tall",
+        },
+        {
+          id: "dance-floor",
+          src: `${HIGHLIGHTS_BASE}/gallery-dance-floor.webp`,
+          alt: "Garba dance floor during the 5th Edition celebration in Airoli",
+          width: 640,
+          height: 1138,
+          // Asset is portrait — keep tall span (do not force full-bleed wide).
+          span: "tall",
+        },
+      ],
     },
   },
   mapsDirectionsUrl: `https://www.google.com/maps/dir/?api=1&destination=${encodeURIComponent(VENUE_QUERY)}`,

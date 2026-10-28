@@ -382,7 +382,12 @@ export function buildGarbaNightEventJsonLd(event: GarbaNight2026): EventJsonLd |
   const ogPath = event.media.ogImage.startsWith("http")
     ? event.media.ogImage
     : `${origin}${event.media.ogImage.startsWith("/") ? event.media.ogImage : `/${event.media.ogImage}`}`;
+  const currentHeroPath = `${origin}${event.media.currentEdition.hero}`;
   const posterPath = `${origin}${event.media.poster}`;
+  const schemaImages =
+    event.lifecycle === "concluded"
+      ? [currentHeroPath, ogPath, posterPath]
+      : [ogPath, posterPath];
 
   const jsonLd: EventJsonLd = {
     "@context": "https://schema.org",
@@ -393,7 +398,7 @@ export function buildGarbaNightEventJsonLd(event: GarbaNight2026): EventJsonLd |
     endDate: event.endDateIso,
     eventAttendanceMode: "https://schema.org/OfflineEventAttendanceMode",
     eventStatus: "https://schema.org/EventScheduled",
-    image: [ogPath, posterPath],
+    image: schemaImages,
     location: {
       "@type": "Place",
       name: event.venueName,

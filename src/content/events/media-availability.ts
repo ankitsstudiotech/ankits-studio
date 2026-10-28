@@ -13,11 +13,21 @@ function publicPath(urlPath: string): string {
 export function getGarbaMediaAvailability(): GarbaMediaAvailability {
   const poster = existsSync(publicPath(GARBA_NIGHT_2026.media.poster));
   const promoTeaser = existsSync(publicPath(GARBA_NIGHT_2026.media.promoTeaser.src));
-  const previousEdition = existsSync(publicPath(GARBA_NIGHT_2026.media.previousEdition.src));
+  const previousEdition = existsSync(
+    publicPath(GARBA_NIGHT_2026.media.previousEdition.src),
+  );
+  const currentEditionHero = existsSync(
+    publicPath(GARBA_NIGHT_2026.media.currentEdition.hero),
+  );
+  const currentEditionHighlights = existsSync(
+    publicPath(GARBA_NIGHT_2026.media.currentEdition.highlightsVideo.src),
+  );
   return {
     poster,
     promoTeaser,
     previousEdition,
+    currentEditionHero,
+    currentEditionHighlights,
     campaignComplete: poster && promoTeaser && previousEdition,
   };
 }

@@ -705,6 +705,14 @@ Schema note (same change): removed unused optional `readinessBodyMockPreview` fr
 
 **Why:** Ticket sales ended when the event concluded; the URL retains Search equity as an archive while stale registration CTAs would mislead visitors.
 
+**Status**: Active; current-edition highlights media added by ADR-030.
+
+## ADR-030: Garba Night 2026 real event highlights archive media
+
+**Decision**: Add owner-curated real 5th Edition media under `public/events/garba-night-2026/2026-highlights/` and typed `media.currentEdition` (hero WEBP, highlights MP4 + poster, seven-image gallery). For `lifecycle: "concluded"`, the archive hero uses the real event hero image (not the pre-event campaign teaser). Insert a “2026 Highlights / The 5th Edition in motion” section with manual/lazy `EventVideo` (`garba_2026_highlights_video_play`) and an editorial Next/Image gallery before historical pass pricing. Keep Garba Night 4.0 clearly labelled as previous edition after current-year media. Retain pre-event poster lower as historical artwork. Evergreen close uses existing `/programs` + free-trial conversion — no BOOK PASSES / Kaizen. Event JSON-LD may prefer the real 2026 hero in `image[]` while still omitting Offers. Do not fabricate attendance, winners, or additional photography.
+
+**Why:** Real post-event media exists; the archive URL already earns Search traffic and should present truthful 2026 footage/photos without reopening ticket sales.
+
 **Status**: Active.
 
 ## Log format for future entries

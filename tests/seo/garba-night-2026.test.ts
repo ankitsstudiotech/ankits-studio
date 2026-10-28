@@ -98,6 +98,7 @@ describe("Garba Night 2026 event archive", () => {
     expect(jsonLd?.offers).toBeUndefined();
     expect(jsonLd?.url).toBe(buildCanonicalUrl(event.path));
     expect(jsonLd?.startDate).toBe("2026-10-17T19:00:00+05:30");
+    expect(jsonLd?.image?.[0]).toContain("garba-night-2026-hero.webp");
   });
 
   it("builds a Maps directions URL for VIBGYOR High", () => {
@@ -143,13 +144,41 @@ describe("Garba Night 2026 event archive", () => {
 
   it("labels previous-edition media as Garba Night 4.0, not 2026 footage", () => {
     expect(event.media.previousEdition.label).toMatch(/4\.0/);
+    expect(event.media.previousEdition.src).toContain("previous-edition");
     expect(event.media.promoTeaser.src).toBe("/events/garba-night-2026/teaser.mp4");
     expect(event.media.poster).toBe("/events/garba-night-2026/poster.webp");
   });
 
-  it("does not invent a 2026 photo gallery in content", () => {
-    expect(activeCopy).not.toMatch(/photo gallery|event gallery|2026 photos/i);
-    expect(event.media).not.toHaveProperty("gallery");
+  it("exposes typed current-edition 2026 highlights media", () => {
+    const current = event.media.currentEdition;
+    expect(current.hero).toBe(
+      "/events/garba-night-2026/2026-highlights/garba-night-2026-hero.webp",
+    );
+    expect(current.highlightsVideo.src).toBe(
+      "/events/garba-night-2026/2026-highlights/garba-night-2026-highlights.mp4",
+    );
+    expect(current.highlightsVideo.poster).toContain("highlights-poster");
+    expect(current.gallery).toHaveLength(7);
+    expect(current.gallery.map((g) => g.id)).toEqual([
+      "crowd-wide",
+      "dance-close",
+      "group-dance",
+      "photo-zone-candid",
+      "photo-zone-group",
+      "prizes",
+      "dance-floor",
+    ]);
+    expect(current.gallery.every((g) => g.src.includes("2026-highlights"))).toBe(
+      true,
+    );
+    expect(current.gallery.every((g) => !g.src.includes("previous-edition"))).toBe(
+      true,
+    );
+  });
+
+  it("does not leave coming-soon copy or fabricated winner claims", () => {
+    expect(JSON.stringify(event)).not.toMatch(/coming soon/i);
+    expect(activeCopy).not.toMatch(/sold out|attendance of|winner was/i);
   });
 
   it("rejects fabricated Stitch event claims in truth content", () => {

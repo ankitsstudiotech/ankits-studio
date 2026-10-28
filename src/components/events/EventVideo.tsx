@@ -8,7 +8,10 @@ export type EventVideoProps = {
   poster: string;
   label: string;
   /** Analytics event fired on first intentional play. */
-  playEvent: "garba_promo_video_play" | "garba_previous_event_video_play";
+  playEvent:
+    | "garba_promo_video_play"
+    | "garba_previous_event_video_play"
+    | "garba_2026_highlights_video_play";
   /**
    * `autoplay` — muted loop when motion is allowed (promo teaser).
    * `manual` — user-initiated only (previous-edition footage).
